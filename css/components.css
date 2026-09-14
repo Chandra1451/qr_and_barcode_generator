@@ -24,30 +24,47 @@
 /* Category Navigation Tabs */
 .category-tabs {
   display: flex;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
+  overflow-y: hidden;
+  padding-bottom: 0.35rem;
   margin-bottom: 1.25rem;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-medium) transparent;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 .category-tabs::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+  display: block;
+}
+.category-tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+.category-tabs::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+.category-tabs::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
 }
 
 .tab-btn {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
-  padding: 0.55rem 1rem;
+  padding: 0.45rem 0.8rem;
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   transition: all var(--transition-fast);
+  user-select: none;
 }
 
 .tab-btn:hover {
@@ -581,29 +598,45 @@ input:checked + .toggle-slider:before {
 /* QR Wizard Pill Navigation Bar */
 .qr-wizard-nav {
   display: flex;
-  gap: 0.4rem;
+  flex-wrap: wrap;
+  gap: 0.35rem;
   overflow-x: auto;
-  padding: 0.25rem 0 0.75rem 0;
+  overflow-y: hidden;
+  padding: 0.25rem 0 0.5rem 0;
   margin-bottom: 1rem;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-medium) transparent;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 .qr-wizard-nav::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+  display: block;
+}
+.qr-wizard-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+.qr-wizard-nav::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+.qr-wizard-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
 }
 
 .wizard-pill-btn {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
-  padding: 0.45rem 0.85rem;
+  padding: 0.4rem 0.75rem;
   border-radius: var(--radius-md);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   transition: all var(--transition-fast);
   user-select: none;
 }

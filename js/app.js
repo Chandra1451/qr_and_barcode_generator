@@ -654,6 +654,19 @@ class App {
      Event Binding
      -------------------------------------------------------------------------- */
   bindEvents() {
+    // Horizontal wheel scroll support for tabs and wizard nav
+    const enableWheelScroll = (el) => {
+      if (!el) return;
+      el.addEventListener('wheel', (e) => {
+        if (el.scrollWidth > el.clientWidth && e.deltaY !== 0) {
+          e.preventDefault();
+          el.scrollLeft += e.deltaY;
+        }
+      }, { passive: false });
+    };
+    enableWheelScroll(this.categoryTabs);
+    enableWheelScroll(this.qrWizardNav);
+
     this.symbologySelect?.addEventListener('change', (e) => {
       this.selectGenerator(e.target.value);
     });
