@@ -33,6 +33,7 @@ yarn.lock
 pnpm-lock.yaml
 
 # 6. Local Scratch, Temporary, & Log Files
+dist/
 scratch/
 temp/
 *.log

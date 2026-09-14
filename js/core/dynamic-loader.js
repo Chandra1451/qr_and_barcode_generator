@@ -2,7 +2,12 @@
  * Dynamic Client-Side Dependency Loader
  * Universal QR, Barcode & Code Generator Suite
  * 
- * Lazily loads bwip-js and qr-code-styling on demand without blocking initial render.
+ * Lazily loads bwip-js, qr-code-styling, jspdf, and jszip on demand.
+ * Strategy:
+ * 1. Self-Hosted Vendor copies (/js/vendor/...) for instant sub-20ms loading from Hostinger.
+ * 2. Fallback to jsDelivr global CDN.
+ * 3. Fallback to unpkg global CDN.
+ * 
  * Uses promise memoization to prevent duplicate downloads and race conditions.
  */
 
@@ -10,52 +15,72 @@
 const loadPromises = new Map();
 
 /**
- * Injects a script tag into the document head and returns a Promise
- * @param {string} src - Primary CDN URL
- * @param {string} fallbackSrc - Fallback CDN URL if primary fails
- * @param {number} timeoutMs - Timeout in milliseconds (default 12000ms)
+ * Resolves the relative path prefix depending on current page depth
+ * @returns {string} Relative path prefix (e.g. './' or '../')
+ */
+function getVendorPrefix() {
+  if (typeof window !== 'undefined' && window.location && window.location.pathname) {
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('/pages/') || path.includes('/tests/')) {
+      return '../';
+    }
+  }
+  return './';
+}
+
+/**
+ * Injects a script tag into document head trying candidate URLs in sequence
+ * @param {string[]} sources - Ordered list of script URLs to try
+ * @param {number} [timeoutMs=8000] - Timeout per source
  * @returns {Promise<void>}
  */
-function injectScript(src, fallbackSrc = null, timeoutMs = 12000) {
+function injectScript(sources, timeoutMs = 8000) {
+  const urlList = Array.isArray(sources) ? sources : [sources];
+
   return new Promise((resolve, reject) => {
-    // Check if script is already present
-    if (document.querySelector(`script[src="${src}"]`)) {
-      resolve();
-      return;
+    let index = 0;
+
+    function tryNext() {
+      if (index >= urlList.length) {
+        return reject(new Error(`Failed to load script after trying all sources: ${urlList.join(', ')}`));
+      }
+
+      const currentSrc = urlList[index++];
+
+      // If already present in DOM
+      if (document.querySelector(`script[src="${currentSrc}"]`)) {
+        return resolve();
+      }
+
+      const script = document.createElement('script');
+      script.src = currentSrc;
+      script.async = true;
+      script.crossOrigin = currentSrc.startsWith('http') ? 'anonymous' : '';
+
+      let timer = setTimeout(() => {
+        script.onerror = null;
+        script.onload = null;
+        console.warn(`[DynamicLoader] Timeout loading ${currentSrc}. Trying next fallback...`);
+        script.remove();
+        tryNext();
+      }, timeoutMs);
+
+      script.onload = () => {
+        clearTimeout(timer);
+        resolve();
+      };
+
+      script.onerror = () => {
+        clearTimeout(timer);
+        console.warn(`[DynamicLoader] Error loading ${currentSrc}. Trying next fallback...`);
+        script.remove();
+        tryNext();
+      };
+
+      document.head.appendChild(script);
     }
 
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-
-    let timer = setTimeout(() => {
-      script.onerror = null;
-      script.onload = null;
-      if (fallbackSrc) {
-        console.warn(`[DynamicLoader] Primary source ${src} timed out. Attempting fallback ${fallbackSrc}...`);
-        injectScript(fallbackSrc, null, timeoutMs).then(resolve).catch(reject);
-      } else {
-        reject(new Error(`Timed out loading ${src}`));
-      }
-    }, timeoutMs);
-
-    script.onload = () => {
-      clearTimeout(timer);
-      resolve();
-    };
-
-    script.onerror = (err) => {
-      clearTimeout(timer);
-      if (fallbackSrc) {
-        console.warn(`[DynamicLoader] Failed loading ${src}. Switching to fallback ${fallbackSrc}...`);
-        injectScript(fallbackSrc, null, timeoutMs).then(resolve).catch(reject);
-      } else {
-        reject(new Error(`Failed to load script: ${src}`));
-      }
-    };
-
-    document.head.appendChild(script);
+    tryNext();
   });
 }
 
@@ -70,9 +95,13 @@ export async function loadBwip() {
 
   if (!loadPromises.has('bwip-js')) {
     const p = (async () => {
-      const primaryUrl = 'https://cdn.jsdelivr.net/npm/bwip-js@latest/dist/bwip-js-min.js';
-      const fallbackUrl = 'https://unpkg.com/bwip-js@latest/dist/bwip-js-min.js';
-      await injectScript(primaryUrl, fallbackUrl);
+      const prefix = getVendorPrefix();
+      const sources = [
+        `${prefix}js/vendor/bwip-js-min.js`,
+        'https://cdn.jsdelivr.net/npm/bwip-js@latest/dist/bwip-js-min.js',
+        'https://unpkg.com/bwip-js@latest/dist/bwip-js-min.js'
+      ];
+      await injectScript(sources);
       if (!window.bwipjs) {
         throw new Error('bwip-js script loaded but window.bwipjs is undefined');
       }
@@ -95,9 +124,13 @@ export async function loadQRCodeStyling() {
 
   if (!loadPromises.has('qr-code-styling')) {
     const p = (async () => {
-      const primaryUrl = 'https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js';
-      const fallbackUrl = 'https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js';
-      await injectScript(primaryUrl, fallbackUrl);
+      const prefix = getVendorPrefix();
+      const sources = [
+        `${prefix}js/vendor/qr-code-styling.js`,
+        'https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js',
+        'https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js'
+      ];
+      await injectScript(sources);
       if (!window.QRCodeStyling) {
         throw new Error('qr-code-styling script loaded but window.QRCodeStyling is undefined');
       }
@@ -121,9 +154,13 @@ export async function loadJsPdf() {
 
   if (!loadPromises.has('jspdf')) {
     const p = (async () => {
-      const primaryUrl = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js';
-      const fallbackUrl = 'https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js';
-      await injectScript(primaryUrl, fallbackUrl);
+      const prefix = getVendorPrefix();
+      const sources = [
+        `${prefix}js/vendor/jspdf.umd.min.js`,
+        'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js',
+        'https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js'
+      ];
+      await injectScript(sources);
       const jsPdfClass = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
       if (!jsPdfClass) {
         throw new Error('jsPDF script loaded but window.jspdf.jsPDF is undefined');
@@ -147,9 +184,13 @@ export async function loadJsZip() {
 
   if (!loadPromises.has('jszip')) {
     const p = (async () => {
-      const primaryUrl = 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';
-      const fallbackUrl = 'https://unpkg.com/jszip@3.10.1/dist/jszip.min.js';
-      await injectScript(primaryUrl, fallbackUrl);
+      const prefix = getVendorPrefix();
+      const sources = [
+        `${prefix}js/vendor/jszip.min.js`,
+        'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js',
+        'https://unpkg.com/jszip@3.10.1/dist/jszip.min.js'
+      ];
+      await injectScript(sources);
       if (!window.JSZip) {
         throw new Error('JSZip script loaded but window.JSZip is undefined');
       }

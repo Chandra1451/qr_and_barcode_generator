@@ -605,11 +605,24 @@ function generatePageHtml(page) {
   <meta name="description" content="${page.metaDescription}">
   <link rel="canonical" href="${pageUrl}">
 
+  <meta name="theme-color" content="#06b6d4">
+
+  <!-- Favicons & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="../assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+
   <!-- Open Graph & Social -->
   <meta property="og:title" content="${page.metaTitle}">
   <meta property="og:description" content="${page.metaDescription}">
   <meta property="og:url" content="${pageUrl}">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="${SITE_URL}/assets/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${page.metaTitle}">
+  <meta name="twitter:description" content="${page.metaDescription}">
+  <meta name="twitter:image" content="${SITE_URL}/assets/og-preview.png">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
