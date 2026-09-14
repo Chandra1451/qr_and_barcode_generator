@@ -1078,7 +1078,12 @@ class App {
     if (!this.toastContainer) return;
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `<span>${type === 'error' ? '⚠️' : '🎉'}</span> <span>${message}</span>`;
+    const iconSpan = document.createElement('span');
+    iconSpan.textContent = type === 'error' ? '⚠️' : '🎉';
+    const msgSpan = document.createElement('span');
+    msgSpan.textContent = message;
+    toast.appendChild(iconSpan);
+    toast.appendChild(msgSpan);
     this.toastContainer.appendChild(toast);
 
     setTimeout(() => {

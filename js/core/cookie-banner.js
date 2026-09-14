@@ -20,6 +20,8 @@ export function initCookieBanner() {
   banner.setAttribute('role', 'region');
   banner.setAttribute('aria-label', 'Privacy and Cookies Notice');
 
+  const privacyUrl = window.location.pathname.includes('/pages/') ? '../privacy-policy.html' : 'privacy-policy.html';
+
   banner.innerHTML = `
     <div class="cookie-banner-content">
       <div class="cookie-banner-text">
@@ -32,7 +34,7 @@ export function initCookieBanner() {
         </div>
       </div>
       <div class="cookie-banner-actions">
-        <a href="07_LEGAL_PRIVACY_COMPLIANCE.md" class="cookie-learn-more">Learn More</a>
+        <a href="${privacyUrl}" class="cookie-learn-more">Learn More</a>
         <button type="button" id="btn-accept-cookie" class="cookie-accept-btn">I Understand</button>
       </div>
     </div>

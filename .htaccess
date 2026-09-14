@@ -100,7 +100,7 @@ AddDefaultCharset UTF-8
 </IfModule>
 
 # 6. Block Sensitive & Planning File Extensions (Defense in Depth)
-<FilesMatch "\.(md|log|sh|bat|yml|yaml|json\.lock|bak|config|dist)$">
+<FilesMatch "(^\.env|\.(env|sql|md|log|sh|bat|yml|yaml|json\.lock|bak|config|dist|git))$">
   Require all denied
 </FilesMatch>
 
