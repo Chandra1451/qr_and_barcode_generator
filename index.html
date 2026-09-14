@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Barcode & QR Code Generator Suite | Free, Private & High-Resolution</title>
+  <meta name="description" content="Generate 50+ free barcodes and custom styled QR codes directly in your browser. 100% private, client-side rendering with SVG and PNG exports. No sign-up, zero tracking.">
+  <meta name="keywords" content="QR code generator, barcode generator, EAN-13, UPC-A, Code 128, Data Matrix, Aztec, PDF417, free barcode maker, vector SVG barcode">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:title" content="Universal Barcode & QR Code Generator Suite">
+  <meta property="og:description" content="Create crisp, production-grade 1D & 2D barcodes and styled QR codes. 100% private in-browser rendering.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Universal Barcode & QR Code Generator Suite",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Professional in-browser utility for generating 50+ 1D/2D barcode standards and customizable QR codes."
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-group" id="brand-link">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Universal Code Studio</span>
+          <span class="brand-tagline">Professional QR & Barcode Generator</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <div class="privacy-badge" title="All processing occurs locally in your browser memory. Zero data is sent to any server.">
+          <span class="pulse-dot"></span>
+          <span>100% Client-Side • Zero Data Stored</span>
+        </div>
+
+        <a href="tests/test-runner.html" class="test-runner-link" id="nav-test-runner" title="Run In-Browser Verification Tests">
+          <span>🧪</span> Test Suite
+        </a>
+
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Color Theme">
+          <span>☀️</span> Light
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Studio Workspace -->
+  <main class="main-content">
+    <div class="studio-grid">
+
+      <!-- Left Column: Controls & Configuration Panel -->
+      <section class="controls-column" aria-label="Barcode Configuration Controls">
+        <div class="glass-card">
+          
+          <!-- Category Filter Tabs -->
+          <nav class="category-tabs" id="category-tabs" aria-label="Symbology Categories">
+            <!-- Populated dynamically via app.js -->
+          </nav>
+
+          <!-- Symbology Dropdown Selector -->
+          <div class="selector-group">
+            <label for="symbology-select" class="label-title">Select Code Symbology</label>
+            <div class="select-wrapper">
+              <select id="symbology-select" class="styled-select" aria-describedby="symbology-description">
+                <!-- Populated dynamically via app.js -->
+              </select>
+              <div class="select-arrow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </div>
+            </div>
+            <p class="symbology-desc" id="symbology-description">
+              Loading symbology details...
+            </p>
+          </div>
+
+          <!-- Smart QR Payload Wizard Bar (Shown when QR Code is active) -->
+          <div id="qr-wizard-section" style="display: none;">
+            <label class="label-title">Smart QR Content Wizard</label>
+            <nav class="qr-wizard-nav" id="qr-wizard-nav" aria-label="QR Content Presets">
+              <!-- Injected dynamically via qr-wizards.js in app.js -->
+            </nav>
+            <div id="wizard-form-container">
+              <!-- Wizard fields injected here -->
+            </div>
+          </div>
+
+          <!-- Standard Raw Payload Input Group (Used for 1D/2D barcodes) -->
+          <div class="form-group" id="standard-payload-group">
+            <div class="input-header">
+              <label for="payload-input" id="payload-label">Data Payload</label>
+              <span class="input-hint" id="payload-hint">Real-time dynamic rendering</span>
+            </div>
+            <div class="input-wrapper">
+              <input type="text" id="payload-input" class="styled-input" autocomplete="off" spellcheck="false" placeholder="Enter barcode data...">
+              <button type="button" id="auto-checksum-btn" class="auto-checksum-btn" style="display: none;" title="Compute Mod-10 Check Digit">
+                + Auto Checksum
+              </button>
+            </div>
+            <div id="validation-msg" class="validation-msg"></div>
+          </div>
+
+          <!-- Logo & Brand Preset Studio (Only shown for QR Codes) -->
+          <div id="logo-studio-section" class="logo-studio-section" style="display: none;">
+            <div class="input-header">
+              <label class="label-title" style="margin-bottom: 0;">Center Logo & Brand Icon</label>
+              <span class="input-hint">Auto-locks Error Correction to Level H (30%)</span>
+            </div>
+            
+            <div class="logo-dropzone" id="logo-dropzone">
+              <input type="file" id="logo-file-input" accept="image/png,image/jpeg,image/svg+xml,image/webp" style="display: none;">
+              <div id="dropzone-text" class="dropzone-text">
+                <p style="font-size: 0.85rem; font-weight: 500;">Click to upload or drag & drop logo</p>
+                <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">PNG, SVG, or JPEG (Max 2MB)</p>
+              </div>
+              <div id="logo-preview-box" class="logo-preview-box" style="display: none;">
+                <img id="logo-thumb-img" class="logo-thumb" alt="Uploaded Logo Preview">
+                <div class="logo-preview-actions">
+                  <button type="button" id="btn-change-logo" class="change-logo-btn">📁 Change</button>
+                  <button type="button" id="btn-remove-logo" class="remove-logo-btn">✕ Remove Logo</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Built-in Icon Presets -->
+            <div style="margin-top: 0.75rem;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Or pick a preset icon:</span>
+              <div class="preset-icons-grid" id="preset-icons-grid">
+                <!-- Injected from logo-presets.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Parameter Controls (Sliders, Toggles, Colors, Gradients) -->
+          <div id="dynamic-controls-panel" class="dynamic-controls-grid">
+            <!-- Injected dynamically based on selected plugin schema -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Right Column: Live Sticky Preview & Actions -->
+      <aside class="preview-column" aria-label="Live Preview and Exports">
+        <div class="glass-card">
+          
+          <div class="preview-header">
+            <h2 class="preview-title">
+              <span>Live Code Preview</span>
+            </h2>
+            <span id="engine-status" class="engine-status-badge ready">Engine Ready</span>
+          </div>
+
+          <!-- Canvas Viewport -->
+          <div class="canvas-viewport" id="canvas-viewport">
+            <!-- bwip-js renders to this canvas element -->
+            <canvas id="preview-canvas"></canvas>
+
+            <!-- qr-code-styling renders styled SVG/Canvas inside this container -->
+            <div id="qr-styled-container" style="display: none;"></div>
+
+            <!-- Error fallback state -->
+            <div id="preview-error" class="preview-error">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <p id="preview-error-text">Payload does not match code format rules.</p>
+            </div>
+          </div>
+
+          <!-- Viewport Tools Bar -->
+          <div class="viewport-toolbar">
+            <span>High-DPI 300+ PPI Vector Precision</span>
+            <div class="viewport-tools">
+              <button type="button" class="tool-btn" id="btn-toggle-bg" title="Toggle Transparent Checkerboard Background">
+                🏁 Toggle BG
+              </button>
+            </div>
+          </div>
+
+          <!-- Export Resolution Selector -->
+          <div class="export-res-bar">
+            <span class="export-res-label">PNG Resolution:</span>
+            <div class="export-res-pills" id="export-res-pills">
+              <button type="button" class="res-pill-btn active" data-scale="1" title="Standard 72-96 DPI for Web & Screen">1x (Web)</button>
+              <button type="button" class="res-pill-btn" data-scale="2" title="High-Res 150-200 DPI for Retina & Presentations">2x (Retina)</button>
+              <button type="button" class="res-pill-btn" data-scale="4" title="Ultra 300+ DPI for Commercial Printing">4x (300+ DPI)</button>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="action-buttons-grid">
+            <button type="button" class="action-btn action-btn-primary" id="btn-download-png" title="Download High-Resolution Raster Image">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download PNG
+            </button>
+
+            <button type="button" class="action-btn action-btn-secondary" id="btn-download-svg" title="Download Scalable Vector Graphics">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+              Vector SVG
+            </button>
+
+            <button type="button" class="action-btn action-btn-secondary" id="btn-open-pdf-modal" title="Print-Ready Avery Sticker Sheet or Display Sign">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"/>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/>
+              </svg>
+              PDF Labels
+            </button>
+
+            <button type="button" class="action-btn action-btn-secondary" id="btn-open-batch-modal" title="Batch Sequence & ZIP Export">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+              Batch ZIP
+            </button>
+
+            <button type="button" class="action-btn action-btn-secondary" id="btn-copy-clipboard" title="Copy Code Graphic Directly to Clipboard">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copy Image
+            </button>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Privacy Guarantee & Equipment Recommendation Bar -->
+    <section class="monetization-bar" aria-label="Privacy Guarantee & Recommended Hardware">
+      <div class="monetization-badge">
+        <span class="monetization-badge-icon">🛡️</span>
+        <div>
+          <div class="monetization-badge-title">100% Free & Privacy Guaranteed</div>
+          <div class="monetization-badge-desc">Zero tracking cookies, no sign-up required, runs entirely in your browser memory.</div>
+        </div>
+      </div>
+      <div class="hardware-recs-grid">
+        <span style="font-size: 0.76rem; color: var(--text-muted); display: flex; align-items: center;">Recommended Hardware:</span>
+        <a href="https://www.amazon.com/s?k=thermal+barcode+printer" target="_blank" rel="noopener noreferrer" class="hardware-pill">
+          <span>🖨️</span> Thermal Label Printers
+        </a>
+        <a href="https://www.amazon.com/s?k=avery+5160+labels" target="_blank" rel="noopener noreferrer" class="hardware-pill">
+          <span>🏷️</span> Avery 5160 Sticker Paper
+        </a>
+        <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner" target="_blank" rel="noopener noreferrer" class="hardware-pill">
+          <span>📡</span> 2D Bluetooth Scanners
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Avery PDF Label Sheet Dialog Modal -->
+  <div id="pdf-modal" class="modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span style="font-size: 1.25rem;">🖨️</span>
+          <h3 id="pdf-modal-title" style="font-size: 1.05rem; font-weight: 700;">Print-Ready PDF Label Sheet</h3>
+        </div>
+        <button type="button" id="btn-close-pdf-modal" class="modal-close-btn" aria-label="Close Modal">✕</button>
+      </div>
+      
+      <div class="modal-body">
+        <p class="modal-intro">
+          Generate standard Avery sticky label sheets or single display signs directly in your browser memory.
+        </p>
+
+        <div class="form-group">
+          <label for="pdf-template-select" class="label-title">Avery Label Sheet Template</label>
+          <div class="select-wrapper">
+            <select id="pdf-template-select" class="styled-select">
+              <option value="avery-5160">Avery 5160 / 8160 (Letter - 30 Address Labels / 3×10)</option>
+              <option value="avery-5163">Avery 5163 / 8163 (Letter - 10 Shipping Labels / 2×5)</option>
+              <option value="avery-l7160">Avery L7160 / J8160 (A4 European - 21 Labels / 3×7)</option>
+              <option value="single-center">Single Centered Display Sign (A4 / Letter)</option>
+            </select>
+          </div>
+          <p id="pdf-template-desc" class="modal-hint" style="margin-top: 0.35rem; font-size: 0.76rem; color: var(--text-muted);">
+            30 labels per sheet (3 cols × 10 rows, 2.625" × 1.0")
+          </p>
+        </div>
+
+        <div class="form-group" id="pdf-quantity-group">
+          <div class="control-item-header">
+            <label for="pdf-quantity-slider" class="label-title" style="margin-bottom:0;">Labels to Print</label>
+            <span class="control-val-badge" id="val-pdf-quantity">30</span>
+          </div>
+          <input type="range" class="styled-range" id="pdf-quantity-slider" min="1" max="30" value="30">
+        </div>
+
+        <div class="form-group" id="pdf-title-group" style="display: none;">
+          <label for="pdf-sheet-title" class="label-title">Sign Title / Header</label>
+          <input type="text" id="pdf-sheet-title" class="styled-input" value="Scan to Connect" placeholder="Enter header text...">
+        </div>
+
+        <div class="form-group" style="margin-top: 0.5rem;">
+          <label class="toggle-wrapper" for="pdf-show-caption">
+            <span class="control-item-header">Include Payload / Text Caption</span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="pdf-show-caption" checked>
+              <span class="toggle-slider"></span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel-pdf" class="action-btn action-btn-secondary" style="padding: 0.6rem 1rem;">Cancel</button>
+        <button type="button" id="btn-generate-pdf" class="action-btn action-btn-primary" style="padding: 0.6rem 1.2rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Generate PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Batch Code Generator & ZIP Dialog Modal -->
+  <div id="batch-modal" class="modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="batch-modal-title">
+    <div class="modal-card" style="max-width: 580px;">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span style="font-size: 1.25rem;">📦</span>
+          <h3 id="batch-modal-title" style="font-size: 1.05rem; font-weight: 700;">Batch Code Generator & ZIP Export</h3>
+        </div>
+        <button type="button" id="btn-close-batch-modal" class="modal-close-btn" aria-label="Close Modal">✕</button>
+      </div>
+      
+      <div class="modal-body">
+        <p class="modal-intro">
+          Generate serialized inventory sequences or imported lists directly in your browser memory and download as a ZIP bundle.
+        </p>
+
+        <!-- Batch Mode Tabs -->
+        <div class="batch-tabs">
+          <button type="button" class="batch-tab-btn active" id="tab-batch-seq" data-mode="seq">🔢 Sequenced Numbers</button>
+          <button type="button" class="batch-tab-btn" id="tab-batch-csv" data-mode="csv">📋 Paste List / CSV</button>
+        </div>
+
+        <!-- Mode 1: Sequence Form -->
+        <div id="batch-seq-panel" class="batch-panel">
+          <div class="batch-grid-row">
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label for="batch-prefix" class="label-title">Prefix</label>
+              <input type="text" id="batch-prefix" class="styled-input" value="SKU-" placeholder="e.g. INV-">
+            </div>
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label for="batch-start" class="label-title">Start Number</label>
+              <input type="number" id="batch-start" class="styled-input" value="1" min="0" max="999999">
+            </div>
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label for="batch-count" class="label-title">Quantity (1-100)</label>
+              <input type="number" id="batch-count" class="styled-input" value="10" min="1" max="100">
+            </div>
+          </div>
+
+          <div class="batch-grid-row">
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label for="batch-pad" class="label-title">Zero Padding Digits</label>
+              <input type="number" id="batch-pad" class="styled-input" value="3" min="0" max="8" title="e.g. 3 digits turns 1 into 001">
+            </div>
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label for="batch-suffix" class="label-title">Suffix</label>
+              <input type="text" id="batch-suffix" class="styled-input" value="" placeholder="e.g. -2026">
+            </div>
+          </div>
+
+          <!-- Live Sample Preview -->
+          <div class="batch-sample-box">
+            <span class="batch-sample-label">Preview Range:</span>
+            <code id="batch-seq-preview" class="batch-sample-code">SKU-001 ... SKU-010 (10 codes)</code>
+          </div>
+        </div>
+
+        <!-- Mode 2: Multi-line / CSV Form -->
+        <div id="batch-csv-panel" class="batch-panel" style="display: none;">
+          <div class="form-group">
+            <div class="control-item-header">
+              <label for="batch-csv-input" class="label-title" style="margin-bottom: 0;">Paste Payloads or CSV Lines</label>
+              <span id="val-batch-csv-count" class="control-val-badge">0 items</span>
+            </div>
+            <textarea id="batch-csv-input" class="styled-textarea" rows="5" placeholder="Enter one code per line or paste CSV:&#10;https://example.com/item/1&#10;https://example.com/item/2&#10;SKU-8921&#10;SKU-8922"></textarea>
+            <p class="modal-hint" style="margin-top: 0.35rem; font-size: 0.76rem; color: var(--text-muted);">
+              One code per line. For CSV, the first column will be extracted automatically (max 100 codes).
+            </p>
+          </div>
+        </div>
+
+        <!-- Export Format Options -->
+        <div class="form-group" style="margin-top: 1rem;">
+          <label for="batch-format-select" class="label-title">File Format in ZIP</label>
+          <div class="select-wrapper">
+            <select id="batch-format-select" class="styled-select">
+              <option value="png-2x">High-Res PNG (2x Retina - Recommended)</option>
+              <option value="png-1x">Standard PNG (1x Web)</option>
+              <option value="png-4x">Ultra High-Res PNG (4x Print 300+ DPI)</option>
+              <option value="svg">Scalable Vector SVG</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Animated Progress Indicator -->
+        <div id="batch-progress-box" class="batch-progress-box" style="display: none;">
+          <div class="batch-progress-header">
+            <span id="batch-progress-status" style="font-size: 0.82rem; font-weight: 600; color: var(--text-primary);">Generating...</span>
+            <span id="batch-progress-pct" style="font-size: 0.82rem; font-family: var(--font-mono); color: var(--accent-primary);">0%</span>
+          </div>
+          <div class="progress-bar-container" style="margin-top: 0.4rem;">
+            <div id="batch-progress-bar" class="progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="btn-cancel-batch" class="action-btn action-btn-secondary" style="padding: 0.6rem 1rem;">Cancel</button>
+        <button type="button" id="btn-generate-batch" class="action-btn action-btn-primary" style="padding: 0.6rem 1.2rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download ZIP
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Universal Code Studio. Open-source client-side barcode & QR generator. 100% Free Forever.</p>
+      <ul class="footer-links">
+        <li><a href="tests/test-runner.html">Unit Tests</a></li>
+        <li><a href="docs/BWIP_JS_REFERENCE.md">Symbology Docs</a></li>
+        <li><a href="07_LEGAL_PRIVACY_COMPLIANCE.md">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Bootstrapper Module -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

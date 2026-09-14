@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Plain Text QR Code Generator - Encode Any Message or Serial</title>
+  <meta name="description" content="Generate unformatted plain text QR codes for notes, secrets, serial codes, and quotes. Supports up to 4,296 alphanumeric characters.">
+  <link rel="canonical" href="https://universal-codes.io/pages/plain-text-qr-code-generator.html">
+
+  <!-- Open Graph & Social -->
+  <meta property="og:title" content="Free Plain Text QR Code Generator - Encode Any Message or Serial">
+  <meta property="og:description" content="Generate unformatted plain text QR codes for notes, secrets, serial codes, and quotes. Supports up to 4,296 alphanumeric characters.">
+  <meta property="og:url" content="https://universal-codes.io/pages/plain-text-qr-code-generator.html">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <style>
+    .seo-page-container {
+      max-width: 1040px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    .hero-banner {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: var(--radius-full);
+      color: var(--accent-cyan);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 820px;
+      margin-bottom: 1.75rem;
+    }
+    .cta-launch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      padding: 0.85rem 1.6rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-fast);
+    }
+    .cta-launch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+    .info-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+    .info-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .spec-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+    }
+    .spec-key {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .spec-val {
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+      font-weight: 600;
+      text-align: right;
+    }
+    .use-cases-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .use-case-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .use-case-check {
+      color: var(--accent-cyan);
+      font-weight: 700;
+    }
+    .faq-section {
+      margin-bottom: 3rem;
+    }
+    .faq-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+    .faq-item[open] {
+      border-color: var(--border-medium);
+    }
+    .faq-question {
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-primary);
+      user-select: none;
+    }
+    .faq-answer {
+      padding: 0 1.25rem 1.1rem 1.25rem;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .related-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: all var(--transition-fast);
+    }
+    .related-card:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+    .related-tag {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .related-title {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.92rem;
+    }
+    .related-arrow {
+      align-self: flex-end;
+      color: var(--accent-cyan);
+      font-weight: 700;
+    }
+  </style>
+
+  <!-- Structured Data JSON-LD Schemas -->
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Plain Text QR Code Generator - Universal Code Studio",
+  "url": "https://universal-codes.io/pages/plain-text-qr-code-generator.html",
+  "description": "Generate unformatted plain text QR codes for notes, secrets, serial codes, and quotes. Supports up to 4,296 alphanumeric characters.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the maximum amount of text I can encode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Version 40 QR code can store up to 4,296 alphanumeric characters or 7,089 numbers. For optimal scan speed, keep text under 300 characters."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://universal-codes.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Plain Text QR Code Generator",
+      "item": "https://universal-codes.io/pages/plain-text-qr-code-generator.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-group">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Universal Code Studio</span>
+          <span class="brand-tagline">100% Free Client-Side Code Suite</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html?wizard=text" class="cta-launch-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+          Open in Studio ⚡
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="seo-page-container">
+
+    <!-- Hero Section -->
+    <section class="hero-banner">
+      <div class="hero-badge">
+        <span>●</span> Smart QR Standard
+      </div>
+      <h1 class="hero-title">Free Plain Text Multi-Line QR Code Generator</h1>
+      <p class="hero-lead">Encode raw, unformatted text messages, alphanumeric serials, cryptographic keys, or quotes into a high-capacity QR code with up to 4,296 characters.</p>
+      
+      <a href="../index.html?wizard=text" class="cta-launch-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Generate Text QR Now (Instant & Free)
+      </a>
+    </section>
+
+    <!-- Technical Specs & Use Cases Grid -->
+    <section class="content-grid">
+      <div class="info-card">
+        <h2 class="info-card-title">
+          <span>📐</span> Technical Specifications
+        </h2>
+        <dl class="spec-table">
+          
+    <div class="spec-row">
+      <dt class="spec-key">Character Capacity</dt>
+      <dd class="spec-val">Up to 7,089 numeric, 4,296 alphanumeric, or 2,953 byte characters</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Error Correction</dt>
+      <dd class="spec-val">Level L (7%), M (15%), Q (25%), H (30%)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Encoding</dt>
+      <dd class="spec-val">UTF-8 multi-byte character support</dd>
+    </div>
+  
+        </dl>
+      </div>
+
+      <div class="info-card">
+        <h2 class="info-card-title">
+          <span>🏭</span> Standard Industry Use Cases
+        </h2>
+        <ul class="use-cases-list">
+          
+    <li class="use-case-item">
+      <span class="use-case-check">✓</span>
+      <span>Cryptographic recovery phrases and secure offline backups</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check">✓</span>
+      <span>Asset serial numbers and production line batch tokens</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check">✓</span>
+      <span>Scavenger hunt clues and educational classroom quizzes</span>
+    </li>
+  
+        </ul>
+      </div>
+    </section>
+
+    <!-- Interactive FAQ Section -->
+    <section class="faq-section">
+      <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">
+        Frequently Asked Questions
+      </h2>
+      <div class="faq-accordion">
+        
+    <details class="faq-item" open>
+      <summary class="faq-question">
+        <span>What is the maximum amount of text I can encode?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>A Version 40 QR code can store up to 4,296 alphanumeric characters or 7,089 numbers. For optimal scan speed, keep text under 300 characters.</p>
+      </div>
+    </details>
+  
+      </div>
+    </section>
+
+    <!-- Related Tools Cross-Links -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
+        Related Barcode & QR Tools
+      </h2>
+      <div class="related-grid">
+        
+    <a href="./ean-13-barcode-generator.html" class="related-card">
+      <span class="related-tag">Retail & POS</span>
+      <span class="related-title">EAN-13 Barcode Generator</span>
+      <span class="related-arrow">→</span>
+    </a>
+  
+    <a href="./upc-a-barcode-generator.html" class="related-card">
+      <span class="related-tag">Retail & POS</span>
+      <span class="related-title">UPC-A Barcode Generator</span>
+      <span class="related-arrow">→</span>
+    </a>
+  
+    <a href="./code-128-barcode-generator.html" class="related-card">
+      <span class="related-tag">Logistics & Shipping</span>
+      <span class="related-title">Code 128 Barcode Generator</span>
+      <span class="related-arrow">→</span>
+    </a>
+  
+    <a href="./itf-14-barcode-generator.html" class="related-card">
+      <span class="related-tag">Logistics & Shipping</span>
+      <span class="related-title">ITF-14 Barcode Generator</span>
+      <span class="related-arrow">→</span>
+    </a>
+  
+    <a href="./data-matrix-generator.html" class="related-card">
+      <span class="related-tag">2D Matrix</span>
+      <span class="related-title">Data Matrix Barcode Generator</span>
+      <span class="related-arrow">→</span>
+    </a>
+  
+    <a href="./aztec-code-generator.html" class="related-card">
+      <span class="related-tag">2D Matrix</span>
+      <span class="related-title">Aztec Code Generator</span>
+      <span class="related-arrow">→</span>
+    </a>
+  
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Universal Code Studio. Open-source client-side barcode & QR generator. 100% Free Forever.</p>
+      <ul class="footer-links">
+        <li><a href="../index.html">Universal Studio</a></li>
+        <li><a href="../tests/test-runner.html">Unit Tests</a></li>
+        <li><a href="../07_LEGAL_PRIVACY_COMPLIANCE.md">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

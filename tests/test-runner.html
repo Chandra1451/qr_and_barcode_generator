@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-Browser Test Runner | Universal Barcode & QR Suite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/theme.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .test-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    .test-header-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .test-stats {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .stat-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+    }
+    .stat-number.passed { color: var(--success); }
+    .stat-number.failed { color: var(--danger); }
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent-gradient);
+      transition: width 0.3s ease;
+    }
+    .progress-bar.success { background: var(--success); }
+    .progress-bar.danger { background: var(--danger); }
+
+    /* Suite Cards */
+    .suite-card {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .suite-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .test-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .test-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg-surface);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid transparent;
+      font-family: var(--font-mono);
+    }
+    .test-item.pass {
+      border-left-color: var(--success);
+    }
+    .test-item.fail {
+      border-left-color: var(--danger);
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+    .test-item-icon {
+      flex-shrink: 0;
+    }
+    .test-mount-sandbox {
+      display: none;
+    }
+    .run-btn {
+      background: var(--accent-gradient);
+      border: none;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-group">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Universal Code Studio</span>
+          <span class="brand-tagline">Client-Side Verification Test Runner</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="../index.html" class="theme-toggle-btn">← Back to App</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="test-container">
+    <div class="test-header-card">
+      <div>
+        <h1 style="font-size: 1.35rem; font-weight: 700;">In-Browser Test Harness</h1>
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">
+          Validating checksum mathematics, schema conformance, and live canvas rendering.
+        </p>
+      </div>
+
+      <div class="test-stats">
+        <div class="stat-box">
+          <span id="stat-total" class="stat-number">0</span>
+          <span class="stat-label">Total Tests</span>
+        </div>
+        <div class="stat-box">
+          <span id="stat-passed" class="stat-number passed">0</span>
+          <span class="stat-label">Passed</span>
+        </div>
+        <div class="stat-box">
+          <span id="stat-failed" class="stat-number failed">0</span>
+          <span class="stat-label">Failed</span>
+        </div>
+        <div class="stat-box">
+          <span id="stat-duration" class="stat-number">0ms</span>
+          <span class="stat-label">Time</span>
+        </div>
+      </div>
+
+      <button type="button" class="run-btn" id="btn-rerun">▶ Run Tests</button>
+
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Results Mount -->
+    <div id="test-suites-container"></div>
+
+    <!-- Hidden sandbox mount for rendering tests -->
+    <div id="test-mount" class="test-mount-sandbox"></div>
+  </div>
+
+  <script type="module">
+    import { runChecksumTests } from './unit/checksums.test.js';
+    import { runRegistryTests } from './unit/generator-registry.test.js';
+    import { runRenderingTests } from './unit/rendering.test.js';
+    import { runWizardTests } from './unit/qr-wizards.test.js';
+    import { runExportTests } from './unit/exports.test.js';
+    import { runBatchTests } from './unit/batch.test.js';
+
+    class TestRunner {
+      constructor() {
+        this.total = 0;
+        this.passed = 0;
+        this.failed = 0;
+        this.suites = [];
+        this.container = document.getElementById('test-suites-container');
+        this.mount = document.getElementById('test-mount');
+      }
+
+      reset() {
+        this.total = 0;
+        this.passed = 0;
+        this.failed = 0;
+        this.container.innerHTML = '';
+        this.mount.innerHTML = '';
+        this.updateStats(0);
+      }
+
+      updateStats(duration) {
+        document.getElementById('stat-total').textContent = this.total;
+        document.getElementById('stat-passed').textContent = this.passed;
+        document.getElementById('stat-failed').textContent = this.failed;
+        document.getElementById('stat-duration').textContent = `${Math.round(duration)}ms`;
+
+        const bar = document.getElementById('progress-bar');
+        const pct = this.total === 0 ? 0 : ((this.passed + this.failed) / this.total) * 100;
+        bar.style.width = `${pct}%`;
+        if (this.failed > 0) {
+          bar.className = 'progress-bar danger';
+        } else if (pct === 100) {
+          bar.className = 'progress-bar success';
+        }
+      }
+
+      createAssert(suiteName, suiteListEl) {
+        return {
+          equal: (actual, expected, message) => {
+            this.total++;
+            const isMatch = actual === expected;
+            if (isMatch) {
+              this.passed++;
+              this.logResult(suiteListEl, true, message || `Expected ${expected} and received ${actual}`);
+            } else {
+              this.failed++;
+              this.logResult(suiteListEl, false, `${message || 'Assertion failed'}: expected ${expected}, got ${actual}`);
+            }
+          },
+          isTrue: (condition, message) => {
+            this.total++;
+            if (condition) {
+              this.passed++;
+              this.logResult(suiteListEl, true, message || 'Expected condition to be true');
+            } else {
+              this.failed++;
+              this.logResult(suiteListEl, false, message || 'Condition was false');
+            }
+          },
+          isFalse: (condition, message) => {
+            this.total++;
+            if (!condition) {
+              this.passed++;
+              this.logResult(suiteListEl, true, message || 'Expected condition to be false');
+            } else {
+              this.failed++;
+              this.logResult(suiteListEl, false, message || 'Condition was true');
+            }
+          },
+          fail: (message) => {
+            this.total++;
+            this.failed++;
+            this.logResult(suiteListEl, false, message);
+          }
+        };
+      }
+
+      logResult(listEl, success, message) {
+        const li = document.createElement('li');
+        li.className = `test-item ${success ? 'pass' : 'fail'}`;
+        li.innerHTML = `
+          <span class="test-item-icon">${success ? '✅' : '❌'}</span>
+          <span>${message}</span>
+        `;
+        listEl.appendChild(li);
+      }
+
+      async run() {
+        this.reset();
+        const startTime = performance.now();
+
+        // Suite 1: Checksums
+        await this.runSuite('GS1 Mod-10 & Checksum Mathematics', runChecksumTests);
+
+        // Suite 2: Generator Registry Conformance
+        await this.runSuite('Generator Plugin Interface Conformance', runRegistryTests);
+
+        // Suite 3: Live In-Memory Canvas & SVG Rendering
+        await this.runSuite('Live Engine Rendering & SVG Output', (assert) => runRenderingTests(assert, this.mount));
+
+        // Suite 4: Smart QR Code Content Wizards
+        await this.runSuite('Smart QR Code Content Wizards', runWizardTests);
+
+        // Suite 5: Export & PDF Engine Tests
+        await this.runSuite('Export Engine & Avery Label Layouts', runExportTests);
+
+        // Suite 6: Batch Generator & ZIP Engine Tests
+        await this.runSuite('Batch Generator & ZIP Engine', runBatchTests);
+
+        const duration = performance.now() - startTime;
+        this.updateStats(duration);
+
+        // Global flag for automated headless assertions
+        window.__TEST_RESULTS__ = {
+          total: this.total,
+          passed: this.passed,
+          failed: this.failed,
+          duration: duration,
+          success: this.failed === 0
+        };
+      }
+
+      async runSuite(name, fn) {
+        const card = document.createElement('div');
+        card.className = 'suite-card';
+        card.innerHTML = `
+          <div class="suite-title">
+            <span>${name}</span>
+          </div>
+          <ul class="test-list"></ul>
+        `;
+        this.container.appendChild(card);
+        const listEl = card.querySelector('.test-list');
+        const assert = this.createAssert(name, listEl);
+
+        try {
+          await fn(assert);
+        } catch (err) {
+          assert.fail(`Fatal exception during suite execution: ${err.message}`);
+        }
+      }
+    }
+
+    const runner = new TestRunner();
+    document.getElementById('btn-rerun').addEventListener('click', () => runner.run());
+    
+    // Auto-run on load
+    runner.run();
+  </script>
+</body>
+</html>

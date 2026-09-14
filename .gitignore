@@ -1,0 +1,48 @@
+# =============================================================================
+# QR & Barcode Generator Suite - Project-Specific .gitignore
+# Purpose: Ensures internal research, AI memory, prompts, and draft notes are
+# never committed to Git or published to the Hostinger live production web server.
+# =============================================================================
+
+# 1. Internal Architecture & Planning Documentation (Private to developer/AI)
+*.md
+!README.md
+!llms.txt
+!llms-full.txt
+docs/
+
+# 2. AI Prompts & Project Memory Logs
+*_PROMPT.md
+PROJECT_MEMORY.md
+10_MASTER_INITIATION_PROMPT.md
+
+# 3. Spreadsheets & Raw Research Data
+*.xlsx
+*.csv
+research data/
+
+# 4. Environment & Secrets (if any local tooling uses env files)
+.env
+.env.local
+.env.*.local
+
+# 5. Dependency Directories & Package Caches
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 6. Local Scratch, Temporary, & Log Files
+scratch/
+temp/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# 7. OS & IDE Generated Metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

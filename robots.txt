@@ -1,0 +1,36 @@
+# =============================================================================
+# Universal QR & Barcode Generator - 2026 Robots Policy
+# Allows search indexers & AI answer engines; blocks abusive scrapers.
+# =============================================================================
+
+# 1. Primary Search Engine Indexers (Full Access)
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: YandexBot
+User-agent: Baiduspider
+Allow: /
+Disallow: /scratch/
+Disallow: /temp/
+
+# 2. AI Answer Engines (Permit Retrieval for Search & Citations)
+User-agent: PerplexityBot
+User-agent: ChatGPT-User
+User-agent: Claude-Search
+User-agent: Applebot-Extended
+Allow: /
+
+# 3. Uncontrolled Bulk AI Training Harvesters (Rate-Control/Disallow)
+User-agent: Bytespider
+User-agent: CCBot
+Disallow: /
+
+# 4. Global Baseline & Sitemap References
+User-agent: *
+Allow: /
+Disallow: /scratch/
+
+# Sitemaps & AI Agent Context Files
+Sitemap: https://universal-codes.io/sitemap.xml
+LLMs-Txt: https://universal-codes.io/llms.txt
+LLMs-Full-Txt: https://universal-codes.io/llms-full.txt
