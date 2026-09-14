@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode & QR Symbology Documentation | Universal Code Studio</title>
+  <meta name="description" content="Comprehensive technical documentation and developer reference for 50+ barcode symbologies including QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, and ITF-14. Character sets, checksums, and rendering specifications.">
+  <link rel="canonical" href="https://yourdomain.com/symbology-docs.html">
+  <meta name="theme-color" content="#06b6d4">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    /* Documentation Page Layout */
+    .docs-page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem 1.5rem;
+    }
+
+    /* Hero Banner */
+    .docs-hero {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 2.25rem;
+      box-shadow: var(--shadow-glass);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.25rem;
+    }
+
+    .docs-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent-gradient);
+    }
+
+    .docs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: var(--accent-cyan);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .docs-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    .docs-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 840px;
+      margin-bottom: 1.5rem;
+    }
+
+    .docs-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.25rem;
+    }
+
+    .filter-btn {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(6, 182, 212, 0.15);
+      border-color: var(--accent-cyan);
+      color: var(--text-primary);
+    }
+
+    /* 2-Column Documentation Layout */
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: 2.25rem;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .docs-layout {
+        grid-template-columns: 1fr;
+      }
+      .docs-sidebar {
+        display: none;
+      }
+    }
+
+    /* Sticky Sidebar */
+    .docs-sidebar {
+      position: sticky;
+      top: 5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-heading {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin: 1rem 0 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .sidebar-heading:first-child {
+      margin-top: 0;
+    }
+
+    .docs-toc {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .docs-toc a {
+      display: block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 0.4rem 0.65rem;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      border-left: 2px solid transparent;
+    }
+
+    .docs-toc a:hover {
+      color: var(--accent-cyan);
+      background: var(--bg-surface-elevated);
+      border-left-color: var(--accent-cyan);
+    }
+
+    /* Document Sections */
+    .docs-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    .symbology-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.25rem;
+      box-shadow: var(--shadow-card);
+      scroll-margin-top: 5.5rem;
+      position: relative;
+    }
+
+    .symbology-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+    }
+
+    .symbology-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .symbology-icon {
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .symbology-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .symbology-standard {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .btn-test-in-studio {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-test-in-studio:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--accent-glow);
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.85rem;
+      margin: 1.25rem 0;
+    }
+
+    .spec-item {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+    }
+
+    .spec-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .spec-value {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+    }
+
+    .docs-text {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .docs-text strong {
+      color: var(--text-primary);
+    }
+
+    /* Code Snippet Box */
+    .code-box {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 1.15rem 1.25rem;
+      margin: 1.25rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      color: #e2e8f0;
+      position: relative;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .copy-code-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .copy-code-btn:hover {
+      background: rgba(6, 182, 212, 0.25);
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+    }
+
+    /* Comparison Table */
+    .docs-table-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+
+    .docs-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.84rem;
+    }
+
+    .docs-table th {
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      padding: 0.85rem 1rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    .docs-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: middle;
+    }
+
+    .docs-table tr:hover td {
+      background: var(--bg-surface-elevated);
+    }
+
+    .docs-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+      font-size: 0.74rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+
+    .badge-pill.cyan { background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); }
+    .badge-pill.purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+    .badge-pill.green { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .badge-pill.amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+  </style>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
+          <div class="brand-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="8" height="8" x="3" y="3" rx="1"/>
+              <path d="M7 7h.01"/>
+              <rect width="8" height="8" x="13" y="3" rx="1"/>
+              <path d="M17 7h.01"/>
+              <rect width="8" height="8" x="3" y="13" rx="1"/>
+              <path d="M7 17h.01"/>
+              <path d="M13 13h2v2h-2z"/>
+              <path d="M17 13h4v4h-4z"/>
+              <path d="M13 17h2v4h-2z"/>
+              <path d="M17 21h4"/>
+            </svg>
+          </div>
+          <div>
+            <span class="brand-title" style="display: block;">Universal Code Studio</span>
+            <span class="brand-tagline">100% Client-Side Barcode & QR Suite</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <a href="index.html" class="action-btn action-btn-primary" style="padding: 0.45rem 0.95rem; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          Live Studio
+        </a>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Theme">
+          <span>☀️</span> Light
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Documentation Container -->
+  <main class="docs-page">
+
+    <!-- Hero Header -->
+    <div class="docs-hero">
+      <div class="docs-badge">
+        <span>📚</span> Technical Specifications & Symbology Reference
+      </div>
+      <h1 class="docs-title">Barcode & QR Symbology Documentation</h1>
+      <p class="docs-subtitle">
+        In-depth technical reference for all 50+ supported 1D linear barcodes, 2D matrix standards, and postal symbols. Includes character encoding limits, checksum validation math, quiet zone rules, and direct deep-linking instructions.
+      </p>
+
+      <div class="docs-filter-bar">
+        <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Quick Jump:</span>
+        <a href="#sec-qr" class="filter-btn active">QR Code</a>
+        <a href="#sec-code128" class="filter-btn">Code 128</a>
+        <a href="#sec-ean13" class="filter-btn">EAN-13</a>
+        <a href="#sec-upca" class="filter-btn">UPC-A</a>
+        <a href="#sec-datamatrix" class="filter-btn">Data Matrix</a>
+        <a href="#sec-aztec" class="filter-btn">Aztec Code</a>
+        <a href="#sec-pdf417" class="filter-btn">PDF417</a>
+        <a href="#sec-itf14" class="filter-btn">ITF-14</a>
+        <a href="#sec-comparison" class="filter-btn">Comparison Matrix</a>
+      </div>
+    </div>
+
+    <!-- 2-Column Layout -->
+    <div class="docs-layout">
+
+      <!-- Navigation Sidebar -->
+      <aside class="docs-sidebar">
+        <div class="sidebar-heading">2D Matrix Symbologies</div>
+        <ul class="docs-toc">
+          <li><a href="#sec-qr">QR Code (ISO 18004)</a></li>
+          <li><a href="#sec-datamatrix">Data Matrix (ECC 200)</a></li>
+          <li><a href="#sec-aztec">Aztec Code (ISO 24778)</a></li>
+          <li><a href="#sec-pdf417">PDF417 Stacked 2D</a></li>
+        </ul>
+
+        <div class="sidebar-heading">1D Retail Symbologies</div>
+        <ul class="docs-toc">
+          <li><a href="#sec-ean13">EAN-13 (International)</a></li>
+          <li><a href="#sec-upca">UPC-A (North America)</a></li>
+          <li><a href="#sec-ean8-upce">EAN-8 & UPC-E Compact</a></li>
+          <li><a href="#sec-isbn">ISBN-13 Bookland</a></li>
+        </ul>
+
+        <div class="sidebar-heading">1D Logistics & Industrial</div>
+        <ul class="docs-toc">
+          <li><a href="#sec-code128">Code 128 & GS1-128</a></li>
+          <li><a href="#sec-itf14">ITF-14 Carton Shipping</a></li>
+          <li><a href="#sec-code39">Code 39 & Code 93</a></li>
+          <li><a href="#sec-codabar-msi">Codabar & MSI Plessey</a></li>
+        </ul>
+
+        <div class="sidebar-heading">Developer Reference</div>
+        <ul class="docs-toc">
+          <li><a href="#sec-comparison">Symbology Decision Matrix</a></li>
+          <li><a href="#sec-url-params">URL Deep-Link API</a></li>
+          <li><a href="#sec-api-snippets">JavaScript Code Snippets</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Body -->
+      <div class="docs-body">
+
+        <!-- QR Code -->
+        <section id="sec-qr" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">📱</div>
+              <div>
+                <h2 class="symbology-title">QR Code (Quick Response)</h2>
+                <div class="symbology-standard">ISO/IEC 18004 • 2D Matrix</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=qrcode" class="btn-test-in-studio">
+              <span>⚡</span> Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            Originally created in 1994 by Denso Wave, QR Code is the world's most ubiquitous 2D matrix barcode. It utilizes three distinctive square finder patterns positioned in three corners, enabling omnidirectional 360-degree scanning at high velocity.
+          </p>
+
+          <div class="specs-grid">
+            <div class="spec-item">
+              <div class="spec-label">Max Numeric Data</div>
+              <div class="spec-value">7,089 Digits</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Max Alphanumeric</div>
+              <div class="spec-value">4,296 Characters</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Max Binary (Bytes)</div>
+              <div class="spec-value">2,953 Bytes</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Error Correction</div>
+              <div class="spec-value">L (7%), M (15%), Q (25%), H (30%)</div>
+            </div>
+          </div>
+
+          <p class="docs-text">
+            <strong>Logo Embedding Best Practice:</strong> When placing a custom brand logo or icon into the center of a QR code, <em>always enforce Error Correction Level H (30% redundancy)</em>. This ensures the scanner can reconstruct the obscured central data modules without any scanning failure.
+          </p>
+        </section>
+
+        <!-- Data Matrix -->
+        <section id="sec-datamatrix" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">⬛</div>
+              <div>
+                <h2 class="symbology-title">Data Matrix (ECC 200)</h2>
+                <div class="symbology-standard">ISO/IEC 16022 • 2D Industrial Matrix</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=datamatrix" class="btn-test-in-studio">
+              <span>⚡</span> Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            Data Matrix ECC 200 features an "L-shaped" solid alignment finder pattern on two adjacent borders and alternating dark/light timing cells on the opposite edges. It offers the highest information density per square millimeter of any 2D code.
+          </p>
+
+          <div class="specs-grid">
+            <div class="spec-item">
+              <div class="spec-label">Aspect Ratio</div>
+              <div class="spec-value">Strict 1:1 Square (or Rect.)</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Max Alphanumeric</div>
+              <div class="spec-value">2,335 Characters</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Primary Industries</div>
+              <div class="spec-value">Aerospace, Automotive, PCB, Pharma</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Quiet Zone</div>
+              <div class="spec-value">1 Module Width</div>
+            </div>
+          </div>
+
+          <p class="docs-text">
+            Widely mandated by the US Department of Defense (MIL-STD-130 UID) and global pharmaceutical serialization standards (GS1 DataMatrix) for direct part marking (DPM) via laser etching and dot peen.
+          </p>
+        </section>
+
+        <!-- Aztec Code -->
+        <section id="sec-aztec" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">🎯</div>
+              <div>
+                <h2 class="symbology-title">Aztec Code</h2>
+                <div class="symbology-standard">ISO/IEC 24778 • 2D Concentric Matrix</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=azteccode" class="btn-test-in-studio">
+              <span>⚡</span> Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            Invented in 1995 by Welchn Allyn, Aztec Code is defined by a single concentric square "bullseye" finder pattern located in the exact physical center of the code. Data modules spiral outwards from the core.
+          </p>
+
+          <div class="specs-grid">
+            <div class="spec-item">
+              <div class="spec-label">Quiet Zone</div>
+              <div class="spec-value">Zero (None Required)</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Max Alphanumeric</div>
+              <div class="spec-value">3,067 Characters</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Key Advantage</div>
+              <div class="spec-value">Zero margin allows tight borders</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Primary Industry</div>
+              <div class="spec-value">Aviation (IATA), Rail & Transit</div>
+            </div>
+          </div>
+
+          <p class="docs-text">
+            Because Aztec Code requires <strong>zero quiet zone margins</strong>, it can be printed right up to the edge of boarding passes, tickets, or smartphone screens without sacrificing decodability.
+          </p>
+        </section>
+
+        <!-- PDF417 -->
+        <section id="sec-pdf417" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">📄</div>
+              <div>
+                <h2 class="symbology-title">PDF417 (Portable Data File)</h2>
+                <div class="symbology-standard">ISO/IEC 15438 • Stacked 2D Linear</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=pdf417" class="btn-test-in-studio">
+              <span>⚡</span> Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            PDF417 consists of stacked rows of 1D linear codes. Each codeword is 17 modules wide and composed of 4 bars and 4 spaces. It can encode large text payloads, binary files, and biometric fingerprints directly on card stock.
+          </p>
+
+          <div class="specs-grid">
+            <div class="spec-item">
+              <div class="spec-label">Standard Ratio</div>
+              <div class="spec-value">2.5:1 to 3:1 (Wide Rectangle)</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Max Data Capacity</div>
+              <div class="spec-value">1,850 Alphanumeric Chars</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Error Correction</div>
+              <div class="spec-value">Levels 0 to 8 (Reed-Solomon)</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Primary Use</div>
+              <div class="spec-value">Driver Licenses (AAMVA), FedEx/USPS</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Code 128 -->
+        <section id="sec-code128" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">📦</div>
+              <div>
+                <h2 class="symbology-title">Code 128 & GS1-128</h2>
+                <div class="symbology-standard">ISO/IEC 15417 • 1D High-Density Alphanumeric</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=code128" class="btn-test-in-studio">
+              <span>⚡</span> Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            Code 128 is the highest-density 1D linear symbology in commercial use. It encodes the entire 128-character ASCII table using three dynamic subsets:
+          </p>
+          <ul class="docs-text" style="margin-left: 1.5rem;">
+            <li><strong>Subset A:</strong> Uppercase letters, digits, control characters, ASCII 00-95.</li>
+            <li><strong>Subset B:</strong> Uppercase and lowercase letters, digits, and ASCII punctuation 32-127.</li>
+            <li><strong>Subset C:</strong> Pairs of numeric digits 00-99 encoded into single bar patterns (double density).</li>
+          </ul>
+
+          <div class="specs-grid">
+            <div class="spec-item">
+              <div class="spec-label">Engine Switching</div>
+              <div class="spec-value">Auto-Switching A/B/C</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Check Digit</div>
+              <div class="spec-value">Modulo 103 (Auto-Calculated)</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Primary Use</div>
+              <div class="spec-value">Supply Chain, Warehouse, Logistics</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Quiet Zone</div>
+              <div class="spec-value">10x Narrow Bar Width</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EAN-13 & UPC-A -->
+        <section id="sec-ean13" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">🏷️</div>
+              <div>
+                <h2 class="symbology-title">EAN-13 (International Retail)</h2>
+                <div class="symbology-standard">ISO/IEC 15420 • GS1 GTIN-13 Point of Sale</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=ean13" class="btn-test-in-studio">
+              <span>⚡</span> Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            EAN-13 (European / International Article Number) is the global standard for retail point-of-sale scanning everywhere outside North America. It encodes a 13-digit sequence: Country Prefix (2-3 digits), Manufacturer Code, Product Code, and a final Modulo 10 Check Digit.
+          </p>
+
+          <div class="specs-grid">
+            <div class="spec-item">
+              <div class="spec-label">Digit Length</div>
+              <div class="spec-value">12 or 13 Numeric Digits</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Checksum Math</div>
+              <div class="spec-value">GS1 Modulo 10 (Weight 3/1)</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Auto-Correction</div>
+              <div class="spec-value">Auto-Appends Missing 13th Digit</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Licensing Note</div>
+              <div class="spec-value">Requires GS1 Registration for Retail</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- UPC-A -->
+        <section id="sec-upca" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">🛒</div>
+              <div>
+                <h2 class="symbology-title">UPC-A (Universal Product Code)</h2>
+                <div class="symbology-standard">GS1 GTIN-12 • North American Point of Sale</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=upca" class="btn-test-in-studio">
+              <span>⚡</span> Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            UPC-A is the standard retail barcode used throughout the United States and Canada. It encodes exactly 12 numeric digits (or 11 data digits + 1 Modulo 10 check digit). An EAN-13 barcode with a leading zero ('0') is mathematically identical to a 12-digit UPC-A barcode.
+          </p>
+        </section>
+
+        <!-- ITF-14 -->
+        <section id="sec-itf14" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">📦</div>
+              <div>
+                <h2 class="symbology-title">ITF-14 (Interleaved 2 of 5)</h2>
+                <div class="symbology-standard">GS1 GTIN-14 • Master Shipping Container</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=itf14" class="btn-test-in-studio">
+              <span>⚡</span> Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            ITF-14 encodes 14 numeric digits and is printed with heavy black horizontal borders called <strong>Bearer Bars</strong>. These bearer bars suppress plate-spread and stop misreads caused when a handheld laser scanner skims across the edge of corrugated cardboard packaging.
+          </p>
+        </section>
+
+        <!-- Comparison Matrix -->
+        <section id="sec-comparison" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">📊</div>
+              <div>
+                <h2 class="symbology-title">Symbology Decision Matrix</h2>
+                <div class="symbology-standard">Feature & Capability Comparison</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="docs-table-wrapper">
+            <table class="docs-table">
+              <thead>
+                <tr>
+                  <th>Symbology</th>
+                  <th>Type</th>
+                  <th>Character Set</th>
+                  <th>Max Data</th>
+                  <th>Checksum</th>
+                  <th>Ideal Use Case</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>QR Code</strong></td>
+                  <td><span class="badge-pill cyan">2D Matrix</span></td>
+                  <td>Alphanumeric / UTF-8 / Binary</td>
+                  <td>4,296 chars</td>
+                  <td>Reed-Solomon (7-30%)</td>
+                  <td>Smartphones, Wi-Fi, URLs, Menus</td>
+                </tr>
+                <tr>
+                  <td><strong>Data Matrix</strong></td>
+                  <td><span class="badge-pill cyan">2D Matrix</span></td>
+                  <td>Full ASCII / Binary (ECC 200)</td>
+                  <td>2,335 chars</td>
+                  <td>Reed-Solomon (25-33%)</td>
+                  <td>Direct Part Marking, Pharma, Tiny Parts</td>
+                </tr>
+                <tr>
+                  <td><strong>Aztec Code</strong></td>
+                  <td><span class="badge-pill cyan">2D Matrix</span></td>
+                  <td>Full ASCII / Binary</td>
+                  <td>3,067 chars</td>
+                  <td>Reed-Solomon (5-95%)</td>
+                  <td>Airline Tickets, Rail Passes (No quiet zone)</td>
+                </tr>
+                <tr>
+                  <td><strong>PDF417</strong></td>
+                  <td><span class="badge-pill purple">Stacked 2D</span></td>
+                  <td>Full ASCII / Binary</td>
+                  <td>1,850 chars</td>
+                  <td>Reed-Solomon (Levels 0-8)</td>
+                  <td>Driver Licenses, Government ID, Shipping</td>
+                </tr>
+                <tr>
+                  <td><strong>Code 128</strong></td>
+                  <td><span class="badge-pill green">1D Linear</span></td>
+                  <td>Full ASCII (Subsets A/B/C)</td>
+                  <td>~80 chars practical</td>
+                  <td>Modulo 103</td>
+                  <td>Logistics, Inventory SKUs, Warehouse</td>
+                </tr>
+                <tr>
+                  <td><strong>EAN-13</strong></td>
+                  <td><span class="badge-pill amber">1D Retail</span></td>
+                  <td>Numeric (12-13 digits)</td>
+                  <td>13 digits</td>
+                  <td>GS1 Modulo 10</td>
+                  <td>Global Retail Point of Sale</td>
+                </tr>
+                <tr>
+                  <td><strong>UPC-A</strong></td>
+                  <td><span class="badge-pill amber">1D Retail</span></td>
+                  <td>Numeric (11-12 digits)</td>
+                  <td>12 digits</td>
+                  <td>GS1 Modulo 10</td>
+                  <td>North American Retail Point of Sale</td>
+                </tr>
+                <tr>
+                  <td><strong>ITF-14</strong></td>
+                  <td><span class="badge-pill green">1D Logistics</span></td>
+                  <td>Numeric (14 digits)</td>
+                  <td>14 digits</td>
+                  <td>GS1 Modulo 10</td>
+                  <td>Corrugated Master Carton Shipping</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- URL Deep-Linking API -->
+        <section id="sec-url-params" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">🔗</div>
+              <div>
+                <h2 class="symbology-title">URL Parameter Deep-Linking API</h2>
+                <div class="symbology-standard">Query String Router Specification</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="docs-text">
+            Universal Code Studio includes a zero-dependency URL router that lets you link directly to any pre-configured symbology, payload wizard, or pre-filled barcode value:
+          </p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>Deep-Link URL Formats</span>
+              <button type="button" class="copy-code-btn" data-copy="https://yourdomain.com/?symbology=code128&data=SKU-990022">Copy Link</button>
+            </div>
+            <code># Open Code 128 with prefilled data:<br>
+https://yourdomain.com/?symbology=code128&data=SKU-990022<br><br>
+# Open Wi-Fi Wizard with pre-configured network:<br>
+https://yourdomain.com/?wizard=wifi&ssid=StudioGuest&auth=WPA<br><br>
+# Open Data Matrix with custom payload:<br>
+https://yourdomain.com/?symbology=datamatrix&data=LOT-2026-X99</code>
+          </div>
+        </section>
+
+        <!-- Developer Integration Snippets -->
+        <section id="sec-api-snippets" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon">💻</div>
+              <div>
+                <h2 class="symbology-title">JavaScript Rendering Integration</h2>
+                <div class="symbology-standard">Client-Side Canvas & SVG Rendering</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="docs-text">
+            To render high-speed vector barcodes directly inside your own web applications using pure JavaScript:
+          </p>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>Client-Side Canvas Rendering</span>
+              <button type="button" class="copy-code-btn" data-copy="// Render barcode to HTML5 Canvas
+bwipjs.toCanvas('myCanvas', {
+  bcid: 'code128',
+  text: 'INVENTORY-987654',
+  scale: 3,
+  height: 25,
+  includetext: true,
+  textxalign: 'center'
+});">Copy Code</button>
+            </div>
+            <code>// 1. Include bwip-js browser bundle in your HTML:<br>
+&lt;script src="https://cdn.jsdelivr.net/npm/bwip-js@latest/dist/bwip-js-min.js"&gt;&lt;/script&gt;<br><br>
+// 2. Render barcode directly to an HTML5 canvas element:<br>
+bwipjs.toCanvas('myCanvas', {<br>
+&nbsp;&nbsp;bcid: 'code128',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Symbology identifier<br>
+&nbsp;&nbsp;text: 'INVENTORY-987654',&nbsp;&nbsp;&nbsp;&nbsp;// Payload string<br>
+&nbsp;&nbsp;scale: 3,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 3x scaling factor<br>
+&nbsp;&nbsp;height: 25,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Bar height in mm<br>
+&nbsp;&nbsp;includetext: true,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Show human-readable text<br>
+&nbsp;&nbsp;textxalign: 'center'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Text alignment<br>
+});</code>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Universal Code Studio. Open-source client-side barcode & QR generator. 100% Free Forever.</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Universal Studio</a></li>
+        <li><a href="symbology-docs.html">Symbology Docs</a></li>
+        <li><a href="tests/test-runner.html">Unit Tests</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Script for Theme Toggle & Copy Buttons -->
+  <script>
+    // Theme toggle logic
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (themeBtn) {
+      themeBtn.innerHTML = savedTheme === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
+      themeBtn.addEventListener('click', () => {
+        const curr = document.documentElement.getAttribute('data-theme');
+        const next = curr === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeBtn.innerHTML = next === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
+      });
+    }
+
+    // Code copy buttons
+    document.querySelectorAll('.copy-code-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const textToCopy = btn.getAttribute('data-copy');
+        if (textToCopy) {
+          try {
+            await navigator.clipboard.writeText(textToCopy);
+            const orig = btn.textContent;
+            btn.textContent = '✓ Copied!';
+            setTimeout(() => { btn.textContent = orig; }, 2000);
+          } catch (e) {
+            console.error('Failed to copy', e);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

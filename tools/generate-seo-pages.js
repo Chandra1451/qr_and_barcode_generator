@@ -934,8 +934,9 @@ function generatePageHtml(page) {
       <p>&copy; 2026 Universal Code Studio. Open-source client-side barcode & QR generator. 100% Free Forever.</p>
       <ul class="footer-links">
         <li><a href="../index.html">Universal Studio</a></li>
+        <li><a href="../symbology-docs.html">Symbology Docs</a></li>
         <li><a href="../tests/test-runner.html">Unit Tests</a></li>
-        <li><a href="../07_LEGAL_PRIVACY_COMPLIANCE.md">Privacy Policy</a></li>
+        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
       </ul>
     </div>
   </footer>
@@ -970,10 +971,22 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>${SITE_URL}/symbology-docs.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/privacy-policy.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>${SITE_URL}/tests/test-runner.html</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.4</priority>
   </url>
 ${SEO_PAGES.map(p => `  <url>
     <loc>${SITE_URL}/pages/${p.slug}.html</loc>

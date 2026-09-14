@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy & Legal Terms | Universal Code Studio</title>
+  <meta name="description" content="Official Privacy Policy and Legal Compliance documentation for Universal Code Studio. Learn about our 100% client-side zero-data-retention architecture, GDPR & CCPA compliance, and commercial GS1 disclaimers.">
+  <link rel="canonical" href="https://yourdomain.com/privacy-policy.html">
+  <meta name="theme-color" content="#06b6d4">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    /* Document Page Styles */
+    .doc-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem 1.5rem;
+    }
+
+    /* Hero Section */
+    .doc-hero {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 2.25rem;
+      box-shadow: var(--shadow-glass);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.25rem;
+    }
+
+    .doc-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent-gradient);
+    }
+
+    .doc-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: var(--accent-cyan);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .doc-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    .doc-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 820px;
+      margin-bottom: 1.25rem;
+    }
+
+    .doc-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.25rem;
+    }
+
+    .doc-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* 2-Column Documentation Layout */
+    .doc-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 2.25rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .doc-layout {
+        grid-template-columns: 1fr;
+      }
+      .doc-sidebar {
+        display: none;
+      }
+    }
+
+    /* Sidebar Table of Contents */
+    .doc-sidebar {
+      position: sticky;
+      top: 5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toc-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      max-height: calc(100vh - 12rem);
+      overflow-y: auto;
+    }
+
+    .toc-link {
+      display: block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      border-left: 2px solid transparent;
+    }
+
+    .toc-link:hover {
+      color: var(--accent-cyan);
+      background: var(--bg-surface-elevated);
+      border-left-color: var(--accent-cyan);
+    }
+
+    /* Document Body */
+    .doc-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .doc-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.25rem;
+      box-shadow: var(--shadow-card);
+      scroll-margin-top: 5.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.75rem;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.1);
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .doc-p {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 1.15rem;
+    }
+
+    .doc-p strong {
+      color: var(--text-primary);
+    }
+
+    /* Key-Value & Summary Cards */
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+
+    @media (max-width: 640px) {
+      .privacy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .privacy-stat-card {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+    }
+
+    .privacy-stat-card.secure {
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.04);
+    }
+
+    .privacy-stat-card.alert {
+      border-color: rgba(245, 158, 11, 0.3);
+      background: rgba(245, 158, 11, 0.04);
+    }
+
+    .stat-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-header.green { color: #10b981; }
+    .stat-header.amber { color: #f59e0b; }
+
+    .stat-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Callout Boxes */
+    .callout-box {
+      border-left: 3px solid var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.06);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .callout-box.warning {
+      border-left-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    .callout-box.danger {
+      border-left-color: #ef4444;
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Structured Tables */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .compliance-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.84rem;
+    }
+
+    .compliance-table th {
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      padding: 0.85rem 1rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    .compliance-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .compliance-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Lists */
+    .doc-list {
+      margin: 0.75rem 0 1.25rem 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .doc-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* Cookie Action Button */
+    .btn-cookie-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.2rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      margin-top: 0.75rem;
+    }
+
+    .btn-cookie-action:hover {
+      background: var(--accent-cyan);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
+          <div class="brand-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="8" height="8" x="3" y="3" rx="1"/>
+              <path d="M7 7h.01"/>
+              <rect width="8" height="8" x="13" y="3" rx="1"/>
+              <path d="M17 7h.01"/>
+              <rect width="8" height="8" x="3" y="13" rx="1"/>
+              <path d="M7 17h.01"/>
+              <path d="M13 13h2v2h-2z"/>
+              <path d="M17 13h4v4h-4z"/>
+              <path d="M13 17h2v4h-2z"/>
+              <path d="M17 21h4"/>
+            </svg>
+          </div>
+          <div>
+            <span class="brand-title" style="display: block;">Universal Code Studio</span>
+            <span class="brand-tagline">100% Client-Side Barcode & QR Suite</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <a href="index.html" class="action-btn action-btn-primary" style="padding: 0.45rem 0.95rem; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          Live Studio
+        </a>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Theme">
+          <span>☀️</span> Light
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Document Main Container -->
+  <main class="doc-page">
+
+    <!-- Hero Banner -->
+    <div class="doc-hero">
+      <div class="doc-badge">
+        <span>🔒</span> Zero-Knowledge Privacy Architecture
+      </div>
+      <h1 class="doc-title">Privacy Policy & Legal Terms</h1>
+      <p class="doc-subtitle">
+        Universal Code Studio is engineered from the ground up as a 100% client-side application. We do not transmit, log, monitor, or store your barcode payloads, Wi-Fi credentials, contact cards, or custom images on any server.
+      </p>
+
+      <div class="doc-meta-row">
+        <div class="doc-meta-item">
+          <strong>Effective Date:</strong> September 14, 2026
+        </div>
+        <div class="doc-meta-item">•</div>
+        <div class="doc-meta-item">
+          <strong>Compliance Posture:</strong> GDPR (EU), UK GDPR, CCPA/CPRA (California), COPPA
+        </div>
+        <div class="doc-meta-item">•</div>
+        <div class="doc-meta-item">
+          <strong>Architecture:</strong> Zero-Data Collection (Local In-Memory Browser Execution)
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-Column Layout -->
+    <div class="doc-layout">
+
+      <!-- Navigation Sidebar -->
+      <aside class="doc-sidebar">
+        <div class="sidebar-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+          Table of Contents
+        </div>
+        <nav>
+          <ul class="toc-nav">
+            <li><a href="#sec-zero-data" class="toc-link">1. Zero-Data Retention Model</a></li>
+            <li><a href="#sec-data-processed" class="toc-link">2. Data We Process vs. Collect</a></li>
+            <li><a href="#sec-cookies-ads" class="toc-link">3. Cookies & Advertising (AdSense)</a></li>
+            <li><a href="#sec-gdpr" class="toc-link">4. EU & UK GDPR Compliance</a></li>
+            <li><a href="#sec-ccpa" class="toc-link">5. California Privacy (CCPA/CPRA)</a></li>
+            <li><a href="#sec-coppa" class="toc-link">6. Children's Privacy (COPPA)</a></li>
+            <li><a href="#sec-gs1" class="toc-link">7. GS1 Commercial Barcode Disclaimer</a></li>
+            <li><a href="#sec-pre-print" class="toc-link">8. Pre-Print Verification Notice</a></li>
+            <li><a href="#sec-attribution" class="toc-link">9. Open-Source Attribution</a></li>
+            <li><a href="#sec-contact" class="toc-link">10. Inquiries & Contact</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Document Content -->
+      <article class="doc-content">
+
+        <!-- Section 1 -->
+        <section id="sec-zero-data" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">01</span>
+            <h2 class="section-title">Zero-Data Retention Architecture</h2>
+          </div>
+          <p class="doc-p">
+            Traditional web generators require you to upload your sensitive payloads—such as private Wi-Fi passwords, contact card vCards, cryptocurrency addresses, or proprietary inventory SKUs—to a remote server where barcodes are rendered and returned as images. This architecture poses serious confidentiality and regulatory risks.
+          </p>
+          <p class="doc-p">
+            <strong>Universal Code Studio operates on a strictly client-side paradigm.</strong> Every barcode algorithm, checksum computation (GS1 Modulo 10, Luhn Modulo 10, Code 128 Modulo 103), QR styling engine, and vector SVG/PDF exporter executes exclusively inside your device's web browser memory (RAM) using pure JavaScript and HTML5 Canvas.
+          </p>
+
+          <div class="privacy-grid">
+            <div class="privacy-stat-card secure">
+              <div class="stat-header green">
+                <span>🛡️</span> Zero Server-Side Transmission
+              </div>
+              <div class="stat-desc">
+                Your keystrokes, URLs, credentials, and uploaded logo files are never transmitted to our web servers or any cloud database.
+              </div>
+            </div>
+            <div class="privacy-stat-card secure">
+              <div class="stat-header green">
+                <span>⚡</span> Ephemeral Browser Memory
+              </div>
+              <div class="stat-desc">
+                When you close or refresh your browser tab, all entered payloads and generated graphics are instantly purged from your device memory.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="sec-data-processed" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">02</span>
+            <h2 class="section-title">Data We Process vs. Data We Do NOT Collect</h2>
+          </div>
+          <p class="doc-p">
+            To provide total transparency under global data privacy regulations, the following table details the scope of data handling:
+          </p>
+
+          <div class="table-wrapper">
+            <table class="compliance-table">
+              <thead>
+                <tr>
+                  <th>Data Category</th>
+                  <th>How It Is Handled</th>
+                  <th>Stored on Server?</th>
+                  <th>Shared with Third Parties?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Barcode Payloads</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">URLs, text, SKU numbers, Wi-Fi credentials, vCard info</span></td>
+                  <td>Processed in browser RAM via JavaScript</td>
+                  <td><strong style="color: #10b981;">NO</strong></td>
+                  <td><strong style="color: #10b981;">NO</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Uploaded Logos & Icons</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">PNG, SVG, JPG images embedded in QR codes</span></td>
+                  <td>Read locally via JavaScript <code>FileReader</code> API</td>
+                  <td><strong style="color: #10b981;">NO</strong></td>
+                  <td><strong style="color: #10b981;">NO</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Batch Generation Data</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Pasted CSV rows, sequenced number series</span></td>
+                  <td>Archived locally into ZIP format using client-side JSZip</td>
+                  <td><strong style="color: #10b981;">NO</strong></td>
+                  <td><strong style="color: #10b981;">NO</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>User Preferences</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Dark/Light theme toggle, cookie consent state</span></td>
+                  <td>Saved locally in your device's <code>localStorage</code></td>
+                  <td><strong style="color: #10b981;">NO</strong></td>
+                  <td><strong style="color: #10b981;">NO</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Aggregated Traffic Metrics</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Anonymous pageviews, browser type, device category</span></td>
+                  <td>Processed via privacy-configured analytics & AdSense</td>
+                  <td>Anonymized Only</td>
+                  <td>Google AdSense / Analytics</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="sec-cookies-ads" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">03</span>
+            <h2 class="section-title">Cookies & Third-Party Advertising</h2>
+          </div>
+          <p class="doc-p">
+            Universal Code Studio is 100% free forever for all personal and commercial use. To support server infrastructure and continuous development, we display non-intrusive advertisements served through <strong>Google AdSense</strong>.
+          </p>
+          <p class="doc-p">
+            Google AdSense and its certified advertising partners may use cookies and web beacons to serve advertisements based on your prior visits to this website or other websites across the Internet:
+          </p>
+          <ul class="doc-list">
+            <li><strong>Personalized Advertising:</strong> In jurisdictions where you have granted consent, Google may use cookies to serve ads tailored to your browsing interests.</li>
+            <li><strong>Non-Personalized Advertising:</strong> If you decline advertising cookies or visit from a jurisdiction with strict default opt-out requirements, Google serves non-personalized contextual ads based solely on page content and coarse geographical location.</li>
+          </ul>
+
+          <div class="callout-box">
+            <div class="callout-title">
+              <span>🍪</span> Your Cookie Preferences & Opt-Out Rights
+            </div>
+            You can modify your advertising cookie choices at any time through Google's Ads Settings at <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color: var(--accent-cyan);">adssettings.google.com</a>, or by visiting the Digital Advertising Alliance opt-out portal at <a href="https://optout.aboutads.info" target="_blank" rel="noopener" style="color: var(--accent-cyan);">aboutads.info</a>.
+            <br><br>
+            <button type="button" id="btn-reset-consent" class="btn-cookie-action">
+              <span>🔄</span> Reset Cookie Consent on This Device
+            </button>
+            <span id="consent-status-msg" style="margin-left: 0.75rem; font-size: 0.8rem; color: var(--accent-cyan); display: none;">Consent preferences cleared!</span>
+          </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="sec-gdpr" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">04</span>
+            <h2 class="section-title">EU & UK GDPR Compliance</h2>
+          </div>
+          <p class="doc-p">
+            For individuals residing in the European Economic Area (EEA) and the United Kingdom, our processing activities comply with the <strong>General Data Protection Regulation (GDPR)</strong> and <strong>UK Data Protection Act 2018</strong>:
+          </p>
+          <ul class="doc-list">
+            <li><strong>Lawful Basis (Article 6):</strong> Because your barcode payloads are processed solely in local browser memory and never collected, we do not require a processing basis for payload data. For anonymous website telemetry and advertising cookies, our basis is <em>Consent</em> (where affirmatively provided) or <em>Legitimate Interest</em> for essential security operations.</li>
+            <li><strong>Data Minimization (Article 5):</strong> We practice absolute data minimization by collecting zero personal identification data.</li>
+            <li><strong>Data Subject Rights (Articles 15–22):</strong> You have the right to access, rectify, or erase personal data. Because we do not store your name, email, IP address logs, or barcode payloads in any database, we hold no identifiable records that can be linked to your identity.</li>
+          </ul>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="sec-ccpa" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">05</span>
+            <h2 class="section-title">California Consumer Privacy (CCPA & CPRA)</h2>
+          </div>
+          <p class="doc-p">
+            Under the <strong>California Consumer Privacy Act (CCPA)</strong> as amended by the <strong>California Privacy Rights Act (CPRA)</strong>, California residents are entitled to specific disclosures regarding personal information:
+          </p>
+          <div class="callout-box">
+            <div class="callout-title">
+              <span>📢</span> "Do Not Sell or Share My Personal Information" Notice
+            </div>
+            <strong>We do not sell, rent, or trade your personal information or barcode contents to any data broker or commercial third party.</strong> We do not disclose sensitive personal information for cross-context behavioral advertising without your consent.
+          </div>
+          <p class="doc-p">
+            California consumers have the right to request information regarding data practices and to exercise privacy rights without experiencing discriminatory treatment.
+          </p>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="sec-coppa" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">06</span>
+            <h2 class="section-title">Children's Online Privacy Protection Act (COPPA)</h2>
+          </div>
+          <p class="doc-p">
+            Universal Code Studio is a general audience developer and business utility. We do not knowingly target, solicit, or collect personal information from children under the age of 13. Because no personal data is collected or retained from any user, our services comply fully with the requirements of COPPA.
+          </p>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="sec-gs1" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">07</span>
+            <h2 class="section-title">GS1 Commercial Barcode Notice & Legal Disclaimer</h2>
+          </div>
+          <div class="callout-box warning">
+            <div class="callout-title">
+              <span>⚠️</span> Mandatory Commercial Barcode Notice (EAN-13, UPC-A, ITF-14)
+            </div>
+            This application generates mathematically valid barcode graphics based on standard open international symbology specifications (ISO/IEC 15420, ISO/IEC 15417, and GS1 General Specifications).
+            <br><br>
+            <strong>However, generating an EAN or UPC barcode graphic through this free utility DOES NOT grant legal ownership, product licensing, or international authorization to assign that number to commercial retail products.</strong>
+            <br><br>
+            Legitimate Global Trade Item Numbers (GTINs), company prefixes, and retail barcodes must be officially licensed through <a href="https://www.gs1.org" target="_blank" rel="noopener" style="color: var(--accent-cyan); font-weight: 600;">GS1 (GS1.org)</a> or an authorized international barcode registry. Using unassigned or duplicate numbers on retail products may result in immediate rejection by retailers, point-of-sale collisions, and commercial liability.
+          </div>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="sec-pre-print" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">08</span>
+            <h2 class="section-title">Pre-Print Verification & Quality Notice</h2>
+          </div>
+          <p class="doc-p">
+            Barcode readability is influenced by several external factors beyond digital graphic generation, including printer DPI resolution, thermal head wear, substrate/paper finish, contrast ratio, ink bleed, and scanning hardware optics.
+          </p>
+          <div class="callout-box danger">
+            <div class="callout-title">
+              <span>🛑</span> Pre-Flight Test Proof Requirement
+            </div>
+            <strong>Always produce a physical test proof and verify scanning with an actual handheld barcode scanner or smartphone camera prior to mass printing labels, packaging, or marketing collateral.</strong>
+            <br><br>
+            Universal Code Studio, its authors, and contributors assume no liability for misprinted packaging, failed retail scans, or manufacturing delays resulting from unverified barcode artwork.
+          </div>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="sec-attribution" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">09</span>
+            <h2 class="section-title">Open-Source Software & Licensing Attribution</h2>
+          </div>
+          <p class="doc-p">
+            Universal Code Studio proudly leverages high-performance, battle-tested open-source libraries:
+          </p>
+          <ul class="doc-list">
+            <li><strong>bwip-js</strong> (Barcode Writer in Pure JavaScript) — Copyright &copy; Mark Warren. Licensed under the MIT License. Powers 50+ 1D linear, 2D matrix (Data Matrix, Aztec, PDF417), and postal barcode standards.</li>
+            <li><strong>qr-code-styling</strong> — Copyright &copy; Anton Kozlov. Licensed under the MIT License. Powers customized QR code dot styles, corner eye markers, and vector logo embedding.</li>
+            <li><strong>jsPDF</strong> — Licensed under the MIT License. Powers client-side Avery label sheet rendering and multi-label PDF generation.</li>
+            <li><strong>JSZip</strong> — Licensed under the MIT License. Powers client-side in-memory ZIP bundle archiving for serialized batch export.</li>
+          </ul>
+        </section>
+
+        <!-- Section 10 -->
+        <section id="sec-contact" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">10</span>
+            <h2 class="section-title">Inquiries & Contact</h2>
+          </div>
+          <p class="doc-p">
+            If you have questions, regulatory compliance requests, or suggestions regarding this Privacy Policy or our zero-knowledge client-side architecture, please contact our legal compliance team:
+          </p>
+          <p class="doc-p">
+            <strong>Universal Code Studio Legal Team</strong><br>
+            Email: <code style="color: var(--accent-cyan); font-family: var(--font-mono);">privacy@yourdomain.com</code><br>
+            Website: <a href="index.html" style="color: var(--accent-cyan);">https://yourdomain.com</a>
+          </p>
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Universal Code Studio. Open-source client-side barcode & QR generator. 100% Free Forever.</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Universal Studio</a></li>
+        <li><a href="symbology-docs.html">Symbology Docs</a></li>
+        <li><a href="tests/test-runner.html">Unit Tests</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Script for Theme Toggle & Consent Reset -->
+  <script>
+    // Theme toggle logic
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (themeBtn) {
+      themeBtn.innerHTML = savedTheme === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
+      themeBtn.addEventListener('click', () => {
+        const curr = document.documentElement.getAttribute('data-theme');
+        const next = curr === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeBtn.innerHTML = next === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
+      });
+    }
+
+    // Cookie consent reset handler
+    const btnResetConsent = document.getElementById('btn-reset-consent');
+    const consentMsg = document.getElementById('consent-status-msg');
+    if (btnResetConsent && consentMsg) {
+      btnResetConsent.addEventListener('click', () => {
+        localStorage.removeItem('ucs_cookie_consent');
+        consentMsg.style.display = 'inline';
+        btnResetConsent.textContent = '✓ Preferences Cleared';
+        setTimeout(() => {
+          consentMsg.style.display = 'none';
+          btnResetConsent.innerHTML = '<span>🔄</span> Reset Cookie Consent on This Device';
+        }, 3000);
+      });
+    }
+  </script>
+
+</body>
+</html>
