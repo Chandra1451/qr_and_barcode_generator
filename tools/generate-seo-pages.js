@@ -944,6 +944,9 @@ function generatePageHtml(page) {
     </div>
   </footer>
 
+  <!-- Cloudflare Web Analytics -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9b4ee0030e6e4136a598a736f8db4ad3"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </body>
 </html>`;
 }
