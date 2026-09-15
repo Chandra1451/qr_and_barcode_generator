@@ -13,7 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = 'https://universal-codes.io';
+const SITE_URL = 'https://universalcodemaker.com';
 const PAGES_DIR = path.join(__dirname, '..', 'pages');
 
 if (!fs.existsSync(PAGES_DIR)) {
@@ -517,7 +517,7 @@ function generatePageHtml(page) {
   const webAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": `${page.name} - Universal Code Studio`,
+    "name": `${page.name} - UniversalCodeMaker.com`,
     "url": pageUrl,
     "description": page.metaDescription,
     "applicationCategory": "UtilityApplication",
@@ -856,8 +856,8 @@ function generatePageHtml(page) {
           </svg>
         </div>
         <div class="brand-text">
-          <span class="brand-title">Universal Code Studio</span>
-          <span class="brand-tagline">100% Free Client-Side Code Suite</span>
+          <span class="brand-title">Code Generator</span>
+          <span class="brand-tagline">UniversalCodeMaker.com • 100% Free Client-Side Suite</span>
         </div>
       </a>
       <div class="header-actions">
@@ -931,9 +931,9 @@ function generatePageHtml(page) {
 
   <footer class="app-footer">
     <div class="footer-container">
-      <p>&copy; 2026 Universal Code Studio. Open-source client-side barcode & QR generator. 100% Free Forever.</p>
+      <p>&copy; 2026 UniversalCodeMaker.com. Client-side Code Generator. 100% Free Forever.</p>
       <ul class="footer-links">
-        <li><a href="../index.html">Universal Studio</a></li>
+        <li><a href="../index.html">Code Generator</a></li>
         <li><a href="../symbology-docs.html">Symbology Docs</a></li>
         <li><a href="../tests/test-runner.html">Unit Tests</a></li>
         <li><a href="../privacy-policy.html">Privacy Policy</a></li>

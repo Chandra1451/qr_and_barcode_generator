@@ -1,6 +1,6 @@
 {
-  "name": "Universal Barcode & QR Code Generator Studio",
-  "short_name": "CodeStudio",
+  "name": "Code Generator - UniversalCodeMaker",
+  "short_name": "CodeGenerator",
   "description": "Generate 50+ free barcodes and branded styled QR codes directly in your browser with SVG, PNG, Avery PDF, and ZIP exports.",
   "start_url": "/index.html",
   "display": "standalone",

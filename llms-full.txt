@@ -1,4 +1,4 @@
-# Universal QR & Barcode Generator - Full Technical Specification
+# Code Generator - UniversalCodeMaker.com - Full Technical Specification
 
 > Complete technical dictionary, mathematical algorithms, character encodings, and validation rules for AI search agents and developer integrations.
 

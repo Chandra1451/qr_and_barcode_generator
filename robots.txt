@@ -31,6 +31,6 @@ Allow: /
 Disallow: /scratch/
 
 # Sitemaps & AI Agent Context Files
-Sitemap: https://universal-codes.io/sitemap.xml
-LLMs-Txt: https://universal-codes.io/llms.txt
-LLMs-Full-Txt: https://universal-codes.io/llms-full.txt
+Sitemap: https://universalcodemaker.com/sitemap.xml
+LLMs-Txt: https://universalcodemaker.com/llms.txt
+LLMs-Full-Txt: https://universalcodemaker.com/llms-full.txt
