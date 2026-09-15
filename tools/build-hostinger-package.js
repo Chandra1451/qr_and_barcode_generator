@@ -42,6 +42,7 @@ const ROOT_WHITELIST = [
   'llms.txt',
   'llms-full.txt',
   'site.webmanifest',
+  'ads.txt',
   'README.md'
 ];
 

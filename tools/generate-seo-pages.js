@@ -633,6 +633,9 @@ function generatePageHtml(page) {
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/components.css">
 
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
+
   <style>
     .seo-page-container {
       max-width: 1040px;
