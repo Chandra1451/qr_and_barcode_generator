@@ -48,7 +48,16 @@ export async function runLogoPresetTests(assert) {
   assert.isTrue(bitcoinSvg.includes('M23.189 14.02c.314-2.096'), 'Bitcoin uses official cryptocurrency-icons vector geometry');
   assert.isTrue(!bitcoinSvg.includes('M31.2 21.6c.4-2.5'), 'Old deformed Bitcoin trace is replaced');
 
-  // Test 7: All presets have valid names, icons, and non-empty IDs
+  // Test 7: PayPal preset validation
+  const paypalPreset = LOGO_PRESETS.find(p => p.id === 'paypal');
+  assert.isTrue(!!paypalPreset, 'PayPal preset exists');
+  const paypalSvg = decodeURIComponent(paypalPreset.dataUrl.replace('data:image/svg+xml;utf8,', ''));
+  assert.isTrue(paypalSvg.includes('fill="#003087"'), 'PayPal uses official deep blue #003087');
+  assert.isTrue(paypalSvg.includes('fill="#0079C1"'), 'PayPal uses official light blue #0079C1');
+  assert.isTrue(paypalSvg.includes('fill="#00457C"'), 'PayPal uses official overlap blue #00457C');
+  assert.isTrue(!paypalSvg.includes('<path d="M21 13h7c4 0'), 'Old muddy PayPal path is replaced');
+
+  // Test 8: All presets have valid names, icons, and non-empty IDs
   LOGO_PRESETS.forEach(p => {
     assert.isTrue(typeof p.id === 'string' && p.id.length > 0, `Preset ${p.name} has valid id`);
     assert.isTrue(typeof p.name === 'string' && p.name.length > 0, `Preset ${p.id} has valid name`);
