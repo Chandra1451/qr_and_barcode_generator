@@ -233,11 +233,112 @@ body::after {
   margin-top: auto;
   border-top: 1px solid var(--border-subtle);
   background: var(--bg-primary);
-  padding: 1.5rem;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
   font-size: 0.82rem;
   color: var(--text-muted);
   position: relative;
   z-index: 1;
+}
+
+/* Footer Directory / Link Matrix */
+.footer-directory {
+  max-width: 1440px;
+  margin: 0 auto 2.25rem auto;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.footer-directory-header {
+  margin-bottom: 1.75rem;
+}
+
+.footer-directory-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer-directory-title svg {
+  color: var(--accent-cyan);
+}
+
+.footer-directory-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 0.35rem;
+  max-width: 800px;
+  line-height: 1.5;
+}
+
+.footer-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .footer-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-directory-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .app-footer {
+    padding: 2rem 1rem 1.25rem 1rem;
+  }
+}
+
+.footer-dir-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-dir-heading {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-cyan);
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.footer-dir-heading .dir-icon {
+  font-size: 1rem;
+}
+
+.footer-dir-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.footer-dir-links li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.4;
+}
+
+.footer-dir-links li a:hover {
+  color: var(--accent-cyan-light);
+  transform: translateX(3px);
 }
 
 .footer-container {
@@ -265,3 +366,4 @@ body::after {
 .footer-links a:hover {
   color: var(--accent-cyan);
 }
+
