@@ -197,6 +197,7 @@
     import { runWizardTests } from './unit/qr-wizards.test.js';
     import { runExportTests } from './unit/exports.test.js';
     import { runBatchTests } from './unit/batch.test.js';
+    import { runLogoPresetTests } from './unit/logo-presets.test.js';
 
     class TestRunner {
       constructor() {
@@ -305,6 +306,9 @@
 
         // Suite 6: Batch Generator & ZIP Engine Tests
         await this.runSuite('Batch Generator & ZIP Engine', runBatchTests);
+
+        // Suite 7: Brand Logo Presets & SVG Vectors
+        await this.runSuite('Brand Logo Presets & SVG Vectors', runLogoPresetTests);
 
         const duration = performance.now() - startTime;
         this.updateStats(duration);

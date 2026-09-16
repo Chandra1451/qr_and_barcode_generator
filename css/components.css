@@ -808,6 +808,15 @@ input:checked + .toggle-slider:before {
   font-weight: 600;
 }
 
+.preset-chip-img {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
 /* Export Resolution Selector Bar */
 .export-res-bar {
   display: flex;

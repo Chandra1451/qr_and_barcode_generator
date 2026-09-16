@@ -405,7 +405,10 @@ class App {
       chip.type = 'button';
       chip.className = `preset-icon-chip ${preset.id === this.activeLogoPresetId ? 'active' : ''}`;
       chip.dataset.presetId = preset.id;
-      chip.innerHTML = `<span>${preset.icon}</span> <span>${preset.name}</span>`;
+      const iconMarkup = preset.dataUrl
+        ? `<img src="${preset.dataUrl}" alt="" class="preset-chip-img" width="16" height="16" aria-hidden="true">`
+        : `<span>${preset.icon}</span>`;
+      chip.innerHTML = `${iconMarkup} <span>${preset.name}</span>`;
 
       chip.addEventListener('click', () => {
         this.applyLogoPreset(preset);
