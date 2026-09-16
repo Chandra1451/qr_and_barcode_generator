@@ -203,19 +203,19 @@ export async function loadJsZip() {
 }
 
 /**
- * Pre-fetches core engines in the background without blocking
+ * Pre-fetches the active QR styling engine in the background without blocking.
+ * bwip-js (1.1MB) is strictly deferred until a 1D/2D barcode symbology is selected.
  */
 export function prefetchEngines() {
   if (typeof window === 'undefined') return;
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(() => {
-      loadBwip().catch(() => {});
       loadQRCodeStyling().catch(() => {});
     });
   } else {
     setTimeout(() => {
-      loadBwip().catch(() => {});
       loadQRCodeStyling().catch(() => {});
-    }, 1000);
+    }, 500);
   }
 }
+

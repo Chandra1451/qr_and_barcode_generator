@@ -28,18 +28,18 @@
   <meta name="twitter:description" content="100% Client-Side, Free, Private & High-Resolution Barcode and Styled QR Code Production Studio.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- Google Fonts: Non-blocking asynchronous preload with noscript fallback -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  </noscript>
 
   <!-- Core Stylesheets -->
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -106,7 +106,10 @@
           
           <!-- Category Filter Tabs -->
           <nav class="category-tabs" id="category-tabs" aria-label="Symbology Categories">
-            <!-- Populated dynamically via app.js -->
+            <button type="button" class="tab-btn active" data-category="all">All Formats (8)</button>
+            <button type="button" class="tab-btn" data-category="2d">2D Matrix &amp; QR (4)</button>
+            <button type="button" class="tab-btn" data-category="retail">Retail &amp; POS (1D) (2)</button>
+            <button type="button" class="tab-btn" data-category="logistics">Logistics &amp; Warehousing (2)</button>
           </nav>
 
           <!-- Symbology Dropdown Selector -->
@@ -114,7 +117,14 @@
             <label for="symbology-select" class="label-title">Select Code Symbology</label>
             <div class="select-wrapper">
               <select id="symbology-select" class="styled-select" aria-describedby="symbology-description">
-                <!-- Populated dynamically via app.js -->
+                <option value="qr-code" selected>QR Code (Stylized &amp; Standard) [2D]</option>
+                <option value="data-matrix">Data Matrix [2D]</option>
+                <option value="aztec">Aztec Code [2D]</option>
+                <option value="pdf417">PDF417 (Stacked 2D) [2D]</option>
+                <option value="ean-13">EAN-13 (International Article Number) [RETAIL]</option>
+                <option value="upc-a">UPC-A (Universal Product Code) [RETAIL]</option>
+                <option value="code-128">Code 128 (High-Density Alphanumeric) [LOGISTICS]</option>
+                <option value="itf-14">ITF-14 (Interleaved 2 of 5 Carton Code) [LOGISTICS]</option>
               </select>
               <div class="select-arrow">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -123,29 +133,58 @@
               </div>
             </div>
             <p class="symbology-desc" id="symbology-description">
-              Loading symbology details...
+              Standard 2D Quick Response matrix code. Supports high-density URLs, text, Wi-Fi configurations, vCards, and custom styling geometries.
             </p>
           </div>
 
           <!-- Smart QR Payload Wizard Bar (Shown when QR Code is active) -->
-          <div id="qr-wizard-section" style="display: none;">
+          <div id="qr-wizard-section" style="display: block;">
             <label class="label-title">Smart QR Content Wizard</label>
             <nav class="qr-wizard-nav" id="qr-wizard-nav" aria-label="QR Content Presets">
-              <!-- Injected dynamically via qr-wizards.js in app.js -->
+              <button type="button" class="wizard-pill-btn active" data-wizard-id="url"><span>🌐</span> <span>Website URL</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="wifi"><span>📶</span> <span>Wi-Fi Network</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="vcard"><span>👤</span> <span>vCard Contact</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="email"><span>✉️</span> <span>Email Message</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="sms"><span>💬</span> <span>SMS Text</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="phone"><span>📞</span> <span>Phone Call</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="crypto"><span>🪙</span> <span>Crypto Pay</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="location"><span>📍</span> <span>Map Location</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="event"><span>📅</span> <span>Calendar Event</span></button>
+              <button type="button" class="wizard-pill-btn" data-wizard-id="text"><span>📝</span> <span>Plain Text</span></button>
             </nav>
             <div id="wizard-form-container">
-              <!-- Wizard fields injected here -->
+              <div class="wizard-form-card">
+                <div class="wizard-header">
+                  <span>🌐</span>
+                  <span>Website URL</span>
+                  <span style="font-size: 0.76rem; font-weight: 400; color: var(--text-muted); margin-left: auto;">
+                    Direct link to any website, portfolio, or landing page.
+                  </span>
+                </div>
+                <div class="wizard-fields-grid" id="wizard-fields-grid">
+                  <div class="control-item">
+                    <div class="control-item-header">
+                      <span>Website URL <span style="color: var(--danger)">*</span></span>
+                    </div>
+                    <input type="url" class="styled-input" id="wz-url" placeholder="https://example.com" value="https://github.com" autocomplete="off" spellcheck="false">
+                  </div>
+                </div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); padding-top: 0.5rem; border-top: 1px dashed var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+                  <span>Compiled QR Payload:</span>
+                  <span id="wizard-payload-preview" style="font-family: var(--font-mono); color: var(--accent-cyan); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 320px;">https://github.com</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Standard Raw Payload Input Group (Used for 1D/2D barcodes) -->
-          <div class="form-group" id="standard-payload-group">
+          <div class="form-group" id="standard-payload-group" style="display: none;">
             <div class="input-header">
               <label for="payload-input" id="payload-label">Data Payload</label>
               <span class="input-hint" id="payload-hint">Real-time dynamic rendering</span>
             </div>
             <div class="input-wrapper">
-              <input type="text" id="payload-input" class="styled-input" autocomplete="off" spellcheck="false" placeholder="Enter barcode data...">
+              <input type="text" id="payload-input" class="styled-input" autocomplete="off" spellcheck="false" placeholder="Enter barcode data..." value="https://github.com">
               <button type="button" id="auto-checksum-btn" class="auto-checksum-btn" style="display: none;" title="Compute Mod-10 Check Digit">
                 + Auto Checksum
               </button>
@@ -154,16 +193,16 @@
           </div>
 
           <!-- Logo & Brand Preset Studio (Only shown for QR Codes) -->
-          <div id="logo-studio-section" class="logo-studio-section" style="display: none;">
+          <div id="logo-studio-section" class="logo-studio-section" style="display: block;">
             <div class="input-header">
-              <label class="label-title" style="margin-bottom: 0;">Center Logo & Brand Icon</label>
+              <label class="label-title" style="margin-bottom: 0;">Center Logo &amp; Brand Icon</label>
               <span class="input-hint">Auto-locks Error Correction to Level H (30%)</span>
             </div>
             
             <div class="logo-dropzone" id="logo-dropzone">
               <input type="file" id="logo-file-input" accept="image/png,image/jpeg,image/svg+xml,image/webp" style="display: none;">
               <div id="dropzone-text" class="dropzone-text">
-                <p style="font-size: 0.85rem; font-weight: 500;">Click to upload or drag & drop logo</p>
+                <p style="font-size: 0.85rem; font-weight: 500;">Click to upload or drag &amp; drop logo</p>
                 <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">PNG, SVG, or JPEG (Max 2MB)</p>
               </div>
               <div id="logo-preview-box" class="logo-preview-box" style="display: none;">
@@ -179,14 +218,64 @@
             <div style="margin-top: 0.75rem;">
               <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">Or pick a preset icon:</span>
               <div class="preset-icons-grid" id="preset-icons-grid">
-                <!-- Injected from logo-presets.js -->
+                <button type="button" class="preset-icon-chip active" data-preset-id="none"><span>🚫</span> <span>None</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="github"><span>🐙</span> <span>GitHub</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="wifi"><span>📶</span> <span>Wi-Fi</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="globe"><span>🌐</span> <span>Website</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="email"><span>✉️</span> <span>Email</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="phone"><span>📞</span> <span>Phone</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="instagram"><span>📸</span> <span>Instagram</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="bitcoin"><span>₿</span> <span>Bitcoin</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="paypal"><span>💳</span> <span>PayPal</span></button>
+                <button type="button" class="preset-icon-chip" data-preset-id="location"><span>📍</span> <span>Location Pin</span></button>
               </div>
             </div>
           </div>
 
           <!-- Dynamic Parameter Controls (Sliders, Toggles, Colors, Gradients) -->
-          <div id="dynamic-controls-panel" class="dynamic-controls-grid">
-            <!-- Injected dynamically based on selected plugin schema -->
+          <div id="dynamic-controls-panel" class="dynamic-controls-grid" style="display: grid;">
+            <div class="control-item">
+              <div class="control-item-header">
+                <span>Error Correction Level</span>
+              </div>
+              <select class="styled-select" id="ctrl-errorCorrectionLevel">
+                <option value="L">Low (7% recovery)</option>
+                <option value="M" selected>Medium (15% recovery)</option>
+                <option value="Q">Quartile (25% recovery)</option>
+                <option value="H">High (30% recovery - Recommended with logo)</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <div class="control-item-header">
+                <span>Dot Geometry Style</span>
+              </div>
+              <select class="styled-select" id="ctrl-dotsType">
+                <option value="rounded" selected>Rounded Smooth</option>
+                <option value="dots">Circular Dots</option>
+                <option value="classy">Classy Modern</option>
+                <option value="classy-rounded">Classy Rounded</option>
+                <option value="square">Standard Square</option>
+                <option value="extra-rounded">Extra Rounded</option>
+              </select>
+            </div>
+            <div class="control-item">
+              <div class="control-item-header">
+                <span>Pattern Color (Solid)</span>
+              </div>
+              <div class="color-picker-group">
+                <input type="color" class="styled-color-input" id="ctrl-dotsColor" value="#0f172a">
+                <span class="control-val-badge" id="val-dotsColor">#0f172a</span>
+              </div>
+            </div>
+            <div class="control-item">
+              <label class="toggle-wrapper" for="ctrl-gradientEnabled">
+                <span class="control-item-header">Use Two-Color Gradient</span>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="ctrl-gradientEnabled">
+                  <span class="toggle-slider"></span>
+                </div>
+              </label>
+            </div>
           </div>
 
         </div>
@@ -206,10 +295,10 @@
           <!-- Canvas Viewport -->
           <div class="canvas-viewport" id="canvas-viewport">
             <!-- bwip-js renders to this canvas element -->
-            <canvas id="preview-canvas"></canvas>
+            <canvas id="preview-canvas" style="display: none;"></canvas>
 
             <!-- qr-code-styling renders styled SVG/Canvas inside this container -->
-            <div id="qr-styled-container" style="display: none;"></div>
+            <div id="qr-styled-container" style="display: flex;"></div>
 
             <!-- Error fallback state -->
             <div id="preview-error" class="preview-error">
@@ -591,5 +680,8 @@
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9b4ee0030e6e4136a598a736f8db4ad3"}'></script>
   <!-- End Cloudflare Web Analytics -->
+
+  <!-- Google AdSense (Deferred to prevent render-blocking and layout shifts) -->
+  <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -181,8 +181,21 @@ class App {
   renderCategoryTabs() {
     if (!this.categoryTabs) return;
     const categories = getCategories();
-    this.categoryTabs.innerHTML = '';
+    const existingButtons = this.categoryTabs.querySelectorAll('.tab-btn');
 
+    if (existingButtons.length === categories.length) {
+      existingButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          this.activeCategory = btn.dataset.category;
+          this.categoryTabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          this.populateSymbologySelect();
+        });
+      });
+      return;
+    }
+
+    this.categoryTabs.innerHTML = '';
     categories.forEach(cat => {
       const btn = document.createElement('button');
       btn.type = 'button';
@@ -192,7 +205,7 @@ class App {
 
       btn.addEventListener('click', () => {
         this.activeCategory = cat.id;
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        this.categoryTabs.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         this.populateSymbologySelect();
       });
@@ -204,8 +217,16 @@ class App {
   populateSymbologySelect() {
     if (!this.symbologySelect) return;
     const items = getGeneratorsByCategory(this.activeCategory);
-    this.symbologySelect.innerHTML = '';
 
+    // If already pre-rendered with all items and filter is 'all', preserve markup
+    if (this.symbologySelect.options.length === items.length && this.activeCategory === 'all') {
+      if (this.currentGenerator) {
+        this.symbologySelect.value = this.currentGenerator.id;
+      }
+      return;
+    }
+
+    this.symbologySelect.innerHTML = '';
     items.forEach(gen => {
       const opt = document.createElement('option');
       opt.value = gen.id;
@@ -269,6 +290,19 @@ class App {
      -------------------------------------------------------------------------- */
   renderWizardNav() {
     if (!this.qrWizardNav) return;
+    const existingBtns = this.qrWizardNav.querySelectorAll('.wizard-pill-btn');
+    if (existingBtns.length > 0) {
+      existingBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          this.activeWizardId = btn.dataset.wizardId;
+          this.qrWizardNav.querySelectorAll('.wizard-pill-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          this.renderWizardForm(btn.dataset.wizardId);
+        });
+      });
+      return;
+    }
+
     this.qrWizardNav.innerHTML = '';
     const wizards = getAllWizards();
 
@@ -294,6 +328,35 @@ class App {
     if (!this.wizardFormContainer) return;
     const wizard = getWizard(wizardId);
     if (!wizard) return;
+
+    // Adopt pre-rendered URL wizard markup without rebuilding DOM
+    const existingCard = this.wizardFormContainer.querySelector('.wizard-form-card');
+    const existingInput = this.wizardFormContainer.querySelector('#wz-url');
+    if (wizardId === 'url' && existingCard && existingInput && !existingCard.dataset.hydrated) {
+      existingCard.dataset.hydrated = 'true';
+      const previewSpan = existingCard.querySelector('#wizard-payload-preview');
+      const handleWizardChange = () => {
+        const data = {};
+        wizard.fields.forEach(f => {
+          const el = this.wizardFormContainer.querySelector(`#wz-${f.id}`);
+          if (el) {
+            data[f.id] = f.type === 'checkbox' ? el.checked : el.value;
+          }
+        });
+        const compiled = wizard.compile(data);
+        this.payloadInput.value = compiled;
+        if (previewSpan) previewSpan.textContent = compiled;
+        this.validateAndRender();
+      };
+
+      const inputs = this.wizardFormContainer.querySelectorAll('input, select, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('input', handleWizardChange);
+        input.addEventListener('change', handleWizardChange);
+      });
+      handleWizardChange();
+      return;
+    }
 
     this.wizardFormContainer.innerHTML = '';
 
@@ -398,8 +461,20 @@ class App {
      -------------------------------------------------------------------------- */
   renderLogoPresets() {
     if (!this.presetIconsGrid) return;
-    this.presetIconsGrid.innerHTML = '';
+    const existingChips = this.presetIconsGrid.querySelectorAll('.preset-icon-chip');
+    if (existingChips.length === LOGO_PRESETS.length) {
+      existingChips.forEach(chip => {
+        const preset = LOGO_PRESETS.find(p => p.id === chip.dataset.presetId);
+        if (preset) {
+          chip.addEventListener('click', () => {
+            this.applyLogoPreset(preset);
+          });
+        }
+      });
+      return;
+    }
 
+    this.presetIconsGrid.innerHTML = '';
     LOGO_PRESETS.forEach(preset => {
       const chip = document.createElement('button');
       chip.type = 'button';
@@ -558,8 +633,6 @@ class App {
      -------------------------------------------------------------------------- */
   renderDynamicControls(gen) {
     if (!this.dynamicControls) return;
-    this.dynamicControls.innerHTML = '';
-    this.currentOptions = {};
 
     if (!gen.controls || gen.controls.length === 0) {
       this.dynamicControls.style.display = 'none';
@@ -567,6 +640,48 @@ class App {
     }
 
     this.dynamicControls.style.display = 'grid';
+
+    // Adopt pre-rendered controls for qr-code without DOM recreation
+    const isPreRendered = gen.id === 'qr-code' && this.dynamicControls.querySelector('#ctrl-errorCorrectionLevel');
+    if (isPreRendered && !this.dynamicControls.dataset.hydrated) {
+      this.dynamicControls.dataset.hydrated = 'true';
+      this.currentOptions = {};
+      gen.controls.forEach(ctrl => {
+        const input = document.getElementById(`ctrl-${ctrl.id}`);
+        if (ctrl.type === 'slider') {
+          const badge = document.getElementById(`val-${ctrl.id}`);
+          this.currentOptions[ctrl.id] = input ? Number(input.value) : ctrl.default;
+          input?.addEventListener('input', (e) => {
+            this.currentOptions[ctrl.id] = Number(e.target.value);
+            if (badge) badge.textContent = `${e.target.value}${ctrl.unit || ''}`;
+            this.queueRender();
+          });
+        } else if (ctrl.type === 'toggle') {
+          this.currentOptions[ctrl.id] = input ? input.checked : ctrl.default;
+          input?.addEventListener('change', (e) => {
+            this.currentOptions[ctrl.id] = e.target.checked;
+            this.queueRender();
+          });
+        } else if (ctrl.type === 'select') {
+          this.currentOptions[ctrl.id] = input ? input.value : ctrl.default;
+          input?.addEventListener('change', (e) => {
+            this.currentOptions[ctrl.id] = e.target.value;
+            this.queueRender();
+          });
+        } else if (ctrl.type === 'color') {
+          this.currentOptions[ctrl.id] = input ? input.value : ctrl.default;
+          input?.addEventListener('input', (e) => {
+            this.currentOptions[ctrl.id] = e.target.value;
+            this.queueRender();
+          });
+        }
+      });
+      this.syncEccControlLock();
+      return;
+    }
+
+    this.dynamicControls.innerHTML = '';
+    this.currentOptions = {};
 
     gen.controls.forEach(ctrl => {
       this.currentOptions[ctrl.id] = ctrl.default;

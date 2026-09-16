@@ -26,17 +26,17 @@
   <meta name="twitter:description" content="Generate 100% free GS1-compliant EAN-13 retail barcodes online. Features automatic Mod-10 check digit calculation, high-resolution 300 DPI PNG, and vector SVG download.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Non-blocking Preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  </noscript>
 
   <link rel="stylesheet" href="../css/theme.css">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/components.css">
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
 
   <style>
     .seo-page-container {
@@ -516,6 +516,9 @@
       </ul>
     </div>
   </footer>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
 
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9b4ee0030e6e4136a598a736f8db4ad3"}'></script>
