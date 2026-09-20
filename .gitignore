@@ -19,7 +19,9 @@ PROJECT_MEMORY.md
 # 3. Spreadsheets & Raw Research Data
 *.xlsx
 *.csv
+*.zip
 research data/
+google indexing report/
 
 # 4. Environment & Secrets (if any local tooling uses env files)
 .env

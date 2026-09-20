@@ -12,6 +12,7 @@ User-agent: Baiduspider
 Allow: /
 Disallow: /scratch/
 Disallow: /temp/
+Disallow: /tests/
 
 # 2. AI Answer Engines (Permit Retrieval for Search & Citations)
 User-agent: PerplexityBot
@@ -29,6 +30,8 @@ Disallow: /
 User-agent: *
 Allow: /
 Disallow: /scratch/
+Disallow: /temp/
+Disallow: /tests/
 
 # Sitemaps & AI Agent Context Files
 Sitemap: https://universalcodemaker.com/sitemap.xml
