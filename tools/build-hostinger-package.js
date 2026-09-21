@@ -34,6 +34,9 @@ const JSZip = sandbox.module.exports || sandbox.JSZip || sandbox.exports;
 const ROOT_WHITELIST = [
   'index.html',
   '404.html',
+  'about.html',
+  'contact.html',
+  'terms.html',
   'privacy-policy.html',
   'symbology-docs.html',
   '.htaccess',

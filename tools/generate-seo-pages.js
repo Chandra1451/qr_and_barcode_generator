@@ -614,6 +614,7 @@ function generatePageHtml(page) {
   <title>${page.metaTitle}</title>
   <meta name="description" content="${page.metaDescription}">
   <link rel="canonical" href="${pageUrl}">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <meta name="theme-color" content="#06b6d4">
 
@@ -948,9 +949,11 @@ function generatePageHtml(page) {
     <div class="footer-container">
       <p>&copy; 2026 UniversalCodeMaker.com. Client-side Code Generator. 100% Free Forever.</p>
       <ul class="footer-links">
-        <li><a href="../index.html">Code Generator</a></li>
+        <li><a href="../">Code Generator</a></li>
         <li><a href="../symbology-docs.html">Symbology Docs</a></li>
-        <li><a href="../tests/test-runner.html">Unit Tests</a></li>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="../contact.html">Contact Us</a></li>
+        <li><a href="../terms.html">Terms of Service</a></li>
         <li><a href="../privacy-policy.html">Privacy Policy</a></li>
       </ul>
     </div>
@@ -995,6 +998,24 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>${SITE_URL}/about.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/contact.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/terms.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>${SITE_URL}/privacy-policy.html</loc>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
@@ -1010,6 +1031,6 @@ ${SEO_PAGES.map(p => `  <url>
 `;
 
 fs.writeFileSync(sitemapPath, sitemapXml, 'utf8');
-console.log(`Saved sitemap.xml with ${SEO_PAGES.length + 3} URLs.`);
+console.log(`Saved sitemap.xml with ${SEO_PAGES.length + 6} URLs.`);
 
 console.log(`All ${generatedCount} SEO landing pages generated successfully!`);
