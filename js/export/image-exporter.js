@@ -115,29 +115,48 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
   // bwip-js barcodes
   const offscreenCanvas = document.createElement('canvas');
   const baseScale = Number(options.scale) || 3;
-  const scaledBwipOptions = {
-    bcid: generator.id === 'data-matrix' ? 'datamatrix' :
-          generator.id === 'aztec' ? 'azteccode' :
-          generator.id === 'pdf417' ? 'pdf417' :
-          generator.id === 'ean-13' ? 'ean13' :
-          generator.id === 'upc-a' ? 'upca' :
-          generator.id === 'itf-14' ? 'itf14' : 'code128',
-    text: payload,
-    scale: baseScale * scaleFactor,
-    includetext: options.includetext !== false,
-    textxalign: 'center',
-    backgroundcolor: options.transparentBg ? undefined : 'FFFFFF'
-  };
-
   const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
-  if (!is2DCode && options.height) {
-    scaledBwipOptions.height = Number(options.height) * scaleFactor;
-  }
-  if (generator.id === 'pdf417' && Number(options.columns) > 0) {
-    scaledBwipOptions.columns = Number(options.columns);
+
+  // In bwip-js, 'scale' scales both width and height uniformly (e.g. 2x, 4x DPI).
+  // The 'height' option specifies the physical bar height in mm, which bwip-js ALREADY multiplies by scale.
+  // Therefore, 'height' must NOT be multiplied by scaleFactor, otherwise height is scaled by scaleFactor^2!
+  const scaledOptions = {
+    ...options,
+    scale: baseScale * scaleFactor
+  };
+  if (!is2DCode && options.height !== undefined) {
+    scaledOptions.height = Number(options.height);
   }
 
-  await engine.renderBwipCanvas(offscreenCanvas, scaledBwipOptions);
+  try {
+    await engine.render(generator, payload, scaledOptions, { canvas: offscreenCanvas });
+  } catch (err) {
+    // Fallback directly to bwipCanvas if generator.render had an issue
+    const scaledBwipOptions = {
+      bcid: generator.id === 'data-matrix' ? 'datamatrix' :
+            generator.id === 'aztec' ? 'azteccode' :
+            generator.id === 'pdf417' ? 'pdf417' :
+            generator.id === 'ean-13' ? 'ean13' :
+            generator.id === 'upc-a' ? 'upca' :
+            generator.id === 'itf-14' ? 'itf14' : 'code128',
+      text: payload,
+      scale: baseScale * scaleFactor,
+      includetext: options.includetext !== false,
+      textxalign: 'center',
+      barcolor: options.barcolor || '000000',
+      backgroundcolor: options.transparentBg ? undefined : (options.backgroundcolor || 'FFFFFF')
+    };
+
+    if (!is2DCode && options.height) {
+      scaledBwipOptions.height = Number(options.height);
+    }
+    if (generator.id === 'pdf417' && Number(options.columns) > 0) {
+      scaledBwipOptions.columns = Number(options.columns);
+    }
+
+    await engine.renderBwipCanvas(offscreenCanvas, scaledBwipOptions);
+  }
+
   const dataUrl = offscreenCanvas.toDataURL('image/png');
   downloadDataUrl(dataUrl, filename);
   return { success: true, filename };

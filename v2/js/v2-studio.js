@@ -31,6 +31,7 @@ import {
 
 class V2StudioApp {
   constructor() {
+    this.engine = engine;
     this.currentGenerator = null;
     this.activeCategory = 'all';
     this.debounceTimer = null;
@@ -1783,5 +1784,6 @@ class V2StudioApp {
 // Instantiate on DOM load
 document.addEventListener('DOMContentLoaded', () => {
   const app = new V2StudioApp();
+  window.v2StudioApp = app;
   app.init();
 });
