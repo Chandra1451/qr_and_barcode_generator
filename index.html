@@ -26,18 +26,23 @@
   <link rel="manifest" href="site.webmanifest">
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-0MD85STYZT');
+    // gtag.js loads after the page has rendered so it doesn't compete with CSS/fonts on slow mobile connections
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT';
+      document.head.appendChild(s);
+    });
   </script>
 
-  <!-- Typography: Space Grotesk, Nunito, JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Self-hosted fonts (declared in css/v2-theme.css); preload the two visible above the fold -->
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -58,7 +63,7 @@
   </script>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=2.6">
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.7">
   <link rel="stylesheet" href="css/v2-studio.css?v=2.6">
 </head>
 <body>
@@ -1137,6 +1142,6 @@
   </footer>
 
   <!-- Application Module Entrypoint -->
-  <script type="module" src="js/v2-studio.js?v=2.4"></script>
+  <script type="module" src="js/v2-studio.js?v=2.6"></script>
 </body>
 </html>
