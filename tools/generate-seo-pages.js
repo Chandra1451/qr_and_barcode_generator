@@ -14,6 +14,9 @@ const fs = require('fs');
 const path = require('path');
 
 const SITE_URL = 'https://universalcodemaker.com';
+// Cache-busting version for shared CSS (served with a 1-year immutable cache).
+// Keep in sync with the ?v= used on the root pages; bump whenever the CSS changes.
+const ASSET_VERSION = '2.6';
 const PAGES_DIR = path.join(__dirname, '..', 'pages');
 
 if (!fs.existsSync(PAGES_DIR)) {
@@ -1463,8 +1466,8 @@ function generatePageHtml(page) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
   </noscript>
 
-  <link rel="stylesheet" href="../css/v2-theme.css">
-  <link rel="stylesheet" href="../css/v2-pages.css">
+  <link rel="stylesheet" href="../css/v2-theme.css?v=${ASSET_VERSION}">
+  <link rel="stylesheet" href="../css/v2-pages.css?v=${ASSET_VERSION}">
 
   <script>
     (function () {
