@@ -66,7 +66,10 @@ export default {
       height: options.height || 35,
       includetext: options.includetext !== false,
       textxalign: "center",
-      guardwhitespace: true
+      guardwhitespace: true,
+      barcolor: options.barcolor,
+      backgroundcolor: options.backgroundcolor,
+      transparentBg: options.transparentBg
     });
   }
 };

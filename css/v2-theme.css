@@ -121,9 +121,46 @@
 
 /* ==========================================================================
    Tactical Optics Accent Variations
+   Consistent Theme Palette (Primary Action + Structure/Tabs/Focus/Shadows)
    ========================================================================== */
 
-/* Cobalt (Signal Precision Blue) */
+/* 1. Laser Crimson (Default Tactical Optical Red) */
+:root[data-accent="crimson"], [data-theme="light"][data-accent="crimson"] {
+  --scanner-laser: #ff2a4b;
+  --scanner-laser-hover: #ff4763;
+  --scanner-laser-dark: #d91b39;
+  --scanner-laser-tint: #ffe9ec;
+  --shadow-laser: 4px 4px 0 #ff2a4b;
+  --shadow-laser-lg: 6px 6px 0 #ff2a4b;
+  --border-laser: 2.5px solid #ff2a4b;
+
+  --optic-blue: #d91b39;
+  --optic-blue-hover: #ff4763;
+  --optic-blue-dark: #b9102b;
+  --optic-blue-tint: #ffe9ec;
+  --shadow-blue: 4px 4px 0 #d91b39;
+  --shadow-blue-lg: 6px 6px 0 #d91b39;
+  --border-blue: 2.5px solid #d91b39;
+}
+[data-theme="dark"][data-accent="crimson"] {
+  --scanner-laser: #ff3b5c;
+  --scanner-laser-hover: #ff5472;
+  --scanner-laser-dark: #e02444;
+  --scanner-laser-tint: rgba(255, 59, 92, 0.18);
+  --shadow-laser: 4px 4px 0 #ff3b5c;
+  --shadow-laser-lg: 6px 6px 0 #ff3b5c;
+  --border-laser: 2.5px solid #ff3b5c;
+
+  --optic-blue: #ff3b5c;
+  --optic-blue-hover: #ff5472;
+  --optic-blue-dark: #e02444;
+  --optic-blue-tint: rgba(255, 59, 92, 0.18);
+  --shadow-blue: 4px 4px 0 #ff3b5c;
+  --shadow-blue-lg: 6px 6px 0 #ff3b5c;
+  --border-blue: 2.5px solid #ff3b5c;
+}
+
+/* 2. Signal Cobalt (Precision High-Contrast Blue) */
 :root[data-accent="cobalt"], [data-theme="light"][data-accent="cobalt"] {
   --scanner-laser: #0066f5;
   --scanner-laser-hover: #1f7aff;
@@ -132,6 +169,14 @@
   --shadow-laser: 4px 4px 0 #0066f5;
   --shadow-laser-lg: 6px 6px 0 #0066f5;
   --border-laser: 2.5px solid #0066f5;
+
+  --optic-blue: #0066f5;
+  --optic-blue-hover: #1f7aff;
+  --optic-blue-dark: #004ecc;
+  --optic-blue-tint: #ebf3ff;
+  --shadow-blue: 4px 4px 0 #0066f5;
+  --shadow-blue-lg: 6px 6px 0 #0066f5;
+  --border-blue: 2.5px solid #0066f5;
 }
 [data-theme="dark"][data-accent="cobalt"] {
   --scanner-laser: #3b82f6;
@@ -141,9 +186,17 @@
   --shadow-laser: 4px 4px 0 #3b82f6;
   --shadow-laser-lg: 6px 6px 0 #3b82f6;
   --border-laser: 2.5px solid #3b82f6;
+
+  --optic-blue: #3b82f6;
+  --optic-blue-hover: #60a5fa;
+  --optic-blue-dark: #2563eb;
+  --optic-blue-tint: rgba(59, 130, 246, 0.2);
+  --shadow-blue: 4px 4px 0 #3b82f6;
+  --shadow-blue-lg: 6px 6px 0 #3b82f6;
+  --border-blue: 2.5px solid #3b82f6;
 }
 
-/* Amber (Industrial Caution Laser) */
+/* 3. Cyber Amber (Industrial Caution Amber) */
 :root[data-accent="amber"], [data-theme="light"][data-accent="amber"] {
   --scanner-laser: #ea580c;
   --scanner-laser-hover: #f97316;
@@ -152,6 +205,14 @@
   --shadow-laser: 4px 4px 0 #ea580c;
   --shadow-laser-lg: 6px 6px 0 #ea580c;
   --border-laser: 2.5px solid #ea580c;
+
+  --optic-blue: #c2410c;
+  --optic-blue-hover: #ea580c;
+  --optic-blue-dark: #9a3412;
+  --optic-blue-tint: #fff7ed;
+  --shadow-blue: 4px 4px 0 #ea580c;
+  --shadow-blue-lg: 6px 6px 0 #ea580c;
+  --border-blue: 2.5px solid #ea580c;
 }
 [data-theme="dark"][data-accent="amber"] {
   --scanner-laser: #f59e0b;
@@ -161,9 +222,17 @@
   --shadow-laser: 4px 4px 0 #f59e0b;
   --shadow-laser-lg: 6px 6px 0 #f59e0b;
   --border-laser: 2.5px solid #f59e0b;
+
+  --optic-blue: #f59e0b;
+  --optic-blue-hover: #fbbf24;
+  --optic-blue-dark: #d97706;
+  --optic-blue-tint: rgba(245, 158, 11, 0.2);
+  --shadow-blue: 4px 4px 0 #f59e0b;
+  --shadow-blue-lg: 6px 6px 0 #f59e0b;
+  --border-blue: 2.5px solid #f59e0b;
 }
 
-/* Emerald (OLED Sensor Matrix) */
+/* 4. Matrix Emerald (Sensor OLED Emerald) */
 :root[data-accent="emerald"], [data-theme="light"][data-accent="emerald"] {
   --scanner-laser: #059669;
   --scanner-laser-hover: #10b981;
@@ -172,6 +241,14 @@
   --shadow-laser: 4px 4px 0 #059669;
   --shadow-laser-lg: 6px 6px 0 #059669;
   --border-laser: 2.5px solid #059669;
+
+  --optic-blue: #047857;
+  --optic-blue-hover: #059669;
+  --optic-blue-dark: #065f46;
+  --optic-blue-tint: #ecfdf5;
+  --shadow-blue: 4px 4px 0 #059669;
+  --shadow-blue-lg: 6px 6px 0 #059669;
+  --border-blue: 2.5px solid #059669;
 }
 [data-theme="dark"][data-accent="emerald"] {
   --scanner-laser: #10b981;
@@ -181,5 +258,13 @@
   --shadow-laser: 4px 4px 0 #10b981;
   --shadow-laser-lg: 6px 6px 0 #10b981;
   --border-laser: 2.5px solid #10b981;
+
+  --optic-blue: #10b981;
+  --optic-blue-hover: #34d399;
+  --optic-blue-dark: #059669;
+  --optic-blue-tint: rgba(16, 185, 129, 0.2);
+  --shadow-blue: 4px 4px 0 #10b981;
+  --shadow-blue-lg: 6px 6px 0 #10b981;
+  --border-blue: 2.5px solid #10b981;
 }
 

@@ -47,44 +47,52 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
   </noscript>
 
-  <link rel="stylesheet" href="../css/theme.css">
-  <link rel="stylesheet" href="../css/main.css">
-  <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/v2-theme.css">
   <link rel="stylesheet" href="../css/v2-pages.css">
 
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('ucm_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const savedAccent = localStorage.getItem('ucm_accent') || 'crimson';
+      document.documentElement.setAttribute('data-accent', savedAccent);
+    })();
+  </script>
+
   <style>
     .seo-page-container {
-      max-width: 1040px;
-      margin: 2rem auto;
+      max-width: 1080px;
+      margin: 2.25rem auto 4rem;
       padding: 0 1.5rem;
     }
     .hero-banner {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-md);
       padding: 2.5rem;
       margin-bottom: 2rem;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-ink);
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
       padding: 0.35rem 0.75rem;
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.3);
+      background: var(--optic-blue-tint);
+      border: 1.5px solid var(--optic-blue);
       border-radius: var(--radius-full);
-      color: var(--accent-cyan);
+      color: var(--optic-blue);
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
+      font-family: var(--font-mono);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 1rem;
     }
     .hero-title {
+      font-family: var(--font-display);
       font-size: 2.2rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.25;
       margin-bottom: 1rem;
@@ -101,19 +109,21 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: var(--accent-gradient);
+      background: var(--scanner-laser);
       color: #ffffff;
       padding: 0.85rem 1.6rem;
-      border-radius: var(--radius-md);
-      font-weight: 600;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-weight: 700;
       font-size: 0.95rem;
       text-decoration: none;
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-ink);
       transition: all var(--transition-fast);
     }
     .cta-launch-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-laser);
+      color: #ffffff;
     }
     .content-grid {
       display: grid;
@@ -125,12 +135,14 @@
       .content-grid { grid-template-columns: 1fr; }
     }
     .info-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      background: var(--surface);
+      border: var(--border-ink);
       border-radius: var(--radius-md);
+      box-shadow: var(--shadow-ink);
       padding: 1.5rem;
     }
     .info-card-title {
+      font-family: var(--font-display);
       font-size: 1.15rem;
       font-weight: 700;
       margin-bottom: 1rem;
@@ -148,12 +160,12 @@
       display: flex;
       justify-content: space-between;
       padding: 0.4rem 0;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-color);
       font-size: 0.85rem;
     }
     .spec-key {
-      color: var(--text-muted);
-      font-weight: 500;
+      color: var(--text-secondary);
+      font-weight: 600;
     }
     .spec-val {
       font-family: var(--font-mono);
@@ -166,6 +178,8 @@
       display: flex;
       flex-direction: column;
       gap: 0.6rem;
+      padding: 0;
+      margin: 0;
     }
     .use-case-item {
       display: flex;
@@ -176,26 +190,28 @@
       line-height: 1.45;
     }
     .use-case-check {
-      color: var(--accent-cyan);
+      color: var(--optic-blue);
       font-weight: 700;
     }
     .faq-section {
       margin-bottom: 3rem;
     }
     .faq-item {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-ink);
       margin-bottom: 0.75rem;
       overflow: hidden;
-      transition: border-color var(--transition-fast);
+      transition: all var(--transition-fast);
     }
     .faq-item[open] {
-      border-color: var(--border-medium);
+      border-color: var(--border-color);
     }
     .faq-question {
       padding: 1rem 1.25rem;
-      font-weight: 600;
+      font-family: var(--font-display);
+      font-weight: 700;
       font-size: 0.95rem;
       cursor: pointer;
       display: flex;
@@ -217,9 +233,10 @@
       margin-top: 1rem;
     }
     .related-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-ink);
       padding: 1rem;
       text-decoration: none;
       display: flex;
@@ -228,22 +245,30 @@
       transition: all var(--transition-fast);
     }
     .related-card:hover {
-      background: var(--bg-surface-elevated);
-      border-color: var(--accent-cyan);
-      transform: translateY(-2px);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-blue);
+      border-color: var(--optic-blue);
     }
     .related-tag {
       font-size: 0.72rem;
-      color: var(--text-muted);
+      color: var(--optic-blue);
+      font-weight: 700;
+      font-family: var(--font-mono);
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
     .related-title {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-primary);
       font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .related-arrow {
+      color: var(--optic-blue);
+      font-weight: 700;
+    }
       align-self: flex-end;
       color: var(--accent-cyan);
       font-weight: 700;
@@ -307,27 +332,42 @@
 </head>
 <body>
 
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="header-container">
-      <a href="../index.html" class="brand-group">
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="7" height="7"></rect>
-            <rect x="14" y="3" width="7" height="7"></rect>
-            <rect x="14" y="14" width="7" height="7"></rect>
-            <rect x="3" y="14" width="7" height="7"></rect>
-          </svg>
-        </div>
-        <div class="brand-text">
-          <span class="brand-title">Code Generator</span>
-          <span class="brand-tagline">UniversalCodeMaker.com • 100% Free Client-Side Suite</span>
-        </div>
-      </a>
-      <div class="header-actions">
-        <a href="../index.html?wizard=crypto" class="cta-launch-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
-          Open in Studio ⚡
+  <!-- Site Header -->
+  <header class="v2-header">
+    <div class="wrap">
+      <div class="v2-header-container">
+        <a href="../index.html" class="v2-brand">
+          <div class="v2-brand-badge" style="background: var(--surface);">
+            <img src="../assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
+          </div>
+          <div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker
+              <span class="v2-version-tag">V2 STUDIO</span>
+            </div>
+            <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
+          </div>
         </a>
+
+        <div class="v2-nav-links">
+          <a href="../index.html?wizard=crypto" class="btn btn-laser btn-sm" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Launch Studio
+          </a>
+          <a href="../about.html" class="v2-nav-link">About</a>
+          <a href="../symbology-docs.html" class="v2-nav-link">Docs</a>
+          <a href="../classic/index.html" class="v2-classic-link" title="Switch to Legacy V1 Studio">Classic V1 ↗</a>
+          <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
+            <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
+            <button type="button" class="accent-dot" data-accent="cobalt" title="Signal Cobalt"></button>
+            <button type="button" class="accent-dot" data-accent="amber" title="Cyber Amber"></button>
+            <button type="button" class="accent-dot" data-accent="emerald" title="Matrix Emerald"></button>
+          </div>
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Optical Theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>Obsidian Laser</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -592,19 +632,64 @@
 
   </main>
 
-  <footer class="app-footer">
-    <div class="footer-container">
-      <p>&copy; 2026 UniversalCodeMaker.com. Client-side Code Generator. 100% Free Forever.</p>
-      <ul class="footer-links">
-        <li><a href="../">Code Generator</a></li>
-        <li><a href="../symbology-docs.html">Symbology Docs</a></li>
-        <li><a href="../about.html">About Us</a></li>
-        <li><a href="../contact.html">Contact Us</a></li>
-        <li><a href="../terms.html">Terms of Service</a></li>
-        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
-      </ul>
+  <!-- Site Footer -->
+  <footer class="v2-footer">
+    <div class="wrap">
+      <div class="v2-footer-content">
+        <div class="v2-footer-brand">
+          <div class="v2-brand">
+            <div class="v2-brand-badge" style="background: var(--surface);">
+              <img src="../assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
+            </div>
+            <div>
+              <div class="v2-brand-title">UniversalCodeMaker</div>
+              <span class="v2-brand-tagline">Client-Side Optical Code Generation Studio</span>
+            </div>
+          </div>
+          <p class="v2-footer-desc">
+            Free, privacy-first barcode and QR code studio. 100% in-browser generation with zero server data tracking.
+          </p>
+        </div>
+
+        <div class="v2-footer-links-grid">
+          <div class="v2-footer-col">
+            <div class="v2-footer-col-title">Studio</div>
+            <a href="../index.html">Generator Studio</a>
+            <a href="../index.html#symbologies">50+ Symbologies</a>
+            <a href="../classic/index.html">Classic V1 Suite</a>
+          </div>
+          <div class="v2-footer-col">
+            <div class="v2-footer-col-title">Resources</div>
+            <a href="../symbology-docs.html">Documentation</a>
+            <a href="../about.html">About &amp; Compliance</a>
+            <a href="../contact.html">Support</a>
+          </div>
+          <div class="v2-footer-col">
+            <div class="v2-footer-col-title">Legal</div>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../privacy-policy.html">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <ul class="v2-footer-legal-links">
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../symbology-docs.html">Symbology Docs</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+        </ul>
+        <div class="v2-trademark-notice">
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+        </div>
+      </div>
     </div>
   </footer>
+
+  <!-- Navigation & Theme Sync Script -->
+  <script src="../js/v2-nav.js?v=2.4"></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>

@@ -211,7 +211,7 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
     textxalign: 'center',
     guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
     barcolor: options.barcolor || '000000',
-    backgroundcolor: options.transparentBg ? undefined : 'FFFFFF'
+    backgroundcolor: (options.transparentBg || options.backgroundcolor === 'transparent') ? undefined : (options.backgroundcolor || 'FFFFFF')
   };
 
   if (!is2DCode && options.height) {

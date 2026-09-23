@@ -869,9 +869,10 @@ class V2StudioApp {
 
   getCompiledRenderOptions(isQR) {
     const barHex = isQR ? this.qrOptions.dotsColor : this.barcodeOptions.barColor;
+    const isTransparent = isQR ? Boolean(this.qrOptions.transparentBg) : Boolean(this.barcodeOptions.transparentBg);
     const bgHex = isQR
-      ? (this.qrOptions.transparentBg ? 'transparent' : this.qrOptions.backgroundColor)
-      : (this.barcodeOptions.transparentBg ? 'transparent' : this.barcodeOptions.bgColor);
+      ? (isTransparent ? 'transparent' : this.qrOptions.backgroundColor)
+      : (isTransparent ? 'transparent' : this.barcodeOptions.bgColor);
 
     return {
       ...this.currentOptions,
@@ -881,8 +882,9 @@ class V2StudioApp {
       dotsColor: barHex,
       color: barHex,
       backgroundColor: bgHex,
+      transparentBg: isTransparent,
       barcolor: (isQR ? this.qrOptions.dotsColor : this.barcodeOptions.barColor).replace('#', '') || '000000',
-      backgroundcolor: (bgHex === 'transparent' ? 'transparent' : (bgHex.replace('#', '') || 'FFFFFF')),
+      backgroundcolor: isTransparent ? 'transparent' : (bgHex.replace('#', '') || 'FFFFFF'),
       
       // Two-color gradient support (QR)
       gradientEnabled: isQR ? Boolean(this.qrOptions.gradientEnabled) : false,

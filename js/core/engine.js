@@ -65,6 +65,7 @@ export class BarcodeEngine {
     }
 
     const is2DCode = ['datamatrix', 'azteccode', 'qrcode', 'pdf417', 'micropdf417', 'maxicode', 'dotcode', 'hanxin', 'gridmatrix'].includes(bwipOptions.bcid);
+    const isTransparent = bwipOptions.transparentBg === true || bwipOptions.backgroundcolor === 'transparent';
 
     // Default configuration overrides
     const config = {
@@ -72,13 +73,26 @@ export class BarcodeEngine {
       includetext: true,
       textxalign: 'center',
       textsize: 13,
-      backgroundcolor: 'FFFFFF',
-      barcolor: '000000',
       paddingwidth: 10,
       paddingheight: 10,
       ...(!is2DCode && { height: 35 }),
       ...bwipOptions
     };
+
+    // Clean up color options for bwip-js
+    if (isTransparent) {
+      delete config.backgroundcolor;
+    } else if (!config.backgroundcolor) {
+      config.backgroundcolor = 'FFFFFF';
+    } else {
+      config.backgroundcolor = String(config.backgroundcolor).replace('#', '');
+    }
+
+    if (config.barcolor) {
+      config.barcolor = String(config.barcolor).replace('#', '');
+    } else {
+      config.barcolor = '000000';
+    }
 
     // bwipjs.toCanvas takes either canvas id or the canvas element directly
     try {
@@ -100,19 +114,32 @@ export class BarcodeEngine {
     }
 
     const is2DCode = ['datamatrix', 'azteccode', 'qrcode', 'pdf417', 'micropdf417', 'maxicode', 'dotcode', 'hanxin', 'gridmatrix'].includes(bwipOptions.bcid);
+    const isTransparent = bwipOptions.transparentBg === true || bwipOptions.backgroundcolor === 'transparent';
 
     const config = {
       scale: 3,
       includetext: true,
       textxalign: 'center',
       textsize: 13,
-      backgroundcolor: 'FFFFFF',
-      barcolor: '000000',
       paddingwidth: 10,
       paddingheight: 10,
       ...(!is2DCode && { height: 35 }),
       ...bwipOptions
     };
+
+    if (isTransparent) {
+      delete config.backgroundcolor;
+    } else if (!config.backgroundcolor) {
+      config.backgroundcolor = 'FFFFFF';
+    } else {
+      config.backgroundcolor = String(config.backgroundcolor).replace('#', '');
+    }
+
+    if (config.barcolor) {
+      config.barcolor = String(config.barcolor).replace('#', '');
+    } else {
+      config.barcolor = '000000';
+    }
 
     try {
       return this.bwip.toSVG(config);
@@ -215,8 +242,18 @@ export class BarcodeEngine {
 
     // Pass helper engineUtils to generator.render
     const engineUtils = {
-      renderBwip: (canvas, opts) => this.renderBwipCanvas(canvas, opts),
-      renderBwipSVG: (opts) => this.renderBwipSVG(opts),
+      renderBwip: (canvas, opts) => this.renderBwipCanvas(canvas, {
+        ...(options.barcolor ? { barcolor: options.barcolor } : {}),
+        ...(options.backgroundcolor !== undefined ? { backgroundcolor: options.backgroundcolor } : {}),
+        ...(options.transparentBg !== undefined ? { transparentBg: options.transparentBg } : {}),
+        ...opts
+      }),
+      renderBwipSVG: (opts) => this.renderBwipSVG({
+        ...(options.barcolor ? { barcolor: options.barcolor } : {}),
+        ...(options.backgroundcolor !== undefined ? { backgroundcolor: options.backgroundcolor } : {}),
+        ...(options.transparentBg !== undefined ? { transparentBg: options.transparentBg } : {}),
+        ...opts
+      }),
       renderQRCode: (container, opts) => this.renderQRCode(container, opts),
       bwip: this.bwip,
       QRCodeStyling: this.QRCodeStyling
