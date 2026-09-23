@@ -297,12 +297,29 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  max-width: 900px;
+  max-width: none; /* title row spans the width; .v2-hero-desc keeps its own cap */
 }
 
 .v2-hero-title {
   font-size: clamp(2rem, 3.8vw, 3rem);
   letter-spacing: -0.02em;
+}
+
+/* Title + "Which barcode do I need?" guide button; the button wraps below on narrow screens */
+.v2-hero-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+}
+
+.v2-hero-guide-btn svg {
+  color: var(--scanner-laser);
+}
+
+.v2-hero-guide-btn:focus-visible {
+  outline: 3px solid var(--scanner-laser);
+  outline-offset: 3px;
 }
 
 .v2-hero-desc {
