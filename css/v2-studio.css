@@ -156,7 +156,7 @@ h1, h2, h3, h4 {
 .v2-brand-badge {
   width: 44px;
   height: 44px;
-  background: var(--surface);
+  background: var(--surface) !important;
   border: var(--border-ink);
   border-radius: var(--radius-sm);
   box-shadow: 3px 3px 0 var(--ink-black);
@@ -170,7 +170,7 @@ h1, h2, h3, h4 {
 }
 
 [data-theme="dark"] .v2-brand-badge {
-  background: #0a0d14;
+  background: #0a0d14 !important;
 }
 
 .v2-brand-title {
@@ -1961,7 +1961,8 @@ h1, h2, h3, h4 {
   pointer-events: none;
 }
 
-.laser-scan-beam.scanning {
+.laser-scan-beam.scanning,
+.laser-scan-beam.active {
   animation: laserSweep 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 

@@ -1028,22 +1028,27 @@ class V2StudioApp {
     this.dom.btnToggleLaser?.addEventListener('click', () => {
       this.laserFxEnabled = !this.laserFxEnabled;
       this.dom.btnToggleLaser.classList.toggle('active', this.laserFxEnabled);
-      if (!this.laserFxEnabled && this.dom.laserScanBeam) {
-        this.dom.laserScanBeam.classList.remove('active');
+      if (this.laserFxEnabled) {
+        this.triggerLaserSweep();
+        this.showToast('Laser scan sweep enabled ⚡');
+      } else {
+        if (this.dom.laserScanBeam) {
+          this.dom.laserScanBeam.classList.remove('active', 'scanning');
+        }
+        this.showToast('Laser scan sweep disabled.');
       }
-      this.showToast(this.laserFxEnabled ? 'Laser scan sweep enabled.' : 'Laser scan sweep disabled.');
     });
   }
 
   triggerLaserSweep() {
     if (!this.laserFxEnabled || !this.dom.laserScanBeam) return;
-    this.dom.laserScanBeam.classList.remove('active');
+    this.dom.laserScanBeam.classList.remove('active', 'scanning');
     // Force reflow to retrigger animation
     void this.dom.laserScanBeam.offsetWidth;
-    this.dom.laserScanBeam.classList.add('active');
+    this.dom.laserScanBeam.classList.add('active', 'scanning');
     setTimeout(() => {
       if (this.dom.laserScanBeam) {
-        this.dom.laserScanBeam.classList.remove('active');
+        this.dom.laserScanBeam.classList.remove('active', 'scanning');
       }
     }, 1100);
   }
