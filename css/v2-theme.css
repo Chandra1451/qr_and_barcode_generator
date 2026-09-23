@@ -77,6 +77,7 @@
 
   /* --- Semantic Aliases (used by content pages & v2-pages.css) --- */
   --border: #0f1117;
+  --border-color: var(--border); /* legacy name used by generated pages/ and v2-studio.css */
   --accent: var(--optic-blue);
   --accent-hover: var(--optic-blue-dark);
   --accent-tint: var(--optic-blue-tint);
@@ -85,7 +86,7 @@
   --font-heading: var(--font-display);
 
   /* Text-safe status colors (>= 4.5:1 on surface / tint backgrounds) */
-  --laser-text: var(--scanner-laser-dark);
+  --laser-text: color-mix(in srgb, var(--scanner-laser-dark) 85%, #000);
   --sensor-green-text: #047857;
   --optic-amber-text: #b45309;
   --violet: #6d28d9;
