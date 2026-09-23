@@ -117,10 +117,21 @@
     .filter-btn:hover, .filter-btn.active {
       background: var(--accent);
       border-color: var(--border);
-      color: #ffffff;
+      color: var(--on-accent);
       transform: translate(-1px, -1px);
       box-shadow: 3px 3px 0 var(--border);
     }
+
+    /* Featured quick-jump buttons */
+    .filter-btn--feature {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 800;
+    }
+    .filter-btn--accent { border-color: var(--accent); color: var(--accent-text); }
+    .filter-btn--amber { border-color: var(--optic-amber); color: var(--optic-amber-text); }
+    .filter-btn--amber:hover { background: var(--optic-amber); color: #0f1117; }
 
     /* 2-Column Documentation Layout */
     .docs-layout {
@@ -189,7 +200,7 @@
     }
 
     .docs-toc a:hover {
-      color: var(--accent);
+      color: var(--accent-text);
       background: var(--surface-alt);
       border-left-color: var(--accent);
     }
@@ -261,7 +272,7 @@
       align-items: center;
       gap: 0.45rem;
       background: var(--accent);
-      color: #ffffff;
+      color: var(--on-accent);
       padding: 0.55rem 1.1rem;
       border-radius: var(--radius-md);
       border: 2px solid var(--border);
@@ -278,7 +289,7 @@
       transform: translate(-2px, -2px);
       box-shadow: var(--shadow-ink-lg);
       background: var(--accent-hover);
-      color: #ffffff;
+      color: var(--on-accent);
     }
 
     .specs-grid {
@@ -326,7 +337,7 @@
 
     /* Code Snippet Box */
     .code-box {
-      background: var(--ink-black);
+      background: #0f1117;
       border: 2px solid var(--border);
       border-radius: var(--radius-md);
       padding: 1.15rem 1.25rem;
@@ -367,6 +378,7 @@
     .copy-code-btn:hover {
       background: var(--accent);
       border-color: var(--accent);
+      color: var(--on-accent);
     }
 
     /* Comparison Table */
@@ -420,10 +432,10 @@
       border: 1.5px solid var(--border);
     }
 
-    .badge-pill.cyan { background: var(--optic-blue-tint); color: var(--optic-blue); }
-    .badge-pill.purple { background: #f5f0ff; color: #7c3aed; }
-    .badge-pill.green { background: var(--sensor-green-tint); color: var(--sensor-green); }
-    .badge-pill.amber { background: var(--optic-amber-tint); color: var(--optic-amber); }
+    .badge-pill.cyan { background: var(--optic-blue-tint); color: var(--accent-text); }
+    .badge-pill.purple { background: var(--violet-tint); color: var(--violet); }
+    .badge-pill.green { background: var(--sensor-green-tint); color: var(--sensor-green-text); }
+    .badge-pill.amber { background: var(--optic-amber-tint); color: var(--optic-amber-text); }
   
     /* Scenario Filter Pills & Interactive Cards */
     .scenario-pill {
@@ -446,7 +458,7 @@
     }
     .scenario-pill.active {
       background: var(--accent);
-      color: #ffffff;
+      color: var(--on-accent);
       border-color: var(--border);
       box-shadow: 3px 3px 0 var(--border);
     }
@@ -477,11 +489,11 @@
       border-radius: var(--radius-pill);
       border: 1.5px solid var(--border);
     }
-    .scenario-badge.amber { background: var(--optic-amber-tint); color: var(--optic-amber); }
-    .scenario-badge.green { background: var(--sensor-green-tint); color: var(--sensor-green); }
-    .scenario-badge.cyan { background: var(--optic-blue-tint); color: var(--optic-blue); }
-    .scenario-badge.purple { background: #f5f0ff; color: #7c3aed; }
-    .scenario-badge.red { background: var(--scanner-laser-tint); color: var(--scanner-laser); }
+    .scenario-badge.amber { background: var(--optic-amber-tint); color: var(--optic-amber-text); }
+    .scenario-badge.green { background: var(--sensor-green-tint); color: var(--sensor-green-text); }
+    .scenario-badge.cyan { background: var(--optic-blue-tint); color: var(--accent-text); }
+    .scenario-badge.purple { background: var(--violet-tint); color: var(--violet); }
+    .scenario-badge.red { background: var(--scanner-laser-tint); color: var(--laser-text); }
 
     .scenario-card-title {
       font-family: var(--font-heading);
@@ -508,7 +520,7 @@
     .scenario-rec-val {
       font-family: var(--font-heading);
       font-weight: 800;
-      color: var(--accent);
+      color: var(--accent-text);
       font-size: 0.95rem;
     }
     .scenario-desc {
@@ -548,7 +560,7 @@
     }
     .scenario-btn:hover {
       background: var(--accent);
-      color: #ffffff;
+      color: var(--on-accent);
       transform: translate(-1px, -1px);
       box-shadow: 3px 3px 0 var(--border);
     }
@@ -612,8 +624,8 @@
 
       <div class="docs-filter-bar">
         <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Quick Jump:</span>
-        <a href="#sec-product-finder" class="filter-btn" style="border-color: var(--accent); color: var(--accent); font-weight: 800; display: inline-flex; align-items: center; gap: 0.35rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Code Finder</a>
-        <a href="#sec-compliance-standards" class="filter-btn" style="border-color: var(--optic-amber); color: var(--optic-amber); font-weight: 800; display: inline-flex; align-items: center; gap: 0.35rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg> Legal &amp; Compliance</a>
+        <a href="#sec-product-finder" class="filter-btn filter-btn--feature filter-btn--accent"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Code Finder</a>
+        <a href="#sec-compliance-standards" class="filter-btn filter-btn--feature filter-btn--amber"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg> Legal &amp; Compliance</a>
         <a href="#sec-qr" class="filter-btn active">QR Code</a>
         <a href="#sec-code128" class="filter-btn">Code 128</a>
         <a href="#sec-ean13" class="filter-btn">EAN-13</a>
@@ -657,8 +669,8 @@
 
         <div class="sidebar-heading">Customer Decision &amp; Law</div>
         <ul class="docs-toc">
-          <li><a href="#sec-product-finder" style="color: var(--accent); display: flex; align-items: center; gap: 0.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Which Code Do I Need?</a></li>
-          <li><a href="#sec-compliance-standards" style="color: var(--optic-amber); display: flex; align-items: center; gap: 0.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg> Compliance &amp; Standards</a></li>
+          <li><a href="#sec-product-finder" style="color: var(--accent-text); display: flex; align-items: center; gap: 0.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Which Code Do I Need?</a></li>
+          <li><a href="#sec-compliance-standards" style="color: var(--optic-amber-text); display: flex; align-items: center; gap: 0.4rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg> Compliance &amp; Standards</a></li>
         </ul>
 
         <div class="sidebar-heading">Technical Matrix &amp; API</div>
@@ -1143,13 +1155,13 @@
                 Scanned natively by all iPhone and Android camera apps without installing third-party software. Perfect for consumer engagement, contactless menus, and Wi-Fi credentials.
               </p>
               <div class="scenario-meta" style="background: var(--scanner-laser-tint); border: 1.5px solid var(--scanner-laser); padding: 0.75rem; border-radius: var(--radius-sm); margin-top: 0.5rem;">
-                <strong style="color: var(--scanner-laser); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.25rem;">
+                <strong style="color: var(--laser-text); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.25rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                   The "Dynamic QR" Subscription Trap:
                 </strong>
                 Commercial QR websites generate "dynamic" redirects through their private servers, then deactivate your codes after a 14-day trial and charge $15–$50/month. UniversalCodeMaker produces 100% direct-payload static QR codes that will scan forever with zero subscriptions, zero tracking, and zero expiration.
               </div>
-              <a href="index.html?symbology=qrcode" class="scenario-btn" style="background: var(--scanner-laser); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Permanent QR in Studio</a>
+              <a href="index.html?symbology=qrcode" class="scenario-btn" style="background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Permanent QR in Studio</a>
             </div>
 
           </div>
@@ -1292,56 +1304,56 @@
                     <td><code>ISO/IEC 18004:2015</code></td>
                     <td>ISO / IEC JTC 1/SC 31</td>
                     <td>Matrix dimensions (Ver 1-40), Reed-Solomon ECC (L/M/Q/H), 4-module quiet zone.</td>
-                    <td><a href="https://www.iso.org/standard/62021.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 18004 ↗</a></td>
+                    <td><a href="https://www.iso.org/standard/62021.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 18004 ↗</a></td>
                   </tr>
                   <tr>
                     <td><strong>Data Matrix</strong></td>
                     <td><code>ISO/IEC 16022:2006</code></td>
                     <td>ISO / IEC JTC 1/SC 31</td>
                     <td>ECC 200 Reed-Solomon error correction, "L" finder border, DPM laser etching.</td>
-                    <td><a href="https://www.iso.org/standard/44230.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 16022 ↗</a></td>
+                    <td><a href="https://www.iso.org/standard/44230.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 16022 ↗</a></td>
                   </tr>
                   <tr>
                     <td><strong>Code 128</strong></td>
                     <td><code>ISO/IEC 15417:2007</code></td>
                     <td>ISO / IEC JTC 1/SC 31</td>
                     <td>Subsets A, B, and C auto-switching, Modulo-103 check character, 10X quiet zones.</td>
-                    <td><a href="https://www.iso.org/standard/43896.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 15417 ↗</a></td>
+                    <td><a href="https://www.iso.org/standard/43896.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 15417 ↗</a></td>
                   </tr>
                   <tr>
                     <td><strong>EAN-13 &amp; UPC-A</strong></td>
                     <td><code>ISO/IEC 15420:2009</code></td>
                     <td>ISO / GS1 AISBL</td>
                     <td>Linear retail symbology, GS1 Modulo-10 parity check digit, omnidirectional scanning.</td>
-                    <td><a href="https://www.iso.org/standard/43654.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 15420 ↗</a></td>
+                    <td><a href="https://www.iso.org/standard/43654.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 15420 ↗</a></td>
                   </tr>
                   <tr>
                     <td><strong>ITF-14</strong></td>
                     <td><code>ISO/IEC 16390:2007</code></td>
                     <td>ISO / GS1 AISBL</td>
                     <td>Interleaved 2 of 5, corrugated packaging bearer bars, packaging indicator digit.</td>
-                    <td><a href="https://www.iso.org/standard/43655.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 16390 ↗</a></td>
+                    <td><a href="https://www.iso.org/standard/43655.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 16390 ↗</a></td>
                   </tr>
                   <tr>
                     <td><strong>Aztec Code</strong></td>
                     <td><code>ISO/IEC 24778:2008</code></td>
                     <td>ISO / AIM Global</td>
                     <td>Concentric bullseye center, 0-module quiet zone, compact and full-range modes.</td>
-                    <td><a href="https://www.iso.org/standard/41548.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 24778 ↗</a></td>
+                    <td><a href="https://www.iso.org/standard/41548.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 24778 ↗</a></td>
                   </tr>
                   <tr>
                     <td><strong>PDF417</strong></td>
                     <td><code>ISO/IEC 15438:2015</code></td>
                     <td>ISO / AAMVA</td>
                     <td>Multi-row stacked linear symbology, Levels 0-8 error correction, driver licenses.</td>
-                    <td><a href="https://www.iso.org/standard/65502.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 15438 ↗</a></td>
+                    <td><a href="https://www.iso.org/standard/65502.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 15438 ↗</a></td>
                   </tr>
                   <tr>
                     <td><strong>Print Verification</strong></td>
                     <td><code>ISO/IEC 15416 / 15415</code></td>
                     <td>ISO / AIM Global</td>
                     <td>Grading standards (A, B, C, D, F) for linear reflectance, modulation, and 2D contrast.</td>
-                    <td><a href="https://www.iso.org/standard/61793.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 15416 ↗</a></td>
+                    <td><a href="https://www.iso.org/standard/61793.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 15416 ↗</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -1356,7 +1368,7 @@
             </h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
-                <h4 style="font-family: var(--font-heading); color: var(--scanner-laser); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <h4 style="font-family: var(--font-heading); color: var(--laser-text); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                   GS1 Registration IS Required:
                 </h4>
@@ -1369,7 +1381,7 @@
               </div>
 
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
-                <h4 style="font-family: var(--font-heading); color: var(--sensor-green); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <h4 style="font-family: var(--font-heading); color: var(--sensor-green-text); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 10 11 15 8 12"/></svg>
                   100% FREE (No GS1 Fees Required):
                 </h4>
