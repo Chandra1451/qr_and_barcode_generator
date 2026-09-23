@@ -21,7 +21,7 @@ const loadPromises = new Map();
 function getVendorPrefix() {
   if (typeof window !== 'undefined' && window.location && window.location.pathname) {
     const path = window.location.pathname.toLowerCase();
-    if (path.includes('/pages/') || path.includes('/tests/')) {
+    if (path.includes('/pages/') || path.includes('/tests/') || path.includes('/v2/') || path.includes('/classic/')) {
       return '../';
     }
   }

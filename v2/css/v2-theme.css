@@ -1,0 +1,185 @@
+/* ==========================================================================
+   UNIVERSALCODEMAKER V2 — THEME TOKENS
+   Design System: Neubrutalist Precision Optical Studio
+   Tailored for Code Makers: Optical Laser Crimson, Signal Blue, Carbon Ink
+   ========================================================================== */
+
+:root {
+  /* --- Canvas & Neutral Surfaces --- */
+  --canvas-base: #f7f8fa;
+  --surface: #ffffff;
+  --surface-alt: #f0f2f6;
+  --surface-elevated: #ffffff;
+
+  /* --- Carbon Ink & Typography --- */
+  --ink-black: #0f1117;
+  --ink-secondary: #3e4452;
+  --ink-muted: #6b7280;
+  --text-primary: var(--ink-black);
+  --text-secondary: var(--ink-secondary);
+  --text-muted: var(--ink-muted);
+  --text-inverse: #ffffff;
+
+  /* --- Tailored Code Maker Accents --- */
+  /* Laser Crimson: Scanner beam, primary calls to action, active alerts */
+  --scanner-laser: #ff2a4b;
+  --scanner-laser-hover: #ff4763;
+  --scanner-laser-dark: #d91b39;
+  --scanner-laser-tint: #ffe9ec;
+
+  /* Precision Signal Blue: Structure, format tabs, active selections */
+  --optic-blue: #0066f5;
+  --optic-blue-hover: #1f7aff;
+  --optic-blue-dark: #004ecc;
+  --optic-blue-tint: #ebf3ff;
+
+  /* Sensor Green: Checksum verified, GS1 valid, high scan-ability */
+  --sensor-green: #00a86b;
+  --sensor-green-hover: #05be7c;
+  --sensor-green-dark: #008554;
+  --sensor-green-tint: #e6f7f0;
+
+  /* Warning Amber: Low contrast warnings, checksum mismatches */
+  --optic-amber: #e67e00;
+  --optic-amber-tint: #fff4e5;
+
+  /* --- Tactile Neubrutalist Borders & Shadows --- */
+  --border-width: 2.5px;
+  --border-ink: 2.5px solid var(--ink-black);
+  --border-subtle: 1.5px solid rgba(15, 17, 23, 0.15);
+  --border-blue: 2.5px solid var(--optic-blue);
+  --border-laser: 2.5px solid var(--scanner-laser);
+  
+  --shadow-ink: 4px 4px 0 var(--ink-black);
+  --shadow-ink-lg: 6px 6px 0 var(--ink-black);
+  --shadow-laser: 4px 4px 0 var(--scanner-laser);
+  --shadow-laser-lg: 6px 6px 0 var(--scanner-laser);
+  --shadow-blue: 4px 4px 0 var(--optic-blue);
+  --shadow-blue-lg: 6px 6px 0 var(--optic-blue);
+
+  /* --- Radius Scale --- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+
+  /* --- Typography --- */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* --- Dot Grid Matrix Texture --- */
+  --dot-grid-color: rgba(15, 17, 23, 0.08);
+  --dot-grid-size: 24px;
+
+  /* --- Interactive Physics --- */
+  --transition-tactile: transform 0.14s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.14s ease, background 0.18s ease;
+}
+
+/* --- Dark Theme: "Obsidian Laser" --- */
+[data-theme="dark"] {
+  --canvas-base: #0a0c10;
+  --surface: #12151d;
+  --surface-alt: #1a1e29;
+  --surface-elevated: #222736;
+
+  --ink-black: #f0f3fa;
+  --ink-secondary: #c5cbd8;
+  --ink-muted: #8b95a8;
+  --text-primary: #f0f3fa;
+  --text-secondary: #c5cbd8;
+  --text-muted: #8b95a8;
+  --text-inverse: #0a0c10;
+
+  --scanner-laser: #ff3b5c;
+  --scanner-laser-hover: #ff5472;
+  --scanner-laser-dark: #e02444;
+  --scanner-laser-tint: rgba(255, 59, 92, 0.15);
+
+  --optic-blue: #3b82f6;
+  --optic-blue-hover: #60a5fa;
+  --optic-blue-dark: #2563eb;
+  --optic-blue-tint: rgba(59, 130, 246, 0.15);
+
+  --sensor-green: #10b981;
+  --sensor-green-hover: #34d399;
+  --sensor-green-dark: #059669;
+  --sensor-green-tint: rgba(16, 185, 129, 0.15);
+
+  --border-ink: 2.5px solid #2e3547;
+  --border-subtle: 1.5px solid rgba(240, 243, 250, 0.14);
+  
+  --shadow-ink: 4px 4px 0 #2e3547;
+  --shadow-ink-lg: 6px 6px 0 #2e3547;
+  --shadow-laser: 4px 4px 0 #ff3b5c;
+  --shadow-laser-lg: 6px 6px 0 #ff3b5c;
+  --shadow-blue: 4px 4px 0 #3b82f6;
+  --shadow-blue-lg: 6px 6px 0 #3b82f6;
+
+  --dot-grid-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   Tactical Optics Accent Variations
+   ========================================================================== */
+
+/* Cobalt (Signal Precision Blue) */
+:root[data-accent="cobalt"], [data-theme="light"][data-accent="cobalt"] {
+  --scanner-laser: #0066f5;
+  --scanner-laser-hover: #1f7aff;
+  --scanner-laser-dark: #004ecc;
+  --scanner-laser-tint: #ebf3ff;
+  --shadow-laser: 4px 4px 0 #0066f5;
+  --shadow-laser-lg: 6px 6px 0 #0066f5;
+  --border-laser: 2.5px solid #0066f5;
+}
+[data-theme="dark"][data-accent="cobalt"] {
+  --scanner-laser: #3b82f6;
+  --scanner-laser-hover: #60a5fa;
+  --scanner-laser-dark: #2563eb;
+  --scanner-laser-tint: rgba(59, 130, 246, 0.2);
+  --shadow-laser: 4px 4px 0 #3b82f6;
+  --shadow-laser-lg: 6px 6px 0 #3b82f6;
+  --border-laser: 2.5px solid #3b82f6;
+}
+
+/* Amber (Industrial Caution Laser) */
+:root[data-accent="amber"], [data-theme="light"][data-accent="amber"] {
+  --scanner-laser: #ea580c;
+  --scanner-laser-hover: #f97316;
+  --scanner-laser-dark: #c2410c;
+  --scanner-laser-tint: #fff7ed;
+  --shadow-laser: 4px 4px 0 #ea580c;
+  --shadow-laser-lg: 6px 6px 0 #ea580c;
+  --border-laser: 2.5px solid #ea580c;
+}
+[data-theme="dark"][data-accent="amber"] {
+  --scanner-laser: #f59e0b;
+  --scanner-laser-hover: #fbbf24;
+  --scanner-laser-dark: #d97706;
+  --scanner-laser-tint: rgba(245, 158, 11, 0.2);
+  --shadow-laser: 4px 4px 0 #f59e0b;
+  --shadow-laser-lg: 6px 6px 0 #f59e0b;
+  --border-laser: 2.5px solid #f59e0b;
+}
+
+/* Emerald (OLED Sensor Matrix) */
+:root[data-accent="emerald"], [data-theme="light"][data-accent="emerald"] {
+  --scanner-laser: #059669;
+  --scanner-laser-hover: #10b981;
+  --scanner-laser-dark: #047857;
+  --scanner-laser-tint: #ecfdf5;
+  --shadow-laser: 4px 4px 0 #059669;
+  --shadow-laser-lg: 6px 6px 0 #059669;
+  --border-laser: 2.5px solid #059669;
+}
+[data-theme="dark"][data-accent="emerald"] {
+  --scanner-laser: #10b981;
+  --scanner-laser-hover: #34d399;
+  --scanner-laser-dark: #059669;
+  --scanner-laser-tint: rgba(16, 185, 129, 0.2);
+  --shadow-laser: 4px 4px 0 #10b981;
+  --shadow-laser-lg: 6px 6px 0 #10b981;
+  --border-laser: 2.5px solid #10b981;
+}
+
