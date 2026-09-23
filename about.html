@@ -30,6 +30,7 @@
   <meta property="og:description" content="Our mission: 100% free, client-side, zero-tracking QR and barcode generation for developers, logistics, and retail businesses worldwide.">
   <meta property="og:url" content="https://universalcodemaker.com/about.html">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -44,8 +45,8 @@
   <link rel="preload" href="/assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=2.7">
-  <link rel="stylesheet" href="css/v2-pages.css?v=2.3">
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.8">
+  <link rel="stylesheet" href="css/v2-pages.css?v=2.8">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -130,7 +131,7 @@
     </div>
 
     <!-- 3 Pillar Cards -->
-    <div class="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+    <div class="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));">
       <div class="info-card">
         <h2 class="info-card-title">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -185,7 +186,7 @@
       <p>
         Our platform stands on the shoulders of giants in the open-source community. We gratefully utilize and maintain integrations with proven, battle-tested rendering engines:
       </p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1rem; margin-top: 1.25rem;">
         <div style="background: var(--canvas-base); border: var(--border-ink); border-radius: var(--radius-sm); padding: 1.15rem; box-shadow: 2px 2px 0 var(--ink-black);">
           <strong style="display: block; color: var(--scanner-laser); font-size: 0.95rem; margin-bottom: 0.4rem; font-family: var(--font-display);">bwip-js (Barcode Writer in Pure JS)</strong>
           <span style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55;">Powers our 1D retail and 2D industrial barcode engines with support for over 50 symbologies, strictly compliant with international GS1 and ISO standards.</span>

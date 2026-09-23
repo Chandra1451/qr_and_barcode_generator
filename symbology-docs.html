@@ -21,6 +21,43 @@
   <title>Barcode & QR Symbology Documentation | Code Generator - UniversalCodeMaker.com</title>
   <meta name="description" content="Comprehensive technical documentation and developer reference for 50+ barcode symbologies including QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, and ITF-14. Character sets, checksums, and rendering specifications.">
   <link rel="canonical" href="https://universalcodemaker.com/symbology-docs.html">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="UniversalCodeMaker">
+  <meta property="og:title" content="Barcode &amp; QR Symbology Documentation | UniversalCodeMaker.com">
+  <meta property="og:description" content="Comprehensive technical documentation and developer reference for 50+ barcode symbologies including QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, and ITF-14. Character sets, checksums, and rendering specifications.">
+  <meta property="og:url" content="https://universalcodemaker.com/symbology-docs.html">
+  <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Barcode & QR Symbology Documentation",
+        "description": "Comprehensive technical documentation and developer reference for 50+ barcode symbologies including QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, and ITF-14. Character sets, checksums, and rendering specifications.",
+        "url": "https://universalcodemaker.com/symbology-docs.html",
+        "image": "https://universalcodemaker.com/assets/og-preview.png",
+        "inLanguage": "en",
+        "dateModified": "2026-09-24",
+        "about": ["QR Code", "Code 128", "EAN-13", "UPC-A", "Data Matrix", "Aztec Code", "PDF417", "ITF-14"],
+        "author": { "@type": "Organization", "name": "UniversalCodeMaker.com", "url": "https://universalcodemaker.com/", "logo": "https://universalcodemaker.com/assets/logo-icon.png" },
+        "publisher": { "@type": "Organization", "name": "UniversalCodeMaker.com", "url": "https://universalcodemaker.com/", "logo": "https://universalcodemaker.com/assets/logo-icon.png" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://universalcodemaker.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Symbology Documentation", "item": "https://universalcodemaker.com/symbology-docs.html" }
+        ]
+      }
+    ]
+  }
+  </script>
   <meta name="theme-color" content="#06b6d4">
 
   <!-- Favicons -->
@@ -36,8 +73,8 @@
   <link rel="preload" href="/assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=2.7">
-  <link rel="stylesheet" href="css/v2-pages.css?v=2.3">
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.8">
+  <link rel="stylesheet" href="css/v2-pages.css?v=2.8">
 
   <style>
     /* Documentation Page Layout */
@@ -147,7 +184,7 @@
 
     @media (max-width: 960px) {
       .docs-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr); /* plain 1fr can't shrink below its widest table */
       }
       .docs-sidebar {
         display: none;
@@ -211,6 +248,7 @@
 
     /* Document Sections */
     .docs-body {
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 2.25rem;
@@ -298,7 +336,7 @@
 
     .specs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
       gap: 0.85rem;
       margin: 1.25rem 0;
     }
@@ -441,6 +479,14 @@
     .badge-pill.green { background: var(--sensor-green-tint); color: var(--sensor-green-text); }
     .badge-pill.amber { background: var(--optic-amber-tint); color: var(--optic-amber-text); }
   
+    /* Small phones: tighter padding so cards fit a 320px screen */
+    @media (max-width: 480px) {
+      .docs-page { padding: 1.5rem 1rem 3rem; }
+      .docs-hero { padding: 1.75rem 1.25rem; }
+      .symbology-card { padding: 1.5rem 1.25rem; }
+      .code-box { padding: 1rem; }
+    }
+
     /* Scenario Filter Pills & Interactive Cards */
     .scenario-pill {
       background: var(--surface);
@@ -1038,7 +1084,7 @@
           </div>
 
           <!-- Scenario Cards Grid -->
-          <div class="scenario-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin-top: 1.5rem;">
+          <div class="scenario-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1.25rem; margin-top: 1.5rem;">
             
             <!-- Scenario 1: Global Retail Packaging -->
             <div class="scenario-card" data-category="retail">
@@ -1370,7 +1416,7 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--optic-amber)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>
               When Do You Legally Need GS1 Registration?
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.25rem;">
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
                 <h4 style="font-family: var(--font-heading); color: var(--laser-text); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -1449,7 +1495,7 @@ function calculateMod10(digits) {<br>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0l12.6 12.6z"/><line x1="14.5" y1="6.5" x2="17.5" y2="9.5"/><line x1="10.5" y1="10.5" x2="13.5" y2="13.5"/><line x1="6.5" y1="14.5" x2="9.5" y2="17.5"/></svg>
               Prepress Print Quality, Quiet Zones &amp; Avery Tolerances
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem;">
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1rem;">
                 <strong style="color: var(--text-primary); font-family: var(--font-heading); display: block; margin-bottom: 0.35rem;">Mandatory Quiet Zones</strong>
                 <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">

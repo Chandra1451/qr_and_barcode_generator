@@ -21,6 +21,39 @@
   <title>Privacy Policy & Legal Terms | Code Generator - UniversalCodeMaker.com</title>
   <meta name="description" content="Official Privacy Policy and Legal Compliance documentation for UniversalCodeMaker.com Code Generator. Learn about our 100% client-side zero-data-retention architecture, India DPDP Act 2023, GDPR (EU), UK GDPR, and CCPA compliance.">
   <link rel="canonical" href="https://universalcodemaker.com/privacy-policy.html">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="UniversalCodeMaker">
+  <meta property="og:title" content="Privacy Policy &amp; Legal Terms | UniversalCodeMaker.com">
+  <meta property="og:description" content="Official Privacy Policy and Legal Compliance documentation for UniversalCodeMaker.com Code Generator. Learn about our 100% client-side zero-data-retention architecture, India DPDP Act 2023, GDPR (EU), UK GDPR, and CCPA compliance.">
+  <meta property="og:url" content="https://universalcodemaker.com/privacy-policy.html">
+  <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Privacy Policy & Legal Terms",
+        "description": "Official Privacy Policy and Legal Compliance documentation for UniversalCodeMaker.com Code Generator. Learn about our 100% client-side zero-data-retention architecture, India DPDP Act 2023, GDPR (EU), UK GDPR, and CCPA compliance.",
+        "url": "https://universalcodemaker.com/privacy-policy.html",
+        "inLanguage": "en",
+        "publisher": { "@type": "Organization", "name": "UniversalCodeMaker.com", "url": "https://universalcodemaker.com/", "logo": "https://universalcodemaker.com/assets/logo-icon.png" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://universalcodemaker.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://universalcodemaker.com/privacy-policy.html" }
+        ]
+      }
+    ]
+  }
+  </script>
   <meta name="theme-color" content="#06b6d4">
 
   <!-- Favicons -->
@@ -36,8 +69,8 @@
   <link rel="preload" href="/assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=2.7">
-  <link rel="stylesheet" href="css/v2-pages.css?v=2.3">
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.8">
+  <link rel="stylesheet" href="css/v2-pages.css?v=2.8">
 
   <style>
     /* Privacy Policy Neubrutalist Enhancements */
@@ -121,7 +154,7 @@
 
     @media (max-width: 900px) {
       .doc-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr); /* plain 1fr can't shrink below the table */
       }
       .doc-sidebar {
         display: none;
@@ -243,7 +276,7 @@
 
     @media (max-width: 640px) {
       .privacy-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -280,6 +313,10 @@
       font-size: 0.86rem;
       color: var(--text-secondary);
       line-height: 1.5;
+    }
+
+    .stat-desc code {
+      overflow-wrap: anywhere; /* long identifiers must wrap on small phones */
     }
 
     .callout-box {
