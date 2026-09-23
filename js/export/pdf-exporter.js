@@ -8,6 +8,7 @@
 
 import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js';
 import { engine } from '../core/engine.js';
+import { computeEan13, computeUpcA } from '../core/checksums.js';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {
@@ -178,6 +179,14 @@ async function getCodeImageDataUrl(generator, payload, options, logoDataUrl = ''
   // bwip-js barcode rendering
   const canvas = document.createElement('canvas');
   const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
+
+  let finalPayload = payload;
+  if (generator.id === 'upc-a' && payload.length === 11) {
+    finalPayload = computeUpcA(payload);
+  } else if (generator.id === 'ean-13' && payload.length === 12) {
+    finalPayload = computeEan13(payload);
+  }
+
   const bwipOpts = {
     bcid: generator.id === 'data-matrix' ? 'datamatrix' :
           generator.id === 'aztec' ? 'azteccode' :
@@ -185,10 +194,11 @@ async function getCodeImageDataUrl(generator, payload, options, logoDataUrl = ''
           generator.id === 'ean-13' ? 'ean13' :
           generator.id === 'upc-a' ? 'upca' :
           generator.id === 'itf-14' ? 'itf14' : 'code128',
-    text: payload,
+    text: finalPayload,
     scale: 4,
     includetext: true,
     textxalign: 'center',
+    guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
     backgroundcolor: 'FFFFFF'
   };
 

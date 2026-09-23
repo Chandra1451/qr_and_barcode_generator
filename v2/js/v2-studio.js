@@ -14,11 +14,11 @@ import {
 } from '../../js/generators/registry.js';
 import { getAllWizards, getWizard } from '../../js/wizards/qr-wizards.js';
 import { LOGO_PRESETS } from '../../js/core/logo-presets.js';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from '../../js/export/image-exporter.js';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from '../../js/export/pdf-exporter.js';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from '../../js/export/batch-exporter.js';
-import { computeEan13, computeUpcA, calculateMod10 } from '../../js/core/checksums.js';
-import { initCookieBanner } from '../../js/core/cookie-banner.js';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from '../../js/export/image-exporter.js?v=2.3';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from '../../js/export/pdf-exporter.js?v=2.3';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from '../../js/export/batch-exporter.js?v=2.3';
+import { computeEan13, computeUpcA, calculateMod10 } from '../../js/core/checksums.js?v=2.3';
+import { initCookieBanner } from '../../js/core/cookie-banner.js?v=2.3';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from '../../js/export/label-maker.js';
+} from '../../js/export/label-maker.js?v=2.3';
 
 class V2StudioApp {
   constructor() {

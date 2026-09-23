@@ -10,6 +10,7 @@
 import { engine } from '../core/engine.js';
 import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js';
 import { downloadBlob } from './image-exporter.js';
+import { computeEan13, computeUpcA } from '../core/checksums.js';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads
@@ -172,14 +173,32 @@ export async function generateBatchZip({
                          generator.id === 'ean-13' ? 'ean13' :
                          generator.id === 'upc-a' ? 'upca' :
                          generator.id === 'itf-14' ? 'itf14' : 'code128';
-        const svgString = await engine.renderBwipSVG({
+
+        let itemPayload = item;
+        if (generator.id === 'upc-a' && item.length === 11) {
+          itemPayload = computeUpcA(item);
+        } else if (generator.id === 'ean-13' && item.length === 12) {
+          itemPayload = computeEan13(item);
+        }
+
+        const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
+        const svgOpts = {
           bcid: bwipBcid,
-          text: item,
+          text: itemPayload,
           scale: (Number(options.scale) || 3) * scaleFactor,
           includetext: options.includetext !== false,
           textxalign: 'center',
+          guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
           backgroundcolor: options.transparentBg ? undefined : 'FFFFFF'
-        });
+        };
+        if (!is2DCode && options.height) {
+          svgOpts.height = Number(options.height);
+        }
+        if (generator.id === 'pdf417' && Number(options.columns) > 0) {
+          svgOpts.columns = Number(options.columns);
+        }
+
+        const svgString = await engine.renderBwipSVG(svgOpts);
         zip.file(filename, svgString);
       }
     } else {
@@ -225,17 +244,26 @@ export async function generateBatchZip({
                          generator.id === 'ean-13' ? 'ean13' :
                          generator.id === 'upc-a' ? 'upca' :
                          generator.id === 'itf-14' ? 'itf14' : 'code128';
+
+        let itemPayload = item;
+        if (generator.id === 'upc-a' && item.length === 11) {
+          itemPayload = computeUpcA(item);
+        } else if (generator.id === 'ean-13' && item.length === 12) {
+          itemPayload = computeEan13(item);
+        }
+
         const scaledOpts = {
           bcid: bwipBcid,
-          text: item,
+          text: itemPayload,
           scale: (Number(options.scale) || 3) * scaleFactor,
           includetext: options.includetext !== false,
           textxalign: 'center',
+          guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
           backgroundcolor: options.transparentBg ? undefined : 'FFFFFF'
         };
         const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
         if (!is2DCode && options.height) {
-          scaledOpts.height = Number(options.height) * scaleFactor;
+          scaledOpts.height = Number(options.height);
         }
         if (generator.id === 'pdf417' && Number(options.columns) > 0) {
           scaledOpts.columns = Number(options.columns);

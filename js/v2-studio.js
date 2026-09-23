@@ -14,11 +14,11 @@ import {
 } from './generators/registry.js';
 import { getAllWizards, getWizard } from './wizards/qr-wizards.js';
 import { LOGO_PRESETS } from './core/logo-presets.js';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js';
-import { initCookieBanner } from './core/cookie-banner.js';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=2.3';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=2.3';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=2.3';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=2.3';
+import { initCookieBanner } from './core/cookie-banner.js?v=2.3';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js';
+} from './export/label-maker.js?v=2.3';
 
 class V2StudioApp {
   constructor() {

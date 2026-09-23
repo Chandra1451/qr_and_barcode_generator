@@ -10,6 +10,7 @@
 
 import { engine } from '../core/engine.js';
 import { loadQRCodeStyling } from '../core/dynamic-loader.js';
+import { computeEan13, computeUpcA } from '../core/checksums.js';
 
 /**
  * Initiates browser file download from a Blob
@@ -132,6 +133,13 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
     await engine.render(generator, payload, scaledOptions, { canvas: offscreenCanvas });
   } catch (err) {
     // Fallback directly to bwipCanvas if generator.render had an issue
+    let finalPayload = payload;
+    if (generator.id === 'upc-a' && payload.length === 11) {
+      finalPayload = computeUpcA(payload);
+    } else if (generator.id === 'ean-13' && payload.length === 12) {
+      finalPayload = computeEan13(payload);
+    }
+
     const scaledBwipOptions = {
       bcid: generator.id === 'data-matrix' ? 'datamatrix' :
             generator.id === 'aztec' ? 'azteccode' :
@@ -139,10 +147,11 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
             generator.id === 'ean-13' ? 'ean13' :
             generator.id === 'upc-a' ? 'upca' :
             generator.id === 'itf-14' ? 'itf14' : 'code128',
-      text: payload,
+      text: finalPayload,
       scale: baseScale * scaleFactor,
       includetext: options.includetext !== false,
       textxalign: 'center',
+      guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
       barcolor: options.barcolor || '000000',
       backgroundcolor: options.transparentBg ? undefined : (options.backgroundcolor || 'FFFFFF')
     };
@@ -181,6 +190,13 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
     }
   }
 
+  let finalPayload = payload;
+  if (generator.id === 'upc-a' && payload.length === 11) {
+    finalPayload = computeUpcA(payload);
+  } else if (generator.id === 'ean-13' && payload.length === 12) {
+    finalPayload = computeEan13(payload);
+  }
+
   const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
   const svgOptions = {
     bcid: generator.id === 'data-matrix' ? 'datamatrix' :
@@ -189,15 +205,17 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
           generator.id === 'ean-13' ? 'ean13' :
           generator.id === 'upc-a' ? 'upca' :
           generator.id === 'itf-14' ? 'itf14' : 'code128',
-    text: payload,
+    text: finalPayload,
     scale: options.scale || 3,
     includetext: options.includetext !== false,
     textxalign: 'center',
+    guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
+    barcolor: options.barcolor || '000000',
     backgroundcolor: options.transparentBg ? undefined : 'FFFFFF'
   };
 
   if (!is2DCode && options.height) {
-    svgOptions.height = options.height;
+    svgOptions.height = Number(options.height);
   }
   if (generator.id === 'pdf417' && Number(options.columns) > 0) {
     svgOptions.columns = Number(options.columns);
