@@ -16,7 +16,7 @@ const path = require('path');
 const SITE_URL = 'https://universalcodemaker.com';
 // Cache-busting version for shared CSS (served with a 1-year immutable cache).
 // Keep in sync with the ?v= used on the root pages; bump whenever the CSS changes.
-const ASSET_VERSION = '2.7';
+const ASSET_VERSION = '2.8';
 const PAGES_DIR = path.join(__dirname, '..', 'pages');
 
 if (!fs.existsSync(PAGES_DIR)) {
@@ -1533,7 +1533,7 @@ function generatePageHtml(page) {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: var(--scanner-laser);
+      background: var(--accent-fill);
       color: #ffffff;
       padding: 0.85rem 1.6rem;
       border: 2px solid var(--border-color);
@@ -1545,6 +1545,7 @@ function generatePageHtml(page) {
       transition: all var(--transition-fast);
     }
     .cta-launch-btn:hover {
+      background: var(--accent-fill-hover);
       transform: translate(-2px, -2px);
       box-shadow: var(--shadow-laser);
       color: #ffffff;
@@ -1652,7 +1653,7 @@ function generatePageHtml(page) {
     }
     .related-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
       gap: 1rem;
       margin-top: 1rem;
     }

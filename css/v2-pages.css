@@ -250,26 +250,26 @@ body {
 }
 
 .btn-laser {
-  background: var(--scanner-laser);
+  background: var(--accent-fill);
   color: #ffffff;
   box-shadow: var(--shadow-ink);
 }
 
 .btn-laser:hover {
-  background: var(--scanner-laser-hover);
+  background: var(--accent-fill-hover);
   transform: translate(-2px, -2px);
   box-shadow: var(--shadow-ink-lg);
   color: #ffffff;
 }
 
 .btn-optic {
-  background: var(--optic-blue);
+  background: var(--accent-fill);
   color: #ffffff;
   box-shadow: var(--shadow-ink);
 }
 
 .btn-optic:hover {
-  background: var(--optic-blue-hover);
+  background: var(--accent-fill-hover);
   transform: translate(-2px, -2px);
   box-shadow: var(--shadow-ink-lg);
   color: #ffffff;
@@ -297,7 +297,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: var(--scanner-laser);
+  background: var(--accent-fill);
   color: #ffffff !important;
   padding: 0.85rem 1.6rem;
   border: var(--border-ink);
@@ -311,7 +311,7 @@ body {
 }
 
 .cta-launch-btn:hover {
-  background: var(--scanner-laser-hover);
+  background: var(--accent-fill-hover);
   transform: translate(-2px, -2px);
   box-shadow: var(--shadow-ink-lg);
 }
@@ -388,7 +388,7 @@ body {
 /* Content Grid & Tactile Cards */
 .content-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1.75rem;
   margin-bottom: 2.75rem;
 }
@@ -443,6 +443,8 @@ body {
   color: var(--text-primary);
   font-weight: 700;
   text-align: right;
+  min-width: 0;
+  overflow-wrap: anywhere; /* long payload examples (e.g. WIFI:T:WPA;S:...) must wrap on phones */
 }
 
 /* Use Cases List */
@@ -543,7 +545,7 @@ body {
 /* Related Tools Grid */
 .related-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.25rem;
   margin-top: 1.25rem;
 }
@@ -835,7 +837,7 @@ body {
 
 .v2-footer-matrix {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
   gap: 2rem;
   padding: 2.5rem 0;
   border-bottom: 1.5px dashed var(--dot-grid-color);
@@ -940,13 +942,33 @@ body {
     gap: 0.5rem;
   }
   .content-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .hero-banner, .doc-hero {
     padding: 1.75rem 1.25rem;
   }
   .hero-title, .doc-title {
     font-size: 1.75rem;
+  }
+}
+
+/* Phones: brand on the first row, header controls on a full-width second row,
+   so the header never pushes the page wider than the screen */
+@media (max-width: 640px) {
+  .v2-header-container {
+    flex-wrap: wrap;
+    row-gap: 0.6rem;
+  }
+  .v2-nav-links {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .v2-version-tag,
+  .v2-classic-link {
+    display: none;
+  }
+  .theme-toggle-btn span {
+    display: none;
   }
 }
 
@@ -982,7 +1004,7 @@ body {
 
 .decision-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.25rem;
   margin-top: 1rem;
 }
@@ -1015,7 +1037,7 @@ body {
 /* Benefits Grid */
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: 1.25rem;
   margin: 1.5rem 0 2rem;
 }
@@ -1064,6 +1086,7 @@ body {
 
 .caution-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1rem;
@@ -1149,7 +1172,7 @@ body {
 
 .authority-links-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: 1rem;
 }
 

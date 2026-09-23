@@ -42,6 +42,8 @@ temp/
 npm-debug.log*
 yarn-debug.log*
 v2_preview_*.png
+preview_*.png
+test_runner_results.png
 
 # 7. OS & IDE Generated Metadata
 .DS_Store

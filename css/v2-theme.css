@@ -109,6 +109,8 @@
   --accent-tint: var(--optic-blue-tint);
   --on-accent: #ffffff;
   --accent-text: var(--optic-blue-dark);
+  --accent-fill: #d91b39;       /* per-accent overrides below */
+  --accent-fill-hover: #b9102b;
   --font-heading: var(--font-display);
 
   /* Text-safe status colors (>= 4.5:1 on surface / tint backgrounds) */
@@ -183,6 +185,9 @@
 
 /* 1. Laser Crimson (Default Tactical Optical Red) */
 :root[data-accent="crimson"], [data-theme="light"][data-accent="crimson"] {
+  /* Filled buttons with white text: deep enough for >= 4.5:1 in both themes */
+  --accent-fill: #d91b39;
+  --accent-fill-hover: #b9102b;
   --scanner-laser: #ff2a4b;
   --scanner-laser-hover: #ff4763;
   --scanner-laser-dark: #d91b39;
@@ -200,6 +205,9 @@
   --border-blue: 2.5px solid #d91b39;
 }
 [data-theme="dark"][data-accent="crimson"] {
+  /* Filled buttons with white text: deep enough for >= 4.5:1 in both themes */
+  --accent-fill: #d91b39;
+  --accent-fill-hover: #b9102b;
   --scanner-laser: #ff3b5c;
   --scanner-laser-hover: #ff5472;
   --scanner-laser-dark: #e02444;
@@ -219,6 +227,9 @@
 
 /* 2. Signal Cobalt (Precision High-Contrast Blue) */
 :root[data-accent="cobalt"], [data-theme="light"][data-accent="cobalt"] {
+  /* Filled buttons with white text: deep enough for >= 4.5:1 in both themes */
+  --accent-fill: #0066f5;
+  --accent-fill-hover: #004ecc;
   --scanner-laser: #0066f5;
   --scanner-laser-hover: #1f7aff;
   --scanner-laser-dark: #004ecc;
@@ -236,6 +247,9 @@
   --border-blue: 2.5px solid #0066f5;
 }
 [data-theme="dark"][data-accent="cobalt"] {
+  /* Filled buttons with white text: deep enough for >= 4.5:1 in both themes */
+  --accent-fill: #0066f5;
+  --accent-fill-hover: #004ecc;
   --scanner-laser: #3b82f6;
   --scanner-laser-hover: #60a5fa;
   --scanner-laser-dark: #2563eb;
@@ -255,6 +269,9 @@
 
 /* 3. Cyber Amber (Industrial Caution Amber) */
 :root[data-accent="amber"], [data-theme="light"][data-accent="amber"] {
+  /* Filled buttons with white text: deep enough for >= 4.5:1 in both themes */
+  --accent-fill: #c2410c;
+  --accent-fill-hover: #9a3412;
   --scanner-laser: #ea580c;
   --scanner-laser-hover: #f97316;
   --scanner-laser-dark: #c2410c;
@@ -272,6 +289,9 @@
   --border-blue: 2.5px solid #ea580c;
 }
 [data-theme="dark"][data-accent="amber"] {
+  /* Filled buttons with white text: deep enough for >= 4.5:1 in both themes */
+  --accent-fill: #c2410c;
+  --accent-fill-hover: #9a3412;
   --scanner-laser: #f59e0b;
   --scanner-laser-hover: #fbbf24;
   --scanner-laser-dark: #d97706;
@@ -291,6 +311,9 @@
 
 /* 4. Matrix Emerald (Sensor OLED Emerald) */
 :root[data-accent="emerald"], [data-theme="light"][data-accent="emerald"] {
+  /* Filled buttons with white text: deep enough for >= 4.5:1 in both themes */
+  --accent-fill: #047857;
+  --accent-fill-hover: #065f46;
   --scanner-laser: #059669;
   --scanner-laser-hover: #10b981;
   --scanner-laser-dark: #047857;
@@ -308,6 +331,9 @@
   --border-blue: 2.5px solid #059669;
 }
 [data-theme="dark"][data-accent="emerald"] {
+  /* Filled buttons with white text: deep enough for >= 4.5:1 in both themes */
+  --accent-fill: #047857;
+  --accent-fill-hover: #065f46;
   --scanner-laser: #10b981;
   --scanner-laser-hover: #34d399;
   --scanner-laser-dark: #059669;

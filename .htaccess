@@ -22,6 +22,9 @@
 
   # Block direct access to hidden files/directories (e.g. .git, .env)
   RewriteRule ^\..* - [F,L]
+
+  # Development-only folders stay in git but are not part of the public site
+  RewriteRule ^(tools|tests)(/|$) - [R=404,L]
 </IfModule>
 
 # 3. Default Character Encoding & Extended MIME Types
