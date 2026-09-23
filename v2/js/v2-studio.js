@@ -68,7 +68,8 @@ class V2StudioApp {
     };
 
     // Laser Scan Beam FX State
-    this.laserFxEnabled = true;
+    const savedLaser = localStorage.getItem('ucm_laser_fx');
+    this.laserFxEnabled = savedLaser !== null ? savedLaser === 'true' : true;
 
     // Tactical Accent State
     this.activeAccent = 'crimson';
@@ -1026,19 +1027,42 @@ class V2StudioApp {
 
   /* --- Laser Scan Beam Animation --- */
   bindLaserFxEvents() {
+    this.updateLaserButtonState();
+
     this.dom.btnToggleLaser?.addEventListener('click', () => {
       this.laserFxEnabled = !this.laserFxEnabled;
-      this.dom.btnToggleLaser.classList.toggle('active', this.laserFxEnabled);
+      try {
+        localStorage.setItem('ucm_laser_fx', this.laserFxEnabled ? 'true' : 'false');
+      } catch (e) {}
+
+      this.updateLaserButtonState();
+
       if (this.laserFxEnabled) {
         this.triggerLaserSweep();
-        this.showToast('Laser scan sweep enabled ⚡');
+        this.showToast('Laser FX enabled [ON] ⚡');
       } else {
         if (this.dom.laserScanBeam) {
           this.dom.laserScanBeam.classList.remove('active', 'scanning');
         }
-        this.showToast('Laser scan sweep disabled.');
+        this.showToast('Laser FX disabled [OFF]');
       }
     });
+  }
+
+  updateLaserButtonState() {
+    if (!this.dom.btnToggleLaser) return;
+    this.dom.btnToggleLaser.classList.toggle('active', this.laserFxEnabled);
+    this.dom.btnToggleLaser.setAttribute('aria-pressed', this.laserFxEnabled ? 'true' : 'false');
+    this.dom.btnToggleLaser.title = this.laserFxEnabled 
+      ? 'Toggle Optical Laser Scan Sweep FX (Currently ON)' 
+      : 'Toggle Optical Laser Scan Sweep FX (Currently OFF)';
+
+    const statusTag = this.dom.btnToggleLaser.querySelector('#laser-status-text') || this.dom.btnToggleLaser.querySelector('.laser-status-tag');
+    if (statusTag) {
+      statusTag.textContent = this.laserFxEnabled ? 'ON' : 'OFF';
+      statusTag.classList.toggle('status-on', this.laserFxEnabled);
+      statusTag.classList.toggle('status-off', !this.laserFxEnabled);
+    }
   }
 
   triggerLaserSweep() {

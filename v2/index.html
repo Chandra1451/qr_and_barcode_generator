@@ -60,8 +60,8 @@
   </script>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css">
-  <link rel="stylesheet" href="css/v2-studio.css">
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.4">
+  <link rel="stylesheet" href="css/v2-studio.css?v=2.4">
 </head>
 <body>
 
@@ -472,11 +472,12 @@
           <div class="stage-toolbar">
             <span>High-DPI 300+ PPI Vector Precision</span>
             <div style="display: flex; gap: 0.4rem;">
-              <button type="button" class="stage-tool-btn active" id="btn-toggle-laser" title="Toggle Optical Laser Scan Sweep FX">
+              <button type="button" class="stage-tool-btn active" id="btn-toggle-laser" title="Toggle Optical Laser Scan Sweep FX (Currently ON)" aria-pressed="true">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                 </svg>
-                Laser FX
+                <span>Laser FX</span>
+                <span class="laser-status-tag status-on" id="laser-status-text">ON</span>
               </button>
               <button type="button" class="stage-tool-btn" id="btn-toggle-bg" title="Toggle Transparent Checkerboard Background">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1107,6 +1108,6 @@
   </footer>
 
   <!-- Application Module Entrypoint -->
-  <script type="module" src="js/v2-studio.js"></script>
+  <script type="module" src="js/v2-studio.js?v=2.4"></script>
 </body>
 </html>

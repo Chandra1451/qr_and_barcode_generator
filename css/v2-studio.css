@@ -1359,8 +1359,8 @@ h1, h2, h3, h4 {
 .stage-tool-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.3rem 0.65rem;
+  gap: 0.45rem;
+  padding: 0.32rem 0.68rem;
   font-family: var(--font-mono);
   font-size: 0.76rem;
   font-weight: 700;
@@ -1370,12 +1370,80 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-tactile);
+  user-select: none;
+  white-space: nowrap;
 }
 
 .stage-tool-btn:hover {
   transform: translate(-1px, -1px);
   box-shadow: 2px 2px 0 var(--ink-black);
 }
+
+.stage-tool-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* Stage Tool Buttons Active States */
+.stage-tool-btn.active {
+  border-color: var(--scanner-laser);
+  box-shadow: 2px 2px 0 var(--scanner-laser);
+}
+
+#btn-toggle-laser.active {
+  border-color: var(--scanner-laser);
+  box-shadow: 2px 2px 0 var(--scanner-laser);
+}
+
+#btn-toggle-laser.active svg {
+  stroke: var(--scanner-laser);
+  filter: drop-shadow(0 0 3px rgba(255, 42, 109, 0.6));
+}
+
+#btn-toggle-laser:not(.active) {
+  opacity: 0.8;
+  background: var(--surface-alt);
+  border-color: var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+#btn-toggle-laser:not(.active):hover {
+  opacity: 1;
+  border-color: var(--ink-black);
+  box-shadow: 2px 2px 0 var(--ink-black);
+  color: var(--text-primary);
+}
+
+/* Laser Status Pill Badge */
+.laser-status-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  padding: 0.12rem 0.4rem;
+  border-radius: var(--radius-pill);
+  min-width: 1.85rem;
+  text-align: center;
+  transition: all 0.18s ease;
+}
+
+.laser-status-tag.status-on {
+  background: var(--scanner-laser);
+  color: #ffffff;
+  box-shadow: 0 0 6px rgba(255, 42, 109, 0.45);
+}
+
+.laser-status-tag.status-off {
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  box-shadow: none;
+}
+
 
 /* --- Tactile Logo Dropzone & Preview --- */
 .v2-logo-dropzone {
