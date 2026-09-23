@@ -74,6 +74,22 @@
 
   /* --- Interactive Physics --- */
   --transition-tactile: transform 0.14s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.14s ease, background 0.18s ease;
+
+  /* --- Semantic Aliases (used by content pages & v2-pages.css) --- */
+  --border: #0f1117;
+  --accent: var(--optic-blue);
+  --accent-hover: var(--optic-blue-dark);
+  --accent-tint: var(--optic-blue-tint);
+  --on-accent: #ffffff;
+  --accent-text: var(--optic-blue-dark);
+  --font-heading: var(--font-display);
+
+  /* Text-safe status colors (>= 4.5:1 on surface / tint backgrounds) */
+  --laser-text: var(--scanner-laser-dark);
+  --sensor-green-text: #047857;
+  --optic-amber-text: #b45309;
+  --violet: #6d28d9;
+  --violet-tint: #f3edff;
 }
 
 /* --- Dark Theme: "Obsidian Laser" --- */
@@ -117,6 +133,20 @@
   --shadow-blue-lg: 6px 6px 0 #3b82f6;
 
   --dot-grid-color: rgba(255, 255, 255, 0.05);
+
+  --optic-amber: #f59e0b;
+  --optic-amber-tint: rgba(245, 158, 11, 0.16);
+
+  --border: #2e3547;
+  --accent-hover: var(--optic-blue-hover);
+  --on-accent: #0a0c10;
+  --accent-text: var(--optic-blue-hover);
+
+  --laser-text: var(--scanner-laser);
+  --sensor-green-text: #34d399;
+  --optic-amber-text: #fbbf24;
+  --violet: #a78bfa;
+  --violet-tint: rgba(167, 139, 250, 0.16);
 }
 
 /* ==========================================================================
