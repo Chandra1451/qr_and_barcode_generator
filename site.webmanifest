@@ -4,8 +4,8 @@
   "description": "Generate 50+ free barcodes and branded styled QR codes directly in your browser with SVG, PNG, Avery PDF, and ZIP exports.",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#090d16",
-  "theme_color": "#06b6d4",
+  "background_color": "#0f1117",
+  "theme_color": "#ff2a4b",
   "orientation": "any",
   "icons": [
     {

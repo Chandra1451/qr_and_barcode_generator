@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT"></script>
@@ -17,14 +17,14 @@
   <meta name="description" content="Official Terms of Service and Conditions of Use for UniversalCodeMaker.com. 100% free royalty-free commercial license, user responsibilities, and legal disclaimers.">
   <link rel="canonical" href="https://universalcodemaker.com/terms.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="theme-color" content="#06b6d4">
+  <meta name="theme-color" content="#ff2a4b">
 
   <!-- Open Graph & Social Cards -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Terms of Service | UniversalCodeMaker.com">
   <meta property="og:description" content="Review the Terms of Service for UniversalCodeMaker.com. 100% free commercial usage, pre-print testing guidelines, and legal terms.">
   <meta property="og:url" content="https://universalcodemaker.com/terms.html">
-  <meta property="og:image" content="https://universalcodemaker.com/assets/icon-512.png">
+  <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -34,18 +34,14 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- Google Fonts: Non-blocking Preload -->
+  <!-- Google Fonts: Space Grotesk, Nunito, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Core Stylesheets -->
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
+  <!-- V2 Stylesheets -->
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.3">
+  <link rel="stylesheet" href="css/v2-pages.css?v=2.3">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -57,150 +53,51 @@
     "description": "Official legal terms of service, commercial usage rights, and conditions of use for UniversalCodeMaker.com."
   }
   </script>
-
-  <style>
-    .doc-page {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem 1.5rem;
-    }
-    .doc-hero {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 2.75rem 2.25rem;
-      box-shadow: var(--shadow-glass);
-      backdrop-filter: blur(16px);
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 2.25rem;
-    }
-    .doc-hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent-gradient);
-    }
-    .doc-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-full);
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.3);
-      color: var(--accent-cyan);
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-    }
-    .doc-title {
-      font-size: 2.3rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 0.85rem;
-      color: var(--text-primary);
-    }
-    .doc-subtitle {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      max-width: 780px;
-    }
-    .terms-section {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      margin-bottom: 1.75rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .terms-section h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .terms-section p {
-      color: var(--text-secondary);
-      font-size: 0.94rem;
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-    .terms-section p:last-child {
-      margin-bottom: 0;
-    }
-    .terms-section ul {
-      margin: 0.75rem 0 1rem 1.5rem;
-      color: var(--text-secondary);
-      font-size: 0.92rem;
-      line-height: 1.7;
-    }
-    .terms-section li {
-      margin-bottom: 0.35rem;
-    }
-    .highlight-box {
-      background: var(--bg-base);
-      border-left: 3px solid var(--accent-cyan);
-      padding: 1rem 1.25rem;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin: 1.25rem 0;
-      font-size: 0.9rem;
-      color: var(--text-primary);
-    }
-  </style>
 </head>
 <body>
 
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="header-container">
-      <div class="brand-group">
-        <a href="/" style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
-          <div class="brand-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="8" height="8" x="3" y="3" rx="1"/>
-              <path d="M7 7h.01"/>
-              <rect width="8" height="8" x="13" y="3" rx="1"/>
-              <path d="M17 7h.01"/>
-              <rect width="8" height="8" x="3" y="13" rx="1"/>
-              <path d="M7 17h.01"/>
-              <path d="M13 13h2v2h-2z"/>
-              <path d="M17 13h4v4h-4z"/>
-              <path d="M13 17h2v4h-2z"/>
-              <path d="M17 21h4"/>
-            </svg>
+  <!-- Site Header -->
+  <header class="v2-header">
+    <div class="wrap">
+      <div class="v2-header-container">
+        <a href="index.html" class="v2-brand">
+          <div class="v2-brand-badge" style="background: var(--surface);">
+            <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
           </div>
           <div>
-            <span class="brand-title" style="display: block;">UniversalCodeMaker</span>
-            <span class="brand-tagline">100% Free &amp; Private Barcode &amp; QR Suite</span>
+            <div class="v2-brand-title">
+              UniversalCodeMaker
+              <span class="v2-version-tag">V2 STUDIO</span>
+            </div>
+            <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
           </div>
         </a>
-      </div>
 
-      <div class="header-actions">
-        <a href="/" class="action-btn action-btn-primary" style="padding: 0.45rem 0.95rem; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          Studio
-        </a>
-        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Theme">
-          <span>☀️</span> Light
-        </button>
+        <div class="v2-nav-links">
+          <a href="index.html" class="btn btn-laser btn-sm" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Launch Studio
+          </a>
+          <a href="about.html" class="v2-nav-link">About</a>
+          <a href="symbology-docs.html" class="v2-nav-link">Docs</a>
+          <a href="classic/index.html" class="v2-classic-link" title="Switch to Legacy V1 Studio">Classic V1 ↗</a>
+          <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
+            <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
+            <button type="button" class="accent-dot" data-accent="cobalt" title="Signal Cobalt"></button>
+            <button type="button" class="accent-dot" data-accent="amber" title="Cyber Amber"></button>
+            <button type="button" class="accent-dot" data-accent="emerald" title="Matrix Emerald"></button>
+          </div>
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Optical Theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>Obsidian Laser</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="doc-page">
+  <main class="doc-wrap">
 
     <!-- Hero -->
     <div class="doc-hero">
@@ -214,7 +111,7 @@
     </div>
 
     <!-- 1. Agreement -->
-    <section class="terms-section">
+    <section class="doc-section">
       <h2><span>1.</span> Acceptance of Terms</h2>
       <p>
         By accessing or using UniversalCodeMaker.com ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to all terms and conditions, you may not access or use the Service.
@@ -222,7 +119,7 @@
     </section>
 
     <!-- 2. Commercial & Personal License -->
-    <section class="terms-section">
+    <section class="doc-section">
       <h2><span>2.</span> 100% Free Commercial &amp; Personal License</h2>
       <p>
         We believe generator tools should be open and accessible. All barcodes, QR codes, vector graphics (SVG), raster images (PNG, JPEG, WebP), and compiled PDF documents generated using UniversalCodeMaker.com are:
@@ -232,13 +129,13 @@
         <li><strong>Commercial Use Permitted</strong>: You may use generated codes on retail packaging, Amazon FBA labels, marketing flyers, menus, books, software, and physical merchandise.</li>
         <li><strong>No Attribution Required</strong>: You are never required to link back or mention UniversalCodeMaker.com on your products or packaging.</li>
       </ul>
-      <div class="highlight-box">
+      <div style="background: var(--canvas-base); border-left: 4px solid var(--optic-blue); border-top: var(--border-ink); border-right: var(--border-ink); border-bottom: var(--border-ink); padding: 1.15rem; border-radius: var(--radius-sm); margin: 1.25rem 0; font-size: 0.92rem;">
         <strong>Summary:</strong> What you generate belongs to you. No royalties, no recurring fees, and no feature lock-in.
       </div>
     </section>
 
     <!-- 3. Pre-Print Verification Notice -->
-    <section class="terms-section">
+    <section class="doc-section">
       <h2><span>3.</span> Mandatory Pre-Print Testing &amp; Verification</h2>
       <p>
         While UniversalCodeMaker implements strict algorithmic checksum verification (such as GS1 Mod-10 for EAN-13 and UPC-A, and ISO/IEC error correction algorithms), various physical factors can impact barcode scannability:
@@ -250,12 +147,12 @@
         <li>Barcode scanner hardware types (linear 1D CCD/laser vs. 2D camera imagers).</li>
       </ul>
       <p>
-        <strong>User Responsibility:</strong> You agree to print a physical proof of your barcode or QR code and verify it with a standard optical barcode scanner before proceeding with high-volume industrial printing or product packaging runs. UniversalCodeMaker is not responsible for packaging reprints, inventory relabeling, or scanning failures resulting from improper print dimensions or substrate selection.
+        <strong>User Responsibility &amp; Disclaimed Liability:</strong> You acknowledge and agree to print a physical test proof of your barcode or QR code and verify it with a standard optical barcode scanner and smartphone camera before proceeding with high-volume industrial printing, packaging production, or commercial distribution. UniversalCodeMaker and its operators shall bear no liability for packaging reprints, retailer chargebacks, inventory relabeling, delisting from third-party marketplaces (including Amazon, Walmart, or Google), or scanning failures resulting from improper print dimensions, low optical contrast, or substrate selection.
       </p>
     </section>
 
     <!-- 4. Prohibited Uses -->
-    <section class="terms-section">
+    <section class="doc-section">
       <h2><span>4.</span> Prohibited Activities</h2>
       <p>
         You agree not to use UniversalCodeMaker.com to:
@@ -268,15 +165,18 @@
     </section>
 
     <!-- 5. Trademarks -->
-    <section class="terms-section">
-      <h2><span>5.</span> Trademarks &amp; Third-Party Standards</h2>
+    <section class="doc-section">
+      <h2><span>5.</span> Trademarks, Brand Presets &amp; Third-Party Standards</h2>
       <p>
-        "QR Code" is a registered trademark of DENSO WAVE INCORPORATED. "Avery" and specific Avery product numbers (such as 5160 and 5163) are trademarks of Avery Products Corporation. "GS1", "EAN", and "UPC" are trademarks of GS1 AISBL. References to these names and standards on UniversalCodeMaker.com are strictly descriptive for compatibility purposes and do not imply endorsement or affiliation.
+        "QR Code" is a registered trademark of DENSO WAVE INCORPORATED. "Avery&reg;" and specific Avery product numbers (such as 5160, 5163, and others) are registered trademarks of Avery Products Corporation / CCL Industries Inc. "GS1&reg;", "EAN&reg;", and "UPC&reg;" are registered trademarks of GS1 AISBL. References to these names and standards on UniversalCodeMaker.com are strictly descriptive under the doctrine of <em>Nominative Fair Use</em> for compatibility purposes and do not imply endorsement, sponsorship, or affiliation.
+      </p>
+      <p>
+        All third-party trademarks, service marks, trade names, and brand logos displayed in built-in QR presets (including WhatsApp, Instagram, LinkedIn, YouTube, PayPal, Bitcoin, and others) remain the intellectual property of their respective trademark owners. They are provided solely for user convenience to link to legitimate user profiles, channels, or payment services. When uploading custom logos or graphics, you represent and warrant that you possess all necessary rights, licenses, and permissions to reproduce such artwork in your generated barcodes or QR codes.
       </p>
     </section>
 
     <!-- 6. Disclaimer of Warranties -->
-    <section class="terms-section">
+    <section class="doc-section">
       <h2><span>6.</span> Disclaimer of Warranties ("As-Is")</h2>
       <p>
         The Service is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the service will be uninterrupted, error-free, or entirely bug-free.
@@ -284,7 +184,7 @@
     </section>
 
     <!-- 7. Limitation of Liability -->
-    <section class="terms-section">
+    <section class="doc-section">
       <h2><span>7.</span> Limitation of Liability</h2>
       <p>
         To the maximum extent permitted by applicable law, UniversalCodeMaker.com and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business opportunities, arising out of or related to your use or inability to use the Service.
@@ -292,46 +192,122 @@
     </section>
 
     <!-- 8. Contact -->
-    <section class="terms-section">
+    <section class="doc-section">
       <h2><span>8.</span> Questions &amp; Legal Notices</h2>
       <p>
-        If you have questions regarding these Terms of Service, please contact our legal and support team at <a href="mailto:contact@primordialparadigm.com" style="color: var(--accent-cyan);">contact@primordialparadigm.com</a> or visit our <a href="contact.html" style="color: var(--accent-cyan);">Contact Us</a> page.
+        If you have questions regarding these Terms of Service, please contact our legal and support team at <a href="mailto:contact@primordialparadigm.com" style="color: var(--optic-blue); font-weight: 700;">contact@primordialparadigm.com</a> or visit our <a href="contact.html" style="color: var(--optic-blue); font-weight: 700;">Contact Us</a> page.
       </p>
     </section>
 
   </main>
 
-  <!-- App Footer -->
-  <footer class="app-footer">
-    <div class="footer-container">
-      <p>&copy; 2026 UniversalCodeMaker.com. Client-side Code Generator. 100% Free Forever.</p>
-      <ul class="footer-links">
-        <li><a href="/">Code Generator</a></li>
-        <li><a href="symbology-docs.html">Symbology Docs</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-      </ul>
+  <!-- Site Footer -->
+  <footer class="v2-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div class="v2-brand-badge" style="width: 38px; height: 38px; background: var(--surface);">
+              <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="30" height="30" style="display: block; object-fit: contain;">
+            </div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker <span class="v2-version-tag">V2</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Optical Studio</a></li>
+              <li><a href="index.html#symbologies">Symbologies Directory</a></li>
+              <li><a href="classic/index.html">Classic V1 Studio</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Standards &amp; Docs</h4>
+            <ul>
+              <li><a href="symbology-docs.html">Symbology Documentation</a></li>
+              <li><a href="about.html">About &amp; Mission</a></li>
+              <li><a href="privacy-policy.html">Zero-Knowledge Privacy</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://primordialparadigm.com" target="_blank" rel="noopener">Primordial Paradigm ↗</a></li>
+              <li><a href="contact.html">Report Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4-Column Programmatic SEO & Symbology Directory Matrix -->
+      <div class="v2-footer-matrix">
+        <div class="v2-dir-col">
+          <h4><span>🏷️</span> 1D Retail &amp; Logistics</h4>
+          <ul>
+            <li><a href="pages/ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
+            <li><a href="pages/upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
+            <li><a href="pages/code-128-barcode-generator.html">Code 128 Barcode Generator</a></li>
+            <li><a href="pages/itf-14-barcode-generator.html">ITF-14 Carton Barcode Generator</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>📦</span> 2D Industrial &amp; High-Density</h4>
+          <ul>
+            <li><a href="pages/data-matrix-generator.html">Data Matrix 2D Generator</a></li>
+            <li><a href="pages/aztec-code-generator.html">Aztec Code Generator</a></li>
+            <li><a href="pages/pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
+            <li><a href="symbology-docs.html">All 50+ Symbology Guides</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>⚡</span> Smart QR Generators</h4>
+          <ul>
+            <li><a href="pages/wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
+            <li><a href="pages/vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
+            <li><a href="pages/google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
+            <li><a href="pages/crypto-qr-code-generator.html">Crypto Wallet QR Code</a></li>
+            <li><a href="pages/calendar-event-qr-code-generator.html">Calendar Event (iCal) QR</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>📱</span> Messaging &amp; Text QR</h4>
+          <ul>
+            <li><a href="pages/email-qr-code-generator.html">Email Message QR Code</a></li>
+            <li><a href="pages/sms-qr-code-generator.html">SMS Direct Message QR</a></li>
+            <li><a href="pages/phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>
+            <li><a href="pages/plain-text-qr-code-generator.html">Plain Text QR Code</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <ul class="v2-footer-legal-links">
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="symbology-docs.html">Symbology Docs</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="v2-trademark-notice">
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Theme Script -->
-  <script>
-    const themeBtn = document.getElementById('theme-toggle-btn');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    if (themeBtn) {
-      themeBtn.innerHTML = savedTheme === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
-      themeBtn.addEventListener('click', () => {
-        const curr = document.documentElement.getAttribute('data-theme');
-        const next = curr === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        themeBtn.innerHTML = next === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
-      });
-    }
-  </script>
+  <!-- Navigation & Theme Sync Script -->
+  <script src="js/v2-nav.js?v=2.3"></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>

@@ -26,70 +26,57 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- Google Fonts: Non-blocking Preload -->
+  <!-- Google Fonts: Space Grotesk, Nunito, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Core Stylesheets -->
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
+  <!-- V2 Stylesheets -->
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.3">
+  <link rel="stylesheet" href="css/v2-pages.css?v=2.3">
 
   <style>
     /* Documentation Page Layout */
     .docs-page {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem 1.5rem;
+      padding: 2.5rem 1.5rem 4rem 1.5rem;
     }
 
     /* Hero Banner */
     .docs-hero {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      background: var(--surface);
+      border: 2.5px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 2.75rem 2.25rem;
-      box-shadow: var(--shadow-glass);
-      backdrop-filter: blur(16px);
+      padding: 2.5rem 2.25rem;
+      box-shadow: var(--shadow-ink-lg);
       position: relative;
       overflow: hidden;
       margin-bottom: 2.25rem;
-    }
-
-    .docs-hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--accent-gradient);
     }
 
     .docs-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-full);
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.3);
-      color: var(--accent-cyan);
-      font-size: 0.78rem;
-      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-pill);
+      background: var(--accent-tint);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 1rem;
     }
 
     .docs-title {
-      font-size: 2.4rem;
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 2.75rem);
       font-weight: 800;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       line-height: 1.2;
       margin-bottom: 0.85rem;
       color: var(--text-primary);
@@ -99,7 +86,7 @@
       font-size: 1.05rem;
       color: var(--text-secondary);
       line-height: 1.6;
-      max-width: 840px;
+      max-width: 860px;
       margin-bottom: 1.5rem;
     }
 
@@ -108,27 +95,31 @@
       flex-wrap: wrap;
       gap: 0.65rem;
       align-items: center;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1.5px solid var(--border);
       padding-top: 1.25rem;
     }
 
     .filter-btn {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
+      background: var(--surface);
+      border: 2px solid var(--border);
       color: var(--text-secondary);
-      padding: 0.45rem 0.95rem;
-      border-radius: var(--radius-full);
-      font-size: 0.82rem;
-      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: all 0.15s ease;
       text-decoration: none;
+      box-shadow: 2px 2px 0 var(--border);
     }
 
     .filter-btn:hover, .filter-btn.active {
-      background: rgba(6, 182, 212, 0.15);
-      border-color: var(--accent-cyan);
-      color: var(--text-primary);
+      background: var(--accent);
+      border-color: var(--border);
+      color: #ffffff;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--border);
     }
 
     /* 2-Column Documentation Layout */
@@ -151,16 +142,17 @@
     /* Sticky Sidebar */
     .docs-sidebar {
       position: sticky;
-      top: 5rem;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      top: 5.5rem;
+      background: var(--surface);
+      border: 2.5px solid var(--border);
       border-radius: var(--radius-md);
       padding: 1.25rem;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-ink);
     }
 
     .sidebar-heading {
-      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       font-weight: 700;
@@ -180,23 +172,26 @@
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
+      padding: 0;
+      margin: 0;
     }
 
     .docs-toc a {
       display: block;
       color: var(--text-secondary);
       text-decoration: none;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       padding: 0.4rem 0.65rem;
       border-radius: var(--radius-sm);
-      transition: all var(--transition-fast);
-      border-left: 2px solid transparent;
+      transition: all 0.15s ease;
+      border-left: 2.5px solid transparent;
+      font-weight: 600;
     }
 
     .docs-toc a:hover {
-      color: var(--accent-cyan);
-      background: var(--bg-surface-elevated);
-      border-left-color: var(--accent-cyan);
+      color: var(--accent);
+      background: var(--surface-alt);
+      border-left-color: var(--accent);
     }
 
     /* Document Sections */
@@ -207,11 +202,11 @@
     }
 
     .symbology-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      background: var(--surface);
+      border: 2.5px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 2rem 2.25rem;
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-ink);
       scroll-margin-top: 5.5rem;
       position: relative;
     }
@@ -223,7 +218,7 @@
       flex-wrap: wrap;
       gap: 1rem;
       margin-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 2px solid var(--border);
       padding-bottom: 1rem;
     }
 
@@ -240,20 +235,22 @@
       justify-content: center;
       width: 44px;
       height: 44px;
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
+      background: var(--surface-alt);
+      border: 2px solid var(--border);
       border-radius: var(--radius-md);
+      box-shadow: 2px 2px 0 var(--border);
     }
 
     .symbology-title {
+      font-family: var(--font-heading);
       font-size: 1.45rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-primary);
       letter-spacing: -0.01em;
     }
 
     .symbology-standard {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-family: var(--font-mono);
       color: var(--text-muted);
       margin-top: 0.15rem;
@@ -263,21 +260,25 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      background: var(--accent-gradient);
+      background: var(--accent);
       color: #ffffff;
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1.1rem;
       border-radius: var(--radius-md);
-      font-size: 0.82rem;
-      font-weight: 600;
+      border: 2px solid var(--border);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
       text-decoration: none;
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-ink);
+      transition: all 0.15s ease;
       white-space: nowrap;
     }
 
     .btn-test-in-studio:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--accent-glow);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-ink-lg);
+      background: var(--accent-hover);
+      color: #ffffff;
     }
 
     .specs-grid {
@@ -288,30 +289,32 @@
     }
 
     .spec-item {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
+      background: var(--surface-alt);
+      border: 2px solid var(--border);
       border-radius: var(--radius-md);
       padding: 0.85rem 1rem;
+      box-shadow: 2px 2px 0 var(--border);
     }
 
     .spec-label {
+      font-family: var(--font-mono);
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-muted);
       margin-bottom: 0.25rem;
     }
 
     .spec-value {
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-size: 0.9rem;
+      font-weight: 700;
       color: var(--text-primary);
       font-family: var(--font-mono);
     }
 
     .docs-text {
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       line-height: 1.7;
       color: var(--text-secondary);
       margin-bottom: 1rem;
@@ -323,17 +326,18 @@
 
     /* Code Snippet Box */
     .code-box {
-      background: #090d16;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--ink-black);
+      border: 2px solid var(--border);
       border-radius: var(--radius-md);
       padding: 1.15rem 1.25rem;
       margin: 1.25rem 0;
       font-family: var(--font-mono);
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       line-height: 1.6;
       overflow-x: auto;
       color: #e2e8f0;
       position: relative;
+      box-shadow: var(--shadow-ink);
     }
 
     .code-header {
@@ -342,61 +346,64 @@
       align-items: center;
       margin-bottom: 0.75rem;
       padding-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       font-size: 0.75rem;
       color: #94a3b8;
     }
 
     .copy-code-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #e2e8f0;
-      padding: 0.25rem 0.6rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 0.25rem 0.65rem;
       border-radius: var(--radius-sm);
-      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: all 0.15s ease;
     }
 
     .copy-code-btn:hover {
-      background: rgba(6, 182, 212, 0.25);
-      border-color: var(--accent-cyan);
-      color: #ffffff;
+      background: var(--accent);
+      border-color: var(--accent);
     }
 
     /* Comparison Table */
     .docs-table-wrapper {
       overflow-x: auto;
-      border: 1px solid var(--border-subtle);
+      border: 2.5px solid var(--border);
       border-radius: var(--radius-md);
       margin: 1.5rem 0;
+      box-shadow: 3px 3px 0 var(--border);
     }
 
     .docs-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 0.84rem;
+      font-size: 0.88rem;
     }
 
     .docs-table th {
-      background: var(--bg-surface-elevated);
+      background: var(--surface-alt);
+      font-family: var(--font-heading);
       color: var(--text-primary);
       padding: 0.85rem 1rem;
-      font-weight: 600;
-      border-bottom: 1px solid var(--border-subtle);
+      font-weight: 700;
+      border-bottom: 2px solid var(--border);
       white-space: nowrap;
     }
 
     .docs-table td {
       padding: 0.85rem 1rem;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border);
       color: var(--text-secondary);
       vertical-align: middle;
     }
 
     .docs-table tr:hover td {
-      background: var(--bg-surface-elevated);
+      background: var(--surface-alt);
     }
 
     .docs-table tr:last-child td {
@@ -406,56 +413,185 @@
     .badge-pill {
       display: inline-block;
       padding: 0.2rem 0.55rem;
-      border-radius: var(--radius-full);
+      border-radius: var(--radius-pill);
       font-size: 0.74rem;
-      font-weight: 600;
+      font-weight: 700;
       font-family: var(--font-mono);
+      border: 1.5px solid var(--border);
     }
 
-    .badge-pill.cyan { background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); }
-    .badge-pill.purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
-    .badge-pill.green { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-    .badge-pill.amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .badge-pill.cyan { background: var(--optic-blue-tint); color: var(--optic-blue); }
+    .badge-pill.purple { background: #f5f0ff; color: #7c3aed; }
+    .badge-pill.green { background: var(--sensor-green-tint); color: var(--sensor-green); }
+    .badge-pill.amber { background: var(--optic-amber-tint); color: var(--optic-amber); }
+  
+    /* Scenario Filter Pills & Interactive Cards */
+    .scenario-pill {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 0.45rem 0.9rem;
+      font-size: 0.82rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      box-shadow: 2px 2px 0 var(--border);
+      transition: all 0.15s ease;
+    }
+    .scenario-pill:hover {
+      background: var(--surface-alt);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+    .scenario-pill.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--border);
+      box-shadow: 3px 3px 0 var(--border);
+    }
+    .scenario-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      transition: all 0.2s ease;
+    }
+    .scenario-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-ink-lg);
+    }
+    .scenario-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--border);
+    }
+    .scenario-badge.amber { background: var(--optic-amber-tint); color: var(--optic-amber); }
+    .scenario-badge.green { background: var(--sensor-green-tint); color: var(--sensor-green); }
+    .scenario-badge.cyan { background: var(--optic-blue-tint); color: var(--optic-blue); }
+    .scenario-badge.purple { background: #f5f0ff; color: #7c3aed; }
+    .scenario-badge.red { background: var(--scanner-laser-tint); color: var(--scanner-laser); }
+
+    .scenario-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+    .scenario-rec {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface-alt);
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+    .scenario-rec-label {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .scenario-rec-val {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+    .scenario-desc {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+    .scenario-meta {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .scenario-meta strong {
+      color: var(--text-primary);
+    }
+    .scenario-btn {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1rem;
+      background: var(--surface-alt);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-decoration: none;
+      box-shadow: 2px 2px 0 var(--border);
+      transition: all 0.15s ease;
+    }
+    .scenario-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--border);
+    }
   </style>
 </head>
 <body>
 
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="header-container">
-      <div class="brand-group">
-        <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
-          <div class="brand-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="8" height="8" x="3" y="3" rx="1"/>
-              <path d="M7 7h.01"/>
-              <rect width="8" height="8" x="13" y="3" rx="1"/>
-              <path d="M17 7h.01"/>
-              <rect width="8" height="8" x="3" y="13" rx="1"/>
-              <path d="M7 17h.01"/>
-              <path d="M13 13h2v2h-2z"/>
-              <path d="M17 13h4v4h-4z"/>
-              <path d="M13 17h2v4h-2z"/>
-              <path d="M17 21h4"/>
-            </svg>
+  <!-- Site Header -->
+  <header class="v2-header">
+    <div class="wrap">
+      <div class="v2-header-container">
+        <a href="index.html" class="v2-brand">
+          <div class="v2-brand-badge" style="background: var(--surface);">
+            <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
           </div>
           <div>
-            <span class="brand-title" style="display: block;">Code Generator</span>
-            <span class="brand-tagline">UniversalCodeMaker.com • Free Barcode & QR Suite</span>
+            <div class="v2-brand-title">
+              UniversalCodeMaker
+              <span class="v2-version-tag">V2 STUDIO</span>
+            </div>
+            <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
           </div>
         </a>
-      </div>
 
-      <div class="header-actions">
-        <a href="index.html" class="action-btn action-btn-primary" style="padding: 0.45rem 0.95rem; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          Live Studio
-        </a>
-        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Theme">
-          <span>☀️</span> Light
-        </button>
+        <div class="v2-nav-links">
+          <a href="index.html" class="btn btn-laser btn-sm" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Launch Studio
+          </a>
+          <a href="about.html" class="v2-nav-link">About</a>
+          <a href="symbology-docs.html" class="v2-nav-link active">Docs</a>
+          <a href="classic/index.html" class="v2-classic-link" title="Switch to Legacy V1 Studio">Classic V1 ↗</a>
+          <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
+            <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
+            <button type="button" class="accent-dot" data-accent="cobalt" title="Signal Cobalt"></button>
+            <button type="button" class="accent-dot" data-accent="amber" title="Cyber Amber"></button>
+            <button type="button" class="accent-dot" data-accent="emerald" title="Matrix Emerald"></button>
+          </div>
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Optical Theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>Obsidian Laser</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -475,6 +611,8 @@
 
       <div class="docs-filter-bar">
         <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Quick Jump:</span>
+        <a href="#sec-product-finder" class="filter-btn" style="border-color: var(--accent); color: var(--accent); font-weight: 800;">🧭 Code Finder</a>
+        <a href="#sec-compliance-standards" class="filter-btn" style="border-color: var(--optic-amber); color: var(--optic-amber); font-weight: 800;">⚖️ Legal &amp; Compliance</a>
         <a href="#sec-qr" class="filter-btn active">QR Code</a>
         <a href="#sec-code128" class="filter-btn">Code 128</a>
         <a href="#sec-ean13" class="filter-btn">EAN-13</a>
@@ -483,7 +621,7 @@
         <a href="#sec-aztec" class="filter-btn">Aztec Code</a>
         <a href="#sec-pdf417" class="filter-btn">PDF417</a>
         <a href="#sec-itf14" class="filter-btn">ITF-14</a>
-        <a href="#sec-comparison" class="filter-btn">Comparison Matrix</a>
+        <a href="#sec-comparison" class="filter-btn">Decision Matrix</a>
       </div>
     </div>
 
@@ -516,9 +654,15 @@
           <li><a href="#sec-codabar-msi">Codabar & MSI Plessey</a></li>
         </ul>
 
-        <div class="sidebar-heading">Developer Reference</div>
+        <div class="sidebar-heading">Customer Decision &amp; Law</div>
         <ul class="docs-toc">
-          <li><a href="#sec-comparison">Symbology Decision Matrix</a></li>
+          <li><a href="#sec-product-finder" style="color: var(--accent);">🧭 Which Code Do I Need?</a></li>
+          <li><a href="#sec-compliance-standards" style="color: var(--optic-amber);">⚖️ Compliance &amp; Standards</a></li>
+        </ul>
+
+        <div class="sidebar-heading">Technical Matrix &amp; API</div>
+        <ul class="docs-toc">
+          <li><a href="#sec-comparison">Symbology Feature Matrix</a></li>
           <li><a href="#sec-url-params">URL Deep-Link API</a></li>
           <li><a href="#sec-api-snippets">JavaScript Code Snippets</a></li>
         </ul>
@@ -818,6 +962,169 @@
           </p>
         </section>
 
+        <!-- Interactive Customer Product Decision Finder -->
+        <section id="sec-product-finder" class="symbology-card" style="border: 2.5px solid var(--accent); box-shadow: var(--shadow-ink-lg);">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon" style="background: var(--accent-tint); border-color: var(--accent);">🧭</div>
+              <div>
+                <h2 class="symbology-title">Which Barcode Do I Need for My Product / Business?</h2>
+                <div class="symbology-standard">Customer Logistics &amp; Operational Decision Tree</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="docs-text">
+            Choosing the correct barcode standard is critical for product distribution, regulatory compliance, and checkout speed. A packaging mistake can lead to costly retailer chargebacks or unreadable scans. Use this interactive guide to find the exact symbology for your operational workflow.
+          </p>
+
+          <!-- Interactive Scenario Filter Pills -->
+          <div style="margin: 1.5rem 0 1.25rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.65rem;">
+              Filter Scenarios by Use Case:
+            </div>
+            <div class="scenario-filter-bar" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              <button type="button" class="scenario-pill active" data-filter="all">All Scenarios (7)</button>
+              <button type="button" class="scenario-pill" data-filter="retail">🛒 Retail POS &amp; Supermarkets</button>
+              <button type="button" class="scenario-pill" data-filter="logistics">📦 Shipping Cartons &amp; Cases</button>
+              <button type="button" class="scenario-pill" data-filter="warehouse">🏭 Warehouse &amp; Asset Tags</button>
+              <button type="button" class="scenario-pill" data-filter="electronics">🔬 Electronics &amp; Medical (UDI)</button>
+              <button type="button" class="scenario-pill" data-filter="ticketing">🎫 Tickets &amp; Identification</button>
+              <button type="button" class="scenario-pill" data-filter="consumer">📲 Consumer QR &amp; Marketing</button>
+            </div>
+          </div>
+
+          <!-- Scenario Cards Grid -->
+          <div class="scenario-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; margin-top: 1.5rem;">
+            
+            <!-- Scenario 1: Global Retail Packaging -->
+            <div class="scenario-card" data-category="retail">
+              <div class="scenario-badge amber">International Retail &amp; Supermarkets</div>
+              <h3 class="scenario-card-title">Consumer Products Sold Globally (Outside US/Canada)</h3>
+              <div class="scenario-rec">
+                <span class="scenario-rec-label">Recommended Code:</span>
+                <span class="scenario-rec-val">EAN-13 (GTIN-13)</span>
+              </div>
+              <p class="scenario-desc">
+                Mandatory for commercial products sold in supermarkets and retail stores across Europe, UK, Asia, Australia, and Latin America. Recognized by all omnidirectional checkout laser scanners.
+              </p>
+              <div class="scenario-meta">
+                <div><strong>Registration:</strong> Official GS1 Company Prefix required for commercial open markets.</div>
+                <div><strong>Free Internal Alternative:</strong> For private closed-loop inventory or in-house retail POS, freely assign numbers using prefixes <strong>200–299</strong> with zero fees.</div>
+              </div>
+              <a href="index.html?symbology=ean-13" class="scenario-btn">Generate EAN-13 in Studio ⚡</a>
+            </div>
+
+            <!-- Scenario 2: US & Canadian Retail Packaging -->
+            <div class="scenario-card" data-category="retail">
+              <div class="scenario-badge amber">North America Retail Standard</div>
+              <h3 class="scenario-card-title">Consumer Products Sold in US &amp; Canada (Walmart, Target)</h3>
+              <div class="scenario-rec">
+                <span class="scenario-rec-label">Recommended Code:</span>
+                <span class="scenario-rec-val">UPC-A (GTIN-12)</span>
+              </div>
+              <p class="scenario-desc">
+                The standard 12-digit point-of-sale barcode across all North American retail store chains, pharmacies, grocery checkout registers, and Amazon US listings.
+              </p>
+              <div class="scenario-meta">
+                <div><strong>Registration:</strong> Must obtain an authentic 12-digit UPC company prefix from GS1 US. Third-party recycled UPCs are frequently flagged and delisted by Amazon.</div>
+                <div><strong>Check Digit:</strong> 12th digit is calculated using GS1 Modulo-10 parity.</div>
+              </div>
+              <a href="index.html?symbology=upc-a" class="scenario-btn">Generate UPC-A in Studio ⚡</a>
+            </div>
+
+            <!-- Scenario 3: Corrugated Outer Shipping Cartons -->
+            <div class="scenario-card" data-category="logistics">
+              <div class="scenario-badge green">Logistics &amp; Wholesale Distribution</div>
+              <h3 class="scenario-card-title">Outer Shipping Boxes, Master Cartons &amp; Pallets</h3>
+              <div class="scenario-rec">
+                <span class="scenario-rec-label">Recommended Code:</span>
+                <span class="scenario-rec-val">ITF-14 or GS1-128</span>
+              </div>
+              <p class="scenario-desc">
+                Printed on outer master cartons containing multipacks (e.g. 6, 12, or 24 retail units). Heavy black bearer bars prevent uneven flexographic ink spread on coarse brown corrugated cardboard.
+              </p>
+              <div class="scenario-meta">
+                <div><strong>Usage Warning:</strong> Never scan at retail cash registers. Intended strictly for warehouse receiving, conveyor scanners, and long-range forklift scans.</div>
+                <div><strong>Licensing:</strong> Incorporates your item's GTIN plus packaging indicator digit.</div>
+              </div>
+              <a href="index.html?symbology=itf-14" class="scenario-btn">Generate ITF-14 in Studio ⚡</a>
+            </div>
+
+            <!-- Scenario 4: Warehouse Bins & Asset Tracking -->
+            <div class="scenario-card" data-category="warehouse">
+              <div class="scenario-badge cyan">100% Free • No GS1 Fees Ever</div>
+              <h3 class="scenario-card-title">Warehouse Bins, Shelves, Pallets &amp; Company IT Assets</h3>
+              <div class="scenario-rec">
+                <span class="scenario-rec-label">Recommended Code:</span>
+                <span class="scenario-rec-val">Code 128 (High-Density Linear)</span>
+              </div>
+              <p class="scenario-desc">
+                The universal workhorse for warehouse management systems (WMS), inventory tracking, serial numbers, tool labeling, and internal logistics.
+              </p>
+              <div class="scenario-meta">
+                <div><strong>Legal Status:</strong> Open public standard (ISO/IEC 15417). 100% royalty-free. Zero registration required. Anyone can generate custom SKU labels immediately.</div>
+                <div><strong>Character Support:</strong> Full 128 ASCII alphabet (letters, digits, symbols).</div>
+              </div>
+              <a href="index.html?symbology=code-128" class="scenario-btn">Generate Code 128 in Studio ⚡</a>
+            </div>
+
+            <!-- Scenario 5: Micro Electronics & Medical Devices -->
+            <div class="scenario-card" data-category="electronics">
+              <div class="scenario-badge purple">Industrial High-Density 2D</div>
+              <h3 class="scenario-card-title">PCBs, Silicon Chips, Medical Implants &amp; Pharma (UDI)</h3>
+              <div class="scenario-rec">
+                <span class="scenario-rec-label">Recommended Code:</span>
+                <span class="scenario-rec-val">Data Matrix (ECC 200)</span>
+              </div>
+              <p class="scenario-desc">
+                Ultra-compact 2D matrix symbol capable of encoding serial numbers and lot dates in spaces as small as 2mm × 2mm. Engineered for Direct Part Marking (laser etching and dot-peening).
+              </p>
+              <div class="scenario-meta">
+                <div><strong>Regulatory Mandates:</strong> Legally required for FDA Unique Device Identification (UDI) and EU Falsified Medicines Directive (FMD).</div>
+                <div><strong>Scanners:</strong> Requires 2D area-imager cameras (cannot use 1D red lasers).</div>
+              </div>
+              <a href="index.html?symbology=datamatrix" class="scenario-btn">Generate Data Matrix in Studio ⚡</a>
+            </div>
+
+            <!-- Scenario 6: Tickets, Passes & Badges -->
+            <div class="scenario-card" data-category="ticketing">
+              <div class="scenario-badge purple">Zero Quiet Zone / Stacked</div>
+              <h3 class="scenario-card-title">Airline Boarding Passes, Rail Tickets &amp; Driver Licenses</h3>
+              <div class="scenario-rec">
+                <span class="scenario-rec-label">Recommended Code:</span>
+                <span class="scenario-rec-val">Aztec Code or PDF417</span>
+              </div>
+              <p class="scenario-desc">
+                Aztec Code requires <strong>zero quiet zones</strong>, making it ideal for mobile phone screen displays and ticket margins. PDF417 is mandated across North America for AAMVA driver licenses and state IDs.
+              </p>
+              <div class="scenario-meta">
+                <div><strong>Standards:</strong> Aztec Code (ISO/IEC 24778) used by European rail networks (Eurostar, DB). PDF417 (ISO/IEC 15438) used for commercial freight bills of lading.</div>
+              </div>
+              <a href="index.html?symbology=azteccode" class="scenario-btn">Generate Aztec in Studio ⚡</a>
+            </div>
+
+            <!-- Scenario 7: Consumer QR & Marketing -->
+            <div class="scenario-card" data-category="consumer" style="border-color: var(--scanner-laser);">
+              <div class="scenario-badge red">Permanent Direct-Payload • No Trap</div>
+              <h3 class="scenario-card-title">Packaging URLs, Restaurant Menus, Wi-Fi &amp; Business Cards</h3>
+              <div class="scenario-rec">
+                <span class="scenario-rec-label">Recommended Code:</span>
+                <span class="scenario-rec-val">Static QR Code (ISO/IEC 18004)</span>
+              </div>
+              <p class="scenario-desc">
+                Scanned natively by all iPhone and Android camera apps without installing third-party software. Perfect for consumer engagement, contactless menus, and Wi-Fi credentials.
+              </p>
+              <div class="scenario-meta" style="background: var(--scanner-laser-tint); border: 1.5px solid var(--scanner-laser); padding: 0.75rem; border-radius: var(--radius-sm); margin-top: 0.5rem;">
+                <strong style="color: var(--scanner-laser); display: block; margin-bottom: 0.25rem;">⚠️ The "Dynamic QR" Subscription Trap:</strong>
+                Commercial QR websites generate "dynamic" redirects through their private servers, then deactivate your codes after a 14-day trial and charge $15–$50/month. UniversalCodeMaker produces 100% direct-payload static QR codes that will scan forever with zero subscriptions, zero tracking, and zero expiration.
+              </div>
+              <a href="index.html?symbology=qrcode" class="scenario-btn" style="background: var(--scanner-laser); color: #fff;">Generate Permanent QR in Studio ⚡</a>
+            </div>
+
+          </div>
+        </section>
+
         <!-- Comparison Matrix -->
         <section id="sec-comparison" class="symbology-card">
           <div class="symbology-header">
@@ -912,6 +1219,226 @@
           </div>
         </section>
 
+        <!-- Compliance, Quality Testing & Legal Reference -->
+        <section id="sec-compliance-standards" class="symbology-card" style="border-left: 6px solid var(--optic-amber);">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon" style="background: var(--optic-amber-tint); border-color: var(--optic-amber);">⚖️</div>
+              <div>
+                <h2 class="symbology-title">Compliance, Testing Standards &amp; Legal Licensing Reference</h2>
+                <div class="symbology-standard">Official Specifications, Modulo Mathematics &amp; Fair Use Law</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="docs-text">
+            Enterprise barcode operations require strict adherence to international symbology standards, print tolerances, and legal company prefix regulations. Below is a comprehensive audit of active ISO/IEC standards, GS1 rules, check digit mathematics, and legal protections.
+          </p>
+
+          <!-- 1. ISO/IEC International Standards Table -->
+          <div style="margin: 2rem 0 1.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🌐</span> Official ISO/IEC Symbology Standards Reference
+            </h3>
+            <div class="docs-table-wrapper">
+              <table class="docs-table">
+                <thead>
+                  <tr>
+                    <th>Symbology</th>
+                    <th>Official International Standard</th>
+                    <th>Standardization Body</th>
+                    <th>Scope &amp; Verification Rules</th>
+                    <th>Public Reference</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>QR Code</strong></td>
+                    <td><code>ISO/IEC 18004:2015</code></td>
+                    <td>ISO / IEC JTC 1/SC 31</td>
+                    <td>Matrix dimensions (Ver 1-40), Reed-Solomon ECC (L/M/Q/H), 4-module quiet zone.</td>
+                    <td><a href="https://www.iso.org/standard/62021.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 18004 ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Data Matrix</strong></td>
+                    <td><code>ISO/IEC 16022:2006</code></td>
+                    <td>ISO / IEC JTC 1/SC 31</td>
+                    <td>ECC 200 Reed-Solomon error correction, "L" finder border, DPM laser etching.</td>
+                    <td><a href="https://www.iso.org/standard/44230.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 16022 ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Code 128</strong></td>
+                    <td><code>ISO/IEC 15417:2007</code></td>
+                    <td>ISO / IEC JTC 1/SC 31</td>
+                    <td>Subsets A, B, and C auto-switching, Modulo-103 check character, 10X quiet zones.</td>
+                    <td><a href="https://www.iso.org/standard/43896.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 15417 ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>EAN-13 &amp; UPC-A</strong></td>
+                    <td><code>ISO/IEC 15420:2009</code></td>
+                    <td>ISO / GS1 AISBL</td>
+                    <td>Linear retail symbology, GS1 Modulo-10 parity check digit, omnidirectional scanning.</td>
+                    <td><a href="https://www.iso.org/standard/43654.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 15420 ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>ITF-14</strong></td>
+                    <td><code>ISO/IEC 16390:2007</code></td>
+                    <td>ISO / GS1 AISBL</td>
+                    <td>Interleaved 2 of 5, corrugated packaging bearer bars, packaging indicator digit.</td>
+                    <td><a href="https://www.iso.org/standard/43655.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 16390 ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Aztec Code</strong></td>
+                    <td><code>ISO/IEC 24778:2008</code></td>
+                    <td>ISO / AIM Global</td>
+                    <td>Concentric bullseye center, 0-module quiet zone, compact and full-range modes.</td>
+                    <td><a href="https://www.iso.org/standard/41548.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 24778 ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>PDF417</strong></td>
+                    <td><code>ISO/IEC 15438:2015</code></td>
+                    <td>ISO / AAMVA</td>
+                    <td>Multi-row stacked linear symbology, Levels 0-8 error correction, driver licenses.</td>
+                    <td><a href="https://www.iso.org/standard/65502.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 15438 ↗</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Print Verification</strong></td>
+                    <td><code>ISO/IEC 15416 / 15415</code></td>
+                    <td>ISO / AIM Global</td>
+                    <td>Grading standards (A, B, C, D, F) for linear reflectance, modulation, and 2D contrast.</td>
+                    <td><a href="https://www.iso.org/standard/61793.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 700;">ISO 15416 ↗</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 2. Legal Requirements: GS1 Registration vs. Free Closed Systems -->
+          <div style="margin: 2rem 0 1.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🏢</span> When Do You Legally Need GS1 Registration?
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+              <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
+                <h4 style="font-family: var(--font-heading); color: var(--scanner-laser); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>🔴</span> GS1 Registration IS Required:
+                </h4>
+                <ul style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem;">
+                  <li>Selling consumer packaged goods (CPG) in open retail stores (Walmart, Target, Tesco, Carrefour).</li>
+                  <li>Registering brands on Amazon Brand Registry or Google Shopping feeds (GS1 GEPIR database validation).</li>
+                  <li>Commercial healthcare products subject to FDA Unique Device Identification (UDI) or EU FMD.</li>
+                  <li>Exporting goods internationally through multi-carrier customs brokers.</li>
+                </ul>
+              </div>
+
+              <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
+                <h4 style="font-family: var(--font-heading); color: var(--sensor-green); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>🟢</span> 100% FREE (No GS1 Fees Required):
+                </h4>
+                <ul style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem;">
+                  <li>Internal warehouse bin, shelf, aisle, and pallet rack identification (Code 128 / Code 39).</li>
+                  <li>Enterprise asset tracking (laptops, office chairs, machinery, tools).</li>
+                  <li>Private retail stores operating their own POS software: use EAN-13 prefixes <strong>200–299</strong> or UPC-A prefix <strong>2</strong> (restricted circulation).</li>
+                  <li>All QR Codes: Wi-Fi setup, vCard contacts, URLs, SMS dialers, cryptocurrency cold wallets.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Mathematical Checksum Algorithms & Verification -->
+          <div style="margin: 2rem 0 1.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🧮</span> Checksum Algorithms &amp; Verification Mathematics
+            </h3>
+            <p class="docs-text">
+              Checksums ensure that dirty scanner glass, poor lighting, or operator keyboard errors cannot introduce corrupt product IDs into ERP or POS databases:
+            </p>
+
+            <div class="code-box">
+              <div class="code-header">
+                <span>GS1 Modulo-10 Check Digit Formula (Used by EAN-13, UPC-A, ITF-14, SSCC-18)</span>
+                <button type="button" class="copy-code-btn" data-copy="// JavaScript Modulo-10 Checksum Algorithm
+function calculateMod10(digits) {
+  let sum = 0;
+  const len = digits.length;
+  for (let i = 0; i < len; i++) {
+    const digit = parseInt(digits[len - 1 - i], 10);
+    sum += (i % 2 === 0) ? digit * 3 : digit * 1;
+  }
+  return (10 - (sum % 10)) % 10;
+}">Copy Algorithm</button>
+              </div>
+              <code>// Step 1: Starting from right-to-left before check digit, alternate multiplying by 3 and 1.<br>
+// Step 2: Sum all weighted products.<br>
+// Step 3: Check Digit = (10 - (Sum % 10)) % 10.<br><br>
+function calculateMod10(digits) {<br>
+&nbsp;&nbsp;let sum = 0;<br>
+&nbsp;&nbsp;const len = digits.length;<br>
+&nbsp;&nbsp;for (let i = 0; i &lt; len; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const digit = parseInt(digits[len - 1 - i], 10);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sum += (i % 2 === 0) ? digit * 3 : digit * 1;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return (10 - (sum % 10)) % 10;<br>
+}</code>
+            </div>
+
+            <p class="docs-text" style="font-size: 0.88rem; margin-top: 0.5rem;">
+              <strong>Code 128 Modulo-103:</strong> The check character is calculated by taking the Start code value, adding the product of each character's value multiplied by its position index (1, 2, 3...), and taking the modulo 103 remainder.<br>
+              <strong>2D Reed-Solomon Error Correction:</strong> Implemented over Galois Fields (GF(256)) to compute generator polynomials. If a barcode module is physically obliterated or torn, linear feedback shift register decoding mathematically reconstructs the original payload.
+            </p>
+          </div>
+
+          <!-- 4. Quiet Zones & Prepress Optical Tolerances -->
+          <div style="margin: 2rem 0 1.5rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>📐</span> Prepress Print Quality, Quiet Zones &amp; Avery Tolerances
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+              <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1rem;">
+                <strong style="color: var(--text-primary); font-family: var(--font-heading); display: block; margin-bottom: 0.35rem;">Mandatory Quiet Zones</strong>
+                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                  • <strong>Code 128:</strong> Minimum 10X module width left &amp; right.<br>
+                  • <strong>EAN-13:</strong> 3.63mm left, 2.31mm right.<br>
+                  • <strong>QR Code:</strong> 4 modules on all 4 sides.<br>
+                  • <strong>Aztec Code:</strong> 0 modules (zero quiet zone required).
+                </p>
+              </div>
+              <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1rem;">
+                <strong style="color: var(--text-primary); font-family: var(--font-heading); display: block; margin-bottom: 0.35rem;">Print Contrast &amp; Wavelength</strong>
+                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                  Laser scanners emit red light (630–670nm). Bars must absorb red (black, dark blue). Backgrounds must reflect red (white, cream). <strong>Never print red bars on white paper or black bars on green!</strong>
+                </p>
+              </div>
+              <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1rem;">
+                <strong style="color: var(--text-primary); font-family: var(--font-heading); display: block; margin-bottom: 0.35rem;">Avery Label Sheet Tolerances</strong>
+                <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                  Desktop inkjet/laser sheet feeders experience 0.5mm–1.5mm mechanical drift. Our Avery generator applies centered safe zones to prevent bar clipping on die-cut adhesive edges.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Legal Permissions, Open Source & Fair Use -->
+          <div style="margin: 2rem 0 0.5rem; background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-ink);">
+            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>📜</span> Legal Permissions, Open-Source Licensing &amp; Fair Use
+            </h3>
+            <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0.75rem;">
+              <strong>1. Open-Source Engine:</strong> UniversalCodeMaker renders barcodes client-side in your browser using pure open-source MIT-licensed libraries (bwip-js and qrcode-generator). There are no proprietary backend locks or server telemetry.
+            </p>
+            <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0.75rem;">
+              <strong>2. DENSO WAVE Patent Pledge:</strong> QR Code was invented by Masahiro Hara at DENSO WAVE in 1994 (Patent JP 3343360). DENSO WAVE famously declared they would not exercise patent rights over standard-compliant implementations, permitting worldwide free commercial and personal usage.
+            </p>
+            <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0.75rem;">
+              <strong>3. Nominative Fair Use:</strong> References to trademarked terms including "Avery&reg;", "GS1&reg;", "DENSO WAVE&reg;", "Walmart", and "Amazon" are made strictly under the doctrine of <em>Nominative Fair Use</em> to identify compatibility, operational requirements, and packaging standards. UniversalCodeMaker is an independent utility and is not affiliated with or endorsed by these entities.
+            </p>
+            <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0;">
+              <strong>4. Hyperlinking Legality:</strong> All authority links to public documentation (such as Wikipedia, ISO.org, GS1.org) are public hyperlinks for reference. Linking to public websites is a fundamental architectural right of the open web and requires zero licensing, approvals, or fees.
+            </p>
+          </div>
+
+        </section>
+
         <!-- URL Deep-Linking API -->
         <section id="sec-url-params" class="symbology-card">
           <div class="symbology-header">
@@ -991,29 +1518,66 @@ bwipjs.toCanvas('myCanvas', {<br>
 
   </main>
 
-  <!-- App Footer & Directory Matrix -->
-  <footer class="app-footer">
-    <div class="footer-directory">
-      <div class="footer-directory-header">
-        <h2 class="footer-directory-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="7" height="7" x="3" y="3" rx="1"/>
-            <rect width="7" height="7" x="14" y="3" rx="1"/>
-            <rect width="7" height="7" x="14" y="14" rx="1"/>
-            <rect width="7" height="7" x="3" y="14" rx="1"/>
-          </svg>
-          Supported Barcodes &amp; QR Formats Directory
-        </h2>
-        <p class="footer-directory-subtitle">Direct access to specialized generators with instant SVG/PNG exports, checksum validation, and Avery label printing templates.</p>
+  <!-- Site Footer -->
+  <footer class="v2-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="v2-brand" style="text-decoration: none;">
+            <div class="v2-brand-badge" style="background: var(--surface);">
+              <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
+            </div>
+            <div>
+              <div class="v2-brand-title">UniversalCodeMaker</div>
+              <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            UniversalCodeMaker is an industrial-grade, 100% client-side barcode and QR code studio. Engineered for warehouse logistics, retail packaging, enterprise asset tagging, and high-density 2D applications.
+          </p>
+          <div class="footer-pill-row">
+            <span class="v2-tag"><span>🔒</span> 100% Client-Side</span>
+            <span class="v2-tag"><span>⚡</span> Real-Time Vector Engine</span>
+            <span class="v2-tag"><span>🏷️</span> Avery Compatible</span>
+          </div>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Code Studio</h4>
+            <ul>
+              <li><a href="index.html">QR Code Studio</a></li>
+              <li><a href="index.html">1D Barcode Studio</a></li>
+              <li><a href="index.html">2D Matrix Studio</a></li>
+              <li><a href="classic/index.html">Classic V1 Interface ↗</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Documentation</h4>
+            <ul>
+              <li><a href="symbology-docs.html">Symbology Reference</a></li>
+              <li><a href="symbology-docs.html#sec-ean13">EAN / UPC Standards</a></li>
+              <li><a href="symbology-docs.html#sec-code128">Code 128 Specifications</a></li>
+              <li><a href="symbology-docs.html#sec-qr">QR ISO/IEC 18004</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Trust &amp; Legal</h4>
+            <ul>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+              <li><a href="about.html">About UniversalCodeMaker</a></li>
+              <li><a href="contact.html">Report Feedback</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <div class="footer-directory-grid">
-        <!-- 1D Retail & Logistics -->
-        <div class="footer-dir-col">
-          <h3 class="footer-dir-heading">
-            <span class="dir-icon">🏷️</span> 1D Retail &amp; Logistics
-          </h3>
-          <ul class="footer-dir-links">
+      <!-- 4-Column Programmatic SEO & Symbology Directory Matrix -->
+      <div class="v2-footer-matrix">
+        <div class="v2-dir-col">
+          <h4><span>🏷️</span> 1D Retail &amp; Logistics</h4>
+          <ul>
             <li><a href="pages/ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
             <li><a href="pages/upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
             <li><a href="pages/code-128-barcode-generator.html">Code 128 Barcode Generator</a></li>
@@ -1021,25 +1585,19 @@ bwipjs.toCanvas('myCanvas', {<br>
           </ul>
         </div>
 
-        <!-- 2D Industrial & High-Density -->
-        <div class="footer-dir-col">
-          <h3 class="footer-dir-heading">
-            <span class="dir-icon">📦</span> 2D Industrial &amp; Logistics
-          </h3>
-          <ul class="footer-dir-links">
+        <div class="v2-dir-col">
+          <h4><span>📦</span> 2D Industrial &amp; High-Density</h4>
+          <ul>
             <li><a href="pages/data-matrix-generator.html">Data Matrix 2D Generator</a></li>
             <li><a href="pages/aztec-code-generator.html">Aztec Code Generator</a></li>
             <li><a href="pages/pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
-            <li><a href="index.html">Universal Live Studio</a></li>
+            <li><a href="symbology-docs.html">All 50+ Symbology Guides</a></li>
           </ul>
         </div>
 
-        <!-- Smart QR Generators -->
-        <div class="footer-dir-col">
-          <h3 class="footer-dir-heading">
-            <span class="dir-icon">⚡</span> Smart QR Generators
-          </h3>
-          <ul class="footer-dir-links">
+        <div class="v2-dir-col">
+          <h4><span>⚡</span> Smart QR Generators</h4>
+          <ul>
             <li><a href="pages/wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
             <li><a href="pages/vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
             <li><a href="pages/google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
@@ -1048,12 +1606,9 @@ bwipjs.toCanvas('myCanvas', {<br>
           </ul>
         </div>
 
-        <!-- Messaging & Communication QR -->
-        <div class="footer-dir-col">
-          <h3 class="footer-dir-heading">
-            <span class="dir-icon">📱</span> Messaging &amp; Text QR
-          </h3>
-          <ul class="footer-dir-links">
+        <div class="v2-dir-col">
+          <h4><span>📱</span> Messaging &amp; Text QR</h4>
+          <ul>
             <li><a href="pages/email-qr-code-generator.html">Email Message QR Code</a></li>
             <li><a href="pages/sms-qr-code-generator.html">SMS Direct Message QR</a></li>
             <li><a href="pages/phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>
@@ -1061,39 +1616,25 @@ bwipjs.toCanvas('myCanvas', {<br>
           </ul>
         </div>
       </div>
-    </div>
 
-    <div class="footer-container">
-      <p>&copy; 2026 UniversalCodeMaker.com. Client-side Code Generator. 100% Free Forever.</p>
-      <ul class="footer-links">
-        <li><a href="/">Code Generator</a></li>
-        <li><a href="symbology-docs.html">Symbology Docs</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-      </ul>
+      <div class="footer-bottom">
+        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <ul class="v2-footer-legal-links">
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="symbology-docs.html">Symbology Docs</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="v2-trademark-notice">
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Script for Theme Toggle & Copy Buttons -->
+  <!-- Code Copy Handler -->
   <script>
-    // Theme toggle logic
-    const themeBtn = document.getElementById('theme-toggle-btn');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    if (themeBtn) {
-      themeBtn.innerHTML = savedTheme === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
-      themeBtn.addEventListener('click', () => {
-        const curr = document.documentElement.getAttribute('data-theme');
-        const next = curr === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        themeBtn.innerHTML = next === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
-      });
-    }
-
-    // Code copy buttons
     document.querySelectorAll('.copy-code-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const textToCopy = btn.getAttribute('data-copy');
@@ -1111,8 +1652,28 @@ bwipjs.toCanvas('myCanvas', {<br>
     });
   </script>
 
+  <!-- Navigation & Theme Sync Script -->
+  <script src="js/v2-nav.js?v=2.3"></script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
 
+  <!-- Scenario Filter Interactive Script -->
+  <script>
+    document.querySelectorAll('.scenario-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.scenario-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        document.querySelectorAll('.scenario-card').forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

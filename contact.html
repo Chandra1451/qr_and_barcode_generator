@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT"></script>
@@ -13,18 +13,18 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us &amp; Support | UniversalCodeMaker.com</title>
-  <meta name="description" content="Have questions, feature suggestions, or need technical support with barcode symbologies? Get in touch with the UniversalCodeMaker.com team.">
+  <title>Contact Us &amp; Technical Support | UniversalCodeMaker.com</title>
+  <meta name="description" content="Have questions, feature suggestions, or need technical support with barcode symbologies? Get in touch with the UniversalCodeMaker.com engineering team.">
   <link rel="canonical" href="https://universalcodemaker.com/contact.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="theme-color" content="#06b6d4">
+  <meta name="theme-color" content="#ff2a4b">
 
   <!-- Open Graph & Social Cards -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Contact Us &amp; Support | UniversalCodeMaker.com">
+  <meta property="og:title" content="Contact Us &amp; Technical Support | UniversalCodeMaker.com">
   <meta property="og:description" content="Have questions, bug reports, or feature requests? Reach out to the UniversalCodeMaker.com team.">
   <meta property="og:url" content="https://universalcodemaker.com/contact.html">
-  <meta property="og:image" content="https://universalcodemaker.com/assets/icon-512.png">
+  <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -34,18 +34,14 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- Google Fonts: Non-blocking Preload -->
+  <!-- Google Fonts: Space Grotesk, Nunito, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Core Stylesheets -->
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
+  <!-- V2 Stylesheets -->
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.3">
+  <link rel="stylesheet" href="css/v2-pages.css?v=2.3">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -69,255 +65,60 @@
     }
   }
   </script>
-
-  <style>
-    .doc-page {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem 1.5rem;
-    }
-    .doc-hero {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 2.75rem 2.25rem;
-      box-shadow: var(--shadow-glass);
-      backdrop-filter: blur(16px);
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 2.25rem;
-    }
-    .doc-hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent-gradient);
-    }
-    .doc-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-full);
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.3);
-      color: var(--accent-cyan);
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-    }
-    .doc-title {
-      font-size: 2.3rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 0.85rem;
-      color: var(--text-primary);
-    }
-    .doc-subtitle {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      max-width: 780px;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-    }
-    @media (max-width: 800px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    .contact-info-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1.75rem;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .info-block h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .info-block p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin: 0;
-    }
-    .info-email-link {
-      color: var(--accent-cyan);
-      font-weight: 600;
-      text-decoration: none;
-      word-break: break-all;
-    }
-    .info-email-link:hover {
-      text-decoration: underline;
-    }
-    .contact-form-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-    .form-label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.4rem;
-    }
-    .form-input, .form-select, .form-textarea {
-      width: 100%;
-      padding: 0.7rem 0.9rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-base);
-      color: var(--text-primary);
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-      box-sizing: border-box;
-    }
-    .form-input:focus, .form-select:focus, .form-textarea:focus {
-      outline: none;
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
-    }
-    .form-textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    .btn-submit {
-      width: 100%;
-      padding: 0.85rem;
-      border-radius: var(--radius-sm);
-      background: var(--accent-cyan);
-      color: #0b1329;
-      font-weight: 700;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      transition: transform var(--transition-fast), background var(--transition-fast);
-    }
-    .btn-submit:hover {
-      background: #22d3ee;
-      transform: translateY(-1px);
-    }
-    .contact-faq-section {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .contact-faq-section h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .faq-item {
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 1rem;
-      margin-bottom: 1rem;
-    }
-    .faq-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-      margin-bottom: 0;
-    }
-    .faq-q {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text-primary);
-      margin-bottom: 0.35rem;
-    }
-    .faq-a {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="header-container">
-      <div class="brand-group">
-        <a href="/" style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
-          <div class="brand-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="8" height="8" x="3" y="3" rx="1"/>
-              <path d="M7 7h.01"/>
-              <rect width="8" height="8" x="13" y="3" rx="1"/>
-              <path d="M17 7h.01"/>
-              <rect width="8" height="8" x="3" y="13" rx="1"/>
-              <path d="M7 17h.01"/>
-              <path d="M13 13h2v2h-2z"/>
-              <path d="M17 13h4v4h-4z"/>
-              <path d="M13 17h2v4h-2z"/>
-              <path d="M17 21h4"/>
-            </svg>
+  <!-- Site Header -->
+  <header class="v2-header">
+    <div class="wrap">
+      <div class="v2-header-container">
+        <a href="index.html" class="v2-brand">
+          <div class="v2-brand-badge" style="background: var(--surface);">
+            <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
           </div>
           <div>
-            <span class="brand-title" style="display: block;">UniversalCodeMaker</span>
-            <span class="brand-tagline">100% Free &amp; Private Barcode &amp; QR Suite</span>
+            <div class="v2-brand-title">
+              UniversalCodeMaker
+              <span class="v2-version-tag">V2 STUDIO</span>
+            </div>
+            <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
           </div>
         </a>
-      </div>
 
-      <div class="header-actions">
-        <a href="/" class="action-btn action-btn-primary" style="padding: 0.45rem 0.95rem; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          Studio
-        </a>
-        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Theme">
-          <span>☀️</span> Light
-        </button>
+        <div class="v2-nav-links">
+          <a href="index.html" class="btn btn-laser btn-sm" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Launch Studio
+          </a>
+          <a href="about.html" class="v2-nav-link">About</a>
+          <a href="symbology-docs.html" class="v2-nav-link">Docs</a>
+          <a href="classic/index.html" class="v2-classic-link" title="Switch to Legacy V1 Studio">Classic V1 ↗</a>
+          <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
+            <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
+            <button type="button" class="accent-dot" data-accent="cobalt" title="Signal Cobalt"></button>
+            <button type="button" class="accent-dot" data-accent="amber" title="Cyber Amber"></button>
+            <button type="button" class="accent-dot" data-accent="emerald" title="Matrix Emerald"></button>
+          </div>
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Optical Theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>Obsidian Laser</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="doc-page">
+  <main class="doc-wrap">
 
     <!-- Hero -->
     <div class="doc-hero">
       <div class="doc-badge">
-        <span>📬</span> Get In Touch
+        <span>📬</span> Direct Engineering Support
       </div>
       <h1 class="doc-title">Contact &amp; Technical Support</h1>
       <p class="doc-subtitle">
-        We value your feedback, feature ideas, bug reports, and business questions. Reach out to our engineering team directly.
+        We value your feedback, feature ideas, bug reports, and commercial questions. Reach out to our engineering and design team directly.
       </p>
     </div>
 
@@ -388,7 +189,7 @@
             <textarea id="contact-message" class="form-textarea" placeholder="Describe your question, request, or issue..." required></textarea>
           </div>
 
-          <button type="submit" class="btn-submit" id="btn-submit-contact">
+          <button type="submit" class="btn btn-laser" id="btn-submit-contact" style="width: 100%; padding: 0.85rem;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <line x1="22" y1="2" x2="11" y2="13"></line>
               <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -401,60 +202,154 @@
     </div>
 
     <!-- FAQ Section -->
-    <section class="contact-faq-section">
-      <h2><span>❓</span> Frequently Asked Support Questions</h2>
+    <section class="faq-section">
+      <h2>Frequently Asked Support Questions</h2>
 
-      <div class="faq-item">
-        <div class="faq-q">Can you restore a QR code or barcode I generated earlier?</div>
-        <div class="faq-a">No. Because UniversalCodeMaker.com is 100% client-side, your data never reaches our servers. Once you close your browser tab, your codes exist only in the files you downloaded to your computer or device.</div>
-      </div>
+      <div class="faq-accordion">
+        <details class="faq-item" open>
+          <summary class="faq-question">
+            <span>Can you restore a QR code or barcode I generated earlier?</span>
+            <span class="faq-icon">▼</span>
+          </summary>
+          <div class="faq-answer">
+            <p>No. Because UniversalCodeMaker.com is 100% client-side, your data never reaches our servers. Once you close your browser tab, your codes exist only in the files you downloaded to your computer or device.</p>
+          </div>
+        </details>
 
-      <div class="faq-item">
-        <div class="faq-q">Can I request support for a custom barcode symbology or 2D standard?</div>
-        <div class="faq-a">Yes! We actively expand our catalog based on user demand. Select "New Barcode Symbology Request" above with the standard name (e.g., Code 39, Codabar, GS1-128) and specifications.</div>
-      </div>
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Can I request support for a custom barcode symbology or 2D standard?</span>
+            <span class="faq-icon">▼</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Yes! We actively expand our catalog based on user demand. Select "New Barcode Symbology Request" above with the standard name (e.g., Code 39, Codabar, GS1-128) and specifications.</p>
+          </div>
+        </details>
 
-      <div class="faq-item">
-        <div class="faq-q">Are generated codes really free for commercial packaging?</div>
-        <div class="faq-a">Yes, 100% free with no royalties or subscriptions. You own full rights to your generated graphics. Please see our <a href="terms.html" style="color: var(--accent-cyan);">Terms of Service</a> for complete details.</div>
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>Are generated codes really free for commercial packaging?</span>
+            <span class="faq-icon">▼</span>
+          </summary>
+          <div class="faq-answer">
+            <p>Yes, 100% free with no royalties or subscriptions. You own full rights to your generated graphics. Please see our <a href="terms.html" style="color: var(--optic-blue); font-weight: 700;">Terms of Service</a> for complete details.</p>
+          </div>
+        </details>
       </div>
     </section>
 
   </main>
 
-  <!-- App Footer -->
-  <footer class="app-footer">
-    <div class="footer-container">
-      <p>&copy; 2026 UniversalCodeMaker.com. Client-side Code Generator. 100% Free Forever.</p>
-      <ul class="footer-links">
-        <li><a href="/">Code Generator</a></li>
-        <li><a href="symbology-docs.html">Symbology Docs</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-      </ul>
+  <!-- Site Footer -->
+  <footer class="v2-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div class="v2-brand-badge" style="width: 38px; height: 38px; background: var(--surface);">
+              <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="30" height="30" style="display: block; object-fit: contain;">
+            </div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker <span class="v2-version-tag">V2</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Optical Studio</a></li>
+              <li><a href="index.html#symbologies">Symbologies Directory</a></li>
+              <li><a href="classic/index.html">Classic V1 Studio</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Standards &amp; Docs</h4>
+            <ul>
+              <li><a href="symbology-docs.html">Symbology Documentation</a></li>
+              <li><a href="about.html">About &amp; Mission</a></li>
+              <li><a href="privacy-policy.html">Zero-Knowledge Privacy</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://primordialparadigm.com" target="_blank" rel="noopener">Primordial Paradigm ↗</a></li>
+              <li><a href="contact.html">Report Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4-Column Programmatic SEO & Symbology Directory Matrix -->
+      <div class="v2-footer-matrix">
+        <div class="v2-dir-col">
+          <h4><span>🏷️</span> 1D Retail &amp; Logistics</h4>
+          <ul>
+            <li><a href="pages/ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
+            <li><a href="pages/upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
+            <li><a href="pages/code-128-barcode-generator.html">Code 128 Barcode Generator</a></li>
+            <li><a href="pages/itf-14-barcode-generator.html">ITF-14 Carton Barcode Generator</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>📦</span> 2D Industrial &amp; High-Density</h4>
+          <ul>
+            <li><a href="pages/data-matrix-generator.html">Data Matrix 2D Generator</a></li>
+            <li><a href="pages/aztec-code-generator.html">Aztec Code Generator</a></li>
+            <li><a href="pages/pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
+            <li><a href="symbology-docs.html">All 50+ Symbology Guides</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>⚡</span> Smart QR Generators</h4>
+          <ul>
+            <li><a href="pages/wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
+            <li><a href="pages/vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
+            <li><a href="pages/google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
+            <li><a href="pages/crypto-qr-code-generator.html">Crypto Wallet QR Code</a></li>
+            <li><a href="pages/calendar-event-qr-code-generator.html">Calendar Event (iCal) QR</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>📱</span> Messaging &amp; Text QR</h4>
+          <ul>
+            <li><a href="pages/email-qr-code-generator.html">Email Message QR Code</a></li>
+            <li><a href="pages/sms-qr-code-generator.html">SMS Direct Message QR</a></li>
+            <li><a href="pages/phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>
+            <li><a href="pages/plain-text-qr-code-generator.html">Plain Text QR Code</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <ul class="v2-footer-legal-links">
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="symbology-docs.html">Symbology Docs</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="v2-trademark-notice">
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Contact Form & Theme Script -->
-  <script>
-    // Theme toggle logic
-    const themeBtn = document.getElementById('theme-toggle-btn');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    if (themeBtn) {
-      themeBtn.innerHTML = savedTheme === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
-      themeBtn.addEventListener('click', () => {
-        const curr = document.documentElement.getAttribute('data-theme');
-        const next = curr === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        themeBtn.innerHTML = next === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
-      });
-    }
+  <!-- Navigation & Theme Sync Script -->
+  <script src="js/v2-nav.js?v=2.3"></script>
 
-    // Contact Form Mailto Handler
+  <!-- Contact Form Mailto Handler -->
+  <script>
     const form = document.getElementById('contact-form');
     if (form) {
       form.addEventListener('submit', (e) => {

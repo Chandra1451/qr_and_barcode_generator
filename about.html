@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT"></script>
@@ -13,18 +13,18 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | UniversalCodeMaker.com - Free & Private Code Generator</title>
+  <title>About Us | UniversalCodeMaker.com - Free &amp; Private Code Generator</title>
   <meta name="description" content="Discover the mission, technology, and zero-knowledge privacy architecture behind UniversalCodeMaker.com — providing 100% free, client-side QR and barcode generation worldwide.">
   <link rel="canonical" href="https://universalcodemaker.com/about.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="theme-color" content="#06b6d4">
+  <meta name="theme-color" content="#ff2a4b">
 
   <!-- Open Graph & Social Cards -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="About Us | UniversalCodeMaker.com">
   <meta property="og:description" content="Our mission: 100% free, client-side, zero-tracking QR and barcode generation for developers, logistics, and retail businesses worldwide.">
   <meta property="og:url" content="https://universalcodemaker.com/about.html">
-  <meta property="og:image" content="https://universalcodemaker.com/assets/icon-512.png">
+  <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -34,18 +34,14 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- Google Fonts: Non-blocking Preload -->
+  <!-- Google Fonts: Space Grotesk, Nunito, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Core Stylesheets -->
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
+  <!-- V2 Stylesheets -->
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.3">
+  <link rel="stylesheet" href="css/v2-pages.css?v=2.3">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -59,7 +55,7 @@
       "@type": "Organization",
       "name": "UniversalCodeMaker.com",
       "url": "https://universalcodemaker.com",
-      "logo": "https://universalcodemaker.com/assets/icon-512.png"
+      "logo": "https://universalcodemaker.com/assets/logo-icon.png"
     },
     "mainEntity": {
       "@type": "Organization",
@@ -71,191 +67,51 @@
     }
   }
   </script>
-
-  <style>
-    .doc-page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem 1.5rem;
-    }
-    .doc-hero {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 2.75rem 2.25rem;
-      box-shadow: var(--shadow-glass);
-      backdrop-filter: blur(16px);
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 2.25rem;
-    }
-    .doc-hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent-gradient);
-    }
-    .doc-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-full);
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.3);
-      color: var(--accent-cyan);
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-    }
-    .doc-title {
-      font-size: 2.3rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 0.85rem;
-      color: var(--text-primary);
-    }
-    .doc-subtitle {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      max-width: 800px;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.75rem;
-      margin-bottom: 2.5rem;
-    }
-    .about-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1.75rem;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition-fast), border-color var(--transition-fast);
-    }
-    .about-card:hover {
-      border-color: var(--border-focus);
-      transform: translateY(-2px);
-    }
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 0.75rem;
-    }
-    .card-body {
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-    }
-    .content-section {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 2.25rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .content-section h2 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .content-section p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-    .content-section p:last-child {
-      margin-bottom: 0;
-    }
-    .values-list {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-    .values-item {
-      background: var(--bg-base);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      padding: 1rem 1.25rem;
-    }
-    .values-item strong {
-      display: block;
-      color: var(--accent-cyan);
-      font-size: 0.95rem;
-      margin-bottom: 0.35rem;
-    }
-    .values-item span {
-      font-size: 0.86rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="header-container">
-      <div class="brand-group">
-        <a href="/" style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
-          <div class="brand-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="8" height="8" x="3" y="3" rx="1"/>
-              <path d="M7 7h.01"/>
-              <rect width="8" height="8" x="13" y="3" rx="1"/>
-              <path d="M17 7h.01"/>
-              <rect width="8" height="8" x="3" y="13" rx="1"/>
-              <path d="M7 17h.01"/>
-              <path d="M13 13h2v2h-2z"/>
-              <path d="M17 13h4v4h-4z"/>
-              <path d="M13 17h2v4h-2z"/>
-              <path d="M17 21h4"/>
-            </svg>
+  <!-- Site Header -->
+  <header class="v2-header">
+    <div class="wrap">
+      <div class="v2-header-container">
+        <a href="index.html" class="v2-brand">
+          <div class="v2-brand-badge" style="background: var(--surface);">
+            <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
           </div>
           <div>
-            <span class="brand-title" style="display: block;">UniversalCodeMaker</span>
-            <span class="brand-tagline">100% Free &amp; Private Barcode &amp; QR Suite</span>
+            <div class="v2-brand-title">
+              UniversalCodeMaker
+              <span class="v2-version-tag">V2 STUDIO</span>
+            </div>
+            <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
           </div>
         </a>
-      </div>
 
-      <div class="header-actions">
-        <a href="/" class="action-btn action-btn-primary" style="padding: 0.45rem 0.95rem; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          Studio
-        </a>
-        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Theme">
-          <span>☀️</span> Light
-        </button>
+        <div class="v2-nav-links">
+          <a href="index.html" class="btn btn-laser btn-sm" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Launch Studio
+          </a>
+          <a href="about.html" class="v2-nav-link" style="color: var(--scanner-laser);">About</a>
+          <a href="symbology-docs.html" class="v2-nav-link">Docs</a>
+          <a href="classic/index.html" class="v2-classic-link" title="Switch to Legacy V1 Studio">Classic V1 ↗</a>
+          <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
+            <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
+            <button type="button" class="accent-dot" data-accent="cobalt" title="Signal Cobalt"></button>
+            <button type="button" class="accent-dot" data-accent="amber" title="Cyber Amber"></button>
+            <button type="button" class="accent-dot" data-accent="emerald" title="Matrix Emerald"></button>
+          </div>
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Optical Theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>Obsidian Laser</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="doc-page">
+  <main class="doc-wrap">
 
     <!-- Hero -->
     <div class="doc-hero">
@@ -269,34 +125,31 @@
     </div>
 
     <!-- 3 Pillar Cards -->
-    <div class="about-grid">
-      <div class="about-card">
-        <div class="card-icon">🔒</div>
-        <h3 class="card-title">100% Client-Side Privacy</h3>
-        <p class="card-body">
+    <div class="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      <div class="info-card">
+        <h2 class="info-card-title"><span>🔒</span> 100% Client-Side Privacy</h2>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.65;">
           Every barcode and QR code is rendered directly in your web browser using HTML5 Canvas and SVG. Your sensitive Wi-Fi passwords, contact details, payment information, and serial numbers never touch a remote server or database.
         </p>
       </div>
 
-      <div class="about-card">
-        <div class="card-icon">⚡</div>
-        <h3 class="card-title">Zero Paywalls or Limits</h3>
-        <p class="card-body">
+      <div class="info-card">
+        <h2 class="info-card-title"><span>⚡</span> Zero Paywalls or Limits</h2>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.65;">
           Competitors charge $15 to $30 per month for vector SVG downloads or batch label printing. At UniversalCodeMaker.com, unlimited high-resolution raster (PNG/JPEG) and scalable vector (SVG) exports are free forever for personal and commercial use.
         </p>
       </div>
 
-      <div class="about-card">
-        <div class="card-icon">📐</div>
-        <h3 class="card-title">Strict Standards Accuracy</h3>
-        <p class="card-body">
+      <div class="info-card">
+        <h2 class="info-card-title"><span>📐</span> Strict Standards Accuracy</h2>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.65;">
           We adhere strictly to international GS1, ISO/IEC 15420, ISO/IEC 18004, and ISO/IEC 16022 specifications. Barcodes include automated Mod-10 checksum validation and proper quiet zones to guarantee high first-pass scan rates.
         </p>
       </div>
     </div>
 
     <!-- Section: Why We Built This -->
-    <section class="content-section">
+    <section class="doc-section">
       <h2><span>🎯</span> Our Story &amp; Philosophy</h2>
       <p>
         The modern web is filled with "free" QR and barcode generator websites that bait users with initial free generation, only to hold their codes hostage behind monthly recurring paywalls or disguise dynamic redirects that can break or expire at any time. Even worse, many services log every scanned Wi-Fi key, internal SKU, and customer contact in backend databases.
@@ -307,33 +160,33 @@
     </section>
 
     <!-- Section: Technical Stack & Open Source -->
-    <section class="content-section">
+    <section class="doc-section">
       <h2><span>🛠️</span> Open Source &amp; Technology Stack</h2>
       <p>
         Our platform stands on the shoulders of giants in the open-source community. We gratefully utilize and maintain integrations with proven, battle-tested rendering engines:
       </p>
-      <div class="values-list">
-        <div class="values-item">
-          <strong>bwip-js (Barcode Writer in Pure JavaScript)</strong>
-          <span>Powers our 1D retail and 2D industrial barcode engines with support for over 50 symbologies, strictly compliant with international GS1 and ISO standards.</span>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.25rem;">
+        <div style="background: var(--canvas-base); border: var(--border-ink); border-radius: var(--radius-sm); padding: 1.15rem; box-shadow: 2px 2px 0 var(--ink-black);">
+          <strong style="display: block; color: var(--scanner-laser); font-size: 0.95rem; margin-bottom: 0.4rem; font-family: var(--font-display);">bwip-js (Barcode Writer in Pure JS)</strong>
+          <span style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55;">Powers our 1D retail and 2D industrial barcode engines with support for over 50 symbologies, strictly compliant with international GS1 and ISO standards.</span>
         </div>
-        <div class="values-item">
-          <strong>qr-code-styling</strong>
-          <span>Enables custom-branded QR codes featuring rounded dot styles, gradient color fills, customizable eye markers, and embedded center logo branding.</span>
+        <div style="background: var(--canvas-base); border: var(--border-ink); border-radius: var(--radius-sm); padding: 1.15rem; box-shadow: 2px 2px 0 var(--ink-black);">
+          <strong style="display: block; color: var(--optic-blue); font-size: 0.95rem; margin-bottom: 0.4rem; font-family: var(--font-display);">qr-code-styling</strong>
+          <span style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55;">Enables custom-branded QR codes featuring rounded dot styles, gradient color fills, customizable eye markers, and embedded center logo branding.</span>
         </div>
-        <div class="values-item">
-          <strong>jspdf (Client-Side PDF Compiler)</strong>
-          <span>Assembles multi-label grids on standard Avery 5160 (30-up) and Avery 5163 (10-up) sheets directly in browser memory without sending data over the network.</span>
+        <div style="background: var(--canvas-base); border: var(--border-ink); border-radius: var(--radius-sm); padding: 1.15rem; box-shadow: 2px 2px 0 var(--ink-black);">
+          <strong style="display: block; color: var(--sensor-green); font-size: 0.95rem; margin-bottom: 0.4rem; font-family: var(--font-display);">jspdf (Client-Side PDF Compiler)</strong>
+          <span style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55;">Assembles multi-label grids on standard Avery 5160 (30-up) and Avery 5163 (10-up) sheets directly in browser memory without sending data over the network.</span>
         </div>
-        <div class="values-item">
-          <strong>Vanilla ES Modules &amp; Modern CSS</strong>
-          <span>Built without bloated frameworks to ensure ultra-fast sub-50ms loading times, 100/100 Core Web Vitals, and seamless performance on mobile and desktop devices.</span>
+        <div style="background: var(--canvas-base); border: var(--border-ink); border-radius: var(--radius-sm); padding: 1.15rem; box-shadow: 2px 2px 0 var(--ink-black);">
+          <strong style="display: block; color: var(--text-primary); font-size: 0.95rem; margin-bottom: 0.4rem; font-family: var(--font-display);">Vanilla ES Modules &amp; Modern CSS</strong>
+          <span style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55;">Built without bloated frameworks to ensure ultra-fast sub-50ms loading times, 100/100 Core Web Vitals, and seamless performance on mobile and desktop devices.</span>
         </div>
       </div>
     </section>
 
     <!-- Section: Commercial Use & Transparent Monetization -->
-    <section class="content-section">
+    <section class="doc-section">
       <h2><span>💼</span> Commercial Use &amp; Monetization Transparency</h2>
       <p>
         All barcodes, QR codes, vector graphics, and printable PDF documents generated on UniversalCodeMaker.com are <strong>100% royalty-free</strong>. You may freely use them on retail product packaging, Amazon FBA shipments, warehouse logistics, business cards, restaurant menus, and advertising billboards without any licensing fees or attribution requirements.
@@ -345,37 +198,113 @@
 
   </main>
 
-  <!-- App Footer -->
-  <footer class="app-footer">
-    <div class="footer-container">
-      <p>&copy; 2026 UniversalCodeMaker.com. Client-side Code Generator. 100% Free Forever.</p>
-      <ul class="footer-links">
-        <li><a href="/">Code Generator</a></li>
-        <li><a href="symbology-docs.html">Symbology Docs</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-      </ul>
+  <!-- Site Footer -->
+  <footer class="v2-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div class="v2-brand-badge" style="width: 38px; height: 38px; background: var(--surface);">
+              <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="30" height="30" style="display: block; object-fit: contain;">
+            </div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker <span class="v2-version-tag">V2</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Optical Studio</a></li>
+              <li><a href="index.html#symbologies">Symbologies Directory</a></li>
+              <li><a href="classic/index.html">Classic V1 Studio</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Standards &amp; Docs</h4>
+            <ul>
+              <li><a href="symbology-docs.html">Symbology Documentation</a></li>
+              <li><a href="about.html">About &amp; Mission</a></li>
+              <li><a href="privacy-policy.html">Zero-Knowledge Privacy</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://primordialparadigm.com" target="_blank" rel="noopener">Primordial Paradigm ↗</a></li>
+              <li><a href="contact.html">Report Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4-Column Programmatic SEO & Symbology Directory Matrix -->
+      <div class="v2-footer-matrix">
+        <div class="v2-dir-col">
+          <h4><span>🏷️</span> 1D Retail &amp; Logistics</h4>
+          <ul>
+            <li><a href="pages/ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
+            <li><a href="pages/upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
+            <li><a href="pages/code-128-barcode-generator.html">Code 128 Barcode Generator</a></li>
+            <li><a href="pages/itf-14-barcode-generator.html">ITF-14 Carton Barcode Generator</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>📦</span> 2D Industrial &amp; High-Density</h4>
+          <ul>
+            <li><a href="pages/data-matrix-generator.html">Data Matrix 2D Generator</a></li>
+            <li><a href="pages/aztec-code-generator.html">Aztec Code Generator</a></li>
+            <li><a href="pages/pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
+            <li><a href="symbology-docs.html">All 50+ Symbology Guides</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>⚡</span> Smart QR Generators</h4>
+          <ul>
+            <li><a href="pages/wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
+            <li><a href="pages/vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
+            <li><a href="pages/google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
+            <li><a href="pages/crypto-qr-code-generator.html">Crypto Wallet QR Code</a></li>
+            <li><a href="pages/calendar-event-qr-code-generator.html">Calendar Event (iCal) QR</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4><span>📱</span> Messaging &amp; Text QR</h4>
+          <ul>
+            <li><a href="pages/email-qr-code-generator.html">Email Message QR Code</a></li>
+            <li><a href="pages/sms-qr-code-generator.html">SMS Direct Message QR</a></li>
+            <li><a href="pages/phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>
+            <li><a href="pages/plain-text-qr-code-generator.html">Plain Text QR Code</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <ul class="v2-footer-legal-links">
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="symbology-docs.html">Symbology Docs</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="v2-trademark-notice">
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Theme Script -->
-  <script>
-    const themeBtn = document.getElementById('theme-toggle-btn');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    if (themeBtn) {
-      themeBtn.innerHTML = savedTheme === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
-      themeBtn.addEventListener('click', () => {
-        const curr = document.documentElement.getAttribute('data-theme');
-        const next = curr === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        themeBtn.innerHTML = next === 'dark' ? '<span>☀️</span> Light' : '<span>🌙</span> Dark';
-      });
-    }
-  </script>
+  <!-- Navigation & Theme Sync Script -->
+  <script src="js/v2-nav.js?v=2.3"></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
