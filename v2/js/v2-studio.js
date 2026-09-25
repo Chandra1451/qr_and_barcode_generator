@@ -83,6 +83,9 @@ class V2StudioApp {
       layoutId: 'vertical-stack'
     };
 
+    // Universal Image Corner Radius State
+    this.cornerRadius = 0;
+
     // DOM Elements Cache
     this.dom = {};
   }
@@ -99,6 +102,7 @@ class V2StudioApp {
     this.renderHistoryChips();
     this.bindEvents();
     this.bindBarcodeStylingEvents();
+    this.bindCornerRadiusEvents();
     this.bindLaserFxEvents();
     this.bindLogoStudioEvents();
     this.bindBatchModalEvents();
@@ -328,6 +332,11 @@ class V2StudioApp {
       valBarcodeBgColor: document.getElementById('val-barcodeBgColor'),
       ctrlBarcodeTransparentBg: document.getElementById('ctrl-barcodeTransparentBg'),
       barcodePresetGrid: document.getElementById('barcode-preset-grid'),
+
+      // Universal Image Corner Radius Controls
+      ctrlCornerRadius: document.getElementById('ctrl-cornerRadius'),
+      valCornerRadius: document.getElementById('val-cornerRadius'),
+      cornerPresetRow: document.getElementById('corner-preset-row'),
 
       // Laser FX & Scanability Specs
       btnToggleLaser: document.getElementById('btn-toggle-laser'),
@@ -947,7 +956,10 @@ class V2StudioApp {
       // Center Logo (QR)
       image: isQR ? (this.activeLogoDataUrl || '') : '',
       imageSize: 0.28,
-      imageMargin: 4
+      imageMargin: 4,
+
+      // Universal Image Corner Radius (QR & Barcodes)
+      cornerRadius: this.cornerRadius || 0
     };
   }
 
@@ -984,9 +996,12 @@ class V2StudioApp {
       if (isQR) {
         this.dom.previewCanvas.style.display = 'none';
         this.dom.qrStyledContainer.style.display = 'flex';
+        this.dom.qrStyledContainer.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+        this.dom.qrStyledContainer.style.overflow = this.cornerRadius ? 'hidden' : 'visible';
       } else {
         this.dom.qrStyledContainer.style.display = 'none';
         this.dom.previewCanvas.style.display = 'block';
+        this.dom.previewCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
       }
 
       // Compile render options with 100% V1 Parity + Barcode Color Controls
@@ -1068,6 +1083,63 @@ class V2StudioApp {
 
         this.scheduleRender();
         this.showToast(`Applied ${e.currentTarget.textContent.trim()} barcode palette.`);
+      });
+    });
+  }
+
+  /* --- Universal Image Corner Radius Controls & Presets --- */
+  bindCornerRadiusEvents() {
+    const updateRadiusBadge = (val) => {
+      if (!this.dom.valCornerRadius) return;
+      const num = parseInt(val, 10) || 0;
+      if (num === 0) {
+        this.dom.valCornerRadius.textContent = '0px (Sharp)';
+      } else if (num <= 10) {
+        this.dom.valCornerRadius.textContent = `${num}px (Subtle)`;
+      } else if (num <= 20) {
+        this.dom.valCornerRadius.textContent = `${num}px (Smooth)`;
+      } else if (num <= 32) {
+        this.dom.valCornerRadius.textContent = `${num}px (Curved)`;
+      } else {
+        this.dom.valCornerRadius.textContent = `${num}px (Badge)`;
+      }
+    };
+
+    const setCornerRadius = (radius, syncSlider = true) => {
+      this.cornerRadius = parseInt(radius, 10) || 0;
+      if (syncSlider && this.dom.ctrlCornerRadius) {
+        this.dom.ctrlCornerRadius.value = this.cornerRadius;
+      }
+      updateRadiusBadge(this.cornerRadius);
+
+      // Sync active state on preset buttons
+      this.dom.cornerPresetRow?.querySelectorAll('.corner-preset-btn').forEach(btn => {
+        const btnR = parseInt(btn.dataset.radius, 10);
+        btn.classList.toggle('active', btnR === this.cornerRadius);
+      });
+
+      // Immediate visual feedback on preview elements
+      if (this.dom.qrStyledContainer) {
+        this.dom.qrStyledContainer.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+        this.dom.qrStyledContainer.style.overflow = this.cornerRadius ? 'hidden' : 'visible';
+      }
+      if (this.dom.previewCanvas) {
+        this.dom.previewCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+      }
+
+      this.scheduleRender();
+    };
+
+    this.dom.ctrlCornerRadius?.addEventListener('input', (e) => {
+      setCornerRadius(e.target.value, false);
+    });
+
+    this.dom.cornerPresetRow?.querySelectorAll('.corner-preset-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const r = e.currentTarget.dataset.radius;
+        if (r !== undefined) {
+          setCornerRadius(r, true);
+        }
       });
     });
   }
@@ -1346,7 +1418,8 @@ class V2StudioApp {
       const res = await copyImageToClipboard({
         generator: this.currentGenerator,
         previewCanvas: this.dom.previewCanvas,
-        qrStyledContainer: this.dom.qrStyledContainer
+        qrStyledContainer: this.dom.qrStyledContainer,
+        cornerRadius: this.cornerRadius || 0
       });
       if (res) {
         if (this.dom.btnCopyClipboard) {
