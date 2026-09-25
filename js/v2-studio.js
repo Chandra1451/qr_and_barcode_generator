@@ -134,6 +134,23 @@ class V2StudioApp {
       this.dom.payloadInput.value = paramPayload;
       this.scheduleRender();
     }
+
+    const paramPreset = urlParams.get('preset');
+    const paramLabel = urlParams.get('label') || urlParams.get('labelmaker');
+
+    if (paramPreset && LABEL_PRESETS[paramPreset]) {
+      this.labelState.presetId = paramPreset;
+      if (this.dom.labelPresetSelect) {
+        this.dom.labelPresetSelect.value = paramPreset;
+        this.dom.labelPresetSelect.dispatchEvent(new Event('change'));
+      }
+    }
+
+    if (paramLabel || paramPreset) {
+      setTimeout(() => {
+        this.openLabelMakerModal();
+      }, 150);
+    }
   }
 
   cacheDom() {
@@ -620,7 +637,10 @@ class V2StudioApp {
       crypto: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/></svg>`,
       calendar: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
       geo: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
-      text: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>`
+      text: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>`,
+      google_review: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+      whatsapp: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+      upi: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/><path d="M7 15h.01M17 15h.01"/></svg>`
     };
     this.dom.qrWizardNav.innerHTML = wizards.map(wiz => `
       <button type="button" class="wiz-tab-btn ${wiz.id === this.activeWizardId ? 'active' : ''}" data-wizard="${wiz.id}">
@@ -1385,8 +1405,25 @@ class V2StudioApp {
     this.dom.labelPresetSelect?.addEventListener('change', (e) => {
       this.labelState.presetId = e.target.value;
       const preset = LABEL_PRESETS[e.target.value] || LABEL_PRESETS['retail-225-125'];
+      if (preset.defaultLayout) {
+        this.labelState.layoutId = preset.defaultLayout;
+        if (this.dom.labelLayoutPicker) {
+          this.dom.labelLayoutPicker.querySelectorAll('.label-layout-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.layout === preset.defaultLayout);
+          });
+        }
+      }
+      if (preset.id === 'amazon-fnsku-5160') {
+        if (this.dom.labelFieldSku && (!this.dom.labelFieldSku.value || !this.dom.labelFieldSku.value.startsWith('X00'))) {
+          this.dom.labelFieldSku.value = 'X003B7TEST';
+        }
+        if (this.dom.labelFieldFootnote) {
+          this.dom.labelFieldFootnote.value = 'New';
+        }
+      }
       if (this.dom.labelDimensionBadge) {
-        this.dom.labelDimensionBadge.textContent = `${preset.widthIn}" × ${preset.heightIn}" • ${preset.widthMm}mm × ${preset.heightMm}mm (${preset.category === 'thermal' ? 'Thermal Roll' : 'Sheet'})`;
+        const catLabel = preset.category === 'thermal' ? 'Thermal Roll' : preset.category === 'fba' ? 'FBA 30-Up / Roll' : 'Sheet';
+        this.dom.labelDimensionBadge.textContent = `${preset.widthIn}" × ${preset.heightIn}" • ${preset.widthMm}mm × ${preset.heightMm}mm (${catLabel})`;
       }
       this.renderLabelPreview();
     });
@@ -1486,9 +1523,21 @@ class V2StudioApp {
       }
     }
 
-    // Default layout for 2D is side-by-side; for 1D is vertical-stack
+    // Default layout: 2D = side-by-side, Amazon FBA = amazon-fba, 1D = vertical-stack
     const isSquare2D = ['qr-code', 'data-matrix', 'aztec'].includes(this.currentGenerator.id);
-    const targetLayout = isSquare2D ? 'side-by-side' : 'vertical-stack';
+    let targetLayout = isSquare2D ? 'side-by-side' : 'vertical-stack';
+    if (this.labelState.presetId === 'amazon-fnsku-5160') {
+      targetLayout = 'amazon-fba';
+      if (this.dom.labelFieldSku && (!this.dom.labelFieldSku.value || !this.dom.labelFieldSku.value.startsWith('X00'))) {
+        this.dom.labelFieldSku.value = (payload && payload.startsWith('X00')) ? payload : 'X003B7TEST';
+      }
+      if (this.dom.labelFieldTitle && !this.dom.labelFieldTitle.value) {
+        this.dom.labelFieldTitle.value = 'Amazon FBA Product Unit';
+      }
+      if (this.dom.labelFieldFootnote) {
+        this.dom.labelFieldFootnote.value = 'New';
+      }
+    }
     this.labelState.layoutId = targetLayout;
 
     if (this.dom.labelLayoutPicker) {
