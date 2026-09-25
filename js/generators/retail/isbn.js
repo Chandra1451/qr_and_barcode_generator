@@ -51,6 +51,15 @@ export default {
       min: 1,
       max: 5,
       default: 3
+    },
+    {
+      id: "padding",
+      type: "slider",
+      label: "Quiet Zone Padding",
+      min: 0,
+      max: 40,
+      default: 10,
+      unit: "px"
     }
   ],
 
@@ -71,7 +80,9 @@ export default {
       height: options.height || 30,
       includetext: options.includetext !== false,
       textxalign: "center",
-      guardwhitespace: true
+      guardwhitespace: true,
+      paddingwidth: options.padding !== undefined ? options.padding : 10,
+      paddingheight: options.padding !== undefined ? options.padding : 10
     });
   }
 };

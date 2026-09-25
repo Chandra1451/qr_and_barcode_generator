@@ -41,8 +41,8 @@ export default {
       id: "padding",
       type: "slider",
       label: "Quiet Zone Padding",
-      min: 5,
-      max: 25,
+      min: 0,
+      max: 40,
       default: 10,
       unit: "px"
     }
