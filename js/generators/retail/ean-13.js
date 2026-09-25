@@ -5,7 +5,7 @@
  * Powered by bwip-js (bcid: ean13). Standard global retail product barcode.
  */
 
-import { computeEan13 } from '../../core/checksums.js?v=2.8';
+import { computeEan13 } from '../../core/checksums.js?v=3.0';
 
 export default {
   id: "ean-13",
@@ -20,7 +20,13 @@ export default {
     errorMessage: "EAN-13 requires exactly 12 digits (check digit will be computed) or 13 valid digits.",
     defaultPayload: "590123412345",
     autoChecksum: true,
-    computeChecksum: (val) => computeEan13(val)
+    computeChecksum: (val) => computeEan13(val),
+    // A full-length code must carry the correct GS1 check digit; never encode a wrong one.
+    validate: (val) => {
+      if (val.length !== 13) return null;
+      const correct = computeEan13(val.slice(0, 12));
+      return correct === val ? null : `Wrong check digit: the 13th digit should be ${correct.slice(-1)}, not ${val.slice(-1)}.`;
+    }
   },
 
   controls: [

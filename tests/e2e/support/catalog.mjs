@@ -70,6 +70,7 @@ export const SYMBOLOGY_ALIASES = {
   isbn13: 'isbn',
   'isbn-13': 'isbn',
   datamatrix: 'data-matrix',
+  azteccode: 'aztec',
   qrcode: 'qr-code',
 };
 

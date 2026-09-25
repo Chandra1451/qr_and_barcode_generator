@@ -5,7 +5,7 @@
  * Powered by bwip-js (bcid: upca). Standard retail barcode in North America (USA & Canada).
  */
 
-import { computeUpcA } from '../../core/checksums.js?v=2.8';
+import { computeUpcA } from '../../core/checksums.js?v=3.0';
 
 export default {
   id: "upc-a",
@@ -20,7 +20,13 @@ export default {
     errorMessage: "UPC-A requires exactly 11 digits (check digit will be computed) or 12 valid digits.",
     defaultPayload: "01234567890",
     autoChecksum: true,
-    computeChecksum: (val) => computeUpcA(val)
+    computeChecksum: (val) => computeUpcA(val),
+    // A full-length code must carry the correct GS1 check digit; never encode a wrong one.
+    validate: (val) => {
+      if (val.length !== 12) return null;
+      const correct = computeUpcA(val.slice(0, 11));
+      return correct === val ? null : `Wrong check digit: the 12th digit should be ${correct.slice(-1)}, not ${val.slice(-1)}.`;
+    }
   },
 
   controls: [

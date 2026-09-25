@@ -104,8 +104,9 @@ export async function runWizardTests(assert) {
   );
   assert.equal(
     cryptoWz.compile({ currency: 'ethereum', address: '0x00000000219ab540356cbb839cbe05303d7705fa', amount: '1.5' }),
-    'ethereum:0x00000000219ab540356cbb839cbe05303d7705fa?value=1.5',
-    'Compiles Ethereum URI with value parameter'
+    // EIP-681: value is in wei (1.5 ETH = 1.5e18 wei); "value=1.5" would request 1.5 wei.
+    'ethereum:0x00000000219ab540356cbb839cbe05303d7705fa?value=1500000000000000000',
+    'Compiles Ethereum URI with value parameter in wei (EIP-681)'
   );
   assert.equal(
     cryptoWz.compile({ currency: 'solana', address: 'SolanaWalletAddress123', amount: '10' }),
@@ -126,8 +127,10 @@ export async function runWizardTests(assert) {
   assert.isTrue(eventPayload.includes('BEGIN:VEVENT'), 'Contains BEGIN:VEVENT');
   assert.isTrue(eventPayload.includes('SUMMARY:Launch Day'), 'Contains event SUMMARY');
   assert.isTrue(eventPayload.includes('LOCATION:Headquarters'), 'Contains event LOCATION');
-  assert.isTrue(eventPayload.includes('DTSTART:20261015T090000Z'), 'Formats start timestamp');
-  assert.isTrue(eventPayload.includes('DTEND:20261015T180000Z'), 'Formats end timestamp');
+  // The form gives local time; the payload must hold the same instant in real UTC ("Z").
+  const toUtcStamp = (local) => new Date(local).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  assert.isTrue(eventPayload.includes(`DTSTART:${toUtcStamp('2026-10-15T09:00')}`), 'Start time converted from local time to UTC');
+  assert.isTrue(eventPayload.includes(`DTEND:${toUtcStamp('2026-10-15T18:00')}`), 'End time converted from local time to UTC');
   assert.isTrue(eventPayload.includes('END:VEVENT'), 'Contains END:VEVENT');
 
   // Test 10: Geolocation Wizard

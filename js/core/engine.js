@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=2.8';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.0';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.
@@ -102,6 +102,12 @@ export class BarcodeEngine {
         valid: false,
         error: errorMessage || 'Payload does not match required format.'
       };
+    }
+
+    // Optional semantic check beyond the regex (e.g. a wrong GS1 check digit).
+    if (typeof generator.schema.validate === 'function') {
+      const problem = generator.schema.validate(payload);
+      if (problem) return { valid: false, error: problem };
     }
 
     return { valid: true, error: null };
@@ -335,24 +341,40 @@ export class BarcodeEngine {
       throw new Error(validation.error);
     }
 
-    // Pass helper engineUtils to generator.render
-    const engineUtils = {
-      renderBwip: (canvas, opts) => this.renderBwipCanvas(canvas, {
-        ...(options.barcolor ? { barcolor: options.barcolor } : {}),
-        ...(options.backgroundcolor !== undefined ? { backgroundcolor: options.backgroundcolor } : {}),
-        ...(options.transparentBg !== undefined ? { transparentBg: options.transparentBg } : {}),
-        ...(options.cornerRadius !== undefined ? { cornerRadius: options.cornerRadius } : {}),
-        ...(options.padding !== undefined ? { padding: options.padding } : {}),
-        ...opts
-      }),
-      renderBwipSVG: (opts) => this.renderBwipSVG({
-        ...(options.barcolor ? { barcolor: options.barcolor } : {}),
-        ...(options.backgroundcolor !== undefined ? { backgroundcolor: options.backgroundcolor } : {}),
-        ...(options.transparentBg !== undefined ? { transparentBg: options.transparentBg } : {}),
-        ...(options.cornerRadius !== undefined ? { cornerRadius: options.cornerRadius } : {}),
-        ...(options.padding !== undefined ? { padding: options.padding } : {}),
-        ...opts
-      }),
+    return generator.render(targets, payload, options, this.engineUtilsFor(options));
+  }
+
+  /**
+   * Renders a 1D/2D barcode to an SVG string through the generator's own render()
+   * (its bcid, checksum completion, text, height, columns, addon...), with the same
+   * colours and padding as the preview. Every SVG/PDF/batch export goes through here,
+   * so exports can't drift from the preview.
+   * @returns {Promise<string>} SVG markup
+   */
+  async renderSVG(generator, payload, options = {}) {
+    if (!generator) throw new Error('No generator specified.');
+    if (generator.id === 'qr-code') throw new Error('Use the QR instance for QR SVG export.');
+    const validation = this.validate(generator, payload);
+    if (!validation.valid) throw new Error(validation.error);
+
+    const utils = this.engineUtilsFor(options);
+    utils.renderBwip = (_canvas, opts) => utils.renderBwipSVG(opts);
+    return generator.render({}, payload, options, utils);
+  }
+
+  /** Helpers passed to generator.render(); studio-wide options (colours, padding, corners) are merged in. */
+  engineUtilsFor(options) {
+    const shared = (opts) => ({
+      ...(options.barcolor ? { barcolor: options.barcolor } : {}),
+      ...(options.backgroundcolor !== undefined ? { backgroundcolor: options.backgroundcolor } : {}),
+      ...(options.transparentBg !== undefined ? { transparentBg: options.transparentBg } : {}),
+      ...(options.cornerRadius !== undefined ? { cornerRadius: options.cornerRadius } : {}),
+      ...(options.padding !== undefined ? { padding: options.padding } : {}),
+      ...opts
+    });
+    return {
+      renderBwip: (canvas, opts) => this.renderBwipCanvas(canvas, shared(opts)),
+      renderBwipSVG: (opts) => this.renderBwipSVG(shared(opts)),
       renderQRCode: (container, opts) => this.renderQRCode(container, {
         ...(options.cornerRadius !== undefined ? { cornerRadius: options.cornerRadius } : {}),
         ...(options.padding !== undefined ? { padding: options.padding } : {}),
@@ -361,8 +383,6 @@ export class BarcodeEngine {
       bwip: this.bwip,
       QRCodeStyling: this.QRCodeStyling
     };
-
-    return generator.render(targets, payload, options, engineUtils);
   }
 }
 

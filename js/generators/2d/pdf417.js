@@ -56,8 +56,8 @@ export default {
       bcid: "pdf417",
       text: payload,
       scale: options.scale || 3,
-      paddingwidth: options.padding || 10,
-      paddingheight: options.padding || 10
+      paddingwidth: options.padding !== undefined ? options.padding : 10,
+      paddingheight: options.padding !== undefined ? options.padding : 10
     };
 
     if (options.columns && Number(options.columns) > 0) {

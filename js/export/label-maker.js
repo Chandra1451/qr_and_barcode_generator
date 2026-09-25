@@ -7,8 +7,8 @@
  * and Avery multi-label sheets.
  */
 
-import { loadJsPdf } from '../core/dynamic-loader.js?v=2.8';
-import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=2.8';
+import { loadJsPdf } from '../core/dynamic-loader.js?v=3.0';
+import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.0';
 
 export const LABEL_PRESETS = {
   'retail-225-125': {
@@ -186,7 +186,11 @@ function drawImageAspect(ctx, img, targetX, targetY, targetW, targetH, align = '
   }
   const drawY = targetY + (targetH - drawH) / 2;
 
+  // Nearest-neighbour scaling keeps bar/module edges sharp (smoothing blurred them into grey).
+  const smoothing = ctx.imageSmoothingEnabled;
+  ctx.imageSmoothingEnabled = false;
   ctx.drawImage(img, drawX, drawY, drawW, drawH);
+  ctx.imageSmoothingEnabled = smoothing;
 }
 
 /**

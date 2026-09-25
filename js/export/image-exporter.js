@@ -8,9 +8,8 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius, toQrByteString } from '../core/engine.js?v=2.8';
-import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=2.8';
-import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.8';
+import { engine, applyCanvasCornerRadius, toQrByteString } from '../core/engine.js?v=3.0';
+import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.0';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
@@ -202,49 +201,9 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
     scaledOptions.height = Number(options.height);
   }
 
-  try {
-    await engine.render(generator, payload, scaledOptions, { canvas: offscreenCanvas });
-  } catch (err) {
-    // Fallback directly to bwipCanvas if generator.render had an issue
-    let finalPayload = payload;
-    if (generator.id === 'upc-a' && payload.length === 11) {
-      finalPayload = computeUpcA(payload);
-    } else if (generator.id === 'ean-13' && payload.length === 12) {
-      finalPayload = computeEan13(payload);
-    }
-
-    const scaledBwipOptions = {
-      bcid: generator.id === 'data-matrix' ? 'datamatrix' :
-            generator.id === 'aztec' ? 'azteccode' :
-            generator.id === 'pdf417' ? 'pdf417' :
-            generator.id === 'ean-13' ? 'ean13' :
-            generator.id === 'upc-a' ? 'upca' :
-            generator.id === 'itf-14' ? 'itf14' : 'code128',
-      text: finalPayload,
-      scale: baseScale * scaleFactor,
-      includetext: options.includetext !== false,
-      textxalign: 'center',
-      guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
-      barcolor: options.barcolor || '000000',
-      backgroundcolor: options.transparentBg ? undefined : (options.backgroundcolor || 'FFFFFF')
-    };
-
-    if (!is2DCode && options.height) {
-      scaledBwipOptions.height = Number(options.height);
-    }
-    if (generator.id === 'pdf417' && Number(options.columns) > 0) {
-      scaledBwipOptions.columns = Number(options.columns);
-    }
-
-    if (cornerRadius > 0) {
-      const scaledRadius = Math.round(cornerRadius * scaleFactor);
-      applyCanvasCornerRadius(offscreenCanvas, scaledRadius);
-    }
-
-    const dataUrl = offscreenCanvas.toDataURL('image/png');
-    downloadDataUrl(dataUrl, filename);
-    return { success: true, filename };
-  }
+  // Errors (e.g. invalid input) propagate to the caller so no file is downloaded.
+  // (A former fallback here downloaded a blank or Code 128 image instead.)
+  await engine.render(generator, payload, scaledOptions, { canvas: offscreenCanvas });
 
   if (cornerRadius > 0) {
     const scaledRadius = Math.round(cornerRadius * scaleFactor);
@@ -283,43 +242,9 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
     }
   }
 
-  let finalPayload = payload;
-  if (generator.id === 'upc-a' && payload.length === 11) {
-    finalPayload = computeUpcA(payload);
-  } else if (generator.id === 'ean-13' && payload.length === 12) {
-    finalPayload = computeEan13(payload);
-  }
-
-  const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
-  const padW = cornerRadius > 0 ? Math.max(10, Math.ceil(cornerRadius * 0.75)) : 10;
-  const padH = cornerRadius > 0 ? Math.max(10, Math.ceil(cornerRadius * 0.75)) : 10;
-
-  const svgOptions = {
-    bcid: generator.id === 'data-matrix' ? 'datamatrix' :
-          generator.id === 'aztec' ? 'azteccode' :
-          generator.id === 'pdf417' ? 'pdf417' :
-          generator.id === 'ean-13' ? 'ean13' :
-          generator.id === 'upc-a' ? 'upca' :
-          generator.id === 'itf-14' ? 'itf14' : 'code128',
-    text: finalPayload,
-    scale: options.scale || 3,
-    paddingwidth: padW,
-    paddingheight: padH,
-    includetext: options.includetext !== false,
-    textxalign: 'center',
-    guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
-    barcolor: options.barcolor || '000000',
-    backgroundcolor: (options.transparentBg || options.backgroundcolor === 'transparent') ? undefined : (options.backgroundcolor || 'FFFFFF')
-  };
-
-  if (!is2DCode && options.height) {
-    svgOptions.height = Number(options.height);
-  }
-  if (generator.id === 'pdf417' && Number(options.columns) > 0) {
-    svgOptions.columns = Number(options.columns);
-  }
-
-  let svgString = await engine.renderBwipSVG(svgOptions);
+  // Same generator render path as the preview (format, checksum, text, height, columns,
+  // colours, padding), so the SVG always matches what the user sees.
+  let svgString = await engine.renderSVG(generator, payload, options);
   if (cornerRadius > 0) {
     svgString = applySvgCornerRadius(svgString, cornerRadius);
   }

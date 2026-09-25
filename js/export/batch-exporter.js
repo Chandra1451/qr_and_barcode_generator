@@ -7,10 +7,9 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine, toQrByteString } from '../core/engine.js?v=2.8';
-import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=2.8';
-import { downloadBlob } from './image-exporter.js?v=2.8';
-import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.8';
+import { engine, toQrByteString } from '../core/engine.js?v=3.0';
+import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=3.0';
+import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.0';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads
@@ -136,6 +135,7 @@ export async function generateBatchZip({
           width: 320 * scaleFactor,
           height: 320 * scaleFactor,
           type: 'svg',
+          margin: (options.padding !== undefined ? Number(options.padding) : 10) * scaleFactor,
           data: toQrByteString(item),
           image: logoDataUrl || '',
           imageOptions: {
@@ -167,38 +167,9 @@ export async function generateBatchZip({
         const svgText = await svgBlob.text();
         zip.file(filename, svgText);
       } else {
-        const bwipBcid = generator.id === 'data-matrix' ? 'datamatrix' :
-                         generator.id === 'aztec' ? 'azteccode' :
-                         generator.id === 'pdf417' ? 'pdf417' :
-                         generator.id === 'ean-13' ? 'ean13' :
-                         generator.id === 'upc-a' ? 'upca' :
-                         generator.id === 'itf-14' ? 'itf14' : 'code128';
-
-        let itemPayload = item;
-        if (generator.id === 'upc-a' && item.length === 11) {
-          itemPayload = computeUpcA(item);
-        } else if (generator.id === 'ean-13' && item.length === 12) {
-          itemPayload = computeEan13(item);
-        }
-
-        const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
-        const svgOpts = {
-          bcid: bwipBcid,
-          text: itemPayload,
-          scale: (Number(options.scale) || 3) * scaleFactor,
-          includetext: options.includetext !== false,
-          textxalign: 'center',
-          guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
-          backgroundcolor: options.transparentBg ? undefined : 'FFFFFF'
-        };
-        if (!is2DCode && options.height) {
-          svgOpts.height = Number(options.height);
-        }
-        if (generator.id === 'pdf417' && Number(options.columns) > 0) {
-          svgOpts.columns = Number(options.columns);
-        }
-
-        const svgString = await engine.renderBwipSVG(svgOpts);
+        // Same generator render path as the preview (format, checksum, colours, padding).
+        let svgString = await engine.renderSVG(generator, item, { ...options, scale: (Number(options.scale) || 3) * scaleFactor });
+        if (Number(options.cornerRadius) > 0) svgString = applySvgCornerRadius(svgString, Number(options.cornerRadius) * scaleFactor);
         zip.file(filename, svgString);
       }
     } else {
@@ -208,6 +179,7 @@ export async function generateBatchZip({
           width: 320 * scaleFactor,
           height: 320 * scaleFactor,
           type: 'canvas',
+          margin: (options.padding !== undefined ? Number(options.padding) : 10) * scaleFactor,
           data: toQrByteString(item),
           image: logoDataUrl || '',
           imageOptions: {
@@ -238,38 +210,8 @@ export async function generateBatchZip({
         const pngBlob = await qrPngInstance.getRawData('png');
         zip.file(filename, pngBlob);
       } else {
-        const bwipBcid = generator.id === 'data-matrix' ? 'datamatrix' :
-                         generator.id === 'aztec' ? 'azteccode' :
-                         generator.id === 'pdf417' ? 'pdf417' :
-                         generator.id === 'ean-13' ? 'ean13' :
-                         generator.id === 'upc-a' ? 'upca' :
-                         generator.id === 'itf-14' ? 'itf14' : 'code128';
-
-        let itemPayload = item;
-        if (generator.id === 'upc-a' && item.length === 11) {
-          itemPayload = computeUpcA(item);
-        } else if (generator.id === 'ean-13' && item.length === 12) {
-          itemPayload = computeEan13(item);
-        }
-
-        const scaledOpts = {
-          bcid: bwipBcid,
-          text: itemPayload,
-          scale: (Number(options.scale) || 3) * scaleFactor,
-          includetext: options.includetext !== false,
-          textxalign: 'center',
-          guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
-          backgroundcolor: options.transparentBg ? undefined : 'FFFFFF'
-        };
-        const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
-        if (!is2DCode && options.height) {
-          scaledOpts.height = Number(options.height);
-        }
-        if (generator.id === 'pdf417' && Number(options.columns) > 0) {
-          scaledOpts.columns = Number(options.columns);
-        }
-
-        await engine.renderBwipCanvas(offscreenCanvas, scaledOpts);
+        // Same generator render path as the preview (format, checksum, colours, padding, corners).
+        await engine.render(generator, item, { ...options, scale: (Number(options.scale) || 3) * scaleFactor }, { canvas: offscreenCanvas });
         const dataUrl = offscreenCanvas.toDataURL('image/png');
         const base64Data = dataUrl.split(',')[1];
         zip.file(filename, base64Data, { base64: true });
