@@ -54,15 +54,16 @@ test.describe('QRC · styling controls change the preview', () => {
     });
   }
 
-  test('QRC-02 padding slider changes the margin, not the code (module area keeps its size)', async ({ studio }) => {
+  test('QRC-02 padding changes only the quiet zone: every step is visible, the code keeps its size', async ({ studio }) => {
     await studio.open();
-    await studio.setControl('qrPadding', 0);
-    await studio.page.waitForTimeout(400);
-    const tight = await studio.waitForStableRender();
-    await studio.setControl('qrPadding', 40);
-    const loose = await studio.waitForChange(tight, { what: 'padding 0 → 40' });
-    expect(loose.width, 'the QR image size should stay fixed; padding eats into it').toBe(tight.width);
-    expect(loose.inkRatio, 'more padding → smaller dark area').toBeLessThan(tight.inkRatio);
+    let previous = await studio.fingerprint();
+    for (const [from, to] of [[10, 0], [0, 1], [1, 5], [5, 40]]) {
+      await studio.setControl('qrPadding', to);
+      const now = await studio.waitForChange(previous, { what: `padding ${from} → ${to}` });
+      // Same as barcode padding: the image grows/shrinks by exactly 2 × the change.
+      expect(now.width - previous.width, `padding ${from} → ${to}`).toBe(2 * (to - from));
+      previous = now;
+    }
   });
 
   test('QRC-03 dot colour really paints the dots in that colour', async ({ studio, page }) => {

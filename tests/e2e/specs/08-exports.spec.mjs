@@ -63,8 +63,13 @@ test.describe('EXP-PNG · PNG downloads', () => {
         expect(isPng(file.buffer), 'not a PNG file').toBe(true);
         const png = readPng(file.buffer);
         sizes[scale] = png;
+        // ISBN prints an "ISBN 978-…" header wider than the bars. bwip-js fits that text
+        // slightly differently at the small preview scale (3) than at 6+ (measured: 1.094 vs
+        // 1.128 width/height; without text the ratio is identical at every scale). The bars
+        // themselves scale exactly, so allow 4 % for ISBN and keep 2 % for everything else.
+        const shapeTolerance = g.id === 'isbn' ? 0.04 : 0.02;
         expect(relDiff(png.width / png.height, preview.width / preview.height),
-          `${scale}x export ${png.width}x${png.height} has a different shape than the preview ${preview.width}x${preview.height}`).toBeLessThan(0.02);
+          `${scale}x export ${png.width}x${png.height} has a different shape than the preview ${preview.width}x${preview.height}`).toBeLessThan(shapeTolerance);
         const text = await decodeFirst(await padOnWhite(page, file.buffer));
         expect(text, `${scale}x PNG does not scan`).not.toBeNull();
         expect(normaliseScan(g.id, text)).toBe(g.id === 'qr-code' ? QR_DEFAULT : expectedFor(g));

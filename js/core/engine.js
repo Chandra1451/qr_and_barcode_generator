@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.0';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.1';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.
@@ -21,6 +21,24 @@ export function toQrByteString(text) {
   let out = '';
   for (const byte of new TextEncoder().encode(str)) out += String.fromCharCode(byte);
   return out;
+}
+
+/**
+ * Sizes a qr-code-styling instance so its quiet zone is exactly `marginPx`.
+ * With a fixed canvas size the library rounds the dot size down and centres the code,
+ * so margins 0…~10 all looked identical ("padding slider does nothing"). Here the dot
+ * size is fixed from `codeAreaPx` and the canvas grows/shrinks by the margin instead,
+ * the same way barcode padding works.
+ * @returns {number|null} the new canvas size, or null if the module count is unavailable
+ */
+export function snapQrToMargin(instance, marginPx, codeAreaPx = 300, dotScale = 1) {
+  const count = instance?._qr?.getModuleCount?.();
+  if (!count) return null;
+  // dotScale keeps exports an exact multiple of the preview (preview dot × export scale).
+  const dot = Math.max(1, Math.floor(codeAreaPx / count)) * dotScale;
+  const size = count * dot + 2 * Math.round(marginPx);
+  instance.update({ width: size, height: size });
+  return size;
 }
 
 /**
@@ -302,6 +320,8 @@ export class BarcodeEngine {
 
     container.innerHTML = '';
     this.currentQrInstance = new this.QRCodeStyling(options);
+    // 300 px code area = the 320 px default size minus the default 10 px margins.
+    snapQrToMargin(this.currentQrInstance, qrMargin, 300);
     this.currentQrInstance.append(container);
 
     container.style.overflow = 'visible';
