@@ -1,2 +1,5 @@
 node_modules/
 reports/
+# Visual baselines are machine-specific (OS, browser, fonts) and ~70 MB: keep them local.
+# Recreate with: npm run baselines:update (then review them).
+baselines/
