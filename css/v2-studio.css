@@ -375,6 +375,124 @@ h1, h2, h3, h4 {
   font-weight: 700;
 }
 
+/* --- Quick Launch Popular Formats Bar --- */
+.v2-quick-launch-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.v2-quick-launch-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.v2-quick-launch-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.v2-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border-subtle);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  user-select: none;
+}
+
+.v2-quick-btn:hover {
+  background: var(--surface-alt);
+  border-color: var(--optic-blue);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12), 0 0 10px var(--optic-blue-tint);
+}
+
+.v2-quick-btn:active,
+.v2-quick-btn.active {
+  transform: translateY(0);
+  border-color: var(--scanner-laser);
+  box-shadow: 0 0 0 2px var(--scanner-laser-tint);
+}
+
+.v2-quick-btn-badge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 0.12rem 0.38rem;
+  border-radius: 4px;
+  background: var(--optic-blue-tint);
+  color: var(--optic-blue);
+  border: 1px solid rgba(0, 102, 245, 0.2);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.v2-quick-btn:hover .v2-quick-btn-badge {
+  background: var(--optic-blue);
+  color: #ffffff;
+}
+
+.v2-badge-fba {
+  background: rgba(255, 153, 0, 0.12);
+  color: #d97706;
+  border-color: rgba(255, 153, 0, 0.28);
+}
+
+[data-theme="dark"] .v2-badge-fba {
+  background: rgba(255, 153, 0, 0.2);
+  color: #fbbf24;
+  border-color: rgba(255, 153, 0, 0.4);
+}
+
+.v2-quick-btn:hover .v2-badge-fba {
+  background: #f59e0b;
+  color: #000000;
+  border-color: #f59e0b;
+}
+
+@media (max-width: 768px) {
+  .v2-quick-launch-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .v2-quick-launch-buttons {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .v2-quick-btn {
+    flex-shrink: 0;
+  }
+}
+
 /* --- Main Workbench Grid --- */
 .v2-workbench {
   padding: 2rem 0 4rem;
