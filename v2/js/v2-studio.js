@@ -50,6 +50,7 @@ class V2StudioApp {
       dotsColor: '#0f1117',
       backgroundColor: '#ffffff',
       transparentBg: false,
+      padding: 10,
       gradientEnabled: false,
       gradientColor1: '#06b6d4',
       gradientColor2: '#3b82f6',
@@ -85,7 +86,6 @@ class V2StudioApp {
 
     // Universal Image Geometry State
     this.cornerRadius = 0;
-    this.imagePadding = 10;
 
     // DOM Elements Cache
     this.dom = {};
@@ -104,7 +104,6 @@ class V2StudioApp {
     this.bindEvents();
     this.bindBarcodeStylingEvents();
     this.bindCornerRadiusEvents();
-    this.bindPaddingEvents();
     this.bindLaserFxEvents();
     this.bindLogoStudioEvents();
     this.bindBatchModalEvents();
@@ -212,6 +211,8 @@ class V2StudioApp {
       valDotsColor: document.getElementById('val-dotsColor'),
       ctrlBackgroundColor: document.getElementById('ctrl-backgroundColor'),
       valBackgroundColor: document.getElementById('val-backgroundColor'),
+      ctrlQrPadding: document.getElementById('ctrl-qrPadding'),
+      valQrPadding: document.getElementById('val-qrPadding'),
       ctrlTransparentBg: document.getElementById('ctrl-transparentBg'),
       
       // Gradient Suite
@@ -335,10 +336,7 @@ class V2StudioApp {
       ctrlBarcodeTransparentBg: document.getElementById('ctrl-barcodeTransparentBg'),
       barcodePresetGrid: document.getElementById('barcode-preset-grid'),
 
-      // Universal Image Geometry Controls (Padding & Corner Radius)
-      ctrlImagePadding: document.getElementById('ctrl-imagePadding'),
-      valImagePadding: document.getElementById('val-imagePadding'),
-      paddingPresetRow: document.getElementById('padding-preset-row'),
+      // Universal Image Geometry Controls (Corner Radius)
       ctrlCornerRadius: document.getElementById('ctrl-cornerRadius'),
       valCornerRadius: document.getElementById('val-cornerRadius'),
       cornerPresetRow: document.getElementById('corner-preset-row'),
@@ -963,10 +961,12 @@ class V2StudioApp {
       imageSize: 0.28,
       imageMargin: 4,
 
-      // Universal Image Geometry (Quiet Zone Padding & Corner Radius)
-      padding: this.imagePadding !== undefined ? this.imagePadding : 10,
-      paddingwidth: this.imagePadding !== undefined ? this.imagePadding : 10,
-      paddingheight: this.imagePadding !== undefined ? this.imagePadding : 10,
+      // Quiet Zone Padding (Consistent across all symbologies)
+      padding: isQR
+        ? (this.qrOptions.padding !== undefined ? Number(this.qrOptions.padding) : 10)
+        : (this.currentOptions.padding !== undefined ? Number(this.currentOptions.padding) : 10),
+
+      // Universal Image Geometry (Corner Radius)
       cornerRadius: this.cornerRadius || 0
     };
   }
@@ -1004,8 +1004,11 @@ class V2StudioApp {
       if (isQR) {
         this.dom.previewCanvas.style.display = 'none';
         this.dom.qrStyledContainer.style.display = 'flex';
-        this.dom.qrStyledContainer.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
-        this.dom.qrStyledContainer.style.overflow = this.cornerRadius ? 'hidden' : 'visible';
+        this.dom.qrStyledContainer.style.overflow = 'visible';
+        const qrCanvas = this.dom.qrStyledContainer.querySelector('canvas');
+        if (qrCanvas) {
+          qrCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+        }
       } else {
         this.dom.qrStyledContainer.style.display = 'none';
         this.dom.previewCanvas.style.display = 'block';
@@ -1128,8 +1131,11 @@ class V2StudioApp {
 
       // Immediate visual feedback on preview elements
       if (this.dom.qrStyledContainer) {
-        this.dom.qrStyledContainer.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
-        this.dom.qrStyledContainer.style.overflow = this.cornerRadius ? 'hidden' : 'visible';
+        this.dom.qrStyledContainer.style.overflow = 'visible';
+        const qrCanvas = this.dom.qrStyledContainer.querySelector('canvas');
+        if (qrCanvas) {
+          qrCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+        }
       }
       if (this.dom.previewCanvas) {
         this.dom.previewCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
@@ -1147,56 +1153,6 @@ class V2StudioApp {
         const r = e.currentTarget.dataset.radius;
         if (r !== undefined) {
           setCornerRadius(r, true);
-        }
-      });
-    });
-  }
-
-  /* --- Universal Image Quiet Zone / Padding Controls & Presets --- */
-  bindPaddingEvents() {
-    const updatePaddingBadge = (val) => {
-      if (!this.dom.valImagePadding) return;
-      const num = parseInt(val, 10);
-      const safeNum = isNaN(num) ? 10 : num;
-      if (safeNum === 0) {
-        this.dom.valImagePadding.textContent = '0px (Flush)';
-      } else if (safeNum <= 6) {
-        this.dom.valImagePadding.textContent = `${safeNum}px (Compact)`;
-      } else if (safeNum <= 12) {
-        this.dom.valImagePadding.textContent = `${safeNum}px (Standard)`;
-      } else if (safeNum <= 20) {
-        this.dom.valImagePadding.textContent = `${safeNum}px (Spacious)`;
-      } else {
-        this.dom.valImagePadding.textContent = `${safeNum}px (Wide)`;
-      }
-    };
-
-    const setImagePadding = (padding, syncSlider = true) => {
-      this.imagePadding = parseInt(padding, 10);
-      if (isNaN(this.imagePadding)) this.imagePadding = 10;
-      if (syncSlider && this.dom.ctrlImagePadding) {
-        this.dom.ctrlImagePadding.value = this.imagePadding;
-      }
-      updatePaddingBadge(this.imagePadding);
-
-      // Sync active state on preset buttons
-      this.dom.paddingPresetRow?.querySelectorAll('.corner-preset-btn').forEach(btn => {
-        const btnP = parseInt(btn.dataset.padding, 10);
-        btn.classList.toggle('active', btnP === this.imagePadding);
-      });
-
-      this.scheduleRender();
-    };
-
-    this.dom.ctrlImagePadding?.addEventListener('input', (e) => {
-      setImagePadding(e.target.value, false);
-    });
-
-    this.dom.paddingPresetRow?.querySelectorAll('.corner-preset-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const p = e.currentTarget.dataset.padding;
-        if (p !== undefined) {
-          setImagePadding(p, true);
         }
       });
     });
@@ -2003,6 +1959,12 @@ class V2StudioApp {
     this.dom.ctrlBackgroundColor?.addEventListener('input', (e) => {
       this.qrOptions.backgroundColor = e.target.value;
       if (this.dom.valBackgroundColor) this.dom.valBackgroundColor.textContent = e.target.value;
+      this.scheduleRender();
+    });
+
+    this.dom.ctrlQrPadding?.addEventListener('input', (e) => {
+      this.qrOptions.padding = Number(e.target.value);
+      if (this.dom.valQrPadding) this.dom.valQrPadding.textContent = `${e.target.value}px`;
       this.scheduleRender();
     });
 

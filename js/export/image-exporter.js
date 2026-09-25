@@ -122,20 +122,22 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
     }
 
     const bgColor = options.transparentBg ? 'transparent' : (options.backgroundColor || '#ffffff');
-    const qrMargin = cornerRadius > 0
-      ? Math.max(8, Math.ceil(cornerRadius * 0.4)) * scaleFactor
-      : (options.imageMargin !== undefined ? options.imageMargin : 4 * scaleFactor);
+    const basePadding = options.padding !== undefined ? Number(options.padding) : (options.margin !== undefined ? Number(options.margin) : 10);
+    const minSafeMargin = cornerRadius > 0 ? Math.ceil(cornerRadius * 0.4) : 0;
+    const qrMargin = Math.max(basePadding, minSafeMargin) * scaleFactor;
+    const logoMargin = (options.imageMargin !== undefined ? Number(options.imageMargin) : 4) * scaleFactor;
 
     const qrExportInstance = new QRCodeStyling({
       width: exportSize,
       height: exportSize,
+      margin: qrMargin,
       type: 'canvas',
       data: payload,
       image: hasLogo ? logoDataUrl : '',
       imageOptions: {
         hideBackgroundDots: true,
         imageSize: options.imageSize || 0.28,
-        margin: qrMargin,
+        margin: logoMargin,
         crossOrigin: 'anonymous'
       },
       dotsOptions: dotsOptions,

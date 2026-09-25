@@ -120,6 +120,15 @@ export default {
       default: "#ffffff"
     },
     {
+      id: "padding",
+      type: "slider",
+      label: "Quiet Zone Padding",
+      min: 0,
+      max: 40,
+      default: 10,
+      unit: "px"
+    },
+    {
       id: "transparentBg",
       type: "toggle",
       label: "Transparent Background",
@@ -149,7 +158,8 @@ export default {
       transparentBg: Boolean(options.transparentBg),
       image: options.image || "",
       imageSize: options.imageSize || 0.28,
-      imageMargin: options.imageMargin !== undefined ? options.imageMargin : 4
+      imageMargin: options.imageMargin !== undefined ? options.imageMargin : 4,
+      padding: options.padding !== undefined ? Number(options.padding) : 10
     });
   }
 };

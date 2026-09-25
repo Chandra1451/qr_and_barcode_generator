@@ -282,19 +282,17 @@ export class BarcodeEngine {
     this.currentQrInstance = new this.QRCodeStyling(options);
     this.currentQrInstance.append(container);
 
+    container.style.overflow = 'visible';
+    const qrCanvas = container.querySelector('canvas');
+
     if (cornerRadius > 0) {
       container.style.borderRadius = `${cornerRadius}px`;
-      container.style.overflow = 'hidden';
-      const qrCanvas = container.querySelector('canvas');
       if (qrCanvas) {
         applyCanvasCornerRadius(qrCanvas, cornerRadius);
         qrCanvas.style.borderRadius = `${cornerRadius}px`;
-        qrCanvas.style.overflow = 'hidden';
       }
     } else {
       container.style.borderRadius = '0px';
-      container.style.overflow = 'visible';
-      const qrCanvas = container.querySelector('canvas');
       if (qrCanvas) {
         qrCanvas.style.borderRadius = '0px';
       }
