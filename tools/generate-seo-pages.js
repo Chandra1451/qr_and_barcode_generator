@@ -1463,13 +1463,9 @@ function generatePageHtml(page) {
   <meta name="twitter:description" content="${page.metaDescription}">
   <meta name="twitter:image" content="${SITE_URL}/assets/og-preview.png">
 
-  <!-- Google Fonts: Non-blocking Preload -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  </noscript>
+  <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
+  <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="stylesheet" href="../css/v2-theme.css?v=${ASSET_VERSION}">
   <link rel="stylesheet" href="../css/v2-pages.css?v=${ASSET_VERSION}">
