@@ -5,7 +5,23 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=2.7';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=2.8';
+
+/**
+ * Converts text to a UTF-8 "byte string" for qr-code-styling.
+ * The library writes each character's low byte in byte mode, so "—" (U+2014) became
+ * 0x14 and emoji/₹/Indic/CJK text scanned as garbage. Passing UTF-8 bytes (one char per
+ * byte) encodes correctly; scanners detect UTF-8. Pure ASCII is returned unchanged.
+ * @param {string} text
+ * @returns {string}
+ */
+export function toQrByteString(text) {
+  const str = String(text ?? '');
+  if (!/[^\x00-\x7F]/.test(str)) return str;
+  let out = '';
+  for (const byte of new TextEncoder().encode(str)) out += String.fromCharCode(byte);
+  return out;
+}
 
 /**
  * Applies smooth anti-aliased rounded corners to an HTML5 canvas in-place
@@ -248,7 +264,7 @@ export class BarcodeEngine {
       height: 320,
       margin: qrMargin,
       type: 'canvas',
-      data: stylingOptions.data || 'https://example.com',
+      data: toQrByteString(stylingOptions.data || 'https://example.com'),
       image: hasLogo ? stylingOptions.image : '',
       imageOptions: {
         hideBackgroundDots: true,

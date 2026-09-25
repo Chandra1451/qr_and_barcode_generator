@@ -8,9 +8,9 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius } from '../core/engine.js?v=2.7';
-import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=2.7';
-import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.7';
+import { engine, applyCanvasCornerRadius, toQrByteString } from '../core/engine.js?v=2.8';
+import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=2.8';
+import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.8';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
@@ -132,7 +132,7 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
       height: exportSize,
       margin: qrMargin,
       type: 'canvas',
-      data: payload,
+      data: toQrByteString(payload),
       image: hasLogo ? logoDataUrl : '',
       imageOptions: {
         hideBackgroundDots: true,

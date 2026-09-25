@@ -113,7 +113,7 @@ test.describe('LOAD · lazy engine loading', () => {
     await studio.expectNoRenderError();
   });
   // The failed first download is logged on purpose in LOAD-05.
-  test.use({ allowConsoleErrors: [/bwip-js-min\.js|Failed to load script|ERR_CONNECTION_RESET|DynamicLoader/] });
+  test.use({ allowConsoleErrors: [/bwip-js-min\.js|Failed to load script|Failed to load resource|ERR_CONNECTION_RESET|ERR_FAILED|DynamicLoader/] });
 
   test('LOAD-06 PDF export on a slow connection (jsPDF arrives after the timeout) still works', async ({ page, studio }) => {
     test.setTimeout(90_000);
