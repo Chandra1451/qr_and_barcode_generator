@@ -6,8 +6,8 @@
  * directly in client-side browser memory using jsPDF.
  */
 
-import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.0';
-import { engine, toQrByteString } from '../core/engine.js?v=3.0';
+import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.1';
+import { engine, toQrByteString } from '../core/engine.js?v=3.1';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {

@@ -8,8 +8,8 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius, toQrByteString } from '../core/engine.js?v=3.0';
-import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.0';
+import { engine, applyCanvasCornerRadius, toQrByteString, snapQrToMargin } from '../core/engine.js?v=3.1';
+import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.1';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
@@ -156,6 +156,8 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
       }
     });
 
+    // Same geometry as the preview, scaled: exact quiet zone, preview dot size × scale.
+    snapQrToMargin(qrExportInstance, qrMargin, 300, scaleFactor);
     const blob = await qrExportInstance.getRawData('png');
 
     if (cornerRadius > 0) {
