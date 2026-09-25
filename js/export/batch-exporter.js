@@ -7,10 +7,10 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine } from '../core/engine.js';
-import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js';
-import { downloadBlob } from './image-exporter.js';
-import { computeEan13, computeUpcA } from '../core/checksums.js';
+import { engine } from '../core/engine.js?v=2.7';
+import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=2.7';
+import { downloadBlob } from './image-exporter.js?v=2.7';
+import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.7';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads

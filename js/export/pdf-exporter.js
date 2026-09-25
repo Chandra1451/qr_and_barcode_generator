@@ -6,9 +6,9 @@
  * directly in client-side browser memory using jsPDF.
  */
 
-import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js';
-import { engine } from '../core/engine.js';
-import { computeEan13, computeUpcA } from '../core/checksums.js';
+import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=2.7';
+import { engine } from '../core/engine.js?v=2.7';
+import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.7';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {

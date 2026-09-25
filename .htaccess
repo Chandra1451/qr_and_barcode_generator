@@ -62,8 +62,8 @@ AddDefaultCharset UTF-8
 
   # Immutable Assets (CSS, JS, Fonts, Images) - 1 Year Cache
   ExpiresByType text/css                     "access plus 1 year"
-  ExpiresByType application/javascript       "access plus 1 day"
-  ExpiresByType text/javascript              "access plus 1 day"
+  ExpiresByType application/javascript       "access plus 0 seconds"
+  ExpiresByType text/javascript              "access plus 0 seconds"
   ExpiresByType font/woff2                   "access plus 1 year"
   ExpiresByType font/woff                    "access plus 1 year"
   ExpiresByType font/ttf                     "access plus 1 year"
@@ -91,10 +91,11 @@ AddDefaultCharset UTF-8
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  # JavaScript: 1 day. ES modules import each other by plain URL (no ?v=), so a
-  # year-long immutable cache would keep stale modules on returning visitors forever.
+  # JavaScript: always revalidate (cheap 304 when unchanged). A cached copy of an older
+  # module under the same URL made new controls do nothing, or broke module imports, for
+  # returning visitors. Imports also carry ?v= (tools/bump-js-version.mjs) as a second guard.
   <FilesMatch "\.(js|mjs)$">
-    Header set Cache-Control "public, max-age=86400"
+    Header set Cache-Control "no-cache"
   </FilesMatch>
 
   # HTML Files Must Revalidate

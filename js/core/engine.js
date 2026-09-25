@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=2.7';
 
 /**
  * Applies smooth anti-aliased rounded corners to an HTML5 canvas in-place
