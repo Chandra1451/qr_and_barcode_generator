@@ -667,6 +667,216 @@ const SEO_PAGES = [
       }
     ]
   }
+,
+  {
+    slug: 'avery-5160-barcode-generator',
+    name: 'Avery 5160 Barcode Label Generator',
+    shortName: 'Avery 5160 Sheets',
+    queryParam: 'label=open&preset=avery-5160',
+    category: 'Retail & POS',
+    metaTitle: 'Free Avery 5160 Barcode Generator - 30-Up PDF Sheet Print Online',
+    metaDescription: 'Generate free barcode label sheets pre-formatted for Avery 5160 & 5163 templates. Print 30-up address, SKU, and UPC barcode labels directly on standard laser/inkjet printers.',
+    h1: 'Free Avery 5160 Barcode Label Sheet Generator',
+    lead: 'Create perfectly aligned sheets of barcodes formatted specifically for Avery 5160 (30 labels per US Letter sheet) and Avery 5163. Export ready-to-print PDFs with zero software installation or subscription fees.',
+    technicalSpec: {
+      templateFormat: 'Avery 5160 / 5960 / 8160 (1.0\" × 2.625\", 30-up per Letter sheet)',
+      gridDimensions: '3 columns × 10 rows per sheet (8.5\" × 11\" US Letter)',
+      margins: 'Top/Bottom: 0.5\", Left/Right: 0.1875\", Horiz Pitch: 2.75\", Vert Pitch: 1.0\"',
+      symbologySupport: 'Code 128, UPC-A, EAN-13, QR Code, Data Matrix, Code 39',
+      printerCompatibility: 'Standard Laser, Inkjet, or Heavy-Duty Commercial Office Copiers'
+    },
+    useCases: [
+      'Product SKU and inventory tagging on standard US Letter printer paper',
+      'Amazon FBA FNSKU 30-up shipment prep without special label printer hardware',
+      'Mailing, return shipping, and package barcode routing labels',
+      'Classroom, library, and office asset barcode tagging'
+    ],
+    faqs: [
+      {
+        q: 'How many barcodes fit on an Avery 5160 label sheet?',
+        a: 'Standard Avery 5160 (and compatible templates such as 5260, 5960, 8160, and Presto 30-up) contains exactly 30 labels arranged in 3 columns of 10 rows on standard 8.5\" × 11\" US Letter paper.'
+      },
+      {
+        q: 'Do I need a special thermal printer to print Avery 5160 sheets?',
+        a: 'No. Avery 5160 sheets are designed specifically for standard laser and inkjet desktop office printers. Simply load the label sheet into your regular printer paper tray.'
+      },
+      {
+        q: 'How do I avoid printing alignment issues on Avery label sheets?',
+        a: 'In your browser or PDF reader print dialog, set Scale to 100% or Actual Size and uncheck Fit to Page or Shrink to Printable Area. Printing at Actual Size guarantees that the generated labels align precisely with the die-cut sticker grid.'
+      },
+      {
+        q: 'Can I generate different barcodes on each label or repeat the same barcode?',
+        a: 'Both modes are supported! You can print 30 copies of a single product barcode for batch inventory, or use our Batch CSV Import tool to populate sequential serial numbers across the sheet.'
+      }
+    ]
+  },
+  {
+    slug: 'isbn-book-barcode-generator',
+    name: 'ISBN Book Barcode Generator',
+    shortName: 'ISBN-13 Bookland',
+    queryParam: 'symbology=isbn',
+    category: 'Retail & POS',
+    metaTitle: 'Free ISBN Barcode Generator (Bookland EAN-13) - 300 DPI Vector SVG',
+    metaDescription: 'Generate 100% compliant ISBN-13 barcodes for Amazon KDP, IngramSpark, and self-publishing. Includes automatic check digit math and optional 5-digit price extension.',
+    h1: 'Free ISBN-13 Bookland Barcode Generator',
+    lead: 'Generate high-contrast Bookland EAN-13 barcodes for paperback, hardcover, and print-on-demand books. Designed to meet strict IngramSpark, Amazon KDP, and Barnes & Noble publishing specifications with vector SVG and 300 DPI print exports.',
+    technicalSpec: {
+      standard: 'ISO 2108 / Bookland EAN-13 (GS1 General Specifications)',
+      prefixStructure: '978 or 979 International Book Industry Prefix',
+      checkDigitMath: 'Automated GS1 Modulo-10 checksum calculation',
+      supplementalAddon: 'Optional EAN-5 supplemental price code (e.g. 51999 for $19.99 USD / 90000 for no price)',
+      outputFormats: 'Scalable Vector SVG, High-Res 300 DPI PNG, Direct Print'
+    },
+    useCases: [
+      'Amazon KDP (Kindle Direct Publishing) paperback and hardcover back covers',
+      'IngramSpark and Lightning Source global retail distribution',
+      'Bookstore Point-of-Sale (POS) cash register laser scanning',
+      'Independent publishing, literary journals, and self-published textbooks'
+    ],
+    faqs: [
+      {
+        q: 'Where do I obtain an official ISBN for my book?',
+        a: 'In the United States, official ISBNs are issued by Bowker (myidentifiers.com). In Canada, they are issued free by Library and Archives Canada. In the UK, Nielsen Book is the official agency. In India, Raja Rammohun Roy National Agency issues ISBNs. Amazon KDP also provides free ISBNs for platform-exclusive publishing.'
+      },
+      {
+        q: 'What is the 5-digit add-on code next to the ISBN barcode?',
+        a: 'The 5-digit supplemental code is an EAN-5 price extension. For books sold in the US, the first digit is 5 (denoting USD), followed by the price without decimals. For example, 51999 represents $19.99 USD. If no price is set, 90000 is used.'
+      },
+      {
+        q: 'Does Amazon KDP accept vector SVG barcodes generated here?',
+        a: 'Yes. UniversalCodeMaker exports clean, vector SVG and high-DPI 300+ PPI PNG files with exact quiet zones, ensuring razor-sharp reproduction that will pass KDP and IngramSpark automated pre-flight checks.'
+      },
+      {
+        q: 'Can I convert an old 10-digit ISBN to the modern 13-digit format?',
+        a: 'Yes. Simply prefix the 9-digit core with 978 and calculate the new 13th Mod-10 check digit. Our generator handles this math automatically.'
+      }
+    ]
+  },
+  {
+    slug: 'code-39-barcode-generator',
+    name: 'Code 39 Barcode Generator',
+    shortName: 'Code 39 Asset',
+    queryParam: 'symbology=code-39',
+    category: 'Logistics & 1D',
+    metaTitle: 'Free Code 39 Barcode Generator - Vector SVG & 300 DPI Asset Tags',
+    metaDescription: 'Create free Code 39 (USD-3 / LOGMARS) barcodes online. Ideal for IT asset tracking, government MIL-STD-129 compliance, and internal warehouse inventory.',
+    h1: 'Free Code 39 (USD-3) Barcode Generator',
+    lead: 'Generate industrial-grade Code 39 alphanumeric barcodes for enterprise asset management, Department of Defense LOGMARS compliance, and internal inventory numbering with instant vector SVG and PNG downloads.',
+    technicalSpec: {
+      standard: 'ANSI/AIM BC1 / ISO/IEC 16388 / MIL-STD-129',
+      characterSet: '43 characters: 0–9, uppercase A–Z, and symbols (- . $ / + % space)',
+      checkDigit: 'Optional Modulo-43 checksum calculation',
+      densityType: 'Variable-length discrete symbology with start/stop asterisk (*) characters',
+      exportOptions: 'Crisp Vector SVG, 300 DPI Thermal Print, Avery Label Sheets'
+    },
+    useCases: [
+      'IT hardware asset tags (laptops, monitors, networking gear)',
+      'US Department of Defense (DoD) military supply shipments under MIL-STD-129',
+      'Hospital and clinical laboratory specimen tube tracking',
+      'Automotive manufacturing sub-assemblies (AIAG standard)'
+    ],
+    faqs: [
+      {
+        q: 'What is the difference between Code 39 and Code 128?',
+        a: 'Code 39 is a simpler, self-checking symbology widely adopted by government, defense, and healthcare due to its reliability on older scanners. Code 128 is more compact (encodes data in less physical bar space) and supports the full 128 ASCII character set.'
+      },
+      {
+        q: 'Do Code 39 barcodes require a check digit?',
+        a: 'Code 39 includes inherent self-checking architecture, making a check digit optional in most commercial uses. However, high-integrity environments (such as DoD LOGMARS or healthcare) often enable the Modulo-43 checksum for maximum error prevention.'
+      },
+      {
+        q: 'Can Code 39 encode lowercase letters or symbols?',
+        a: 'Standard Code 39 natively encodes uppercase A–Z, numbers 0–9, and seven special symbols (- . $ / + % and space). Extended Code 39 uses two-character pairs to encode the full ASCII table.'
+      },
+      {
+        q: 'Why do I see asterisks (*) at the beginning and end of Code 39 data?',
+        a: 'The asterisk (*) serves as the start/stop pattern that tells the optical barcode scanner which direction the barcode is being read. Our generator automatically renders the start/stop bars.'
+      }
+    ]
+  },
+  {
+    slug: 'bulk-barcode-generator-excel',
+    name: 'Bulk Barcode Generator from Excel',
+    shortName: 'Bulk Excel / CSV',
+    queryParam: 'batch=open',
+    category: 'Logistics & 1D',
+    metaTitle: 'Free Bulk Barcode Generator from Excel (CSV) - Batch Print & ZIP Export',
+    metaDescription: 'Import CSV or Excel spreadsheets to generate hundreds of barcodes in bulk. Export high-resolution PNG batches in ZIP files or print directly to multi-page label sheets.',
+    h1: 'Free Bulk Barcode Generator from Excel & CSV',
+    lead: 'Batch-generate hundreds of sequential or spreadsheet-imported barcodes in seconds. Upload your CSV from Excel, Google Sheets, or ERP inventory systems and download all barcodes in a consolidated ZIP file or Avery PDF sheet.',
+    technicalSpec: {
+      inputDataSources: 'CSV files, Tab-separated text, or Automated sequential numeric ranges',
+      supportedSymbologies: 'Code 128, UPC-A, EAN-13, QR Code, Data Matrix, Code 39',
+      batchCapacity: 'Up to 1,000 barcodes per batch executed 100% client-side in browser memory',
+      exportFormats: 'Consolidated ZIP of 300 DPI PNGs or multi-page Avery PDF label sheets',
+      privacyStandard: '100% Zero-Knowledge; proprietary inventory data is never uploaded to any server'
+    },
+    useCases: [
+      'Warehouse inventory counting and annual stock audit tagging',
+      'Batch product labeling from Shopify, WooCommerce, or Amazon inventory CSV exports',
+      'Sequential serial number generation (e.g. SN-0001 through SN-0500)',
+      'Event badge and trade show attendee registration credentials'
+    ],
+    faqs: [
+      {
+        q: 'How do I prepare an Excel file for bulk barcode generation?',
+        a: 'In Excel or Google Sheets, create a single column with your SKU, part number, or barcode values. Go to File > Save As and select CSV (Comma delimited) (*.csv). Then upload that file into our Batch Import tab.'
+      },
+      {
+        q: 'How fast does the bulk generator create hundreds of barcodes?',
+        a: 'Because UniversalCodeMaker processes everything directly in your browser using multi-threaded web workers and local Canvas rendering, 500 barcodes typically generate in under 3 seconds.'
+      },
+      {
+        q: 'Is my proprietary inventory or pricing data sent to a cloud server?',
+        a: 'Never. UniversalCodeMaker operates under a strict zero-knowledge architecture. Your CSV spreadsheet data is parsed entirely in your computer RAM and never transmitted across the network.'
+      },
+      {
+        q: 'Can I print bulk barcodes directly onto Avery label sheets?',
+        a: 'Yes. Once your batch is imported, select your target Avery template (such as 5160 30-up) to export a multi-page PDF formatted with exact label boundaries ready for your office printer.'
+      }
+    ]
+  },
+  {
+    slug: 'shopify-barcode-generator',
+    name: 'Shopify Product Barcode Generator',
+    shortName: 'Shopify Barcode',
+    queryParam: 'symbology=upc-a&preset=retail-225-125',
+    category: 'Retail & POS',
+    metaTitle: 'Free Shopify Barcode Generator - Product Labels & POS Scanners',
+    metaDescription: 'Generate retail-ready UPC-A and EAN-13 barcodes for Shopify products, inventory SKUs, and Shopify POS scanner hardware. Free instant vector SVG & Avery label sheets.',
+    h1: 'Free Shopify Product Barcode & SKU Generator',
+    lead: 'Create scannable UPC, EAN, and Code 128 barcode labels for your Shopify product catalog and physical retail checkout counters. Easily import your product SKUs, design thermal price tags, and print without expensive third-party Shopify apps.',
+    technicalSpec: {
+      retailStandards: 'UPC-A (12 digits for US/CA) and EAN-13 (13 digits for International)',
+      internalSkuFormat: 'Code 128 alphanumeric symbology for internal variant SKUs',
+      posHardwareCompatibility: '100% compatible with Shopify POS barcode scanners (Socket Mobile, Zebra, Honeywell)',
+      labelDimensions: 'Standard 2.25\" × 1.25\" direct thermal price tags and Avery 5160 multi-pack sheets'
+    },
+    useCases: [
+      'Shopify POS retail boutique and pop-up shop cash register checkouts',
+      'Printing thermal shelf price tags with Product Title, SKU, Price, and Barcode',
+      'Inventory receiving and warehouse stock fulfillment',
+      'Tagging multi-variant apparel and consumer goods'
+    ],
+    faqs: [
+      {
+        q: 'Does Shopify require official UPC or EAN barcodes?',
+        a: 'If you are only selling in your own Shopify online store or physical retail location using Shopify POS, you can use any internal SKU or Code 128 barcode. However, if you sync products with Google Shopping, Amazon, or Facebook/Instagram commerce, you must provide authentic GS1 UPC or EAN numbers.'
+      },
+      {
+        q: 'How do I print barcodes for my Shopify products without paying for an app?',
+        a: 'Export your product list from Shopify admin (Products > Export > All products as CSV). Open UniversalCodeMaker, upload the CSV into our Batch Generator, and print directly to Avery sheets or thermal rolls without recurring monthly app subscriptions.'
+      },
+      {
+        q: 'Which barcode scanner works best with Shopify POS on iPad or iPhone?',
+        a: 'Shopify POS officially recommends Bluetooth 1D/2D barcode scanners (such as Socket Mobile S700 or Tera Wireless Handheld Scanners) that pair via Bluetooth HID keyboard emulation.'
+      },
+      {
+        q: 'What label size is standard for Shopify retail clothing and shelf tags?',
+        a: 'The most popular size for retail boutiques and apparel is 2.25\" × 1.25\" (or 2\" × 1\") direct thermal sticker rolls, which comfortably fit the product name, price, SKU, and barcode.'
+      }
+    ]
+  }
 ];
 
 const ENRICHMENTS = {
@@ -1625,7 +1835,237 @@ const ENRICHMENTS = {
         "url": "https://www.rbi.org.in/"
       }
     ]
-  }
+  },
+  "avery-5160-barcode-generator": {
+    "benefits": [
+      {
+        "title": "Exact 30-Up Grid Alignment",
+        "desc": "Calibrated specifically to Avery 5160 sheet specifications (3 columns × 10 rows, 1.0\" × 2.625\" per label) with zero margin drift."
+      },
+      {
+        "title": "Universal Printer Compatibility",
+        "desc": "Prints flawlessly on standard desktop laser and inkjet printers without buying specialized thermal hardware."
+      },
+      {
+        "title": "Batch & Single Repeats",
+        "desc": "Fill an entire 30-label sheet with identical product barcodes or import a CSV file to print distinct sequential SKUs across the sheet."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "Should I print on Avery 5160 sheets or a direct thermal roll printer?",
+        "a": "Avery 5160 sheets are ideal if you already own a standard office laser/inkjet printer and need to prepare 30 to 300 labels per batch. Thermal roll printers are faster and more economical for continuous, high-volume shipping stations."
+      },
+      {
+        "q": "What printer settings prevent label misalignment?",
+        "a": "Always select Actual Size or Scale: 100% in your print dialog. Disabling Fit to Printable Area ensures your printer maps 1:1 with Avery die-cut dimensions."
+      }
+    ],
+    "legalCaution": {
+      "title": "Avery Template Compatibility & Trademark Notice",
+      "points": [
+        "Avery and Avery template numbers (5160, 5163, etc.) are registered trademarks of Avery Products Corporation / CCL Industries Inc.",
+        "UniversalCodeMaker is an independent utility not affiliated with or endorsed by Avery Products Corporation. Template names are referenced strictly under nominative fair use for sizing compatibility.",
+        "Always test print on plain paper first and hold against an Avery sheet to verify printer roller alignment before printing onto label stock."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "Avery 5160 Template Specification Sheet",
+        "desc": "Official dimensions and margin layouts for 1\" × 2-5/8\" address labels.",
+        "url": "https://www.avery.com/"
+      },
+      {
+        "name": "USPS Barcode Printing Standards",
+        "desc": "Postal service contrast and barcode readability guidelines for mailers.",
+        "url": "https://postalpro.usps.com/"
+      }
+    ]
+  },
+  "isbn-book-barcode-generator": {
+    "benefits": [
+      {
+        "title": "Amazon KDP & IngramSpark Certified",
+        "desc": "Generates 100% compliant Bookland EAN-13 barcodes with exact quiet zones that pass automated distributor pre-flight checks."
+      },
+      {
+        "title": "Optional EAN-5 Price Extension",
+        "desc": "Seamlessly append standard 5-digit price codes (e.g. 51999 for $19.99 USD or 90000 for no price) required by US bookstores."
+      },
+      {
+        "title": "Vector SVG & 300+ DPI Print Files",
+        "desc": "Download crisp vector graphics to embed into Adobe InDesign, Illustrator, Canva, or Photoshop book cover templates."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "Do I need the 5-digit price add-on code on my book?",
+        "a": "Major US bookstore chains (such as Barnes & Noble) strongly prefer the 5-digit price extension code to automatically populate the retail price at the cash register. For international or online-only sales, standard 13-digit ISBN is sufficient."
+      },
+      {
+        "q": "Can I use the same ISBN for paperback and hardcover editions?",
+        "a": "No. Under international publishing standards, every format (paperback, hardcover, audiobook, e-book) requires its own unique ISBN number."
+      }
+    ],
+    "legalCaution": {
+      "title": "International ISBN Agency Regulatory Compliance",
+      "points": [
+        "ISBN barcodes must be derived from genuine ISBN numbers issued by authorized national agencies (Bowker in the US, Nielsen in the UK, etc.).",
+        "Inventing arbitrary 13-digit numbers will result in immediate rejection by book wholesalers, libraries, and Amazon KDP.",
+        "Ensure the barcode is printed on an opaque white background on the lower right quadrant of the back cover."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "International ISBN Agency Official Portal",
+        "desc": "Global standard administrator for book numbering and publisher prefixes.",
+        "url": "https://www.isbn-international.org/"
+      },
+      {
+        "name": "Bowker Identifier Services (US ISBN Agency)",
+        "desc": "Official US provider for book ISBN registration and publisher barcodes.",
+        "url": "https://www.myidentifiers.com/"
+      }
+    ]
+  },
+  "code-39-barcode-generator": {
+    "benefits": [
+      {
+        "title": "Full Alphanumeric Character Support",
+        "desc": "Encodes capital letters A–Z, numbers 0–9, and key operational symbols (- . $ / + % space) for intuitive asset naming."
+      },
+      {
+        "title": "Defense & Military (MIL-STD-129) Ready",
+        "desc": "Fully compliant with US Department of Defense LOGMARS logistics standards for military supply contracts."
+      },
+      {
+        "title": "Self-Checking Robust Architecture",
+        "desc": "Inherent parity check pattern minimizes misread risks, with optional Modulo-43 check digit support for mission-critical tracking."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "When should I choose Code 39 over Code 128?",
+        "a": "Choose Code 39 when encoding shorter alphanumeric IDs (like ASSET-104) where legacy scanners or government contracts (MIL-STD-129) require it. Choose Code 128 if you have longer strings or space constraints on small labels."
+      },
+      {
+        "q": "Should I enable the Modulo-43 check digit?",
+        "a": "Enable Mod-43 if you are tracking high-value assets, medical specimens, or defense shipments. For casual office inventory, standard Code 39 without check digit is scannable on all hardware."
+      }
+    ],
+    "legalCaution": {
+      "title": "Code 39 Technical Standards & Quiet Zone Rules",
+      "points": [
+        "Code 39 requires a minimum quiet zone (blank white margin) of 10 times the narrow bar width on both the left and right sides.",
+        "Standard Code 39 is not case-sensitive; lowercase letters are automatically capitalized upon encoding.",
+        "Ensure start and stop asterisks (*) are preserved in the optical pattern to allow bi-directional scanning."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "AIM Global: Code 39 Symbology Specification",
+        "desc": "Official standards body documentation for ANSI/AIM BC1 Uniform Symbology Specification Code 39.",
+        "url": "https://www.aimglobal.org/"
+      },
+      {
+        "name": "US DoD MIL-STD-129 Marking for Shipment",
+        "desc": "Military standard for shipment and packaging asset identification.",
+        "url": "https://quicksearch.dla.mil/"
+      }
+    ]
+  },
+  "bulk-barcode-generator-excel": {
+    "benefits": [
+      {
+        "title": "1,000 Barcodes in Under 3 Seconds",
+        "desc": "High-throughput browser-based batch processing with zero server upload latency or cloud queuing."
+      },
+      {
+        "title": "Single-Click Consolidated ZIP Export",
+        "desc": "Downloads all generated high-DPI 300+ PPI PNGs cleanly organized with original filenames in a single ZIP file."
+      },
+      {
+        "title": "100% Zero-Knowledge Privacy",
+        "desc": "Your confidential inventory SKUs, customer lists, and pricing spreadsheets never leave your device."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "How do I format my Excel sheet before uploading?",
+        "a": "Place your barcode data in a single column without empty rows or complex formulas, then click File > Save As > CSV (Comma delimited). Our tool will parse each row into an individual barcode."
+      },
+      {
+        "q": "Can I batch generate sequential numbers without an Excel file?",
+        "a": "Yes! Switch to the 'Sequential Range' tab, specify your prefix (e.g. SKU-), start number (e.g. 1001), count (e.g. 200), and padding digits to generate an instant sequence."
+      }
+    ],
+    "legalCaution": {
+      "title": "Batch Inventory Compliance & Data Protection",
+      "points": [
+        "UniversalCodeMaker does not store, log, or cache batch data on any server. Be sure to download your generated ZIP file or PDF before closing the browser window.",
+        "When generating retail EAN-13 or UPC-A batches, ensure all numbers correspond to legitimate GS1 Company Prefixes registered to your organization.",
+        "Always perform a sample test scan of at least 3 random barcodes from your batch before committing to large print runs."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "IETF RFC 4180: Common Format for CSV Files",
+        "desc": "Standard specification for Comma-Separated Values MIME type.",
+        "url": "https://www.ietf.org/rfc/rfc4180.txt"
+      },
+      {
+        "name": "GS1 General Specifications for Automated Identification",
+        "desc": "Global retail guidelines for sequential inventory and serial number assignment.",
+        "url": "https://www.gs1.org/"
+      }
+    ]
+  },
+  "shopify-barcode-generator": {
+    "benefits": [
+      {
+        "title": "Zero Monthly App Subscription Fees",
+        "desc": "Create unlimited retail barcodes for your Shopify store without paying $10–$25/month for third-party Shopify apps."
+      },
+      {
+        "title": "Direct Shopify POS Scanner Compatibility",
+        "desc": "Encoded with precision quiet zones that work instantly with Socket Mobile, Tera, and Zebra Shopify POS Bluetooth scanners."
+      },
+      {
+        "title": "Avery & Thermal Price Tag Presets",
+        "desc": "Formatted for 2.25\" × 1.25\" shelf tags and Avery 5160 sheets with Product Title, SKU, Price, and Barcode."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "Should I use UPC-A or Code 128 for my Shopify store?",
+        "a": "If you are selling products in external retail marketplaces (like Amazon or Google Shopping), use official GS1 UPC-A barcodes. If you only sell on your own Shopify store and physical boutique, Code 128 using your internal SKUs is fast and free."
+      },
+      {
+        "q": "How do I add barcodes to my Shopify products?",
+        "a": "In your Shopify Admin, navigate to Products > Select Product > Inventory section, and paste the barcode number into the 'Barcode (ISBN, UPC, GTIN, etc.)' field."
+      }
+    ],
+    "legalCaution": {
+      "title": "Shopify POS & Google Shopping Barcode Policy",
+      "points": [
+        "Shopify and Shopify POS are registered trademarks of Shopify Inc. UniversalCodeMaker is an independent software tool not endorsed by Shopify.",
+        "Google Shopping and marketplace integrations require authentic GS1 GTINs. Do not enter fabricated UPC numbers into Shopify if syncing with Google Merchant Center.",
+        "Ensure thermal labels use high-density thermal paper to prevent barcode fading under retail store lighting."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "Shopify Help Center: Barcodes and Shopify POS",
+        "desc": "Official Shopify guide for setting up product barcodes and scanner hardware.",
+        "url": "https://help.shopify.com/en/manual/products/details/barcodes"
+      },
+      {
+        "name": "Google Merchant Center: Unique Product Identifiers (GTIN)",
+        "desc": "Google requirements for retail barcodes when listing e-commerce products.",
+        "url": "https://support.google.com/merchants/answer/160161"
+      }
+    ]
+  },
 };
 
 function generatePageHtml(page) {
@@ -1758,41 +2198,141 @@ function generatePageHtml(page) {
   `).join('');
 
   const isQrPage = page.category === 'Smart QR' || page.category === 'Smart QR Codes' || page.slug.includes('qr');
-  const hardwareItemsHtml = isQrPage ? `
-    <a href="https://www.amazon.com/s?k=acrylic+qr+code+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-      <span>Acrylic QR Countertop Stands</span>
-    </a>
-    <a href="https://www.amazon.com/s?k=thermal+receipt+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-      <span>Thermal Receipt Printers</span>
-    </a>
-    <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-      <span>2D QR Scanners</span>
-    </a>
-    <a href="https://www.amazon.com/s?k=printable+vinyl+sticker+paper&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-      <span>Weatherproof Sticker Paper</span>
-    </a>
-  ` : `
-    <a href="https://www.amazon.com/s?k=thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-      <span>Thermal Label Printers</span>
-    </a>
-    <a href="https://www.amazon.com/s?k=avery+5160+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M6 8h12M6 12h12M6 16h8"/></svg>
-      <span>Avery 5160 Labels (30-Up)</span>
-    </a>
-    <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-      <span>2D Bluetooth Scanners</span>
-    </a>
-    <a href="https://www.amazon.com/s?k=direct+thermal+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-      <span>Thermal Shipping Rolls</span>
-    </a>
-  `;
+  let hardwareItemsHtml = '';
+  if (page.slug.includes('avery-5160')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=avery+5160+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M6 8h12M6 12h12M6 16h8"/></svg>
+        <span>Avery 5160 Labels (3,000 pk)</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=hp+laserjet+pro+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>HP LaserJet Pro Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>Wireless Barcode Scanner</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=avery+5163+shipping+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Avery 5163 Shipping Labels</span>
+      </a>
+    `;
+  } else if (page.slug.includes('isbn')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=postal+shipping+scale&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M12 12v3"/><circle cx="12" cy="12" r="1"/></svg>
+        <span>Postal Shipping Scale</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=brother+monochrome+laser+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Brother Laser Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=bubble+mailer+envelopes+book&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Padded Book Mailers</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=usb+handheld+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>USB Barcode Reader</span>
+      </a>
+    `;
+  } else if (page.slug.includes('code-39')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=industrial+barcode+scanner+heavy+duty&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>Industrial Laser Scanner</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=weatherproof+asset+tags+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        <span>Weatherproof Asset Labels</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=zebra+thermal+desktop+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Zebra Desktop Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>Bluetooth Handheld Scanner</span>
+      </a>
+    `;
+  } else if (page.slug.includes('bulk-barcode')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=munbyn+thermal+label+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>MUNBYN Commercial Thermal Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=direct+thermal+labels+4x6&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Fanfold Thermal Labels (4\" × 6\")</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=zebra+zd421+thermal+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Zebra ZD421 Industrial Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>High-Speed Desktop Scanner</span>
+      </a>
+    `;
+  } else if (page.slug.includes('shopify')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=bluetooth+thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Bluetooth Thermal Label Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=wireless+pos+barcode+scanner+ipad&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>Shopify POS Wireless Scanner</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=direct+thermal+labels+2.25x1.25&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>2.25\" × 1.25\" Price Tag Rolls</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=acrylic+pos+countertop+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        <span>Acrylic POS Display Stands</span>
+      </a>
+    `;
+  } else if (isQrPage) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=acrylic+qr+code+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        <span>Acrylic QR Countertop Stands</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=thermal+receipt+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Thermal Receipt Printers</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>2D QR Scanners</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=printable+vinyl+sticker+paper&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        <span>Weatherproof Sticker Paper</span>
+      </a>
+    `;
+  } else {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Thermal Label Printers</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=avery+5160+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M6 8h12M6 12h12M6 16h8"/></svg>
+        <span>Avery 5160 Labels (30-Up)</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>2D Bluetooth Scanners</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=direct+thermal+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Thermal Shipping Rolls</span>
+      </a>
+    `;
+  }
 
   return `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -2367,25 +2907,40 @@ function generatePageHtml(page) {
         </div>
       </div>
 
-      <!-- 4-Column Programmatic SEO & Symbology Directory Matrix -->
+      <!-- 5-Column Programmatic SEO & Symbology Directory Matrix -->
       <div class="v2-footer-matrix">
         <div class="v2-dir-col">
           <h4 style="display: flex; align-items: center; gap: 0.45rem;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            1D Retail &amp; Logistics
+            Retail &amp; Publishing
           </h4>
           <ul>
             <li><a href="./ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
             <li><a href="./upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
-            <li><a href="./code-128-barcode-generator.html">Code 128 Barcode Generator</a></li>
-            <li><a href="./itf-14-barcode-generator.html">ITF-14 Carton Barcode Generator</a></li>
+            <li><a href="./isbn-book-barcode-generator.html">ISBN Bookland Barcode</a></li>
+            <li><a href="./shopify-barcode-generator.html">Shopify Product Barcode</a></li>
+            <li><a href="./amazon-fba-fnsku-barcode-generator.html">Amazon FBA / FNSKU Barcode</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            Logistics, Sheets &amp; Bulk
+          </h4>
+          <ul>
+            <li><a href="./avery-5160-barcode-generator.html">Avery 5160 Label Generator</a></li>
+            <li><a href="./bulk-barcode-generator-excel.html">Bulk Excel Barcode Generator</a></li>
+            <li><a href="./code-128-barcode-generator.html">Code 128 Shipping Barcode</a></li>
+            <li><a href="./code-39-barcode-generator.html">Code 39 Asset Barcode</a></li>
+            <li><a href="./itf-14-barcode-generator.html">ITF-14 Carton Barcode</a></li>
           </ul>
         </div>
 
         <div class="v2-dir-col">
           <h4 style="display: flex; align-items: center; gap: 0.45rem;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-            2D Industrial &amp; High-Density
+            2D Industrial &amp; Density
           </h4>
           <ul>
             <li><a href="./data-matrix-generator.html">Data Matrix 2D Generator</a></li>
@@ -2401,6 +2956,8 @@ function generatePageHtml(page) {
             Smart QR Generators
           </h4>
           <ul>
+            <li><a href="./google-reviews-qr-code-generator.html">Google Reviews 5-Star QR</a></li>
+            <li><a href="./upi-qr-code-generator.html">UPI Scan-to-Pay QR</a></li>
             <li><a href="./wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
             <li><a href="./vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
             <li><a href="./google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
@@ -2415,6 +2972,7 @@ function generatePageHtml(page) {
             Messaging &amp; Text QR
           </h4>
           <ul>
+            <li><a href="./whatsapp-qr-code-generator.html">WhatsApp Direct Chat QR</a></li>
             <li><a href="./email-qr-code-generator.html">Email Message QR Code</a></li>
             <li><a href="./sms-qr-code-generator.html">SMS Direct Message QR</a></li>
             <li><a href="./phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>

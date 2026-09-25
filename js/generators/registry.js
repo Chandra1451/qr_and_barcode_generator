@@ -14,10 +14,12 @@ import pdf417 from './2d/pdf417.js';
 // Import Retail 1D Plugins
 import ean13 from './retail/ean-13.js';
 import upcA from './retail/upc-a.js';
+import isbn from './retail/isbn.js';
 
 // Import Logistics 1D Plugins
 import code128 from './logistics/code-128.js';
 import itf14 from './logistics/itf-14.js';
+import code39 from './logistics/code-39.js';
 
 const registry = new Map();
 
@@ -80,5 +82,7 @@ registerGenerator(aztec);
 registerGenerator(pdf417);
 registerGenerator(ean13);
 registerGenerator(upcA);
+registerGenerator(isbn);
 registerGenerator(code128);
 registerGenerator(itf14);
+registerGenerator(code39);

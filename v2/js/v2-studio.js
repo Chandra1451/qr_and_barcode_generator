@@ -119,9 +119,22 @@ class V2StudioApp {
     const paramWizard = urlParams.get('wizard');
     const paramPayload = urlParams.get('payload') || urlParams.get('data');
 
+    const aliasMap = {
+      'code39': 'code-39',
+      'code128': 'code-128',
+      'ean13': 'ean-13',
+      'upca': 'upc-a',
+      'itf14': 'itf-14',
+      'isbn13': 'isbn',
+      'isbn-13': 'isbn',
+      'datamatrix': 'data-matrix',
+      'qrcode': 'qr-code'
+    };
+    const resolvedSymbology = aliasMap[paramSymbology?.toLowerCase()] || paramSymbology;
+
     let targetGenId = 'qr-code';
-    if (paramSymbology && getGenerator(paramSymbology)) {
-      targetGenId = paramSymbology;
+    if (resolvedSymbology && getGenerator(resolvedSymbology)) {
+      targetGenId = resolvedSymbology;
     }
 
     const initialGen = getGenerator(targetGenId) || getAllGenerators()[0];
@@ -150,6 +163,17 @@ class V2StudioApp {
     if (paramLabel || paramPreset) {
       setTimeout(() => {
         this.openLabelMakerModal();
+      }, 150);
+    }
+
+    const paramBatch = urlParams.get('batch');
+    if (paramBatch === 'open' || paramBatch === 'true') {
+      setTimeout(() => {
+        if (this.dom.batchModal) {
+          this.dom.batchProgressBox.style.display = 'none';
+          this.dom.batchProgressFill.style.width = '0%';
+          this.dom.batchModal.classList.add('open');
+        }
       }, 150);
     }
   }
