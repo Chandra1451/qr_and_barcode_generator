@@ -1,0 +1,33 @@
+{
+  "name": "ucm-e2e-tests",
+  "private": true,
+  "version": "1.0.0",
+  "description": "End-to-end, output-correctness and design-consistency test suite for UniversalCodeMaker (QR & barcode studio).",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:static": "playwright test --project=static",
+    "test:smoke": "playwright test --project=desktop --grep @smoke",
+    "test:boot": "playwright test --project=desktop specs/02-studio-boot.spec.mjs",
+    "test:controls": "playwright test --project=desktop specs/03-controls.spec.mjs specs/04-geometry.spec.mjs",
+    "test:outputs": "playwright test --project=desktop specs/05-decode.spec.mjs specs/08-exports.spec.mjs",
+    "test:buttons": "playwright test --project=desktop specs/07-buttons.spec.mjs",
+    "test:consistency": "playwright test --project=desktop --project=phone specs/10-consistency.spec.mjs",
+    "test:security": "playwright test --project=desktop specs/11-security.spec.mjs",
+    "test:loading": "playwright test --project=desktop specs/13-loading.spec.mjs",
+    "test:visual": "playwright test --project=visual",
+    "baselines:update": "playwright test --project=visual --update-snapshots",
+    "report": "playwright show-report reports/html",
+    "serve": "node support/static-server.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.55.0",
+    "jszip": "^3.10.1",
+    "pngjs": "^7.0.0",
+    "zxing-wasm": "^2.2.0"
+  }
+}
