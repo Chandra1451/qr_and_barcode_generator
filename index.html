@@ -63,8 +63,8 @@
   </script>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=2.8">
-  <link rel="stylesheet" href="css/v2-studio.css?v=2.9">
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.9">
+  <link rel="stylesheet" href="css/v2-studio.css?v=3.0">
 </head>
 <body>
 
@@ -386,7 +386,7 @@
                         <option value="dot">Circular Dot</option>
                       </select>
                       <div class="color-picker-row" style="margin-top: 0.4rem;">
-                        <input type="color" class="color-input-box" id="ctrl-cornerColor" value="#0f1117" style="width: 32px; height: 30px;">
+                        <input type="color" class="color-input-box" id="ctrl-cornerColor" aria-label="Eye frame colour" value="#0f1117" style="width: 32px; height: 30px;">
                         <span class="mono-eyebrow" style="font-size: 0.7rem;">Frame Color</span>
                       </div>
                     </div>
@@ -398,7 +398,7 @@
                         <option value="square">Square Dot</option>
                       </select>
                       <div class="color-picker-row" style="margin-top: 0.4rem;">
-                        <input type="color" class="color-input-box" id="ctrl-cornerDotColor" value="#06b6d4" style="width: 32px; height: 30px;">
+                        <input type="color" class="color-input-box" id="ctrl-cornerDotColor" aria-label="Eye pupil colour" value="#06b6d4" style="width: 32px; height: 30px;">
                         <span class="mono-eyebrow" style="font-size: 0.7rem;">Pupil Color</span>
                       </div>
                     </div>
@@ -409,7 +409,7 @@
                 <div style="margin-top: 1rem; border-top: 1.5px dashed var(--dot-grid-color); padding-top: 1rem;">
                   <div class="control-label-row">
                     <label class="form-label" style="font-size: 0.85rem; margin-bottom: 0;">Center Logo &amp; Brand Icon</label>
-                    <span class="mono-eyebrow" style="font-size: 0.7rem; color: var(--sensor-green);">Auto-locks ECC to 30%</span>
+                    <span class="mono-eyebrow" style="font-size: 0.7rem; color: var(--sensor-green-text);">Auto-locks ECC to 30%</span>
                   </div>
 
                   <!-- Tactile Logo Dropzone -->
@@ -559,7 +559,7 @@
               </svg>
               Optical Preview &amp; Vector Dock
             </span>
-            <span class="mono-eyebrow" style="color: var(--scanner-laser);">Live Stage</span>
+            <span class="mono-eyebrow" style="color: var(--laser-text);">Live Stage</span>
           </div>
 
           <!-- Stage Toolbar -->
@@ -642,7 +642,7 @@
                   </svg>
                   PNG
                 </button>
-                <select class="symbology-select-box" id="scale-factor-select" style="width: 75px; padding: 0.45rem; font-size: 0.85rem;">
+                <select class="symbology-select-box" id="scale-factor-select" aria-label="PNG export resolution" style="width: 75px; padding: 0.45rem; font-size: 0.85rem;">
                   <option value="1">1x</option>
                   <option value="2" selected>2x</option>
                   <option value="4">4x</option>

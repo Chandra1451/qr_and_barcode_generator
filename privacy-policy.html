@@ -69,8 +69,8 @@
   <link rel="preload" href="/assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=2.8">
-  <link rel="stylesheet" href="css/v2-pages.css?v=2.8">
+  <link rel="stylesheet" href="css/v2-theme.css?v=2.9">
+  <link rel="stylesheet" href="css/v2-pages.css?v=2.9">
 
   <style>
     /* Privacy Policy Neubrutalist Enhancements */
@@ -208,7 +208,7 @@
     }
 
     .toc-link:hover {
-      color: var(--accent);
+      color: var(--accent-text);
       background: var(--surface-alt);
       border-left-color: var(--accent);
     }
@@ -241,7 +241,7 @@
       font-family: var(--font-mono);
       font-size: 0.85rem;
       font-weight: 700;
-      color: var(--accent);
+      color: var(--accent-text);
       background: var(--accent-tint);
       border: 1.5px solid var(--border);
       padding: 0.2rem 0.5rem;
@@ -306,7 +306,7 @@
       margin-bottom: 0.5rem;
     }
 
-    .stat-header.green { color: var(--sensor-green); }
+    .stat-header.green { color: var(--sensor-green-text); }
     .stat-header.amber { color: var(--optic-amber); }
 
     .stat-desc {
@@ -578,7 +578,7 @@
             To provide total transparency under global data privacy regulations, the following table details the scope of data handling:
           </p>
 
-          <div class="table-wrapper">
+          <div class="table-wrapper" tabindex="0" role="region" aria-label="Data processing table (scrollable)">
             <table class="compliance-table">
               <thead>
                 <tr>
@@ -592,26 +592,26 @@
                 <tr>
                   <td><strong>Barcode Payloads</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">URLs, text, SKU numbers, Wi-Fi credentials, vCard info</span></td>
                   <td>Processed in browser RAM via JavaScript</td>
-                  <td><strong style="color: #10b981;">NO</strong></td>
-                  <td><strong style="color: #10b981;">NO</strong></td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
                 </tr>
                 <tr>
                   <td><strong>Uploaded Logos & Icons</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">PNG, SVG, JPG images embedded in QR codes</span></td>
                   <td>Read locally via JavaScript <code>FileReader</code> API</td>
-                  <td><strong style="color: #10b981;">NO</strong></td>
-                  <td><strong style="color: #10b981;">NO</strong></td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
                 </tr>
                 <tr>
                   <td><strong>Batch Generation Data</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Pasted CSV rows, sequenced number series</span></td>
                   <td>Archived locally into ZIP format using client-side JSZip</td>
-                  <td><strong style="color: #10b981;">NO</strong></td>
-                  <td><strong style="color: #10b981;">NO</strong></td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
                 </tr>
                 <tr>
                   <td><strong>User Preferences</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Dark/Light theme toggle, cookie consent state</span></td>
                   <td>Saved locally in your device's <code>localStorage</code></td>
-                  <td><strong style="color: #10b981;">NO</strong></td>
-                  <td><strong style="color: #10b981;">NO</strong></td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
                 </tr>
                 <tr>
                   <td><strong>Aggregated Traffic Metrics</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Anonymous pageviews, browser type, device category</span></td>
@@ -834,7 +834,7 @@
               </div>
               <div class="stat-desc">
                 <strong>Data Controller &amp; Legal Team</strong><br>
-                Email: <code style="color: var(--accent); font-family: var(--font-mono);">privacy@universalcodemaker.com</code><br>
+                Email: <code style="color: var(--accent-text); font-family: var(--font-mono);">privacy@universalcodemaker.com</code><br>
                 Jurisdictions: EU/EEA (GDPR), UK, US (CCPA/CPRA)
               </div>
             </div>
@@ -846,7 +846,7 @@
               <div class="stat-desc">
                 <strong>Grievance Officer (DPDP Act 2023 &amp; IT Act)</strong><br>
                 Designation: Grievance Redressal Officer<br>
-                Email: <code style="color: var(--accent); font-family: var(--font-mono);">grievance@universalcodemaker.com</code><br>
+                Email: <code style="color: var(--accent-text); font-family: var(--font-mono);">grievance@universalcodemaker.com</code><br>
                 Acknowledgment: Within 24 hours • Resolution: Within 30 days
               </div>
             </div>
@@ -1022,7 +1022,7 @@
   </script>
 
   <!-- Navigation & Theme Sync Script -->
-  <script src="js/v2-nav.js?v=2.3"></script>
+  <script src="js/v2-nav.js?v=2.4"></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>

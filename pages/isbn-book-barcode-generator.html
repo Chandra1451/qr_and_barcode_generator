@@ -48,8 +48,8 @@
   <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="../css/v2-theme.css?v=2.8">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=2.8">
+  <link rel="stylesheet" href="../css/v2-theme.css?v=2.9">
+  <link rel="stylesheet" href="../css/v2-pages.css?v=2.9">
 
   <script>
     (function () {
@@ -82,7 +82,7 @@
       background: var(--optic-blue-tint);
       border: 1.5px solid var(--optic-blue);
       border-radius: var(--radius-full);
-      color: var(--optic-blue);
+      color: var(--accent-text); /* text-safe on the tint in both themes */
       font-size: 0.75rem;
       font-weight: 700;
       font-family: var(--font-mono);
@@ -329,7 +329,7 @@
       transform: translate(-1px, -1px);
       box-shadow: 3px 3px 0 var(--scanner-laser);
       border-color: var(--scanner-laser);
-      color: var(--scanner-laser);
+      color: var(--laser-text);
     }
   </style>
 

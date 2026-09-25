@@ -40,7 +40,7 @@
   /* --- Carbon Ink & Typography --- */
   --ink-black: #0f1117;
   --ink-secondary: #3e4452;
-  --ink-muted: #6b7280;
+  --ink-muted: #5a6170; /* >= 5.3:1 on every light surface/tint (was #6b7280, 4.3:1 on surface-alt) */
   --text-primary: var(--ink-black);
   --text-secondary: var(--ink-secondary);
   --text-muted: var(--ink-muted);
@@ -101,6 +101,12 @@
   /* --- Interactive Physics --- */
   --transition-tactile: transform 0.14s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.14s ease, background 0.18s ease;
 
+  /* --- Legacy V1 names still used by v2-studio.css, v2-pages.css and some pages ---
+     (they were only defined in css/theme.css, which V2 pages don't load) */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-full: var(--radius-pill);
+  --accent-cyan: var(--accent-text); /* link colour; text-safe in both themes */
+
   /* --- Semantic Aliases (used by content pages & v2-pages.css) --- */
   --border: #0f1117;
   --border-color: var(--border); /* legacy name used by generated pages/ and v2-studio.css */
@@ -116,7 +122,7 @@
   /* Text-safe status colors (>= 4.5:1 on surface / tint backgrounds) */
   --laser-text: color-mix(in srgb, var(--scanner-laser-dark) 85%, #000);
   --sensor-green-text: #047857;
-  --optic-amber-text: #b45309;
+  --optic-amber-text: #9c4507; /* #b45309 was 4.3-4.5:1 on tints */
   --violet: #6d28d9;
   --violet-tint: #f3edff;
 }
@@ -169,9 +175,10 @@
   --border: #2e3547;
   --accent-hover: var(--optic-blue-hover);
   --on-accent: #0a0c10;
-  --accent-text: var(--optic-blue-hover);
+  /* Lifted toward white: raw accent hues were 3.9-4.45:1 on dark tints (all four accents checked) */
+  --accent-text: color-mix(in srgb, var(--optic-blue-hover) 75%, #fff);
 
-  --laser-text: var(--scanner-laser);
+  --laser-text: color-mix(in srgb, var(--scanner-laser) 72%, #fff);
   --sensor-green-text: #34d399;
   --optic-amber-text: #fbbf24;
   --violet: #a78bfa;
@@ -349,5 +356,12 @@
   --shadow-blue: 4px 4px 0 #10b981;
   --shadow-blue-lg: 6px 6px 0 #10b981;
   --border-blue: 2.5px solid #10b981;
+}
+
+/* Base link colour: unstyled links otherwise fall back to the browser's #0000ee,
+   which is off-brand in light mode and unreadable (1.8:1) in dark mode.
+   Zero-specificity :where() so every class-based link style still wins. */
+:where(a) {
+  color: var(--accent-text);
 }
 
