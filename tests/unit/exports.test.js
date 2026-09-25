@@ -119,4 +119,14 @@ export async function runExportTests(assert) {
   applyCanvasCornerRadius(testCanvas, 14);
   assert.equal(testCanvas.width, 200, 'Canvas width is preserved after corner radius clipping');
   assert.equal(testCanvas.height, 100, 'Canvas height is preserved after corner radius clipping');
+
+  // Test 12: Universal Quiet Zone Padding
+  const padSvg = await engine.renderBwipSVG({
+    bcid: 'code128',
+    text: 'PADDING-TEST',
+    scale: 2,
+    padding: 20
+  });
+  assert.isTrue(padSvg.includes('<svg'), 'SVG with custom padding generates cleanly');
+  assert.isTrue(padSvg.includes('width="') && padSvg.includes('height="'), 'SVG contains explicit dimensions');
 }

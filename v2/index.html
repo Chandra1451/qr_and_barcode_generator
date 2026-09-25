@@ -487,14 +487,34 @@
                   </div>
                 </div>
 
-                <!-- Universal Image Corner Radius (QR & Barcodes) -->
-                <div class="universal-corner-section" style="margin-top: 1rem; padding-top: 1rem; border-top: 1.5px dashed var(--dot-grid-color);">
+                <!-- Universal Image Geometry: Quiet Zone Padding & Corner Radius -->
+                <div class="universal-geometry-section" style="margin-top: 1rem; padding-top: 1rem; border-top: 1.5px dashed var(--dot-grid-color);">
+                  <!-- Quiet Zone / Image Padding -->
                   <div class="control-label-row">
+                    <label class="form-label" for="ctrl-imagePadding" style="font-size: 0.84rem; margin-bottom: 0; display: flex; align-items: center; gap: 0.45rem;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg>
+                      <span>Quiet Zone / Image Padding</span>
+                    </label>
+                    <span class="control-value-badge" id="val-imagePadding">10px (Standard)</span>
+                  </div>
+                  <div style="margin-top: 0.45rem;">
+                    <input type="range" class="tactile-slider" id="ctrl-imagePadding" min="0" max="40" value="10" step="2">
+                  </div>
+                  <div class="corner-preset-row" id="padding-preset-row">
+                    <button type="button" class="corner-preset-btn" data-padding="0">0px (Flush)</button>
+                    <button type="button" class="corner-preset-btn" data-padding="6">6px (Compact)</button>
+                    <button type="button" class="corner-preset-btn active" data-padding="10">10px (Standard)</button>
+                    <button type="button" class="corner-preset-btn" data-padding="18">18px (Spacious)</button>
+                    <button type="button" class="corner-preset-btn" data-padding="28">28px (Wide)</button>
+                  </div>
+
+                  <!-- Image Corner Radius -->
+                  <div class="control-label-row" style="margin-top: 0.95rem;">
                     <label class="form-label" for="ctrl-cornerRadius" style="font-size: 0.84rem; margin-bottom: 0; display: flex; align-items: center; gap: 0.45rem;">
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/></svg>
                       <span>Image Corner Radius</span>
                     </label>
-                    <span class="control-value-badge" id="val-cornerRadius">0px (Square)</span>
+                    <span class="control-value-badge" id="val-cornerRadius">0px (Sharp)</span>
                   </div>
                   <div style="margin-top: 0.45rem;">
                     <input type="range" class="tactile-slider" id="ctrl-cornerRadius" min="0" max="48" value="0" step="2">
@@ -507,7 +527,7 @@
                     <button type="button" class="corner-preset-btn" data-radius="40">40px (Badge)</button>
                   </div>
                   <p style="font-size: 0.73rem; color: var(--text-muted); margin-top: 0.35rem; line-height: 1.35;">
-                    Renders smooth anti-aliased rounded corners on output images with clean corner transparency for PNG, SVG, and Clipboard.
+                    Calibrates ISO quiet zones and smooth anti-aliased rounded corners across live preview, PNG, SVG, and Clipboard.
                   </p>
                 </div>
 
