@@ -511,6 +511,161 @@ const SEO_PAGES = [
         a: 'A Version 40 QR code can store up to 4,296 alphanumeric characters or 7,089 numbers. For optimal scan speed, keep text under 300 characters.'
       }
     ]
+  },
+  {
+    slug: 'amazon-fba-fnsku-barcode-generator',
+    name: 'Amazon FBA / FNSKU Barcode Generator',
+    shortName: 'Amazon FBA / FNSKU',
+    queryParam: 'symbology=code-128&preset=amazon-fnsku-5160&label=1',
+    category: 'Retail & POS',
+    metaTitle: 'Free Amazon FBA Barcode Generator (FNSKU) - Avery 5160 & Thermal Roll',
+    metaDescription: 'Generate 100% compliant Amazon FBA FNSKU barcodes online for free. Code 128 standard, Avery 5160 (30-up) & direct thermal roll templates. Zero warehouse rejections.',
+    h1: 'Free Amazon FBA FNSKU Barcode & Label Generator',
+    lead: 'Create standards-compliant Amazon Fulfillment Network Stock Keeping Unit (FNSKU) item labels for Seller Central inventory. Formatted in high-density Code 128 with instant 30-up Avery sheet and thermal roll export.',
+    technicalSpec: {
+      standard: 'Amazon Seller Central FNSKU / Code 128 Subset A/B',
+      payloadFormat: 'X00-prefix alphanumeric identifier (typically 10 characters)',
+      labelDimensions: '1.0" × 2.625" (Avery 5160 / 30-up) or 2.25" × 1.25" Direct Thermal Roll',
+      mandatoryElements: 'Scannable Barcode, FNSKU Code Text, Product Title (max 2 lines), Condition Note (e.g. "New")',
+      quietZones: 'Minimum 0.25" (6.35mm) side margins and 0.125" top/bottom margin'
+    },
+    useCases: [
+      'Amazon FBA private label product prep and fulfillment compliance',
+      'Avery 5160 / 30-up laser and inkjet label sheets for bulk batch preparation',
+      'Direct thermal roll printing (MUNBYN, Rollo, Zebra) for fast on-demand tagging',
+      'Covering existing manufacturer UPC/EAN barcodes to prevent co-mingled inventory errors'
+    ],
+    faqs: [
+      {
+        q: 'What barcode symbology does Amazon require for FNSKU labels?',
+        a: 'Amazon Seller Central mandates Code 128 barcodes for all FNSKU item labels. UniversalCodeMaker automatically generates calibrated Code 128 barcodes with crisp bar-width ratios that guarantee 100% first-pass read rates in Amazon fulfillment centers.'
+      },
+      {
+        q: 'What information must appear on an Amazon FBA item label?',
+        a: 'Amazon packaging guidelines require four mandatory elements on every unit label: 1) The scannable Code 128 barcode, 2) The human-readable FNSKU alphanumeric string (e.g., X003B7TEST), 3) The product title (shortened if necessary), and 4) The condition of the item (e.g., "New" or "Used - Like New").'
+      },
+      {
+        q: 'Can I print FNSKU labels on Avery 5160 sheets or thermal roll printers?',
+        a: 'Yes. Our physical label studio includes dedicated presets for standard 30-up sheets (Avery 5160 / 1.0" × 2.625") and 1-click thermal roll printing for Rollo, MUNBYN, and Zebra thermal printers with zero margin clipping.'
+      },
+      {
+        q: 'How do I avoid Amazon inventory placement rejection fees?',
+        a: 'Ensure your barcodes maintain high print contrast (pure black on crisp white background), observe the minimum 0.25" quiet zones, do not place transparent tape over the barcode, and completely cover any existing manufacturer UPC/EAN barcodes so only the FNSKU is visible to warehouse scanners.'
+      }
+    ]
+  },
+  {
+    slug: 'google-reviews-qr-code-generator',
+    name: 'Google Reviews QR Code Generator',
+    shortName: 'Google Review QR',
+    queryParam: 'symbology=qr-code&wizard=google_review',
+    category: 'Smart QR',
+    metaTitle: 'Free Google Review QR Code Generator - Instant 5-Star Customer Feedback',
+    metaDescription: 'Generate a free Google Review QR code for your business. Opens directly into the 5-star review dialog on mobile. High-resolution 300 DPI vector print files, zero scan limits.',
+    h1: 'Free Google Reviews QR Code Generator',
+    lead: 'Turn in-person customers into verified 5-star Google reviews effortlessly. Generate custom QR codes that launch directly into your Google Business review box with one quick scan.',
+    technicalSpec: {
+      standard: 'ISO/IEC 18004 QR Code Model 2',
+      destinationType: 'Direct review dialog URL (https://search.google.com/local/writereview?placeid={ID} or g.page shortlink)',
+      supportedInputs: 'Google Review Share Link, Google Maps Profile URL, or Google Place ID',
+      errorCorrection: 'Level M (15% redundancy) or Level Q (25% redundancy with custom center icon)',
+      exportFormats: 'SVG Vector (lossless packaging), 300 DPI PNG, PDF Countertop Stand Sign'
+    },
+    useCases: [
+      'Restaurant table tents, bill presenters, and payment receipt footers',
+      'Retail counter checkout displays, window decals, and exit doors',
+      'Field service invoices, technician business cards, and leave-behind cards',
+      'Product packaging inserts, delivery boxes, and customer thank-you notes'
+    ],
+    faqs: [
+      {
+        q: 'How does a Google Review QR code take customers directly to the review form?',
+        a: 'By linking to Google\'s specialized review URL or compiling your Google Place ID into "https://search.google.com/local/writereview?placeid=...", smartphones immediately open the Google Maps app or browser directly into the 5-star rating and comment submission dialog.'
+      },
+      {
+        q: 'How do I find my business Google Review link or Place ID?',
+        a: 'Open Google Search, search for your business name (while logged into your Google Business Profile account), click "Ask for reviews", and copy the review link. Alternatively, paste your Google Maps business link into our wizard and we format it automatically.'
+      },
+      {
+        q: 'Will this QR code ever expire or require a monthly payment?',
+        a: 'No. UniversalCodeMaker creates 100% static, client-side QR codes. There are zero redirect intermediaries, zero subscription paywalls, and zero scan limits. Your code functions permanently.'
+      }
+    ]
+  },
+  {
+    slug: 'whatsapp-qr-code-generator',
+    name: 'WhatsApp QR Code Generator',
+    shortName: 'WhatsApp QR',
+    queryParam: 'symbology=qr-code&wizard=whatsapp',
+    category: 'Smart QR',
+    metaTitle: 'Free WhatsApp QR Code Generator (Chat & Message Link) - No Sign-up',
+    metaDescription: 'Create free WhatsApp QR codes with pre-filled greeting messages. Instant wa.me direct chat links, vector SVG and 300 DPI print ready. No subscription fees or tracking redirects.',
+    h1: 'Free WhatsApp Direct Chat QR Code Generator',
+    lead: 'Allow customers, clients, and guests to initiate a WhatsApp conversation with your business in one scan. Supports international numbers and pre-filled introductory messages.',
+    technicalSpec: {
+      standard: 'ISO/IEC 18004 QR Code Model 2',
+      protocol: 'Official WhatsApp Web & App Intent (https://wa.me/{phone}?text={message})',
+      phoneFormat: 'E.164 International Format (Country Code + Phone Number, digits only)',
+      messageEncoding: 'RFC 3986 URI component encoding with automated line break normalization',
+      errorCorrection: 'Level M (15% recovery) or Level H (30% recovery with custom WhatsApp logo)'
+    },
+    useCases: [
+      'Customer support kiosks and service desks for instant messaging',
+      'Restaurant and café table menus for WhatsApp order placement',
+      'Real estate "For Sale" yard signs and flyers for quick agent inquiries',
+      'Ecommerce delivery packaging inserts for direct customer care'
+    ],
+    faqs: [
+      {
+        q: 'How does a customer start a WhatsApp chat from scanning a QR code?',
+        a: 'When a smartphone camera scans the QR code, it detects the wa.me protocol and prompts the user to open WhatsApp directly with your number in the chat window, ready to send your pre-filled inquiry.'
+      },
+      {
+        q: 'Do customers need to save my phone number in their contacts first?',
+        a: 'No. The wa.me intent opens a conversation immediately without requiring the user to add your contact details to their address book first.'
+      },
+      {
+        q: 'Can I include a pre-filled greeting or order template?',
+        a: 'Yes. Enter your custom text (e.g. "Hi, I would like to inquire about...") in our wizard and it will be pre-populated in the user\'s chat input box when they scan.'
+      }
+    ]
+  },
+  {
+    slug: 'upi-qr-code-generator',
+    name: 'UPI QR Code Generator',
+    shortName: 'UPI Payment QR',
+    queryParam: 'symbology=qr-code&wizard=upi',
+    category: 'Smart QR',
+    metaTitle: 'Free UPI Payment QR Code Generator (GPay, PhonePe, Paytm, BHIM)',
+    metaDescription: 'Generate zero-fee UPI QR codes for your shop or business. Supports Google Pay, PhonePe, Paytm, and BHIM. Instant client-side generation, vector SVG, and print-ready tent cards.',
+    h1: 'Free UPI Scan-to-Pay QR Code Generator',
+    lead: 'Create instant UPI scan-to-pay QR codes for merchant stores, freelancers, and billing invoices. Fully compatible with Google Pay, PhonePe, Paytm, CRED, and BHIM.',
+    technicalSpec: {
+      standard: 'ISO/IEC 18004 QR Code Model 2',
+      protocol: 'NPCI UPI Deep Link Specification (upi://pay?pa={VPA}&pn={Name}&am={Amount}&cu=INR)',
+      compatibility: 'All NPCI-certified UPI applications across Android and iOS',
+      security: 'Client-side compilation with zero intermediary payment gateways or commissions'
+    },
+    useCases: [
+      'Retail checkout counter stands, acrylic tents, and cash registers',
+      'Freelance digital invoices and client billing receipts',
+      'Food delivery boxes, restaurant table bills, and street market stalls',
+      'Non-profit charity donations and event registration ticketing'
+    ],
+    faqs: [
+      {
+        q: 'Which UPI apps can scan and pay with this QR code?',
+        a: 'All standard payment apps supporting NPCI specifications can scan this code, including Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay, and all Indian banking apps.'
+      },
+      {
+        q: 'Is there any transaction fee or intermediary involved?',
+        a: 'None. UniversalCodeMaker does not process payments or handle funds. The QR code points directly to your Virtual Payment Address (VPA / UPI ID) so 100% of funds go straight into your bank account.'
+      },
+      {
+        q: 'Can I specify a fixed amount or let customers enter their own?',
+        a: 'Both options are supported. Leave the amount blank to let the customer enter any amount, or specify a fixed amount to lock the payment to an exact invoice figure.'
+      }
+    ]
   }
 ];
 
@@ -1285,6 +1440,191 @@ const ENRICHMENTS = {
         "url": "https://www.iso.org/standard/62021.html"
       }
     ]
+  },
+  "amazon-fba-fnsku-barcode-generator": {
+    "benefits": [
+      {
+        "title": "Zero Warehouse Rejection Risk",
+        "desc": "Calibrated Code 128 bar ratios and quiet zones comply strictly with Amazon Seller Central fulfillment guidelines."
+      },
+      {
+        "title": "Avery 5160 & Thermal Roll Ready",
+        "desc": "Print 30-up letter sheets on standard office printers or stream continuous labels to MUNBYN, Rollo, and Zebra thermal printers."
+      },
+      {
+        "title": "Automatic FNSKU Layout Composition",
+        "desc": "Instantly composes scannable barcode, human-readable code text, product title, and condition indicator into standard 1.0\" × 2.625\" dimensions."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "Should I use manufacturer UPC or Amazon FNSKU barcode?",
+        "a": "Amazon requires FNSKUs (starting with X00) for products that are private-label or not eligible for commingling. Using FNSKUs ensures your inventory is tracked exclusively to your seller account and never mixed with competing sellers."
+      },
+      {
+        "q": "Which label printer type is best for FBA shipments?",
+        "a": "Direct thermal roll printers (e.g. Rollo, Zebra, MUNBYN) are fastest for on-demand tagging because they require no ink or toner. Standard laser printers using Avery 5160 30-up sheets are ideal for high-volume batch prep."
+      }
+    ],
+    "legalCaution": {
+      "title": "Amazon FBA Shipment Compliance & Policy Guidelines",
+      "points": [
+        "Each unit must have a single scannable barcode. Any existing manufacturer UPC, EAN, or ISBN barcodes must be fully covered by the FNSKU label.",
+        "Labels must measure between 1.0\" × 2.0\" and 2.0\" × 3.0\". UniversalCodeMaker uses the standard 1.0\" × 2.625\" template (Avery 5160 / 30-up).",
+        "Do not place transparent tape, shrink-wrap seams, or shipping labels over the FNSKU barcode, as reflective glare causes scanner misreads.",
+        "FNSKU barcodes must strictly use Code 128 symbology with pure black print on white non-reflective label paper."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "Amazon Seller Central: FBA Product Barcode Requirements",
+        "desc": "Official Amazon documentation for FNSKU label specifications and packaging standards.",
+        "url": "https://sellercentral.amazon.com/help/hub/reference/external/200141490"
+      },
+      {
+        "name": "GS1 US: Code 128 Guidelines",
+        "desc": "General specifications for high-density alphanumeric linear barcodes.",
+        "url": "https://www.gs1us.org/"
+      }
+    ]
+  },
+  "google-reviews-qr-code-generator": {
+    "benefits": [
+      {
+        "title": "Direct 1-Tap Review Form Launch",
+        "desc": "Bypasses search results and business listings, opening straight into Google's rating dialog on mobile devices."
+      },
+      {
+        "title": "Permanent & Zero Subscription Fees",
+        "desc": "100% static client-side QR generation. No monthly bills, no scan caps, and no middleman URL redirects that can break."
+      },
+      {
+        "title": "Print-Ready Countertop & Table Tents",
+        "desc": "Export 300 DPI high-resolution PNG or vector SVG files designed for acrylic tabletop stands and payment receipts."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "Should I use a shortlink or Google Place ID?",
+        "a": "Both work seamlessly. If you have your 'g.page' review link from Google Business Profile, paste it directly. If you have a Google Place ID (ChIJ...), our compiler formats it into the direct 'writereview' endpoint automatically."
+      },
+      {
+        "q": "Where is the best physical location to place review QR codes?",
+        "a": "Counter checkout areas, receipt footers, dining table tents, and exit doors achieve the highest review conversion rates immediately after a positive service experience."
+      }
+    ],
+    "legalCaution": {
+      "title": "Google Business Profile Review Policy Compliance",
+      "points": [
+        "Google strictly prohibits 'review gating' (filtering negative reviews by sending dissatisfied customers to a private form while directing positive customers to Google).",
+        "Do not offer monetary incentives, discounts, or gifts in exchange for reviews, as this violates Google Maps Contributor guidelines and FTC endorsement guides.",
+        "Ensure all reviews are genuine and left by authentic customers using their personal Google accounts."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "Google Business Profile: Customer Reviews Policy",
+        "desc": "Official rules and best practices for requesting Google customer reviews.",
+        "url": "https://support.google.com/business/answer/3474122"
+      },
+      {
+        "name": "FTC: Guides Concerning the Use of Endorsements and Testimonials",
+        "desc": "Federal Trade Commission compliance guidelines for honest customer feedback and reviews.",
+        "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking"
+      }
+    ]
+  },
+  "whatsapp-qr-code-generator": {
+    "benefits": [
+      {
+        "title": "Instant Chat Without Saving Number",
+        "desc": "Customers connect immediately via wa.me protocol without needing to create a phone contact first."
+      },
+      {
+        "title": "Pre-Filled Inquiries & Order Messages",
+        "desc": "Pre-populate introductory text so customers can send product inquiries or reservations in one tap."
+      },
+      {
+        "title": "Privacy-Safe Direct Communication",
+        "desc": "No server logs or phone data collection. Compiled 100% locally in your browser memory."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "Can I use this for personal and WhatsApp Business accounts?",
+        "a": "Yes. The standard wa.me protocol operates universally across personal WhatsApp, WhatsApp Business, and WhatsApp Web on both Android and iOS devices."
+      },
+      {
+        "q": "How should international phone numbers be formatted?",
+        "a": "Include the country code followed by the full mobile number with digits only (e.g. 15550192834 for US or 447911123456 for UK). Do not include plus signs, spaces, or brackets."
+      }
+    ],
+    "legalCaution": {
+      "title": "WhatsApp Business Policy & Messaging Guidelines",
+      "points": [
+        "Ensure your customer outreach complies with WhatsApp Business Messaging Policies and applicable telecommunications regulations.",
+        "Do not send unsolicited bulk promotional messages to users who scan your code without explicit opt-in consent.",
+        "WhatsApp and its logos are registered trademarks of Meta Platforms, Inc."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "WhatsApp Official: How to Use Click to Chat",
+        "desc": "Official documentation for the wa.me protocol and URL-encoded messaging parameters.",
+        "url": "https://faq.whatsapp.com/5913398998672934"
+      },
+      {
+        "name": "WhatsApp Business Policy",
+        "desc": "Terms and compliance guidelines for commercial communication on WhatsApp.",
+        "url": "https://www.whatsapp.com/legal/business-policy/"
+      }
+    ]
+  },
+  "upi-qr-code-generator": {
+    "benefits": [
+      {
+        "title": "Universal NPCI App Compatibility",
+        "desc": "Scannable across Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay, and all Indian banking apps."
+      },
+      {
+        "title": "Zero Commission & Direct Bank Settlement",
+        "desc": "No payment gateway cut or transaction charges. 100% of customer funds transfer directly to your registered UPI VPA."
+      },
+      {
+        "title": "Flexible Static or Preset Amount",
+        "desc": "Generate open-amount QR codes for store counters or locked-amount codes for specific invoices and menu items."
+      }
+    ],
+    "decisionGuide": [
+      {
+        "q": "What is the difference between static and dynamic amount UPI QR codes?",
+        "a": "Static codes leave the amount blank, allowing customers to key in their own total at checkout. Dynamic amount codes embed a fixed rupee figure (e.g. am=450.00) so the amount is locked when scanned."
+      },
+      {
+        "q": "Can I print UPI QR codes on tabletop acrylic tent stands?",
+        "a": "Yes! UniversalCodeMaker exports high-resolution 300 DPI vector SVGs and PNGs that can be printed on durable vinyl or cardboard standees for checkout counters."
+      }
+    ],
+    "legalCaution": {
+      "title": "NPCI Unified Payments Interface Guidelines",
+      "points": [
+        "UniversalCodeMaker is an offline static code generator and is never in the flow of funds. All financial settlement occurs through NPCI member banks.",
+        "Always test-scan your generated QR code with a ₹1 test transaction before printing physical shop signage to verify your VPA spelling.",
+        "Ensure your merchant name matches the official registration on your bank account to avoid customer confusion during payment verification."
+      ]
+    },
+    "authorityLinks": [
+      {
+        "name": "NPCI: Unified Payments Interface (UPI)",
+        "desc": "National Payments Corporation of India official technical architecture and linking specifications.",
+        "url": "https://www.npci.org.in/what-we-do/upi/product-overview"
+      },
+      {
+        "name": "Reserve Bank of India: Digital Payment Guidelines",
+        "desc": "RBI regulatory frameworks for electronic payments and QR-based merchant acceptance.",
+        "url": "https://www.rbi.org.in/"
+      }
+    ]
   }
 };
 
@@ -1416,6 +1756,43 @@ function generatePageHtml(page) {
       <div class="authority-link-desc">${a.desc}</div>
     </a>
   `).join('');
+
+  const isQrPage = page.category === 'Smart QR' || page.category === 'Smart QR Codes' || page.slug.includes('qr');
+  const hardwareItemsHtml = isQrPage ? `
+    <a href="https://www.amazon.com/s?k=acrylic+qr+code+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+      <span>Acrylic QR Countertop Stands</span>
+    </a>
+    <a href="https://www.amazon.com/s?k=thermal+receipt+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+      <span>Thermal Receipt Printers</span>
+    </a>
+    <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+      <span>2D QR Scanners</span>
+    </a>
+    <a href="https://www.amazon.com/s?k=printable+vinyl+sticker+paper&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+      <span>Weatherproof Sticker Paper</span>
+    </a>
+  ` : `
+    <a href="https://www.amazon.com/s?k=thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+      <span>Thermal Label Printers</span>
+    </a>
+    <a href="https://www.amazon.com/s?k=avery+5160+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M6 8h12M6 12h12M6 16h8"/></svg>
+      <span>Avery 5160 Labels (30-Up)</span>
+    </a>
+    <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+      <span>2D Bluetooth Scanners</span>
+    </a>
+    <a href="https://www.amazon.com/s?k=direct+thermal+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      <span>Thermal Shipping Rolls</span>
+    </a>
+  `;
 
   return `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -1689,10 +2066,66 @@ function generatePageHtml(page) {
     .related-arrow {
       color: var(--optic-blue);
       font-weight: 700;
+      display: inline-flex;
+      align-items: center;
     }
-      align-self: flex-end;
-      color: var(--accent-cyan);
+    .hardware-box {
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-ink);
+      padding: 1.25rem 1.5rem;
+      margin: 2.25rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .hardware-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .hardware-box-title {
+      font-size: 0.92rem;
       font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .hardware-box-disclosure {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .hardware-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+    .hardware-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      box-shadow: 2px 2px 0 var(--border-color);
+      transition: all var(--transition-fast);
+    }
+    .hardware-pill:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--scanner-laser);
+      border-color: var(--scanner-laser);
+      color: var(--scanner-laser);
     }
   </style>
 
@@ -1788,6 +2221,22 @@ function generatePageHtml(page) {
         <ul class="use-cases-list">
           ${useCasesHtml}
         </ul>
+      </div>
+    </section>
+
+    <!-- Recommended Hardware & Supplies Banner (Amazon Associates) -->
+    <section class="hardware-box">
+      <div class="hardware-box-header">
+        <div class="hardware-box-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+          Recommended Hardware &amp; Supplies
+        </div>
+        <div class="hardware-box-disclosure">
+          UniversalCodeMaker is an Amazon Associate. As an Amazon Associate, we earn from qualifying purchases.
+        </div>
+      </div>
+      <div class="hardware-pills-row">
+        ${hardwareItemsHtml}
       </div>
     </section>
 

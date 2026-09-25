@@ -272,6 +272,115 @@ export const QR_WIZARDS = {
     compile(data) {
       return data.text || '';
     }
+  },
+
+  google_review: {
+    id: 'google_review',
+    name: 'Google Review',
+    icon: '⭐',
+    description: 'Direct link opening Google Maps rating dialog to collect 5-star customer reviews.',
+    fields: [
+      {
+        id: 'reviewUrl',
+        label: 'Google Review Link or Place ID',
+        type: 'text',
+        placeholder: 'https://g.page/r/.../review or Place ID (ChIJ...)',
+        default: 'https://g.page/r/CbG9Z_test_review/review',
+        required: true
+      }
+    ],
+    compile(data) {
+      let input = (data.reviewUrl || '').trim();
+      if (!input) return 'https://search.google.com';
+      if (/^https?:\/\//i.test(input)) {
+        return input;
+      }
+      if (/^ChIJ/i.test(input)) {
+        return `https://search.google.com/local/writereview?placeid=${input}`;
+      }
+      return `https://${input}`;
+    }
+  },
+
+  whatsapp: {
+    id: 'whatsapp',
+    name: 'WhatsApp',
+    icon: '💬',
+    description: 'Instant click-to-chat QR code with pre-filled greeting message for orders & support.',
+    fields: [
+      {
+        id: 'phone',
+        label: 'Phone Number (with Country Code)',
+        type: 'tel',
+        placeholder: 'e.g. 15551234567 or 919876543210 (digits only)',
+        default: '15551234567',
+        required: true
+      },
+      {
+        id: 'message',
+        label: 'Pre-filled Greeting Message (Optional)',
+        type: 'textarea',
+        placeholder: 'e.g. Hello! I would like more information on your services.',
+        default: 'Hello! I scanned your QR code.'
+      }
+    ],
+    compile(data) {
+      const cleanPhone = (data.phone || '').replace(/[^0-9]/g, '');
+      const msg = (data.message || '').trim();
+      if (!cleanPhone) return 'https://wa.me/';
+      return msg 
+        ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`
+        : `https://wa.me/${cleanPhone}`;
+    }
+  },
+
+  upi: {
+    id: 'upi',
+    name: 'UPI Pay',
+    icon: '₹',
+    description: 'Scan-to-pay QR code for Google Pay, PhonePe, Paytm & BHIM with preset amount.',
+    fields: [
+      {
+        id: 'vpa',
+        label: 'Merchant / Payee UPI ID (VPA)',
+        type: 'text',
+        placeholder: 'e.g. merchant@okhdfcbank or yourname@upi',
+        default: 'store@upi',
+        required: true
+      },
+      {
+        id: 'payeeName',
+        label: 'Payee / Business Name',
+        type: 'text',
+        placeholder: 'e.g. Corner Grocery & Bakery',
+        default: 'Merchant Store'
+      },
+      {
+        id: 'amount',
+        label: 'Preset Amount (Optional, INR ₹)',
+        type: 'text',
+        placeholder: 'e.g. 150.00 (leave blank for any amount)',
+        default: ''
+      },
+      {
+        id: 'note',
+        label: 'Payment Note / Reference',
+        type: 'text',
+        placeholder: 'e.g. Table 4 Order',
+        default: 'UniversalCodeMaker Payment'
+      }
+    ],
+    compile(data) {
+      const vpa = (data.vpa || '').trim();
+      if (!vpa) return 'upi://pay';
+      const name = encodeURIComponent((data.payeeName || '').trim());
+      const amount = (data.amount || '').trim().replace(/[^0-9.]/g, '');
+      const note = encodeURIComponent((data.note || '').trim());
+      let uri = `upi://pay?pa=${encodeURIComponent(vpa)}&pn=${name || 'Merchant'}&cu=INR`;
+      if (amount) uri += `&am=${amount}`;
+      if (note) uri += `&tn=${note}`;
+      return uri;
+    }
   }
 };
 

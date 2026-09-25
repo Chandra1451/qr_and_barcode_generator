@@ -90,6 +90,18 @@ export const LABEL_PRESETS = {
     description: '21 labels per A4 sheet (European standard)',
     defaultLayout: 'vertical-stack',
     averyTemplateId: 'avery-l7160'
+  },
+  'amazon-fnsku-5160': {
+    id: 'amazon-fnsku-5160',
+    name: 'Amazon FBA / FNSKU (1.0" × 2.625" • Avery 5160 / Thermal)',
+    category: 'fba',
+    widthIn: 2.625,
+    heightIn: 1.0,
+    widthMm: 66.675,
+    heightMm: 25.4,
+    description: 'Official Amazon FBA Product Label specification (Code 128 FNSKU, Title, Condition "New")',
+    defaultLayout: 'amazon-fba',
+    averyTemplateId: 'avery-5160'
   }
 };
 
@@ -117,6 +129,12 @@ export const LABEL_LAYOUTS = {
     name: 'Minimalist Price',
     subtitle: 'Prominent price callout with centered barcode',
     iconSvg: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="7" x2="13" y2="7"/><rect x="6" y="11" width="12" height="6"/><line x1="8" y1="19" x2="16" y2="19"/></svg>`
+  },
+  'amazon-fba': {
+    id: 'amazon-fba',
+    name: 'Amazon FBA / FNSKU',
+    subtitle: 'Amazon compliance: Title, Code 128 Barcode, FNSKU, Condition "New"',
+    iconSvg: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="6" y1="6" x2="18" y2="6"/><rect x="5" y="9" width="14" height="8"/><line x1="6" y1="20" x2="12" y2="20"/></svg>`
   }
 };
 
@@ -440,6 +458,46 @@ export function renderLabelToCanvas(canvas, {
       ctx.fillText(bottomText, padX + (innerW / 2), padY + innerH - 20);
       ctx.fillStyle = '#0f172a';
     }
+    ctx.textAlign = 'left';
+  } else if (layout.id === 'amazon-fba') {
+    // -------------------------------------------------------------
+    // Layout 5: Amazon FBA / FNSKU Fulfillment Standard
+    // -------------------------------------------------------------
+    let currentY = padY;
+
+    // 1. Top Title (Amazon specifies 1-2 lines, clean sans-serif)
+    ctx.font = '600 20px "Space Grotesk", -apple-system, sans-serif';
+    const labelTitle = title || 'Amazon FBA Product Label';
+    const titleLines = wrapText(ctx, labelTitle, innerW);
+    const maxTitleLines = Math.min(titleLines.length, 2);
+    for (let i = 0; i < maxTitleLines; i++) {
+      ctx.fillText(titleLines[i], padX, currentY);
+      currentY += 24;
+    }
+    currentY += 4;
+
+    // Bottom info height: FNSKU text + Condition line
+    const bottomH = 44;
+    const availableCodeH = (padY + innerH) - currentY - bottomH - 4;
+
+    // 2. Center Code 128 / Barcode
+    if (codeImage && availableCodeH > 30) {
+      drawImageAspect(ctx, codeImage, padX, currentY, innerW, availableCodeH, 'center');
+    }
+
+    // 3. FNSKU text & Condition Note (e.g. "New")
+    let botY = padY + innerH - bottomH;
+    const fnskuText = sku || 'X003SAMPLE';
+    ctx.font = '700 18px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(fnskuText, padX + (innerW / 2), botY);
+    botY += 22;
+
+    const condText = footnote || 'New';
+    ctx.font = '600 15px "Space Grotesk", -apple-system, sans-serif';
+    ctx.fillStyle = '#475569';
+    ctx.fillText(condText, padX + (innerW / 2), botY);
+    ctx.fillStyle = '#0f172a';
     ctx.textAlign = 'left';
   }
 }

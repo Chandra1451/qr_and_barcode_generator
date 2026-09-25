@@ -11,7 +11,7 @@ import { QR_WIZARDS, getAllWizards, getWizard } from '../../js/wizards/qr-wizard
 export async function runWizardTests(assert) {
   // Test 1: Registry check
   const allWizards = getAllWizards();
-  assert.equal(allWizards.length, 10, 'Registry contains exactly 10 Smart QR wizards');
+  assert.equal(allWizards.length, 13, 'Registry contains exactly 13 Smart QR wizards');
   assert.isTrue(allWizards.every(w => w.id && w.name && w.icon && typeof w.compile === 'function'), 'All wizards conform to wizard interface');
 
   // Test 2: URL Wizard
@@ -144,5 +144,39 @@ export async function runWizardTests(assert) {
     textWz.compile({ text: 'Simple Plain Text Note 12345' }),
     'Simple Plain Text Note 12345',
     'Compiles plain text verbatim'
+  );
+
+  // Test 12: Google Review Wizard
+  const grWz = getWizard('google_review');
+  assert.equal(
+    grWz.compile({ reviewUrl: 'https://g.page/r/CbG9Z_test/review' }),
+    'https://g.page/r/CbG9Z_test/review',
+    'Preserves direct Google Review link'
+  );
+  assert.equal(
+    grWz.compile({ reviewUrl: 'ChIJN1t_tDeuEmsRUsoyG83frY4' }),
+    'https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4',
+    'Compiles Google Place ID into writereview link'
+  );
+
+  // Test 13: WhatsApp Wizard
+  const waWz = getWizard('whatsapp');
+  assert.equal(
+    waWz.compile({ phone: '+1 (555) 019-2834', message: 'Hello World!' }),
+    'https://wa.me/15550192834?text=Hello%20World!',
+    'Sanitizes phone number and URL-encodes WhatsApp message'
+  );
+  assert.equal(
+    waWz.compile({ phone: '919876543210', message: '' }),
+    'https://wa.me/919876543210',
+    'Compiles WhatsApp URL without message query'
+  );
+
+  // Test 14: UPI Payment Wizard
+  const upiWz = getWizard('upi');
+  assert.equal(
+    upiWz.compile({ vpa: 'shop@upi', payeeName: 'Store Name', amount: '250', note: 'Order #1' }),
+    'upi://pay?pa=shop%40upi&pn=Store%20Name&cu=INR&am=250&tn=Order%20%231',
+    'Compiles UPI payment link with amount and reference note'
   );
 }
