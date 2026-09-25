@@ -104,6 +104,7 @@ class V2StudioApp {
     this.bindBatchModalEvents();
     this.bindPdfModalEvents();
     this.bindLabelMakerEvents();
+    this.bindQuickLaunchEvents();
     this.updateBatchSeqPreview();
 
     // Prefetch engines in background
@@ -1582,6 +1583,63 @@ class V2StudioApp {
       showCodeText: true,
       codeImage: codeImg,
       isSquare2D
+    });
+  }
+
+  /* --- Popular Formats Quick-Launch Strip --- */
+  bindQuickLaunchEvents() {
+    const quickButtons = document.querySelectorAll('.v2-quick-btn');
+    if (!quickButtons.length) return;
+
+    quickButtons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        // If middle-click or user holds Cmd/Ctrl/Shift, let browser open link in new tab normally
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+        e.preventDefault();
+
+        const symbology = btn.dataset.symbology;
+        const wizard = btn.dataset.wizard;
+        const isFnsku = btn.dataset.fnsku === 'true';
+        const preset = btn.dataset.preset;
+
+        // 1. Activate symbology
+        if (symbology) {
+          this.selectGenerator(symbology);
+        }
+
+        // 2. Activate QR Wizard if applicable
+        if (wizard && symbology === 'qr-code') {
+          this.selectWizard(wizard);
+        }
+
+        // 3. Amazon FBA Special Handling
+        if (isFnsku) {
+          if (this.dom.payloadInput && (!this.dom.payloadInput.value || this.dom.payloadInput.value === '123456789012')) {
+            this.dom.payloadInput.value = 'X003B7TEST';
+            this.scheduleRender();
+          }
+          if (preset && this.dom.labelPresetSelect) {
+            this.labelState.presetId = preset;
+            this.dom.labelPresetSelect.value = preset;
+            this.dom.labelPresetSelect.dispatchEvent(new Event('change'));
+          }
+        }
+
+        // 4. Update visual active state
+        quickButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 5. Smooth scroll down to workbench studio
+        const studioEl = document.getElementById('studio');
+        if (studioEl) {
+          const navOffset = 70;
+          const pos = studioEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
+          window.scrollTo({
+            top: pos,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
   }
 
