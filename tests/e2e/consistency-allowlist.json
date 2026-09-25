@@ -1,4 +1,20 @@
 {
-  "_readme": "Intentional differences the consistency tests should accept. Add an entry only after deciding the difference is correct, and always give the reason. Key formats: '<generatorId>.<controlId>.<label|min|max|default|unit>', '<generatorId>.<controlId>.missing', 'asset-version.<file name>'. Example: { \"key\": \"data-matrix.scale.max\", \"reason\": \"2D modules are small; needs a larger max scale\" }",
-  "allowed": []
+  "_readme": "Intentional differences the consistency tests should accept. Add an entry only after deciding the difference is correct, and always give the reason. Key formats: '<generatorId>.<controlId>.<label|min|max|default|unit>', '<generatorId>.<controlId>.missing', 'asset-version.<file name>'. Decided by the owner 2026-09-26: same labels everywhere, per-format ranges kept.",
+  "allowed": [
+    { "key": "data-matrix.scale.min", "reason": "2D matrix modules are small; scale 1 is too tiny to print or scan" },
+    { "key": "data-matrix.scale.max", "reason": "2D matrix modules are small; larger scales needed for print" },
+    { "key": "data-matrix.scale.default", "reason": "2D matrix default of 4 gives a readable on-screen module size" },
+    { "key": "aztec.scale.min", "reason": "2D matrix modules are small; scale 1 is too tiny to print or scan" },
+    { "key": "aztec.scale.max", "reason": "2D matrix modules are small; larger scales needed for print" },
+    { "key": "aztec.scale.default", "reason": "2D matrix default of 4 gives a readable on-screen module size" },
+    { "key": "isbn.height.max", "reason": "Book-cover barcodes are short; 60 mm is ample" },
+    { "key": "isbn.height.default", "reason": "Typical Bookland EAN height on book covers" },
+    { "key": "code-128.height.min", "reason": "Logistics labels are often very short; allow 15 mm" },
+    { "key": "code-128.height.max", "reason": "Shipping/warehouse labels can use tall bars; allow 80 mm" },
+    { "key": "code-39.height.min", "reason": "Asset tags are often very short; allow 15 mm" },
+    { "key": "code-39.height.max", "reason": "Warehouse labels can use tall bars; allow 80 mm" },
+    { "key": "itf-14.height.min", "reason": "GS1 ITF-14 on cartons needs taller bars; 25 mm minimum" },
+    { "key": "itf-14.height.max", "reason": "Outer-carton ITF-14 can be printed tall; allow 80 mm" },
+    { "key": "itf-14.height.default", "reason": "GS1 recommends a taller ITF-14 symbol for carton scanning" }
+  ]
 }

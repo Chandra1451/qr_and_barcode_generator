@@ -209,7 +209,7 @@ h1, h2, h3, h4 {
 .v2-nav-link {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.9rem; /* same as v2-pages.css so the header is identical on every page */
   text-decoration: none;
   color: var(--text-primary);
   transition: color 0.15s ease;
@@ -322,6 +322,7 @@ h1, h2, h3, h4 {
 
 .v2-hero-title {
   font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 800; /* same heading weight as every other page's <h1> */
   letter-spacing: -0.02em;
 }
 
@@ -952,10 +953,19 @@ h1, h2, h3, h4 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 320px;
+  /* Fixed height: the code is scaled to fit (see max-height below), so the layout never
+     jumps when a slider changes and every generator gets the same stage. */
+  height: 420px;
   position: relative;
   overflow: hidden;
   border-bottom: var(--border-ink);
+}
+
+@media (max-width: 600px) {
+  .preview-stage { height: 340px; padding: 1.25rem; }
+  #preview-canvas,
+  #qr-styled-container canvas,
+  #qr-styled-container svg { max-height: 280px !important; }
 }
 
 .preview-grid-texture {
@@ -970,6 +980,8 @@ h1, h2, h3, h4 {
 #qr-styled-container canvas,
 #qr-styled-container svg {
   max-width: 100%;
+  max-height: 320px; /* fit inside the fixed stage; aspect ratio is preserved */
+  width: auto;
   height: auto;
   position: relative;
   z-index: 2;
@@ -1036,6 +1048,7 @@ h1, h2, h3, h4 {
 .preview-stage.preview-stale #qr-styled-container svg {
   opacity: 0.2;
   filter: grayscale(1);
+  max-height: 240px; /* leave room for the error message inside the fixed stage */
 }
 
 #qr-styled-container {
