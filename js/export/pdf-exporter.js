@@ -6,9 +6,8 @@
  * directly in client-side browser memory using jsPDF.
  */
 
-import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=2.8';
-import { engine, toQrByteString } from '../core/engine.js?v=2.8';
-import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.8';
+import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.0';
+import { engine, toQrByteString } from '../core/engine.js?v=3.0';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {
@@ -176,41 +175,22 @@ async function getCodeImageDataUrl(generator, payload, options, logoDataUrl = ''
     });
   }
 
-  // bwip-js barcode rendering
+  // Same generator render path as the preview (format, checksum, colours, padding),
+  // at 2x the preview scale for print sharpness.
   const canvas = document.createElement('canvas');
-  const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
-
-  let finalPayload = payload;
-  if (generator.id === 'upc-a' && payload.length === 11) {
-    finalPayload = computeUpcA(payload);
-  } else if (generator.id === 'ean-13' && payload.length === 12) {
-    finalPayload = computeEan13(payload);
-  }
-
-  const bwipOpts = {
-    bcid: generator.id === 'data-matrix' ? 'datamatrix' :
-          generator.id === 'aztec' ? 'azteccode' :
-          generator.id === 'pdf417' ? 'pdf417' :
-          generator.id === 'ean-13' ? 'ean13' :
-          generator.id === 'upc-a' ? 'upca' :
-          generator.id === 'itf-14' ? 'itf14' : 'code128',
-    text: finalPayload,
-    scale: 4,
-    includetext: true,
-    textxalign: 'center',
-    guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
-    backgroundcolor: 'FFFFFF'
-  };
-
-  if (!is2DCode && options.height) {
-    bwipOpts.height = Number(options.height) || 35;
-  }
-  if (generator.id === 'pdf417' && Number(options.columns) > 0) {
-    bwipOpts.columns = Number(options.columns);
-  }
-
-  await engine.renderBwipCanvas(canvas, bwipOpts);
+  const printScale = (Number(options.scale) || 3) * 2;
+  await engine.render(generator, payload, { ...options, scale: printScale }, { canvas });
   return canvas.toDataURL('image/png');
+}
+
+/** Width/height ratio of an image data URL. */
+function imageAspect(dataUrl) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img.width && img.height ? img.width / img.height : 3);
+    img.onerror = () => resolve(3);
+    img.src = dataUrl;
+  });
 }
 
 /**
@@ -239,8 +219,6 @@ export async function generatePdfLabelSheet({
     format: tpl.format
   });
 
-  const { positions } = calculateLabelPositions(effectiveTemplateId, quantity);
-
   // Extract or render code image
   let imgDataUrl = '';
   if (canvasOrDataUrl) {
@@ -260,6 +238,8 @@ export async function generatePdfLabelSheet({
 
   const genId = effectiveGen.id || 'code128';
   const isQrOrSquare2D = ['qr-code', 'data-matrix', 'aztec'].includes(genId);
+  // Draw with the image's real proportions (fixed 3:1 / 2.5:1 ratios used to stretch codes).
+  const aspect = isQrOrSquare2D ? 1 : await imageAspect(imgDataUrl);
 
   if (effectiveTemplateId === 'single-center') {
     // Single Large Center Sign
@@ -269,8 +249,8 @@ export async function generatePdfLabelSheet({
       doc.text(sheetTitle, tpl.pageWidth / 2, 32, { align: 'center' });
     }
 
-    const imgSize = isQrOrSquare2D ? 120 : 150;
-    const imgHeight = isQrOrSquare2D ? 120 : (genId === 'pdf417' ? 60 : 50);
+    const imgSize = isQrOrSquare2D ? 120 : Math.min(150, 120 * aspect);
+    const imgHeight = imgSize / aspect;
     const imgX = (tpl.pageWidth - imgSize) / 2;
     const imgY = 55;
 
@@ -291,38 +271,31 @@ export async function generatePdfLabelSheet({
     return doc;
   }
 
-  // Multi-label Avery Sheet
-  positions.forEach((pos) => {
+  // Multi-label Avery Sheet(s): fill as many pages as the quantity needs
+  // (it used to stop silently after one sheet).
+  const total = Math.max(1, Math.min(300, Math.floor(Number(quantity) || tpl.perSheet)));
+  const { positions: sheetPositions } = calculateLabelPositions(effectiveTemplateId, tpl.perSheet);
+
+  for (let i = 0; i < total; i++) {
+    if (i > 0 && i % tpl.perSheet === 0) doc.addPage();
+    const pos = sheetPositions[i % tpl.perSheet];
     const pad = 2.0; // 2mm internal cell padding
     const cellW = pos.width - (pad * 2);
     const cellH = pos.height - (pad * 2);
 
-    let drawW, drawH, drawX, drawY;
-
-    if (isQrOrSquare2D) {
-      // Keep square aspect ratio
-      const side = Math.min(cellW, cellH);
-      drawW = side;
-      drawH = side;
-      drawX = pos.x + pad + ((cellW - side) / 2);
-      drawY = pos.y + pad + ((cellH - side) / 2);
-    } else {
-      // 1D or stacked barcode
-      const aspect = genId === 'pdf417' ? 2.5 : 3.0;
-      drawW = Math.min(cellW, cellH * aspect);
-      drawH = drawW / aspect;
-      drawX = pos.x + pad + ((cellW - drawW) / 2);
-      drawY = pos.y + pad + ((cellH - drawH) / 2);
-    }
+    const drawW = Math.min(cellW, cellH * aspect);
+    const drawH = drawW / aspect;
+    const drawX = pos.x + pad + ((cellW - drawW) / 2);
+    const drawY = pos.y + pad + ((cellH - drawH) / 2);
 
     doc.addImage(imgDataUrl, 'PNG', drawX, drawY, drawW, drawH);
-  });
+  }
 
   const filename = `${effectiveTemplateId}-${genId}-${Date.now()}.pdf`;
   if (download) {
     doc.save(filename);
   }
   doc.filename = filename;
-  doc.count = positions.length;
+  doc.count = total;
   return doc;
 }

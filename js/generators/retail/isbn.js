@@ -18,7 +18,16 @@ export default {
     regex: /^(?:97[89][-\s]?[0-9]{1,5}[-\s]?[0-9]{1,7}[-\s]?[0-9]{1,6}[-\s]?[0-9]|97[89][0-9]{10})(?:\s+[0-9]{5})?$/,
     errorMessage: "Enter a valid 13-digit ISBN starting with 978 or 979 (hyphens allowed, optional 5-digit price addon).",
     defaultPayload: "978-0-306-40615-7",
-    autoChecksum: true
+    autoChecksum: true,
+    // Reject a wrong ISBN-13 check digit instead of encoding it.
+    validate: (val) => {
+      const digits = val.trim().split(/\s+/)[0].replace(/\D/g, '');
+      if (digits.length !== 13) return null;
+      let sum = 0;
+      for (let i = 0; i < 12; i++) sum += Number(digits[i]) * (i % 2 ? 3 : 1);
+      const check = String((10 - (sum % 10)) % 10);
+      return check === digits[12] ? null : `Wrong ISBN check digit: the last digit should be ${check}, not ${digits[12]}.`;
+    }
   },
 
   controls: [
@@ -73,9 +82,13 @@ export default {
       cleanText += ' ' + options.addon.trim();
     }
 
+    // bwip-js "isbn" needs the hyphenated form. An un-hyphenated ISBN-13 is the same
+    // EAN-13 symbol, so render it as ean13 (the "ISBN ..." header line is omitted).
+    const unHyphenated = /^97[89][0-9]{10}$/.test(cleanText.split(/\s+/)[0]);
+
     return engineUtils.renderBwip(targets.canvas, {
-      bcid: "isbn",
-      text: cleanText,
+      bcid: unHyphenated ? "ean13" : "isbn",
+      text: cleanText, // "ISBN [addon]" — both bcids take the add-on after a space
       scale: options.scale || 3,
       height: options.height || 30,
       includetext: options.includetext !== false,

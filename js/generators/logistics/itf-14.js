@@ -5,7 +5,7 @@
  * Powered by bwip-js (bcid: itf14). Heavy-duty packaging code with bearer bars.
  */
 
-import { computeItf14 } from '../../core/checksums.js?v=2.8';
+import { computeItf14 } from '../../core/checksums.js?v=3.0';
 
 export default {
   id: "itf-14",
@@ -20,7 +20,13 @@ export default {
     errorMessage: "ITF-14 requires exactly 13 digits (check digit will be computed) or 14 valid digits.",
     defaultPayload: "1001234567890",
     autoChecksum: true,
-    computeChecksum: (val) => computeItf14(val)
+    computeChecksum: (val) => computeItf14(val),
+    // A full-length code must carry the correct GS1 check digit; never encode a wrong one.
+    validate: (val) => {
+      if (val.length !== 14) return null;
+      const correct = computeItf14(val.slice(0, 13));
+      return correct === val ? null : `Wrong check digit: the 14th digit should be ${correct.slice(-1)}, not ${val.slice(-1)}.`;
+    }
   },
 
   controls: [

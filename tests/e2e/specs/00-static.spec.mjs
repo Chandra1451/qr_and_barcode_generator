@@ -238,6 +238,17 @@ test.describe('STATIC-LINK · links, deep links, sitemap', () => {
     expect(problems).toEqual([]);
   });
 
+  test('STATIC-LINK-03b quick-launch data-symbology / data-wizard attributes use real ids', () => {
+    const generatorIds = new Set(GENERATORS.map((g) => g.id));
+    const wizardIds = new Set(WIZARDS.map((w) => w.id));
+    const problems = [];
+    for (const p of ALL_PAGES) {
+      for (const m of htmlOf[p].matchAll(/data-symbology="([^"]+)"/g)) if (!generatorIds.has(m[1])) problems.push(`${p}: data-symbology="${m[1]}"`);
+      for (const m of htmlOf[p].matchAll(/data-wizard="([^"]+)"/g)) if (!wizardIds.has(m[1])) problems.push(`${p}: data-wizard="${m[1]}" (would silently open the URL wizard)`);
+    }
+    expect(problems).toEqual([]);
+  });
+
   test('STATIC-LINK-04 every landing page links to the studio', () => {
     const missing = LANDING_PAGES.filter((p) => !/href="\.\.\/index\.html(\?[^"]*)?"/.test(htmlOf[p]));
     expect(missing).toEqual([]);

@@ -48,8 +48,8 @@ export default {
       bcid: "datamatrix",
       text: payload,
       scale: options.scale || 4,
-      paddingwidth: options.padding || 10,
-      paddingheight: options.padding || 10
+      paddingwidth: options.padding !== undefined ? options.padding : 10,
+      paddingheight: options.padding !== undefined ? options.padding : 10
     });
   }
 };

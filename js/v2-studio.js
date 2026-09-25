@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine } from './core/engine.js?v=2.8';
-import { prefetchEngines } from './core/dynamic-loader.js?v=2.8';
+import { engine } from './core/engine.js?v=3.0';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.0';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=2.8';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=2.8';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=2.8';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=2.8';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=2.8';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=2.8';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=2.8';
-import { initCookieBanner } from './core/cookie-banner.js?v=2.8';
+} from './generators/registry.js?v=3.0';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.0';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.0';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.0';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.0';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.0';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.0';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.0';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=2.8';
+} from './export/label-maker.js?v=3.0';
 
 class V2StudioApp {
   constructor() {
@@ -133,6 +133,7 @@ class V2StudioApp {
       'isbn13': 'isbn',
       'isbn-13': 'isbn',
       'datamatrix': 'data-matrix',
+      'azteccode': 'aztec',
       'qrcode': 'qr-code'
     };
     const resolvedSymbology = aliasMap[paramSymbology?.toLowerCase()] || paramSymbology;
@@ -156,6 +157,11 @@ class V2StudioApp {
 
     const paramPreset = urlParams.get('preset');
     const paramLabel = urlParams.get('label') || urlParams.get('labelmaker');
+
+    if (paramPreset === 'amazon-fnsku-5160' && !paramPayload && targetGenId === 'code-128') {
+      this.dom.payloadInput.value = 'X003B7TEST';
+      this.scheduleRender();
+    }
 
     if (paramPreset && LABEL_PRESETS[paramPreset]) {
       this.labelState.presetId = paramPreset;
@@ -617,6 +623,16 @@ class V2StudioApp {
         `;
       }
 
+      if (ctrl.type === 'text') {
+        const safeVal = String(val ?? '').replace(/"/g, '&quot;');
+        return `
+          <div class="control-row">
+            <label class="form-label" for="ctrl-${ctrl.id}">${ctrl.label}</label>
+            <input type="text" class="tactile-input dynamic-ctrl" id="ctrl-${ctrl.id}" data-id="${ctrl.id}" data-type="text" value="${safeVal}" placeholder="${ctrl.placeholder || ''}" autocomplete="off">
+          </div>
+        `;
+      }
+
       if (ctrl.type === 'color') {
         return `
           <div class="control-row">
@@ -648,6 +664,8 @@ class V2StudioApp {
         } else if (type === 'select') {
           const val = el.value;
           this.currentOptions[id] = isNaN(val) ? val : Number(val);
+        } else if (type === 'text') {
+          this.currentOptions[id] = el.value;
         } else if (type === 'color') {
           this.currentOptions[id] = el.value;
           const badge = document.getElementById(`val-${id}`);
@@ -672,8 +690,8 @@ class V2StudioApp {
       sms: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
       phone: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
       crypto: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/></svg>`,
-      calendar: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
-      geo: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+      event: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+      location: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
       text: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>`,
       google_review: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
       whatsapp: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
@@ -696,6 +714,7 @@ class V2StudioApp {
   }
 
   selectWizard(wizardId) {
+    wizardId = getWizard(wizardId).id; // unknown ids fall back to the URL wizard
     this.activeWizardId = wizardId;
     this.dom.qrWizardNav.querySelectorAll('.wiz-tab-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.wizard === wizardId);
@@ -1068,6 +1087,8 @@ class V2StudioApp {
       this.barcodeOptions.transparentBg = e.target.checked;
       if (e.target.checked) {
         this.dom.previewStage?.classList.add('checkerboard-active');
+      } else {
+        this.dom.previewStage?.classList.remove('checkerboard-active');
       }
       this.scheduleRender();
     });
@@ -1503,7 +1524,7 @@ class V2StudioApp {
       await generatePdfLabelSheet({
         generator: this.currentGenerator,
         payload,
-        options: { ...this.currentOptions, ...this.qrOptions },
+        options: this.getCompiledRenderOptions(this.currentGenerator.id === 'qr-code'),
         logoDataUrl: this.activeLogoDataUrl,
         templateId,
         quantity,
@@ -1695,10 +1716,16 @@ class V2StudioApp {
       if (qrCanvas) {
         codeImg = qrCanvas;
       }
-    } else {
-      if (this.dom.previewCanvas && this.dom.previewCanvas.style.display !== 'none') {
+    } else if (!isSquare2D) {
+      // Linear codes get their own short, full-width render (see refreshLabelCode);
+      // the tall on-screen preview shrank to ~0.7" on a 1" label and didn't scan.
+      codeImg = this.labelCodeCanvas || null;
+      this.refreshLabelCode();
+      if (!codeImg && this.dom.previewCanvas && this.dom.previewCanvas.style.display !== 'none') {
         codeImg = this.dom.previewCanvas;
       }
+    } else if (this.dom.previewCanvas && this.dom.previewCanvas.style.display !== 'none') {
+      codeImg = this.dom.previewCanvas;
     }
 
     renderLabelToCanvas(this.dom.labelPreviewCanvas, {
@@ -1715,6 +1742,39 @@ class V2StudioApp {
       codeImage: codeImg,
       isSquare2D
     });
+  }
+
+  /**
+   * Renders the current linear barcode (1D / PDF417) for label use: short bars and a
+   * high module scale so it can fill the label width and stay scannable. Cached by
+   * content; re-renders the label preview when a new one is ready.
+   */
+  async refreshLabelCode() {
+    const gen = this.currentGenerator;
+    const payload = (this.dom.payloadInput?.value || '').trim();
+    const options = {
+      ...this.getCompiledRenderOptions(false),
+      scale: 4,
+      height: 12,
+      padding: 10, // built-in quiet zone (~10 modules) so the bars never touch the label edge
+      cornerRadius: 0,
+      // FBA labels print the FNSKU text themselves; don't draw it twice.
+      includetext: this.labelState.layoutId === 'amazon-fba' ? false : this.currentOptions.includetext !== false
+    };
+    const key = JSON.stringify([gen?.id, payload, options]);
+    if (key === this.labelCodeKey) return;
+    this.labelCodeKey = key;
+
+    const canvas = document.createElement('canvas');
+    try {
+      await engine.render(gen, payload, options, { canvas });
+    } catch {
+      if (this.labelCodeKey === key) this.labelCodeCanvas = null;
+      return;
+    }
+    if (this.labelCodeKey !== key) return; // a newer request superseded this one
+    this.labelCodeCanvas = canvas;
+    this.renderLabelPreview();
   }
 
   /* --- Popular Formats Quick-Launch Strip --- */
@@ -1745,7 +1805,7 @@ class V2StudioApp {
 
         // 3. Amazon FBA Special Handling
         if (isFnsku) {
-          if (this.dom.payloadInput && (!this.dom.payloadInput.value || this.dom.payloadInput.value === '123456789012')) {
+          if (this.dom.payloadInput && !/^X00[0-9A-Z]{7}$/i.test(this.dom.payloadInput.value.trim())) {
             this.dom.payloadInput.value = 'X003B7TEST';
             this.scheduleRender();
           }
@@ -1843,7 +1903,7 @@ class V2StudioApp {
         const count = Math.min(100, Math.max(1, parseInt(this.dom.batchCount?.value, 10) || 10));
         const pad = Math.max(0, parseInt(this.dom.batchPad?.value, 10) || 3);
         const suffix = this.dom.batchSuffix?.value || '';
-        items = generateSequenceList({ prefix, start, count, pad, suffix });
+        items = generateSequenceList({ prefix, start, count, padLength: pad, suffix });
       } else {
         items = parseCsvOrLines(this.dom.batchCsvInput?.value || '');
       }
@@ -1866,7 +1926,7 @@ class V2StudioApp {
         items,
         format,
         scaleFactor,
-        options: { ...this.currentOptions, ...this.qrOptions },
+        options: this.getCompiledRenderOptions(this.currentGenerator.id === 'qr-code'),
         logoDataUrl: this.activeLogoDataUrl,
         onProgress: ({ current, total, percent }) => {
           this.dom.batchProgressStatus.textContent = `Processing ${current} / ${total}...`;
@@ -1939,6 +1999,12 @@ class V2StudioApp {
     // Theme Switcher
     this.dom.themeToggleBtn?.addEventListener('click', () => this.toggleTheme());
 
+    // Escape closes whichever modal is open (PDF, batch, label maker)
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      [this.dom.pdfModal, this.dom.batchModal, this.dom.labelModal].forEach((m) => m?.classList.remove('open'));
+    });
+
     // Symbology Dropdown
     this.dom.symbologySelect?.addEventListener('change', (e) => {
       this.selectGenerator(e.target.value);
@@ -1994,6 +2060,8 @@ class V2StudioApp {
       this.qrOptions.transparentBg = e.target.checked;
       if (e.target.checked) {
         this.dom.previewStage?.classList.add('checkerboard-active');
+      } else {
+        this.dom.previewStage?.classList.remove('checkerboard-active');
       }
       this.scheduleRender();
     });

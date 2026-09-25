@@ -8,10 +8,30 @@
  */
 
 /**
- * Escapes special characters for Wi-Fi and vCard strings (; , : " \)
+ * Escapes special characters for Wi-Fi strings (; , : " \) — ZXing Wi-Fi QR spec
  */
 function escapeField(str = '') {
   return str.replace(/([\\;,:"])/g, '\\$1');
+}
+
+/**
+ * Escapes vCard 3.0 text values (RFC 2426): backslash, comma, semicolon and newlines.
+ * Colons must NOT be escaped (phones would show a literal "\:").
+ */
+function escapeVcard(str = '') {
+  return String(str).replace(/\\/g, '\\\\').replace(/([,;])/g, '\\$1').replace(/\r?\n/g, '\\n');
+}
+
+/**
+ * Converts a decimal ETH amount ("0.05") to wei ("50000000000000000") for EIP-681,
+ * using integer maths (no floating-point rounding). Returns '' for invalid input.
+ */
+function ethToWei(amount) {
+  const m = String(amount).trim().match(/^(\d*)(?:\.(\d*))?$/);
+  if (!m || (!m[1] && !m[2])) return '';
+  const whole = BigInt(m[1] || '0');
+  const frac = BigInt(((m[2] || '').slice(0, 18)).padEnd(18, '0'));
+  return (whole * 10n ** 18n + frac).toString();
 }
 
 export const QR_WIZARDS = {
@@ -107,16 +127,16 @@ export const QR_WIZARDS = {
       const lines = [
         'BEGIN:VCARD',
         'VERSION:3.0',
-        `N:${escapeField(data.lastName || '')};${escapeField(data.firstName || '')};;;`,
+        `N:${escapeVcard(data.lastName || '')};${escapeVcard(data.firstName || '')};;;`,
         `FN:${fn}`
       ];
 
-      if (data.organization) lines.push(`ORG:${escapeField(data.organization)}`);
-      if (data.title) lines.push(`TITLE:${escapeField(data.title)}`);
+      if (data.organization) lines.push(`ORG:${escapeVcard(data.organization)}`);
+      if (data.title) lines.push(`TITLE:${escapeVcard(data.title)}`);
       if (data.phone) lines.push(`TEL;TYPE=WORK,VOICE:${data.phone}`);
       if (data.email) lines.push(`EMAIL;TYPE=PREF,INTERNET:${data.email}`);
       if (data.website) lines.push(`URL:${data.website}`);
-      if (data.address) lines.push(`ADR;TYPE=WORK:;;${escapeField(data.address)};;;;`);
+      if (data.address) lines.push(`ADR;TYPE=WORK:;;${escapeVcard(data.address)};;;;`);
 
       lines.push('END:VCARD');
       return lines.join('\n');
@@ -201,7 +221,9 @@ export const QR_WIZARDS = {
       if (curr === 'bitcoin') {
         return `bitcoin:${addr}${amt ? `?amount=${amt}` : ''}`;
       } else if (curr === 'ethereum') {
-        return `ethereum:${addr}${amt ? `?value=${amt}` : ''}`;
+        // EIP-681: value is an integer amount in wei (0.05 ETH = 50000000000000000)
+        const wei = amt ? ethToWei(amt) : '';
+        return `ethereum:${addr}${wei ? `?value=${wei}` : ''}`;
       } else if (curr === 'solana') {
         return `solana:${addr}${amt ? `?amount=${amt}` : ''}`;
       } else {
@@ -224,8 +246,11 @@ export const QR_WIZARDS = {
     ],
     compile(data) {
       const formatDT = (dtStr) => {
-        if (!dtStr) return '20261015T090000Z';
-        return dtStr.replace(/[-:]/g, '') + '00Z';
+        // datetime-local gives the creator's local time; convert it to real UTC so the
+        // trailing Z is true and the event shows at the right time in every time zone.
+        const d = dtStr ? new Date(dtStr) : null;
+        if (!d || isNaN(d.getTime())) return '20261015T090000Z';
+        return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); // 20261015T130000Z
       };
 
       return [
