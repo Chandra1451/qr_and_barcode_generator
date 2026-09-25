@@ -13,10 +13,10 @@ import {
 export async function runRegistryTests(assert) {
   const all = getAllGenerators();
 
-  assert.isTrue(all.length >= 8, `Registry contains at least 8 core symbology plugins (found ${all.length})`);
+  assert.isTrue(all.length >= 10, `Registry contains at least 10 core symbology plugins (found ${all.length})`);
 
   // Check specific core IDs
-  const requiredIds = ['qr-code', 'data-matrix', 'aztec', 'pdf417', 'ean-13', 'upc-a', 'code-128', 'itf-14'];
+  const requiredIds = ['qr-code', 'data-matrix', 'aztec', 'pdf417', 'ean-13', 'upc-a', 'isbn', 'code-128', 'itf-14', 'code-39'];
   requiredIds.forEach(id => {
     const plugin = getGenerator(id);
     assert.isTrue(!!plugin, `Plugin '${id}' is registered`);
@@ -41,10 +41,10 @@ export async function runRegistryTests(assert) {
   assert.equal(twoD.length, 4, 'Category 2d returns 4 matrix plugins');
 
   const retail = getGeneratorsByCategory('retail');
-  assert.equal(retail.length, 2, 'Category retail returns 2 POS plugins');
+  assert.equal(retail.length, 3, 'Category retail returns 3 POS/publishing plugins');
 
   const logistics = getGeneratorsByCategory('logistics');
-  assert.equal(logistics.length, 2, 'Category logistics returns 2 shipping plugins');
+  assert.equal(logistics.length, 3, 'Category logistics returns 3 shipping/inventory plugins');
 
   const categories = getCategories();
   assert.equal(categories.length, 4, 'Provides 4 UI category groups (All, 2D, Retail, Logistics)');
