@@ -97,7 +97,7 @@ Screenshots are compared against approved images in `baselines/`.
 3. Later runs fail on any unapproved change, and the report shows before/after/diff.
 4. After an intended design change, run `npm run baselines:update` again and review the new images.
 
-Baselines depend on the OS, browser and fonts. Create and compare them on the same machine.
+Baselines depend on the OS, browser and fonts. Create and compare them on the same machine. They are git-ignored (about 70 MB and machine-specific): on a new machine, run `npm run baselines:update` once and review the images before relying on them. First set created and reviewed 2026-09-26 (148 images, stable across two runs).
 
 ---
 
