@@ -83,8 +83,9 @@ class V2StudioApp {
       layoutId: 'vertical-stack'
     };
 
-    // Universal Image Corner Radius State
+    // Universal Image Geometry State
     this.cornerRadius = 0;
+    this.imagePadding = 10;
 
     // DOM Elements Cache
     this.dom = {};
@@ -103,6 +104,7 @@ class V2StudioApp {
     this.bindEvents();
     this.bindBarcodeStylingEvents();
     this.bindCornerRadiusEvents();
+    this.bindPaddingEvents();
     this.bindLaserFxEvents();
     this.bindLogoStudioEvents();
     this.bindBatchModalEvents();
@@ -333,7 +335,10 @@ class V2StudioApp {
       ctrlBarcodeTransparentBg: document.getElementById('ctrl-barcodeTransparentBg'),
       barcodePresetGrid: document.getElementById('barcode-preset-grid'),
 
-      // Universal Image Corner Radius Controls
+      // Universal Image Geometry Controls (Padding & Corner Radius)
+      ctrlImagePadding: document.getElementById('ctrl-imagePadding'),
+      valImagePadding: document.getElementById('val-imagePadding'),
+      paddingPresetRow: document.getElementById('padding-preset-row'),
       ctrlCornerRadius: document.getElementById('ctrl-cornerRadius'),
       valCornerRadius: document.getElementById('val-cornerRadius'),
       cornerPresetRow: document.getElementById('corner-preset-row'),
@@ -958,7 +963,10 @@ class V2StudioApp {
       imageSize: 0.28,
       imageMargin: 4,
 
-      // Universal Image Corner Radius (QR & Barcodes)
+      // Universal Image Geometry (Quiet Zone Padding & Corner Radius)
+      padding: this.imagePadding !== undefined ? this.imagePadding : 10,
+      paddingwidth: this.imagePadding !== undefined ? this.imagePadding : 10,
+      paddingheight: this.imagePadding !== undefined ? this.imagePadding : 10,
       cornerRadius: this.cornerRadius || 0
     };
   }
@@ -1139,6 +1147,56 @@ class V2StudioApp {
         const r = e.currentTarget.dataset.radius;
         if (r !== undefined) {
           setCornerRadius(r, true);
+        }
+      });
+    });
+  }
+
+  /* --- Universal Image Quiet Zone / Padding Controls & Presets --- */
+  bindPaddingEvents() {
+    const updatePaddingBadge = (val) => {
+      if (!this.dom.valImagePadding) return;
+      const num = parseInt(val, 10);
+      const safeNum = isNaN(num) ? 10 : num;
+      if (safeNum === 0) {
+        this.dom.valImagePadding.textContent = '0px (Flush)';
+      } else if (safeNum <= 6) {
+        this.dom.valImagePadding.textContent = `${safeNum}px (Compact)`;
+      } else if (safeNum <= 12) {
+        this.dom.valImagePadding.textContent = `${safeNum}px (Standard)`;
+      } else if (safeNum <= 20) {
+        this.dom.valImagePadding.textContent = `${safeNum}px (Spacious)`;
+      } else {
+        this.dom.valImagePadding.textContent = `${safeNum}px (Wide)`;
+      }
+    };
+
+    const setImagePadding = (padding, syncSlider = true) => {
+      this.imagePadding = parseInt(padding, 10);
+      if (isNaN(this.imagePadding)) this.imagePadding = 10;
+      if (syncSlider && this.dom.ctrlImagePadding) {
+        this.dom.ctrlImagePadding.value = this.imagePadding;
+      }
+      updatePaddingBadge(this.imagePadding);
+
+      // Sync active state on preset buttons
+      this.dom.paddingPresetRow?.querySelectorAll('.corner-preset-btn').forEach(btn => {
+        const btnP = parseInt(btn.dataset.padding, 10);
+        btn.classList.toggle('active', btnP === this.imagePadding);
+      });
+
+      this.scheduleRender();
+    };
+
+    this.dom.ctrlImagePadding?.addEventListener('input', (e) => {
+      setImagePadding(e.target.value, false);
+    });
+
+    this.dom.paddingPresetRow?.querySelectorAll('.corner-preset-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const p = e.currentTarget.dataset.padding;
+        if (p !== undefined) {
+          setImagePadding(p, true);
         }
       });
     });

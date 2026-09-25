@@ -104,8 +104,10 @@ export class BarcodeEngine {
     const is2DCode = ['datamatrix', 'azteccode', 'qrcode', 'pdf417', 'micropdf417', 'maxicode', 'dotcode', 'hanxin', 'gridmatrix'].includes(bwipOptions.bcid);
     const isTransparent = bwipOptions.transparentBg === true || bwipOptions.backgroundcolor === 'transparent';
     const cornerRadius = Number(bwipOptions.cornerRadius) || 0;
-    const padW = cornerRadius > 0 ? Math.max(10, Math.ceil(cornerRadius * 0.75)) : 10;
-    const padH = cornerRadius > 0 ? Math.max(10, Math.ceil(cornerRadius * 0.75)) : 10;
+    const requestedPad = bwipOptions.padding !== undefined ? Number(bwipOptions.padding)
+      : (bwipOptions.paddingwidth !== undefined ? Number(bwipOptions.paddingwidth) : 10);
+    const minSafePad = cornerRadius > 0 ? Math.ceil(cornerRadius * 0.75) : 0;
+    const finalPad = Math.max(requestedPad, minSafePad);
 
     // Default configuration overrides
     const config = {
@@ -113,10 +115,10 @@ export class BarcodeEngine {
       includetext: true,
       textxalign: 'center',
       textsize: 13,
-      paddingwidth: padW,
-      paddingheight: padH,
       ...(!is2DCode && { height: 35 }),
-      ...bwipOptions
+      ...bwipOptions,
+      paddingwidth: finalPad,
+      paddingheight: finalPad
     };
 
     // Clean up color options for bwip-js
@@ -163,15 +165,21 @@ export class BarcodeEngine {
     const is2DCode = ['datamatrix', 'azteccode', 'qrcode', 'pdf417', 'micropdf417', 'maxicode', 'dotcode', 'hanxin', 'gridmatrix'].includes(bwipOptions.bcid);
     const isTransparent = bwipOptions.transparentBg === true || bwipOptions.backgroundcolor === 'transparent';
 
+    const cornerRadius = Number(bwipOptions.cornerRadius) || 0;
+    const requestedPad = bwipOptions.padding !== undefined ? Number(bwipOptions.padding)
+      : (bwipOptions.paddingwidth !== undefined ? Number(bwipOptions.paddingwidth) : 10);
+    const minSafePad = cornerRadius > 0 ? Math.ceil(cornerRadius * 0.75) : 0;
+    const finalPad = Math.max(requestedPad, minSafePad);
+
     const config = {
       scale: 3,
       includetext: true,
       textxalign: 'center',
       textsize: 13,
-      paddingwidth: 10,
-      paddingheight: 10,
       ...(!is2DCode && { height: 35 }),
-      ...bwipOptions
+      ...bwipOptions,
+      paddingwidth: finalPad,
+      paddingheight: finalPad
     };
 
     if (isTransparent) {
@@ -228,21 +236,24 @@ export class BarcodeEngine {
     const bgColor = stylingOptions.transparentBg ? 'transparent' : (stylingOptions.backgroundColor || '#ffffff');
 
     const cornerRadius = Number(stylingOptions.cornerRadius) || 0;
-    const qrMargin = cornerRadius > 0
-      ? Math.max(8, Math.ceil(cornerRadius * 0.4))
-      : (stylingOptions.imageMargin !== undefined ? stylingOptions.imageMargin : 4);
+    const requestedMargin = stylingOptions.padding !== undefined ? Number(stylingOptions.padding)
+      : (stylingOptions.margin !== undefined ? Number(stylingOptions.margin) : 10);
+    const minSafeMargin = cornerRadius > 0 ? Math.ceil(cornerRadius * 0.4) : 0;
+    const qrMargin = Math.max(requestedMargin, minSafeMargin);
+    const logoMargin = stylingOptions.imageMargin !== undefined ? Number(stylingOptions.imageMargin) : 4;
 
     // Default configuration for high-aesthetic QR
     const options = {
       width: 320,
       height: 320,
+      margin: qrMargin,
       type: 'canvas',
       data: stylingOptions.data || 'https://example.com',
       image: hasLogo ? stylingOptions.image : '',
       imageOptions: {
         hideBackgroundDots: true,
         imageSize: stylingOptions.imageSize || 0.28,
-        margin: qrMargin,
+        margin: logoMargin,
         crossOrigin: 'anonymous',
         ...stylingOptions.imageOptions
       },
@@ -317,6 +328,7 @@ export class BarcodeEngine {
         ...(options.backgroundcolor !== undefined ? { backgroundcolor: options.backgroundcolor } : {}),
         ...(options.transparentBg !== undefined ? { transparentBg: options.transparentBg } : {}),
         ...(options.cornerRadius !== undefined ? { cornerRadius: options.cornerRadius } : {}),
+        ...(options.padding !== undefined ? { padding: options.padding } : {}),
         ...opts
       }),
       renderBwipSVG: (opts) => this.renderBwipSVG({
@@ -324,10 +336,12 @@ export class BarcodeEngine {
         ...(options.backgroundcolor !== undefined ? { backgroundcolor: options.backgroundcolor } : {}),
         ...(options.transparentBg !== undefined ? { transparentBg: options.transparentBg } : {}),
         ...(options.cornerRadius !== undefined ? { cornerRadius: options.cornerRadius } : {}),
+        ...(options.padding !== undefined ? { padding: options.padding } : {}),
         ...opts
       }),
       renderQRCode: (container, opts) => this.renderQRCode(container, {
         ...(options.cornerRadius !== undefined ? { cornerRadius: options.cornerRadius } : {}),
+        ...(options.padding !== undefined ? { padding: options.padding } : {}),
         ...opts
       }),
       bwip: this.bwip,
