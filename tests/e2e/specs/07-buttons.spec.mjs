@@ -274,9 +274,9 @@ test.describe('BTN · recent history', () => {
     await page.addInitScript(() => localStorage.removeItem('ucm_recent_history'));
     await studio.open('?symbology=code-128');
     await studio.setPayload('HISTORY-ONE');
-    await page.waitForTimeout(400);
+    await page.waitForTimeout(1500); // history saves after the input has been stable for 1.2 s
     await studio.selectGenerator('ean-13');
-    await page.waitForTimeout(400);
+    await page.waitForTimeout(1500);
 
     const chips = page.locator('.recent-chip');
     await expect(page.locator('#recent-history-container')).toBeVisible();
@@ -300,7 +300,7 @@ test.describe('BTN · recent history', () => {
       await page.waitForTimeout(250);
     }
     await studio.setPayload('ITEM-8');
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(1500);
     const chipTexts = await page.locator('.recent-chip').allTextContents();
     expect(chipTexts.length).toBeLessThanOrEqual(6);
     expect(new Set(chipTexts).size).toBe(chipTexts.length);

@@ -7,10 +7,10 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine } from '../core/engine.js?v=2.7';
-import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=2.7';
-import { downloadBlob } from './image-exporter.js?v=2.7';
-import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.7';
+import { engine, toQrByteString } from '../core/engine.js?v=2.8';
+import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=2.8';
+import { downloadBlob } from './image-exporter.js?v=2.8';
+import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.8';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads
@@ -136,7 +136,7 @@ export async function generateBatchZip({
           width: 320 * scaleFactor,
           height: 320 * scaleFactor,
           type: 'svg',
-          data: item,
+          data: toQrByteString(item),
           image: logoDataUrl || '',
           imageOptions: {
             hideBackgroundDots: true,
@@ -208,7 +208,7 @@ export async function generateBatchZip({
           width: 320 * scaleFactor,
           height: 320 * scaleFactor,
           type: 'canvas',
-          data: item,
+          data: toQrByteString(item),
           image: logoDataUrl || '',
           imageOptions: {
             hideBackgroundDots: true,

@@ -6,9 +6,9 @@
  * directly in client-side browser memory using jsPDF.
  */
 
-import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=2.7';
-import { engine } from '../core/engine.js?v=2.7';
-import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.7';
+import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=2.8';
+import { engine, toQrByteString } from '../core/engine.js?v=2.8';
+import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.8';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {
@@ -143,7 +143,7 @@ async function getCodeImageDataUrl(generator, payload, options, logoDataUrl = ''
       width: 600,
       height: 600,
       type: 'canvas',
-      data: payload,
+      data: toQrByteString(payload),
       image: hasLogo ? logoDataUrl : '',
       imageOptions: {
         hideBackgroundDots: true,

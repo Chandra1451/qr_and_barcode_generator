@@ -7,7 +7,7 @@ const XSS = '<img src=x onerror="window.__xss=(window.__xss||0)+1">';
 const XSS_SCRIPT = '"><svg onload="window.__xss=(window.__xss||0)+1">';
 
 async function expectNoXss(page, where) {
-  await page.waitForTimeout(600);
+  await page.waitForTimeout(1800); // history is written 1.2 s after the input settles
   expect(await page.evaluate(() => window.__xss || 0), `script ran via ${where}`).toBe(0);
   expect(await page.locator('#recent-chips-list img, #recent-chips-list svg[onload], .tactile-toast img').count(), `markup injected via ${where}`).toBe(0);
 }
@@ -28,7 +28,7 @@ test.describe('SEC · no script injection', () => {
     await studio.open();
     await studio.selectWizard('url');
     await studio.fillWizard({ url: `https://a.example/${XSS}` });
-    await page.waitForTimeout(400);
+    await page.waitForTimeout(1600);
     const chip = page.locator('.recent-chip').first();
     if (await chip.count()) await chip.click();
     await expectNoXss(page, 'QR wizard → history chip → restore toast');

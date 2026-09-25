@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine } from './core/engine.js?v=2.7';
-import { prefetchEngines } from './core/dynamic-loader.js?v=2.7';
+import { engine } from './core/engine.js?v=2.8';
+import { prefetchEngines } from './core/dynamic-loader.js?v=2.8';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=2.7';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=2.7';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=2.7';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=2.7';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=2.7';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=2.7';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=2.7';
-import { initCookieBanner } from './core/cookie-banner.js?v=2.7';
+} from './generators/registry.js?v=2.8';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=2.8';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=2.8';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=2.8';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=2.8';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=2.8';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=2.8';
+import { initCookieBanner } from './core/cookie-banner.js?v=2.8';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=2.7';
+} from './export/label-maker.js?v=2.8';
 
 class V2StudioApp {
   constructor() {
@@ -1026,9 +1026,12 @@ class V2StudioApp {
       // Update Scanability Grade
       this.updateScanabilityMeter(isQR);
 
-      // Save to Recent Codes History (if payload is valid)
-      if (validation.valid && payload) {
-        this.saveToHistory(this.currentGenerator, payload);
+      // Save to Recent Codes History (if payload is valid). Only codes a chip can restore
+      // are kept: barcodes and URL QR codes. Other QR wizards (Wi-Fi passwords, contacts,
+      // payments) are never written to localStorage.
+      const restorable = !isQR || this.activeWizardId === 'url';
+      if (validation.valid && payload && restorable) {
+        this.scheduleHistorySave(this.currentGenerator, payload);
       }
     } catch (err) {
       this.showError(err.message || 'Render failed. Check payload format.');
@@ -1263,6 +1266,14 @@ class V2StudioApp {
   }
 
   /* --- Quick Recall Recent Codes History --- */
+
+  // Save once the input has been stable for a moment, so typing "HELLO" doesn't store
+  // "H", "HE", "HEL"... as separate entries.
+  scheduleHistorySave(generator, payload) {
+    clearTimeout(this.historyTimer);
+    this.historyTimer = setTimeout(() => this.saveToHistory(generator, payload), 1200);
+  }
+
   saveToHistory(generator, payload) {
     if (!generator || !payload) return;
     try {
