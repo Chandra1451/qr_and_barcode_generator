@@ -705,12 +705,14 @@
         <ul class="docs-toc">
           <li><a href="#sec-ean13">EAN-13 (International)</a></li>
           <li><a href="#sec-upca">UPC-A (North America)</a></li>
+          <li><a href="#sec-isbn">ISBN-13 (Books)</a></li>
         </ul>
 
         <div class="sidebar-heading">1D Logistics &amp; Industrial</div>
         <ul class="docs-toc">
           <li><a href="#sec-code128">Code 128 &amp; GS1-128</a></li>
           <li><a href="#sec-itf14">ITF-14 Carton Shipping</a></li>
+          <li><a href="#sec-code39">Code 39 Asset Tags</a></li>
         </ul>
 
         <div class="sidebar-heading">Customer Decision &amp; Law</div>
@@ -1022,6 +1024,29 @@
           </p>
         </section>
 
+        <!-- ISBN-13 -->
+        <section id="sec-isbn" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon" style="display: flex; align-items: center; justify-content: center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              </div>
+              <div>
+                <h2 class="symbology-title">ISBN-13 (Bookland EAN)</h2>
+                <div class="symbology-standard">ISO 2108 &bull; Book Publishing &amp; Retail</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=isbn" class="btn-test-in-studio" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            An ISBN-13 barcode is an EAN-13 symbol whose number starts with the <strong>978</strong> or <strong>979</strong> "Bookland" prefix, so any retail scanner can read it. Enter the ISBN with or without hyphens; the 13th digit is a Modulo 10 check digit, and the studio rejects a wrong one instead of printing an unsellable barcode. An optional 5-digit <strong>EAN-5 price add-on</strong> (for example <code>51999</code> = US $19.99, <code>90000</code> = no suggested price) prints to the right of the main symbol, as many book distributors expect.
+          </p>
+        </section>
+
         <!-- ITF-14 -->
         <section id="sec-itf14" class="symbology-card">
           <div class="symbology-header">
@@ -1042,6 +1067,29 @@
 
           <p class="docs-text">
             ITF-14 encodes 14 numeric digits and is printed with heavy black horizontal borders called <strong>Bearer Bars</strong>. These bearer bars suppress plate-spread and stop misreads caused when a handheld laser scanner skims across the edge of corrugated cardboard packaging.
+          </p>
+        </section>
+
+        <!-- Code 39 -->
+        <section id="sec-code39" class="symbology-card">
+          <div class="symbology-header">
+            <div class="symbology-title-wrap">
+              <div class="symbology-icon" style="display: flex; align-items: center; justify-content: center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 10v4M9 10v4M12 10v4M15 10v4M18 10v4"/></svg>
+              </div>
+              <div>
+                <h2 class="symbology-title">Code 39 (Code 3 of 9)</h2>
+                <div class="symbology-standard">ISO/IEC 16388 &bull; Asset Tags, Inventory &amp; MIL-STD-129</div>
+              </div>
+            </div>
+            <a href="index.html?symbology=code-39" class="btn-test-in-studio" style="display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Generate in Studio
+            </a>
+          </div>
+
+          <p class="docs-text">
+            Code 39 encodes uppercase letters A&ndash;Z, digits 0&ndash;9, space and the symbols <code>- . $ / + %</code>. It is self-checking and needs no check digit, which is why it is still common on IT asset tags, ID badges, healthcare specimen labels and defence logistics. An optional <strong>Mod-43 check character</strong> can be added when a customer specification requires it. Code 39 is wide for the amount of data it holds; when space is tight and your scanners support it, Code 128 packs the same data into a much shorter barcode.
           </p>
         </section>
 
