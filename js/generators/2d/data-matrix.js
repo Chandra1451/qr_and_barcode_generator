@@ -14,7 +14,7 @@ export default {
   schema: {
     inputType: "textarea",
     placeholder: "e.g. [)>*06*12S98765*1PABC-123*Q50*1T12345",
-    regex: /^.+$/,
+    regex: /\S/, // any non-blank text; line breaks allowed
     errorMessage: "Data Matrix payload cannot be empty.",
     defaultPayload: "https://example.com/item/1029384",
     autoChecksum: false

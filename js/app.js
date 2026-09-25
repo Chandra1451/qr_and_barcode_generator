@@ -3,20 +3,20 @@
  * Universal QR, Barcode & Code Generator Suite
  */
 
-import { engine } from './core/engine.js';
-import { prefetchEngines } from './core/dynamic-loader.js';
+import { engine } from './core/engine.js?v=2.7';
+import { prefetchEngines } from './core/dynamic-loader.js?v=2.7';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js';
-import { LOGO_PRESETS } from './core/logo-presets.js';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js';
-import { initCookieBanner } from './core/cookie-banner.js';
+} from './generators/registry.js?v=2.7';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=2.7';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=2.7';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=2.7';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=2.7';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=2.7';
+import { initCookieBanner } from './core/cookie-banner.js?v=2.7';
 
 class App {
   constructor() {

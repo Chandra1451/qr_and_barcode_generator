@@ -14,7 +14,7 @@ export default {
   schema: {
     inputType: "textarea",
     placeholder: "e.g. ANSI 6360000102DL00390237DLDAQD12345678...",
-    regex: /^.+$/,
+    regex: /\S/, // any non-blank text; line breaks allowed (AAMVA ID data)
     errorMessage: "PDF417 payload cannot be empty.",
     defaultPayload: "ID-US-DL:SMITH,JOHN:DOB-19880415:EXP-20290415",
     autoChecksum: false

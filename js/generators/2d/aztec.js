@@ -14,7 +14,7 @@ export default {
   schema: {
     inputType: "textarea",
     placeholder: "e.g. M1DESMARAIS/LUC   E123456 YULFRALH 0432 123Y012A0001",
-    regex: /^.+$/,
+    regex: /\S/, // any non-blank text; line breaks allowed
     errorMessage: "Aztec Code payload cannot be empty.",
     defaultPayload: "BOARDING_PASS_ETKT_987654321_GATE_B12",
     autoChecksum: false

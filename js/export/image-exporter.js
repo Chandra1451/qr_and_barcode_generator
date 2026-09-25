@@ -8,9 +8,9 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius } from '../core/engine.js';
-import { loadQRCodeStyling } from '../core/dynamic-loader.js';
-import { computeEan13, computeUpcA } from '../core/checksums.js';
+import { engine, applyCanvasCornerRadius } from '../core/engine.js?v=2.7';
+import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=2.7';
+import { computeEan13, computeUpcA } from '../core/checksums.js?v=2.7';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners

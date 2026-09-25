@@ -14,7 +14,7 @@ export default {
   schema: {
     inputType: "textarea",
     placeholder: "Enter URL, text, or payload (e.g. https://yourwebsite.com)",
-    regex: /^.+$/,
+    regex: /\S/, // any non-blank text; line breaks allowed (vCard, iCalendar, multi-line text)
     errorMessage: "QR Code payload cannot be empty.",
     defaultPayload: "https://github.com",
     autoChecksum: false

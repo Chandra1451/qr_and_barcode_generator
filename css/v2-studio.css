@@ -1030,6 +1030,14 @@ h1, h2, h3, h4 {
     0 0 0 1.5px rgba(0, 0, 0, 0.35);
 }
 
+/* Last good code kept on screen after an input error: fade it so it can't pass as current. */
+.preview-stage.preview-stale #preview-canvas,
+.preview-stage.preview-stale #qr-styled-container canvas,
+.preview-stage.preview-stale #qr-styled-container svg {
+  opacity: 0.2;
+  filter: grayscale(1);
+}
+
 #qr-styled-container {
   display: inline-flex;
   width: fit-content;

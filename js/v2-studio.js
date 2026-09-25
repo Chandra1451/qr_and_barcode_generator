@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine } from './core/engine.js';
-import { prefetchEngines } from './core/dynamic-loader.js';
+import { engine } from './core/engine.js?v=2.7';
+import { prefetchEngines } from './core/dynamic-loader.js?v=2.7';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js';
-import { LOGO_PRESETS } from './core/logo-presets.js';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js';
-import { initCookieBanner } from './core/cookie-banner.js';
+} from './generators/registry.js?v=2.7';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=2.7';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=2.7';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=2.7';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=2.7';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=2.7';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=2.7';
+import { initCookieBanner } from './core/cookie-banner.js?v=2.7';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js';
+} from './export/label-maker.js?v=2.7';
 
 class V2StudioApp {
   constructor() {
@@ -1038,10 +1038,13 @@ class V2StudioApp {
   showError(msg) {
     this.dom.previewErrorText.textContent = msg;
     this.dom.previewErrorBox.style.display = 'block';
+    // The last good code is still drawn; mark it stale so it never looks like the current input.
+    this.dom.previewStage?.classList.add('preview-stale');
   }
 
   hideError() {
     this.dom.previewErrorBox.style.display = 'none';
+    this.dom.previewStage?.classList.remove('preview-stale');
   }
 
   /* --- Barcode Styling Suite & Presets --- */
@@ -1292,29 +1295,35 @@ class V2StudioApp {
     if (!this.dom.recentHistoryContainer || !this.dom.recentChipsList) return;
     try {
       const history = JSON.parse(localStorage.getItem('ucm_recent_history') || '[]');
-      if (!history.length) {
+      if (!Array.isArray(history) || !history.length) {
         this.dom.recentHistoryContainer.style.display = 'none';
         return;
       }
 
-      this.dom.recentHistoryContainer.style.display = 'block';
-      this.dom.recentChipsList.innerHTML = history.map(item => {
-        const displayPayload = item.payload.length > 20 ? item.payload.slice(0, 18) + '…' : item.payload;
-        return `
-          <button type="button" class="recent-chip" data-gen="${item.generatorId}" data-payload="${encodeURIComponent(item.payload)}">
-            <span class="recent-chip-badge">${item.name}</span>
-            <span class="recent-chip-text">${displayPayload}</span>
-          </button>
-        `;
-      }).join('');
+      // Payloads come from user input, links (?data=) and localStorage: build the chips
+      // with textContent only, never as HTML.
+      this.dom.recentChipsList.replaceChildren();
+      history.forEach(item => {
+        const gen = getGenerator(item && item.generatorId);
+        if (!gen || typeof item.payload !== 'string') return;
 
-      this.dom.recentChipsList.querySelectorAll('.recent-chip').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const genId = e.currentTarget.dataset.gen;
-          const payload = decodeURIComponent(e.currentTarget.dataset.payload);
-          this.loadHistoryItem(genId, payload);
-        });
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'recent-chip';
+
+        const badge = document.createElement('span');
+        badge.className = 'recent-chip-badge';
+        badge.textContent = gen.name;
+
+        const text = document.createElement('span');
+        text.className = 'recent-chip-text';
+        text.textContent = item.payload.length > 20 ? item.payload.slice(0, 18) + '…' : item.payload;
+
+        btn.append(badge, text);
+        btn.addEventListener('click', () => this.loadHistoryItem(gen.id, item.payload));
+        this.dom.recentChipsList.appendChild(btn);
       });
+      this.dom.recentHistoryContainer.style.display = this.dom.recentChipsList.children.length ? 'block' : 'none';
 
       if (this.dom.btnClearHistory && !this.dom.btnClearHistory.dataset.bound) {
         this.dom.btnClearHistory.dataset.bound = 'true';
@@ -1899,10 +1908,12 @@ class V2StudioApp {
     const toast = document.createElement('div');
     toast.className = 'tactile-toast';
     toast.style.borderColor = isError ? 'var(--scanner-laser)' : 'var(--ink-black)';
-    toast.innerHTML = `
-      <span>${isError ? '⚠️' : '⚡'}</span>
-      <span>${message}</span>
-    `;
+    // Messages can contain payloads and library error text: plain text only.
+    const icon = document.createElement('span');
+    icon.textContent = isError ? '⚠️' : '⚡';
+    const text = document.createElement('span');
+    text.textContent = String(message);
+    toast.append(icon, text);
 
     this.dom.toastContainer.appendChild(toast);
     setTimeout(() => {
