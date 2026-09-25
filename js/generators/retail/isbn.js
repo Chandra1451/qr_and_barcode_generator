@@ -41,7 +41,7 @@ export default {
     {
       id: "includetext",
       type: "toggle",
-      label: "Show Human-Readable ISBN",
+      label: "Show Human-Readable Text",
       default: true
     },
     {

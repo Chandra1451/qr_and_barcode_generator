@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine } from './core/engine.js?v=3.1';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.1';
+import { engine } from './core/engine.js?v=3.3';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.3';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.1';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.1';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.1';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.1';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.1';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.1';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.1';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.1';
+} from './generators/registry.js?v=3.3';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.3';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.3';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.3';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.3';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.3';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.3';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.3';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.1';
+} from './export/label-maker.js?v=3.3';
 
 class V2StudioApp {
   constructor() {
@@ -540,6 +540,7 @@ class V2StudioApp {
     this.dom.specQuietZone.textContent = isQR ? '4 modules' : (gen.category === '2d' ? '2-4 modules' : '10x narrow bar width');
 
     if (!isQR) {
+      this.setPayloadMultiline(gen.schema?.inputType === 'textarea');
       this.dom.payloadInput.placeholder = gen.schema?.placeholder || 'Enter barcode data';
       if (!this.dom.payloadInput.value || this.dom.payloadInput.dataset.lastGen !== gen.id) {
         this.dom.payloadInput.value = (gen.schema && gen.schema.defaultPayload) ? gen.schema.defaultPayload : (gen.defaultPayload || '123456');
@@ -553,6 +554,31 @@ class V2StudioApp {
     }
 
     this.scheduleRender();
+  }
+
+  /**
+   * Formats whose data can contain line breaks (PDF417 ID data, Data Matrix, Aztec) get a
+   * multi-line box; 1D formats keep a single line so Enter can't insert a newline.
+   * A single-line <input> silently strips line breaks, which changes the encoded data.
+   */
+  setPayloadMultiline(multi) {
+    const current = this.dom.payloadInput;
+    if (!current || (current.tagName === 'TEXTAREA') === multi) return;
+    const el = document.createElement(multi ? 'textarea' : 'input');
+    if (multi) {
+      el.rows = 3;
+      el.className = 'tactile-input tactile-textarea';
+    } else {
+      el.type = 'text';
+      el.className = 'tactile-input';
+    }
+    el.id = current.id;
+    el.value = current.value;
+    el.placeholder = current.placeholder;
+    Object.assign(el.dataset, current.dataset);
+    el.addEventListener('input', () => this.scheduleRender());
+    current.replaceWith(el);
+    this.dom.payloadInput = el;
   }
 
   /* --- Dynamic Controls Panel for 1D/2D Barcodes --- */
@@ -1283,7 +1309,11 @@ class V2StudioApp {
       gradeLabel = `Grade D (${ratio.toFixed(1)}:1 Warning)`;
     }
 
-    this.dom.specScanability.innerHTML = `<span class="scanability-badge ${badgeClass}">${gradeLabel}</span>`;
+    // Light bars on a dark background (inverted) fail on many scanners, and PDF417 in
+    // particular, even at high contrast. Warn instead of implying "Grade A".
+    const inverted = l1 > l2;
+    this.dom.specScanability.innerHTML = `<span class="scanability-badge ${inverted ? 'grade-d' : badgeClass}">${gradeLabel}</span>` +
+      (inverted ? `<span class="scanability-badge grade-d scanability-inverted" style="margin-left:0.4rem;">⚠ Inverted colours: many scanners can't read light bars on a dark background</span>` : '');
   }
 
   /* --- Quick Recall Recent Codes History --- */

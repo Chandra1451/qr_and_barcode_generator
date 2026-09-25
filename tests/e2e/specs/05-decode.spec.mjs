@@ -279,7 +279,12 @@ test.describe('DEC-QRS · styled QR codes stay scannable', () => {
     }
   });
 
-  test('DEC-QRS-04 barcode palette presets keep every barcode scannable', async ({ studio, page }) => {
+  test('DEC-QRS-04 palette presets keep barcodes scannable; inverted colours show a warning', async ({ studio, page }) => {
+    test.setTimeout(300_000); // 10 formats × 5 palettes, each decoded
+    const lum = (hex) => {
+      const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    };
     for (const g of BARCODE_GENERATORS) {
       await studio.open(`?symbology=${g.id}`);
       const chips = await page.locator('.barcode-preset-chip').evaluateAll((els) => els.map((e) => ({ bar: e.dataset.bar, bg: e.dataset.bg })));
@@ -287,6 +292,16 @@ test.describe('DEC-QRS · styled QR codes stay scannable', () => {
         const before = await studio.fingerprint();
         await page.locator('.barcode-preset-chip').nth(i).click();
         await studio.waitForChange(before, { what: `palette ${chip.bar}/${chip.bg}` }).catch(() => studio.waitForStableRender());
+        const inverted = chip.bg !== 'transparent' && lum(chip.bar) > lum(chip.bg);
+        if (inverted) {
+          // Owner decision 2026-09-26: keep the preset, warn clearly.
+          await expect(page.locator('#spec-scanability .scanability-inverted'), `${g.id}: no warning for inverted colours`).toBeVisible();
+          // Inverted codes are what the warning is for: ZXing (like many scanners) can't read
+          // inverted PDF417 or EAN/UPC reliably, so require the warning, not a scan.
+          continue;
+        } else {
+          await expect(page.locator('#spec-scanability .scanability-inverted')).toHaveCount(0);
+        }
         const text = await studio.decodePreview({ background: chip.bg === 'transparent' ? '#ffffff' : chip.bg });
         expect(text, `${g.id} with palette ${chip.bar} on ${chip.bg} does not scan`).not.toBeNull();
         expect(normaliseScan(g.id, text)).toBe(normaliseScan(g.id, expectedScanText(g.id, g.defaultPayload)));

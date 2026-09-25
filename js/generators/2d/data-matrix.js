@@ -24,7 +24,7 @@ export default {
     {
       id: "scale",
       type: "slider",
-      label: "Module Scale",
+      label: "Scale / Resolution",
       min: 2,
       max: 8,
       default: 4

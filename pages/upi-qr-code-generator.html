@@ -800,39 +800,45 @@
   <!-- Site Footer -->
   <footer class="v2-footer">
     <div class="wrap">
-      <div class="v2-footer-content">
-        <div class="v2-footer-brand">
-          <div class="v2-brand">
-            <div class="v2-brand-badge" style="background: var(--surface);">
-              <img src="../assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
+      <!-- Same footer as the studio and root pages (keep in sync with index.html) -->
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div class="v2-brand-badge" style="width: 38px; height: 38px; background: var(--surface);">
+              <img src="../assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="30" height="30" style="display: block; object-fit: contain;">
             </div>
-            <div>
-              <div class="v2-brand-title">UniversalCodeMaker</div>
-              <span class="v2-brand-tagline">Client-Side Optical Code Generation Studio</span>
+            <div class="v2-brand-title">
+              UniversalCodeMaker <span class="v2-version-tag">V2</span>
             </div>
           </div>
-          <p class="v2-footer-desc">
-            Free, privacy-first barcode and QR code studio. 100% in-browser generation with zero server data tracking.
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
           </p>
         </div>
 
-        <div class="v2-footer-links-grid">
-          <div class="v2-footer-col">
-            <div class="v2-footer-col-title">Studio</div>
-            <a href="../index.html">Generator Studio</a>
-            <a href="../index.html#symbologies">50+ Symbologies</a>
-            <a href="../classic/index.html">Classic V1 Suite</a>
+        <div class="footer-links-group">
+          <div class="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="../index.html">Optical Studio</a></li>
+              <li><a href="../index.html#symbologies">Symbologies Directory</a></li>
+              <li><a href="../classic/index.html">Classic V1 Studio</a></li>
+            </ul>
           </div>
-          <div class="v2-footer-col">
-            <div class="v2-footer-col-title">Resources</div>
-            <a href="../symbology-docs.html">Documentation</a>
-            <a href="../about.html">About &amp; Compliance</a>
-            <a href="../contact.html">Support</a>
+          <div class="footer-links-col">
+            <h4>Standards &amp; Docs</h4>
+            <ul>
+              <li><a href="../symbology-docs.html">Symbology Documentation</a></li>
+              <li><a href="../about.html">About &amp; Mission</a></li>
+              <li><a href="../privacy-policy.html">Zero-Knowledge Privacy</a></li>
+            </ul>
           </div>
-          <div class="v2-footer-col">
-            <div class="v2-footer-col-title">Legal</div>
-            <a href="../terms.html">Terms of Service</a>
-            <a href="../privacy-policy.html">Privacy Policy</a>
+          <div class="footer-links-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://primordialparadigm.com" target="_blank" rel="noopener">Primordial Paradigm ↗</a></li>
+              <li><a href="../contact.html">Report Feedback</a></li>
+            </ul>
           </div>
         </div>
       </div>
