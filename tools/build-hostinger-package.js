@@ -54,7 +54,8 @@ const DIRS_WHITELIST = [
   'css',
   'js',
   'assets',
-  'pages'
+  'pages',
+  'classic'
 ];
 
 function getAllFiles(dir, baseDir = '') {
