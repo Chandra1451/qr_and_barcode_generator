@@ -487,6 +487,30 @@
                   </div>
                 </div>
 
+                <!-- Universal Image Corner Radius (QR & Barcodes) -->
+                <div class="universal-corner-section" style="margin-top: 1rem; padding-top: 1rem; border-top: 1.5px dashed var(--dot-grid-color);">
+                  <div class="control-label-row">
+                    <label class="form-label" for="ctrl-cornerRadius" style="font-size: 0.84rem; margin-bottom: 0; display: flex; align-items: center; gap: 0.45rem;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/></svg>
+                      <span>Image Corner Radius</span>
+                    </label>
+                    <span class="control-value-badge" id="val-cornerRadius">0px (Square)</span>
+                  </div>
+                  <div style="margin-top: 0.45rem;">
+                    <input type="range" class="tactile-slider" id="ctrl-cornerRadius" min="0" max="48" value="0" step="2">
+                  </div>
+                  <div class="corner-preset-row" id="corner-preset-row">
+                    <button type="button" class="corner-preset-btn active" data-radius="0">0px (Sharp)</button>
+                    <button type="button" class="corner-preset-btn" data-radius="8">8px (Subtle)</button>
+                    <button type="button" class="corner-preset-btn" data-radius="18">18px (Smooth)</button>
+                    <button type="button" class="corner-preset-btn" data-radius="28">28px (Curved)</button>
+                    <button type="button" class="corner-preset-btn" data-radius="40">40px (Badge)</button>
+                  </div>
+                  <p style="font-size: 0.73rem; color: var(--text-muted); margin-top: 0.35rem; line-height: 1.35;">
+                    Renders smooth anti-aliased rounded corners on output images with clean corner transparency for PNG, SVG, and Clipboard.
+                  </p>
+                </div>
+
               </div>
             </div>
 

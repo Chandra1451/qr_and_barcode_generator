@@ -8,9 +8,52 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine } from '../core/engine.js';
+import { engine, applyCanvasCornerRadius } from '../core/engine.js';
 import { loadQRCodeStyling } from '../core/dynamic-loader.js';
 import { computeEan13, computeUpcA } from '../core/checksums.js';
+
+/**
+ * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
+ * @param {string} svgString
+ * @param {number} radius
+ * @returns {string}
+ */
+export function applySvgCornerRadius(svgString, radius) {
+  if (!radius || radius <= 0 || !svgString) return svgString;
+
+  const vbMatch = svgString.match(/viewBox=["']\s*([0-9.-]+)\s+([0-9.-]+)\s+([0-9.-]+)\s+([0-9.-]+)\s*["']/i);
+  let x = 0, y = 0, width = 0, height = 0;
+
+  if (vbMatch) {
+    x = parseFloat(vbMatch[1]);
+    y = parseFloat(vbMatch[2]);
+    width = parseFloat(vbMatch[3]);
+    height = parseFloat(vbMatch[4]);
+  } else {
+    const wMatch = svgString.match(/width=["']([0-9.]+)["']/i);
+    const hMatch = svgString.match(/height=["']([0-9.]+)["']/i);
+    if (wMatch && hMatch) {
+      width = parseFloat(wMatch[1]);
+      height = parseFloat(hMatch[1]);
+    }
+  }
+
+  if (!width || !height) return svgString;
+
+  const r = Math.min(radius, width / 2, height / 2);
+  const clipId = `ucm-rounded-corners-${Date.now().toString(36)}`;
+  const clipDef = `<defs><clipPath id="${clipId}"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${r}" ry="${r}" /></clipPath></defs>`;
+
+  const svgOpenTagEnd = svgString.indexOf('>');
+  if (svgOpenTagEnd === -1) return svgString;
+
+  const openTag = svgString.slice(0, svgOpenTagEnd + 1);
+  const closingTagIndex = svgString.lastIndexOf('</svg>');
+  if (closingTagIndex === -1) return svgString;
+
+  const innerContent = svgString.slice(svgOpenTagEnd + 1, closingTagIndex);
+  return `${openTag}\n${clipDef}\n<g clip-path="url(#${clipId})">\n${innerContent}\n</g>\n</svg>`;
+}
 
 /**
  * Initiates browser file download from a Blob
@@ -53,6 +96,7 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
   }
 
   const filename = `${generator.id}-${scaleFactor}x-${Date.now()}.png`;
+  const cornerRadius = Number(options.cornerRadius) || 0;
 
   if (generator.id === 'qr-code') {
     const QRCodeStyling = await loadQRCodeStyling();
@@ -78,6 +122,9 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
     }
 
     const bgColor = options.transparentBg ? 'transparent' : (options.backgroundColor || '#ffffff');
+    const qrMargin = cornerRadius > 0
+      ? Math.max(8, Math.ceil(cornerRadius * 0.4)) * scaleFactor
+      : (options.imageMargin !== undefined ? options.imageMargin : 4 * scaleFactor);
 
     const qrExportInstance = new QRCodeStyling({
       width: exportSize,
@@ -88,7 +135,7 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
       imageOptions: {
         hideBackgroundDots: true,
         imageSize: options.imageSize || 0.28,
-        margin: options.imageMargin !== undefined ? options.imageMargin : 4 * scaleFactor,
+        margin: qrMargin,
         crossOrigin: 'anonymous'
       },
       dotsOptions: dotsOptions,
@@ -109,6 +156,30 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
     });
 
     const blob = await qrExportInstance.getRawData('png');
+
+    if (cornerRadius > 0) {
+      const scaledRadius = Math.round(cornerRadius * scaleFactor);
+      const img = new Image();
+      const objectUrl = URL.createObjectURL(blob);
+      img.src = objectUrl;
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+      URL.revokeObjectURL(objectUrl);
+
+      const postCanvas = document.createElement('canvas');
+      postCanvas.width = img.width;
+      postCanvas.height = img.height;
+      const pctx = postCanvas.getContext('2d');
+      pctx.drawImage(img, 0, 0);
+      applyCanvasCornerRadius(postCanvas, scaledRadius);
+
+      const roundedBlob = await new Promise(res => postCanvas.toBlob(res, 'image/png'));
+      downloadBlob(roundedBlob, filename);
+      return { success: true, filename };
+    }
+
     downloadBlob(blob, filename);
     return { success: true, filename };
   }
@@ -163,7 +234,19 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
       scaledBwipOptions.columns = Number(options.columns);
     }
 
-    await engine.renderBwipCanvas(offscreenCanvas, scaledBwipOptions);
+    if (cornerRadius > 0) {
+      const scaledRadius = Math.round(cornerRadius * scaleFactor);
+      applyCanvasCornerRadius(offscreenCanvas, scaledRadius);
+    }
+
+    const dataUrl = offscreenCanvas.toDataURL('image/png');
+    downloadDataUrl(dataUrl, filename);
+    return { success: true, filename };
+  }
+
+  if (cornerRadius > 0) {
+    const scaledRadius = Math.round(cornerRadius * scaleFactor);
+    applyCanvasCornerRadius(offscreenCanvas, scaledRadius);
   }
 
   const dataUrl = offscreenCanvas.toDataURL('image/png');
@@ -181,10 +264,18 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
   }
 
   const filename = `${generator.id}-${Date.now()}.svg`;
+  const cornerRadius = Number(options.cornerRadius) || 0;
 
   if (generator.id === 'qr-code') {
     if (engine.currentQrInstance) {
       const blob = await engine.currentQrInstance.getRawData('svg');
+      if (cornerRadius > 0) {
+        const rawSvg = await blob.text();
+        const roundedSvg = applySvgCornerRadius(rawSvg, cornerRadius);
+        const roundedBlob = new Blob([roundedSvg], { type: 'image/svg+xml;charset=utf-8' });
+        downloadBlob(roundedBlob, filename);
+        return { success: true, filename };
+      }
       downloadBlob(blob, filename);
       return { success: true, filename };
     }
@@ -198,6 +289,9 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
   }
 
   const is2DCode = ['data-matrix', 'aztec', 'pdf417'].includes(generator.id);
+  const padW = cornerRadius > 0 ? Math.max(10, Math.ceil(cornerRadius * 0.75)) : 10;
+  const padH = cornerRadius > 0 ? Math.max(10, Math.ceil(cornerRadius * 0.75)) : 10;
+
   const svgOptions = {
     bcid: generator.id === 'data-matrix' ? 'datamatrix' :
           generator.id === 'aztec' ? 'azteccode' :
@@ -207,6 +301,8 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
           generator.id === 'itf-14' ? 'itf14' : 'code128',
     text: finalPayload,
     scale: options.scale || 3,
+    paddingwidth: padW,
+    paddingheight: padH,
     includetext: options.includetext !== false,
     textxalign: 'center',
     guardwhitespace: ['ean-13', 'upc-a'].includes(generator.id),
@@ -221,7 +317,10 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
     svgOptions.columns = Number(options.columns);
   }
 
-  const svgString = await engine.renderBwipSVG(svgOptions);
+  let svgString = await engine.renderBwipSVG(svgOptions);
+  if (cornerRadius > 0) {
+    svgString = applySvgCornerRadius(svgString, cornerRadius);
+  }
   const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
   downloadBlob(blob, filename);
   return { success: true, filename };
@@ -230,7 +329,7 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
 /**
  * Copies barcode or QR code image directly to system clipboard
  */
-export async function copyImageToClipboard({ generator, previewCanvas, qrStyledContainer }) {
+export async function copyImageToClipboard({ generator, previewCanvas, qrStyledContainer, cornerRadius = 0 }) {
   if (!navigator.clipboard || !navigator.clipboard.write) {
     throw new Error('Direct clipboard write API is not supported in this browser environment.');
   }
@@ -250,6 +349,27 @@ export async function copyImageToClipboard({ generator, previewCanvas, qrStyledC
 
   if (!blob) {
     throw new Error('Could not acquire barcode image raster blob for clipboard.');
+  }
+
+  if (cornerRadius > 0) {
+    try {
+      const img = new Image();
+      const url = URL.createObjectURL(blob);
+      img.src = url;
+      await new Promise(r => { img.onload = r; img.onerror = r; });
+      URL.revokeObjectURL(url);
+      if (img.width > 0) {
+        const c = document.createElement('canvas');
+        c.width = img.width;
+        c.height = img.height;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        applyCanvasCornerRadius(c, cornerRadius);
+        blob = await new Promise(resolve => c.toBlob(resolve, 'image/png'));
+      }
+    } catch (e) {
+      // fallback to original blob
+    }
   }
 
   await navigator.clipboard.write([

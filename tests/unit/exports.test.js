@@ -7,8 +7,9 @@
  */
 
 import { AVERY_TEMPLATES, calculateLabelPositions } from '../../js/export/pdf-exporter.js';
-import { engine } from '../../js/core/engine.js';
+import { engine, applyCanvasCornerRadius } from '../../js/core/engine.js';
 import { loadJsPdf } from '../../js/core/dynamic-loader.js';
+import { applySvgCornerRadius } from '../../js/export/image-exporter.js';
 
 export async function runExportTests(assert) {
   // Test 1: Avery Template Definitions
@@ -91,4 +92,31 @@ export async function runExportTests(assert) {
   const testDoc = new jsPdfClass({ format: 'a4', unit: 'mm' });
   assert.isTrue(typeof testDoc.save === 'function', 'Instantiated jsPDF document exposes .save() method');
   assert.isTrue(typeof testDoc.addImage === 'function', 'Instantiated jsPDF document exposes .addImage() method');
+
+  // Test 10: Vector SVG Corner Radius Masking
+  const rawSvg = await engine.renderBwipSVG({
+    bcid: 'code128',
+    text: 'RADIUS-TEST',
+    scale: 2
+  });
+  const unroundedSvg = applySvgCornerRadius(rawSvg, 0);
+  assert.equal(unroundedSvg, rawSvg, 'applySvgCornerRadius with radius 0 preserves original SVG verbatim');
+
+  const roundedSvg = applySvgCornerRadius(rawSvg, 18);
+  assert.isTrue(roundedSvg.includes('<clipPath'), 'Rounded SVG includes <clipPath> definition');
+  assert.isTrue(roundedSvg.includes('rx="18"'), 'Rounded SVG includes rx="18" attribute on clip rect');
+  assert.isTrue(roundedSvg.includes('ry="18"'), 'Rounded SVG includes ry="18" attribute on clip rect');
+  assert.isTrue(roundedSvg.includes('clip-path="url(#ucm-rounded-corners-'), 'Rounded SVG applies clip-path URL to inner group');
+
+  // Test 11: Canvas Corner Radius Clipping
+  assert.isTrue(typeof applyCanvasCornerRadius === 'function', 'applyCanvasCornerRadius is exported function');
+  const testCanvas = document.createElement('canvas');
+  testCanvas.width = 200;
+  testCanvas.height = 100;
+  const ctx = testCanvas.getContext('2d');
+  ctx.fillStyle = '#003366';
+  ctx.fillRect(0, 0, 200, 100);
+  applyCanvasCornerRadius(testCanvas, 14);
+  assert.equal(testCanvas.width, 200, 'Canvas width is preserved after corner radius clipping');
+  assert.equal(testCanvas.height, 100, 'Canvas height is preserved after corner radius clipping');
 }

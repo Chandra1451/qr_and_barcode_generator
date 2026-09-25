@@ -2076,6 +2076,40 @@ h1, h2, h3, h4 {
   flex-shrink: 0;
 }
 
+/* Image Corner Radius Preset Buttons */
+.corner-preset-row {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.corner-preset-btn {
+  padding: 0.28rem 0.55rem;
+  background: var(--surface);
+  border: 1.5px solid var(--dot-grid-color);
+  border-radius: 9999px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-tactile);
+}
+
+.corner-preset-btn:hover {
+  border-color: var(--optic-blue);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.corner-preset-btn.active {
+  background: var(--optic-blue);
+  border-color: var(--optic-blue);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 102, 204, 0.25);
+}
+
 /* ==========================================================================
    Optical Scanability Score & Quality Meter
    ========================================================================== */
