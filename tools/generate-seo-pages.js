@@ -16,7 +16,7 @@ const path = require('path');
 const SITE_URL = 'https://universalcodemaker.com';
 // Cache-busting version for shared CSS (served with a 1-year immutable cache).
 // Keep in sync with the ?v= used on the root pages; bump whenever the CSS changes.
-const ASSET_VERSION = '2.8';
+const ASSET_VERSION = '2.9';
 const PAGES_DIR = path.join(__dirname, '..', 'pages');
 
 if (!fs.existsSync(PAGES_DIR)) {
@@ -2418,7 +2418,7 @@ function generatePageHtml(page) {
       background: var(--optic-blue-tint);
       border: 1.5px solid var(--optic-blue);
       border-radius: var(--radius-full);
-      color: var(--optic-blue);
+      color: var(--accent-text); /* text-safe on the tint in both themes */
       font-size: 0.75rem;
       font-weight: 700;
       font-family: var(--font-mono);
@@ -2665,7 +2665,7 @@ function generatePageHtml(page) {
       transform: translate(-1px, -1px);
       box-shadow: 3px 3px 0 var(--scanner-laser);
       border-color: var(--scanner-laser);
-      color: var(--scanner-laser);
+      color: var(--laser-text);
     }
   </style>
 

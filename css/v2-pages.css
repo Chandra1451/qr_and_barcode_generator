@@ -116,7 +116,7 @@ body {
   padding: 2px 7px;
   border-radius: 4px;
   background: var(--optic-blue-tint);
-  color: var(--optic-blue);
+  color: var(--accent-text);
   border: 1px solid var(--optic-blue);
 }
 
@@ -143,7 +143,7 @@ body {
 }
 
 .v2-nav-link:hover {
-  color: var(--scanner-laser);
+  color: var(--laser-text);
 }
 
 .v2-classic-link {
@@ -161,7 +161,7 @@ body {
 
 .v2-classic-link:hover {
   border-color: var(--optic-blue);
-  color: var(--optic-blue);
+  color: var(--accent-text);
 }
 
 /* Tactical Accent Selector */
@@ -327,7 +327,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--scanner-laser);
+  color: var(--laser-text);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -465,7 +465,7 @@ body {
 }
 
 .use-case-check {
-  color: var(--sensor-green);
+  color: var(--sensor-green-text);
   font-weight: 800;
   font-size: 1.1rem;
   line-height: 1;
@@ -524,7 +524,7 @@ body {
 
 .faq-icon {
   font-size: 0.75rem;
-  color: var(--scanner-laser);
+  color: var(--laser-text);
   transition: transform 0.2s ease;
 }
 
@@ -588,7 +588,7 @@ body {
 
 .related-arrow {
   align-self: flex-end;
-  color: var(--scanner-laser);
+  color: var(--laser-text);
   font-weight: 800;
   font-size: 1.1rem;
 }
@@ -630,7 +630,7 @@ body {
 }
 
 .info-email-link {
-  color: var(--optic-blue);
+  color: var(--accent-text);
   font-weight: 700;
   text-decoration: none;
   font-family: var(--font-mono);
@@ -639,7 +639,7 @@ body {
 
 .info-email-link:hover {
   text-decoration: underline;
-  color: var(--scanner-laser);
+  color: var(--laser-text);
 }
 
 .contact-form-card {
@@ -762,7 +762,7 @@ body {
   font-size: 5rem;
   font-weight: 800;
   line-height: 1;
-  color: var(--scanner-laser);
+  color: var(--laser-text);
   text-shadow: 4px 4px 0 var(--ink-black);
   margin-bottom: 1rem;
   display: block;
@@ -832,7 +832,7 @@ body {
 }
 
 .footer-links-col a:hover {
-  color: var(--scanner-laser);
+  color: var(--laser-text);
 }
 
 .v2-footer-matrix {
@@ -869,7 +869,7 @@ body {
 }
 
 .v2-dir-col a:hover {
-  color: var(--scanner-laser);
+  color: var(--laser-text);
   text-decoration: underline;
 }
 
@@ -903,7 +903,7 @@ body {
 }
 
 .v2-footer-legal-links a:hover {
-  color: var(--scanner-laser);
+  color: var(--laser-text);
   text-decoration: underline;
 }
 
@@ -1101,13 +1101,13 @@ body {
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-pill);
   background: var(--optic-amber-tint);
-  color: var(--optic-amber);
+  color: var(--optic-amber-text);
   border: 1.5px solid var(--border);
 }
 
 .caution-badge.red {
   background: var(--scanner-laser-tint);
-  color: var(--scanner-laser);
+  color: var(--laser-text);
 }
 
 .caution-header h3 {
