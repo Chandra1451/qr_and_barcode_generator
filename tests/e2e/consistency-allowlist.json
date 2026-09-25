@@ -1,0 +1,4 @@
+{
+  "_readme": "Intentional differences the consistency tests should accept. Add an entry only after deciding the difference is correct, and always give the reason. Key formats: '<generatorId>.<controlId>.<label|min|max|default|unit>', '<generatorId>.<controlId>.missing', 'asset-version.<file name>'. Example: { \"key\": \"data-matrix.scale.max\", \"reason\": \"2D modules are small; needs a larger max scale\" }",
+  "allowed": []
+}
