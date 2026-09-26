@@ -3,20 +3,20 @@
  * Universal QR, Barcode & Code Generator Suite
  */
 
-import { engine } from './core/engine.js?v=3.3';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.3';
+import { engine } from './core/engine.js?v=3.4';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.4';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.3';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.3';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.3';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.3';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.3';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.3';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.3';
+} from './generators/registry.js?v=3.4';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.4';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.4';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.4';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.4';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.4';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.4';
 
 class App {
   constructor() {

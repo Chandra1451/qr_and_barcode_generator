@@ -28,6 +28,7 @@ const MIME = {
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
+  '.wasm': 'application/wasm',
 };
 
 function send404(res, urlPath) {

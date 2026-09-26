@@ -1,0 +1,211 @@
+/* Barcode & QR Scanner page (barcode-scanner.html). Uses the shared V2 tokens only. */
+
+/* Class rules below set display; keep the hidden attribute authoritative. */
+.scan-app [hidden] { display: none !important; }
+
+.scan-app {
+  background: var(--surface);
+  border: var(--border-ink);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-ink);
+  padding: 1.5rem;
+  margin: 0 0 2.5rem;
+}
+
+.scan-inputs {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.scan-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 190px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background: var(--canvas-base);
+  border: 2.5px dashed var(--ink-black);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.scan-drop:hover,
+.scan-drop:focus-within,
+.scan-drop.is-dragover {
+  background: var(--accent-tint);
+  border-style: solid;
+}
+
+.scan-drop-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.scan-drop-hint {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+}
+
+/* The real file input stays keyboard-focusable but visually hidden inside the label. */
+.scan-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scan-camera-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: var(--canvas-base);
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.scan-camera-col p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.scan-camera-col .btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.scan-camera-box {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.scan-camera-box video {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  max-height: 60vh;
+  margin: 0 auto 0.75rem;
+  background: #000;
+  border: var(--border-ink);
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.scan-status {
+  margin: 1.1rem 0 0;
+  min-height: 1.4em;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.scan-status[data-kind="ok"] { color: var(--sensor-green-text); }
+.scan-status[data-kind="error"] { color: var(--laser-text); }
+
+.scan-preview {
+  display: block;
+  max-width: min(100%, 320px);
+  max-height: 240px;
+  margin: 1rem auto 0;
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  object-fit: contain;
+  background: #fff;
+}
+
+.scan-results {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.scan-result {
+  background: var(--canvas-base);
+  border: var(--border-ink);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.1rem;
+}
+
+.scan-result-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.scan-chip {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--on-accent);
+  background: var(--accent-fill);
+  border-radius: var(--radius-pill);
+}
+
+.scan-chip-muted {
+  color: var(--text-primary);
+  background: var(--surface-alt);
+  border: var(--border-subtle);
+}
+
+.scan-result-text {
+  margin: 0 0 0.85rem;
+  max-height: 16rem;
+  overflow: auto;
+  padding: 0.75rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.scan-result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.scan-result-actions .btn {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.scan-result-warning {
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--optic-amber-text);
+}
+
+.scan-privacy-note {
+  margin: 1.25rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .scan-app { padding: 1rem; }
+  .scan-inputs { grid-template-columns: 1fr; }
+  .scan-drop { min-height: 150px; }
+}

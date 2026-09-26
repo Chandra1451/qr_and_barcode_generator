@@ -2706,6 +2706,7 @@ function generatePageHtml(page) {
           </a>
           <a href="../about.html" class="v2-nav-link">About</a>
           <a href="../symbology-docs.html" class="v2-nav-link">Docs</a>
+          <a href="../barcode-scanner.html" class="v2-nav-link">Scanner</a>
           <a href="../classic/index.html" class="v2-classic-link" title="Switch to Legacy V1 Studio">Classic V1 ↗</a>
           <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
             <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
@@ -2892,6 +2893,7 @@ function generatePageHtml(page) {
             <ul>
               <li><a href="../index.html">Optical Studio</a></li>
               <li><a href="../index.html#symbologies">Symbologies Directory</a></li>
+              <li><a href="../barcode-scanner.html">Barcode &amp; QR Scanner</a></li>
               <li><a href="../classic/index.html">Classic V1 Studio</a></li>
             </ul>
           </div>
@@ -3043,6 +3045,12 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
     <lastmod>${today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/barcode-scanner.html</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>${SITE_URL}/about.html</loc>

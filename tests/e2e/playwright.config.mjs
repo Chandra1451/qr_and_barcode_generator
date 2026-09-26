@@ -61,9 +61,9 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], ...browserUse, viewport: { width: 1366, height: 900 } },
     },
     {
-      // Real phone emulation (touch, DPR, 412px). Only layout/consistency specs run here.
+      // Real phone emulation (touch, DPR, 412px). Layout/consistency specs, plus the scanner (mostly used on phones).
       name: 'phone',
-      testMatch: [/01-smoke\.spec\.mjs/, /10-consistency\.spec\.mjs/],
+      testMatch: [/01-smoke\.spec\.mjs/, /10-consistency\.spec\.mjs/, /14-scanner\.spec\.mjs/],
       use: { ...devices['Pixel 7'], ...browserUse },
     },
     {

@@ -5,7 +5,7 @@
  * Powered by bwip-js (bcid: itf14). Heavy-duty packaging code with bearer bars.
  */
 
-import { computeItf14 } from '../../core/checksums.js?v=3.3';
+import { computeItf14 } from '../../core/checksums.js?v=3.4';
 
 export default {
   id: "itf-14",
