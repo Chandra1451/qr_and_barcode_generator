@@ -84,7 +84,7 @@ export const LINEAR_1D = GENERATORS.filter((g) => g.category !== '2d').map((g) =
 // ---------------------------------------------------------------------------
 
 /** Root pages that are part of the live site (classic/ and v2/ are archived/redirects). */
-export const ROOT_PAGES = ['index.html', 'about.html', 'contact.html', 'privacy-policy.html', 'terms.html', 'symbology-docs.html', '404.html']
+export const ROOT_PAGES = ['index.html', 'about.html', 'contact.html', 'privacy-policy.html', 'terms.html', 'symbology-docs.html', 'barcode-scanner.html', '404.html']
   .filter((f) => fs.existsSync(path.join(SITE_ROOT, f)));
 
 export const LANDING_PAGES = fs

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-
+<html lang="en" data-theme="light">
 <head>
   <!-- Google tag (gtag.js) -->
   <script>
@@ -19,9 +18,20 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Page Not Found | Code Generator - UniversalCodeMaker.com</title>
-  <meta name="robots" content="noindex, follow">
+  <title>Free Online Barcode &amp; QR Code Scanner (Image or Camera) | UniversalCodeMaker.com</title>
+  <meta name="description" content="Scan a QR code or barcode from a photo, screenshot or your camera, free and private: everything is decoded in your browser and nothing is uploaded. Reads QR, Data Matrix, PDF417, EAN, UPC, Code 128 and more.">
+  <link rel="canonical" href="https://universalcodemaker.com/barcode-scanner.html">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#ff2a4b">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="UniversalCodeMaker">
+  <meta property="og:title" content="Free Online Barcode &amp; QR Code Scanner | UniversalCodeMaker.com">
+  <meta property="og:description" content="Read QR codes and barcodes from an image or your camera, privately in your browser. Nothing is uploaded.">
+  <meta property="og:url" content="https://universalcodemaker.com/barcode-scanner.html">
+  <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -38,122 +48,80 @@
   <!-- V2 Stylesheets -->
   <link rel="stylesheet" href="css/v2-theme.css?v=2.9">
   <link rel="stylesheet" href="css/v2-pages.css?v=2.9">
+  <link rel="stylesheet" href="css/v2-scanner.css?v=1.0">
 
-  <style>
-    .error-container {
-      min-height: calc(100vh - 280px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 1.5rem;
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Online Barcode & QR Code Scanner",
+  "url": "https://universalcodemaker.com/barcode-scanner.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (runs in the browser)",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Read QR codes and barcodes from an image or your camera, privately in your browser. Nothing is uploaded.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "UniversalCodeMaker.com",
+    "url": "https://universalcodemaker.com"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it safe to scan a code here? Are my images uploaded?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your images are never uploaded. The picture is decoded by your own browser, and the reader runs locally as WebAssembly. Photos, camera frames and the decoded text are not sent to our server, not stored, and not shared with analytics or advertising partners."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which barcode types can it read?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "QR Code, Micro QR, rMQR, Data Matrix, Aztec, PDF417 and MaxiCode, plus the common 1D barcodes: EAN-13, EAN-8, UPC-A, UPC-E, Code 128 (including GS1-128), Code 39, Code 93, Codabar, ITF / ITF-14 and GS1 DataBar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is no code found in my photo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use a sharp, well-lit photo in which the whole code is visible, including the blank margin around it. Avoid strong glare and very steep angles. Screenshots of on-screen codes work best."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I scan with my phone camera?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tap “Use camera” and allow camera access when your browser asks. The camera is only used while scanning, stops as soon as a code is found or you leave the page, and can be turned off with the Stop button at any time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is scanning free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The scanner is free for personal and commercial use, with no sign-up and no limit on the number of scans."
+      }
     }
-
-    .error-card {
-      max-width: 680px;
-      width: 100%;
-      text-align: center;
-      background: var(--surface);
-      border: 3px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 3.5rem 2.5rem;
-      box-shadow: var(--shadow-ink-lg);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .error-glitch-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: var(--radius-pill);
-      background: var(--scanner-laser-tint);
-      border: 2px solid var(--border);
-      color: var(--laser-text);
-      font-size: 0.82rem;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      margin-bottom: 1.5rem;
-    }
-
-    .error-code {
-      font-family: var(--font-mono);
-      font-size: clamp(4.5rem, 10vw, 6.5rem);
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      line-height: 1;
-      margin-bottom: 0.75rem;
-      color: var(--accent-text);
-      text-shadow: 4px 4px 0 var(--border);
-    }
-
-    .error-title {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.01em;
-    }
-
-    .error-desc {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .error-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-bottom: 2.25rem;
-    }
-
-    .popular-links-title {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-      font-weight: 700;
-      margin-bottom: 0.85rem;
-    }
-
-    .popular-links-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-    }
-
-    .popular-link-chip {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      color: var(--text-secondary);
-      padding: 0.45rem 0.95rem;
-      border-radius: var(--radius-pill);
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 2px 2px 0 var(--border);
-      transition: all 0.15s ease;
-    }
-
-    .popular-link-chip:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0 var(--border);
-      background: var(--accent-tint);
-      color: var(--text-primary);
-    }
-  </style>
+  ]
+}
+  </script>
 </head>
-
 <body>
 
   <!-- Site Header -->
@@ -180,7 +148,7 @@
           </a>
           <a href="about.html" class="v2-nav-link">About</a>
           <a href="symbology-docs.html" class="v2-nav-link">Docs</a>
-          <a href="barcode-scanner.html" class="v2-nav-link">Scanner</a>
+          <a href="barcode-scanner.html" class="v2-nav-link active" aria-current="page">Scanner</a>
           <a href="classic/index.html" class="v2-classic-link" title="Switch to Legacy V1 Studio">Classic V1 ↗</a>
           <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
             <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
@@ -197,41 +165,88 @@
     </div>
   </header>
 
-  <!-- Error Content -->
-  <main class="error-container">
-    <div class="error-card">
-      <div class="error-glitch-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>HTTP 404 • PAYLOAD_NOT_FOUND
-      </div>
+  <!-- Main Content -->
+  <main class="doc-wrap">
 
-      <div class="error-code">404</div>
-      <h1 class="error-title">Page or Code Format Not Found</h1>
-      <p class="error-desc">
-        The barcode specification, landing page, or resource you are looking for does not exist or may have been moved.
-        All barcode and QR generation takes place in our live studio.
+    <!-- Hero -->
+    <div class="doc-hero">
+      <div class="doc-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        Private, In-Browser Scanner
+      </div>
+      <h1 class="doc-title">Free Online Barcode &amp; QR Code Scanner</h1>
+      <p class="doc-subtitle">
+        Read a QR code or barcode from a photo, a screenshot or your camera. Everything is decoded on your own device: your images and their contents are never uploaded.
       </p>
+    </div>
 
-      <div class="error-actions">
-        <a href="index.html" class="btn btn-laser btn-lg" style="text-decoration: none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          Return to Live Studio
-        </a>
-      </div>
-
-      <div>
-        <div class="popular-links-title">Quick Jump to Popular Generators</div>
-        <div class="popular-links-grid">
-          <a href="pages/wifi-qr-code-generator.html" class="popular-link-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>Wi-Fi QR Code</a>
-          <a href="pages/ean-13-barcode-generator.html" class="popular-link-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><line x1="3" y1="4" x2="3" y2="20"></line><line x1="7" y1="4" x2="7" y2="20"></line><line x1="11" y1="4" x2="11" y2="20"></line><line x1="15" y1="4" x2="15" y2="20"></line><line x1="19" y1="4" x2="19" y2="20"></line><line x1="21" y1="4" x2="21" y2="20"></line></svg>EAN-13 Retail</a>
-          <a href="pages/upc-a-barcode-generator.html" class="popular-link-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>UPC-A Retail</a>
-          <a href="pages/code-128-barcode-generator.html" class="popular-link-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>Code 128 Logistics</a>
-          <a href="pages/data-matrix-generator.html" class="popular-link-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>Data Matrix 2D</a>
-          <a href="pages/vcard-qr-code-generator.html" class="popular-link-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>vCard Contact</a>
+    <!-- Scanner -->
+    <section class="scan-app" id="scanner-app" aria-label="Scan a code">
+      <div class="scan-inputs">
+        <label class="scan-drop" id="scan-drop" for="scan-file">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span class="scan-drop-title">Choose an image, drop it here, or paste it</span>
+          <span class="scan-drop-hint">PNG, JPG, WebP, GIF, BMP or SVG, up to 25 MB. Paste with Ctrl+V / &#8984;+V.</span>
+          <input type="file" id="scan-file" class="scan-file-input" accept="image/*">
+        </label>
+        <div class="scan-camera-col">
+          <button type="button" class="btn btn-laser" id="scan-camera-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Use camera</button>
+          <p>Your browser will ask for permission. The camera stops as soon as a code is found.</p>
         </div>
       </div>
-    </div>
+
+      <div class="scan-camera-box" id="scan-camera-box" hidden>
+        <video id="scan-video" playsinline muted aria-label="Camera preview"></video>
+        <button type="button" class="btn btn-ink btn-sm" id="scan-camera-stop">Stop camera</button>
+      </div>
+
+      <p class="scan-status" id="scan-status" role="status" aria-live="polite"></p>
+      <img class="scan-preview" id="scan-preview" alt="The image you chose" hidden>
+      <div class="scan-results" id="scan-results"></div>
+
+      <p class="scan-privacy-note">
+        Decoding runs locally with the open-source ZXing-C++ reader (<a href="js/vendor/zxing-wasm-2.2.4/THIRD_PARTY_NOTICES.txt">licences</a>). Scanned images and text are not sent, stored or tracked. See our <a href="privacy-policy.html">Privacy Policy</a>.
+      </p>
+    </section>
+
+    <!-- How it works -->
+    <section class="doc-section">
+      <h2>How to scan a barcode or QR code online</h2>
+      <ol>
+        <li><strong>Add the code:</strong> choose or drop a photo or screenshot, paste an image you copied, or tap <em>Use camera</em>.</li>
+        <li><strong>Read the result:</strong> the code type (for example QR Code or EAN-13) and its contents appear straight away. Several codes in one image are all listed.</li>
+        <li><strong>Use it:</strong> copy the text, open a website link after checking its address, or create an editable copy of the code in our free Studio.</li>
+      </ol>
+    </section>
+
+    <section class="doc-section">
+      <h2>Supported barcode types</h2>
+      <p><strong>2D codes:</strong> QR Code, Micro QR, rMQR, Data Matrix, Aztec, PDF417 and MaxiCode.</p>
+      <p><strong>1D barcodes:</strong> EAN-13, EAN-8, UPC-A, UPC-E, ISBN (Bookland EAN), Code 128 and GS1-128, Code 39, Code 93, Codabar, ITF / ITF-14 and GS1 DataBar.</p>
+      <p>Need to make one instead? <a href="index.html">Open the free barcode &amp; QR code generator</a> or read the <a href="symbology-docs.html">symbology guides</a>.</p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Stay safe with QR codes</h2>
+      <p>
+        Fake QR codes stuck over real ones (sometimes called <em>quishing</em>) are a common way to send people to phishing sites or fake payment pages. This scanner never opens a link by itself: it shows you the full address and the real website name first. Before opening a link or paying, check that the address is the one you expect, and never enter passwords or card details on a page you reached from a code you don&rsquo;t trust.
+      </p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Frequently asked questions</h2>
+      <h3>Is it safe to scan a code here? Are my images uploaded?</h3>
+      <p>Your images are never uploaded. The picture is decoded by your own browser, and the reader runs locally as WebAssembly. Photos, camera frames and the decoded text are not sent to our server, not stored, and not shared with analytics or advertising partners.</p>
+      <h3>Which barcode types can it read?</h3>
+      <p>QR Code, Micro QR, rMQR, Data Matrix, Aztec, PDF417 and MaxiCode, plus the common 1D barcodes: EAN-13, EAN-8, UPC-A, UPC-E, Code 128 (including GS1-128), Code 39, Code 93, Codabar, ITF / ITF-14 and GS1 DataBar.</p>
+      <h3>Why is no code found in my photo?</h3>
+      <p>Use a sharp, well-lit photo in which the whole code is visible, including the blank margin around it. Avoid strong glare and very steep angles. Screenshots of on-screen codes work best.</p>
+      <h3>Can I scan with my phone camera?</h3>
+      <p>Yes. Tap “Use camera” and allow camera access when your browser asks. The camera is only used while scanning, stops as soon as a code is found or you leave the page, and can be turned off with the Stop button at any time.</p>
+      <h3>Is scanning free?</h3>
+      <p>Yes. The scanner is free for personal and commercial use, with no sign-up and no limit on the number of scans.</p>
+    </section>
+
   </main>
 
   <!-- Site Footer -->
@@ -373,9 +388,11 @@
   <!-- Navigation & Theme Sync Script -->
   <script src="js/v2-nav.js?v=2.4"></script>
 
+  <!-- Scanner (loads the local ZXing reader on demand) -->
+  <script type="module" src="js/reader/scanner.js?v=1.0"></script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
 
 </body>
-
 </html>

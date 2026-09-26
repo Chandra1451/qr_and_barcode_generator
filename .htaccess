@@ -38,6 +38,7 @@ AddDefaultCharset UTF-8
   AddType application/javascript    .js .mjs
   AddType text/plain                .txt
   AddType text/xml                  .xml
+  AddType application/wasm          .wasm
 </IfModule>
 
 # 4. Gzip & Brotli Deflate Compression (mod_deflate)
@@ -53,6 +54,7 @@ AddDefaultCharset UTF-8
   AddOutputFilterByType DEFLATE text/plain
   AddOutputFilterByType DEFLATE text/xml
   AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE application/wasm
   AddOutputFilterByType DEFLATE font/woff
 </IfModule>
 
@@ -72,6 +74,7 @@ AddDefaultCharset UTF-8
   ExpiresByType image/webp                   "access plus 1 year"
   ExpiresByType image/jpeg                   "access plus 1 year"
   ExpiresByType image/x-icon                 "access plus 1 year"
+  ExpiresByType application/wasm             "access plus 1 year"
 
   # Web Manifest - 1 Week
   ExpiresByType application/manifest+json    "access plus 1 week"
@@ -87,7 +90,8 @@ AddDefaultCharset UTF-8
 <IfModule mod_headers.c>
   # 1-Year Immutable Cache Header for Static Assets
   # (CSS is linked with ?v= on every page, so bump that version whenever a stylesheet changes)
-  <FilesMatch "\.(css|svg|woff2|woff|ttf|png|webp|jpg|jpeg|ico)$">
+  # (.wasm lives in a versioned folder, e.g. js/vendor/zxing-wasm-2.2.4/)
+  <FilesMatch "\.(css|svg|woff2|woff|ttf|png|webp|jpg|jpeg|ico|wasm)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
@@ -109,6 +113,11 @@ AddDefaultCharset UTF-8
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Camera stays blocked site-wide; only the Scanner page may ask for it (same origin only).
+  <Files "barcode-scanner.html">
+    Header always set Permissions-Policy "camera=(self), microphone=(), geolocation=()"
+  </Files>
 </IfModule>
 
 # 6. Block Sensitive & Planning File Extensions (Defense in Depth)

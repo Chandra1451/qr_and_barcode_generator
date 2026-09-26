@@ -8,15 +8,17 @@
 - **Retail Barcodes**: EAN-13, EAN-8, UPC-A, UPC-E, ISBN-13 (Books), ISSN (Magazines).
 - **Logistics & Industrial**: Code 128 (Auto/A/B/C), GS1-128, Code 39, Code 93, ITF-14, Interleaved 2 of 5, Codabar, MSI Plessey, Pharmacode.
 - **2D Matrix Codes**: Aztec Code, Data Matrix (ECC 200), PDF417, MicroPDF417, DotCode, MaxiCode.
+- **Barcode & QR Scanner**: Reads QR, Data Matrix, Aztec, PDF417, EAN/UPC, Code 128, Code 39 and more from an uploaded image or the device camera, decoded locally in the browser (nothing uploaded).
 - **Export Formats**: Vector SVG (infinite scale), Print-ready PNG (1x Web, 2x Retina, 4x 300+ DPI), multi-label printable PDF sheets (Avery 5160, 5163, L7160), and batch ZIP download.
 
 ## Technical & Privacy Guarantee
 - All barcode encoding and rendering occurs 100% client-side in the user's browser memory via JavaScript (`bwip-js` and `qr-code-styling`).
-- No user inputs, URLs, passwords, or generated images are ever transmitted to or stored on our servers.
+- No user inputs, URLs, passwords, generated images, or scanned images/camera frames are ever transmitted to or stored on our servers.
 - Codes are true static symbols with direct data encoding and no proprietary redirect servers.
 
 ## Key Tool URLs
 - [Code Generator Hub](https://universalcodemaker.com/)
+- [Online Barcode & QR Code Scanner](https://universalcodemaker.com/barcode-scanner.html)
 - [EAN-13 Retail Barcode Generator](https://universalcodemaker.com/pages/ean-13-barcode-generator.html)
 - [UPC-A Product Barcode Generator](https://universalcodemaker.com/pages/upc-a-barcode-generator.html)
 - [Code 128 Shipping Barcode Generator](https://universalcodemaker.com/pages/code-128-barcode-generator.html)

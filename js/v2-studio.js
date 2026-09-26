@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine } from './core/engine.js?v=3.3';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.3';
+import { engine } from './core/engine.js?v=3.4';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.4';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.3';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.3';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.3';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.3';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.3';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.3';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.3';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.3';
+} from './generators/registry.js?v=3.4';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.4';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.4';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.4';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.4';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.4';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.4';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.4';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.3';
+} from './export/label-maker.js?v=3.4';
 
 class V2StudioApp {
   constructor() {
@@ -154,6 +154,8 @@ class V2StudioApp {
       this.dom.payloadInput.value = paramPayload;
       this.scheduleRender();
     }
+
+    if (urlParams.get('from') === 'scanner') this.applyScannerHandoff();
 
     const paramPreset = urlParams.get('preset');
     const paramLabel = urlParams.get('label') || urlParams.get('labelmaker');
@@ -1398,6 +1400,33 @@ class V2StudioApp {
     } catch (e) {
       this.dom.recentHistoryContainer.style.display = 'none';
     }
+  }
+
+  /**
+   * Text decoded on the Scanner page (barcode-scanner.html) arrives through sessionStorage,
+   * never in the URL, so it can't reach server logs or analytics. It is read once, then removed.
+   */
+  applyScannerHandoff() {
+    let data = null;
+    try {
+      data = JSON.parse(sessionStorage.getItem('ucm_scan_handoff') || 'null');
+      sessionStorage.removeItem('ucm_scan_handoff');
+    } catch {
+      return;
+    }
+    if (!data || typeof data.text !== 'string' || !getGenerator(data.generatorId)) return;
+    if (!(Date.now() - data.at < 10 * 60 * 1000)) return; // ignore stale hand-offs
+
+    const text = data.text.slice(0, 4000);
+    this.selectGenerator(data.generatorId);
+    if (data.generatorId === 'qr-code') {
+      this.selectWizard('text');
+      const field = this.dom.wizardFormContainer?.querySelector('.wizard-input[data-field="text"]');
+      if (field) field.value = text;
+    } else if (this.dom.payloadInput) {
+      this.dom.payloadInput.value = text;
+    }
+    this.scheduleRender();
   }
 
   loadHistoryItem(generatorId, payload) {
