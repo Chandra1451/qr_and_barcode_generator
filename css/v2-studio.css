@@ -334,6 +334,12 @@ h1, h2, h3, h4 {
   gap: 0.75rem 1.5rem;
 }
 
+.v2-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .v2-hero-guide-btn svg {
   color: var(--laser-text);
 }
