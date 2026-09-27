@@ -5,7 +5,7 @@
  * Powered by bwip-js (bcid: ean13). Standard global retail product barcode.
  */
 
-import { computeEan13 } from '../../core/checksums.js?v=3.5';
+import { computeEan13 } from '../../core/checksums.js?v=3.6';
 
 export default {
   id: "ean-13",

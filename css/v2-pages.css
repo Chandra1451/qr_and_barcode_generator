@@ -146,23 +146,7 @@ body {
   color: var(--laser-text);
 }
 
-.v2-classic-link {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-sm);
-  background: var(--surface-alt);
-  border: var(--border-subtle);
-  text-decoration: none;
-  color: var(--text-secondary);
-  transition: all 0.15s ease;
-}
 
-.v2-classic-link:hover {
-  border-color: var(--optic-blue);
-  color: var(--accent-text);
-}
 
 /* Tactical Accent Selector */
 .v2-accent-picker {
@@ -964,9 +948,6 @@ body {
     justify-content: space-between;
   }
   .v2-version-tag,
-  .v2-classic-link {
-    display: none;
-  }
   .theme-toggle-btn span {
     display: none;
   }

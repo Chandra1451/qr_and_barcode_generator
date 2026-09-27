@@ -16,7 +16,7 @@ const path = require('path');
 const SITE_URL = 'https://universalcodemaker.com';
 // Cache-busting version for shared CSS (served with a 1-year immutable cache).
 // Keep in sync with the ?v= used on the root pages; bump whenever the CSS changes.
-const ASSET_VERSION = '3.0';
+const ASSET_VERSION = '3.1';
 const PAGES_DIR = path.join(__dirname, '..', 'pages');
 
 if (!fs.existsSync(PAGES_DIR)) {
@@ -2707,7 +2707,6 @@ function generatePageHtml(page) {
           <a href="../about.html" class="v2-nav-link">About</a>
           <a href="../symbology-docs.html" class="v2-nav-link">Docs</a>
           <a href="../barcode-scanner.html" class="v2-nav-link">Scanner</a>
-          <a href="../classic/index.html" class="v2-classic-link" title="Switch to Legacy V1 Studio">Classic V1 ↗</a>
           <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
             <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
             <button type="button" class="accent-dot" data-accent="cobalt" title="Signal Cobalt"></button>
@@ -2894,7 +2893,6 @@ function generatePageHtml(page) {
               <li><a href="../index.html">Optical Studio</a></li>
               <li><a href="../index.html#symbologies">Symbologies Directory</a></li>
               <li><a href="../barcode-scanner.html">Barcode &amp; QR Scanner</a></li>
-              <li><a href="../classic/index.html">Classic V1 Studio</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
