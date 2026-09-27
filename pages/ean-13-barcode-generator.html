@@ -48,8 +48,8 @@
   <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="../css/v2-theme.css?v=3.1">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=3.1">
+  <link rel="stylesheet" href="../css/v2-theme.css?v=3.2">
+  <link rel="stylesheet" href="../css/v2-pages.css?v=3.2">
 
   <script>
     (function () {
@@ -379,6 +379,30 @@
         "@type": "Answer",
         "text": "Yes. Our generator produces infinitely scalable vector SVG files that can be imported directly into Adobe Illustrator, CorelDRAW, or InDesign for prepress commercial packaging."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "What size should I print an EAN-13 barcode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard (100%) size is 37.29 × 25.93 mm including margins. GS1 allows 80% to 200% of that, so roughly 30 × 21 mm is the smallest for retail checkout. Always keep the quiet zones and the full bar height."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a US store scan an EAN-13 barcode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Scanners in the US and Canada read EAN-13 as well as UPC-A, and a UPC-A number is simply an EAN-13 with a leading zero. Some US retailers still ask suppliers for UPC-A, so check your retailer's requirements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use EAN-13 barcodes for my own stock or inventory without GS1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for internal use such as your own shelves or warehouse. GS1 numbers are only required when the product is sold through retailers or marketplaces that expect a globally unique product number."
+      }
     }
   ]
 }
@@ -533,6 +557,43 @@
       </div>
     </section>
 
+    <!-- Practical guide: how to make it, print it, and what to avoid -->
+    <section class="guide-card" aria-labelledby="guide-title">
+      <h2 id="guide-title" class="guide-title">How to Make, Print &amp; Test Your EAN-13 Code</h2>
+      <div class="guide-grid">
+        <div class="guide-block guide-steps">
+          <h3>Step by step</h3>
+          <ol>
+            <li>Get your product number (GTIN-13) from <strong>GS1</strong>, or from your retailer if it assigns numbers. Don't make up numbers for products sold in shops or on marketplaces.</li>
+            <li>Open the studio with <strong>EAN-13</strong> selected (the button above does this) and type the first <strong>12 digits</strong>. The 13th check digit is calculated for you. If you enter all 13, the studio checks the last one.</li>
+            <li>Keep the human-readable digits under the bars switched on, as retail packaging needs them.</li>
+            <li>Scan the preview with the built-in <a href="../barcode-scanner.html">barcode scanner</a> or a phone to confirm it reads back the right 13 digits.</li>
+            <li>Download <strong>SVG</strong> for packaging artwork (vector, so bars stay exact at any size), or print sheets with the Avery label maker.</li>
+          </ol>
+          <a href="../index.html?symbology=ean-13" class="guide-cta">Open the EAN-13 generator &rarr;</a>
+        </div>
+        <div class="guide-block">
+          <h3>Printing &amp; size</h3>
+          <ul>
+            <li><strong>Size:</strong> the standard (100%) EAN-13 is <strong>37.29 × 25.93 mm</strong> including the margins. GS1 allows 80% to 200% of that; don't go smaller than 80% for retail checkout.</li>
+            <li><strong>Margins:</strong> keep the blank quiet zones, 11 bar-widths on the left and 7 on the right. Don't let text, borders or artwork touch the bars.</li>
+            <li><strong>Height:</strong> don't cut the bars shorter to save space. Truncated barcodes are harder to scan from different angles.</li>
+            <li><strong>Colours:</strong> black or dark blue bars on white work best. Red bars don't scan, because red-light checkout scanners see red as white.</li>
+            <li><strong>Resize the SVG, not a small PNG.</strong> Stretching a low-resolution image in Word or Canva makes bar widths uneven.</li>
+          </ul>
+        </div>
+        <div class="guide-block guide-mistakes">
+          <h3>Common mistakes</h3>
+          <ul>
+            <li><strong>Buying cheap numbers from resellers</strong> for products sold on Amazon or in retail chains. These platforms check barcodes against the GS1 database, and numbers registered to another company can get listings blocked.</li>
+            <li><strong>Printing too small or too short</strong> to fit a small pack. Use a smaller magnification within 80%–200%, or ask GS1 about EAN-8 for very small items.</li>
+            <li><strong>Low contrast</strong>, such as grey on kraft paper or bars on a busy background.</li>
+            <li><strong>Not test-scanning a printed proof</strong> before a full print run.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
     <!-- Recommended Hardware & Supplies Banner (Amazon Associates) -->
     <section class="hardware-box">
       <div class="hardware-box-header">
@@ -751,6 +812,36 @@
       </summary>
       <div class="faq-answer">
         <p>Yes. Our generator produces infinitely scalable vector SVG files that can be imported directly into Adobe Illustrator, CorelDRAW, or InDesign for prepress commercial packaging.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What size should I print an EAN-13 barcode?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>The standard (100%) size is 37.29 × 25.93 mm including margins. GS1 allows 80% to 200% of that, so roughly 30 × 21 mm is the smallest for retail checkout. Always keep the quiet zones and the full bar height.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can a US store scan an EAN-13 barcode?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. Scanners in the US and Canada read EAN-13 as well as UPC-A, and a UPC-A number is simply an EAN-13 with a leading zero. Some US retailers still ask suppliers for UPC-A, so check your retailer's requirements.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I use EAN-13 barcodes for my own stock or inventory without GS1?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes, for internal use such as your own shelves or warehouse. GS1 numbers are only required when the product is sold through retailers or marketplaces that expect a globally unique product number.</p>
       </div>
     </details>
   

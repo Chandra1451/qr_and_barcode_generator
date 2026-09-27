@@ -48,8 +48,8 @@
   <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="../css/v2-theme.css?v=3.1">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=3.1">
+  <link rel="stylesheet" href="../css/v2-theme.css?v=3.2">
+  <link rel="stylesheet" href="../css/v2-pages.css?v=3.2">
 
   <script>
     (function () {
@@ -371,6 +371,30 @@
         "@type": "Answer",
         "text": "Never. Our application runs 100% in your browser. Your network name and password never leave your device."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to the QR code if I change my Wi-Fi password?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It stops working, because the password is stored inside the code itself (there's no server in between). Create a new code with the new password and replace the printed one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a Wi-Fi QR code work for 5 GHz and 6 GHz networks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The code contains the network name, security type and password, not a frequency band. The phone joins that network the same way it would if you typed the details."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I test the code before printing it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Point your phone camera at the preview on screen, or upload the downloaded image to our free in-browser barcode scanner, which shows exactly what the code contains."
+      }
     }
   ]
 }
@@ -515,6 +539,44 @@
       </div>
     </section>
 
+    <!-- Practical guide: how to make it, print it, and what to avoid -->
+    <section class="guide-card" aria-labelledby="guide-title">
+      <h2 id="guide-title" class="guide-title">How to Make, Print &amp; Test Your Wi-Fi QR Code</h2>
+      <div class="guide-grid">
+        <div class="guide-block guide-steps">
+          <h3>Step by step</h3>
+          <ol>
+            <li>Open the studio with the <strong>Wi-Fi</strong> QR type selected (the button above does this).</li>
+            <li>Type the <strong>network name (SSID)</strong> exactly as your phone shows it. Names are case-sensitive, and spaces count.</li>
+            <li>Choose the <strong>security type</strong>: <em>WPA / WPA2 / WPA3</em> for almost every home and business router, <em>WEP</em> only for very old routers, or <em>None</em> for an open network.</li>
+            <li>Enter the <strong>password</strong>, and tick <strong>Hidden Network</strong> if your router doesn't broadcast its name.</li>
+            <li>Scan the preview with your phone camera (or the built-in <a href="../barcode-scanner.html">barcode scanner</a>) and join the network once, before you print anything.</li>
+            <li>Download <strong>SVG</strong> for print shops and signs, or <strong>PNG</strong> at 2× or 4× for documents, then print.</li>
+          </ol>
+          <a href="../index.html?wizard=wifi" class="guide-cta">Open the Wi-Fi QR generator &rarr;</a>
+        </div>
+        <div class="guide-block">
+          <h3>Printing &amp; size</h3>
+          <ul>
+            <li><strong>Size:</strong> print the code at least <strong>2.5 cm (1 in)</strong> wide for a table card read up close. A useful rule: people scan from about 10× the code's width, so a 3 cm code works from roughly 30 cm.</li>
+            <li><strong>Margin:</strong> keep the white border (quiet zone) around the code. Cropping it off is the most common reason a printed code won't scan.</li>
+            <li><strong>Contrast:</strong> dark code on a light background. Light-on-dark (inverted) codes fail on some Android phones.</li>
+            <li><strong>Surface:</strong> matte paper or a matte laminate. Glossy lamination causes glare under ceiling lights.</li>
+            <li>Add a short line of text such as <em>"Scan to join our Wi-Fi"</em> and the network name, so guests know what the code is for and can still type it if needed.</li>
+          </ul>
+        </div>
+        <div class="guide-block guide-mistakes">
+          <h3>Common mistakes</h3>
+          <ul>
+            <li><strong>Changing the password later.</strong> The password is inside the code, so the old code stops working. Make and print a new one whenever you change it.</li>
+            <li><strong>A typo in the network name</strong>, or the wrong capitalisation. The phone looks for exactly what's in the code.</li>
+            <li><strong>Company networks that ask for a username and password</strong> (WPA2/WPA3-Enterprise). Standard Wi-Fi QR codes are made for a single shared password, so use a guest network instead.</li>
+            <li><strong>Printing before testing.</strong> Scan the final file on at least one iPhone and one Android phone first.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
     <!-- Recommended Hardware & Supplies Banner (Amazon Associates) -->
     <section class="hardware-box">
       <div class="hardware-box-header">
@@ -715,6 +777,36 @@
       </summary>
       <div class="faq-answer">
         <p>Never. Our application runs 100% in your browser. Your network name and password never leave your device.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What happens to the QR code if I change my Wi-Fi password?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>It stops working, because the password is stored inside the code itself (there's no server in between). Create a new code with the new password and replace the printed one.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Does a Wi-Fi QR code work for 5 GHz and 6 GHz networks?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. The code contains the network name, security type and password, not a frequency band. The phone joins that network the same way it would if you typed the details.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I test the code before printing it?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. Point your phone camera at the preview on screen, or upload the downloaded image to our free in-browser barcode scanner, which shows exactly what the code contains.</p>
       </div>
     </details>
   

@@ -48,8 +48,8 @@
   <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="../css/v2-theme.css?v=3.1">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=3.1">
+  <link rel="stylesheet" href="../css/v2-theme.css?v=3.2">
+  <link rel="stylesheet" href="../css/v2-pages.css?v=3.2">
 
   <script>
     (function () {
@@ -363,6 +363,30 @@
         "@type": "Answer",
         "text": "Their phone automatically launches the Contacts app with all your details pre-filled and a single \"Save Contact\" button."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Will a vCard QR code work on both iPhone and Android?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The iPhone Camera app and Android camera or Google Lens recognise vCard codes and offer to add the contact. We write vCard 3.0, the version contact apps read most reliably."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I change the details after printing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The details are stored inside the code, which is what makes it private, free and permanent. If something changes, generate a new code. It takes a few seconds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put my photo or logo in the contact card?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A photo can't fit inside a QR code. You can place a small logo in the centre of the code itself as decoration; it isn't added to the saved contact."
+      }
     }
   ]
 }
@@ -507,6 +531,42 @@
       </div>
     </section>
 
+    <!-- Practical guide: how to make it, print it, and what to avoid -->
+    <section class="guide-card" aria-labelledby="guide-title">
+      <h2 id="guide-title" class="guide-title">How to Make, Print &amp; Test Your vCard QR Code</h2>
+      <div class="guide-grid">
+        <div class="guide-block guide-steps">
+          <h3>Step by step</h3>
+          <ol>
+            <li>Open the studio with the <strong>vCard</strong> QR type selected (the button above does this).</li>
+            <li>Fill in the fields you want to share: first and last name, company, job title, phone, email, website and address. Leave out anything you don't want on the card.</li>
+            <li>Write the phone number in <strong>international format</strong> with the country code, for example <em>+1 555 019 2834</em> or <em>+44 20 7946 0000</em>.</li>
+            <li>Scan the preview with your phone and check that <strong>Add to Contacts</strong> shows every field correctly.</li>
+            <li>Download <strong>SVG</strong> for business cards and print design, or <strong>PNG</strong> for email signatures and slides.</li>
+          </ol>
+          <a href="../index.html?wizard=vcard" class="guide-cta">Open the vCard QR generator &rarr;</a>
+        </div>
+        <div class="guide-block">
+          <h3>Printing &amp; size</h3>
+          <ul>
+            <li><strong>Business cards:</strong> a standard card is 85 × 55 mm (3.5 × 2 in). Print the code at least <strong>2.5 cm (1 in)</strong> wide, with a clear white margin around it.</li>
+            <li><strong>Fewer fields scan faster.</strong> A vCard is plain text inside the code, so every extra field makes the pattern denser. Name, phone, email and website are usually enough.</li>
+            <li><strong>Contrast:</strong> keep the code dark on a light background, even if your card design is dark. Put the code on a white panel.</li>
+            <li><strong>Logo:</strong> if you add a logo in the centre, the studio switches to the highest error correction level automatically. Keep the logo small and test the final print.</li>
+          </ul>
+        </div>
+        <div class="guide-block guide-mistakes">
+          <h3>Common mistakes</h3>
+          <ul>
+            <li><strong>Phone numbers without the country code.</strong> They may dial the wrong number, or none, when scanned abroad.</li>
+            <li><strong>Testing on screen only.</strong> Always scan the printed proof at its final size, especially on small cards.</li>
+            <li><strong>Expecting to edit it later.</strong> The contact details are stored in the code itself, so a new job title or phone number needs a new code.</li>
+            <li><strong>Adding a photo.</strong> Photos are far too large for a QR code. Share them through your website or LinkedIn link instead.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
     <!-- Recommended Hardware & Supplies Banner (Amazon Associates) -->
     <section class="hardware-box">
       <div class="hardware-box-header">
@@ -689,6 +749,36 @@
       </summary>
       <div class="faq-answer">
         <p>Their phone automatically launches the Contacts app with all your details pre-filled and a single "Save Contact" button.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Will a vCard QR code work on both iPhone and Android?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. The iPhone Camera app and Android camera or Google Lens recognise vCard codes and offer to add the contact. We write vCard 3.0, the version contact apps read most reliably.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I change the details after printing?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. The details are stored inside the code, which is what makes it private, free and permanent. If something changes, generate a new code. It takes a few seconds.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I put my photo or logo in the contact card?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>A photo can't fit inside a QR code. You can place a small logo in the centre of the code itself as decoration; it isn't added to the saved contact.</p>
       </div>
     </details>
   

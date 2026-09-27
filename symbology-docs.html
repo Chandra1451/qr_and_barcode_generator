@@ -73,8 +73,8 @@
   <link rel="preload" href="/assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=3.1">
-  <link rel="stylesheet" href="css/v2-pages.css?v=3.1">
+  <link rel="stylesheet" href="css/v2-theme.css?v=3.2">
+  <link rel="stylesheet" href="css/v2-pages.css?v=3.2">
 
   <style>
     /* Documentation Page Layout */
@@ -374,6 +374,48 @@
     }
 
     .docs-text strong {
+      color: var(--text-primary);
+    }
+
+    /* "Make one" links from each symbology card to its generator page */
+    .docs-related {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.4rem 0.9rem;
+      margin-top: 1.25rem;
+      padding-top: 0.9rem;
+      border-top: 1.5px dashed var(--border);
+    }
+
+    .docs-related-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--laser-text);
+    }
+
+    .docs-related ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .docs-related a {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
+    }
+
+    .docs-related a:hover {
       color: var(--text-primary);
     }
 
@@ -776,6 +818,15 @@
           <p class="docs-text">
             <strong>Logo Embedding Best Practice:</strong> When placing a custom brand logo or icon into the center of a QR code, <em>always enforce Error Correction Level H (30% redundancy)</em>. This ensures the scanner can reconstruct the obscured central data modules without any scanning failure.
           </p>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/wifi-qr-code-generator.html">Wi-Fi QR code generator</a></li>
+              <li><a href="pages/vcard-qr-code-generator.html">vCard business card QR code</a></li>
+              <li><a href="pages/google-reviews-qr-code-generator.html">Google review QR code</a></li>
+              <li><a href="pages/whatsapp-qr-code-generator.html">WhatsApp QR code</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- Data Matrix -->
@@ -822,6 +873,12 @@
           <p class="docs-text">
             Widely mandated by the US Department of Defense (MIL-STD-130 UID) and global pharmaceutical serialization standards (GS1 DataMatrix) for direct part marking (DPM) via laser etching and dot peen.
           </p>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/data-matrix-generator.html">Free Data Matrix code generator</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- Aztec Code -->
@@ -868,6 +925,12 @@
           <p class="docs-text">
             Because Aztec Code requires <strong>zero quiet zone margins</strong>, it can be printed right up to the edge of boarding passes, tickets, or smartphone screens without sacrificing decodability.
           </p>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/aztec-code-generator.html">Free Aztec code generator</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- PDF417 -->
@@ -894,8 +957,8 @@
 
           <div class="specs-grid">
             <div class="spec-item">
-              <div class="spec-label">Standard Ratio</div>
-              <div class="spec-value">2.5:1 to 3:1 (Wide Rectangle)</div>
+              <div class="spec-label">Shape</div>
+              <div class="spec-value">Wide rectangle; width set by the column count (1–30)</div>
             </div>
             <div class="spec-item">
               <div class="spec-label">Max Data Capacity</div>
@@ -910,6 +973,12 @@
               <div class="spec-value">Driver Licenses (AAMVA), FedEx/USPS</div>
             </div>
           </div>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/pdf417-barcode-generator.html">Free PDF417 barcode generator</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- Code 128 -->
@@ -957,6 +1026,13 @@
               <div class="spec-value">10x Narrow Bar Width</div>
             </div>
           </div>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/code-128-barcode-generator.html">Free Code 128 barcode generator</a></li>
+              <li><a href="pages/amazon-fba-fnsku-barcode-generator.html">Amazon FBA / FNSKU labels</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- EAN-13 & UPC-A -->
@@ -999,6 +1075,14 @@
               <div class="spec-value">Requires GS1 Registration for Retail</div>
             </div>
           </div>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/ean-13-barcode-generator.html">Free EAN-13 barcode generator</a></li>
+              <li><a href="pages/shopify-barcode-generator.html">Shopify product barcodes</a></li>
+              <li><a href="pages/avery-5160-barcode-generator.html">Print on Avery 5160 labels</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- UPC-A -->
@@ -1022,6 +1106,13 @@
           <p class="docs-text">
             UPC-A is the standard retail barcode used throughout the United States and Canada. It encodes exactly 12 numeric digits (or 11 data digits + 1 Modulo 10 check digit). An EAN-13 barcode with a leading zero ('0') is mathematically identical to a 12-digit UPC-A barcode.
           </p>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/upc-a-barcode-generator.html">Free UPC-A barcode generator</a></li>
+              <li><a href="pages/shopify-barcode-generator.html">Shopify product barcodes</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- ISBN-13 -->
@@ -1045,6 +1136,12 @@
           <p class="docs-text">
             An ISBN-13 barcode is an EAN-13 symbol whose number starts with the <strong>978</strong> or <strong>979</strong> "Bookland" prefix, so any retail scanner can read it. Enter the ISBN with or without hyphens; the 13th digit is a Modulo 10 check digit, and the studio rejects a wrong one instead of printing an unsellable barcode. An optional 5-digit <strong>EAN-5 price add-on</strong> (for example <code>51999</code> = US $19.99, <code>90000</code> = no suggested price) prints to the right of the main symbol, as many book distributors expect.
           </p>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/isbn-book-barcode-generator.html">Free ISBN book barcode generator</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- ITF-14 -->
@@ -1068,6 +1165,12 @@
           <p class="docs-text">
             ITF-14 encodes 14 numeric digits and is printed with heavy black horizontal borders called <strong>Bearer Bars</strong>. These bearer bars suppress plate-spread and stop misreads caused when a handheld laser scanner skims across the edge of corrugated cardboard packaging.
           </p>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/itf-14-barcode-generator.html">Free ITF-14 carton barcode generator</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- Code 39 -->
@@ -1091,6 +1194,12 @@
           <p class="docs-text">
             Code 39 encodes uppercase letters A&ndash;Z, digits 0&ndash;9, space and the symbols <code>- . $ / + %</code>. It is self-checking and needs no check digit, which is why it is still common on IT asset tags, ID badges, healthcare specimen labels and defence logistics. An optional <strong>Mod-43 check character</strong> can be added when a customer specification requires it. Code 39 is wide for the amount of data it holds; when space is tight and your scanners support it, Code 128 packs the same data into a much shorter barcode.
           </p>
+                  <nav class="docs-related" aria-label="Related generators">
+            <span class="docs-related-label">Make one</span>
+            <ul>
+              <li><a href="pages/code-39-barcode-generator.html">Free Code 39 barcode generator</a></li>
+            </ul>
+          </nav>
         </section>
 
         <!-- Interactive Customer Product Decision Finder -->

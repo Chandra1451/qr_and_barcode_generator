@@ -957,6 +957,91 @@ body {
    DECISION INTELLIGENCE, CAUTIONS, BENEFITS & AUTHORITY REFERENCE STYLES
    ========================================================================== */
 
+/* Practical guide (how-to steps, printing & size, common mistakes) */
+.guide-card {
+  background: var(--surface);
+  border: var(--border-ink);
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+  margin: 0 0 2.75rem;
+  box-shadow: var(--shadow-ink);
+}
+
+.guide-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem 2rem;
+}
+
+.guide-block h3 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--laser-text);
+  margin-bottom: 0.85rem;
+}
+
+.guide-block ol,
+.guide-block ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.guide-block li::marker {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.guide-block strong {
+  color: var(--text-primary);
+}
+
+.guide-block a {
+  color: var(--accent-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guide-mistakes li::marker {
+  content: "✕  ";
+  color: var(--laser-text);
+}
+
+.guide-cta {
+  display: inline-block;
+  margin-top: 1.1rem;
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .guide-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .guide-card { padding: 1.35rem 1.1rem; }
+  .guide-title { font-size: 1.2rem; }
+}
+
 /* Customer Decision Matrix */
 .decision-card {
   background: var(--surface);

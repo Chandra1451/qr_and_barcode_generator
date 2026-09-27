@@ -63,8 +63,8 @@
   </script>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=3.1">
-  <link rel="stylesheet" href="css/v2-studio.css?v=3.4">
+  <link rel="stylesheet" href="css/v2-theme.css?v=3.2">
+  <link rel="stylesheet" href="css/v2-studio.css?v=3.5">
 </head>
 <body>
 
@@ -765,6 +765,71 @@
       </div>
 
       <div class="matrix-grid" id="symbology-matrix-grid"></div>
+    </div>
+  </section>
+
+  <!-- How it works, "which barcode do I need?" and FAQ (plain HTML so search engines can read it) -->
+  <section class="home-guide" id="how-it-works" aria-labelledby="how-it-works-title">
+    <div class="wrap">
+      <span class="mono-eyebrow">How it works</span>
+      <h2 id="how-it-works-title">Make a QR code or barcode in three steps</h2>
+      <ol class="home-steps">
+        <li>
+          <span class="home-step-idx">01</span>
+          <strong>Pick a format</strong>
+          <span>QR code for links, Wi-Fi and contacts; EAN-13 or UPC-A for products; Code 128 or ITF-14 for shipping.</span>
+        </li>
+        <li>
+          <span class="home-step-idx">02</span>
+          <strong>Enter your data</strong>
+          <span>Type a link, product number or text. Check digits are calculated for you and mistakes are flagged as you type.</span>
+        </li>
+        <li>
+          <span class="home-step-idx">03</span>
+          <strong>Test and download</strong>
+          <span>Scan the preview with your phone or our <a href="barcode-scanner.html">barcode scanner</a>, then download SVG, PNG or Avery label sheets.</span>
+        </li>
+      </ol>
+
+      <div class="home-guide-split">
+        <div>
+          <h2>Which barcode do I need?</h2>
+          <dl class="home-needs">
+            <div><dt>Products sold in shops worldwide</dt><dd><a href="pages/ean-13-barcode-generator.html">EAN-13</a></dd></div>
+            <div><dt>Products sold in the US &amp; Canada</dt><dd><a href="pages/upc-a-barcode-generator.html">UPC-A</a></dd></div>
+            <div><dt>Amazon FBA inventory labels</dt><dd><a href="pages/amazon-fba-fnsku-barcode-generator.html">FNSKU (Code 128)</a></dd></div>
+            <div><dt>Books</dt><dd><a href="pages/isbn-book-barcode-generator.html">ISBN</a></dd></div>
+            <div><dt>Shipping cartons &amp; cases</dt><dd><a href="pages/itf-14-barcode-generator.html">ITF-14</a></dd></div>
+            <div><dt>Warehouse bins, assets &amp; internal labels</dt><dd><a href="pages/code-128-barcode-generator.html">Code 128</a> or <a href="pages/code-39-barcode-generator.html">Code 39</a></dd></div>
+            <div><dt>Small parts &amp; medical devices</dt><dd><a href="pages/data-matrix-generator.html">Data Matrix</a></dd></div>
+            <div><dt>ID cards, tickets &amp; boarding passes</dt><dd><a href="pages/pdf417-barcode-generator.html">PDF417</a> or <a href="pages/aztec-code-generator.html">Aztec</a></dd></div>
+            <div><dt>Menus, Wi-Fi, business cards &amp; reviews</dt><dd><a href="pages/wifi-qr-code-generator.html">Wi-Fi QR</a>, <a href="pages/vcard-qr-code-generator.html">vCard QR</a>, <a href="pages/google-reviews-qr-code-generator.html">Google review QR</a></dd></div>
+          </dl>
+          <p class="home-guide-note">Not sure? The <a href="symbology-docs.html#sec-product-finder">barcode finder</a> walks you through it.</p>
+        </div>
+
+        <div>
+          <h2>Common questions</h2>
+          <div class="home-faq">
+            <details>
+              <summary>Is it really free?</summary>
+              <p>Yes. Every format, download size and label sheet is free, with no sign-up and no watermark. The site is supported by ads and affiliate links.</p>
+            </details>
+            <details>
+              <summary>Do the QR codes expire?</summary>
+              <p>No. They are static codes: your link or text is stored in the code itself, not behind a redirect service, so they keep working forever. To change what a code says, make a new one.</p>
+            </details>
+            <details>
+              <summary>Is my data uploaded anywhere?</summary>
+              <p>No. Codes are made in your browser, so Wi-Fi passwords, contact details and product numbers never leave your device.</p>
+            </details>
+            <details>
+              <summary>Can I use these barcodes on products in stores?</summary>
+              <p>Yes, if the number is yours. Retailers and marketplaces such as Amazon expect product numbers licensed from GS1. We draw the barcode to the GS1 specification; the number itself has to come from GS1 or your retailer.</p>
+            </details>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

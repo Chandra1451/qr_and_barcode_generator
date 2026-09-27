@@ -16,7 +16,7 @@ const path = require('path');
 const SITE_URL = 'https://universalcodemaker.com';
 // Cache-busting version for shared CSS (served with a 1-year immutable cache).
 // Keep in sync with the ?v= used on the root pages; bump whenever the CSS changes.
-const ASSET_VERSION = '3.1';
+const ASSET_VERSION = '3.2';
 const PAGES_DIR = path.join(__dirname, '..', 'pages');
 
 if (!fs.existsSync(PAGES_DIR)) {
@@ -2068,6 +2068,122 @@ const ENRICHMENTS = {
   },
 };
 
+/**
+ * Practical guide sections per landing page: how-to steps, printing/size advice, common
+ * mistakes and extra FAQs. Optional; pages without an entry simply skip these sections.
+ * HTML is allowed in the strings (links, <strong>); keep claims true to what the studio does.
+ */
+const GUIDES = {
+  "wifi-qr-code-generator": {
+    "howTo": [
+      "Open the studio with the <strong>Wi-Fi</strong> QR type selected (the button above does this).",
+      "Type the <strong>network name (SSID)</strong> exactly as your phone shows it. Names are case-sensitive, and spaces count.",
+      "Choose the <strong>security type</strong>: <em>WPA / WPA2 / WPA3</em> for almost every home and business router, <em>WEP</em> only for very old routers, or <em>None</em> for an open network.",
+      "Enter the <strong>password</strong>, and tick <strong>Hidden Network</strong> if your router doesn't broadcast its name.",
+      "Scan the preview with your phone camera (or the built-in <a href=\"../barcode-scanner.html\">barcode scanner</a>) and join the network once, before you print anything.",
+      "Download <strong>SVG</strong> for print shops and signs, or <strong>PNG</strong> at 2× or 4× for documents, then print."
+    ],
+    "print": [
+      "<strong>Size:</strong> print the code at least <strong>2.5 cm (1 in)</strong> wide for a table card read up close. A useful rule: people scan from about 10× the code's width, so a 3 cm code works from roughly 30 cm.",
+      "<strong>Margin:</strong> keep the white border (quiet zone) around the code. Cropping it off is the most common reason a printed code won't scan.",
+      "<strong>Contrast:</strong> dark code on a light background. Light-on-dark (inverted) codes fail on some Android phones.",
+      "<strong>Surface:</strong> matte paper or a matte laminate. Glossy lamination causes glare under ceiling lights.",
+      "Add a short line of text such as <em>\"Scan to join our Wi-Fi\"</em> and the network name, so guests know what the code is for and can still type it if needed."
+    ],
+    "mistakes": [
+      "<strong>Changing the password later.</strong> The password is inside the code, so the old code stops working. Make and print a new one whenever you change it.",
+      "<strong>A typo in the network name</strong>, or the wrong capitalisation. The phone looks for exactly what's in the code.",
+      "<strong>Company networks that ask for a username and password</strong> (WPA2/WPA3-Enterprise). Standard Wi-Fi QR codes are made for a single shared password, so use a guest network instead.",
+      "<strong>Printing before testing.</strong> Scan the final file on at least one iPhone and one Android phone first."
+    ],
+    "moreFaqs": [
+      {
+        "q": "What happens to the QR code if I change my Wi-Fi password?",
+        "a": "It stops working, because the password is stored inside the code itself (there's no server in between). Create a new code with the new password and replace the printed one."
+      },
+      {
+        "q": "Does a Wi-Fi QR code work for 5 GHz and 6 GHz networks?",
+        "a": "Yes. The code contains the network name, security type and password, not a frequency band. The phone joins that network the same way it would if you typed the details."
+      },
+      {
+        "q": "Can I test the code before printing it?",
+        "a": "Yes. Point your phone camera at the preview on screen, or upload the downloaded image to our free in-browser barcode scanner, which shows exactly what the code contains."
+      }
+    ]
+  },
+  "vcard-qr-code-generator": {
+    "howTo": [
+      "Open the studio with the <strong>vCard</strong> QR type selected (the button above does this).",
+      "Fill in the fields you want to share: first and last name, company, job title, phone, email, website and address. Leave out anything you don't want on the card.",
+      "Write the phone number in <strong>international format</strong> with the country code, for example <em>+1 555 019 2834</em> or <em>+44 20 7946 0000</em>.",
+      "Scan the preview with your phone and check that <strong>Add to Contacts</strong> shows every field correctly.",
+      "Download <strong>SVG</strong> for business cards and print design, or <strong>PNG</strong> for email signatures and slides."
+    ],
+    "print": [
+      "<strong>Business cards:</strong> a standard card is 85 × 55 mm (3.5 × 2 in). Print the code at least <strong>2.5 cm (1 in)</strong> wide, with a clear white margin around it.",
+      "<strong>Fewer fields scan faster.</strong> A vCard is plain text inside the code, so every extra field makes the pattern denser. Name, phone, email and website are usually enough.",
+      "<strong>Contrast:</strong> keep the code dark on a light background, even if your card design is dark. Put the code on a white panel.",
+      "<strong>Logo:</strong> if you add a logo in the centre, the studio switches to the highest error correction level automatically. Keep the logo small and test the final print."
+    ],
+    "mistakes": [
+      "<strong>Phone numbers without the country code.</strong> They may dial the wrong number, or none, when scanned abroad.",
+      "<strong>Testing on screen only.</strong> Always scan the printed proof at its final size, especially on small cards.",
+      "<strong>Expecting to edit it later.</strong> The contact details are stored in the code itself, so a new job title or phone number needs a new code.",
+      "<strong>Adding a photo.</strong> Photos are far too large for a QR code. Share them through your website or LinkedIn link instead."
+    ],
+    "moreFaqs": [
+      {
+        "q": "Will a vCard QR code work on both iPhone and Android?",
+        "a": "Yes. The iPhone Camera app and Android camera or Google Lens recognise vCard codes and offer to add the contact. We write vCard 3.0, the version contact apps read most reliably."
+      },
+      {
+        "q": "Can I change the details after printing?",
+        "a": "No. The details are stored inside the code, which is what makes it private, free and permanent. If something changes, generate a new code. It takes a few seconds."
+      },
+      {
+        "q": "Can I put my photo or logo in the contact card?",
+        "a": "A photo can't fit inside a QR code. You can place a small logo in the centre of the code itself as decoration; it isn't added to the saved contact."
+      }
+    ]
+  },
+  "ean-13-barcode-generator": {
+    "howTo": [
+      "Get your product number (GTIN-13) from <strong>GS1</strong>, or from your retailer if it assigns numbers. Don't make up numbers for products sold in shops or on marketplaces.",
+      "Open the studio with <strong>EAN-13</strong> selected (the button above does this) and type the first <strong>12 digits</strong>. The 13th check digit is calculated for you. If you enter all 13, the studio checks the last one.",
+      "Keep the human-readable digits under the bars switched on, as retail packaging needs them.",
+      "Scan the preview with the built-in <a href=\"../barcode-scanner.html\">barcode scanner</a> or a phone to confirm it reads back the right 13 digits.",
+      "Download <strong>SVG</strong> for packaging artwork (vector, so bars stay exact at any size), or print sheets with the Avery label maker."
+    ],
+    "print": [
+      "<strong>Size:</strong> the standard (100%) EAN-13 is <strong>37.29 × 25.93 mm</strong> including the margins. GS1 allows 80% to 200% of that; don't go smaller than 80% for retail checkout.",
+      "<strong>Margins:</strong> keep the blank quiet zones, 11 bar-widths on the left and 7 on the right. Don't let text, borders or artwork touch the bars.",
+      "<strong>Height:</strong> don't cut the bars shorter to save space. Truncated barcodes are harder to scan from different angles.",
+      "<strong>Colours:</strong> black or dark blue bars on white work best. Red bars don't scan, because red-light checkout scanners see red as white.",
+      "<strong>Resize the SVG, not a small PNG.</strong> Stretching a low-resolution image in Word or Canva makes bar widths uneven."
+    ],
+    "mistakes": [
+      "<strong>Buying cheap numbers from resellers</strong> for products sold on Amazon or in retail chains. These platforms check barcodes against the GS1 database, and numbers registered to another company can get listings blocked.",
+      "<strong>Printing too small or too short</strong> to fit a small pack. Use a smaller magnification within 80%–200%, or ask GS1 about EAN-8 for very small items.",
+      "<strong>Low contrast</strong>, such as grey on kraft paper or bars on a busy background.",
+      "<strong>Not test-scanning a printed proof</strong> before a full print run."
+    ],
+    "moreFaqs": [
+      {
+        "q": "What size should I print an EAN-13 barcode?",
+        "a": "The standard (100%) size is 37.29 × 25.93 mm including margins. GS1 allows 80% to 200% of that, so roughly 30 × 21 mm is the smallest for retail checkout. Always keep the quiet zones and the full bar height."
+      },
+      {
+        "q": "Can a US store scan an EAN-13 barcode?",
+        "a": "Yes. Scanners in the US and Canada read EAN-13 as well as UPC-A, and a UPC-A number is simply an EAN-13 with a leading zero. Some US retailers still ask suppliers for UPC-A, so check your retailer's requirements."
+      },
+      {
+        "q": "Can I use EAN-13 barcodes for my own stock or inventory without GS1?",
+        "a": "Yes, for internal use such as your own shelves or warehouse. GS1 numbers are only required when the product is sold through retailers or marketplaces that expect a globally unique product number."
+      }
+    ]
+  }
+};
+
 function generatePageHtml(page) {
   const pageUrl = `${SITE_URL}/pages/${page.slug}.html`;
   const enrichment = ENRICHMENTS[page.slug] || {};
@@ -2075,6 +2191,8 @@ function generatePageHtml(page) {
   const decisionGuide = enrichment.decisionGuide || [];
   const legalCaution = enrichment.legalCaution || null;
   const authorityLinks = enrichment.authorityLinks || [];
+  const guide = GUIDES[page.slug] || null;
+  const faqs = [...page.faqs, ...((guide && guide.moreFaqs) || [])];
 
   const webAppJsonLd = {
     "@context": "https://schema.org",
@@ -2095,7 +2213,7 @@ function generatePageHtml(page) {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": page.faqs.map(f => ({
+    "mainEntity": faqs.map(f => ({
       "@type": "Question",
       "name": f.q,
       "acceptedAnswer": {
@@ -2124,7 +2242,7 @@ function generatePageHtml(page) {
     ]
   };
 
-  const faqItemsHtml = page.faqs.map((f, i) => `
+  const faqItemsHtml = faqs.map((f, i) => `
     <details class="faq-item" ${i === 0 ? 'open' : ''}>
       <summary class="faq-question">
         <span>${f.q}</span>
@@ -2764,6 +2882,32 @@ function generatePageHtml(page) {
       </div>
     </section>
 
+    ${guide ? `<!-- Practical guide: how to make it, print it, and what to avoid -->
+    <section class="guide-card" aria-labelledby="guide-title">
+      <h2 id="guide-title" class="guide-title">How to Make, Print &amp; Test Your ${page.shortName} Code</h2>
+      <div class="guide-grid">
+        <div class="guide-block guide-steps">
+          <h3>Step by step</h3>
+          <ol>
+            ${guide.howTo.map(step => `<li>${step}</li>`).join('\n            ')}
+          </ol>
+          <a href="../index.html?${page.queryParam}" class="guide-cta">Open the ${page.shortName} generator &rarr;</a>
+        </div>
+        <div class="guide-block">
+          <h3>Printing &amp; size</h3>
+          <ul>
+            ${guide.print.map(tip => `<li>${tip}</li>`).join('\n            ')}
+          </ul>
+        </div>
+        <div class="guide-block guide-mistakes">
+          <h3>Common mistakes</h3>
+          <ul>
+            ${guide.mistakes.map(m => `<li>${m}</li>`).join('\n            ')}
+          </ul>
+        </div>
+      </div>
+    </section>
+    ` : ''}
     <!-- Recommended Hardware & Supplies Banner (Amazon Associates) -->
     <section class="hardware-box">
       <div class="hardware-box-header">
