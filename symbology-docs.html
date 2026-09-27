@@ -1563,39 +1563,55 @@
             </div>
           </div>
 
-          <!-- 2. Legal Requirements: GS1 Registration vs. Free Closed Systems -->
-          <div style="margin: 2rem 0 1.5rem;">
+          <!-- 2. Commercial use: when GS1 numbers are needed, the process, and a disclaimer.
+               Linked from the homepage hero notice (#gs1-licensing); keep the id. -->
+          <div id="gs1-licensing" style="margin: 2rem 0 1.5rem; scroll-margin-top: 6rem;">
             <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--optic-amber)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>
-              When Do You Legally Need GS1 Registration?
+              Commercial Use: Do You Need GS1 Barcode Numbers?
             </h3>
+            <p class="docs-text">
+              This studio draws barcodes to the official specifications, but <strong>the number inside a retail barcode has to be yours</strong>. For products sold through shops and marketplaces, that number (a GTIN) is licensed from <a href="https://www.gs1.org/contact" target="_blank" rel="noopener noreferrer">GS1</a>, the non-profit that runs the global barcode system.
+            </p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.25rem;">
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
                 <h4 style="font-family: var(--font-heading); color: var(--laser-text); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                  GS1 Registration IS Required:
+                  You need GS1 numbers when:
                 </h4>
                 <ul style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem;">
-                  <li>Selling consumer packaged goods (CPG) in open retail stores (Walmart, Target, Tesco, Carrefour).</li>
-                  <li>Registering brands on Amazon Brand Registry or Google Shopping feeds (GS1 GEPIR database validation).</li>
-                  <li>Commercial healthcare products subject to FDA Unique Device Identification (UDI) or EU FMD.</li>
-                  <li>Exporting goods internationally through multi-carrier customs brokers.</li>
+                  <li>Selling packaged products through retailers and supermarket chains (Walmart, Target, Tesco, Carrefour and others).</li>
+                  <li>Listing products on marketplaces such as Amazon or Google Shopping, which check product numbers against the GS1 database. Amazon offers a GTIN exemption for some brands.</li>
+                  <li>Selling medical devices or medicines: UDI rules (FDA, EU MDR) and the EU Falsified Medicines Directive require numbers from an accredited issuing agency, such as GS1.</li>
                 </ul>
               </div>
 
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
                 <h4 style="font-family: var(--font-heading); color: var(--sensor-green-text); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 10 11 15 8 12"/></svg>
-                  100% FREE (No GS1 Fees Required):
+                  No GS1 fees needed for:
                 </h4>
                 <ul style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem;">
-                  <li>Internal warehouse bin, shelf, aisle, and pallet rack identification (Code 128 / Code 39).</li>
-                  <li>Enterprise asset tracking (laptops, office chairs, machinery, tools).</li>
-                  <li>Private retail stores operating their own POS software: use EAN-13 prefixes <strong>200–299</strong> or UPC-A prefix <strong>2</strong> (restricted circulation).</li>
-                  <li>All QR Codes: Wi-Fi setup, vCard contacts, URLs, SMS dialers, cryptocurrency cold wallets.</li>
+                  <li>Internal warehouse bins, shelves, aisles and pallet racks (Code 128 / Code 39).</li>
+                  <li>Asset tracking: laptops, furniture, machinery, tools.</li>
+                  <li>Items sold only in your own shop on your own till system: use in-store EAN-13 prefixes <strong>200–299</strong> or UPC-A number system <strong>2</strong>. These numbers only work inside your own system.</li>
+                  <li>QR codes of any kind: links, Wi-Fi, contact cards, menus, reviews, payments.</li>
                 </ul>
               </div>
             </div>
+
+            <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 1.75rem 0 0.6rem;">The process for products you sell</h4>
+            <ol style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem;">
+              <li><strong>License your numbers</strong> from the GS1 organisation in your country: usually a company prefix (for a range of products) or, in some countries, single GTINs (for one or two products).</li>
+              <li><strong>Assign one number per product variant</strong>: every size, colour and pack count gets its own GTIN. Record the product details with GS1.</li>
+              <li><strong>Generate the barcode</strong> here with that number: <a href="index.html?symbology=ean-13">EAN-13</a> outside North America, <a href="index.html?symbology=upc-a">UPC-A</a> in the US and Canada, <a href="index.html?symbology=itf-14">ITF-14</a> for outer cartons.</li>
+              <li><strong>Print at the right size and test</strong>: 80%–200% of the nominal size, full quiet zones, dark bars on a light background. Scan a printed proof before a full run; some retailers ask for a verification report (ISO/IEC 15416 grade C or better).</li>
+              <li><strong>Share the numbers</strong> with your retailers or marketplace listings.</li>
+            </ol>
+
+            <p class="docs-text" style="margin-top: 1.25rem; padding: 0.85rem 1rem; border-left: 4px solid var(--optic-amber); background: var(--surface-alt);">
+              <strong>General guidance, not legal advice.</strong> Requirements differ by country, retailer and industry. Check with your local GS1 organisation or your retailer before a commercial production run.
+            </p>
           </div>
 
           <!-- 3. Mathematical Checksum Algorithms & Verification -->

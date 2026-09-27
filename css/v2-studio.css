@@ -337,6 +337,44 @@ h1, h2, h3, h4 {
   max-width: 780px;
 }
 
+/* --- Hero notice: commercial use needs licensed numbers (links to docs #gs1-licensing) --- */
+.v2-commercial-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 860px;
+  margin: 0.25rem 0 0.25rem;
+  padding: 0.8rem 1rem;
+  background: var(--optic-amber-tint);
+  border: 1.5px solid var(--border);
+  border-left: 5px solid var(--optic-amber);
+  border-radius: var(--radius-tag);
+}
+
+.v2-commercial-note svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--optic-amber-text);
+}
+
+.v2-commercial-note p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.v2-commercial-note strong {
+  color: var(--text-primary);
+}
+
+.v2-commercial-note a {
+  color: var(--accent-text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* --- Hero spec sheet: the promises, laid out like a product datasheet ---
    One ruled panel; the grid gaps let the border colour through as cell rules. */
 .v2-spec-sheet {
