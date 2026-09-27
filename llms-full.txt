@@ -1,4 +1,4 @@
-# Code Generator - UniversalCodeMaker.com - Full Technical Specification
+# Free QR Code & Barcode Generator - UniversalCodeMaker.com - Full Technical Specification
 
 > Complete technical dictionary, mathematical algorithms, character encodings, and validation rules for AI search agents and developer integrations.
 
@@ -37,7 +37,7 @@ Sum of (start character value + Σ(character value × character position 1..N)) 
 - Standard: ISO/IEC 15438
 - Type: 2D stacked linear barcode
 - Codeword Structure: 17 modules wide with 4 bars and 4 spaces
-- Aspect Ratio: Nominal 2.5:1 to 3.0:1
+- Shape: width = 69 + 17 × columns modules; each row is 3 modules tall; 3 to 90 rows. The studio only offers column counts that keep the symbol at least as wide as it is tall.
 
 ### EAN-13
 - Standard: ISO/IEC 15420
@@ -75,16 +75,17 @@ N:LastName;FirstName;;;
 FN:FirstName LastName
 ORG:Company Name
 TITLE:Job Title
-TEL;TYPE=CELL:+1234567890
-EMAIL;TYPE=WORK:user@example.com
+TEL;TYPE=WORK,VOICE:+1234567890
+EMAIL;TYPE=PREF,INTERNET:user@example.com
 URL:https://example.com
 END:VCARD
 ```
 
 ### Cryptocurrency Wallets
-- Bitcoin: `bitcoin:<address>?amount=<val>&label=<name>`
-- Ethereum: `ethereum:<address>?value=<val>`
+- Bitcoin: `bitcoin:<address>?amount=<val>` (BIP-21)
+- Ethereum: `ethereum:<address>?value=<wei>` (EIP-681; the amount is converted to wei)
 - Solana: `solana:<address>?amount=<val>`
+- USDT: `usdt:<address>?amount=<val>`
 
 ### iCalendar VEVENT
 ```

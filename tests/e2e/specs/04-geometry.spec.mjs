@@ -1,15 +1,15 @@
 // GEOMETRY & LAYOUT — the preview keeps the right shape and the stage does not jump.
 //
-// Includes the PDF417 "Data Columns" case: 0 (auto) and 2 look normal, 1 looks much taller.
-// PDF417 geometry is fixed by ISO/IEC 15438:
+// Includes the PDF417 "Data Columns" control. PDF417 geometry is fixed by ISO/IEC 15438:
 //   symbol width  = (69 + 17 × columns) modules   (start 17, 2 row indicators 34, stop 18)
 //   symbol height = rows × 3 modules              (bwip-js default row height = 3X)
 //   rows          = ceil(codewords / columns), between 3 and 90
-// With ONE data column, every codeword needs its own row, so a tall, narrow symbol is the
-// correct output. These tests prove the symbol follows those formulas exactly (so it scans),
-// and separately check the page layout: no distortion, no overflow, no big stage jumps.
-// If the tall 1-column symbol is a UX problem, fix the presentation (fit-to-stage preview,
-// a hint, or min = 2), never by squashing the symbol.
+// Fewer columns means more rows, so 1 column made a short payload a tall block. The studio
+// now fits the slider to the payload (generator.controlHints): it starts on the count Auto
+// picked, never goes below the fewest columns that keep the symbol at least as wide as it
+// is tall, and stops where extra columns no longer remove rows. These tests prove every
+// offered value follows the formulas exactly (so it scans), the range rule holds, and the
+// page layout doesn't distort or jump. Never "fix" the shape by squashing the symbol.
 
 import { test, expect } from '../support/fixtures.mjs';
 import { sameImage } from '../support/studio.mjs';
@@ -21,72 +21,120 @@ const MAX_STAGE_JUMP_PX = Number(process.env.UCM_MAX_STAGE_JUMP_PX || 120);
 const MAX_STAGE_HEIGHT_PX = Number(process.env.UCM_MAX_STAGE_HEIGHT_PX || 640);
 
 const pdf417 = getGeneratorMeta('pdf417');
-const pdfColumns = pdf417.controls.find((c) => c.id === 'columns');
 
 test.describe('GEO-PDF417 · data columns', () => {
-  test('GEO-PDF-01 columns 1…max follow the ISO 15438 width/height formulas exactly', async ({ studio }) => {
+  test('GEO-PDF-01 every offered column count follows the ISO 15438 width/height formulas exactly', async ({ studio }) => {
     await studio.open('?symbology=pdf417');
     await studio.setControl('padding', 0);
-    await studio.page.waitForTimeout(300);
+    await studio.waitForStableRender();
     const scale = Number(await studio.control('scale').inputValue());
+    const live = await studio.sliderRange('columns');
 
     const rows = {};
-    const report = [];
-    for (let c = 1; c <= pdfColumns.max; c++) {
-      const before = await studio.fingerprint();
+    const report = [`live range ${live.min}…${live.max}, auto ${live.value}`];
+    for (let c = live.min; c <= live.max; c++) {
       await studio.setControl('columns', c);
-      const fp = await studio.waitForChange(before, { what: `columns → ${c}` });
+      await studio.page.waitForTimeout(250);
+      const fp = await studio.waitForStableRender();
       await studio.expectNoRenderError();
 
       const modulesWide = fp.width / scale;
-      const rowsHere = Math.round(fp.height / (3 * scale));
+      const modulesTall = fp.height / scale;
+      const rowsHere = Math.round(modulesTall / 3);
       rows[c] = rowsHere;
       report.push(`columns=${c}: ${fp.width}x${fp.height}px → ${modulesWide} modules wide, ${rowsHere} rows`);
 
       expect(modulesWide, `columns=${c}: width must be 69 + 17×${c} modules`).toBeCloseTo(69 + 17 * c, 0);
       expect(rowsHere, `columns=${c}: rows must be between 3 and 90`).toBeGreaterThanOrEqual(3);
       expect(rowsHere).toBeLessThanOrEqual(90);
+      expect(modulesTall, `columns=${c}: offered counts keep the symbol at least as wide as tall`).toBeLessThanOrEqual(modulesWide);
       expect(await decodeFirst(await studio.previewPng()), `columns=${c} must scan back to the payload`).toBe(pdf417.defaultPayload);
     }
     await test.info().attach('pdf417-geometry', { body: report.join('\n'), contentType: 'text/plain' });
 
-    // Rows never increase as columns increase.
-    for (let c = 2; c <= pdfColumns.max; c++) {
+    // Rows never increase as columns increase, and the widest offered count still removes a row.
+    for (let c = live.min + 1; c <= live.max; c++) {
       expect(rows[c], `rows(columns=${c}) must be ≤ rows(columns=${c - 1})`).toBeLessThanOrEqual(rows[c - 1]);
+    }
+    if (live.max > live.min) {
+      expect(rows[live.max - 1], 'the widest offered count must still remove a row').toBeGreaterThan(rows[live.max]);
     }
     // One consistent codeword count N explains every row count: rows = max(3, ceil(N / c)).
     let lo = 0;
     let hi = Infinity;
-    for (let c = 1; c <= pdfColumns.max; c++) {
+    for (let c = live.min; c <= live.max; c++) {
       if (rows[c] > 3) {
         lo = Math.max(lo, (rows[c] - 1) * c + 1);
         hi = Math.min(hi, rows[c] * c);
       }
     }
     expect(lo, `row counts are inconsistent with a single codeword count (${JSON.stringify(rows)})`).toBeLessThanOrEqual(hi);
+
+    // One column fewer than the minimum would be taller than wide (that's why it isn't offered).
+    if (live.min > 1) {
+      const below = await studio.page.evaluate(async ([text, cols]) => {
+        const { loadBwip } = await import('/js/core/dynamic-loader.js');
+        const bw = await loadBwip();
+        try { const sym = bw.raw({ bcid: 'pdf417', text, columns: cols })[0]; return { w: sym.pixx, h: sym.pixy }; } catch (e) { return null; }
+      }, [pdf417.defaultPayload, live.min - 1]);
+      if (below) expect(below.h, `columns=${live.min - 1} should be taller than wide`).toBeGreaterThan(below.w);
+    }
   });
 
-  test('GEO-PDF-02 auto (0) picks a wide symbol, and every value scans', async ({ studio }) => {
+  test('GEO-PDF-02 Auto picks a wide symbol, the thumb and badge show its column count, and it scans', async ({ studio }) => {
     await studio.open('?symbology=pdf417');
-    const auto = await studio.fingerprint();
+    const auto = await studio.waitForStableRender();
     expect(auto.width / auto.height, 'auto columns should produce a wider-than-tall symbol').toBeGreaterThan(1.5);
+    const live = await studio.sliderRange('columns');
+    const scale = Number(await studio.control('scale').inputValue());
+    const padding = Number(await studio.control('padding').inputValue());
+    expect((auto.width / scale - 2 * padding - 69) / 17, 'thumb sits on the column count Auto drew').toBeCloseTo(live.value, 0);
+    expect(await studio.badgeText('columns')).toBe(`Auto · ${live.value}`);
     expect(await studio.decodePreview()).toBe(pdf417.defaultPayload);
   });
 
-  test('GEO-PDF-03 stepping 0 → 1 → 2 → 0 is reversible and never distorts the preview', async ({ studio }) => {
+  test('GEO-PDF-03 stepping from Auto to the narrowest and back with Auto is reversible and never distorts', async ({ studio }) => {
     await studio.open('?symbology=pdf417');
-    const start = await studio.fingerprint();
+    const start = await studio.waitForStableRender();
+    const live = await studio.sliderRange('columns');
     const seen = [];
-    for (const c of [1, 2, 0]) {
+    const steps = [...new Set([live.min, Math.min(live.min + 1, live.max)])].filter((c) => c !== live.value);
+    for (const c of steps) {
       const before = await studio.fingerprint();
       await studio.setControl('columns', c);
       const fp = await studio.waitForChange(before, { what: `columns → ${c}` });
       seen.push(`columns=${c}: canvas ${fp.width}x${fp.height}, shown ${Math.round(fp.displayWidth)}x${Math.round(fp.displayHeight)}, stage ${Math.round(fp.stageHeight)}px`);
       expect(relDiff(fp.displayWidth / fp.displayHeight, fp.width / fp.height), `columns=${c}: preview is stretched`).toBeLessThan(0.02);
       expect(fp.overflowsStage, `columns=${c}: preview spills outside the stage`).toBe(false);
+      expect(fp.height, `columns=${c}: never taller than wide`).toBeLessThanOrEqual(fp.width);
     }
+    await expect(studio.page.locator('[data-auto-for="columns"]'), 'Auto button appears after a manual choice').toBeVisible();
+    await studio.clickAuto('columns');
+    await studio.page.waitForTimeout(300);
     await test.info().attach('pdf417-steps', { body: seen.join('\n'), contentType: 'text/plain' });
-    expect(sameImage((await studio.fingerprint()), start), 'columns back to 0 should give the original image').toBe(true);
+    expect(sameImage((await studio.waitForStableRender()), start), 'Auto should give the original image').toBe(true);
+    expect(await studio.badgeText('columns')).toBe(`Auto · ${live.value}`);
+  });
+
+  test('GEO-PDF-05 the slider range follows the payload length', async ({ studio }) => {
+    await studio.open('?symbology=pdf417');
+    const ranges = [];
+    for (const len of [10, 300, 1000]) {
+      await studio.page.fill('#payload-input', 'ABCDEFGHIJ'.repeat(len / 10));
+      await studio.page.waitForTimeout(400);
+      await studio.waitForStableRender();
+      const live = await studio.sliderRange('columns');
+      ranges.push({ len, ...live });
+      await studio.setControl('columns', live.min);
+      await studio.page.waitForTimeout(400);
+      const fp = await studio.waitForStableRender();
+      await studio.expectNoRenderError();
+      expect(fp.height, `${len} chars at the narrowest offered count: never taller than wide`).toBeLessThanOrEqual(fp.width);
+      await studio.clickAuto('columns');
+    }
+    await test.info().attach('pdf417-ranges', { body: JSON.stringify(ranges, null, 2), contentType: 'application/json' });
+    expect(ranges[2].min, 'longer text needs more columns to stay wide').toBeGreaterThan(ranges[0].min);
+    expect(ranges[2].value, 'Auto uses more columns for longer text').toBeGreaterThan(ranges[0].value);
   });
 
   test('GEO-PDF-04 stage height stays within limits for every columns × scale combination', async ({ studio }) => {
@@ -96,8 +144,13 @@ test.describe('GEO-PDF417 · data columns', () => {
     const rows = [];
     for (const scale of [scaleCtrl.default, scaleCtrl.max]) {
       await studio.setControl('scale', scale);
-      for (const c of [0, 1, 2, pdfColumns.max]) {
-        await studio.setControl('columns', c);
+      const live = await studio.sliderRange('columns');
+      for (const c of ['auto', live.min, live.max]) {
+        if (c === 'auto') {
+          if (await studio.page.locator('[data-auto-for="columns"]').isVisible()) await studio.clickAuto('columns');
+        } else {
+          await studio.setControl('columns', c);
+        }
         await studio.page.waitForTimeout(350);
         const fp = await studio.waitForStableRender();
         rows.push({ scale, columns: c, stage: Math.round(fp.stageHeight), shown: `${Math.round(fp.displayWidth)}x${Math.round(fp.displayHeight)}` });

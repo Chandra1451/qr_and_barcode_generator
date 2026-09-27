@@ -23,7 +23,8 @@ async function expectCoreControlsWork(studio, page) {
   fp = await studio.waitForChange(fp, { what: 'QR padding' });
   // Corner radius (added after v2-studio.js?v=2.6 was introduced). QR preview rounding is CSS.
   await page.locator('.corner-preset-btn[data-radius="18"]').click();
-  await expect(page.locator('#qr-styled-container canvas')).toHaveCSS('border-top-left-radius', '18px');
+  // (set as a percentage of the canvas since v3.5, so it scales with the fitted preview)
+  await expect(page.locator('#qr-styled-container canvas')).not.toHaveCSS('border-top-left-radius', '0px');
   // Rounded corners force a minimum quiet zone (engine clamp), so reset before testing padding.
   await page.locator('.corner-preset-btn[data-radius="0"]').click();
   // Barcode path (lazy bwip-js) + a generator slider

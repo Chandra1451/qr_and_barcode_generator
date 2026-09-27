@@ -128,7 +128,14 @@ test.describe('QRC · styling controls change the preview', () => {
       await page.locator(`.corner-preset-btn[data-radius="${r}"]`).click();
       await expect(page.locator(`.corner-preset-btn[data-radius="${r}"]`)).toHaveClass(/active/);
       await expect(page.locator('#ctrl-cornerRadius')).toHaveValue(r);
-      await expect(qrCanvas).toHaveCSS('border-top-left-radius', `${r}px`);
+      // The CSS radius is a percentage of the canvas (it's scaled to fit the stage), so the
+      // on-screen curve must equal r image pixels at the displayed size.
+      await expect.poll(() => qrCanvas.evaluate((c, rad) => {
+        const shown = c.getBoundingClientRect().width;
+        const css = parseFloat(getComputedStyle(c).borderTopLeftRadius);
+        const px = getComputedStyle(c).borderTopLeftRadius.endsWith('%') ? (css / 100) * shown : css;
+        return Math.abs(px - Number(rad) * (shown / c.width)) < 0.75;
+      }, r), `radius ${r}: on-screen curve matches the image`).toBe(true);
       await expect(page.locator('#val-cornerRadius')).toContainText(`${r}px`);
     }
   });

@@ -2,7 +2,7 @@
 
 > **100% Client-Side, Privacy-First, High-Resolution Barcode & QR Code Production Studio**
 
-A blazingly fast, zero-dependency, static web application that generates 50+ universal 1D and 2D barcode standards, branded dynamic QR codes with logos and gradients, print-ready Avery label sheets, and serialized batch ZIP archives—all executed **100% in client-side browser memory**.
+A blazingly fast, zero-dependency, static web application that generates 10 barcode formats and 13 QR code types, including branded static QR codes with logos and gradients, print-ready Avery label sheets, and serialized batch ZIP archives—all executed **100% in client-side browser memory**.
 
 ---
 
@@ -13,13 +13,12 @@ A blazingly fast, zero-dependency, static web application that generates 50+ uni
 - **Zero-Storage Privacy**: No payload data, Wi-Fi credentials, contact details, or uploaded logos are ever transmitted to a backend, logged, or stored in any database.
 - **Permanent Static Codes**: Generated QR codes are encoded directly with the target data—no expiring redirects or third-party tracking URLs.
 
-### 2. 50+ Symbologies Supported
-- **2D Matrix Codes**: Standard QR Code, Data Matrix (ECC 200, 1:1 square), Aztec Code, PDF417 (stacked 2D, 2.5:1 ratio).
-- **Retail & Point-of-Sale**: EAN-13, EAN-8, UPC-A, UPC-E, GS1 DataBar.
-- **Industrial & Logistics**: Code 128 (Auto/A/B/C), Code 39 (Extended), ITF-14, Interleaved 2 of 5, Codabar, MSI Plessey.
-- **Postal Codes**: USPS Intelligent Mail (IMb), POSTNET, Royal Mail (RM4SCC), KIX, Japan Post.
+### 2. 10 Barcode Formats
+- **2D Codes**: QR Code, Data Matrix (ECC 200, square), Aztec Code, PDF417 (stacked 2D; the column slider only offers counts that keep it wider than tall).
+- **Retail & Point-of-Sale**: EAN-13, UPC-A, ISBN-13.
+- **Industrial & Logistics**: Code 128, Code 39, ITF-14.
 
-### 3. 10 Smart QR Payload Wizards
+### 3. 13 QR Code Types
 Dynamic form compilers with real-time payload generation for:
 - 🌐 **Website URL**
 - 📶 **Wi-Fi Network** (WPA/WPA2/WPA3, WEP, Open, Hidden SSID)
@@ -31,6 +30,9 @@ Dynamic form compilers with real-time payload generation for:
 - 📅 **Calendar Event** (iCalendar VEVENT format with timestamps and description)
 - 📍 **Geolocation** (geo: coordinates with latitude and longitude)
 - 📝 **Plain Text** (Multi-line raw string payloads)
+- ⭐ **Google Review** (direct review link from a Place ID or g.page link)
+- 💬 **WhatsApp** (chat link with a pre-filled message)
+- 💳 **UPI Payment** (India: Google Pay, PhonePe, Paytm, BHIM)
 
 ### 4. Advanced QR Visual Customizer
 - **Color Gradients**: Linear and radial gradients with customizable start and end stops.

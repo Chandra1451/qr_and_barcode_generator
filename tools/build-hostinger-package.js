@@ -39,6 +39,8 @@ const ROOT_WHITELIST = [
   'terms.html',
   'privacy-policy.html',
   'symbology-docs.html',
+  'barcode-scanner.html',
+  'favicon.ico',
   '.htaccess',
   'robots.txt',
   'sitemap.xml',

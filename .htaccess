@@ -23,6 +23,9 @@
   # Block direct access to hidden files/directories (e.g. .git, .env)
   RewriteRule ^\..* - [F,L]
 
+  # Old V2 preview URL: permanent redirect to the homepage (query string such as ?symbology= is kept)
+  RewriteRule ^v2/?(index\.html)?$ / [R=301,L]
+
   # Development-only folders stay in git but are not part of the public site
   RewriteRule ^(tools|tests)(/|$) - [R=404,L]
 </IfModule>

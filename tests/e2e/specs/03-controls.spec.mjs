@@ -42,7 +42,18 @@ for (const g of BARCODE_GENERATORS) {
         const visiblePart = c.type === 'toggle' ? el.locator('xpath=ancestor::label[contains(@class,"tactile-toggle-switch")]') : el;
         await expect(visiblePart).toBeVisible();
         await expect(studio.page.locator(`label[for="ctrl-${c.id}"]`)).toHaveText(c.label);
-        if (c.type === 'slider') {
+        if (c.type === 'slider' && c.autoValue !== undefined) {
+          // Auto slider: the live range sits inside the registry bounds, starts on Auto,
+          // and the thumb shows the value Auto picked.
+          await studio.waitForStableRender();
+          const live = await studio.sliderRange(c.id);
+          expect(live.min, `${c.id}: live min`).toBeGreaterThanOrEqual(Math.max(c.min, 1));
+          expect(live.max, `${c.id}: live max`).toBeLessThanOrEqual(c.max);
+          expect(live.value).toBeGreaterThanOrEqual(live.min);
+          expect(live.value).toBeLessThanOrEqual(live.max);
+          expect(await studio.badgeText(c.id)).toBe(`Auto · ${live.value}`);
+          await expect(studio.page.locator(`[data-auto-for="${c.id}"]`), 'Auto button is hidden while on Auto').toBeHidden();
+        } else if (c.type === 'slider') {
           await expect(el).toHaveAttribute('min', String(c.min));
           await expect(el).toHaveAttribute('max', String(c.max));
           await expect(el).toHaveValue(String(c.default));
@@ -59,11 +70,18 @@ for (const g of BARCODE_GENERATORS) {
 
       test(`CTRL-02 ${g.id}: "${c.label}" changes the preview for every value`, async ({ studio, context }) => {
         await studio.open(`?symbology=${g.id}`);
-        const original = await studio.fingerprint();
+        const original = await studio.waitForStableRender();
         let previous = original;
         let previousValue = c.default;
+        let sweep = values;
+        const isAuto = c.type === 'slider' && c.autoValue !== undefined;
+        if (isAuto) {
+          const live = await studio.sliderRange(c.id);
+          previousValue = live.value;
+          sweep = sweepValues({ ...c, min: live.min, max: live.max, default: live.value });
+        }
 
-        for (const v of values) {
+        for (const v of sweep) {
           await studio.setControl(c.id, v);
           const now = await studio.waitForChange(previous, { what: `${c.id}: ${previousValue} → ${v}` });
           await studio.expectNoRenderError();
@@ -89,12 +107,13 @@ for (const g of BARCODE_GENERATORS) {
         }
 
         // No stale state: the result equals a clean render of the final value.
-        const last = values[values.length - 1];
+        const last = sweep[sweep.length - 1];
         const ref = await referenceFingerprint(context, { query: `?symbology=${g.id}`, controls: { [c.id]: last } });
         expect(sameImage(previous, ref), `UI result for ${c.id}=${last} differs from a clean render`).toBe(true);
 
-        // Reversibility: back to default gives the original image.
-        await studio.setControl(c.id, c.default);
+        // Reversibility: back to default (Auto, for auto sliders) gives the original image.
+        if (isAuto) await studio.clickAuto(c.id);
+        else await studio.setControl(c.id, c.default);
         await studio.waitForChange(previous, { what: `${c.id} back to default` });
         expect(sameImage((await studio.waitForStableRender()), original), `${c.id} back to default did not restore the original image`).toBe(true);
       });
@@ -137,10 +156,15 @@ for (const g of BARCODE_GENERATORS) {
       await studio.page.waitForTimeout(300);
       await studio.selectGenerator(g.id === 'code-128' ? 'ean-13' : 'code-128');
       await studio.selectGenerator(g.id);
+      const back = await studio.waitForStableRender();
       for (const c of g.controls.filter((x) => x.type === 'slider')) {
-        await expect(studio.control(c.id), `${c.id} after switching back`).toHaveValue(String(c.default));
+        if (c.autoValue !== undefined) {
+          expect(await studio.badgeText(c.id), `${c.id} after switching back`).toMatch(/^Auto · \d+$/);
+        } else {
+          await expect(studio.control(c.id), `${c.id} after switching back`).toHaveValue(String(c.default));
+        }
       }
-      expect(sameImage((await studio.waitForStableRender()), original), 'image after switching back differs from the first load').toBe(true);
+      expect(sameImage(back, original), 'image after switching back differs from the first load').toBe(true);
     });
   });
 }

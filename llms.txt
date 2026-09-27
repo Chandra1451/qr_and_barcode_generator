@@ -1,15 +1,15 @@
-# Code Generator - UniversalCodeMaker.com
+# Free QR Code & Barcode Generator - UniversalCodeMaker.com
 
-> A 100% free, privacy-first, client-side web application for generating static QR codes, 2D matrix codes, and over 50 industrial and retail 1D barcode standards. Zero sign-up, zero data tracking, permanent codes that never expire.
+> A free, privacy-first web app that generates static QR codes and barcodes in the browser: 10 barcode formats and 13 QR code types. No sign-up, no watermark, no tracking, and the codes never expire.
 
 ## Core Capabilities
-- **Static QR Codes**: Standard QR, Micro QR, custom dot styles, corner frames, color gradients, and centered logos.
-- **Smart QR Payloads**: Wi-Fi auto-connect, vCard 3.0/4.0 contact cards, Crypto payment addresses (BTC, ETH, SOL), iCal calendar events, direct phone/SMS/email links.
-- **Retail Barcodes**: EAN-13, EAN-8, UPC-A, UPC-E, ISBN-13 (Books), ISSN (Magazines).
-- **Logistics & Industrial**: Code 128 (Auto/A/B/C), GS1-128, Code 39, Code 93, ITF-14, Interleaved 2 of 5, Codabar, MSI Plessey, Pharmacode.
-- **2D Matrix Codes**: Aztec Code, Data Matrix (ECC 200), PDF417, MicroPDF417, DotCode, MaxiCode.
+- **QR Codes**: Standard QR Code with custom dot and corner styles, colours, gradients and a centred logo.
+- **QR Code Types (13)**: Website link, Wi-Fi auto-connect (WPA/WPA2/WPA3, WEP, open, hidden network), vCard 3.0 contact, email, SMS, phone call, cryptocurrency payment (Bitcoin, Ethereum, Solana, USDT), calendar event (iCalendar), map location, plain text, Google review link, WhatsApp chat, UPI payment (India).
+- **Retail Barcodes**: EAN-13, UPC-A, ISBN-13 (books), with check digits calculated and verified.
+- **Logistics & Industrial**: Code 128, Code 39, ITF-14.
+- **2D Codes**: Data Matrix (ECC 200), Aztec Code, PDF417.
 - **Barcode & QR Scanner**: Reads QR, Data Matrix, Aztec, PDF417, EAN/UPC, Code 128, Code 39 and more from an uploaded image or the device camera, decoded locally in the browser (nothing uploaded).
-- **Export Formats**: Vector SVG (infinite scale), Print-ready PNG (1x Web, 2x Retina, 4x 300+ DPI), multi-label printable PDF sheets (Avery 5160, 5163, L7160), and batch ZIP download.
+- **Export Formats**: Vector SVG, PNG at 1x, 2x or 4x (300 DPI print), PDF label sheets (Avery 5160, 5163, L7160 and Amazon FBA/FNSKU labels), and batch ZIP download.
 
 ## Technical & Privacy Guarantee
 - All barcode encoding and rendering occurs 100% client-side in the user's browser memory via JavaScript (`bwip-js` and `qr-code-styling`).
@@ -17,13 +17,13 @@
 - Codes are true static symbols with direct data encoding and no proprietary redirect servers.
 
 ## Key Tool URLs
-- [Code Generator Hub](https://universalcodemaker.com/)
+- [Free QR Code & Barcode Generator](https://universalcodemaker.com/)
 - [Online Barcode & QR Code Scanner](https://universalcodemaker.com/barcode-scanner.html)
 - [EAN-13 Retail Barcode Generator](https://universalcodemaker.com/pages/ean-13-barcode-generator.html)
 - [UPC-A Product Barcode Generator](https://universalcodemaker.com/pages/upc-a-barcode-generator.html)
 - [Code 128 Shipping Barcode Generator](https://universalcodemaker.com/pages/code-128-barcode-generator.html)
 - [Wi-Fi Network QR Code Generator](https://universalcodemaker.com/pages/wifi-qr-code-generator.html)
-- [vCard 4.0 Digital Business Card QR Generator](https://universalcodemaker.com/pages/vcard-qr-code-generator.html)
+- [vCard Digital Business Card QR Generator](https://universalcodemaker.com/pages/vcard-qr-code-generator.html)
 - [ITF-14 Shipping Carton Barcode Generator](https://universalcodemaker.com/pages/itf-14-barcode-generator.html)
 - [Data Matrix Healthcare & Industrial Barcode Generator](https://universalcodemaker.com/pages/data-matrix-generator.html)
 - [Aztec Code Ticketing Barcode Generator](https://universalcodemaker.com/pages/aztec-code-generator.html)

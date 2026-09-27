@@ -154,7 +154,7 @@
   font-weight: 700;
   color: var(--on-accent);
   background: var(--accent-fill);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-tag);
 }
 
 .scan-chip-muted {

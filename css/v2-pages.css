@@ -1099,7 +1099,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-tag);
   background: var(--optic-amber-tint);
   color: var(--optic-amber-text);
   border: 1.5px solid var(--border);

@@ -356,30 +356,73 @@ h1, h2, h3, h4 {
   max-width: 780px;
 }
 
-.v2-pill-row {
+/* --- Hero spec sheet: the promises, laid out like a product datasheet ---
+   One ruled panel; the grid gaps let the border colour through as cell rules. */
+.v2-spec-sheet {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.5px;
+  background: var(--border); /* shows through the gaps as cell rules; muted in dark theme */
+  border: var(--border-ink);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-ink);
+}
+
+.v2-spec-cell {
+  position: relative;
   display: flex;
-  gap: 0.65rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-.v2-spec-pill {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-pill);
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.85rem 1rem 0.95rem;
   background: var(--surface);
-  border: var(--border-subtle);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--text-secondary);
 }
 
-.v2-spec-pill span {
-  color: var(--sensor-green-text);
+.v2-spec-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+.v2-spec-idx {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--laser-text);
+}
+
+.v2-spec-head svg {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.v2-spec-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+.v2-spec-note {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1080px) {
+  .v2-spec-sheet { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .v2-spec-sheet { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v2-spec-cell { padding: 0.75rem 0.8rem 0.85rem; }
+  .v2-spec-title { font-size: 0.88rem; }
 }
 
 /* --- Quick Launch Popular Formats Bar --- */
@@ -420,30 +463,33 @@ h1, h2, h3, h4 {
   background: var(--surface);
   border: 1.5px solid var(--border-subtle);
   padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-tag);
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-primary);
   text-decoration: none;
-  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: var(--transition-tactile), border-color 0.14s ease;
   cursor: pointer;
   user-select: none;
 }
 
 .v2-quick-btn:hover {
-  background: var(--surface-alt);
-  border-color: var(--optic-blue);
+  border-color: var(--ink-black);
   color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12), 0 0 10px var(--optic-blue-tint);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 var(--ink-black);
 }
 
 .v2-quick-btn:active,
 .v2-quick-btn.active {
-  transform: translateY(0);
+  transform: translate(0, 0);
   border-color: var(--scanner-laser);
-  box-shadow: 0 0 0 2px var(--scanner-laser-tint);
+  box-shadow: none;
+}
+
+.v2-quick-btn:focus-visible {
+  outline: 3px solid var(--scanner-laser);
+  outline-offset: 2px;
 }
 
 .v2-quick-btn-badge {
@@ -563,7 +609,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   font-size: 0.85rem;
   padding: 0.5rem 1rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-tag);
   background: var(--surface-alt);
   border: var(--border-subtle);
   color: var(--text-secondary);
@@ -749,7 +795,7 @@ h1, h2, h3, h4 {
   inset: 0;
   background: var(--surface);
   border: 2px solid var(--ink-black);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-tag);
   transition: 0.2s ease;
 }
 
@@ -761,7 +807,7 @@ h1, h2, h3, h4 {
   left: 3px;
   bottom: 3px;
   background: var(--ink-black);
-  border-radius: 50%;
+  border-radius: 2px;
   transition: 0.2s cubic-bezier(.34, 1.56, .64, 1);
 }
 
@@ -1426,6 +1472,40 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
 }
 
+.control-label-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* "Auto" reset beside a slider's value (e.g. PDF417 Data Columns) */
+.control-auto-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  background: var(--surface-alt);
+  border: var(--border-subtle);
+  border-radius: var(--radius-tag);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-tactile);
+}
+
+.control-auto-btn:hover {
+  border-color: var(--ink-black);
+  color: var(--text-primary);
+}
+
+.control-auto-btn:focus-visible {
+  outline: 3px solid var(--scanner-laser);
+  outline-offset: 2px;
+}
+
+.control-auto-btn[hidden] {
+  display: none;
+}
+
 /* Tactile Range Slider */
 .tactile-slider {
   -webkit-appearance: none;
@@ -1666,7 +1746,7 @@ h1, h2, h3, h4 {
   line-height: 1;
   letter-spacing: 0.05em;
   padding: 0.12rem 0.4rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-tag);
   min-width: 1.85rem;
   text-align: center;
   transition: all 0.18s ease;
@@ -2127,7 +2207,7 @@ h1, h2, h3, h4 {
   padding: 0.3rem 0.5rem;
   background: var(--surface-alt);
   border: 1.5px solid var(--dot-grid-color);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-tag);
 }
 
 .accent-dot {
@@ -2211,7 +2291,7 @@ h1, h2, h3, h4 {
   padding: 0.28rem 0.55rem;
   background: var(--surface);
   border: 1.5px solid var(--dot-grid-color);
-  border-radius: 9999px;
+  border-radius: var(--radius-tag);
   font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 700;
@@ -2241,7 +2321,7 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 0.35rem;
   padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-tag);
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 700;

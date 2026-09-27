@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.4';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.5';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.
@@ -39,6 +39,38 @@ export function snapQrToMargin(instance, marginPx, codeAreaPx = 300, dotScale = 
   const size = count * dot + 2 * Math.round(marginPx);
   instance.update({ width: size, height: size });
   return size;
+}
+
+/**
+ * Smallest quiet zone (px) that keeps the code itself clear of a rounded corner of radius r:
+ * at the diagonal the arc sits r·(1 − 1/√2) ≈ 0.29r in from each edge, +1 px for anti-aliasing.
+ * Every renderer and exporter uses this one rule, so all codes round the same way. (Barcodes used
+ * 0.75r in bwip-js points, which are multiplied by scale, so the white border grew ~7× faster
+ * than needed as the radius went up; QR used 0.4r.)
+ * @param {number} radiusPx - corner radius in the image's own pixels
+ * @returns {number}
+ */
+export function cornerSafeInset(radiusPx) {
+  const r = Number(radiusPx) || 0;
+  return r > 0 ? Math.ceil(r * (1 - Math.SQRT1_2)) + 1 : 0;
+}
+
+/**
+ * Rounds a canvas element's on-screen box with the same curve as its pixels. The preview scales
+ * canvases to fit, so a fixed `${r}px` CSS radius was larger than the pixel radius and clipped
+ * into the code; percentages scale with the element.
+ * @param {HTMLCanvasElement} canvas
+ * @param {number} radius - corner radius in canvas pixels
+ */
+export function setCanvasCssRadius(canvas, radius) {
+  if (!canvas) return;
+  const r = Number(radius) || 0;
+  if (r <= 0 || !canvas.width || !canvas.height) {
+    canvas.style.borderRadius = '0px';
+    return;
+  }
+  const clamped = Math.min(r, canvas.width / 2, canvas.height / 2);
+  canvas.style.borderRadius = `${(clamped / canvas.width) * 100}% / ${(clamped / canvas.height) * 100}%`;
 }
 
 /**
@@ -146,7 +178,8 @@ export class BarcodeEngine {
     const cornerRadius = Number(bwipOptions.cornerRadius) || 0;
     const requestedPad = bwipOptions.padding !== undefined ? Number(bwipOptions.padding)
       : (bwipOptions.paddingwidth !== undefined ? Number(bwipOptions.paddingwidth) : 10);
-    const minSafePad = cornerRadius > 0 ? Math.ceil(cornerRadius * 0.75) : 0;
+    // bwip-js padding is in points (× scale px); the corner rule is in pixels.
+    const minSafePad = Math.ceil(cornerSafeInset(cornerRadius) / (Number(bwipOptions.scale) || 3));
     const finalPad = Math.max(requestedPad, minSafePad);
 
     // Default configuration overrides
@@ -179,13 +212,8 @@ export class BarcodeEngine {
     // bwipjs.toCanvas takes either canvas id or the canvas element directly
     try {
       this.bwip.toCanvas(canvas, config);
-      if (cornerRadius > 0) {
-        applyCanvasCornerRadius(canvas, cornerRadius);
-        canvas.style.borderRadius = `${cornerRadius}px`;
-        canvas.style.overflow = 'hidden';
-      } else {
-        canvas.style.borderRadius = '0px';
-      }
+      if (cornerRadius > 0) applyCanvasCornerRadius(canvas, cornerRadius);
+      setCanvasCssRadius(canvas, cornerRadius);
       return { success: true };
     } catch (err) {
       throw new Error(`bwip-js rendering error: ${err.message || err}`);
@@ -208,7 +236,8 @@ export class BarcodeEngine {
     const cornerRadius = Number(bwipOptions.cornerRadius) || 0;
     const requestedPad = bwipOptions.padding !== undefined ? Number(bwipOptions.padding)
       : (bwipOptions.paddingwidth !== undefined ? Number(bwipOptions.paddingwidth) : 10);
-    const minSafePad = cornerRadius > 0 ? Math.ceil(cornerRadius * 0.75) : 0;
+    // bwip-js padding is in points (× scale px); the corner rule is in pixels.
+    const minSafePad = Math.ceil(cornerSafeInset(cornerRadius) / (Number(bwipOptions.scale) || 3));
     const finalPad = Math.max(requestedPad, minSafePad);
 
     const config = {
@@ -278,8 +307,7 @@ export class BarcodeEngine {
     const cornerRadius = Number(stylingOptions.cornerRadius) || 0;
     const requestedMargin = stylingOptions.padding !== undefined ? Number(stylingOptions.padding)
       : (stylingOptions.margin !== undefined ? Number(stylingOptions.margin) : 10);
-    const minSafeMargin = cornerRadius > 0 ? Math.ceil(cornerRadius * 0.4) : 0;
-    const qrMargin = Math.max(requestedMargin, minSafeMargin);
+    const qrMargin = Math.max(requestedMargin, cornerSafeInset(cornerRadius));
     const logoMargin = stylingOptions.imageMargin !== undefined ? Number(stylingOptions.imageMargin) : 4;
 
     // Default configuration for high-aesthetic QR
@@ -327,17 +355,10 @@ export class BarcodeEngine {
     container.style.overflow = 'visible';
     const qrCanvas = container.querySelector('canvas');
 
-    if (cornerRadius > 0) {
-      container.style.borderRadius = `${cornerRadius}px`;
-      if (qrCanvas) {
-        applyCanvasCornerRadius(qrCanvas, cornerRadius);
-        qrCanvas.style.borderRadius = `${cornerRadius}px`;
-      }
-    } else {
-      container.style.borderRadius = '0px';
-      if (qrCanvas) {
-        qrCanvas.style.borderRadius = '0px';
-      }
+    container.style.borderRadius = '0px';
+    if (qrCanvas) {
+      if (cornerRadius > 0) applyCanvasCornerRadius(qrCanvas, cornerRadius);
+      setCanvasCssRadius(qrCanvas, cornerRadius);
     }
 
     return this.currentQrInstance;

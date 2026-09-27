@@ -16,7 +16,7 @@ const path = require('path');
 const SITE_URL = 'https://universalcodemaker.com';
 // Cache-busting version for shared CSS (served with a 1-year immutable cache).
 // Keep in sync with the ?v= used on the root pages; bump whenever the CSS changes.
-const ASSET_VERSION = '2.9';
+const ASSET_VERSION = '3.0';
 const PAGES_DIR = path.join(__dirname, '..', 'pages');
 
 if (!fs.existsSync(PAGES_DIR)) {
@@ -306,7 +306,7 @@ const SEO_PAGES = [
     h1: 'Free vCard Digital Business Card QR Code Generator',
     lead: 'Generate contactless digital business card QR codes conforming to the universal vCard standard. When scanned, smartphones immediately prompt the user to save your contact card.',
     technicalSpec: {
-      standard: 'vCard 3.0 / 4.0 Specification',
+      standard: 'vCard 3.0 (IETF RFC 2426)',
       fields: 'Full Name, Phone, Email, Company, Job Title, Website URL',
       compatibility: 'Apple Contacts, Google Contacts, Microsoft Outlook'
     },
@@ -1328,7 +1328,7 @@ const ENRICHMENTS = {
       "points": [
         "Keep the vCard payload compact (under 350 characters) to ensure the QR code remains clean, low-density, and scannable even from a distance or in low light.",
         "Avoid embedding raw image photos directly in the vCard payload, as this creates dense codes that can be difficult for older smartphone cameras to resolve.",
-        "Compliant with IETF RFC 6350 (vCard 4.0) and RFC 2426 (vCard 3.0)."
+        "Written as vCard 3.0 (IETF RFC 2426), the version the iPhone and Android contacts apps read directly."
       ]
     },
     "authorityLinks": [
@@ -2954,7 +2954,7 @@ function generatePageHtml(page) {
             <li><a href="./data-matrix-generator.html">Data Matrix 2D Generator</a></li>
             <li><a href="./aztec-code-generator.html">Aztec Code Generator</a></li>
             <li><a href="./pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
-            <li><a href="../symbology-docs.html">All 50+ Symbology Guides</a></li>
+            <li><a href="../symbology-docs.html">Barcode &amp; QR Symbology Guides</a></li>
           </ul>
         </div>
 

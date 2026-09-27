@@ -8,8 +8,8 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius, toQrByteString, snapQrToMargin } from '../core/engine.js?v=3.4';
-import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.4';
+import { engine, applyCanvasCornerRadius, cornerSafeInset, toQrByteString, snapQrToMargin } from '../core/engine.js?v=3.5';
+import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.5';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
@@ -122,8 +122,7 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
 
     const bgColor = options.transparentBg ? 'transparent' : (options.backgroundColor || '#ffffff');
     const basePadding = options.padding !== undefined ? Number(options.padding) : (options.margin !== undefined ? Number(options.margin) : 10);
-    const minSafeMargin = cornerRadius > 0 ? Math.ceil(cornerRadius * 0.4) : 0;
-    const qrMargin = Math.max(basePadding, minSafeMargin) * scaleFactor;
+    const qrMargin = Math.max(basePadding * scaleFactor, cornerSafeInset(cornerRadius * scaleFactor));
     const logoMargin = (options.imageMargin !== undefined ? Number(options.imageMargin) : 4) * scaleFactor;
 
     const qrExportInstance = new QRCodeStyling({
@@ -195,9 +194,11 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
   // In bwip-js, 'scale' scales both width and height uniformly (e.g. 2x, 4x DPI).
   // The 'height' option specifies the physical bar height in mm, which bwip-js ALREADY multiplies by scale.
   // Therefore, 'height' must NOT be multiplied by scaleFactor, otherwise height is scaled by scaleFactor^2!
+  // The radius scales with the image, so the corner looks the same as the preview at any size.
   const scaledOptions = {
     ...options,
-    scale: baseScale * scaleFactor
+    scale: baseScale * scaleFactor,
+    cornerRadius: cornerRadius * scaleFactor
   };
   if (!is2DCode && options.height !== undefined) {
     scaledOptions.height = Number(options.height);
@@ -205,12 +206,8 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
 
   // Errors (e.g. invalid input) propagate to the caller so no file is downloaded.
   // (A former fallback here downloaded a blank or Code 128 image instead.)
+  // (engine.render rounds the corners and sizes the quiet zone for them.)
   await engine.render(generator, payload, scaledOptions, { canvas: offscreenCanvas });
-
-  if (cornerRadius > 0) {
-    const scaledRadius = Math.round(cornerRadius * scaleFactor);
-    applyCanvasCornerRadius(offscreenCanvas, scaledRadius);
-  }
 
   const dataUrl = offscreenCanvas.toDataURL('image/png');
   downloadDataUrl(dataUrl, filename);

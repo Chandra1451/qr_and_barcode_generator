@@ -7,9 +7,9 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine, toQrByteString } from '../core/engine.js?v=3.4';
-import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=3.4';
-import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.4';
+import { engine, toQrByteString } from '../core/engine.js?v=3.5';
+import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=3.5';
+import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.5';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads
@@ -168,7 +168,7 @@ export async function generateBatchZip({
         zip.file(filename, svgText);
       } else {
         // Same generator render path as the preview (format, checksum, colours, padding).
-        let svgString = await engine.renderSVG(generator, item, { ...options, scale: (Number(options.scale) || 3) * scaleFactor });
+        let svgString = await engine.renderSVG(generator, item, { ...options, scale: (Number(options.scale) || 3) * scaleFactor, cornerRadius: (Number(options.cornerRadius) || 0) * scaleFactor });
         if (Number(options.cornerRadius) > 0) svgString = applySvgCornerRadius(svgString, Number(options.cornerRadius) * scaleFactor);
         zip.file(filename, svgString);
       }
@@ -211,7 +211,7 @@ export async function generateBatchZip({
         zip.file(filename, pngBlob);
       } else {
         // Same generator render path as the preview (format, checksum, colours, padding, corners).
-        await engine.render(generator, item, { ...options, scale: (Number(options.scale) || 3) * scaleFactor }, { canvas: offscreenCanvas });
+        await engine.render(generator, item, { ...options, scale: (Number(options.scale) || 3) * scaleFactor, cornerRadius: (Number(options.cornerRadius) || 0) * scaleFactor }, { canvas: offscreenCanvas });
         const dataUrl = offscreenCanvas.toDataURL('image/png');
         const base64Data = dataUrl.split(',')[1];
         zip.file(filename, base64Data, { base64: true });

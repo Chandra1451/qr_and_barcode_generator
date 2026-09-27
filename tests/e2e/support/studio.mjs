@@ -296,6 +296,19 @@ export class Studio {
     }
   }
 
+  /**
+   * Live range of a slider. Sliders with an `autoValue` (e.g. PDF417 columns) are narrowed
+   * per payload by the generator's controlHints(), so their registry min/max are only bounds.
+   */
+  async sliderRange(id) {
+    return this.control(id).evaluate((e) => ({ min: Number(e.min), max: Number(e.max), value: Number(e.value) }));
+  }
+
+  /** Click a slider's "Auto" button (returns it to the automatic value). */
+  async clickAuto(id) {
+    await this.page.locator(`[data-auto-for="${id}"]`).click();
+  }
+
   /** Move a slider with real key presses (the way a keyboard user or a fast drag does). */
   async nudgeSlider(id, key = 'ArrowRight', times = 1) {
     const el = this.control(id);

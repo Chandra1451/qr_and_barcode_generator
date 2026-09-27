@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine } from './core/engine.js?v=3.4';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.4';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.5';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.5';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.4';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.4';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.4';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.4';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.4';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.4';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.4';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.4';
+} from './generators/registry.js?v=3.5';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.5';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.5';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.5';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.5';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.5';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.5';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.5';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.4';
+} from './export/label-maker.js?v=3.5';
 
 class V2StudioApp {
   constructor() {
@@ -413,7 +413,7 @@ class V2StudioApp {
     const categories = [
       { 
         id: 'all', 
-        label: 'All 50+ Formats',
+        label: 'All Formats',
         iconSvg: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`
       },
       { 
@@ -599,11 +599,18 @@ class V2StudioApp {
 
       if (ctrl.type === 'slider') {
         const unit = ctrl.unit || '';
+        // Sliders with an autoValue get an "Auto" button; the generator's controlHints()
+        // then moves the thumb to the value Auto picked (see applyControlHints).
+        const hasAuto = ctrl.autoValue !== undefined;
+        const isAuto = hasAuto && val === ctrl.autoValue;
         return `
           <div class="control-row">
             <div class="control-label-row">
               <label class="form-label" for="ctrl-${ctrl.id}">${ctrl.label}</label>
-              <span class="control-value-badge" id="val-${ctrl.id}">${val}${unit}</span>
+              <span class="control-label-tools">
+                ${hasAuto ? `<button type="button" class="control-auto-btn" data-auto-for="${ctrl.id}" ${isAuto ? 'hidden' : ''}>Auto</button>` : ''}
+                <span class="control-value-badge" id="val-${ctrl.id}">${isAuto ? 'Auto' : `${val}${unit}`}</span>
+              </span>
             </div>
             <input 
               type="range" 
@@ -705,6 +712,42 @@ class V2StudioApp {
       el.addEventListener('input', handler);
       el.addEventListener('change', handler);
     });
+
+    this.dom.dynamicControlsGrid.querySelectorAll('.control-auto-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ctrl = generator.controls.find(c => c.id === btn.dataset.autoFor);
+        if (!ctrl) return;
+        this.currentOptions[ctrl.id] = ctrl.autoValue;
+        btn.hidden = true;
+        this.scheduleRender();
+      });
+    });
+  }
+
+  /**
+   * Lets a generator fit its sliders to the current payload (e.g. PDF417 columns: only
+   * counts that keep the code wider than tall, thumb on the count Auto picked).
+   * generator.controlHints(payload, options, bwip) → { [controlId]: { min, max, autoValue } }
+   */
+  applyControlHints(payload, options) {
+    const gen = this.currentGenerator;
+    if (!gen || typeof gen.controlHints !== 'function') return;
+    const hints = gen.controlHints(payload, options, engine.bwip);
+    if (!hints) return;
+    for (const [id, hint] of Object.entries(hints)) {
+      const slider = document.getElementById(`ctrl-${id}`);
+      const ctrl = gen.controls?.find(c => c.id === id);
+      if (!slider || !ctrl) continue;
+      slider.min = hint.min;
+      slider.max = hint.max;
+      const isAuto = ctrl.autoValue !== undefined && this.currentOptions[id] === ctrl.autoValue;
+      const shown = isAuto ? hint.autoValue : Math.min(Math.max(Number(this.currentOptions[id]), hint.min), hint.max);
+      slider.value = shown;
+      const badge = document.getElementById(`val-${id}`);
+      if (badge) badge.textContent = isAuto ? `Auto · ${hint.autoValue}` : `${shown}${ctrl.unit || ''}`;
+      const autoBtn = this.dom.dynamicControlsGrid.querySelector(`[data-auto-for="${id}"]`);
+      if (autoBtn) autoBtn.hidden = isAuto;
+    }
   }
 
   /* --- QR Wizard Sub-Navigation --- */
@@ -1054,18 +1097,19 @@ class V2StudioApp {
         this.dom.qrStyledContainer.style.overflow = 'visible';
         const qrCanvas = this.dom.qrStyledContainer.querySelector('canvas');
         if (qrCanvas) {
-          qrCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+          setCanvasCssRadius(qrCanvas, this.cornerRadius);
         }
       } else {
         this.dom.qrStyledContainer.style.display = 'none';
         this.dom.previewCanvas.style.display = 'block';
-        this.dom.previewCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+        setCanvasCssRadius(this.dom.previewCanvas, this.cornerRadius);
       }
 
       // Compile render options with 100% V1 Parity + Barcode Color Controls
       const options = this.getCompiledRenderOptions(isQR);
 
       await engine.render(this.currentGenerator, payload, options, targets);
+      this.applyControlHints(payload, options);
 
       // Trigger Laser Sweep Animation
       this.triggerLaserSweep();
@@ -1189,11 +1233,11 @@ class V2StudioApp {
         this.dom.qrStyledContainer.style.overflow = 'visible';
         const qrCanvas = this.dom.qrStyledContainer.querySelector('canvas');
         if (qrCanvas) {
-          qrCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+          setCanvasCssRadius(qrCanvas, this.cornerRadius);
         }
       }
       if (this.dom.previewCanvas) {
-        this.dom.previewCanvas.style.borderRadius = this.cornerRadius ? `${this.cornerRadius}px` : '0px';
+        setCanvasCssRadius(this.dom.previewCanvas, this.cornerRadius);
       }
 
       this.scheduleRender();
