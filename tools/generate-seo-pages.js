@@ -2693,7 +2693,7 @@ function generatePageHtml(page) {
           <div>
             <div class="v2-brand-title">
               UniversalCodeMaker
-              <span class="v2-version-tag">V2 STUDIO</span>
+              <span class="v2-version-tag">FREE</span>
             </div>
             <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
           </div>
