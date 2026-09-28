@@ -8,8 +8,8 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius, cornerSafeInset, toQrByteString, snapQrToMargin } from '../core/engine.js?v=3.6';
-import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.6';
+import { engine, applyCanvasCornerRadius, cornerSafeInset, toQrByteString, snapQrToMargin } from '../core/engine.js?v=3.7';
+import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.7';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners

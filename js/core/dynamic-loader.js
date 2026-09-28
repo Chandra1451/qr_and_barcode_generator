@@ -150,8 +150,8 @@ export async function loadQRCodeStyling() {
     const prefix = getVendorPrefix();
     const sources = [
       `${prefix}js/vendor/qr-code-styling.js`,
-      'https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js',
-      'https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js'
+      'https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js',
+      'https://unpkg.com/qr-code-styling@1.9.2/lib/qr-code-styling.js'
     ];
     await injectScript(sources);
     if (!window.QRCodeStyling) {
