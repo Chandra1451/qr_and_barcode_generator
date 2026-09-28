@@ -175,8 +175,8 @@ export async function loadJsPdf() {
     const prefix = getVendorPrefix();
     const sources = [
       `${prefix}js/vendor/jspdf.umd.min.js`,
-      'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js',
-      'https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js'
+      'https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js',
+      'https://unpkg.com/jspdf@4.2.1/dist/jspdf.umd.min.js'
     ];
     await injectScript(sources);
     const jsPdfClass = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;

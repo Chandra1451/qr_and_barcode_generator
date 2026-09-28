@@ -12,7 +12,7 @@ and the web fonts in assets/fonts/ (SIL Open Font License 1.1).
                          includes Barcode Writer in Pure PostScript (BWIPP) 2026-05-28
   qr-code-styling.js     qr-code-styling (styled QR codes)        1.9.2
                          includes qrcode-generator
-  jspdf.umd.min.js       jsPDF (PDF label sheets)                 2.5.2
+  jspdf.umd.min.js       jsPDF (PDF label sheets)                 4.2.1
   jszip.min.js           JSZip (batch ZIP downloads)              3.10.1
                          includes pako
 
@@ -35,9 +35,9 @@ qrcode-generator, included in qr-code-styling
   Copyright (c) 2009 Kazuhiko Arase
   https://github.com/kazuhikoarase/qrcode-generator
 
-jsPDF
-  Copyright (c) 2010-2021 James Hall, https://github.com/MrRio/jsPDF
-  2015-2021 yWorks GmbH and the other contributors listed in the header of
+jsPDF (includes fflate and fast-png, both MIT)
+  Copyright (c) 2010-2025 James Hall, https://github.com/MrRio/jsPDF
+  2015-2025 yWorks GmbH and the other contributors listed in the header of
   jspdf.umd.min.js
 
 JSZip (dual licensed MIT or GPLv3; used here under the MIT License)

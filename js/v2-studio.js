@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.8';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.8';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.9';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.9';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.8';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.8';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.8';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.8';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.8';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.8';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.8';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.8';
+} from './generators/registry.js?v=3.9';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.9';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.9';
+import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.9';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.9';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.9';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.9';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.9';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.8';
+} from './export/label-maker.js?v=3.9';
 
 class V2StudioApp {
   constructor() {

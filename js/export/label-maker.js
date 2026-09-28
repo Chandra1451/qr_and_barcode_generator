@@ -7,8 +7,8 @@
  * and Avery multi-label sheets.
  */
 
-import { loadJsPdf } from '../core/dynamic-loader.js?v=3.8';
-import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.8';
+import { loadJsPdf } from '../core/dynamic-loader.js?v=3.9';
+import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.9';
 
 export const LABEL_PRESETS = {
   'retail-225-125': {

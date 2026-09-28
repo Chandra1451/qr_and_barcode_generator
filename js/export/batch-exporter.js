@@ -7,9 +7,9 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine, toQrByteString } from '../core/engine.js?v=3.8';
-import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=3.8';
-import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.8';
+import { engine, toQrByteString } from '../core/engine.js?v=3.9';
+import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=3.9';
+import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.9';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads

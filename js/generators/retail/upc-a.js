@@ -5,7 +5,7 @@
  * Powered by bwip-js (bcid: upca). Standard retail barcode in North America (USA & Canada).
  */
 
-import { computeUpcA } from '../../core/checksums.js?v=3.8';
+import { computeUpcA } from '../../core/checksums.js?v=3.9';
 
 export default {
   id: "upc-a",
