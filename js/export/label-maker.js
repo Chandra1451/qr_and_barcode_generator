@@ -7,8 +7,8 @@
  * and Avery multi-label sheets.
  */
 
-import { loadJsPdf } from '../core/dynamic-loader.js?v=3.9';
-import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.9';
+import { loadJsPdf } from '../core/dynamic-loader.js?v=3.10';
+import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.10';
 
 export const LABEL_PRESETS = {
   'retail-225-125': {
@@ -536,6 +536,7 @@ export async function exportSingleLabelPdf({
   const isLandscape = preset.widthMm >= preset.heightMm;
 
   const doc = new jsPDF({
+    compress: true, // lossless Flate: a 30-label sheet is ~6 KB instead of ~2 MB
     orientation: isLandscape ? 'landscape' : 'portrait',
     unit: 'mm',
     format: [preset.widthMm, preset.heightMm]
@@ -563,6 +564,7 @@ export async function exportLabelSheetPdf({
   const tpl = AVERY_TEMPLATES[effectiveTplId] || AVERY_TEMPLATES['avery-5160'];
 
   const doc = new jsPDF({
+    compress: true, // lossless Flate: a 30-label sheet is ~6 KB instead of ~2 MB
     orientation: 'portrait',
     unit: tpl.unit,
     format: tpl.format

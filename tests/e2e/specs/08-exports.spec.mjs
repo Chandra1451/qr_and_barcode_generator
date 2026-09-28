@@ -176,6 +176,8 @@ test.describe('EXP-PDF · Avery / sign PDFs', () => {
       expect(info.hasEof, 'PDF is truncated').toBe(true);
       expect(info.pageCount).toBeGreaterThanOrEqual(1);
       expect(info.imageCount, 'no barcode image embedded').toBeGreaterThanOrEqual(1);
+      // jsPDF stores images raw unless compress: true (a sheet was ~3.5 MB; compressed ~20 KB).
+      expect(file.buffer.length, 'PDF is not compressed').toBeLessThan(500 * 1024);
       await expect(page.locator('#pdf-modal')).not.toHaveClass(/open/);
     });
   }

@@ -6,8 +6,8 @@
  * directly in client-side browser memory using jsPDF.
  */
 
-import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.9';
-import { engine, toQrByteString } from '../core/engine.js?v=3.9';
+import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.10';
+import { engine, toQrByteString } from '../core/engine.js?v=3.10';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {
@@ -214,6 +214,7 @@ export async function generatePdfLabelSheet({
   const effectiveTemplateId = templateId || templateKey || 'avery-5160';
   const tpl = AVERY_TEMPLATES[effectiveTemplateId] || AVERY_TEMPLATES['avery-5160'];
   const doc = new jsPDF({
+    compress: true, // lossless Flate: a 30-label sheet is ~6 KB instead of ~2 MB
     orientation: 'portrait',
     unit: tpl.unit,
     format: tpl.format
