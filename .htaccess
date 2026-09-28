@@ -97,7 +97,7 @@ AddDefaultCharset UTF-8
 <IfModule mod_headers.c>
   # 1-Year Immutable Cache Header for Static Assets
   # (CSS is linked with ?v= on every page, so bump that version whenever a stylesheet changes)
-  # (.wasm lives in a versioned folder, e.g. js/vendor/zxing-wasm-2.2.4/)
+  # (.wasm lives in a versioned folder, e.g. js/vendor/zxing-wasm-3.1.4/)
   <FilesMatch "\.(css|svg|woff2|woff|ttf|png|webp|jpg|jpeg|ico|wasm)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>

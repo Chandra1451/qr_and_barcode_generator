@@ -41,7 +41,12 @@ test.describe('SCAN · reads what the studio makes', () => {
       await scanPng(page, png);
       const texts = (await resultTexts(page)).map((t) => normaliseScan(g.id, t));
       expect(texts).toContain(normaliseScan(g.id, expectedScanText(g.id, g.defaultPayload)));
-      await expect(page.getByRole('button', { name: 'Create a copy in Studio' }).first()).toBeVisible();
+      // The format name is shown in words (not a library identifier such as "EAN13"), and the
+      // hand-off opens the same generator (catches format-name changes in zxing-wasm upgrades).
+      await expect(page.locator('.scan-result .scan-chip').first()).not.toHaveText(/^(QRCode|QRCodeModel2|DataMatrix|AztecCode|Code128|Code39|Code39Std|EAN13|UPCA|ISBN|ITF|ITF14)$/);
+      await page.getByRole('button', { name: 'Create a copy in Studio' }).first().click();
+      await page.waitForURL(/index\.html\?from=scanner$/);
+      await expect.poll(async () => (await studio.appState())?.generatorId, { message: 'studio generator after hand-off' }).toBe(g.id);
     });
   }
 

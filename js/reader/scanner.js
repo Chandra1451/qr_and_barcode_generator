@@ -15,7 +15,7 @@
  *    never in the URL, so it can't end up in server logs or analytics page URLs.
  */
 
-const VENDOR_DIR = 'js/vendor/zxing-wasm-2.2.4/';
+const VENDOR_DIR = 'js/vendor/zxing-wasm-3.1.4/';
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 const MAX_SIDE = 2400; // px; larger images are scaled down before decoding
 const MAX_PIXELS = 100e6; // a small file can still unpack into a huge bitmap ("decompression bomb")
@@ -32,30 +32,60 @@ const READER_OPTIONS = {
   maxNumberOfSymbols: 8
 };
 
-const FORMAT_NAMES = {
-  QRCode: 'QR Code', MicroQRCode: 'Micro QR Code', rMQRCode: 'rMQR Code',
-  DataMatrix: 'Data Matrix', Aztec: 'Aztec Code', PDF417: 'PDF417', MaxiCode: 'MaxiCode',
-  Code128: 'Code 128', Code39: 'Code 39', Code93: 'Code 93', Codabar: 'Codabar',
-  'EAN-13': 'EAN-13', 'EAN-8': 'EAN-8', 'UPC-A': 'UPC-A', 'UPC-E': 'UPC-E', ITF: 'ITF (Interleaved 2 of 5)',
-  DataBar: 'GS1 DataBar', DataBarExpanded: 'GS1 DataBar Expanded', DataBarLimited: 'GS1 DataBar Limited',
-  DXFilmEdge: 'DX Film Edge'
+// zxing-wasm 3.x reports canonical names (EAN13, UPCA, ITF14, ISBN, Code39Std, AztecCode,
+// QRCodeModel2...); 2.x reported labels (EAN-13, UPC-A, ITF). Map old names onto new ones
+// so the rest of this file only deals with one set.
+const LEGACY_FORMAT_NAMES = {
+  'EAN-13': 'EAN13', 'EAN-8': 'EAN8', 'UPC-A': 'UPCA', 'UPC-E': 'UPCE',
+  rMQRCode: 'RMQRCode', DataBarExpanded: 'DataBarExp', DataBarLimited: 'DataBarLtd'
 };
+export const normaliseFormat = (format) => LEGACY_FORMAT_NAMES[format] || format;
+
+const FORMAT_NAMES = {
+  QRCode: 'QR Code', QRCodeModel1: 'QR Code (Model 1)', QRCodeModel2: 'QR Code',
+  MicroQRCode: 'Micro QR Code', RMQRCode: 'rMQR Code',
+  DataMatrix: 'Data Matrix', Aztec: 'Aztec Code', AztecCode: 'Aztec Code', AztecRune: 'Aztec Rune',
+  PDF417: 'PDF417', CompactPDF417: 'Compact PDF417', MicroPDF417: 'MicroPDF417', MaxiCode: 'MaxiCode',
+  Code128: 'Code 128', Code39: 'Code 39', Code39Std: 'Code 39', Code39Ext: 'Code 39 (Full ASCII)',
+  Code32: 'Code 32', PZN: 'PZN', Code93: 'Code 93', Codabar: 'Codabar',
+  EAN13: 'EAN-13', EAN8: 'EAN-8', UPCA: 'UPC-A', UPCE: 'UPC-E', ISBN: 'ISBN (EAN-13)',
+  ITF: 'ITF (Interleaved 2 of 5)', ITF14: 'ITF-14',
+  DataBar: 'GS1 DataBar', DataBarOmni: 'GS1 DataBar', DataBarStk: 'GS1 DataBar Stacked',
+  DataBarStkOmni: 'GS1 DataBar Stacked', DataBarLtd: 'GS1 DataBar Limited',
+  DataBarExp: 'GS1 DataBar Expanded', DataBarExpStk: 'GS1 DataBar Expanded Stacked',
+  Telepen: 'Telepen', DXFilmEdge: 'DX Film Edge'
+};
+
+/** Friendly name for a decoded format (old or new zxing-wasm name). */
+export const formatLabel = (format) => FORMAT_NAMES[normaliseFormat(format)] || format;
 
 /** Which Studio generator can recreate a decoded code (null = none). */
 export function studioGeneratorFor(format, text) {
-  switch (format) {
+  switch (normaliseFormat(format)) {
     case 'QRCode':
+    case 'QRCodeModel1':
+    case 'QRCodeModel2':
     case 'MicroQRCode':
-    case 'rMQRCode':
+    case 'RMQRCode':
       return 'qr-code';
     case 'DataMatrix': return 'data-matrix';
-    case 'Aztec': return 'aztec';
-    case 'PDF417': return 'pdf417';
+    case 'Aztec':
+    case 'AztecCode':
+      return 'aztec';
+    case 'PDF417':
+    case 'CompactPDF417':
+      return 'pdf417';
     case 'Code128': return 'code-128';
-    case 'Code39': return 'code-39';
-    case 'EAN-13': return /^97[89]\d{10}$/.test(text) ? 'isbn' : 'ean-13';
-    case 'UPC-A': return 'upc-a';
-    case 'ITF': return /^\d{14}$/.test(text) ? 'itf-14' : null;
+    case 'Code39':
+    case 'Code39Std':
+      return 'code-39';
+    case 'EAN13':
+    case 'ISBN':
+      return /^97[89]\d{10}$/.test(text) ? 'isbn' : 'ean-13';
+    case 'UPCA': return 'upc-a';
+    case 'ITF':
+    case 'ITF14':
+      return /^\d{14}$/.test(text) ? 'itf-14' : null;
     default: return null;
   }
 }
@@ -119,9 +149,21 @@ function loadDecoder() {
   return decoderPromise;
 }
 
+/**
+ * zxing-wasm 3.x reports a UPC-A symbol as EAN-13 with a leading zero ("0012345678905");
+ * 2.x reported UPC-A ("012345678905"). The bars are identical (a UPC-A is an EAN-13 whose
+ * first digit is 0), so report it as UPC-A, as shoppers and the studio know it.
+ */
+function asUpcA(r) {
+  if (normaliseFormat(r.format) === 'EAN13' && /^0\d{12}$/.test(r.text)) {
+    return { ...r, isValid: r.isValid, format: 'UPCA', text: r.text.slice(1) };
+  }
+  return r;
+}
+
 async function decodeImageData(imageData, options = READER_OPTIONS) {
   const zx = await loadDecoder();
-  const results = await zx.readBarcodes(imageData, options);
+  const results = (await zx.readBarcodes(imageData, options)).map(asUpcA);
   // Same symbol can be reported twice (e.g. rotated pass); keep one of each.
   const seen = new Set();
   return results.filter((r) => {
@@ -394,7 +436,7 @@ class ScannerPage {
     card.setAttribute('aria-label', `Result ${index + 1}`);
 
     const head = el('div', 'scan-result-head');
-    head.appendChild(el('span', 'scan-chip', FORMAT_NAMES[result.format] || result.format));
+    head.appendChild(el('span', 'scan-chip', formatLabel(result.format)));
     head.appendChild(el('span', 'scan-chip scan-chip-muted', describeContent(text)));
     card.appendChild(head);
 

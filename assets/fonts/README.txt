@@ -6,5 +6,7 @@ extra third-party connections (mobile performance). Declared in css/v2-theme.css
 - nunito-latin.woff2         Nunito         (weights 400-800)  © The Nunito Project Authors
 - jetbrains-mono-latin.woff2 JetBrains Mono (weights 500-700)  © The JetBrains Mono Project Authors
 
-All three are licensed under the SIL Open Font License, Version 1.1: https://openfontlicense.org
+All three are licensed under the SIL Open Font License, Version 1.1 (https://openfontlicense.org).
+The licence text with each font's copyright line is in OFL-nunito.txt, OFL-space-grotesk.txt
+and OFL-jetbrains-mono.txt (copied from github.com/google/fonts). The fonts are unmodified.
 To update: request the css2 URL with a modern browser user agent and copy the "/* latin */" woff2 URLs.

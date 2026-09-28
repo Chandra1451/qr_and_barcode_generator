@@ -1,0 +1,71 @@
+Third-party notices for js/vendor/
+==================================
+
+UniversalCodeMaker.com ships these open-source libraries unmodified (minified builds).
+All are used under the MIT License; the full licence text is at the end of this file.
+The scanner library has its own notices in zxing-wasm-3.1.4/THIRD_PARTY_NOTICES.txt,
+and the web fonts in assets/fonts/ (SIL Open Font License 1.1).
+
+  File                   Library                                  Version
+  ---------------------  ---------------------------------------  --------
+  bwip-js-min.js         bwip-js (barcode drawing)                4.11.4
+                         includes Barcode Writer in Pure PostScript (BWIPP) 2026-05-28
+  qr-code-styling.js     qr-code-styling (styled QR codes)        1.9.2
+                         includes qrcode-generator
+  jspdf.umd.min.js       jsPDF (PDF label sheets)                 2.5.2
+  jszip.min.js           JSZip (batch ZIP downloads)              3.10.1
+                         includes pako
+
+Copyright notices
+-----------------
+
+bwip-js
+  Copyright (c) 2011-2026 Mark Warren
+  https://github.com/metafloor/bwip-js
+
+Barcode Writer in Pure PostScript (BWIPP), included in bwip-js
+  Copyright (c) 2004-2024 Terry Burton
+  https://github.com/bwipp/postscriptbarcode
+
+qr-code-styling
+  Copyright (c) 2019 Denys Kozak
+  https://github.com/kozakdenys/qr-code-styling
+
+qrcode-generator, included in qr-code-styling
+  Copyright (c) 2009 Kazuhiko Arase
+  https://github.com/kazuhikoarase/qrcode-generator
+
+jsPDF
+  Copyright (c) 2010-2021 James Hall, https://github.com/MrRio/jsPDF
+  2015-2021 yWorks GmbH and the other contributors listed in the header of
+  jspdf.umd.min.js
+
+JSZip (dual licensed MIT or GPLv3; used here under the MIT License)
+  Copyright (c) 2009-2016 Stuart Knightley, David Duponchel, Franz Buchinger,
+  Antonio Afonso
+  https://github.com/Stuk/jszip
+
+pako, included in JSZip
+  Copyright (C) 2014-2017 by Vitaly Puzrin and Andrei Tuputcyn
+  https://github.com/nodeca/pako
+
+MIT License (applies to each library above, with its copyright notice)
+----------------------------------------------------------------------
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
