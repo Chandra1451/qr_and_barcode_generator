@@ -105,7 +105,7 @@ qr_and_barcode_generator/
 │   ├── generators/
 │   │   ├── registry.js             # Symbology catalog & metadata registry
 │   │   ├── qr-code.js              # Standard & styled QR plugin
-│   │   ├── data-matrix.js          # Square 1:1 ECC 200 plugin
+│   │   ├── data-matrix.js          # Data Matrix ECC 200 plugin (square symbols)
 │   │   ├── aztec.js                # Square 1:1 high-density 2D plugin
 │   │   ├── pdf417.js               # Stacked 2D (2.5:1 ratio) plugin
 │   │   ├── ean-13.js               # Retail POS plugin with auto-checksum

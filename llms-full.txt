@@ -25,7 +25,7 @@ Sum of (start character value + Σ(character value × character position 1..N)) 
 - Standard: ISO/IEC 16022
 - Max Capacity: 3,116 numeric, 2,335 alphanumeric
 - Finder Pattern: Solid "L" on left and bottom edges; alternating timing pattern on top and right edges
-- Aspect Ratio: Fixed 1:1 square matrix
+- Shape: square symbols (rectangular sizes are also part of ISO/IEC 16022; this studio makes square symbols)
 
 ### Aztec Code
 - Standard: ISO/IEC 24778

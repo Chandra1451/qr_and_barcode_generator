@@ -185,7 +185,7 @@ const SEO_PAGES = [
       characterSet: 'Full ASCII, binary, and GS1 Application Identifiers',
       capacity: 'Up to 3,116 numeric digits or 2,335 alphanumeric characters',
       finderPattern: 'Solid "L" shaped finder pattern on bottom and left borders',
-      aspectRatio: 'Strict 1:1 square matrix'
+      aspectRatio: 'Square (rectangular sizes are also part of the standard)'
     },
     useCases: [
       'FDA Unique Device Identification (UDI) for medical instruments',
@@ -931,7 +931,7 @@ const ENRICHMENTS = {
       {
         "name": "ISO/IEC 15420 International Standard",
         "desc": "ISO standard specification for EAN/UPC bar code symbology.",
-        "url": "https://www.iso.org/standard/43654.html"
+        "url": "https://www.iso.org/standard/84892.html"
       }
     ]
   },
@@ -986,7 +986,7 @@ const ENRICHMENTS = {
       {
         "name": "ISO/IEC 15420 International Standard",
         "desc": "ISO barcode symbology specification for EAN/UPC linear barcodes.",
-        "url": "https://www.iso.org/standard/43654.html"
+        "url": "https://www.iso.org/standard/84892.html"
       }
     ]
   },
@@ -1096,7 +1096,7 @@ const ENRICHMENTS = {
       {
         "name": "ISO/IEC 16390 Standard",
         "desc": "International standard for Interleaved 2 of 5 barcode specifications.",
-        "url": "https://www.iso.org/standard/43655.html"
+        "url": "https://www.iso.org/standard/43898.html"
       }
     ]
   },
@@ -1151,7 +1151,7 @@ const ENRICHMENTS = {
       {
         "name": "ISO/IEC 16022 Standard",
         "desc": "International standard for Data Matrix 2D barcode symbology.",
-        "url": "https://www.iso.org/standard/44230.html"
+        "url": "https://www.iso.org/standard/80926.html"
       }
     ]
   },
@@ -1197,7 +1197,7 @@ const ENRICHMENTS = {
       {
         "name": "ISO/IEC 24778 Standard",
         "desc": "Official ISO specification for Aztec Code 2D symbology.",
-        "url": "https://www.iso.org/standard/41548.html"
+        "url": "https://www.iso.org/standard/82441.html"
       }
     ]
   },
@@ -1243,7 +1243,7 @@ const ENRICHMENTS = {
       {
         "name": "ISO/IEC 15438 Standard",
         "desc": "International standard specification for PDF417 stacked linear symbology.",
-        "url": "https://www.iso.org/standard/43897.html"
+        "url": "https://www.iso.org/standard/65502.html"
       }
     ]
   },
@@ -1293,8 +1293,8 @@ const ENRICHMENTS = {
       },
       {
         "name": "ISO/IEC 18004 Standard",
-        "desc": "International standard for QR Code 2005 barcode symbology.",
-        "url": "https://www.iso.org/standard/62021.html"
+        "desc": "International standard for the QR Code symbology (2024 edition).",
+        "url": "https://www.iso.org/standard/83389.html"
       }
     ]
   },
@@ -1647,7 +1647,7 @@ const ENRICHMENTS = {
       {
         "name": "ISO/IEC 18004 Standard",
         "desc": "Official ISO standard for QR Code symbology.",
-        "url": "https://www.iso.org/standard/62021.html"
+        "url": "https://www.iso.org/standard/83389.html"
       }
     ]
   },
