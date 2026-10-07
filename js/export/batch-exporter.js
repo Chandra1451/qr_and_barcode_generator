@@ -7,9 +7,9 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine, toQrByteString } from '../core/engine.js?v=3.13';
-import { loadQRCodeStyling, loadJsZip } from '../core/dynamic-loader.js?v=3.13';
-import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.13';
+import { engine } from '../core/engine.js?v=3.14';
+import { loadJsZip } from '../core/dynamic-loader.js?v=3.14';
+import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.14';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads
@@ -116,11 +116,6 @@ export async function generateBatchZip({
   const zip = new JSZip();
   const total = items.length;
 
-  let QRCodeStyling = null;
-  if (generator.id === 'qr-code') {
-    QRCodeStyling = await loadQRCodeStyling();
-  }
-
   const offscreenCanvas = format === 'png' && generator.id !== 'qr-code'
     ? document.createElement('canvas')
     : null;
@@ -131,40 +126,8 @@ export async function generateBatchZip({
 
     if (format === 'svg') {
       if (generator.id === 'qr-code') {
-        const qrSvgInstance = new QRCodeStyling({
-          width: 320 * scaleFactor,
-          height: 320 * scaleFactor,
-          type: 'svg',
-          margin: (options.padding !== undefined ? Number(options.padding) : 10) * scaleFactor,
-          data: toQrByteString(item),
-          image: logoDataUrl || '',
-          imageOptions: {
-            hideBackgroundDots: true,
-            imageSize: options.imageSize || 0.28,
-            margin: options.imageMargin !== undefined ? options.imageMargin : 4,
-            crossOrigin: 'anonymous'
-          },
-          dotsOptions: {
-            type: options.dotsType || 'rounded',
-            color: options.dotsColor || '#0f172a'
-          },
-          cornersSquareOptions: {
-            color: options.cornerColor || '#0f172a',
-            type: options.cornerType || 'extra-rounded'
-          },
-          cornersDotOptions: {
-            color: options.cornerDotColor || options.cornerColor || '#06b6d4',
-            type: options.cornerDotType || 'dot'
-          },
-          backgroundOptions: {
-            color: options.transparentBg ? 'transparent' : (options.backgroundColor || '#ffffff')
-          },
-          qrOptions: {
-            errorCorrectionLevel: logoDataUrl ? 'H' : (options.errorCorrectionLevel || 'M')
-          }
-        });
-        const svgBlob = await qrSvgInstance.getRawData('svg');
-        const svgText = await svgBlob.text();
+        // Same settings, quiet zone and corners as the preview (shared builder in engine.js).
+        const svgText = await engine.renderStyledQr(options, { data: item, image: logoDataUrl, scale: scaleFactor, format: 'svg' });
         zip.file(filename, svgText);
       } else {
         // Same generator render path as the preview (format, checksum, colours, padding).
@@ -175,39 +138,7 @@ export async function generateBatchZip({
     } else {
       // PNG Format
       if (generator.id === 'qr-code') {
-        const qrPngInstance = new QRCodeStyling({
-          width: 320 * scaleFactor,
-          height: 320 * scaleFactor,
-          type: 'canvas',
-          margin: (options.padding !== undefined ? Number(options.padding) : 10) * scaleFactor,
-          data: toQrByteString(item),
-          image: logoDataUrl || '',
-          imageOptions: {
-            hideBackgroundDots: true,
-            imageSize: options.imageSize || 0.28,
-            margin: (options.imageMargin !== undefined ? options.imageMargin : 4) * scaleFactor,
-            crossOrigin: 'anonymous'
-          },
-          dotsOptions: {
-            type: options.dotsType || 'rounded',
-            color: options.dotsColor || '#0f172a'
-          },
-          cornersSquareOptions: {
-            color: options.cornerColor || '#0f172a',
-            type: options.cornerType || 'extra-rounded'
-          },
-          cornersDotOptions: {
-            color: options.cornerDotColor || options.cornerColor || '#06b6d4',
-            type: options.cornerDotType || 'dot'
-          },
-          backgroundOptions: {
-            color: options.transparentBg ? 'transparent' : (options.backgroundColor || '#ffffff')
-          },
-          qrOptions: {
-            errorCorrectionLevel: logoDataUrl ? 'H' : (options.errorCorrectionLevel || 'M')
-          }
-        });
-        const pngBlob = await qrPngInstance.getRawData('png');
+        const pngBlob = await engine.renderStyledQr(options, { data: item, image: logoDataUrl, scale: scaleFactor });
         zip.file(filename, pngBlob);
       } else {
         // Same generator render path as the preview (format, checksum, colours, padding, corners).

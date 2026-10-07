@@ -6,20 +6,20 @@
  */
 
 // Import 2D Matrix Plugins
-import qrCode from './2d/qr-code.js?v=3.13';
-import dataMatrix from './2d/data-matrix.js?v=3.13';
-import aztec from './2d/aztec.js?v=3.13';
-import pdf417 from './2d/pdf417.js?v=3.13';
+import qrCode from './2d/qr-code.js?v=3.14';
+import dataMatrix from './2d/data-matrix.js?v=3.14';
+import aztec from './2d/aztec.js?v=3.14';
+import pdf417 from './2d/pdf417.js?v=3.14';
 
 // Import Retail 1D Plugins
-import ean13 from './retail/ean-13.js?v=3.13';
-import upcA from './retail/upc-a.js?v=3.13';
-import isbn from './retail/isbn.js?v=3.13';
+import ean13 from './retail/ean-13.js?v=3.14';
+import upcA from './retail/upc-a.js?v=3.14';
+import isbn from './retail/isbn.js?v=3.14';
 
 // Import Logistics 1D Plugins
-import code128 from './logistics/code-128.js?v=3.13';
-import itf14 from './logistics/itf-14.js?v=3.13';
-import code39 from './logistics/code-39.js?v=3.13';
+import code128 from './logistics/code-128.js?v=3.14';
+import itf14 from './logistics/itf-14.js?v=3.14';
+import code39 from './logistics/code-39.js?v=3.14';
 
 const registry = new Map();
 

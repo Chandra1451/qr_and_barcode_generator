@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.13';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.14';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.
@@ -53,6 +53,125 @@ export function snapQrToMargin(instance, marginPx, codeAreaPx = 300, dotScale = 
 export function cornerSafeInset(radiusPx) {
   const r = Number(radiusPx) || 0;
   return r > 0 ? Math.ceil(r * (1 - Math.SQRT1_2)) + 1 : 0;
+}
+
+/**
+ * Rounds the corners of an SVG with a clip path (lossless). Used by the SVG download and
+ * styled-QR exports; image-exporter re-exports it as applySvgCornerRadius.
+ */
+export function svgWithRoundedCorners(svgString, radius) {
+  if (!radius || radius <= 0 || !svgString) return svgString;
+
+  const vbMatch = svgString.match(/viewBox=["']\s*([0-9.-]+)\s+([0-9.-]+)\s+([0-9.-]+)\s+([0-9.-]+)\s*["']/i);
+  let x = 0, y = 0, width = 0, height = 0;
+
+  if (vbMatch) {
+    x = parseFloat(vbMatch[1]);
+    y = parseFloat(vbMatch[2]);
+    width = parseFloat(vbMatch[3]);
+    height = parseFloat(vbMatch[4]);
+  } else {
+    const wMatch = svgString.match(/width=["']([0-9.]+)["']/i);
+    const hMatch = svgString.match(/height=["']([0-9.]+)["']/i);
+    if (wMatch && hMatch) {
+      width = parseFloat(wMatch[1]);
+      height = parseFloat(hMatch[1]);
+    }
+  }
+
+  if (!width || !height) return svgString;
+
+  const r = Math.min(radius, width / 2, height / 2);
+  const clipId = `ucm-rounded-corners-${Date.now().toString(36)}`;
+  const clipDef = `<defs><clipPath id="${clipId}"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${r}" ry="${r}" /></clipPath></defs>`;
+
+  const svgOpenTagEnd = svgString.indexOf('>');
+  if (svgOpenTagEnd === -1) return svgString;
+
+  const openTag = svgString.slice(0, svgOpenTagEnd + 1);
+  const closingTagIndex = svgString.lastIndexOf('</svg>');
+  if (closingTagIndex === -1) return svgString;
+
+  const innerContent = svgString.slice(svgOpenTagEnd + 1, closingTagIndex);
+  return `${openTag}\n${clipDef}\n<g clip-path="url(#${clipId})">\n${innerContent}\n</g>\n</svg>`;
+}
+
+/**
+ * The one place that turns studio QR settings into qr-code-styling options. The preview and
+ * every export (PNG, PDF sheet, batch PNG/SVG) use it, so a setting can't work in one place
+ * and be ignored in another (before 2026-10-07 five copies had drifted: batch dropped the
+ * gradient, the PDF dropped background, padding and logo size).
+ * @param {object} styling - studio options (dotsType, dotsColor, gradient*, corner*, backgroundColor,
+ *   transparentBg, padding, cornerRadius, imageSize, imageMargin, errorCorrectionLevel, …)
+ * @param {object} opts
+ * @param {string} opts.data - payload (raw text; encoded to UTF-8 bytes here)
+ * @param {string} [opts.image] - logo data URL ('' for none)
+ * @param {number} [opts.scale] - export scale; 1 = preview size (320 px)
+ * @param {'canvas'|'svg'} [opts.type]
+ * @returns {{ config: object, margin: number, scale: number }} margin in output pixels
+ */
+export function qrStylingConfig(styling = {}, { data = '', image = '', scale = 1, type = 'canvas' } = {}) {
+  const hasLogo = Boolean(image && String(image).trim().length > 0);
+  const dotsOptions = {
+    type: styling.dotsType || 'rounded',
+    color: styling.dotsColor || '#0f172a',
+    ...styling.dotsOptions
+  };
+  if (styling.gradientEnabled) {
+    const rotationRad = ((Number(styling.gradientRotation) || 45) * Math.PI) / 180;
+    dotsOptions.gradient = {
+      type: styling.gradientType || 'linear',
+      rotation: rotationRad,
+      colorStops: [
+        { offset: 0, color: styling.gradientColor1 || '#06b6d4' },
+        { offset: 1, color: styling.gradientColor2 || '#3b82f6' }
+      ]
+    };
+  }
+  const cornerRadius = Number(styling.cornerRadius) || 0;
+  const requestedPad = styling.padding !== undefined ? Number(styling.padding)
+    : (styling.margin !== undefined ? Number(styling.margin) : 10);
+  const margin = Math.max(requestedPad * scale, cornerSafeInset(cornerRadius * scale));
+  const logoMargin = (styling.imageMargin !== undefined ? Number(styling.imageMargin) : 4) * scale;
+
+  return {
+    margin,
+    scale,
+    config: {
+      width: 320 * scale,
+      height: 320 * scale,
+      margin,
+      type,
+      data: toQrByteString(data || 'https://example.com'),
+      image: hasLogo ? image : '',
+      imageOptions: {
+        hideBackgroundDots: true,
+        imageSize: styling.imageSize || 0.28,
+        margin: logoMargin,
+        crossOrigin: 'anonymous',
+        ...styling.imageOptions
+      },
+      dotsOptions,
+      cornersSquareOptions: {
+        color: styling.cornerColor || '#0f172a',
+        type: styling.cornerType || 'extra-rounded',
+        ...styling.cornersSquareOptions
+      },
+      cornersDotOptions: {
+        color: styling.cornerDotColor || styling.cornerColor || '#06b6d4',
+        type: styling.cornerDotType || 'dot',
+        ...styling.cornersDotOptions
+      },
+      backgroundOptions: {
+        color: styling.transparentBg ? 'transparent' : (styling.backgroundColor || '#ffffff'),
+        ...styling.backgroundOptions
+      },
+      qrOptions: {
+        errorCorrectionLevel: hasLogo ? 'H' : (styling.errorCorrectionLevel || 'M'),
+        ...styling.qrOptions
+      }
+    }
+  };
 }
 
 /**
@@ -293,69 +412,11 @@ export class BarcodeEngine {
       this.QRCodeStyling = await loadQRCodeStyling();
     }
 
-    const hasLogo = Boolean(stylingOptions.image && stylingOptions.image.trim().length > 0);
-    const dotsOptions = {
-      type: stylingOptions.dotsType || 'rounded',
-      color: stylingOptions.dotsColor || '#0f172a',
-      ...stylingOptions.dotsOptions
-    };
-
-    if (stylingOptions.gradientEnabled) {
-      const rotationRad = ((Number(stylingOptions.gradientRotation) || 45) * Math.PI) / 180;
-      dotsOptions.gradient = {
-        type: stylingOptions.gradientType || 'linear',
-        rotation: rotationRad,
-        colorStops: [
-          { offset: 0, color: stylingOptions.gradientColor1 || '#06b6d4' },
-          { offset: 1, color: stylingOptions.gradientColor2 || '#3b82f6' }
-        ]
-      };
-    }
-
-    const bgColor = stylingOptions.transparentBg ? 'transparent' : (stylingOptions.backgroundColor || '#ffffff');
-
     const cornerRadius = Number(stylingOptions.cornerRadius) || 0;
-    const requestedMargin = stylingOptions.padding !== undefined ? Number(stylingOptions.padding)
-      : (stylingOptions.margin !== undefined ? Number(stylingOptions.margin) : 10);
-    const qrMargin = Math.max(requestedMargin, cornerSafeInset(cornerRadius));
-    const logoMargin = stylingOptions.imageMargin !== undefined ? Number(stylingOptions.imageMargin) : 4;
-
-    // Default configuration for high-aesthetic QR
-    const options = {
-      width: 320,
-      height: 320,
-      margin: qrMargin,
-      type: 'canvas',
-      data: toQrByteString(stylingOptions.data || 'https://example.com'),
-      image: hasLogo ? stylingOptions.image : '',
-      imageOptions: {
-        hideBackgroundDots: true,
-        imageSize: stylingOptions.imageSize || 0.28,
-        margin: logoMargin,
-        crossOrigin: 'anonymous',
-        ...stylingOptions.imageOptions
-      },
-      dotsOptions: dotsOptions,
-      cornersSquareOptions: {
-        color: stylingOptions.cornerColor || '#0f172a',
-        type: stylingOptions.cornerType || 'extra-rounded',
-        ...stylingOptions.cornersSquareOptions
-      },
-      cornersDotOptions: {
-        color: stylingOptions.cornerDotColor || stylingOptions.cornerColor || '#06b6d4',
-        type: stylingOptions.cornerDotType || 'dot',
-        ...stylingOptions.cornersDotOptions
-      },
-      backgroundOptions: {
-        color: bgColor,
-        ...stylingOptions.backgroundOptions
-      },
-      qrOptions: {
-        errorCorrectionLevel: hasLogo ? 'H' : (stylingOptions.errorCorrectionLevel || 'M'),
-        ...stylingOptions.qrOptions
-      }
-    };
-
+    const { config: options, margin: qrMargin } = qrStylingConfig(stylingOptions, {
+      data: stylingOptions.data,
+      image: stylingOptions.image
+    });
     container.innerHTML = '';
     this.currentQrInstance = new this.QRCodeStyling(options);
     // 300 px code area = the 320 px default size minus the default 10 px margins.
@@ -372,6 +433,43 @@ export class BarcodeEngine {
     }
 
     return this.currentQrInstance;
+  }
+
+  /**
+   * Styled QR for exports (PNG, PDF sheet, batch): same settings, geometry and corners as the
+   * preview, at `scale` × the preview size.
+   * @returns {Promise<Blob|string>} PNG Blob, or SVG text when format is 'svg'
+   */
+  async renderStyledQr(styling, { data, image = '', scale = 1, format = 'png' } = {}) {
+    if (!this.QRCodeStyling) {
+      this.QRCodeStyling = await loadQRCodeStyling();
+    }
+    const { config, margin } = qrStylingConfig(styling, { data, image, scale, type: format === 'svg' ? 'svg' : 'canvas' });
+    const instance = new this.QRCodeStyling(config);
+    snapQrToMargin(instance, margin, 300, scale);
+    const radius = Math.round((Number(styling.cornerRadius) || 0) * scale);
+
+    if (format === 'svg') {
+      const svg = await (await instance.getRawData('svg')).text();
+      return radius > 0 ? svgWithRoundedCorners(svg, radius) : svg;
+    }
+
+    const blob = await instance.getRawData('png');
+    if (radius <= 0) return blob;
+    const img = new Image();
+    const url = URL.createObjectURL(blob);
+    try {
+      img.src = url;
+      await img.decode();
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    canvas.getContext('2d').drawImage(img, 0, 0);
+    applyCanvasCornerRadius(canvas, radius);
+    return new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
   }
 
   /**

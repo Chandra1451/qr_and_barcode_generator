@@ -6,8 +6,8 @@
  * directly in client-side browser memory using jsPDF.
  */
 
-import { loadJsPdf, loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.13';
-import { engine, toQrByteString } from '../core/engine.js?v=3.13';
+import { loadJsPdf } from '../core/dynamic-loader.js?v=3.14';
+import { engine } from '../core/engine.js?v=3.14';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {
@@ -118,56 +118,8 @@ export function calculateLabelPositions(templateId, quantity = 30) {
  */
 async function getCodeImageDataUrl(generator, payload, options, logoDataUrl = '') {
   if (generator.id === 'qr-code') {
-    const QRCodeStyling = await loadQRCodeStyling();
-    const hasLogo = Boolean(logoDataUrl && logoDataUrl.trim().length > 0);
-
-    const dotsOptions = {
-      type: options.dotsType || 'rounded',
-      color: options.dotsColor || '#000000'
-    };
-
-    if (options.gradientEnabled) {
-      const rotationRad = ((Number(options.gradientRotation) || 45) * Math.PI) / 180;
-      dotsOptions.gradient = {
-        type: options.gradientType || 'linear',
-        rotation: rotationRad,
-        colorStops: [
-          { offset: 0, color: options.gradientColor1 || '#000000' },
-          { offset: 1, color: options.gradientColor2 || '#000000' }
-        ]
-      };
-    }
-
-    const qrInstance = new QRCodeStyling({
-      width: 600,
-      height: 600,
-      type: 'canvas',
-      data: toQrByteString(payload),
-      image: hasLogo ? logoDataUrl : '',
-      imageOptions: {
-        hideBackgroundDots: true,
-        imageSize: 0.28,
-        margin: 4,
-        crossOrigin: 'anonymous'
-      },
-      dotsOptions: dotsOptions,
-      cornersSquareOptions: {
-        color: options.cornerColor || '#000000',
-        type: options.cornerType || 'extra-rounded'
-      },
-      cornersDotOptions: {
-        color: options.cornerDotColor || options.cornerColor || '#000000',
-        type: options.cornerDotType || 'dot'
-      },
-      backgroundOptions: {
-        color: '#ffffff'
-      },
-      qrOptions: {
-        errorCorrectionLevel: hasLogo ? 'H' : (options.errorCorrectionLevel || 'M')
-      }
-    });
-
-    const blob = await qrInstance.getRawData('png');
+    // Same settings, quiet zone and corners as the preview, at 2x for print (shared builder in engine.js).
+    const blob = await engine.renderStyledQr(options, { data: payload, image: logoDataUrl, scale: 2 });
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onloadend = () => resolve(reader.result);

@@ -235,6 +235,80 @@ test.describe('EXP-EPS · EPS downloads (barcodes)', () => {
   });
 });
 
+test.describe('EXP-QRSAME · every styled-QR export is the same image', () => {
+  // Since 2026-10-08 the preview, PNG, PDF sheet and batch all build styled QR codes with one
+  // function (qrStylingConfig / renderStyledQr in engine.js). Before, batch dropped the gradient
+  // and the PDF dropped background, padding and logo size. At the same scale the files must match.
+  function samePixels(a, b) {
+    if (a.width !== b.width || a.height !== b.height) return { same: false, why: `size ${a.width}x${a.height} vs ${b.width}x${b.height}` };
+    let off = 0;
+    for (let i = 0; i < a.data.length; i += 4) {
+      const d = Math.abs(a.data[i] - b.data[i]) + Math.abs(a.data[i + 1] - b.data[i + 1]) + Math.abs(a.data[i + 2] - b.data[i + 2]) + Math.abs(a.data[i + 3] - b.data[i + 3]);
+      if (d > 40) off++;
+    }
+    const ratio = off / (a.width * a.height);
+    return { same: ratio < 0.005, why: `${(ratio * 100).toFixed(2)}% of pixels differ` };
+  }
+
+  test('EXP-15 PNG, batch PNG and PDF sheet image match (gradient, background, padding, corners)', async ({ studio, page }) => {
+    await studio.open();
+    await studio.fillWizard({ url: 'https://qa.example.com/same' });
+    await studio.setControl('gradientEnabled', true);
+    await studio.setControl('gradientColor1', '#dc2626');
+    await studio.setControl('gradientColor2', '#2563eb');
+    await studio.setControl('backgroundColor', '#fef9c3');
+    await studio.setControl('qrPadding', 16);
+    await page.locator('.corner-preset-btn[data-radius="18"]').click();
+    await page.locator('#scale-factor-select').selectOption('2');
+    await studio.waitForStableRender();
+
+    const png = readPng((await studio.download(page.locator('#btn-download-png'))).buffer);
+    // The background colour and both gradient colours must be in the file at all.
+    const has = (img, hex, tol = 60) => {
+      const c = hexToRgb(hex);
+      for (let i = 0; i < img.data.length; i += 4) {
+        if (img.data[i + 3] > 200 && colorDistance({ r: img.data[i], g: img.data[i + 1], b: img.data[i + 2] }, c) < tol) return true;
+      }
+      return false;
+    };
+    expect(has(png, '#fef9c3', 12), 'PNG lacks the chosen background colour').toBe(true);
+    expect(has(png, '#dc2626'), 'PNG lacks gradient colour 1').toBe(true);
+    expect(has(png, '#2563eb'), 'PNG lacks gradient colour 2').toBe(true);
+
+    // Batch, same payload and scale.
+    await page.locator('#btn-open-batch-modal').click();
+    await page.locator('#tab-batch-csv').click();
+    await page.locator('#batch-csv-input').fill('https://qa.example.com/same');
+    await page.locator('#batch-format-select').selectOption('png');
+    await page.locator('#batch-scale-select').selectOption('2');
+    const zip = await JSZip.loadAsync((await studio.download(page.locator('#btn-generate-batch'))).buffer);
+    const batchPng = readPng(await Object.values(zip.files).find((f) => !f.dir).async('nodebuffer'));
+    const batchCheck = samePixels(batchPng, png);
+    expect(batchCheck.same, `batch QR differs from the PNG download: ${batchCheck.why}`).toBe(true);
+    await page.keyboard.press('Escape');
+
+    // PDF sheet: capture the image jsPDF embeds (it renders at 2x).
+    await page.locator('#btn-open-pdf-modal').click();
+    await studio.download(page.locator('#btn-generate-pdf'));
+    await page.evaluate(() => {
+      window.__pdfImages = [];
+      const api = window.jspdf?.jsPDF?.API;
+      const orig = api.addImage;
+      api.addImage = function (img, ...rest) {
+        window.__pdfImages.push(typeof img === 'string' ? img : '');
+        return orig.call(this, img, ...rest);
+      };
+    });
+    await page.locator('#btn-open-pdf-modal').click();
+    await studio.download(page.locator('#btn-generate-pdf'));
+    const first = await page.evaluate(() => window.__pdfImages.find((s) => s.startsWith('data:image/png')));
+    expect(first, 'could not capture the PDF label image').toBeTruthy();
+    const pdfImg = readPng(Buffer.from(first.split(',')[1], 'base64'));
+    const pdfCheck = samePixels(pdfImg, png);
+    expect(pdfCheck.same, `PDF sheet QR differs from the PNG download: ${pdfCheck.why}`).toBe(true);
+  });
+});
+
 test.describe('EXP-CLIP · clipboard', () => {
   test('EXP-20 "Copy" puts a scannable PNG on the clipboard', async ({ studio, page, context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);

@@ -150,6 +150,18 @@ test.describe('QRC · wizard forms', () => {
       let before = await studio.waitForStableRender();
       for (const f of w.fields.filter((x) => ['text', 'url', 'tel', 'email', 'textarea', 'number', undefined].includes(x.type))) {
         const input = page.locator(`#wizard-form-container .wizard-input[data-field="${f.id}"]`);
+        // Location: coordinates only count as a valid pair (since 2026-10-07), so a latitude on its
+        // own must leave the code unchanged, and the longitude that completes the pair must change it.
+        if (w.id === 'location' && f.id === 'latitude') {
+          await input.fill('40.7128');
+          await studio.expectNoChange(before);
+          continue;
+        }
+        if (w.id === 'location' && f.id === 'longitude') {
+          await input.fill('-74.0060');
+          before = await studio.waitForChange(before, { what: 'location coordinate pair' });
+          continue;
+        }
         const value = f.type === 'number' || /amount/i.test(f.id) ? '7' : f.type === 'email' ? 'qa@example.com' : f.type === 'url' ? 'https://qa.example.com' : f.type === 'tel' ? '+15550001111' : 'QA edit';
         if ((await input.inputValue()) === value) continue;
         await input.fill(value);

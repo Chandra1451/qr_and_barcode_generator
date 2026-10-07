@@ -8,9 +8,8 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius, cornerSafeInset, toQrByteString, snapQrToMargin } from '../core/engine.js?v=3.13';
-import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.13';
-import { svgToEps } from './eps-exporter.js?v=3.13';
+import { engine, applyCanvasCornerRadius, svgWithRoundedCorners } from '../core/engine.js?v=3.14';
+import { svgToEps } from './eps-exporter.js?v=3.14';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
@@ -19,40 +18,7 @@ import { svgToEps } from './eps-exporter.js?v=3.13';
  * @returns {string}
  */
 export function applySvgCornerRadius(svgString, radius) {
-  if (!radius || radius <= 0 || !svgString) return svgString;
-
-  const vbMatch = svgString.match(/viewBox=["']\s*([0-9.-]+)\s+([0-9.-]+)\s+([0-9.-]+)\s+([0-9.-]+)\s*["']/i);
-  let x = 0, y = 0, width = 0, height = 0;
-
-  if (vbMatch) {
-    x = parseFloat(vbMatch[1]);
-    y = parseFloat(vbMatch[2]);
-    width = parseFloat(vbMatch[3]);
-    height = parseFloat(vbMatch[4]);
-  } else {
-    const wMatch = svgString.match(/width=["']([0-9.]+)["']/i);
-    const hMatch = svgString.match(/height=["']([0-9.]+)["']/i);
-    if (wMatch && hMatch) {
-      width = parseFloat(wMatch[1]);
-      height = parseFloat(hMatch[1]);
-    }
-  }
-
-  if (!width || !height) return svgString;
-
-  const r = Math.min(radius, width / 2, height / 2);
-  const clipId = `ucm-rounded-corners-${Date.now().toString(36)}`;
-  const clipDef = `<defs><clipPath id="${clipId}"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${r}" ry="${r}" /></clipPath></defs>`;
-
-  const svgOpenTagEnd = svgString.indexOf('>');
-  if (svgOpenTagEnd === -1) return svgString;
-
-  const openTag = svgString.slice(0, svgOpenTagEnd + 1);
-  const closingTagIndex = svgString.lastIndexOf('</svg>');
-  if (closingTagIndex === -1) return svgString;
-
-  const innerContent = svgString.slice(svgOpenTagEnd + 1, closingTagIndex);
-  return `${openTag}\n${clipDef}\n<g clip-path="url(#${clipId})">\n${innerContent}\n</g>\n</svg>`;
+  return svgWithRoundedCorners(svgString, radius);
 }
 
 /**
@@ -99,90 +65,8 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
   const cornerRadius = Number(options.cornerRadius) || 0;
 
   if (generator.id === 'qr-code') {
-    const QRCodeStyling = await loadQRCodeStyling();
-    const baseSize = 320;
-    const exportSize = baseSize * scaleFactor;
-
-    const hasLogo = Boolean(logoDataUrl && logoDataUrl.trim().length > 0);
-    const dotsOptions = {
-      type: options.dotsType || 'rounded',
-      color: options.dotsColor || '#0f172a'
-    };
-
-    if (options.gradientEnabled) {
-      const rotationRad = ((Number(options.gradientRotation) || 45) * Math.PI) / 180;
-      dotsOptions.gradient = {
-        type: options.gradientType || 'linear',
-        rotation: rotationRad,
-        colorStops: [
-          { offset: 0, color: options.gradientColor1 || '#06b6d4' },
-          { offset: 1, color: options.gradientColor2 || '#3b82f6' }
-        ]
-      };
-    }
-
-    const bgColor = options.transparentBg ? 'transparent' : (options.backgroundColor || '#ffffff');
-    const basePadding = options.padding !== undefined ? Number(options.padding) : (options.margin !== undefined ? Number(options.margin) : 10);
-    const qrMargin = Math.max(basePadding * scaleFactor, cornerSafeInset(cornerRadius * scaleFactor));
-    const logoMargin = (options.imageMargin !== undefined ? Number(options.imageMargin) : 4) * scaleFactor;
-
-    const qrExportInstance = new QRCodeStyling({
-      width: exportSize,
-      height: exportSize,
-      margin: qrMargin,
-      type: 'canvas',
-      data: toQrByteString(payload),
-      image: hasLogo ? logoDataUrl : '',
-      imageOptions: {
-        hideBackgroundDots: true,
-        imageSize: options.imageSize || 0.28,
-        margin: logoMargin,
-        crossOrigin: 'anonymous'
-      },
-      dotsOptions: dotsOptions,
-      cornersSquareOptions: {
-        color: options.cornerColor || '#0f172a',
-        type: options.cornerType || 'extra-rounded'
-      },
-      cornersDotOptions: {
-        color: options.cornerDotColor || options.cornerColor || '#06b6d4',
-        type: options.cornerDotType || 'dot'
-      },
-      backgroundOptions: {
-        color: bgColor
-      },
-      qrOptions: {
-        errorCorrectionLevel: hasLogo ? 'H' : (options.errorCorrectionLevel || 'M')
-      }
-    });
-
-    // Same geometry as the preview, scaled: exact quiet zone, preview dot size × scale.
-    snapQrToMargin(qrExportInstance, qrMargin, 300, scaleFactor);
-    const blob = await qrExportInstance.getRawData('png');
-
-    if (cornerRadius > 0) {
-      const scaledRadius = Math.round(cornerRadius * scaleFactor);
-      const img = new Image();
-      const objectUrl = URL.createObjectURL(blob);
-      img.src = objectUrl;
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-      });
-      URL.revokeObjectURL(objectUrl);
-
-      const postCanvas = document.createElement('canvas');
-      postCanvas.width = img.width;
-      postCanvas.height = img.height;
-      const pctx = postCanvas.getContext('2d');
-      pctx.drawImage(img, 0, 0);
-      applyCanvasCornerRadius(postCanvas, scaledRadius);
-
-      const roundedBlob = await new Promise(res => postCanvas.toBlob(res, 'image/png'));
-      downloadBlob(roundedBlob, filename);
-      return { success: true, filename };
-    }
-
+    // Same settings, quiet zone and corners as the preview, scaled (shared builder in engine.js).
+    const blob = await engine.renderStyledQr(options, { data: payload, image: logoDataUrl, scale: scaleFactor });
     downloadBlob(blob, filename);
     return { success: true, filename };
   }

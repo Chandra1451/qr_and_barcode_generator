@@ -35,7 +35,7 @@ Dynamic form compilers with real-time payload generation for:
 - 💳 **UPI Payment** (India: Google Pay, PhonePe, Paytm, BHIM)
 
 ### 4. Advanced QR Visual Customizer
-- **Color Gradients**: Linear and radial gradients with customizable start and end stops.
+- **Color Gradient**: two-colour linear gradient with an adjustable angle.
 - **Dot Styles**: Square, rounded, dots, classy, classy-rounded, extra-rounded.
 - **Corner Styles**: Square, dot, extra-rounded eye shapes.
 - **Brand Logo Presets**: 1-click vector SVG brand logos (Wi-Fi, WhatsApp, Instagram, YouTube, X/Twitter, LinkedIn, GitHub, Bitcoin, Ethereum) or custom image dropzone.
