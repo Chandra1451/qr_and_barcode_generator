@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.11';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.11';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.12';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.12';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.11';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.11';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.11';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.11';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.11';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.11';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.11';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.11';
+} from './generators/registry.js?v=3.12';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.12';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.12';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.12';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.12';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.12';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.12';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.12';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.11';
+} from './export/label-maker.js?v=3.12';
 
 class V2StudioApp {
   constructor() {

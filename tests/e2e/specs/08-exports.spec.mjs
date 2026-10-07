@@ -215,7 +215,23 @@ test.describe('EXP-EPS · EPS downloads (barcodes)', () => {
     const eps = (await studio.download(page.locator('#btn-download-eps'))).buffer.toString('latin1');
     // #14532d = rgb(20, 83, 45)
     expect(eps).toContain('0.078 0.325 0.176 setrgbcolor');
-    expect(eps, 'rounded corners missing (no clip path)').toMatch(/arct[\s\S]*clip newpath/);
+    // Corners are a rounded background shape, not a clip path (some programs ignore EPS clips).
+    expect(eps, 'EPS should not rely on a clip path').not.toMatch(/\bclip\b/);
+  });
+
+  test('EXP-14 rounded corners show in the EPS itself (dark background, 40px corners)', async ({ studio, page }) => {
+    await studio.open('?symbology=ean-13');
+    await page.locator('.barcode-preset-chip[data-bg="#0f1117"]').click();
+    await page.locator('.corner-preset-btn[data-radius="40"]').click();
+    await page.waitForTimeout(300);
+    const eps = (await studio.download(page.locator('#btn-download-eps'))).buffer.toString('latin1');
+    const png = readPng(await rasterizeSvg(page, epsToSvg(eps)));
+    const px = (x, y) => { const i = (png.width * y + x) * 4; return { r: png.data[i], g: png.data[i + 1], b: png.data[i + 2] }; };
+    const dark = hexToRgb('#0f1117');
+    // rasterizeSvg draws the code 32px in from each edge of a white canvas.
+    expect(colorDistance(px(34, 34), { r: 255, g: 255, b: 255 }), 'top-left corner is not cut off').toBeLessThan(40);
+    expect(colorDistance(px(png.width - 35, png.height - 35), { r: 255, g: 255, b: 255 }), 'bottom-right corner is not cut off').toBeLessThan(40);
+    expect(colorDistance(px(Math.round(png.width / 2), 34), dark), 'top edge should be the dark background').toBeLessThan(40);
   });
 });
 

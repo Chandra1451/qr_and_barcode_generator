@@ -10,6 +10,10 @@
  * fill-rule="evenodd" for 2D codes and ITF-14 bearer bars). Anything else is rejected
  * rather than silently dropped.
  *
+ * Rounded corners are drawn as a rounded background shape, not a clip path: some design
+ * programs ignore clip paths when importing EPS. The engine already keeps every bar clear
+ * of the corners (cornerSafeInset), so only the background needs rounding.
+ *
  * Size: bwip-js draws 1 module = 1 point at scale 1, so with ptPerUnit = 1 / scale the
  * EPS keeps the real bar height (millimetres) set in the studio.
  * Colour: pure black and white are written as CMYK (100% K / 0%) so presses print
@@ -74,6 +78,21 @@ export function pathToPs(d) {
   return out;
 }
 
+/**
+ * Rounded rectangle from (0,0) to (w,h) with plain lines and cubic curves (quarter circles
+ * approximated with the standard 0.5523 handle length, < 0.03% radius error).
+ */
+export function roundedRectOps(w, h, r) {
+  const k = r * 0.5522847498;
+  const P = (...n) => n.map(NUM).join(' ');
+  return [
+    `${P(r, 0)} m`, `${P(w - r, 0)} l`, `${P(w - r + k, 0, w, r - k, w, r)} c`,
+    `${P(w, h - r)} l`, `${P(w, h - r + k, w - r + k, h, w - r, h)} c`,
+    `${P(r, h)} l`, `${P(r - k, h, 0, h - r + k, 0, h - r)} c`,
+    `${P(0, r)} l`, `${P(0, r - k, r - k, 0, r, 0)} c`, 'z'
+  ];
+}
+
 /** Keeps PostScript lines under 255 characters (DSC limit). */
 function wrap(ops) {
   const lines = [];
@@ -110,6 +129,7 @@ export function svgToEps(svg, { ptPerUnit = 1, cornerRadius = 0, title = 'Barcod
   const [vx, vy, vw, vh] = vb.slice(1).map(Number);
   if (vx !== 0 || vy !== 0 || !(vw > 0) || !(vh > 0)) throw new Error('Unexpected SVG viewBox');
 
+  const r = Math.min(Number(cornerRadius) || 0, vw / 2, vh / 2);
   const body = [];
   for (const m of svg.matchAll(/<(\w+)([^>]*)\/?>/g)) {
     const [, tag, rest] = m;
@@ -117,7 +137,9 @@ export function svgToEps(svg, { ptPerUnit = 1, cornerRadius = 0, title = 'Barcod
     const a = parseAttrs(rest);
     if (tag === 'rect') {
       if (a.width !== '100%' || a.height !== '100%') throw new Error('Unexpected <rect> in barcode SVG');
-      if (a.fill && a.fill !== 'none') body.push(epsColor(a.fill), `0 0 ${NUM(vw)} ${NUM(vh)} rectfill`);
+      if (a.fill && a.fill !== 'none') {
+        body.push(epsColor(a.fill), ...(r > 0 ? ['newpath', ...wrap(roundedRectOps(vw, vh, r)), 'fill'] : [`0 0 ${NUM(vw)} ${NUM(vh)} rectfill`]));
+      }
     } else if (tag === 'path') {
       const ops = pathToPs(a.d || '');
       if (!ops.length) continue;
@@ -134,11 +156,6 @@ export function svgToEps(svg, { ptPerUnit = 1, cornerRadius = 0, title = 'Barcod
 
   const wPt = vw * ptPerUnit;
   const hPt = vh * ptPerUnit;
-  const r = Math.min(Number(cornerRadius) || 0, vw / 2, vh / 2);
-  const clip = r > 0
-    ? [`newpath ${NUM(r)} 0 m ${NUM(vw)} 0 ${NUM(vw)} ${NUM(vh)} ${NUM(r)} arct ${NUM(vw)} ${NUM(vh)} 0 ${NUM(vh)} ${NUM(r)} arct`,
-       `0 ${NUM(vh)} 0 0 ${NUM(r)} arct 0 0 ${NUM(vw)} 0 ${NUM(r)} arct z clip newpath`]
-    : [];
 
   return [
     '%!PS-Adobe-3.0 EPSF-3.0',
@@ -159,7 +176,6 @@ export function svgToEps(svg, { ptPerUnit = 1, cornerRadius = 0, title = 'Barcod
     // SVG units → points, with the y axis flipped (SVG grows down, PostScript grows up).
     `${ptPerUnit.toFixed(8)} ${ptPerUnit.toFixed(8)} scale 0 ${NUM(vh)} translate 1 -1 scale`,
     '0 setlinecap 0 setlinejoin',
-    ...clip,
     ...body,
     'grestore',
     'showpage',

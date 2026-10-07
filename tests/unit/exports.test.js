@@ -10,7 +10,7 @@ import { AVERY_TEMPLATES, calculateLabelPositions } from '../../js/export/pdf-ex
 import { engine, applyCanvasCornerRadius } from '../../js/core/engine.js';
 import { loadJsPdf } from '../../js/core/dynamic-loader.js';
 import { applySvgCornerRadius } from '../../js/export/image-exporter.js';
-import { svgToEps, pathToPs, epsColor } from '../../js/export/eps-exporter.js';
+import { svgToEps, pathToPs, epsColor, roundedRectOps } from '../../js/export/eps-exporter.js';
 
 export async function runExportTests(assert) {
   // Test 1: Avery Template Definitions
@@ -158,7 +158,8 @@ export async function runExportTests(assert) {
   assert.isTrue(!dmEps.includes('rectfill'), 'Transparent background stays transparent in EPS');
 
   const roundEps = svgToEps(eanSvg, { ptPerUnit: 1 / 3, cornerRadius: 18 });
-  assert.isTrue(/arct[\s\S]*clip newpath/.test(roundEps), 'Rounded corners become an EPS clip path');
+  assert.isTrue(!/\bclip\b/.test(roundEps) && !roundEps.includes('rectfill'), 'Rounded corners are a rounded background shape, not a clip');
+  assert.equal(roundedRectOps(100, 50, 10).join(' '), '10 0 m 90 0 l 95.523 0 100 4.477 100 10 c 100 40 l 100 45.523 95.523 50 90 50 c 10 50 l 4.477 50 0 45.523 0 40 c 0 10 l 0 4.477 4.477 0 10 0 c z', 'Rounded background outline is exact');
   let rejected = false;
   try { svgToEps('<svg viewBox="0 0 10 10"><circle r="2"/></svg>'); } catch (e) { rejected = true; }
   assert.isTrue(rejected, 'EPS converter rejects SVG elements it cannot convert exactly');
