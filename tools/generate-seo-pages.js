@@ -98,7 +98,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Can I print UPC-A barcodes on Avery sticky labels?',
-        a: 'Yes! Open the generator, click "PDF Labels", and choose from Avery 5160 (30 address labels) or Avery 5163 (10 shipping labels) to print directly onto standard label sheets.'
+        a: 'Yes. Open the generator, click "Print Avery PDF Label Sheet", and choose Avery 5160 (30 address labels) or Avery 5163 (10 shipping labels). For a title or price next to the barcode, use the label maker instead.'
       }
     ]
   },
@@ -670,20 +670,20 @@ const SEO_PAGES = [
 ,
   {
     slug: 'avery-5160-barcode-generator',
-    name: 'Avery 5160 Barcode Label Generator',
-    shortName: 'Avery 5160 Sheets',
+    name: 'Avery 5160 Barcode & QR Code Label Generator',
+    shortName: 'Avery 5160',
     queryParam: 'label=open&preset=avery-5160',
     category: 'Retail & POS',
-    metaTitle: 'Free Avery 5160 Barcode Generator - 30-Up PDF Sheet Print Online',
-    metaDescription: 'Generate free barcode label sheets pre-formatted for Avery 5160 & 5163 templates. Print 30-up address, SKU, and UPC barcode labels directly on standard laser/inkjet printers.',
-    h1: 'Free Avery 5160 Barcode Label Sheet Generator',
-    lead: 'Create perfectly aligned sheets of barcodes formatted specifically for Avery 5160 (30 labels per US Letter sheet) and Avery 5163. Export ready-to-print PDFs with zero software installation or subscription fees.',
+    metaTitle: 'Free Avery 5160 Barcode & QR Code Label Generator (30 per Sheet PDF)',
+    metaDescription: 'Print QR codes and barcodes on Avery 5160 labels (30 per Letter sheet) for free. Make the code, add a title, price or SKU, and download a print-ready PDF.',
+    h1: 'Free Avery 5160 Barcode & QR Code Label Generator',
+    lead: 'Print QR codes and barcodes on Avery 5160 address labels (30 per US Letter sheet), or on 5163 shipping labels. Add a title, price or SKU beside the code and download a ready-to-print PDF, free and with nothing to install.',
     technicalSpec: {
       templateFormat: 'Avery 5160 / 5960 / 8160 (1.0\" × 2.625\", 30-up per Letter sheet)',
       gridDimensions: '3 columns × 10 rows per sheet (8.5\" × 11\" US Letter)',
-      margins: 'Top/Bottom: 0.5\", Left/Right: 0.1875\", Horiz Pitch: 2.75\", Vert Pitch: 1.0\"',
-      symbologySupport: 'Code 128, UPC-A, EAN-13, QR Code, Data Matrix, Code 39',
-      printerCompatibility: 'Standard Laser, Inkjet, or Heavy-Duty Commercial Office Copiers'
+      margins: 'Top/Bottom: 0.5\", Left/Right: 0.1875\" (3/16\"), Column gap: 0.125\", no row gap',
+      symbologySupport: 'All 10 formats, including QR Code, Code 128, UPC-A, EAN-13 and Data Matrix',
+      printerCompatibility: '5160: laser printers. 8160 (same size, same template): inkjet printers'
     },
     useCases: [
       'Product SKU and inventory tagging on standard US Letter printer paper',
@@ -694,19 +694,19 @@ const SEO_PAGES = [
     faqs: [
       {
         q: 'How many barcodes fit on an Avery 5160 label sheet?',
-        a: 'Standard Avery 5160 (and compatible templates such as 5260, 5960, 8160, and Presto 30-up) contains exactly 30 labels arranged in 3 columns of 10 rows on standard 8.5\" × 11\" US Letter paper.'
+        a: 'An Avery 5160 sheet has 30 labels, each 1\" × 2-5/8\", in 3 columns of 10 rows on 8.5\" × 11\" US Letter paper. Avery products such as 5260, 5960, 8160 and 8460 share the same template, so they print the same way.'
       },
       {
-        q: 'Do I need a special thermal printer to print Avery 5160 sheets?',
-        a: 'No. Avery 5160 sheets are designed specifically for standard laser and inkjet desktop office printers. Simply load the label sheet into your regular printer paper tray.'
+        q: 'Do I need a special printer for Avery 5160 labels?',
+        a: 'No, a normal office printer works. Avery 5160 is made for laser printers; Avery 8160 is the same size for inkjet printers. Both use the same template, so pick the one that matches your printer.'
       },
       {
         q: 'How do I avoid printing alignment issues on Avery label sheets?',
         a: 'In your browser or PDF reader print dialog, set Scale to 100% or Actual Size and uncheck Fit to Page or Shrink to Printable Area. Printing at Actual Size guarantees that the generated labels align precisely with the die-cut sticker grid.'
       },
       {
-        q: 'Can I generate different barcodes on each label or repeat the same barcode?',
-        a: 'Both modes are supported! You can print 30 copies of a single product barcode for batch inventory, or use our Batch CSV Import tool to populate sequential serial numbers across the sheet.'
+        q: 'Can each label on the sheet have a different code?',
+        a: 'Not on one sheet yet: the PDF repeats one design on every label, which suits product labels, address labels and QR codes you hand out. For different codes, such as serial numbers, the batch generator downloads each code as a separate image in a ZIP file that you can place with a label design program.'
       }
     ]
   },
@@ -1839,16 +1839,16 @@ const ENRICHMENTS = {
   "avery-5160-barcode-generator": {
     "benefits": [
       {
-        "title": "Exact 30-Up Grid Alignment",
-        "desc": "Calibrated specifically to Avery 5160 sheet specifications (3 columns × 10 rows, 1.0\" × 2.625\" per label) with zero margin drift."
+        "title": "Avery's Published 5160 Layout",
+        "desc": "Labels are placed on Avery's 5160 grid: 3 columns × 10 rows of 1\" × 2-5/8\" labels, 0.5\" top margin, 3/16\" side margins and a 1/8\" gap between columns."
       },
       {
-        "title": "Universal Printer Compatibility",
-        "desc": "Prints flawlessly on standard desktop laser and inkjet printers without buying specialized thermal hardware."
+        "title": "Any Office Printer",
+        "desc": "No thermal printer needed: print on a normal laser printer (5160 labels) or inkjet printer (8160 labels)."
       },
       {
-        "title": "Batch & Single Repeats",
-        "desc": "Fill an entire 30-label sheet with identical product barcodes or import a CSV file to print distinct sequential SKUs across the sheet."
+        "title": "Code Plus Text",
+        "desc": "Put a QR code or barcode beside a title, price or SKU with the label maker, or print just the code on up to 300 labels (10 sheets) in one PDF."
       }
     ],
     "decisionGuide": [
@@ -1858,7 +1858,7 @@ const ENRICHMENTS = {
       },
       {
         "q": "What printer settings prevent label misalignment?",
-        "a": "Always select Actual Size or Scale: 100% in your print dialog. Disabling Fit to Printable Area ensures your printer maps 1:1 with Avery die-cut dimensions."
+        "a": "Always select Actual Size or Scale: 100% in your print dialog, and turn off Fit to Page or Shrink to Printable Area. Otherwise the labels shift further out of line down the sheet."
       }
     ],
     "legalCaution": {
@@ -1871,9 +1871,9 @@ const ENRICHMENTS = {
     },
     "authorityLinks": [
       {
-        "name": "Avery 5160 Template Specification Sheet",
-        "desc": "Official dimensions and margin layouts for 1\" × 2-5/8\" address labels.",
-        "url": "https://www.avery.com/"
+        "name": "Avery 5160 Template",
+        "desc": "Avery's official template page for 1\" × 2-5/8\" address labels (30 per sheet).",
+        "url": "https://www.avery.com/templates/5160"
       },
       {
         "name": "USPS Barcode Printing Standards",
@@ -2074,6 +2074,39 @@ const ENRICHMENTS = {
  * HTML is allowed in the strings (links, <strong>); keep claims true to what the studio does.
  */
 const GUIDES = {
+  "avery-5160-barcode-generator": {
+    "title": "How to Print QR Codes &amp; Barcodes on Avery 5160 Labels",
+    "howTo": [
+      "Make your code in the studio: any of the 10 formats, including <strong>QR codes</strong> for links, Wi-Fi, contact cards or Google reviews. For QR codes, keep the content short (a short link rather than a long one) so the dots stay big enough for a small label.",
+      "Open the <strong>Physical Label Maker</strong> and choose <strong>Avery® 5160 — 30 Labels / Sheet</strong>. The button above opens it with this preset.",
+      "Pick the <strong>Split</strong> layout to put a QR code on the left and your title, price or SKU on the right. Barcodes work in the other layouts too.",
+      "Click <strong>Avery Sheet (PDF)</strong>. Every label on the sheet gets the same design. To print only the code, without text, use <strong>Print Avery PDF Label Sheet</strong> in the studio instead (1 to 300 labels).",
+      "Print one page on plain paper at <strong>Actual size / 100%</strong>, hold it against a label sheet to check the alignment, then print on the labels and scan one with your phone."
+    ],
+    "print": [
+      "<strong>QR size:</strong> on a 1-inch-tall 5160 label, the Split layout prints the QR code about <strong>22 mm (0.88 in)</strong> square, including the white border it needs. That scans from a phone held up to about 20 cm (8 in) away; it's too small for posters or signs.",
+      "<strong>No logo on tiny QR codes:</strong> a centre logo switches the code to the highest error correction, which makes the pattern denser. Leave it out on labels this small.",
+      "<strong>Retail barcodes:</strong> a 1-inch label is shorter than an EAN-13 or UPC-A at GS1's target size (bars 22.85 mm plus the digits). Use a smaller size within GS1's range, or a taller label such as Avery 5163.",
+      "<strong>Printer:</strong> 5160 labels are made for laser printers and 8160 for inkjet printers. Both are the same size and use the same template.",
+      "<strong>Scale:</strong> print at Actual size (100%). \"Fit to page\" shrinks the page, and the labels drift out of line further down the sheet."
+    ],
+    "mistakes": [
+      "<strong>Printing with \"Fit to page\" or \"Shrink to printable area\"</strong> switched on.",
+      "<strong>Long QR content on a small label</strong>, such as a long tracking link or Wi-Fi password. The dots get too small to scan reliably; use a shorter link.",
+      "<strong>Inkjet labels in a laser printer, or the other way round.</strong> Toner may not fuse to inkjet stock, and inkjet ink can smear on laser labels.",
+      "<strong>Printing a full pack before test-scanning</strong> one printed label."
+    ],
+    "moreFaqs": [
+      {
+        "q": "Can I put a QR code on Avery 5160 labels?",
+        "a": "Yes. Make the QR code in the studio, open the label maker with the Avery 5160 preset and choose the Split layout. The QR code prints about 22 mm (0.88 in) square with your text beside it, on all 30 labels of the sheet."
+      },
+      {
+        "q": "Which QR code types work on small labels?",
+        "a": "Short ones scan best at this size: a website or Google review link, a phone number, or a short text. Wi-Fi codes with long passwords and full contact cards hold more data, so their dots get smaller; test-scan a printed label before printing a whole pack."
+      }
+    ]
+  },
   "upc-a-barcode-generator": {
     "howTo": [
       "Get your 12-digit product number (GTIN-12) from <strong>GS1 US</strong> (or GS1 Canada). Depending on how many products you have, you can license a company prefix or, in the US, buy single GTINs. Our guide <a href=\"./how-to-get-a-barcode-for-your-product.html\">How to get a barcode for your product</a> walks through it.",
@@ -3373,7 +3406,7 @@ ${siteHeaderHtml(page.queryParam)}
 
     ${guide ? `<!-- Practical guide: how to make it, print it, and what to avoid -->
     <section class="guide-card" aria-labelledby="guide-title">
-      <h2 id="guide-title" class="guide-title">How to Make, Print &amp; Test Your ${page.shortName} Code</h2>
+      <h2 id="guide-title" class="guide-title">${guide.title || `How to Make, Print &amp; Test Your ${page.shortName} Code`}</h2>
       <div class="guide-grid">
         <div class="guide-block guide-steps">
           <h3>Step by step</h3>
