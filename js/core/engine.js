@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.10';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.11';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.
@@ -226,10 +226,24 @@ export class BarcodeEngine {
    * @returns {Promise<string>} SVG XML string
    */
   async renderBwipSVG(bwipOptions) {
+    return (await this.renderBwipVector(bwipOptions)).svg;
+  }
+
+  /** SVG plus the bwip-js scale it was drawn at (the EPS export needs the scale for true size). */
+  async renderBwipVector(bwipOptions) {
     if (!this.bwip) {
       this.bwip = await loadBwip();
     }
+    const config = this.bwipVectorConfig(bwipOptions);
+    try {
+      return { svg: this.bwip.toSVG(config), scale: Number(config.scale) || 3 };
+    } catch (err) {
+      throw new Error(`bwip-js SVG generation error: ${err.message || err}`);
+    }
+  }
 
+  /** bwip-js options for vector output (shared by the SVG and EPS downloads). */
+  bwipVectorConfig(bwipOptions) {
     const is2DCode = ['datamatrix', 'azteccode', 'qrcode', 'pdf417', 'micropdf417', 'maxicode', 'dotcode', 'hanxin', 'gridmatrix'].includes(bwipOptions.bcid);
     const isTransparent = bwipOptions.transparentBg === true || bwipOptions.backgroundcolor === 'transparent';
 
@@ -265,11 +279,7 @@ export class BarcodeEngine {
       config.barcolor = '000000';
     }
 
-    try {
-      return this.bwip.toSVG(config);
-    } catch (err) {
-      throw new Error(`bwip-js SVG generation error: ${err.message || err}`);
-    }
+    return config;
   }
 
   /**
@@ -403,6 +413,18 @@ export class BarcodeEngine {
     return generator.render({}, payload, options, utils);
   }
 
+  /** Like renderSVG, but returns { svg, scale } for exports that need the drawing scale (EPS). */
+  async renderVector(generator, payload, options = {}) {
+    if (!generator) throw new Error('No generator specified.');
+    if (generator.id === 'qr-code') throw new Error('Vector EPS is available for barcodes; use SVG for QR codes.');
+    const validation = this.validate(generator, payload);
+    if (!validation.valid) throw new Error(validation.error);
+
+    const utils = this.engineUtilsFor(options);
+    utils.renderBwip = (_canvas, opts) => utils.renderBwipVector(opts);
+    return generator.render({}, payload, options, utils);
+  }
+
   /** Helpers passed to generator.render(); studio-wide options (colours, padding, corners) are merged in. */
   engineUtilsFor(options) {
     const shared = (opts) => ({
@@ -416,6 +438,7 @@ export class BarcodeEngine {
     return {
       renderBwip: (canvas, opts) => this.renderBwipCanvas(canvas, shared(opts)),
       renderBwipSVG: (opts) => this.renderBwipSVG(shared(opts)),
+      renderBwipVector: (opts) => this.renderBwipVector(shared(opts)),
       renderQRCode: (container, opts) => this.renderQRCode(container, {
         ...(options.cornerRadius !== undefined ? { cornerRadius: options.cornerRadius } : {}),
         ...(options.padding !== undefined ? { padding: options.padding } : {}),

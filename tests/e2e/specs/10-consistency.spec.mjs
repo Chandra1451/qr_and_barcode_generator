@@ -190,8 +190,8 @@ test.describe('CONS · responsive layout', () => {
 
 test.describe('CONS · studio controls look like one family', () => {
   test('CONS-08 action dock buttons share height, font and radius', async ({ studio, page }) => {
-    await studio.open();
-    const styles = await page.locator('#btn-download-svg, #btn-download-png, #btn-copy-clipboard, #btn-open-pdf-modal, #btn-open-label-modal').evaluateAll((els) =>
+    await studio.open('?symbology=ean-13'); // a barcode, so the EPS button is shown too
+    const styles = await page.locator('#btn-download-svg, #btn-download-eps, #btn-download-png, #btn-copy-clipboard, #btn-open-pdf-modal, #btn-open-label-modal').evaluateAll((els) =>
       els.map((e) => { const s = getComputedStyle(e); return { id: e.id, h: Math.round(e.getBoundingClientRect().height), font: s.fontFamily, radius: s.borderRadius }; }));
     const heights = new Set(styles.map((s) => s.h));
     const fonts = new Set(styles.map((s) => s.font));

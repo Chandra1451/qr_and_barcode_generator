@@ -44,6 +44,7 @@ Dynamic form compilers with real-time payload generation for:
 ### 5. Multi-Resolution & Vector Export
 - **Multi-Resolution PNG**: 1x Web standard, 2x Retina, 4x Ultra-High 300+ DPI print-ready.
 - **Vector SVG**: Infinite-resolution scalable vector graphics for professional laser engraving, die-cutting, and packaging.
+- **Vector EPS** (barcodes): the same shapes as the SVG, at 1 point per module, with pure black written as 100% K for print.
 - **1-Click Clipboard**: Instant image copy via modern Clipboard API.
 
 ### 6. Print-Ready Avery PDF Label Sheets
@@ -115,7 +116,8 @@ qr_and_barcode_generator/
 │   ├── wizards/
 │   │   └── qr-wizards.js           # 10 Smart QR payload compilers & UI forms
 │   └── export/
-│       ├── image-exporter.js       # PNG (1x/2x/4x) and SVG vector exporter
+│       ├── image-exporter.js       # PNG (1x/2x/4x), SVG and EPS vector exporter
+│       ├── eps-exporter.js         # bwip-js SVG → EPS converter (barcodes)
 │       ├── pdf-exporter.js         # Avery label sheet PDF compiler
 │       └── batch-exporter.js       # Batch sequential & CSV ZIP archiver
 ├── pages/                          # 16 Programmatic SEO landing pages

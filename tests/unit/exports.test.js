@@ -10,6 +10,7 @@ import { AVERY_TEMPLATES, calculateLabelPositions } from '../../js/export/pdf-ex
 import { engine, applyCanvasCornerRadius } from '../../js/core/engine.js';
 import { loadJsPdf } from '../../js/core/dynamic-loader.js';
 import { applySvgCornerRadius } from '../../js/export/image-exporter.js';
+import { svgToEps, pathToPs, epsColor } from '../../js/export/eps-exporter.js';
 
 export async function runExportTests(assert) {
   // Test 1: Avery Template Definitions
@@ -129,4 +130,36 @@ export async function runExportTests(assert) {
   });
   assert.isTrue(padSvg.includes('<svg'), 'SVG with custom padding generates cleanly');
   assert.isTrue(padSvg.includes('width="') && padSvg.includes('height="'), 'SVG contains explicit dimensions');
+
+  // Test 13: EPS export (converted from the same bwip-js SVG)
+  assert.equal(epsColor('#000000'), '0 0 0 1 setcmykcolor', 'EPS black is 100% K, not rich black');
+  assert.equal(epsColor('#FFFFFF'), '0 0 0 0 setcmykcolor', 'EPS white is 0% CMYK');
+  assert.equal(epsColor('#336699'), '0.2 0.4 0.6 setrgbcolor', 'EPS keeps other colours as RGB');
+  assert.equal(pathToPs('M0 0L10 0Z').join(' '), '0 0 m 10 0 l z', 'EPS path converts M, L and Z');
+  assert.equal(pathToPs('M0 0Q3 3 6 0').join(' '), '0 0 m 2 2 4 2 6 0 c', 'EPS converts quadratic curves to exact cubics');
+
+  const { svg: eanSvg, scale: eanScale } = await engine.renderBwipVector({ bcid: 'ean13', text: '5901234123457', scale: 3, height: 35 });
+  assert.equal(eanScale, 3, 'renderBwipVector reports the bwip-js scale');
+  const eanEps = svgToEps(eanSvg, { ptPerUnit: 1 / eanScale, title: 'EAN-13 5901234123457' });
+  assert.isTrue(eanEps.startsWith('%!PS-Adobe-3.0 EPSF-3.0'), 'EPS starts with the EPSF-3.0 header');
+  assert.isTrue(/%%BoundingBox: 0 0 \d+ \d+/.test(eanEps), 'EPS has an integer BoundingBox');
+  assert.isTrue(eanEps.trim().endsWith('%%EOF'), 'EPS ends with %%EOF');
+  assert.isTrue(eanEps.split('\n').every((line) => line.length <= 255), 'EPS lines stay within the 255-character DSC limit');
+  const vb = /viewBox="0 0 ([\d.]+) ([\d.]+)"/.exec(eanSvg);
+  const hi = /%%HiResBoundingBox: 0 0 ([\d.]+) ([\d.]+)/.exec(eanEps);
+  assert.isTrue(Math.abs(Number(hi[1]) - Number(vb[1]) / 3) < 0.01 && Math.abs(Number(hi[2]) - Number(vb[2]) / 3) < 0.01, 'EPS size is the SVG size at 1 point per module');
+  const strokes = (eanSvg.match(/stroke-width/g) || []).length;
+  assert.equal((eanEps.match(/^stroke$/gm) || []).length, strokes, 'EPS strokes every bar group of the SVG');
+  assert.isTrue(eanEps.includes('rectfill'), 'EPS paints the background');
+
+  const { svg: dmSvg } = await engine.renderBwipVector({ bcid: 'datamatrix', text: 'EPS-TEST', scale: 3, transparentBg: true });
+  const dmEps = svgToEps(dmSvg, { ptPerUnit: 1 / 3 });
+  assert.isTrue(dmEps.includes('eofill'), 'EPS keeps the even-odd fill rule of 2D codes');
+  assert.isTrue(!dmEps.includes('rectfill'), 'Transparent background stays transparent in EPS');
+
+  const roundEps = svgToEps(eanSvg, { ptPerUnit: 1 / 3, cornerRadius: 18 });
+  assert.isTrue(/arct[\s\S]*clip newpath/.test(roundEps), 'Rounded corners become an EPS clip path');
+  let rejected = false;
+  try { svgToEps('<svg viewBox="0 0 10 10"><circle r="2"/></svg>'); } catch (e) { rejected = true; }
+  assert.isTrue(rejected, 'EPS converter rejects SVG elements it cannot convert exactly');
 }

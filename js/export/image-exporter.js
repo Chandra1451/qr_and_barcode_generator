@@ -8,8 +8,9 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius, cornerSafeInset, toQrByteString, snapQrToMargin } from '../core/engine.js?v=3.10';
-import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.10';
+import { engine, applyCanvasCornerRadius, cornerSafeInset, toQrByteString, snapQrToMargin } from '../core/engine.js?v=3.11';
+import { loadQRCodeStyling } from '../core/dynamic-loader.js?v=3.11';
+import { svgToEps } from './eps-exporter.js?v=3.11';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
@@ -249,6 +250,26 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
   }
   const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
   downloadBlob(blob, filename);
+  return { success: true, filename };
+}
+
+/**
+ * Exports vector EPS (barcodes only; QR codes keep their styled SVG)
+ * @param {object} params
+ */
+export async function exportVectorEps({ generator, payload, options }) {
+  if (!generator || !payload) {
+    throw new Error('Generator and payload are required for EPS export.');
+  }
+  // Same render path as the SVG download, so the EPS matches the SVG shape for shape.
+  const { svg, scale } = await engine.renderVector(generator, payload, options);
+  const eps = svgToEps(svg, {
+    ptPerUnit: 1 / scale,
+    cornerRadius: Number(options.cornerRadius) || 0,
+    title: `${generator.name} ${payload}`
+  });
+  const filename = `${generator.id}-${Date.now()}.eps`;
+  downloadBlob(new Blob([eps], { type: 'application/postscript' }), filename);
   return { success: true, filename };
 }
 

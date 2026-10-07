@@ -1194,6 +1194,39 @@ h1, h2, h3, h4 {
   gap: 0.75rem;
 }
 
+/* SVG download with an EPS button beside it (EPS is hidden for QR codes).
+   When the row is too narrow, EPS wraps onto its own full-width row instead of
+   squeezing the SVG label (buttons don't wrap their text). */
+.action-row-vector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.action-row-vector #btn-download-svg {
+  flex: 100 1 auto;
+}
+
+.action-row-vector #btn-download-eps {
+  flex: 1 0 auto;
+}
+
+.action-row-vector #btn-download-eps[hidden] {
+  display: none;
+}
+
+@media (max-width: 420px) {
+  .action-dock .btn {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
+
+  /* Secondary words in a button label that don't fit on a phone */
+  .action-dock .btn-label-extra {
+    display: none;
+  }
+}
+
 /* --- Avery Sheet & Batch Modals --- */
 .tactile-modal-overlay {
   display: none;

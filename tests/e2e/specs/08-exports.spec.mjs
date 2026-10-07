@@ -142,6 +142,83 @@ test.describe('EXP-SVG · vector downloads', () => {
   });
 });
 
+/**
+ * Re-draws our EPS output as SVG so the downloaded file can be rasterised and scanned.
+ * Understands exactly the operators eps-exporter.js writes (no general PostScript).
+ */
+function epsToSvg(eps) {
+  const hi = /%%HiResBoundingBox: 0 0 ([\d.]+) ([\d.]+)/.exec(eps);
+  const xf = /([\d.]+) [\d.]+ scale 0 ([\d.]+) translate 1 -1 scale/.exec(eps);
+  if (!hi || !xf) throw new Error('EPS is missing its bounding box or page transform');
+  const k = Number(xf[1]);
+  const vh = Number(xf[2]);
+  const vw = Number(hi[1]) / k;
+  const body = eps.slice(eps.indexOf('0 setlinecap'), eps.indexOf('grestore'));
+  const tokens = body.split(/\s+/).filter(Boolean);
+  const out = [];
+  const stack = [];
+  let colour = '#000';
+  let width = 1;
+  let d = '';
+  const cmyk = (c, m, y, kk) => `rgb(${[c, m, y].map((v) => Math.round(255 * (1 - v) * (1 - kk))).join(',')})`;
+  for (const t of tokens) {
+    if (/^-?[\d.]+$/.test(t)) { stack.push(Number(t)); continue; }
+    switch (t) {
+      case 'setcmykcolor': { const [c, m, y, kk] = stack.splice(-4); colour = cmyk(c, m, y, kk); break; }
+      case 'setrgbcolor': { const [r, g, b] = stack.splice(-3); colour = `rgb(${[r, g, b].map((v) => Math.round(v * 255)).join(',')})`; break; }
+      case 'setlinewidth': width = stack.pop(); break;
+      case 'rectfill': { const [x, y, w, h] = stack.splice(-4); out.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${colour}"/>`); break; }
+      case 'm': { const [x, y] = stack.splice(-2); d += `M${x} ${y}`; break; }
+      case 'l': { const [x, y] = stack.splice(-2); d += `L${x} ${y}`; break; }
+      case 'c': { const p = stack.splice(-6); d += `C${p.join(' ')}`; break; }
+      case 'z': d += 'Z'; break;
+      case 'newpath': d = ''; break;
+      case 'fill': out.push(`<path d="${d}" fill="${colour}"/>`); d = ''; break;
+      case 'eofill': out.push(`<path d="${d}" fill="${colour}" fill-rule="evenodd"/>`); d = ''; break;
+      case 'stroke': out.push(`<path d="${d}" fill="none" stroke="${colour}" stroke-width="${width}"/>`); d = ''; break;
+      case 'setlinecap': case 'setlinejoin': stack.pop(); break;
+      default: throw new Error(`Unexpected EPS operator: ${t}`);
+    }
+  }
+  return `<svg viewBox="0 0 ${vw} ${vh}" xmlns="http://www.w3.org/2000/svg">${out.join('')}</svg>`;
+}
+
+test.describe('EXP-EPS · EPS downloads (barcodes)', () => {
+  for (const g of BARCODE_GENERATORS) {
+    test(`EXP-12 ${g.id}: EPS is valid, the size of the SVG at 1 pt per module, and scans`, async ({ studio, page }) => {
+      await studio.open(`?symbology=${g.id}`);
+      await expect(page.locator('#btn-download-eps')).toBeVisible();
+      const file = await studio.download(page.locator('#btn-download-eps'));
+      expect(file.filename).toMatch(/\.eps$/);
+      const eps = file.buffer.toString('latin1');
+      expect(eps.startsWith('%!PS-Adobe-3.0 EPSF-3.0\n')).toBe(true);
+      expect(eps).toMatch(/^%%BoundingBox: 0 0 \d+ \d+$/m);
+      expect(eps.trim().endsWith('%%EOF')).toBe(true);
+      expect(eps.split('\n').every((line) => line.length <= 255), 'EPS line longer than 255 characters').toBe(true);
+      expect(/[^\x09\x0a\x0d\x20-\x7e]/.test(eps), 'EPS is not 7-bit clean').toBe(false);
+      const svg = (await studio.download(page.locator('#btn-download-svg'))).buffer.toString('utf8');
+      const redrawn = epsToSvg(eps);
+      expect(relDiff(svgSize(redrawn).width / svgSize(redrawn).height, svgSize(svg).width / svgSize(svg).height)).toBeLessThan(0.001);
+      const text = await decodeFirst(await rasterizeSvg(page, redrawn));
+      expect(text, 'EPS (re-drawn) does not scan').not.toBeNull();
+      expect(normaliseScan(g.id, text)).toBe(expectedFor(g));
+    });
+  }
+
+  test('EXP-13 EPS is offered for barcodes only, and keeps bar colour and rounded corners', async ({ studio, page }) => {
+    await studio.open();
+    await expect(page.locator('#btn-download-eps'), 'EPS button should be hidden for QR codes').toBeHidden();
+    await studio.open('?symbology=ean-13');
+    await page.locator('.barcode-preset-chip[data-bar="#14532d"]').click();
+    await page.locator('.corner-preset-btn[data-radius="18"]').click();
+    await page.waitForTimeout(300);
+    const eps = (await studio.download(page.locator('#btn-download-eps'))).buffer.toString('latin1');
+    // #14532d = rgb(20, 83, 45)
+    expect(eps).toContain('0.078 0.325 0.176 setrgbcolor');
+    expect(eps, 'rounded corners missing (no clip path)').toMatch(/arct[\s\S]*clip newpath/);
+  });
+});
+
 test.describe('EXP-CLIP · clipboard', () => {
   test('EXP-20 "Copy" puts a scannable PNG on the clipboard', async ({ studio, page, context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);

@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.10';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.10';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.11';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.11';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.10';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.10';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.10';
-import { exportHighResPng, exportVectorSvg, copyImageToClipboard } from './export/image-exporter.js?v=3.10';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.10';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.10';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.10';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.10';
+} from './generators/registry.js?v=3.11';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.11';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.11';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.11';
+import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.11';
+import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.11';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.11';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.11';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.10';
+} from './export/label-maker.js?v=3.11';
 
 class V2StudioApp {
   constructor() {
@@ -265,6 +265,7 @@ class V2StudioApp {
 
       // Action Export Buttons
       btnDownloadSvg: document.getElementById('btn-download-svg'),
+      btnDownloadEps: document.getElementById('btn-download-eps'),
       btnDownloadPng: document.getElementById('btn-download-png'),
       scaleFactorSelect: document.getElementById('scale-factor-select'),
       btnOpenPdfModal: document.getElementById('btn-open-pdf-modal'),
@@ -517,6 +518,8 @@ class V2StudioApp {
     const isQR = gen.id === 'qr-code';
     this.dom.qrWizardSection.style.display = isQR ? 'block' : 'none';
     this.dom.standardPayloadGroup.style.display = isQR ? 'none' : 'block';
+    // EPS is for barcodes; styled QR codes (dots, gradients, logos) download as SVG.
+    if (this.dom.btnDownloadEps) this.dom.btnDownloadEps.hidden = isQR;
 
     // Adaptive Accordion: Visible for ALL symbologies!
     if (this.dom.stylingAccordion) {
@@ -1552,6 +1555,19 @@ class V2StudioApp {
     }
   }
 
+  async downloadEps() {
+    try {
+      await exportVectorEps({
+        generator: this.currentGenerator,
+        payload: this.dom.payloadInput.value,
+        options: this.getCompiledRenderOptions(false)
+      });
+      this.showToast('Vector EPS exported successfully!');
+    } catch (err) {
+      this.showToast(`EPS export failed: ${err.message}`, true);
+    }
+  }
+
   async downloadPng() {
     try {
       const scale = parseInt(this.dom.scaleFactorSelect.value, 10) || 2;
@@ -2219,6 +2235,7 @@ class V2StudioApp {
 
     // Export Buttons
     this.dom.btnDownloadSvg?.addEventListener('click', () => this.downloadSvg());
+    this.dom.btnDownloadEps?.addEventListener('click', () => this.downloadEps());
     this.dom.btnDownloadPng?.addEventListener('click', () => this.downloadPng());
     this.dom.btnCopyClipboard?.addEventListener('click', () => this.copyClipboard());
   }
