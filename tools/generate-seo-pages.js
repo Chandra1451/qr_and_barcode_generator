@@ -2083,7 +2083,7 @@ const GUIDES = {
       "Download <strong>SVG</strong> or <strong>PNG</strong> for flyers, signs and business cards."
     ],
     "print": [
-      "<strong>Size:</strong> at least <strong>2 cm (0.8 in)</strong> wide for flyers and cards read up close; for a door or window sign read from a few metres away, about 10 cm (4 in) or more. People scan from roughly 10× the code's width.",
+      "<strong>Size:</strong> at least <strong>2 cm (0.8 in)</strong> wide for flyers and cards read up close; for a door or window sign read from 1–2 metres away, about 10–20 cm (4–8 in). This follows a common rule of thumb, not part of the QR standard: make the code at least a tenth of the scanning distance. Test-scan at the real distance before printing.",
       "<strong>Add a line of text</strong> such as <em>\"Scan for directions\"</em> and the address, so people know what the code does and can still find you without scanning.",
       "<strong>Keep the white border</strong> around the code, and print dark on light."
     ],
@@ -2118,7 +2118,7 @@ const GUIDES = {
       "Print one page on plain paper at <strong>Actual size / 100%</strong>, hold it against a label sheet to check the alignment, then print on the labels and scan one with your phone."
     ],
     "print": [
-      "<strong>QR size:</strong> on a 1-inch-tall 5160 label, the Split layout prints the QR code about <strong>22 mm (0.88 in)</strong> square, including the white border it needs. That scans from a phone held up to about 20 cm (8 in) away; it's too small for posters or signs.",
+      "<strong>QR size:</strong> on a 1-inch-tall 5160 label, the Split layout prints the QR code about <strong>22 mm (0.88 in)</strong> square, including the white border it needs. By the common rule of thumb (code at least a tenth of the scanning distance; not part of the QR standard) that suits a phone held up to about 20 cm (8 in) away. It's too small for posters or signs; test-scan a printed label.",
       "<strong>No logo on tiny QR codes:</strong> a centre logo switches the code to the highest error correction, which makes the pattern denser. Leave it out on labels this small.",
       "<strong>Retail barcodes:</strong> a 1-inch label is shorter than an EAN-13 or UPC-A at GS1's target size (bars 22.85 mm plus the digits). Use a smaller size within GS1's range, or a taller label such as Avery 5163.",
       "<strong>Printer:</strong> 5160 labels are made for laser printers and 8160 for inkjet printers. Both are the same size and use the same template.",
@@ -2191,7 +2191,7 @@ const GUIDES = {
       "Download <strong>SVG</strong> for print shops and signs, or <strong>PNG</strong> at 2× or 4× for documents, then print."
     ],
     "print": [
-      "<strong>Size:</strong> print the code at least <strong>2.5 cm (1 in)</strong> wide for a table card read up close. A useful rule: people scan from about 10× the code's width, so a 3 cm code works from roughly 30 cm.",
+      "<strong>Size:</strong> print the code at least <strong>2.5 cm (1 in)</strong> wide for a table card read up close. A common rule of thumb (not part of the QR standard) is a scanning distance of up to about 10× the code's width, so a 3 cm code suits roughly 30 cm. Test-scan at the real distance.",
       "<strong>Margin:</strong> keep the white border (quiet zone) around the code. Cropping it off is the most common reason a printed code won't scan.",
       "<strong>Contrast:</strong> dark code on a light background. Light-on-dark (inverted) codes fail on some Android phones.",
       "<strong>Surface:</strong> matte paper or a matte laminate. Glossy lamination causes glare under ceiling lights.",

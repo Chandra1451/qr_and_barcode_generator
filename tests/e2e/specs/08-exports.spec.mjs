@@ -236,7 +236,7 @@ test.describe('EXP-EPS · EPS downloads (barcodes)', () => {
 });
 
 test.describe('EXP-QRSAME · every styled-QR export is the same image', () => {
-  // Since 2026-10-08 the preview, PNG, PDF sheet and batch all build styled QR codes with one
+  // Since 2026-10-07 the preview, PNG, PDF sheet and batch all build styled QR codes with one
   // function (qrStylingConfig / renderStyledQr in engine.js). Before, batch dropped the gradient
   // and the PDF dropped background, padding and logo size. At the same scale the files must match.
   function samePixels(a, b) {
@@ -373,7 +373,7 @@ test.describe('EXP-CONN · connections from the feature map (each test also chec
   });
 
   test('EXP-45 QR SVG download with rounded corners is a valid file that scans', async ({ studio, page }) => {
-    // Bug found 2026-10-08: the corner clip was inserted after the <?xml?> declaration, outside <svg>.
+    // Bug found 2026-10-07: the corner clip was inserted after the <?xml?> declaration, outside <svg>.
     await studio.open();
     await page.locator('.corner-preset-btn[data-radius="18"]').click();
     await page.waitForTimeout(300);

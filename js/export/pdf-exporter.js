@@ -6,8 +6,8 @@
  * directly in client-side browser memory using jsPDF.
  */
 
-import { loadJsPdf } from '../core/dynamic-loader.js?v=3.15';
-import { engine } from '../core/engine.js?v=3.15';
+import { loadJsPdf } from '../core/dynamic-loader.js?v=3.16';
+import { engine } from '../core/engine.js?v=3.16';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {

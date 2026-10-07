@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.15';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.16';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.
@@ -86,7 +86,7 @@ export function svgWithRoundedCorners(svgString, radius) {
   const clipDef = `<defs><clipPath id="${clipId}"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${r}" ry="${r}" /></clipPath></defs>`;
 
   // The opening <svg …> tag, not the first '>': QR SVGs start with an <?xml …?> declaration,
-  // and inserting the clip after it put the clip outside <svg> and broke the file (until 2026-10-08).
+  // and inserting the clip after it put the clip outside <svg> and broke the file (until 2026-10-07).
   const svgOpenTagStart = svgString.search(/<svg[\s>]/);
   if (svgOpenTagStart === -1) return svgString;
   const svgOpenTagEnd = svgString.indexOf('>', svgOpenTagStart);
