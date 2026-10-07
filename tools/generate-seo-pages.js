@@ -706,7 +706,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Can each label on the sheet have a different code?',
-        a: 'Not on one sheet yet: the PDF repeats one design on every label, which suits product labels, address labels and QR codes you hand out. For different codes, such as serial numbers, the batch generator downloads each code as a separate image in a ZIP file that you can place with a label design program.'
+        a: 'Yes. In Batch Mode, paste your list (or make a numbered sequence), set Export Format to Avery PDF sheet and choose Avery 5160. Each label gets the next value, with the value printed underneath if you want. The label maker and the Print Avery PDF Label Sheet button repeat one design on every label.'
       }
     ]
   },
@@ -801,30 +801,30 @@ const SEO_PAGES = [
     queryParam: 'batch=open',
     category: 'Logistics & 1D',
     metaTitle: 'Free Bulk Barcode Generator from Excel (CSV) - Batch Print & ZIP Export',
-    metaDescription: 'Import CSV or Excel spreadsheets to generate hundreds of barcodes in bulk. Export high-resolution PNG batches in ZIP files or print directly to multi-page label sheets.',
+    metaDescription: 'Paste a column from Excel, Google Sheets or a CSV to make up to 200 barcodes or QR codes at once. Download a ZIP of PNG/SVG images or an Avery PDF with a different code on each label.',
     h1: 'Free Bulk Barcode Generator from Excel & CSV',
-    lead: 'Batch-generate hundreds of sequential or spreadsheet-imported barcodes in seconds. Upload your CSV from Excel, Google Sheets, or ERP inventory systems and download all barcodes in a consolidated ZIP file or Avery PDF sheet.',
+    lead: 'Make up to 200 barcodes or QR codes at once from a numbered sequence or a pasted list. Copy a column from Excel, Google Sheets or your inventory system, paste it in, and download a ZIP of images or an Avery PDF sheet with one code per label.',
     technicalSpec: {
-      inputDataSources: 'CSV files, Tab-separated text, or Automated sequential numeric ranges',
-      supportedSymbologies: 'Code 128, UPC-A, EAN-13, QR Code, Data Matrix, Code 39',
-      batchCapacity: 'Up to 1,000 barcodes per batch executed 100% client-side in browser memory',
-      exportFormats: 'Consolidated ZIP of 300 DPI PNGs or multi-page Avery PDF label sheets',
+      inputDataSources: 'Pasted lines or CSV text (first column), or a numbered sequence (up to 100)',
+      supportedSymbologies: 'All 10 formats, including Code 128, EAN-13, UPC-A, Code 39 and QR Code',
+      batchCapacity: 'Up to 200 values per batch, made in your browser; you are told if more were pasted',
+      exportFormats: 'ZIP of PNG or SVG images, or Avery PDF sheets (5160, 5163, L7160) with one code per label',
       privacyStandard: '100% Zero-Knowledge; proprietary inventory data is never uploaded to any server'
     },
     useCases: [
       'Warehouse inventory counting and annual stock audit tagging',
       'Batch product labeling from Shopify, WooCommerce, or Amazon inventory CSV exports',
-      'Sequential serial number generation (e.g. SN-0001 through SN-0500)',
+      'Sequential serial numbers and asset tags (e.g. SN-0001 to SN-0100) on Avery labels',
       'Event badge and trade show attendee registration credentials'
     ],
     faqs: [
       {
-        q: 'How do I prepare an Excel file for bulk barcode generation?',
-        a: 'In Excel or Google Sheets, create a single column with your SKU, part number, or barcode values. Go to File > Save As and select CSV (Comma delimited) (*.csv). Then upload that file into our Batch Import tab.'
+        q: 'How do I make barcodes from an Excel or Google Sheets column?',
+        a: 'Put one value per row in a single column (SKU, part number or barcode number). Copy the column, open Batch Mode in the studio, choose the Paste List / CSV tab and paste. For CSV text, the first column is used. Up to 200 values per batch.'
       },
       {
-        q: 'How fast does the bulk generator create hundreds of barcodes?',
-        a: 'Because UniversalCodeMaker processes everything directly in your browser using multi-threaded web workers and local Canvas rendering, 500 barcodes typically generate in under 3 seconds.'
+        q: 'How many barcodes can I make at once?',
+        a: 'Up to 200 values per batch. If you paste more, the tool tells you how many were left out, so you can run the rest as a second batch. Everything is made in your browser, so the speed depends on your device.'
       },
       {
         q: 'Is my proprietary inventory or pricing data sent to a cloud server?',
@@ -832,7 +832,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Can I print bulk barcodes directly onto Avery label sheets?',
-        a: 'Yes. Once your batch is imported, select your target Avery template (such as 5160 30-up) to export a multi-page PDF formatted with exact label boundaries ready for your office printer.'
+        a: 'Yes. In Batch Mode, set Export Format to Avery PDF sheet, choose 5160, 5163 or L7160, and download a PDF with a different code on each label, in the order of your list. Tick the option to print each value as text under its code.'
       }
     ]
   },
@@ -1847,8 +1847,8 @@ const ENRICHMENTS = {
         "desc": "No thermal printer needed: print on a normal laser printer (5160 labels) or inkjet printer (8160 labels)."
       },
       {
-        "title": "Code Plus Text",
-        "desc": "Put a QR code or barcode beside a title, price or SKU with the label maker, or print just the code on up to 300 labels (10 sheets) in one PDF."
+        "title": "Same Code or a Different One per Label",
+        "desc": "Repeat one design (with a title, price or SKU beside it) using the label maker, or print a list of values with a different code on each label from Batch Mode."
       }
     ],
     "decisionGuide": [
@@ -1977,12 +1977,12 @@ const ENRICHMENTS = {
   "bulk-barcode-generator-excel": {
     "benefits": [
       {
-        "title": "1,000 Barcodes in Under 3 Seconds",
-        "desc": "High-throughput browser-based batch processing with zero server upload latency or cloud queuing."
+        "title": "Checked Before Anything Is Made",
+        "desc": "Every value is checked first (format and check digit). If any line is wrong, you see its line number and nothing is made until it is fixed."
       },
       {
         "title": "Single-Click Consolidated ZIP Export",
-        "desc": "Downloads all generated high-DPI 300+ PPI PNGs cleanly organized with original filenames in a single ZIP file."
+        "desc": "Downloads every code as a PNG or SVG in one ZIP, each file numbered and named after its value (e.g. 001_SN-0001.png), or as an Avery PDF with one code per label."
       },
       {
         "title": "100% Zero-Knowledge Privacy",
@@ -1991,12 +1991,12 @@ const ENRICHMENTS = {
     ],
     "decisionGuide": [
       {
-        "q": "How do I format my Excel sheet before uploading?",
-        "a": "Place your barcode data in a single column without empty rows or complex formulas, then click File > Save As > CSV (Comma delimited). Our tool will parse each row into an individual barcode."
+        "q": "How do I format my spreadsheet before pasting?",
+        "a": "Put one value per row in a single column, with no formulas in the cells. Blank lines are skipped. If you paste CSV text, only the first column is used."
       },
       {
         "q": "Can I batch generate sequential numbers without an Excel file?",
-        "a": "Yes! Switch to the 'Sequential Range' tab, specify your prefix (e.g. SKU-), start number (e.g. 1001), count (e.g. 200), and padding digits to generate an instant sequence."
+        "a": "Yes. Use the Sequenced Numbers tab: set a prefix (e.g. SKU-), a start number (e.g. 1001), how many (up to 100) and the number of digits, and the tool makes the sequence."
       }
     ],
     "legalCaution": {

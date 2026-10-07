@@ -3,6 +3,7 @@
 
 import { test, expect } from '../support/fixtures.mjs';
 import JSZip from 'jszip';
+import zlib from 'node:zlib';
 import { decodeFirst } from '../support/decode.mjs';
 import { GENERATORS, BARCODE_GENERATORS, expectedScanText, normaliseScan } from '../support/catalog.mjs';
 import { isPng, readPng, colorStats, hexToRgb, colorDistance, alphaAt, svgSize, pdfInfo, relDiff } from '../support/images.mjs';
@@ -407,6 +408,128 @@ test.describe('EXP-CONN · connections from the feature map (each test also chec
     await page.waitForTimeout(400);
     const red = await labelPng();
     expect(share(red, '#991b1b'), 'label barcode ignores the studio bar colour').toBeGreaterThan(0.02);
+  });
+});
+
+/** All page content streams of a PDF, inflated (jsPDF compresses them with Flate). */
+function pdfPageText(buf) {
+  const out = [];
+  const src = buf.toString('latin1');
+  const re = /stream\r?\n/g;
+  let m;
+  while ((m = re.exec(src))) {
+    const start = m.index + m[0].length;
+    const end = src.indexOf('endstream', start);
+    if (end < 0) break;
+    try { out.push(zlib.inflateSync(buf.subarray(start, end)).toString('latin1')); } catch { /* not a Flate text stream */ }
+  }
+  return out.join('\n');
+}
+
+test.describe('EXP-AVL · Avery sheet with a different code per label (batch)', () => {
+  /** Opens the batch window with a pasted list and the Avery PDF format. */
+  async function averyBatch(page, lines, { caption = true, template = 'avery-5160' } = {}) {
+    await page.locator('#btn-open-batch-modal').click();
+    await page.locator('#tab-batch-csv').click();
+    await page.locator('#batch-csv-input').fill(lines.join('\n'));
+    await page.locator('#batch-format-select').selectOption('avery-pdf');
+    await page.locator('#batch-avery-template').selectOption(template);
+    await page.locator('#batch-avery-caption').evaluate((e, v) => { e.checked = v; }, caption);
+  }
+  /** Records the label images and caption texts jsPDF draws in the next PDF. */
+  async function hookJsPdf(page) {
+    await page.evaluate(() => {
+      window.__pdfImages = [];
+      window.__pdfTexts = [];
+      const api = window.jspdf.jsPDF.API;
+      if (api.__ucmListHook) return;
+      const addImage = api.addImage;
+      api.addImage = function (img, ...rest) { window.__pdfImages.push(typeof img === 'string' ? img : ''); return addImage.call(this, img, ...rest); };
+      api.__ucmListHook = true;
+    });
+  }
+
+  test('EXP-46 35 Code 128 values → 2 pages, each label scans to its own value, captions printed', async ({ studio, page }) => {
+    await studio.open('?symbology=code-128');
+    const values = Array.from({ length: 35 }, (_, i) => `ASSET-${String(i + 1).padStart(4, '0')}`);
+    // First run loads jsPDF; the second is the one we inspect.
+    await averyBatch(page, values.slice(0, 2));
+    await studio.download(page.locator('#btn-generate-batch'));
+    await hookJsPdf(page);
+    await averyBatch(page, values);
+    const file = await studio.download(page.locator('#btn-generate-batch'));
+    // The message shows for 3.2 s after the download starts: check it before the slow decoding below.
+    await expect.poll(async () => (await studio.toastTexts()).join(' ')).toMatch(/35 labels on 2 sheets/);
+    expect(file.filename).toMatch(/\.pdf$/);
+    const info = pdfInfo(file.buffer);
+    expect(info.isPdf && info.hasEof).toBe(true);
+    expect(info.pageCount, 'Avery 5160 holds 30, so 35 values need 2 pages').toBe(2);
+    const images = await page.evaluate(() => window.__pdfImages.filter((s) => s.startsWith('data:image/png')));
+    expect(images.length).toBe(35);
+    for (let i = 0; i < images.length; i++) {
+      const text = await decodeFirst(Buffer.from(images[i].split(',')[1], 'base64'));
+      expect(text, `label ${i + 1} should scan to its own value`).toBe(values[i]);
+    }
+    // Captions are PDF text: every value is drawn as "(VALUE) Tj" in the (compressed) page streams.
+    const pageText = pdfPageText(file.buffer);
+    for (const v of values) expect(pageText, `caption for ${v} missing`).toContain(`(${v}) Tj`);
+
+    // Opposite case: captions switched off → no values printed as text.
+    await averyBatch(page, values.slice(0, 2), { caption: false });
+    const plain = await studio.download(page.locator('#btn-generate-batch'));
+    expect(pdfPageText(plain.buffer)).not.toContain('(ASSET-0001) Tj');
+  });
+
+  test('EXP-47 invalid lines stop the sheet and are listed by line number (ZIP too)', async ({ studio, page }) => {
+    await studio.open('?symbology=ean-13');
+    const lines = ['5901234123457', 'ABC', '', '5901234123458', '590123412345'];
+    for (const format of ['avery-pdf', 'png']) {
+      await averyBatch(page, lines);
+      await page.locator('#batch-format-select').selectOption(format);
+      let downloaded = false;
+      const onDownload = () => { downloaded = true; };
+      page.on('download', onDownload);
+      await page.locator('#btn-generate-batch').click();
+      const box = page.locator('#batch-message-box');
+      await expect(box).toBeVisible();
+      await expect(box).toContainText('Nothing was made');
+      await expect(box).toContainText('Line 2: "ABC"');
+      await expect(box).toContainText('Line 4: "5901234123458"');
+      await expect(box).not.toContainText('Line 5');
+      await page.waitForTimeout(1500);
+      page.off('download', onDownload);
+      expect(downloaded, `${format}: nothing should download while lines are invalid`).toBe(false);
+      await page.keyboard.press('Escape');
+    }
+  });
+
+  test('EXP-48 more than 200 lines: the counter and the result say how many were left out', async ({ studio, page }) => {
+    await studio.open('?symbology=code-39');
+    const lines = Array.from({ length: 203 }, (_, i) => `C${i}`);
+    await page.locator('#btn-open-batch-modal').click();
+    await page.locator('#tab-batch-csv').click();
+    await page.locator('#batch-csv-input').fill(lines.join('\n'));
+    await expect(page.locator('#val-batch-csv-count')).toHaveText('200 items (3 left out: limit 200)');
+    await page.locator('#batch-format-select').selectOption('svg');
+    const file = await studio.download(page.locator('#btn-generate-batch'));
+    const zip = await JSZip.loadAsync(file.buffer);
+    expect(Object.values(zip.files).filter((f) => !f.dir).length).toBe(200);
+    await expect.poll(async () => (await studio.toastTexts()).join(' ')).toMatch(/3 more lines were left out \(limit 200\)/);
+  });
+
+  test('EXP-49 QR values on an Avery sheet: each label scans to its own link', async ({ studio, page }) => {
+    await studio.open();
+    const values = ['https://qa.example.com/a', 'https://qa.example.com/b', 'https://qa.example.com/c'];
+    await averyBatch(page, values.slice(0, 1));
+    await studio.download(page.locator('#btn-generate-batch'));
+    await hookJsPdf(page);
+    await averyBatch(page, values, { template: 'avery-5163' });
+    await studio.download(page.locator('#btn-generate-batch'));
+    const images = await page.evaluate(() => window.__pdfImages.filter((s) => s.startsWith('data:image/png')));
+    expect(images.length).toBe(3);
+    for (let i = 0; i < images.length; i++) {
+      expect(await decodeFirst(Buffer.from(images[i].split(',')[1], 'base64'))).toBe(values[i]);
+    }
   });
 });
 

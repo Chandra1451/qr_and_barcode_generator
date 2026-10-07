@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.16';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.17';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.

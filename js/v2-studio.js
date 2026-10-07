@@ -4,21 +4,21 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.16';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.16';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.17';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.17';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.16';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.16';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.16';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.16';
-import { generatePdfLabelSheet, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.16';
-import { generateSequenceList, parseCsvOrLines, generateBatchZip } from './export/batch-exporter.js?v=3.16';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.16';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.16';
+} from './generators/registry.js?v=3.17';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.17';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.17';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.17';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.17';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.17';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.17';
+import { initCookieBanner } from './core/cookie-banner.js?v=3.17';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +27,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.16';
+} from './export/label-maker.js?v=3.17';
 
 class V2StudioApp {
   constructor() {
@@ -302,6 +302,13 @@ class V2StudioApp {
       valBatchCsvCount: document.getElementById('val-batch-csv-count'),
       batchFormatSelect: document.getElementById('batch-format-select'),
       batchScaleSelect: document.getElementById('batch-scale-select'),
+      batchScaleGroup: document.getElementById('batch-scale-group'),
+      batchAveryTemplateGroup: document.getElementById('batch-avery-template-group'),
+      batchAveryTemplate: document.getElementById('batch-avery-template'),
+      batchAveryCaptionRow: document.getElementById('batch-avery-caption-row'),
+      batchAveryCaption: document.getElementById('batch-avery-caption'),
+      batchMessageBox: document.getElementById('batch-message-box'),
+      batchGenerateText: document.getElementById('batch-generate-text'),
       batchProgressBox: document.getElementById('batch-progress-box'),
       batchProgressStatus: document.getElementById('batch-progress-status'),
       batchProgressPercent: document.getElementById('batch-progress-percent'),
@@ -1958,6 +1965,8 @@ class V2StudioApp {
     this.dom.btnOpenBatchModal?.addEventListener('click', () => {
       this.dom.batchProgressBox.style.display = 'none';
       this.dom.batchProgressFill.style.width = '0%';
+      this.showBatchMessage('');
+      this.updateBatchFormatUi();
       this.dom.batchModal.classList.add('open');
     });
     this.dom.btnCloseBatchModal?.addEventListener('click', () => {
@@ -1989,13 +1998,18 @@ class V2StudioApp {
       input?.addEventListener('input', () => this.updateBatchSeqPreview());
     });
 
-    // CSV Lines Counter
+    // CSV Lines Counter (says so when lines are over the limit, instead of cutting silently)
     this.dom.batchCsvInput?.addEventListener('input', () => {
-      const lines = parseCsvOrLines(this.dom.batchCsvInput.value || '');
+      const { entries, leftOut } = parseCsvOrLinesDetailed(this.dom.batchCsvInput.value || '');
       if (this.dom.valBatchCsvCount) {
-        this.dom.valBatchCsvCount.textContent = `${lines.length} items`;
+        this.dom.valBatchCsvCount.textContent = leftOut
+          ? `${entries.length} items (${leftOut} left out: limit ${BATCH_LIMIT})`
+          : `${entries.length} items`;
       }
+      this.showBatchMessage('');
     });
+
+    this.dom.batchFormatSelect?.addEventListener('change', () => this.updateBatchFormatUi());
 
     this.dom.btnGenerateBatch?.addEventListener('click', () => this.generateBatch());
   }
@@ -2013,49 +2027,104 @@ class V2StudioApp {
     this.dom.batchSeqPreview.textContent = `${first} ... ${last} (${count} codes)`;
   }
 
+  /** Shows the Avery options only for the Avery PDF format, and names the action. */
+  updateBatchFormatUi() {
+    const isAvery = this.dom.batchFormatSelect?.value === 'avery-pdf';
+    if (this.dom.batchScaleGroup) this.dom.batchScaleGroup.hidden = isAvery;
+    if (this.dom.batchAveryTemplateGroup) this.dom.batchAveryTemplateGroup.hidden = !isAvery;
+    if (this.dom.batchAveryCaptionRow) this.dom.batchAveryCaptionRow.hidden = !isAvery;
+    if (this.dom.batchGenerateText) this.dom.batchGenerateText.textContent = isAvery ? 'Download Avery PDF' : 'Export ZIP Archive';
+  }
+
+  /** Plain-text message in the batch window ('' hides it). */
+  showBatchMessage(text, isError = false) {
+    const box = this.dom.batchMessageBox;
+    if (!box) return;
+    box.textContent = text;
+    box.classList.toggle('is-error', Boolean(isError));
+    box.hidden = !text;
+  }
+
   async generateBatch() {
     try {
-      let items = [];
+      // Values with the line (or position) they came from, so problems can be pointed at.
+      let entries = [];
+      let leftOut = 0;
       if (this.activeBatchMode === 'seq') {
         const prefix = this.dom.batchPrefix?.value || '';
         const start = parseInt(this.dom.batchStart?.value, 10) || 1;
         const count = Math.min(100, Math.max(1, parseInt(this.dom.batchCount?.value, 10) || 10));
         const pad = Math.max(0, parseInt(this.dom.batchPad?.value, 10) || 3);
         const suffix = this.dom.batchSuffix?.value || '';
-        items = generateSequenceList({ prefix, start, count, padLength: pad, suffix });
+        entries = generateSequenceList({ prefix, start, count, padLength: pad, suffix }).map((value, i) => ({ value, line: i + 1 }));
       } else {
-        items = parseCsvOrLines(this.dom.batchCsvInput?.value || '');
+        ({ entries, leftOut } = parseCsvOrLinesDetailed(this.dom.batchCsvInput?.value || ''));
       }
 
-      if (!items.length) {
+      if (!entries.length) {
         this.showToast('Please provide at least 1 payload in the input box.', true);
         return;
       }
 
+      // Every value is checked first; nothing is made until all are valid (owner decision 2026-10-07).
+      const invalid = findInvalidBatchItems(this.currentGenerator, entries);
+      if (invalid.length) {
+        const where = this.activeBatchMode === 'seq' ? 'Code' : 'Line';
+        const shown = invalid.slice(0, 10).map(({ line, value, error }) => `${where} ${line}: "${value}" (${error})`);
+        if (invalid.length > 10) shown.push(`…and ${invalid.length - 10} more.`);
+        this.showBatchMessage(`Nothing was made. Fix ${invalid.length === 1 ? 'this value' : `these ${invalid.length} values`} for ${this.currentGenerator.name}:\n${shown.join('\n')}`, true);
+        return;
+      }
+      this.showBatchMessage('');
+
+      const items = entries.map((e) => e.value);
       const format = this.dom.batchFormatSelect?.value || 'png';
       const scaleFactor = parseInt(this.dom.batchScaleSelect?.value, 10) || 2;
+      const options = this.getCompiledRenderOptions(this.currentGenerator.id === 'qr-code');
+      const onProgress = ({ current, total, percent }) => {
+        this.dom.batchProgressStatus.textContent = `Processing ${current} / ${total}...`;
+        this.dom.batchProgressPercent.textContent = `${percent}%`;
+        this.dom.batchProgressFill.style.width = `${percent}%`;
+      };
 
       this.dom.batchProgressBox.style.display = 'block';
       this.dom.batchProgressStatus.textContent = `Processing 0 / ${items.length}...`;
       this.dom.batchProgressPercent.textContent = '0%';
       this.dom.batchProgressFill.style.width = '0%';
 
+      const leftOutNote = leftOut ? ` ${leftOut} more line${leftOut === 1 ? ' was' : 's were'} left out (limit ${BATCH_LIMIT}).` : '';
+
+      if (format === 'avery-pdf') {
+        const templateId = this.dom.batchAveryTemplate?.value || 'avery-5160';
+        const doc = await generatePdfSheetFromList({
+          generator: this.currentGenerator,
+          items,
+          options,
+          logoDataUrl: this.activeLogoDataUrl,
+          templateId,
+          showCaption: Boolean(this.dom.batchAveryCaption?.checked),
+          onProgress
+        });
+        const perSheet = AVERY_TEMPLATES[templateId]?.perSheet || 30;
+        const sheets = Math.ceil(items.length / perSheet);
+        const captionNote = doc.captionsSkipped ? ` ${doc.captionsSkipped} caption${doc.captionsSkipped === 1 ? '' : 's'} left off (characters the PDF font can't show).` : '';
+        this.dom.batchModal.classList.remove('open');
+        this.showToast(`Avery PDF: ${items.length} labels on ${sheets} sheet${sheets === 1 ? '' : 's'}.${leftOutNote}${captionNote}`);
+        return;
+      }
+
       await generateBatchZip({
         generator: this.currentGenerator,
         items,
         format,
         scaleFactor,
-        options: this.getCompiledRenderOptions(this.currentGenerator.id === 'qr-code'),
+        options,
         logoDataUrl: this.activeLogoDataUrl,
-        onProgress: ({ current, total, percent }) => {
-          this.dom.batchProgressStatus.textContent = `Processing ${current} / ${total}...`;
-          this.dom.batchProgressPercent.textContent = `${percent}%`;
-          this.dom.batchProgressFill.style.width = `${percent}%`;
-        }
+        onProgress
       });
 
       this.dom.batchModal.classList.remove('open');
-      this.showToast(`Batch ZIP of ${items.length} items exported!`);
+      this.showToast(`Batch ZIP of ${items.length} items exported!${leftOutNote}`);
     } catch (err) {
       this.showToast(`Batch generation failed: ${err.message}`, true);
     }

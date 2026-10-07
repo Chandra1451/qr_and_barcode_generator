@@ -64,7 +64,7 @@
 
   <!-- V2 Stylesheets -->
   <link rel="stylesheet" href="css/v2-theme.css?v=3.3">
-  <link rel="stylesheet" href="css/v2-studio.css?v=3.7">
+  <link rel="stylesheet" href="css/v2-studio.css?v=3.8">
 </head>
 <body>
 
@@ -924,7 +924,7 @@
       <div class="tactile-modal-header">
         <h3 class="tactile-title" style="display: flex; align-items: center; gap: 0.5rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
-          Batch Serialization &amp; ZIP Generator
+          Batch Mode: ZIP or Avery Sheet
         </h3>
         <button type="button" class="btn btn-ink btn-sm" id="btn-close-batch-modal" aria-label="Close Batch Modal">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
@@ -1009,9 +1009,10 @@
             <select class="symbology-select-box" id="batch-format-select" style="padding: 0.45rem 0.65rem; font-size: 0.88rem;">
               <option value="png" selected>PNG (Sharp Raster)</option>
               <option value="svg">SVG (Vector Lossless)</option>
+              <option value="avery-pdf">Avery PDF sheet (one code per label)</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-group" id="batch-scale-group">
             <label class="form-label" for="batch-scale-select" style="font-size: 0.82rem;">Resolution Scale</label>
             <select class="symbology-select-box" id="batch-scale-select" style="padding: 0.45rem 0.65rem; font-size: 0.88rem;">
               <option value="1">1x Standard</option>
@@ -1019,7 +1020,23 @@
               <option value="4">4x Print (300 DPI)</option>
             </select>
           </div>
+          <div class="form-group" id="batch-avery-template-group" hidden>
+            <label class="form-label" for="batch-avery-template" style="font-size: 0.82rem;">Label Sheet</label>
+            <select class="symbology-select-box" id="batch-avery-template" style="padding: 0.45rem 0.65rem; font-size: 0.88rem;">
+              <option value="avery-5160" selected>Avery 5160 / 8160 (30 per sheet, Letter)</option>
+              <option value="avery-5163">Avery 5163 / 8163 (10 per sheet, Letter)</option>
+              <option value="avery-l7160">Avery L7160 (21 per sheet, A4)</option>
+            </select>
+          </div>
         </div>
+
+        <label class="toggle-checkbox-label" id="batch-avery-caption-row" style="margin-top: 0.75rem;" hidden>
+          <input type="checkbox" id="batch-avery-caption" checked>
+          <span>Print each value as text under its code</span>
+        </label>
+
+        <!-- Invalid lines / values left out (text only, built with textContent) -->
+        <div class="batch-message-box" id="batch-message-box" role="alert" hidden></div>
 
         <!-- Live Progress Indicator -->
         <div class="batch-progress-box" id="batch-progress-box" style="display: none;">
@@ -1046,7 +1063,7 @@
             <polyline points="3.29 7 12 12 20.71 7"/>
             <line x1="12" y1="22" x2="12" y2="12"/>
           </svg>
-          Export ZIP Archive
+          <span id="batch-generate-text">Export ZIP Archive</span>
         </button>
       </div>
     </div>
@@ -1358,6 +1375,6 @@
   </footer>
 
   <!-- Application Module Entrypoint -->
-  <script type="module" src="js/v2-studio.js?v=3.16"></script>
+  <script type="module" src="js/v2-studio.js?v=3.17"></script>
 </body>
 </html>

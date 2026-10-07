@@ -54,10 +54,11 @@ Generates client-side vector PDF sheets ready to print on standard laser/inkjet 
 - **Avery L7160**: 21 European standard labels per sheet (3 columns × 7 rows, A4).
 - **Single Display Sign**: Centered presentation page for storefronts and event signage.
 
-### 7. Batch Serialization & ZIP Archiver
-- **Sequential Range Generation**: Specify prefix, start index, end index, and zero-padding (e.g., `LOT-001` through `LOT-100`).
-- **Multi-Line / CSV Paste**: Bulk input with line-by-line custom text encoding.
-- **In-Memory ZIP Packaging**: Generates and compresses high-resolution PNGs into a single `.zip` file in browser memory without freezing the UI.
+### 7. Batch Mode: ZIP or Avery Sheet
+- **Sequenced Numbers**: prefix, start number, how many (up to 100) and digits (e.g. `LOT-001` to `LOT-100`).
+- **Paste List / CSV**: one value per line (first column of CSV text), up to 200 values; the tool says how many were left out if more are pasted.
+- **Checked first**: every value is validated (format and check digit); invalid lines are listed by line number and nothing is made until they are fixed.
+- **Outputs**: a ZIP of PNG or SVG images, or an **Avery PDF sheet** (5160, 5163, L7160) with a different code on each label and an optional caption.
 
 ### 8. Programmatic SEO & Deep-Linking
 - 16+ dedicated keyword-targeted landing pages with technical specifications, industry use cases, and FAQ accordions.

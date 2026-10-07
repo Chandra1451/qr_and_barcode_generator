@@ -6,8 +6,8 @@
  * directly in client-side browser memory using jsPDF.
  */
 
-import { loadJsPdf } from '../core/dynamic-loader.js?v=3.16';
-import { engine } from '../core/engine.js?v=3.16';
+import { loadJsPdf } from '../core/dynamic-loader.js?v=3.17';
+import { engine } from '../core/engine.js?v=3.17';
 
 export const AVERY_TEMPLATES = {
   'avery-5160': {
@@ -135,6 +135,82 @@ async function getCodeImageDataUrl(generator, payload, options, logoDataUrl = ''
   return canvas.toDataURL('image/png');
 }
 
+/**
+ * Draws one code centred in an Avery cell (2 mm inner padding), with an optional one-line
+ * caption underneath. Shared by the repeated sheet and the one-code-per-label sheet.
+ */
+function placeCodeInCell(doc, pos, imgDataUrl, aspect, caption = '') {
+  const pad = 2.0;
+  const captionH = caption ? 3.4 : 0; // 7 pt text + a little air
+  const cellW = pos.width - (pad * 2);
+  const cellH = pos.height - (pad * 2) - captionH;
+
+  const drawW = Math.min(cellW, cellH * aspect);
+  const drawH = drawW / aspect;
+  const drawX = pos.x + pad + ((cellW - drawW) / 2);
+  const drawY = pos.y + pad + ((cellH - drawH) / 2);
+  doc.addImage(imgDataUrl, 'PNG', drawX, drawY, drawW, drawH);
+
+  if (caption) {
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    let text = caption;
+    while (text.length > 1 && doc.getTextWidth(text) > cellW) text = `${text.slice(0, -2)}…`;
+    doc.text(text, pos.x + pos.width / 2, pos.y + pos.height - pad - 0.6, { align: 'center' });
+  }
+}
+
+/**
+ * Avery sheet(s) with a different code on each label, one per value, in order.
+ * Values must already be checked (see findInvalidBatchItems in batch-exporter.js).
+ * Captions use the PDF's built-in font, which only has Latin characters, so a value with
+ * other characters gets no caption (counted in doc.captionsSkipped) rather than garbled text.
+ * @returns {Promise<object>} the jsPDF document (filename, count, captionsSkipped)
+ */
+export async function generatePdfSheetFromList({
+  generator,
+  items,
+  options = {},
+  logoDataUrl = '',
+  templateId = 'avery-5160',
+  showCaption = false,
+  onProgress = null,
+  download = true
+}) {
+  if (!generator) throw new Error('A valid generator is required.');
+  if (!items || !items.length) throw new Error('No values to print.');
+  const tpl = AVERY_TEMPLATES[templateId];
+  if (!tpl || !tpl.perSheet || tpl.perSheet < 2) throw new Error('Choose an Avery label sheet template.');
+
+  const jsPDF = await loadJsPdf();
+  const doc = new jsPDF({ compress: true, orientation: 'portrait', unit: tpl.unit, format: tpl.format });
+  const { positions } = calculateLabelPositions(templateId, tpl.perSheet);
+  const isSquare = ['qr-code', 'data-matrix', 'aztec'].includes(generator.id);
+  const latinOnly = /^[\x20-\x7E\xA0-\xFF]*$/;
+  let captionsSkipped = 0;
+
+  for (let i = 0; i < items.length; i++) {
+    if (i > 0 && i % tpl.perSheet === 0) doc.addPage();
+    const img = await getCodeImageDataUrl(generator, items[i], options, logoDataUrl);
+    const aspect = isSquare ? 1 : await imageAspect(img);
+    let caption = '';
+    if (showCaption) {
+      if (latinOnly.test(items[i])) caption = items[i];
+      else captionsSkipped++;
+    }
+    placeCodeInCell(doc, positions[i % tpl.perSheet], img, aspect, caption);
+    if (onProgress) onProgress({ current: i + 1, total: items.length, percent: Math.round(((i + 1) / items.length) * 100) });
+    if (i % 4 === 0) await new Promise((r) => setTimeout(r, 0)); // keep the page responsive
+  }
+
+  const filename = `${templateId}-${generator.id}-${items.length}-codes-${Date.now()}.pdf`;
+  if (download) doc.save(filename);
+  doc.filename = filename;
+  doc.count = items.length;
+  doc.captionsSkipped = captionsSkipped;
+  return doc;
+}
+
 /** Width/height ratio of an image data URL. */
 function imageAspect(dataUrl) {
   return new Promise((resolve) => {
@@ -231,17 +307,7 @@ export async function generatePdfLabelSheet({
 
   for (let i = 0; i < total; i++) {
     if (i > 0 && i % tpl.perSheet === 0) doc.addPage();
-    const pos = sheetPositions[i % tpl.perSheet];
-    const pad = 2.0; // 2mm internal cell padding
-    const cellW = pos.width - (pad * 2);
-    const cellH = pos.height - (pad * 2);
-
-    const drawW = Math.min(cellW, cellH * aspect);
-    const drawH = drawW / aspect;
-    const drawX = pos.x + pad + ((cellW - drawW) / 2);
-    const drawY = pos.y + pad + ((cellH - drawH) / 2);
-
-    doc.addImage(imgDataUrl, 'PNG', drawX, drawY, drawW, drawH);
+    placeCodeInCell(doc, sheetPositions[i % tpl.perSheet], imgDataUrl, aspect);
   }
 
   const filename = `${effectiveTemplateId}-${genId}-${Date.now()}.pdf`;

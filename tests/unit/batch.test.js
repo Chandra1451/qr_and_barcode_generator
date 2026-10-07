@@ -6,7 +6,8 @@
  * and dynamic JSZip loading.
  */
 
-import { generateSequenceList, parseCsvOrLines, sanitizeZipFilename } from '../../js/export/batch-exporter.js';
+import { generateSequenceList, parseCsvOrLines, parseCsvOrLinesDetailed, findInvalidBatchItems, BATCH_LIMIT, sanitizeZipFilename } from '../../js/export/batch-exporter.js';
+import { getGenerator } from '../../js/generators/registry.js';
 import { loadJsZip } from '../../js/core/dynamic-loader.js';
 
 export async function runBatchTests(assert) {
@@ -56,4 +57,24 @@ export async function runBatchTests(assert) {
   const files = Object.keys(zip.files);
   assert.equal(files.length, 1, 'JSZip instance successfully stores in-memory files');
   assert.equal(files[0], 'test.txt', 'Stored filename matches');
+
+  // Test 7: Line numbers and the batch limit (problems point at the line the user typed)
+  const detailed = parseCsvOrLinesDetailed('A1\n\nB2, extra column\r\n  C3  ');
+  assert.equal(JSON.stringify(detailed.entries.map((e) => [e.value, e.line])), JSON.stringify([['A1', 1], ['B2', 3], ['C3', 4]]), 'Keeps original line numbers, skips blank lines, takes the first CSV column');
+  assert.equal(detailed.leftOut, 0, 'Nothing left out under the limit');
+  const many = parseCsvOrLinesDetailed(Array.from({ length: BATCH_LIMIT + 5 }, (_, i) => `V${i}`).join('\n'));
+  assert.equal(many.entries.length, BATCH_LIMIT, `Keeps the first ${BATCH_LIMIT} values`);
+  assert.equal(many.leftOut, 5, 'Counts the values left out instead of dropping them silently');
+  assert.equal(parseCsvOrLines('X\nY').length, 2, 'parseCsvOrLines still returns plain values');
+
+  // Test 8: Every value is checked with the format's own rules before anything is made
+  const ean = getGenerator('ean-13');
+  const bad = findInvalidBatchItems(ean, [
+    { value: '5901234123457', line: 1 },
+    { value: 'ABC', line: 2 },
+    { value: '5901234123458', line: 4 }
+  ]);
+  assert.equal(JSON.stringify(bad.map((b) => b.line)), JSON.stringify([2, 4]), 'Finds letters (line 2) and a wrong check digit (line 4)');
+  assert.isTrue(bad.every((b) => typeof b.error === 'string' && b.error.length > 0), 'Each invalid value has a reason');
+  assert.equal(findInvalidBatchItems(ean, [{ value: '590123412345', line: 1 }]).length, 0, '12 digits are valid (check digit added)');
 }

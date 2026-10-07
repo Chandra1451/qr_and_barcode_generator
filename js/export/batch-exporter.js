@@ -7,9 +7,9 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine } from '../core/engine.js?v=3.16';
-import { loadJsZip } from '../core/dynamic-loader.js?v=3.16';
-import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.16';
+import { engine } from '../core/engine.js?v=3.17';
+import { loadJsZip } from '../core/dynamic-loader.js?v=3.17';
+import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.17';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads
@@ -46,30 +46,53 @@ export function generateSequenceList({
  * @param {string} rawText
  * @returns {string[]}
  */
+/** Most values one batch (ZIP or Avery sheet) takes, for browser stability (~7 sheets of Avery 5160). */
+export const BATCH_LIMIT = 200;
+
+/**
+ * Parses pasted lines or CSV (first column) into values with their original line numbers,
+ * so errors can point at the line the user typed. Blank lines are skipped.
+ * @param {string} rawText
+ * @param {number} [limit]
+ * @returns {{ entries: { value: string, line: number }[], leftOut: number }}
+ */
+export function parseCsvOrLinesDetailed(rawText, limit = BATCH_LIMIT) {
+  if (!rawText || typeof rawText !== 'string') return { entries: [], leftOut: 0 };
+
+  const entries = [];
+  rawText.split(/\r?\n/).forEach((raw, i) => {
+    const line = raw.trim();
+    if (!line) return;
+    // If CSV format (comma separated), pick the first column
+    const val = line.includes(',') ? line.split(',')[0].trim().replace(/^["']|["']$/g, '') : line;
+    if (val.length > 0) entries.push({ value: val, line: i + 1 });
+  });
+
+  return { entries: entries.slice(0, limit), leftOut: Math.max(0, entries.length - limit) };
+}
+
+/**
+ * Parses multi-line or CSV text into an array of clean string payloads (first BATCH_LIMIT values).
+ * @param {string} rawText
+ * @returns {string[]}
+ */
 export function parseCsvOrLines(rawText) {
-  if (!rawText || typeof rawText !== 'string') return [];
+  return parseCsvOrLinesDetailed(rawText).entries.map((e) => e.value);
+}
 
-  const lines = rawText.split(/\r?\n/);
-  const results = [];
-
-  for (let line of lines) {
-    line = line.trim();
-    if (!line) continue;
-
-    // If CSV format (comma separated), pick first column unless it's a quoted cell
-    let val = line;
-    if (line.includes(',')) {
-      const parts = line.split(',');
-      val = parts[0].trim().replace(/^["']|["']$/g, '');
-    }
-
-    if (val.length > 0) {
-      results.push(val);
-    }
+/**
+ * Checks every value with the format's own rules (pattern and check digit) before anything is made.
+ * @param {object} generator
+ * @param {{ value: string, line: number }[]} entries
+ * @returns {{ line: number, value: string, error: string }[]} the invalid ones (empty = all valid)
+ */
+export function findInvalidBatchItems(generator, entries) {
+  const invalid = [];
+  for (const { value, line } of entries) {
+    const { valid, error } = engine.validate(generator, value);
+    if (!valid) invalid.push({ line, value, error });
   }
-
-  // Cap at 200 items for browser stability
-  return results.slice(0, 200);
+  return invalid;
 }
 
 /**
