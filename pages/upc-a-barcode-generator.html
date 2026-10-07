@@ -48,8 +48,8 @@
   <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="../css/v2-theme.css?v=3.2">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=3.2">
+  <link rel="stylesheet" href="../css/v2-theme.css?v=3.3">
+  <link rel="stylesheet" href="../css/v2-pages.css?v=3.3">
 
   <script>
     (function () {
@@ -379,6 +379,38 @@
         "@type": "Answer",
         "text": "Yes! Open the generator, click \"PDF Labels\", and choose from Avery 5160 (30 address labels) or Avery 5163 (10 shipping labels) to print directly onto standard label sheets."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get a UPC code for my product?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Get the number from GS1 US (or GS1 Canada), the organisations that run the UPC system. They license company prefixes, and GS1 US also sells single GTINs, with no yearly renewal fee, for sellers with only a few products. Once you have the number, making the barcode image here is free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a different UPC for each size or colour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every product variant that is sold separately, such as each size, colour, flavour or pack count, needs its own number, so stores and marketplaces can tell them apart."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a UPC-A number the same as a GTIN-12?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. UPC-A encodes a GTIN-12. Systems that expect 13 digits store it with a leading zero, and systems that expect 14 digits add two leading zeros. It is still the same product number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I make a UPC-E barcode here?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. This generator makes full-size UPC-A. UPC-E is a shortened 8-digit form for very small packs, and only some UPC-A numbers can be compressed into it."
+      }
     }
   ]
 }
@@ -490,8 +522,8 @@
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Magnification</dt>
-      <dd class="spec-val">80% to 200% (Nominal size: 1.469" × 1.02")</dd>
+      <dt class="spec-key">Size</dt>
+      <dd class="spec-val">Bar width (X-dimension) 0.264–0.660 mm, target 0.330 mm: 1.468" wide incl. quiet zones, bars 0.900" high</dd>
     </div>
   
     <div class="spec-row">
@@ -533,6 +565,42 @@
       </div>
     </section>
 
+    <!-- Practical guide: how to make it, print it, and what to avoid -->
+    <section class="guide-card" aria-labelledby="guide-title">
+      <h2 id="guide-title" class="guide-title">How to Make, Print &amp; Test Your UPC-A Code</h2>
+      <div class="guide-grid">
+        <div class="guide-block guide-steps">
+          <h3>Step by step</h3>
+          <ol>
+            <li>Get your 12-digit product number (GTIN-12) from <strong>GS1 US</strong> (or GS1 Canada). Depending on how many products you have, you can license a company prefix or, in the US, buy single GTINs. Our guide <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a> walks through it.</li>
+            <li>Open the studio with <strong>UPC-A</strong> selected (the button above does this) and type the first <strong>11 digits</strong>. The 12th check digit is calculated for you. If you enter all 12, the studio checks the last one.</li>
+            <li>Keep the human-readable digits under the bars switched on, as retail packaging needs them.</li>
+            <li>Scan the preview with the built-in <a href="../barcode-scanner.html">barcode scanner</a> or a phone to confirm it reads back the right 12 digits.</li>
+            <li>Download <strong>SVG</strong> for packaging artwork, or print label sheets with the Avery label maker.</li>
+          </ol>
+          <a href="../index.html?symbology=upc-a" class="guide-cta">Open the UPC-A generator &rarr;</a>
+        </div>
+        <div class="guide-block">
+          <h3>Printing &amp; size</h3>
+          <ul>
+            <li><strong>Size:</strong> GS1 sets the size by the width of the narrowest bar (the X-dimension). At the target of <strong>0.330 mm</strong>, a UPC-A is <strong>37.29 mm (1.468 in) wide</strong> including its margins, with bars <strong>22.85 mm (0.900 in) high</strong>. You can scale it between 0.264 mm and 0.660 mm (often called 80% to 200%); don't go below the minimum for retail checkout.</li>
+            <li><strong>Margins:</strong> keep a blank quiet zone of 9 bar-widths on each side (about 3 mm at 100%). Don't let text, borders or artwork touch the bars.</li>
+            <li><strong>Height:</strong> don't cut the bars shorter to save space. GS1 US advises against this ("truncating") because it makes the barcode harder to scan at the checkout.</li>
+            <li><strong>Colours:</strong> black or dark blue bars on white work best. Red bars don't scan, because red-light checkout scanners see red as white.</li>
+            <li><strong>Resize the SVG, not a small PNG.</strong> Stretching a low-resolution image makes the bar widths uneven.</li>
+          </ul>
+        </div>
+        <div class="guide-block guide-mistakes">
+          <h3>Common mistakes</h3>
+          <ul>
+            <li><strong>Buying cheap UPCs from resellers</strong> for products sold on Amazon or in US retail chains. These platforms check numbers against the GS1 database, and a number licensed to another company can get listings blocked.</li>
+            <li><strong>Using one UPC for several variants.</strong> Each size, colour, flavour or pack count needs its own number.</li>
+            <li><strong>Putting UPC-A on outer shipping cartons.</strong> Cartons use ITF-14 or GS1-128 instead.</li>
+            <li><strong>Not test-scanning a printed proof</strong> before a full print run.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
     
     <!-- Recommended Hardware & Supplies Banner (Amazon Associates) -->
     <section class="hardware-box">
@@ -623,7 +691,7 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         <span>Selling in Walmart, Target, Kroger, or Canadian retail?</span>
       </h3>
-      <p>UPC-A is the required retail barcode for all consumer packaged goods in the United States and Canada.</p>
+      <p>UPC-A is the usual retail barcode in the United States and Canada, and many US retailers ask suppliers for it. Checkout scanners there also read EAN-13.</p>
     </div>
   
     <div class="decision-item">
@@ -631,7 +699,7 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         <span>Listing on Amazon North America (FBA)?</span>
       </h3>
-      <p>Amazon requires a valid 12-digit UPC or 13-digit EAN GTIN linked to your brand in the GS1 database.</p>
+      <p>Amazon checks UPC and EAN numbers against the GS1 database, so use numbers licensed to your own company, or apply for a GTIN exemption if your product has no barcode.</p>
     </div>
   
     <div class="decision-item">
@@ -660,7 +728,7 @@
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Commercial retail sale in North America requires licensing an authentic UPC company prefix from GS1 US. Third-party recycled UPCs may be rejected by Amazon and major retail chains.</span>
+      <span>Selling through North American retailers and marketplaces requires numbers licensed from GS1 US (a company prefix or single GTINs) or GS1 Canada. Resold or recycled UPCs registered to another company may be rejected by Amazon and major retail chains.</span>
     </li>
   
     <li>
@@ -670,7 +738,7 @@
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Ensure 100% optical contrast. Barcode bars must be black or dark blue printed on a solid white or light neutral substrate.</span>
+      <span>Use high contrast: black or dark blue bars on a white or light background. Red, orange and yellow bars don't scan under red-light checkout scanners.</span>
     </li>
   
       </ul>
@@ -752,6 +820,46 @@
       </summary>
       <div class="faq-answer">
         <p>Yes! Open the generator, click "PDF Labels", and choose from Avery 5160 (30 address labels) or Avery 5163 (10 shipping labels) to print directly onto standard label sheets.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>How do I get a UPC code for my product?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Get the number from GS1 US (or GS1 Canada), the organisations that run the UPC system. They license company prefixes, and GS1 US also sells single GTINs, with no yearly renewal fee, for sellers with only a few products. Once you have the number, making the barcode image here is free.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Do I need a different UPC for each size or colour?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. Every product variant that is sold separately, such as each size, colour, flavour or pack count, needs its own number, so stores and marketplaces can tell them apart.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Is a UPC-A number the same as a GTIN-12?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. UPC-A encodes a GTIN-12. Systems that expect 13 digits store it with a leading zero, and systems that expect 14 digits add two leading zeros. It is still the same product number.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I make a UPC-E barcode here?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Not yet. This generator makes full-size UPC-A. UPC-E is a shortened 8-digit form for very small packs, and only some UPC-A numbers can be compressed into it.</p>
       </div>
     </details>
   

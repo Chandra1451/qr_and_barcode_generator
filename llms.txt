@@ -29,5 +29,8 @@
 - [Aztec Code Ticketing Barcode Generator](https://universalcodemaker.com/pages/aztec-code-generator.html)
 - [PDF417 Driver License & ID Barcode Generator](https://universalcodemaker.com/pages/pdf417-barcode-generator.html)
 
+## Guides
+- [How to Get a Barcode for Your Product (EAN-13, UPC-A & GTIN explained)](https://universalcodemaker.com/pages/how-to-get-a-barcode-for-your-product.html): where product numbers come from (GS1), EAN-13 vs UPC-A vs GTIN, the check digit, print sizes and testing.
+
 ## Full Documentation for AI Agents
 For complete technical specifications, character set limits, and checksum formulas for all barcode types, refer to [llms-full.txt](https://universalcodemaker.com/llms-full.txt).

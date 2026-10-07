@@ -48,8 +48,8 @@
   <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="../css/v2-theme.css?v=3.2">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=3.2">
+  <link rel="stylesheet" href="../css/v2-theme.css?v=3.3">
+  <link rel="stylesheet" href="../css/v2-pages.css?v=3.3">
 
   <script>
     (function () {
@@ -369,7 +369,7 @@
       "name": "Do I need to buy official EAN-13 numbers from GS1?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If you are selling products in commercial supermarkets or retail chains, you must obtain authorized company prefixes from GS1. For internal inventory, internal POS systems, or private cataloging, you can freely assign numbers using prefixes 200–299."
+        "text": "If you are selling products in commercial supermarkets or retail chains, you must get your numbers from GS1 (a company prefix, or in some countries single GTINs). For internal inventory, internal POS systems, or private cataloging, you can freely assign numbers using prefixes 200–299."
       }
     },
     {
@@ -385,7 +385,7 @@
       "name": "What size should I print an EAN-13 barcode?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The standard (100%) size is 37.29 × 25.93 mm including margins. GS1 allows 80% to 200% of that, so roughly 30 × 21 mm is the smallest for retail checkout. Always keep the quiet zones and the full bar height."
+        "text": "At GS1's target size (narrowest bar 0.330 mm) it is 37.29 mm wide including the margins, with bars 22.85 mm high. The smallest allowed for retail checkout (0.264 mm bars) is 29.83 mm wide with 18.28 mm bars; the largest is twice the target. Always keep the margins and the full bar height."
       }
     },
     {
@@ -514,8 +514,8 @@
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Magnification</dt>
-      <dd class="spec-val">80% to 200% (Standard nominal size: 37.29mm × 25.93mm)</dd>
+      <dt class="spec-key">Size</dt>
+      <dd class="spec-val">Bar width (X-dimension) 0.264–0.660 mm, target 0.330 mm: 37.29 mm wide incl. quiet zones, bars 22.85 mm high</dd>
     </div>
   
     <div class="spec-row">
@@ -564,7 +564,7 @@
         <div class="guide-block guide-steps">
           <h3>Step by step</h3>
           <ol>
-            <li>Get your product number (GTIN-13) from <strong>GS1</strong>, or from your retailer if it assigns numbers. Don't make up numbers for products sold in shops or on marketplaces.</li>
+            <li>Get your product number (GTIN-13) from <strong>GS1</strong>, or from your retailer if it assigns numbers. Don't make up numbers for products sold in shops or on marketplaces. Our guide <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a> explains how.</li>
             <li>Open the studio with <strong>EAN-13</strong> selected (the button above does this) and type the first <strong>12 digits</strong>. The 13th check digit is calculated for you. If you enter all 13, the studio checks the last one.</li>
             <li>Keep the human-readable digits under the bars switched on, as retail packaging needs them.</li>
             <li>Scan the preview with the built-in <a href="../barcode-scanner.html">barcode scanner</a> or a phone to confirm it reads back the right 13 digits.</li>
@@ -575,7 +575,7 @@
         <div class="guide-block">
           <h3>Printing &amp; size</h3>
           <ul>
-            <li><strong>Size:</strong> the standard (100%) EAN-13 is <strong>37.29 × 25.93 mm</strong> including the margins. GS1 allows 80% to 200% of that; don't go smaller than 80% for retail checkout.</li>
+            <li><strong>Size:</strong> GS1 sets the size by the width of the narrowest bar (the X-dimension). At the target of <strong>0.330 mm</strong>, an EAN-13 is <strong>37.29 mm wide</strong> including its margins, with bars <strong>22.85 mm high</strong>. You can scale it between 0.264 mm and 0.660 mm (often called 80% to 200%); don't go below the minimum for retail checkout.</li>
             <li><strong>Margins:</strong> keep the blank quiet zones, 11 bar-widths on the left and 7 on the right. Don't let text, borders or artwork touch the bars.</li>
             <li><strong>Height:</strong> don't cut the bars shorter to save space. Truncated barcodes are harder to scan from different angles.</li>
             <li><strong>Colours:</strong> black or dark blue bars on white work best. Red bars don't scan, because red-light checkout scanners see red as white.</li>
@@ -586,7 +586,7 @@
           <h3>Common mistakes</h3>
           <ul>
             <li><strong>Buying cheap numbers from resellers</strong> for products sold on Amazon or in retail chains. These platforms check barcodes against the GS1 database, and numbers registered to another company can get listings blocked.</li>
-            <li><strong>Printing too small or too short</strong> to fit a small pack. Use a smaller magnification within 80%–200%, or ask GS1 about EAN-8 for very small items.</li>
+            <li><strong>Printing too small or too short</strong> to fit a small pack. Use a smaller size within GS1's allowed range, or ask your GS1 office about EAN-8 for very small items.</li>
             <li><strong>Low contrast</strong>, such as grey on kraft paper or bars on a busy background.</li>
             <li><strong>Not test-scanning a printed proof</strong> before a full print run.</li>
           </ul>
@@ -683,7 +683,7 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         <span>Selling packaged retail goods outside the US?</span>
       </h3>
-      <p>EAN-13 is mandatory for selling consumer products in supermarkets and retail chains in over 150 countries.</p>
+      <p>EAN-13 is the standard checkout barcode for consumer products in supermarkets and retail chains in most countries outside the US and Canada.</p>
     </div>
   
     <div class="decision-item">
@@ -725,12 +725,12 @@
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Always maintain the mandatory Quiet Zones (3.63mm on the left, 2.31mm on the right). Truncating the barcode height or placing text inside the quiet zone will cause retail scanner rejections.</span>
+      <span>Always keep the quiet zones clear (3.63 mm on the left, 2.31 mm on the right at the target size). Text or artwork inside them, or shortened (truncated) bars, make the barcode harder to scan; GS1 advises against both.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Never print in low-contrast color combinations (e.g., red bars on white, or black bars on green). Laser scanners use red light and require a dark-on-light contrast ratio of at least 4:1.</span>
+      <span>Never print in colour combinations that look low-contrast under red light (e.g., red bars on white, or black bars on green). Checkout scanners use red light, so bars must be dark and the background light. Retailers that test print quality grade it under ISO/IEC 15416.</span>
     </li>
   
       </ul>
@@ -801,7 +801,7 @@
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>If you are selling products in commercial supermarkets or retail chains, you must obtain authorized company prefixes from GS1. For internal inventory, internal POS systems, or private cataloging, you can freely assign numbers using prefixes 200–299.</p>
+        <p>If you are selling products in commercial supermarkets or retail chains, you must get your numbers from GS1 (a company prefix, or in some countries single GTINs). For internal inventory, internal POS systems, or private cataloging, you can freely assign numbers using prefixes 200–299.</p>
       </div>
     </details>
   
@@ -821,7 +821,7 @@
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>The standard (100%) size is 37.29 × 25.93 mm including margins. GS1 allows 80% to 200% of that, so roughly 30 × 21 mm is the smallest for retail checkout. Always keep the quiet zones and the full bar height.</p>
+        <p>At GS1's target size (narrowest bar 0.330 mm) it is 37.29 mm wide including the margins, with bars 22.85 mm high. The smallest allowed for retail checkout (0.264 mm bars) is 29.83 mm wide with 18.28 mm bars; the largest is twice the target. Always keep the margins and the full bar height.</p>
       </div>
     </details>
   

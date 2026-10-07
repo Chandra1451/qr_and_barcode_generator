@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://universalcodemaker.com/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://universalcodemaker.com/symbology-docs.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -44,13 +44,13 @@
   </url>
   <url>
     <loc>https://universalcodemaker.com/pages/ean-13-barcode-generator.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://universalcodemaker.com/pages/upc-a-barcode-generator.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -190,6 +190,12 @@
     <loc>https://universalcodemaker.com/pages/shopify-barcode-generator.html</loc>
     <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://universalcodemaker.com/pages/how-to-get-a-barcode-for-your-product.html</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>

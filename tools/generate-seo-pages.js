@@ -16,7 +16,7 @@ const path = require('path');
 const SITE_URL = 'https://universalcodemaker.com';
 // Cache-busting version for shared CSS (served with a 1-year immutable cache).
 // Keep in sync with the ?v= used on the root pages; bump whenever the CSS changes.
-const ASSET_VERSION = '3.2';
+const ASSET_VERSION = '3.3';
 const PAGES_DIR = path.join(__dirname, '..', 'pages');
 
 if (!fs.existsSync(PAGES_DIR)) {
@@ -40,7 +40,7 @@ const SEO_PAGES = [
       standard: 'ISO/IEC 15420 / GS1 General Specifications',
       characterSet: 'Numeric digits only (0–9)',
       payloadLength: '12 data digits + 1 Mod-10 check digit (total 13 digits)',
-      magnification: '80% to 200% (Standard nominal size: 37.29mm × 25.93mm)',
+      size: 'Bar width (X-dimension) 0.264–0.660 mm, target 0.330 mm: 37.29 mm wide incl. quiet zones, bars 22.85 mm high',
       quietZones: 'Left: 3.63mm (11X), Right: 2.31mm (7X)'
     },
     useCases: [
@@ -56,7 +56,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Do I need to buy official EAN-13 numbers from GS1?',
-        a: 'If you are selling products in commercial supermarkets or retail chains, you must obtain authorized company prefixes from GS1. For internal inventory, internal POS systems, or private cataloging, you can freely assign numbers using prefixes 200–299.'
+        a: 'If you are selling products in commercial supermarkets or retail chains, you must get your numbers from GS1 (a company prefix, or in some countries single GTINs). For internal inventory, internal POS systems, or private cataloging, you can freely assign numbers using prefixes 200–299.'
       },
       {
         q: 'Can I download an EAN-13 barcode in vector SVG for packaging design?',
@@ -78,7 +78,7 @@ const SEO_PAGES = [
       standard: 'ISO/IEC 15420 / GS1 US Standards',
       characterSet: 'Numeric digits only (0–9)',
       payloadLength: '11 data digits + 1 Mod-10 check digit (total 12 digits)',
-      magnification: '80% to 200% (Nominal size: 1.469" × 1.02")',
+      size: 'Bar width (X-dimension) 0.264–0.660 mm, target 0.330 mm: 1.468" wide incl. quiet zones, bars 0.900" high',
       quietZones: 'Left and Right: 9X module width minimum'
     },
     useCases: [
@@ -898,7 +898,7 @@ const ENRICHMENTS = {
     "decisionGuide": [
       {
         "q": "Selling packaged retail goods outside the US?",
-        "a": "EAN-13 is mandatory for selling consumer products in supermarkets and retail chains in over 150 countries."
+        "a": "EAN-13 is the standard checkout barcode for consumer products in supermarkets and retail chains in most countries outside the US and Canada."
       },
       {
         "q": "Selling on Amazon or Google Shopping globally?",
@@ -913,8 +913,8 @@ const ENRICHMENTS = {
       "title": "GS1 Registration Rules & Retail Pre-Print Requirements",
       "points": [
         "Open-market commercial retail requires an authorized Company Prefix issued by your national GS1 organization (e.g., GS1 US, GS1 UK, GS1 India). You cannot invent random numbers for commercial retail.",
-        "Always maintain the mandatory Quiet Zones (3.63mm on the left, 2.31mm on the right). Truncating the barcode height or placing text inside the quiet zone will cause retail scanner rejections.",
-        "Never print in low-contrast color combinations (e.g., red bars on white, or black bars on green). Laser scanners use red light and require a dark-on-light contrast ratio of at least 4:1."
+        "Always keep the quiet zones clear (3.63 mm on the left, 2.31 mm on the right at the target size). Text or artwork inside them, or shortened (truncated) bars, make the barcode harder to scan; GS1 advises against both.",
+        "Never print in colour combinations that look low-contrast under red light (e.g., red bars on white, or black bars on green). Checkout scanners use red light, so bars must be dark and the background light. Retailers that test print quality grade it under ISO/IEC 15416."
       ]
     },
     "authorityLinks": [
@@ -953,11 +953,11 @@ const ENRICHMENTS = {
     "decisionGuide": [
       {
         "q": "Selling in Walmart, Target, Kroger, or Canadian retail?",
-        "a": "UPC-A is the required retail barcode for all consumer packaged goods in the United States and Canada."
+        "a": "UPC-A is the usual retail barcode in the United States and Canada, and many US retailers ask suppliers for it. Checkout scanners there also read EAN-13."
       },
       {
         "q": "Listing on Amazon North America (FBA)?",
-        "a": "Amazon requires a valid 12-digit UPC or 13-digit EAN GTIN linked to your brand in the GS1 database."
+        "a": "Amazon checks UPC and EAN numbers against the GS1 database, so use numbers licensed to your own company, or apply for a GTIN exemption if your product has no barcode."
       },
       {
         "q": "Need barcodes for shipping cartons or pallets?",
@@ -967,9 +967,9 @@ const ENRICHMENTS = {
     "legalCaution": {
       "title": "GS1 US Registration & Legal Retail Requirements",
       "points": [
-        "Commercial retail sale in North America requires licensing an authentic UPC company prefix from GS1 US. Third-party recycled UPCs may be rejected by Amazon and major retail chains.",
+        "Selling through North American retailers and marketplaces requires numbers licensed from GS1 US (a company prefix or single GTINs) or GS1 Canada. Resold or recycled UPCs registered to another company may be rejected by Amazon and major retail chains.",
         "Maintain a minimum 9X module quiet zone on both sides of the barcode to prevent scanner beam clipping.",
-        "Ensure 100% optical contrast. Barcode bars must be black or dark blue printed on a solid white or light neutral substrate."
+        "Use high contrast: black or dark blue bars on a white or light background. Red, orange and yellow bars don't scan under red-light checkout scanners."
       ]
     },
     "authorityLinks": [
@@ -2074,6 +2074,46 @@ const ENRICHMENTS = {
  * HTML is allowed in the strings (links, <strong>); keep claims true to what the studio does.
  */
 const GUIDES = {
+  "upc-a-barcode-generator": {
+    "howTo": [
+      "Get your 12-digit product number (GTIN-12) from <strong>GS1 US</strong> (or GS1 Canada). Depending on how many products you have, you can license a company prefix or, in the US, buy single GTINs. Our guide <a href=\"./how-to-get-a-barcode-for-your-product.html\">How to get a barcode for your product</a> walks through it.",
+      "Open the studio with <strong>UPC-A</strong> selected (the button above does this) and type the first <strong>11 digits</strong>. The 12th check digit is calculated for you. If you enter all 12, the studio checks the last one.",
+      "Keep the human-readable digits under the bars switched on, as retail packaging needs them.",
+      "Scan the preview with the built-in <a href=\"../barcode-scanner.html\">barcode scanner</a> or a phone to confirm it reads back the right 12 digits.",
+      "Download <strong>SVG</strong> for packaging artwork, or print label sheets with the Avery label maker."
+    ],
+    "print": [
+      "<strong>Size:</strong> GS1 sets the size by the width of the narrowest bar (the X-dimension). At the target of <strong>0.330 mm</strong>, a UPC-A is <strong>37.29 mm (1.468 in) wide</strong> including its margins, with bars <strong>22.85 mm (0.900 in) high</strong>. You can scale it between 0.264 mm and 0.660 mm (often called 80% to 200%); don't go below the minimum for retail checkout.",
+      "<strong>Margins:</strong> keep a blank quiet zone of 9 bar-widths on each side (about 3 mm at 100%). Don't let text, borders or artwork touch the bars.",
+      "<strong>Height:</strong> don't cut the bars shorter to save space. GS1 US advises against this (\"truncating\") because it makes the barcode harder to scan at the checkout.",
+      "<strong>Colours:</strong> black or dark blue bars on white work best. Red bars don't scan, because red-light checkout scanners see red as white.",
+      "<strong>Resize the SVG, not a small PNG.</strong> Stretching a low-resolution image makes the bar widths uneven."
+    ],
+    "mistakes": [
+      "<strong>Buying cheap UPCs from resellers</strong> for products sold on Amazon or in US retail chains. These platforms check numbers against the GS1 database, and a number licensed to another company can get listings blocked.",
+      "<strong>Using one UPC for several variants.</strong> Each size, colour, flavour or pack count needs its own number.",
+      "<strong>Putting UPC-A on outer shipping cartons.</strong> Cartons use ITF-14 or GS1-128 instead.",
+      "<strong>Not test-scanning a printed proof</strong> before a full print run."
+    ],
+    "moreFaqs": [
+      {
+        "q": "How do I get a UPC code for my product?",
+        "a": "Get the number from GS1 US (or GS1 Canada), the organisations that run the UPC system. They license company prefixes, and GS1 US also sells single GTINs, with no yearly renewal fee, for sellers with only a few products. Once you have the number, making the barcode image here is free."
+      },
+      {
+        "q": "Do I need a different UPC for each size or colour?",
+        "a": "Yes. Every product variant that is sold separately, such as each size, colour, flavour or pack count, needs its own number, so stores and marketplaces can tell them apart."
+      },
+      {
+        "q": "Is a UPC-A number the same as a GTIN-12?",
+        "a": "Yes. UPC-A encodes a GTIN-12. Systems that expect 13 digits store it with a leading zero, and systems that expect 14 digits add two leading zeros. It is still the same product number."
+      },
+      {
+        "q": "Can I make a UPC-E barcode here?",
+        "a": "Not yet. This generator makes full-size UPC-A. UPC-E is a shortened 8-digit form for very small packs, and only some UPC-A numbers can be compressed into it."
+      }
+    ]
+  },
   "wifi-qr-code-generator": {
     "howTo": [
       "Open the studio with the <strong>Wi-Fi</strong> QR type selected (the button above does this).",
@@ -2148,14 +2188,14 @@ const GUIDES = {
   },
   "ean-13-barcode-generator": {
     "howTo": [
-      "Get your product number (GTIN-13) from <strong>GS1</strong>, or from your retailer if it assigns numbers. Don't make up numbers for products sold in shops or on marketplaces.",
+      "Get your product number (GTIN-13) from <strong>GS1</strong>, or from your retailer if it assigns numbers. Don't make up numbers for products sold in shops or on marketplaces. Our guide <a href=\"./how-to-get-a-barcode-for-your-product.html\">How to get a barcode for your product</a> explains how.",
       "Open the studio with <strong>EAN-13</strong> selected (the button above does this) and type the first <strong>12 digits</strong>. The 13th check digit is calculated for you. If you enter all 13, the studio checks the last one.",
       "Keep the human-readable digits under the bars switched on, as retail packaging needs them.",
       "Scan the preview with the built-in <a href=\"../barcode-scanner.html\">barcode scanner</a> or a phone to confirm it reads back the right 13 digits.",
       "Download <strong>SVG</strong> for packaging artwork (vector, so bars stay exact at any size), or print sheets with the Avery label maker."
     ],
     "print": [
-      "<strong>Size:</strong> the standard (100%) EAN-13 is <strong>37.29 × 25.93 mm</strong> including the margins. GS1 allows 80% to 200% of that; don't go smaller than 80% for retail checkout.",
+      "<strong>Size:</strong> GS1 sets the size by the width of the narrowest bar (the X-dimension). At the target of <strong>0.330 mm</strong>, an EAN-13 is <strong>37.29 mm wide</strong> including its margins, with bars <strong>22.85 mm high</strong>. You can scale it between 0.264 mm and 0.660 mm (often called 80% to 200%); don't go below the minimum for retail checkout.",
       "<strong>Margins:</strong> keep the blank quiet zones, 11 bar-widths on the left and 7 on the right. Don't let text, borders or artwork touch the bars.",
       "<strong>Height:</strong> don't cut the bars shorter to save space. Truncated barcodes are harder to scan from different angles.",
       "<strong>Colours:</strong> black or dark blue bars on white work best. Red bars don't scan, because red-light checkout scanners see red as white.",
@@ -2163,14 +2203,14 @@ const GUIDES = {
     ],
     "mistakes": [
       "<strong>Buying cheap numbers from resellers</strong> for products sold on Amazon or in retail chains. These platforms check barcodes against the GS1 database, and numbers registered to another company can get listings blocked.",
-      "<strong>Printing too small or too short</strong> to fit a small pack. Use a smaller magnification within 80%–200%, or ask GS1 about EAN-8 for very small items.",
+      "<strong>Printing too small or too short</strong> to fit a small pack. Use a smaller size within GS1's allowed range, or ask your GS1 office about EAN-8 for very small items.",
       "<strong>Low contrast</strong>, such as grey on kraft paper or bars on a busy background.",
       "<strong>Not test-scanning a printed proof</strong> before a full print run."
     ],
     "moreFaqs": [
       {
         "q": "What size should I print an EAN-13 barcode?",
-        "a": "The standard (100%) size is 37.29 × 25.93 mm including margins. GS1 allows 80% to 200% of that, so roughly 30 × 21 mm is the smallest for retail checkout. Always keep the quiet zones and the full bar height."
+        "a": "At GS1's target size (narrowest bar 0.330 mm) it is 37.29 mm wide including the margins, with bars 22.85 mm high. The smallest allowed for retail checkout (0.264 mm bars) is 29.83 mm wide with 18.28 mm bars; the largest is twice the target. Always keep the margins and the full bar height."
       },
       {
         "q": "Can a US store scan an EAN-13 barcode?",
@@ -2184,42 +2224,200 @@ const GUIDES = {
   }
 };
 
-function generatePageHtml(page) {
-  const pageUrl = `${SITE_URL}/pages/${page.slug}.html`;
-  const enrichment = ENRICHMENTS[page.slug] || {};
-  const benefits = enrichment.benefits || [];
-  const decisionGuide = enrichment.decisionGuide || [];
-  const legalCaution = enrichment.legalCaution || null;
-  const authorityLinks = enrichment.authorityLinks || [];
-  const guide = GUIDES[page.slug] || null;
-  const faqs = [...page.faqs, ...((guide && guide.moreFaqs) || [])];
+// Long-form guide pages (pages/<slug>.html). They answer the questions people search before they
+// need a tool, then link into the matching generators. Same chrome as the landing pages.
+const ARTICLES = [
+  {
+    slug: 'how-to-get-a-barcode-for-your-product',
+    name: 'How to Get a Barcode for Your Product',
+    badge: 'Seller Guide',
+    queryParam: 'symbology=ean-13',
+    metaTitle: 'How to Get a Barcode for Your Product: EAN-13, UPC-A & GTIN Explained',
+    metaDescription: 'Where product barcode numbers come from, EAN-13 vs UPC-A vs GTIN, how the check digit works, the right print size, and how to make the barcode free.',
+    h1: 'How to Get a Barcode for Your Product',
+    lead: 'A retail barcode is two things: a product number that nobody else uses, and the bars that encode it. The number comes from GS1. The barcode image you can make yourself, free. This guide covers both, step by step.',
+    datePublished: '2026-10-07',
+    ctas: [
+      { href: '../index.html?symbology=ean-13', label: 'Make an EAN-13 barcode' },
+      { href: '../index.html?symbology=upc-a', label: 'Make a UPC-A barcode' }
+    ],
+    sections: [
+      {
+        id: 'short-answer',
+        h2: 'The short answer',
+        html: `
+        <ol>
+          <li><strong>Get a product number (GTIN) from GS1</strong>, the not-for-profit organisation that runs the barcode numbering system, through the GS1 office in your country.</li>
+          <li><strong>Give each product variant its own number</strong>: every size, colour, flavour and pack count.</li>
+          <li><strong>Make the barcode</strong>: EAN-13 for a 13-digit number, UPC-A for a 12-digit number (US and Canada). Our generator adds the check digit for you.</li>
+          <li><strong>Print it at the right size</strong> and <strong>test-scan a printed proof</strong> before a full print run.</li>
+        </ol>
+        <p>If the barcode is only for your own stock room or shelves, you don't need GS1 at all. See <a href="#internal-use">barcodes for internal use</a>.</p>`
+      },
+      {
+        id: 'gtin-ean-upc',
+        h2: 'GTIN, EAN-13 and UPC-A: what\'s the difference?',
+        html: `
+        <p><strong>GTIN</strong> (Global Trade Item Number) is the product number. <strong>EAN-13</strong> and <strong>UPC-A</strong> are the barcodes that carry it at the checkout.</p>
+        <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead><tr><th>Number</th><th>Digits</th><th>Barcode</th><th>Where it's used</th></tr></thead>
+            <tbody>
+              <tr><td>GTIN-13</td><td>13</td><td><a href="./ean-13-barcode-generator.html">EAN-13</a></td><td>Retail almost everywhere outside the US and Canada</td></tr>
+              <tr><td>GTIN-12</td><td>12</td><td><a href="./upc-a-barcode-generator.html">UPC-A</a></td><td>Retail in the US and Canada</td></tr>
+              <tr><td>GTIN-14</td><td>14</td><td><a href="./itf-14-barcode-generator.html">ITF-14</a></td><td>Outer cartons and cases, not consumer packs</td></tr>
+              <tr><td>ISBN-13</td><td>13</td><td><a href="./isbn-book-barcode-generator.html">EAN-13 (Bookland)</a></td><td>Books, from your national ISBN agency, not GS1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Put a 0 in front of a 12-digit UPC-A number and you have the same product's 13-digit number. Checkout scanners around the world read both barcodes, so a UPC-A product can be sold in Europe and an EAN-13 product in the US. Some US retailers still ask suppliers for UPC-A, so check what your buyer wants.</p>`
+      },
+      {
+        id: 'do-you-need-gs1',
+        h2: 'Step 1: Decide whether you need a GS1 number',
+        html: `
+        <p><strong>You need a GS1 number</strong> if the product will be sold through someone else's system: supermarkets and chain stores, Amazon, Walmart and most other marketplaces, and distributors. They look the number up in the GS1 database to see which company owns it.</p>
+        <p><strong>Amazon</strong> checks product UPCs against the GS1 database and recommends getting them directly from GS1. If your product has no GTIN at all (for example a private-label or handmade item), you can apply for a <em>GTIN exemption</em> in Seller Central; it isn't available for products that already carry a GS1 barcode. The <a href="./amazon-fba-fnsku-barcode-generator.html">FNSKU label</a> Amazon asks for on FBA stock is a separate, Amazon-only code.</p>
+        <p id="internal-use"><strong>You don't need GS1</strong> for barcodes that never leave your business: stock-room bins, asset tags, your own shop's shelf labels. GS1 reserves number ranges for this kind of use (EAN-13 numbers starting 20–29, UPC-A numbers starting 2 or 4; your local GS1 office sets how they are used), or you can simply use <a href="./code-128-barcode-generator.html">Code 128</a> with your own SKUs.</p>`
+      },
+      {
+        id: 'get-numbers',
+        h2: 'Step 2: Get your numbers from GS1',
+        html: `
+        <ul>
+          <li>Go to <a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">gs1.org</a> and choose your country, or go straight to your national office, for example <a href="https://www.gs1us.org/" target="_blank" rel="noopener noreferrer">GS1 US</a>, <a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a> or <a href="https://www.gs1india.org/" target="_blank" rel="noopener noreferrer">GS1 India</a>.</li>
+          <li>Most offices license a <strong>company prefix</strong>: a block of numbers sized to how many products you plan to sell. GS1 US also sells <strong>single GTINs</strong> for sellers with only a few products.</li>
+          <li>Fees depend on the country and the number of products. A company prefix usually has a yearly renewal fee; GS1 US single GTINs are a one-time purchase. Check your office's current price list.</li>
+        </ul>
+        <div class="article-callout">
+          <strong>Avoid cheap numbers from resellers.</strong> Those numbers were licensed to another company, and the GS1 database still shows that company as the owner. Marketplaces and retailers that check the database can reject or remove your listings.
+        </div>`
+      },
+      {
+        id: 'assign',
+        h2: 'Step 3: Give every product variant its own number',
+        html: `
+        <ul>
+          <li>Each item sold separately needs its own GTIN: 250 ml and 500 ml are two numbers; red and blue are two numbers; a single bar and a 6-pack are two numbers.</li>
+          <li>Keep a simple spreadsheet: number, product name, size or variant, and the date you assigned it.</li>
+          <li>Never reuse a number for a different product. Shops and marketplaces may still have the old product on file.</li>
+        </ul>`
+      },
+      {
+        id: 'check-digit',
+        h2: 'Step 4: The check digit (done for you)',
+        html: `
+        <p>The last digit of every EAN-13 and UPC-A is a <strong>check digit</strong>. It lets the scanner catch a misread. Our generator calculates it when you type 12 digits (EAN-13) or 11 digits (UPC-A), and checks it if you type the full number. Here is how it works, using the example number <code>590123412345</code>:</p>
+        <ol>
+          <li>Starting from the <strong>rightmost</strong> digit, multiply the digits alternately by 3 and 1: 5×3, 4×1, 3×3, 2×1, 1×3, 4×1, 3×3, 2×1, 1×3, 0×1, 9×3, 5×1.</li>
+          <li>Add the results: 15 + 4 + 9 + 2 + 3 + 4 + 9 + 2 + 3 + 0 + 27 + 5 = <strong>83</strong>.</li>
+          <li>The check digit is what you add to reach the next multiple of 10: 90 − 83 = <strong>7</strong>.</li>
+        </ol>
+        <p>So the full EAN-13 is <code>5901234123457</code>. The same rule works for UPC-A: <code>03600029145</code> gets check digit <strong>2</strong>.</p>`
+      },
+      {
+        id: 'make',
+        h2: 'Step 5: Make the barcode',
+        html: `
+        <ol>
+          <li>Open the <a href="./ean-13-barcode-generator.html">EAN-13 generator</a> for a 13-digit number or the <a href="./upc-a-barcode-generator.html">UPC-A generator</a> for a 12-digit number.</li>
+          <li>Type your number. Leave the human-readable digits under the bars switched on; retail packaging needs them.</li>
+          <li>Download <strong>SVG</strong> for packaging artwork, since it stays sharp at any size and your designer can place it exactly. Use <strong>PNG at 4×</strong> for documents and labels.</li>
+          <li>For sticker labels, use the label maker with <a href="./avery-5160-barcode-generator.html">Avery 5160</a> and similar sheets, or a thermal roll. To make many at once, use the <a href="./bulk-barcode-generator-excel.html">batch generator</a>.</li>
+        </ol>
+        <p>Everything runs in your browser, and your product numbers are never uploaded.</p>`
+      },
+      {
+        id: 'size',
+        h2: 'Step 6: Print it at the right size',
+        html: `
+        <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead><tr><th></th><th>EAN-13</th><th>UPC-A</th></tr></thead>
+            <tbody>
+              <tr><td>Target size (narrowest bar 0.330 mm)</td><td colspan="2">37.29 mm (1.468 in) wide including margins, bars 22.85 mm (0.900 in) high</td></tr>
+              <tr><td>Smallest for retail checkout (bar 0.264 mm, "80%")</td><td colspan="2">29.83 mm wide, bars 18.28 mm high</td></tr>
+              <tr><td>Largest (bar 0.660 mm, "200%")</td><td colspan="2">74.58 mm wide, bars 45.70 mm high</td></tr>
+              <tr><td>Blank margin (quiet zone)</td><td>11 bar-widths left, 7 right</td><td>9 bar-widths each side</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>Don't shorten the bars</strong> to fit a small pack. Use a smaller size within the allowed range instead.</li>
+          <li><strong>Dark bars on a light background.</strong> Black on white is best. Red bars don't scan, because checkout scanners use red light.</li>
+          <li><strong>Matte surfaces</strong> scan better than glossy ones, and the barcode shouldn't wrap around a tight curve.</li>
+        </ul>`
+      },
+      {
+        id: 'test',
+        h2: 'Step 7: Test before you print in volume',
+        html: `
+        <ul>
+          <li>Print one proof at the final size and scan it with a phone, a handheld scanner, or our free <a href="../barcode-scanner.html">barcode scanner</a> (upload a photo of the proof).</li>
+          <li>Check that it reads back exactly your number, including the check digit.</li>
+          <li>Some large retailers ask for a <strong>verification report</strong> (print quality grading under ISO/IEC 15416). Your printer or GS1 office can arrange one.</li>
+        </ul>`
+      },
+      {
+        id: 'sunrise-2027',
+        h2: 'What about 2D barcodes? (GS1 Sunrise 2027)',
+        html: `
+        <p>EAN-13 and UPC-A are still the checkout standard. Under GS1's <strong>Sunrise 2027</strong> goal, retailers are preparing their tills to also read 2D codes (QR codes that use <strong>GS1 Digital Link</strong>, and <strong>GS1 DataMatrix</strong>) by the end of 2027.</p>
+        <ul>
+          <li>It's a voluntary industry target, not a law.</li>
+          <li>Your EAN-13 or UPC-A barcode stays on the pack. Brands that add a 2D code put it alongside, carrying the same GTIN.</li>
+          <li>If you're designing new packaging, ask your GS1 office whether your retailers want a 2D code yet.</li>
+        </ul>`
+      }
+    ],
+    faqs: [
+      {
+        q: 'Can I just make up my own barcode number?',
+        a: 'Only for internal use, such as your own stock room or shelves. Products sold through retailers or marketplaces need a number licensed from GS1, because these systems check who owns each number.'
+      },
+      {
+        q: 'How much does a product barcode cost?',
+        a: 'The number costs whatever your national GS1 office charges, which depends on the country and how many products you have, usually with a yearly fee. Making the barcode image is free: you can do it in our generator.'
+      },
+      {
+        q: 'Should I use EAN-13 or UPC-A?',
+        a: 'Use the barcode that matches your number: EAN-13 for a 13-digit GTIN, UPC-A for a 12-digit GTIN. GS1 US issues 12-digit numbers; most other GS1 offices issue 13-digit numbers. If you are not sure, ask your GS1 office.'
+      },
+      {
+        q: 'Can I use the same barcode on Amazon and in shops?',
+        a: 'Yes. A GTIN identifies the product itself, so the same number works on Amazon, in stores and with distributors. Amazon may also ask for an FNSKU label on FBA stock, which is a separate Amazon-only code.'
+      },
+      {
+        q: 'Do I need a new barcode if I change the packaging?',
+        a: 'Usually not for a small design change. A new number is needed when the product changes in a way buyers or stores need to tell apart, such as a different size, quantity or variant. GS1 publishes detailed rules for when a new GTIN is required.'
+      }
+    ]
+  }
+];
 
-  const webAppJsonLd = {
+function generateArticleHtml(article) {
+  const pageUrl = `${SITE_URL}/pages/${article.slug}.html`;
+
+  const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": `${page.name} - UniversalCodeMaker.com`,
+    "@type": "Article",
+    "headline": article.h1,
+    "description": article.metaDescription,
     "url": pageUrl,
-    "description": page.metaDescription,
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    "mainEntityOfPage": pageUrl,
+    "datePublished": article.datePublished,
+    "author": { "@type": "Organization", "name": "UniversalCodeMaker", "url": `${SITE_URL}/` },
+    "publisher": { "@type": "Organization", "name": "UniversalCodeMaker", "url": `${SITE_URL}/` },
+    "image": `${SITE_URL}/assets/og-preview.png`
   };
 
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map(f => ({
+    "mainEntity": article.faqs.map(f => ({
       "@type": "Question",
       "name": f.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": f.a
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
     }))
   };
 
@@ -2227,22 +2425,27 @@ function generatePageHtml(page) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": `${SITE_URL}/`
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": page.name,
-        "item": pageUrl
-      }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${SITE_URL}/` },
+      { "@type": "ListItem", "position": 2, "name": article.name, "item": pageUrl }
     ]
   };
 
-  const faqItemsHtml = faqs.map((f, i) => `
+  const ctasHtml = article.ctas.map(c => `
+        <a href="${c.href}" class="cta-launch-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          ${c.label}
+        </a>`).join('');
+
+  const tocHtml = article.sections.map(s => `
+          <li><a href="#${s.id}">${s.h2}</a></li>`).join('');
+
+  const sectionsHtml = article.sections.map(s => `
+    <section class="article-section" id="${s.id}" aria-labelledby="${s.id}-title">
+      <h2 id="${s.id}-title">${s.h2}</h2>
+      ${s.html.trim()}
+    </section>`).join('\n');
+
+  const faqItemsHtml = article.faqs.map((f, i) => `
     <details class="faq-item" ${i === 0 ? 'open' : ''}>
       <summary class="faq-question">
         <span>${f.q}</span>
@@ -2254,204 +2457,68 @@ function generatePageHtml(page) {
     </details>
   `).join('');
 
-  const specsListHtml = page.technicalSpec ? Object.entries(page.technicalSpec).map(([k, v]) => `
-    <div class="spec-row">
-      <dt class="spec-key">${k.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</dt>
-      <dd class="spec-val">${v}</dd>
-    </div>
-  `).join('') : '';
+  return `${headTopHtml(article, pageUrl)}
+${PAGE_STYLES}
 
-  const useCasesHtml = page.useCases ? page.useCases.map(u => `
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>${u}</span>
-    </li>
-  `).join('') : '';
+  <!-- Structured Data JSON-LD Schemas -->
+  <script type="application/ld+json">
+    ${JSON.stringify(articleJsonLd, null, 2)}
+  </script>
+  <script type="application/ld+json">
+    ${JSON.stringify(faqJsonLd, null, 2)}
+  </script>
+  <script type="application/ld+json">
+    ${JSON.stringify(breadcrumbJsonLd, null, 2)}
+  </script>
+</head>
+<body>
 
-  const relatedPagesHtml = SEO_PAGES.filter(p => p.slug !== page.slug).slice(0, 6).map(p => `
-    <a href="./${p.slug}.html" class="related-card">
-      <span class="related-tag">${p.category}</span>
-      <span class="related-title">
-        <span>${p.name}</span>
-        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </span>
-    </a>
-  `).join('');
+${siteHeaderHtml(article.queryParam)}
 
-  const benefitsHtml = benefits.map(b => `
-    <div class="benefit-card">
-      <div class="benefit-card-header">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>${b.title}</h4>
+  <main class="seo-page-container">
+
+    <section class="hero-banner">
+      <div class="hero-badge">
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="10"/></svg>
+        ${article.badge}
       </div>
-      <p>${b.desc}</p>
-    </div>
-  `).join('');
-
-  const decisionGuideHtml = decisionGuide.map(d => `
-    <div class="decision-item">
-      <h3 style="display: flex; align-items: center; gap: 0.45rem;">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>${d.q}</span>
-      </h3>
-      <p>${d.a}</p>
-    </div>
-  `).join('');
-
-  const cautionPointsHtml = legalCaution ? legalCaution.points.map(p => `
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>${p}</span>
-    </li>
-  `).join('') : '';
-
-  const authorityLinksHtml = authorityLinks.map(a => `
-    <a href="${a.url}" target="_blank" rel="noopener noreferrer" class="authority-link-item">
-      <div class="authority-link-title">
-        <span>${a.name}</span>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      <h1 class="hero-title">${article.h1}</h1>
+      <p class="hero-lead">${article.lead}</p>
+      <div class="article-ctas">${ctasHtml}
       </div>
-      <div class="authority-link-desc">${a.desc}</div>
-    </a>
-  `).join('');
+    </section>
 
-  const isQrPage = page.category === 'Smart QR' || page.category === 'Smart QR Codes' || page.slug.includes('qr');
-  let hardwareItemsHtml = '';
-  if (page.slug.includes('avery-5160')) {
-    hardwareItemsHtml = `
-      <a href="https://www.amazon.com/s?k=avery+5160+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M6 8h12M6 12h12M6 16h8"/></svg>
-        <span>Avery 5160 Labels (3,000 pk)</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=hp+laserjet+pro+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>HP LaserJet Pro Printer</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>Wireless Barcode Scanner</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=avery+5163+shipping+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        <span>Avery 5163 Shipping Labels</span>
-      </a>
-    `;
-  } else if (page.slug.includes('isbn')) {
-    hardwareItemsHtml = `
-      <a href="https://www.amazon.com/s?k=postal+shipping+scale&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M12 12v3"/><circle cx="12" cy="12" r="1"/></svg>
-        <span>Postal Shipping Scale</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=brother+monochrome+laser+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>Brother Laser Printer</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=bubble+mailer+envelopes+book&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        <span>Padded Book Mailers</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=usb+handheld+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>USB Barcode Reader</span>
-      </a>
-    `;
-  } else if (page.slug.includes('code-39')) {
-    hardwareItemsHtml = `
-      <a href="https://www.amazon.com/s?k=industrial+barcode+scanner+heavy+duty&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>Industrial Laser Scanner</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=weatherproof+asset+tags+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-        <span>Weatherproof Asset Labels</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=zebra+thermal+desktop+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>Zebra Desktop Printer</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>Bluetooth Handheld Scanner</span>
-      </a>
-    `;
-  } else if (page.slug.includes('bulk-barcode')) {
-    hardwareItemsHtml = `
-      <a href="https://www.amazon.com/s?k=munbyn+thermal+label+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>MUNBYN Commercial Thermal Printer</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=direct+thermal+labels+4x6&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        <span>Fanfold Thermal Labels (4\" × 6\")</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=zebra+zd421+thermal+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>Zebra ZD421 Industrial Printer</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>High-Speed Desktop Scanner</span>
-      </a>
-    `;
-  } else if (page.slug.includes('shopify')) {
-    hardwareItemsHtml = `
-      <a href="https://www.amazon.com/s?k=bluetooth+thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>Bluetooth Thermal Label Printer</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=wireless+pos+barcode+scanner+ipad&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>Shopify POS Wireless Scanner</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=direct+thermal+labels+2.25x1.25&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        <span>2.25\" × 1.25\" Price Tag Rolls</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=acrylic+pos+countertop+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        <span>Acrylic POS Display Stands</span>
-      </a>
-    `;
-  } else if (isQrPage) {
-    hardwareItemsHtml = `
-      <a href="https://www.amazon.com/s?k=acrylic+qr+code+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        <span>Acrylic QR Countertop Stands</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=thermal+receipt+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>Thermal Receipt Printers</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>2D QR Scanners</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=printable+vinyl+sticker+paper&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-        <span>Weatherproof Sticker Paper</span>
-      </a>
-    `;
-  } else {
-    hardwareItemsHtml = `
-      <a href="https://www.amazon.com/s?k=thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>Thermal Label Printers</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=avery+5160+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M6 8h12M6 12h12M6 16h8"/></svg>
-        <span>Avery 5160 Labels (30-Up)</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>2D Bluetooth Scanners</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=direct+thermal+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        <span>Thermal Shipping Rolls</span>
-      </a>
-    `;
-  }
+    <div class="article-layout">
+      <nav class="article-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>${tocHtml}
+          <li><a href="#faq">Frequently asked questions</a></li>
+        </ol>
+      </nav>
 
+      <article class="article-body">
+${sectionsHtml}
+      </article>
+    </div>
+
+    <section class="faq-section" id="faq">
+      <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">Frequently Asked Questions</h2>
+      <div class="faq-accordion">
+        ${faqItemsHtml}
+      </div>
+    </section>
+
+  </main>
+
+${SITE_FOOTER_HTML}
+</body>
+</html>`;
+}
+
+// Shared page chrome: the same <head> start, styles, header and footer for landing pages and guide pages.
+// `meta` needs metaTitle and metaDescription; `pageUrl` is the canonical URL.
+function headTopHtml(meta, pageUrl) {
+  const page = meta;
   return `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -2513,8 +2580,10 @@ function generatePageHtml(page) {
       document.documentElement.setAttribute('data-accent', savedAccent);
     })();
   </script>
+`;
+}
 
-  <style>
+const PAGE_STYLES = `  <style>
     .seo-page-container {
       max-width: 1080px;
       margin: 2.25rem auto 4rem;
@@ -2785,22 +2854,12 @@ function generatePageHtml(page) {
       border-color: var(--scanner-laser);
       color: var(--laser-text);
     }
-  </style>
+  </style>`;
 
-  <!-- Structured Data JSON-LD Schemas -->
-  <script type="application/ld+json">
-    ${JSON.stringify(webAppJsonLd, null, 2)}
-  </script>
-  <script type="application/ld+json">
-    ${JSON.stringify(faqJsonLd, null, 2)}
-  </script>
-  <script type="application/ld+json">
-    ${JSON.stringify(breadcrumbJsonLd, null, 2)}
-  </script>
-</head>
-<body>
-
-  <!-- Site Header -->
+// `queryParam` sets which format/QR type the "Launch Studio" button opens.
+function siteHeaderHtml(queryParam) {
+  const page = { queryParam };
+  return `  <!-- Site Header -->
   <header class="v2-header">
     <div class="wrap">
       <div class="v2-header-container">
@@ -2838,7 +2897,437 @@ function generatePageHtml(page) {
         </div>
       </div>
     </div>
-  </header>
+  </header>`;
+}
+
+const SITE_FOOTER_HTML = `  <!-- Site Footer -->
+  <footer class="v2-footer">
+    <div class="wrap">
+      <!-- Same footer as the studio and root pages (keep in sync with index.html) -->
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div class="v2-brand-badge" style="width: 38px; height: 38px; background: var(--surface);">
+              <img src="../assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="30" height="30" style="display: block; object-fit: contain;">
+            </div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker <span class="v2-version-tag">V2</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="../index.html">Optical Studio</a></li>
+              <li><a href="../index.html#symbologies">Symbologies Directory</a></li>
+              <li><a href="../barcode-scanner.html">Barcode &amp; QR Scanner</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Standards &amp; Docs</h4>
+            <ul>
+              <li><a href="../symbology-docs.html">Symbology Documentation</a></li>
+              <li><a href="../about.html">About &amp; Mission</a></li>
+              <li><a href="../privacy-policy.html">Zero-Knowledge Privacy</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://primordialparadigm.com" target="_blank" rel="noopener">Primordial Paradigm ↗</a></li>
+              <li><a href="../contact.html">Report Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5-Column Programmatic SEO & Symbology Directory Matrix -->
+      <div class="v2-footer-matrix">
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Retail &amp; Publishing
+          </h4>
+          <ul>
+            <li><a href="./ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
+            <li><a href="./upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
+            <li><a href="./isbn-book-barcode-generator.html">ISBN Bookland Barcode</a></li>
+            <li><a href="./shopify-barcode-generator.html">Shopify Product Barcode</a></li>
+            <li><a href="./amazon-fba-fnsku-barcode-generator.html">Amazon FBA / FNSKU Barcode</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            Logistics, Sheets &amp; Bulk
+          </h4>
+          <ul>
+            <li><a href="./avery-5160-barcode-generator.html">Avery 5160 Label Generator</a></li>
+            <li><a href="./bulk-barcode-generator-excel.html">Bulk Excel Barcode Generator</a></li>
+            <li><a href="./code-128-barcode-generator.html">Code 128 Shipping Barcode</a></li>
+            <li><a href="./code-39-barcode-generator.html">Code 39 Asset Barcode</a></li>
+            <li><a href="./itf-14-barcode-generator.html">ITF-14 Carton Barcode</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            2D Industrial &amp; Density
+          </h4>
+          <ul>
+            <li><a href="./data-matrix-generator.html">Data Matrix 2D Generator</a></li>
+            <li><a href="./aztec-code-generator.html">Aztec Code Generator</a></li>
+            <li><a href="./pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
+            <li><a href="../symbology-docs.html">Barcode &amp; QR Symbology Guides</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Smart QR Generators
+          </h4>
+          <ul>
+            <li><a href="./google-reviews-qr-code-generator.html">Google Reviews 5-Star QR</a></li>
+            <li><a href="./upi-qr-code-generator.html">UPI Scan-to-Pay QR</a></li>
+            <li><a href="./wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
+            <li><a href="./vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
+            <li><a href="./google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
+            <li><a href="./crypto-qr-code-generator.html">Crypto Wallet QR Code</a></li>
+            <li><a href="./calendar-event-qr-code-generator.html">Calendar Event (iCal) QR</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Messaging &amp; Text QR
+          </h4>
+          <ul>
+            <li><a href="./whatsapp-qr-code-generator.html">WhatsApp Direct Chat QR</a></li>
+            <li><a href="./email-qr-code-generator.html">Email Message QR Code</a></li>
+            <li><a href="./sms-qr-code-generator.html">SMS Direct Message QR</a></li>
+            <li><a href="./phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>
+            <li><a href="./plain-text-qr-code-generator.html">Plain Text QR Code</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <ul class="v2-footer-legal-links">
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../symbology-docs.html">Symbology Docs</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+        </ul>
+        <div class="v2-trademark-notice">
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. Amazon, Amazon FBA, and FNSKU are registered trademarks of Amazon.com, Inc. or its affiliates. Google and Google Reviews are trademarks of Google LLC. WhatsApp is a registered trademark of Meta Platforms, Inc. UPI is a registered trademark of NPCI. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Navigation & Theme Sync Script -->
+  <script src="../js/v2-nav.js?v=2.4"></script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
+`;
+
+function generatePageHtml(page) {
+  const pageUrl = `${SITE_URL}/pages/${page.slug}.html`;
+  const enrichment = ENRICHMENTS[page.slug] || {};
+  const benefits = enrichment.benefits || [];
+  const decisionGuide = enrichment.decisionGuide || [];
+  const legalCaution = enrichment.legalCaution || null;
+  const authorityLinks = enrichment.authorityLinks || [];
+  const guide = GUIDES[page.slug] || null;
+  const faqs = [...page.faqs, ...((guide && guide.moreFaqs) || [])];
+
+  const webAppJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": `${page.name} - UniversalCodeMaker.com`,
+    "url": pageUrl,
+    "description": page.metaDescription,
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.a
+      }
+    }))
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${SITE_URL}/`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": page.name,
+        "item": pageUrl
+      }
+    ]
+  };
+
+  const faqItemsHtml = faqs.map((f, i) => `
+    <details class="faq-item" ${i === 0 ? 'open' : ''}>
+      <summary class="faq-question">
+        <span>${f.q}</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>${f.a}</p>
+      </div>
+    </details>
+  `).join('');
+
+  const specsListHtml = page.technicalSpec ? Object.entries(page.technicalSpec).map(([k, v]) => `
+    <div class="spec-row">
+      <dt class="spec-key">${k.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</dt>
+      <dd class="spec-val">${v}</dd>
+    </div>
+  `).join('') : '';
+
+  const useCasesHtml = page.useCases ? page.useCases.map(u => `
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>${u}</span>
+    </li>
+  `).join('') : '';
+
+  const relatedPagesHtml = SEO_PAGES.filter(p => p.slug !== page.slug).slice(0, 6).map(p => `
+    <a href="./${p.slug}.html" class="related-card">
+      <span class="related-tag">${p.category}</span>
+      <span class="related-title">
+        <span>${p.name}</span>
+        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </span>
+    </a>
+  `).join('');
+
+  const benefitsHtml = benefits.map(b => `
+    <div class="benefit-card">
+      <div class="benefit-card-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <h4>${b.title}</h4>
+      </div>
+      <p>${b.desc}</p>
+    </div>
+  `).join('');
+
+  const decisionGuideHtml = decisionGuide.map(d => `
+    <div class="decision-item">
+      <h3 style="display: flex; align-items: center; gap: 0.45rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>${d.q}</span>
+      </h3>
+      <p>${d.a}</p>
+    </div>
+  `).join('');
+
+  const cautionPointsHtml = legalCaution ? legalCaution.points.map(p => `
+    <li>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span>${p}</span>
+    </li>
+  `).join('') : '';
+
+  const authorityLinksHtml = authorityLinks.map(a => `
+    <a href="${a.url}" target="_blank" rel="noopener noreferrer" class="authority-link-item">
+      <div class="authority-link-title">
+        <span>${a.name}</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </div>
+      <div class="authority-link-desc">${a.desc}</div>
+    </a>
+  `).join('');
+
+  const isQrPage = page.category === 'Smart QR' || page.category === 'Smart QR Codes' || page.slug.includes('qr');
+  let hardwareItemsHtml = '';
+  if (page.slug.includes('avery-5160')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=avery+5160+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M6 8h12M6 12h12M6 16h8"/></svg>
+        <span>Avery 5160 Labels (3,000 pk)</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=hp+laserjet+pro+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>HP LaserJet Pro Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>Wireless Barcode Scanner</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=avery+5163+shipping+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Avery 5163 Shipping Labels</span>
+      </a>
+    `;
+  } else if (page.slug.includes('isbn')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=postal+shipping+scale&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M12 12v3"/><circle cx="12" cy="12" r="1"/></svg>
+        <span>Postal Shipping Scale</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=brother+monochrome+laser+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Brother Laser Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=bubble+mailer+envelopes+book&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Padded Book Mailers</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=usb+handheld+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>USB Barcode Reader</span>
+      </a>
+    `;
+  } else if (page.slug.includes('code-39')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=industrial+barcode+scanner+heavy+duty&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>Industrial Laser Scanner</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=weatherproof+asset+tags+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        <span>Weatherproof Asset Labels</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=zebra+thermal+desktop+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Zebra Desktop Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>Bluetooth Handheld Scanner</span>
+      </a>
+    `;
+  } else if (page.slug.includes('bulk-barcode')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=munbyn+thermal+label+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>MUNBYN Commercial Thermal Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=direct+thermal+labels+4x6&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Fanfold Thermal Labels (4\" × 6\")</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=zebra+zd421+thermal+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Zebra ZD421 Industrial Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>High-Speed Desktop Scanner</span>
+      </a>
+    `;
+  } else if (page.slug.includes('shopify')) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=bluetooth+thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Bluetooth Thermal Label Printer</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=wireless+pos+barcode+scanner+ipad&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>Shopify POS Wireless Scanner</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=direct+thermal+labels+2.25x1.25&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>2.25\" × 1.25\" Price Tag Rolls</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=acrylic+pos+countertop+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        <span>Acrylic POS Display Stands</span>
+      </a>
+    `;
+  } else if (isQrPage) {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=acrylic+qr+code+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        <span>Acrylic QR Countertop Stands</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=thermal+receipt+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Thermal Receipt Printers</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>2D QR Scanners</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=printable+vinyl+sticker+paper&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        <span>Weatherproof Sticker Paper</span>
+      </a>
+    `;
+  } else {
+    hardwareItemsHtml = `
+      <a href="https://www.amazon.com/s?k=thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Thermal Label Printers</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=avery+5160+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M6 8h12M6 12h12M6 16h8"/></svg>
+        <span>Avery 5160 Labels (30-Up)</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
+        <span>2D Bluetooth Scanners</span>
+      </a>
+      <a href="https://www.amazon.com/s?k=direct+thermal+labels&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Thermal Shipping Rolls</span>
+      </a>
+    `;
+  }
+
+  return `${headTopHtml(page, pageUrl)}
+${PAGE_STYLES}
+
+  <!-- Structured Data JSON-LD Schemas -->
+  <script type="application/ld+json">
+    ${JSON.stringify(webAppJsonLd, null, 2)}
+  </script>
+  <script type="application/ld+json">
+    ${JSON.stringify(faqJsonLd, null, 2)}
+  </script>
+  <script type="application/ld+json">
+    ${JSON.stringify(breadcrumbJsonLd, null, 2)}
+  </script>
+</head>
+<body>
+
+${siteHeaderHtml(page.queryParam)}
 
   <main class="seo-page-container">
 
@@ -3011,148 +3500,7 @@ function generatePageHtml(page) {
 
   </main>
 
-  <!-- Site Footer -->
-  <footer class="v2-footer">
-    <div class="wrap">
-      <!-- Same footer as the studio and root pages (keep in sync with index.html) -->
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <div class="v2-brand-badge" style="width: 38px; height: 38px; background: var(--surface);">
-              <img src="../assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="30" height="30" style="display: block; object-fit: contain;">
-            </div>
-            <div class="v2-brand-title">
-              UniversalCodeMaker <span class="v2-version-tag">V2</span>
-            </div>
-          </div>
-          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
-            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
-          </p>
-        </div>
-
-        <div class="footer-links-group">
-          <div class="footer-links-col">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="../index.html">Optical Studio</a></li>
-              <li><a href="../index.html#symbologies">Symbologies Directory</a></li>
-              <li><a href="../barcode-scanner.html">Barcode &amp; QR Scanner</a></li>
-            </ul>
-          </div>
-          <div class="footer-links-col">
-            <h4>Standards &amp; Docs</h4>
-            <ul>
-              <li><a href="../symbology-docs.html">Symbology Documentation</a></li>
-              <li><a href="../about.html">About &amp; Mission</a></li>
-              <li><a href="../privacy-policy.html">Zero-Knowledge Privacy</a></li>
-            </ul>
-          </div>
-          <div class="footer-links-col">
-            <h4>Ecosystem</h4>
-            <ul>
-              <li><a href="https://primordialparadigm.com" target="_blank" rel="noopener">Primordial Paradigm ↗</a></li>
-              <li><a href="../contact.html">Report Feedback</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5-Column Programmatic SEO & Symbology Directory Matrix -->
-      <div class="v2-footer-matrix">
-        <div class="v2-dir-col">
-          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            Retail &amp; Publishing
-          </h4>
-          <ul>
-            <li><a href="./ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
-            <li><a href="./upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
-            <li><a href="./isbn-book-barcode-generator.html">ISBN Bookland Barcode</a></li>
-            <li><a href="./shopify-barcode-generator.html">Shopify Product Barcode</a></li>
-            <li><a href="./amazon-fba-fnsku-barcode-generator.html">Amazon FBA / FNSKU Barcode</a></li>
-          </ul>
-        </div>
-
-        <div class="v2-dir-col">
-          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-            Logistics, Sheets &amp; Bulk
-          </h4>
-          <ul>
-            <li><a href="./avery-5160-barcode-generator.html">Avery 5160 Label Generator</a></li>
-            <li><a href="./bulk-barcode-generator-excel.html">Bulk Excel Barcode Generator</a></li>
-            <li><a href="./code-128-barcode-generator.html">Code 128 Shipping Barcode</a></li>
-            <li><a href="./code-39-barcode-generator.html">Code 39 Asset Barcode</a></li>
-            <li><a href="./itf-14-barcode-generator.html">ITF-14 Carton Barcode</a></li>
-          </ul>
-        </div>
-
-        <div class="v2-dir-col">
-          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-            2D Industrial &amp; Density
-          </h4>
-          <ul>
-            <li><a href="./data-matrix-generator.html">Data Matrix 2D Generator</a></li>
-            <li><a href="./aztec-code-generator.html">Aztec Code Generator</a></li>
-            <li><a href="./pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
-            <li><a href="../symbology-docs.html">Barcode &amp; QR Symbology Guides</a></li>
-          </ul>
-        </div>
-
-        <div class="v2-dir-col">
-          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            Smart QR Generators
-          </h4>
-          <ul>
-            <li><a href="./google-reviews-qr-code-generator.html">Google Reviews 5-Star QR</a></li>
-            <li><a href="./upi-qr-code-generator.html">UPI Scan-to-Pay QR</a></li>
-            <li><a href="./wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
-            <li><a href="./vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
-            <li><a href="./google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
-            <li><a href="./crypto-qr-code-generator.html">Crypto Wallet QR Code</a></li>
-            <li><a href="./calendar-event-qr-code-generator.html">Calendar Event (iCal) QR</a></li>
-          </ul>
-        </div>
-
-        <div class="v2-dir-col">
-          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            Messaging &amp; Text QR
-          </h4>
-          <ul>
-            <li><a href="./whatsapp-qr-code-generator.html">WhatsApp Direct Chat QR</a></li>
-            <li><a href="./email-qr-code-generator.html">Email Message QR Code</a></li>
-            <li><a href="./sms-qr-code-generator.html">SMS Direct Message QR</a></li>
-            <li><a href="./phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>
-            <li><a href="./plain-text-qr-code-generator.html">Plain Text QR Code</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
-        <ul class="v2-footer-legal-links">
-          <li><a href="../terms.html">Terms of Service</a></li>
-          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="../symbology-docs.html">Symbology Docs</a></li>
-          <li><a href="../about.html">About Us</a></li>
-          <li><a href="../contact.html">Contact Us</a></li>
-        </ul>
-        <div class="v2-trademark-notice">
-          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. Amazon, Amazon FBA, and FNSKU are registered trademarks of Amazon.com, Inc. or its affiliates. Google and Google Reviews are trademarks of Google LLC. WhatsApp is a registered trademark of Meta Platforms, Inc. UPI is a registered trademark of NPCI. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Navigation & Theme Sync Script -->
-  <script src="../js/v2-nav.js?v=2.4"></script>
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
-
+${SITE_FOOTER_HTML}
 </body>
 </html>`;
 }
@@ -3169,65 +3517,110 @@ SEO_PAGES.forEach(page => {
   console.log(`Generated: pages/${page.slug}.html`);
 });
 
+ARTICLES.forEach(article => {
+  fs.writeFileSync(path.join(PAGES_DIR, `${article.slug}.html`), generateArticleHtml(article), 'utf8');
+  generatedCount++;
+  console.log(`Generated: pages/${article.slug}.html (guide)`);
+});
+
 // Generate sitemap.xml
 console.log('Generating sitemap.xml...');
 const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
 const today = new Date().toISOString().split('T')[0];
 
+// <lastmod> = the date the page's content really last changed: today if it has uncommitted
+// content edits, otherwise the newest commit that changed its content. Changes that only bump
+// a cache-busting ?v= don't count. Stamping every URL with today's date on each run teaches
+// Google to ignore our lastmod values.
+const { execSync } = require('child_process');
+const SITE_ROOT = path.join(__dirname, '..');
+const GIT_OPTS = { cwd: SITE_ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 64 * 1024 * 1024 };
+
+function isContentChange(diff) {
+  const changed = (sign) => diff.split('\n')
+    .filter(l => l.startsWith(sign) && !l.startsWith(sign.repeat(3)))
+    .map(l => l.slice(1).replace(/\?v=[0-9.]+/g, '?v=').trim())
+    .sort()
+    .join('\n');
+  return changed('-') !== changed('+');
+}
+
+function lastmodOf(relPath) {
+  try {
+    if (isContentChange(execSync(`git diff HEAD -- "${relPath}"`, GIT_OPTS))) return today;
+    const isTracked = execSync(`git ls-files -- "${relPath}"`, GIT_OPTS).trim();
+    if (!isTracked) return today;
+    const commits = execSync(`git log --format="%H %cs" -- "${relPath}"`, GIT_OPTS).trim().split('\n').filter(Boolean);
+    for (const line of commits) {
+      const [hash, date] = line.split(' ');
+      if (isContentChange(execSync(`git show --format= ${hash} -- "${relPath}"`, GIT_OPTS))) return date;
+    }
+    return today;
+  } catch (e) {
+    return today;
+  }
+}
+
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${SITE_URL}/</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf('index.html')}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>${SITE_URL}/symbology-docs.html</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf('symbology-docs.html')}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>${SITE_URL}/barcode-scanner.html</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf('barcode-scanner.html')}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>${SITE_URL}/about.html</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf('about.html')}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>${SITE_URL}/contact.html</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf('contact.html')}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>${SITE_URL}/terms.html</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf('terms.html')}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>${SITE_URL}/privacy-policy.html</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf('privacy-policy.html')}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 ${SEO_PAGES.map(p => `  <url>
     <loc>${SITE_URL}/pages/${p.slug}.html</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf(`pages/${p.slug}.html`)}</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`).join('\n')}
+${ARTICLES.map(a => `  <url>
+    <loc>${SITE_URL}/pages/${a.slug}.html</loc>
+    <lastmod>${lastmodOf(`pages/${a.slug}.html`)}</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>`).join('\n')}
 </urlset>
 `;
 
 fs.writeFileSync(sitemapPath, sitemapXml, 'utf8');
-console.log(`Saved sitemap.xml with ${SEO_PAGES.length + 6} URLs.`);
+console.log(`Saved sitemap.xml with ${(sitemapXml.match(/<loc>/g) || []).length} URLs.`);
 
-console.log(`All ${generatedCount} SEO landing pages generated successfully!`);
+console.log(`All ${generatedCount} pages (landing pages + guides) generated successfully!`);
