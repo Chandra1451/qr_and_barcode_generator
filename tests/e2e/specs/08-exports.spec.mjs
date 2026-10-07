@@ -309,6 +309,107 @@ test.describe('EXP-QRSAME · every styled-QR export is the same image', () => {
   });
 });
 
+test.describe('EXP-CONN · connections from the feature map (each test also checks the opposite case)', () => {
+  /** Captures the PNG images jsPDF embeds in the next PDF downloads. jsPDF must already be loaded. */
+  async function hookPdfImages(page) {
+    await page.evaluate(() => {
+      window.__pdfImages = [];
+      const api = window.jspdf?.jsPDF?.API;
+      if (api.__ucmHooked) return;
+      const orig = api.addImage;
+      api.addImage = function (img, ...rest) {
+        window.__pdfImages.push(typeof img === 'string' ? img : '');
+        return orig.call(this, img, ...rest);
+      };
+      api.__ucmHooked = true;
+    });
+  }
+  async function pdfLabelImage(studio, page) {
+    await page.evaluate(() => { window.__pdfImages = []; });
+    await page.locator('#btn-open-pdf-modal').click();
+    await studio.download(page.locator('#btn-generate-pdf'));
+    const first = await page.evaluate(() => window.__pdfImages.find((s) => s.startsWith('data:image/png')));
+    expect(first, 'could not capture the PDF label image').toBeTruthy();
+    return readPng(Buffer.from(first.split(',')[1], 'base64'));
+  }
+
+  test('EXP-33 PDF sheet barcodes get the studio\'s rounded corners (and square ones at 0px)', async ({ studio, page }) => {
+    await studio.open('?symbology=code-128');
+    await page.locator('#btn-open-pdf-modal').click();
+    await studio.download(page.locator('#btn-generate-pdf')); // loads jsPDF
+    await hookPdfImages(page);
+
+    const square = await pdfLabelImage(studio, page);
+    expect(alphaAt(square, 1, 1), 'corner should be opaque with 0px corners').toBeGreaterThan(200);
+
+    await page.locator('.corner-preset-btn[data-radius="18"]').click();
+    await page.waitForTimeout(300);
+    const rounded = await pdfLabelImage(studio, page);
+    expect(alphaAt(rounded, 1, 1), 'PDF barcode corner is not rounded (pixel is opaque)').toBeLessThan(50);
+    expect(alphaAt(rounded, Math.round(rounded.width / 2), Math.round(rounded.height / 2))).toBeGreaterThan(200);
+  });
+
+  test('EXP-44 batch SVG QR codes get the rounded corners, and still scan', async ({ studio, page }) => {
+    const batchSvg = async () => {
+      await page.locator('#btn-open-batch-modal').click();
+      await page.locator('#tab-batch-csv').click();
+      await page.locator('#batch-csv-input').fill('https://qa.example.com/svg');
+      await page.locator('#batch-format-select').selectOption('svg');
+      await page.locator('#batch-scale-select').selectOption('2');
+      const zip = await JSZip.loadAsync((await studio.download(page.locator('#btn-generate-batch'))).buffer);
+      await page.keyboard.press('Escape');
+      return Object.values(zip.files).find((f) => !f.dir).async('string');
+    };
+    await studio.open();
+    const square = await batchSvg();
+    expect(square, 'no corner clip expected at 0px').not.toMatch(/ucm-rounded-corners/);
+
+    await page.locator('.corner-preset-btn[data-radius="18"]').click();
+    await page.waitForTimeout(300);
+    const rounded = await batchSvg();
+    expect(rounded, 'batch SVG QR has no rounded-corner clip').toMatch(/<clipPath id="ucm-rounded-corners-[^"]+"><rect [^>]*rx="36"/);
+    const text = await decodeFirst(await rasterizeSvg(page, rounded));
+    expect(text, 'rounded batch SVG QR does not scan').toBe('https://qa.example.com/svg');
+  });
+
+  test('EXP-45 QR SVG download with rounded corners is a valid file that scans', async ({ studio, page }) => {
+    // Bug found 2026-10-08: the corner clip was inserted after the <?xml?> declaration, outside <svg>.
+    await studio.open();
+    await page.locator('.corner-preset-btn[data-radius="18"]').click();
+    await page.waitForTimeout(300);
+    const svg = (await studio.download(page.locator('#btn-download-svg'))).buffer.toString('utf8');
+    expect(svg.indexOf('<clipPath id="ucm-rounded-corners-'), 'corner clip must sit inside <svg>').toBeGreaterThan(svg.search(/<svg[\s>]/));
+    const text = await decodeFirst(await rasterizeSvg(page, svg));
+    expect(text, 'rounded QR SVG does not open or scan').not.toBeNull();
+  });
+
+  test('EXP-52 label maker barcodes use the studio\'s bar colour (and black by default)', async ({ studio, page }) => {
+    const labelPng = async () => {
+      await page.locator('#btn-open-label-modal').click();
+      await page.waitForTimeout(800); // the label's short barcode re-render is async
+      const png = readPng((await studio.download(page.locator('#btn-export-label-png'))).buffer);
+      await page.keyboard.press('Escape');
+      return png;
+    };
+    const share = (img, hex) => {
+      const c = hexToRgb(hex);
+      let n = 0;
+      for (let i = 0; i < img.data.length; i += 4) {
+        if (colorDistance({ r: img.data[i], g: img.data[i + 1], b: img.data[i + 2] }, c) < 40) n++;
+      }
+      return n / (img.width * img.height);
+    };
+    await studio.open('?symbology=code-128');
+    const black = await labelPng();
+    expect(share(black, '#991b1b'), 'default label should contain no red').toBeLessThan(0.001);
+
+    await page.locator('.barcode-preset-chip[data-bar="#991b1b"]').click();
+    await page.waitForTimeout(400);
+    const red = await labelPng();
+    expect(share(red, '#991b1b'), 'label barcode ignores the studio bar colour').toBeGreaterThan(0.02);
+  });
+});
+
 test.describe('EXP-CLIP · clipboard', () => {
   test('EXP-20 "Copy" puts a scannable PNG on the clipboard', async ({ studio, page, context }) => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);

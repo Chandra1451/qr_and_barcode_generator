@@ -8,8 +8,8 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius, svgWithRoundedCorners } from '../core/engine.js?v=3.14';
-import { svgToEps } from './eps-exporter.js?v=3.14';
+import { engine, applyCanvasCornerRadius, svgWithRoundedCorners } from '../core/engine.js?v=3.15';
+import { svgToEps } from './eps-exporter.js?v=3.15';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
