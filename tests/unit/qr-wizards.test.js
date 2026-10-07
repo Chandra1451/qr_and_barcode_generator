@@ -137,8 +137,18 @@ export async function runWizardTests(assert) {
   const geoWz = getWizard('location');
   assert.equal(
     geoWz.compile({ latitude: '37.774929', longitude: '-122.419416', query: 'SF Landmark' }),
-    'https://maps.google.com/?q=37.774929,-122.419416(SF%20Landmark)',
-    'Compiles Google Maps geolocation URI with query label'
+    'https://www.google.com/maps/search/?api=1&query=37.774929%2C-122.419416',
+    'Coordinates use Google\'s documented Maps URL and win over the place name'
+  );
+  assert.equal(
+    geoWz.compile({ latitude: '', longitude: '', query: 'Eiffel Tower, Paris' }),
+    'https://www.google.com/maps/search/?api=1&query=Eiffel%20Tower%2C%20Paris',
+    'Place name or address is searched when no coordinates are given'
+  );
+  assert.equal(
+    geoWz.compile({ latitude: '123.4', longitude: '2.29', query: 'Louvre' }),
+    'https://www.google.com/maps/search/?api=1&query=Louvre',
+    'Out-of-range coordinates fall back to the place name'
   );
 
   // Test 11: Plain Text Wizard

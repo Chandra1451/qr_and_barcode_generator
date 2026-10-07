@@ -465,13 +465,13 @@ const SEO_PAGES = [
     shortName: 'Maps QR',
     queryParam: 'wizard=location',
     category: 'Smart QR',
-    metaTitle: 'Free Google Maps Location QR Code Generator - Turn-by-Turn Directions',
-    metaDescription: 'Generate location GPS QR codes linking directly to Google Maps navigation. Perfect for store locations, events, and real estate properties.',
+    metaTitle: 'Free Google Maps QR Code Generator for Any Address or Location',
+    metaDescription: 'Make a QR code that opens a place in Google Maps: type an address, a place name or GPS coordinates. Free, static and never expires.',
     h1: 'Free Google Maps Location QR Code Generator',
-    lead: 'Create instant navigation QR codes linking directly to your physical address or GPS coordinates in Google Maps or Apple Maps for immediate turn-by-turn directions.',
+    lead: 'Create a QR code that opens your shop, venue or meeting point in Google Maps. Type an address or place name, or use exact GPS coordinates for spots without an address. It opens in the Google Maps app if installed, otherwise in the browser.',
     technicalSpec: {
-      uriFormat: 'https://maps.google.com/?q=latitude,longitude or query label',
-      compatibility: 'Google Maps, Apple Maps, Waze'
+      uriFormat: 'https://www.google.com/maps/search/?api=1&query=… (Google Maps URLs)',
+      compatibility: 'Google Maps app on Android and iPhone, or any web browser'
     },
     useCases: [
       'Storefront window decals and retail shopping center directories',
@@ -481,7 +481,7 @@ const SEO_PAGES = [
     faqs: [
       {
         q: 'Can I use latitude and longitude coordinates instead of an address?',
-        a: 'Yes! Entering latitude and longitude coordinates pins the exact spot on satellite maps even if there is no registered street address.'
+        a: 'Yes. Coordinates pin an exact spot even where there is no street address, such as a car park entrance or a field gate. If you fill them in, they are used instead of the place name.'
       }
     ]
   },
@@ -519,7 +519,7 @@ const SEO_PAGES = [
     queryParam: 'symbology=code-128&preset=amazon-fnsku-5160&label=1',
     category: 'Retail & POS',
     metaTitle: 'Free Amazon FBA Barcode Generator (FNSKU) - Avery 5160 & Thermal Roll',
-    metaDescription: 'Generate 100% compliant Amazon FBA FNSKU barcodes online for free. Code 128 standard, Avery 5160 (30-up) & direct thermal roll templates. Zero warehouse rejections.',
+    metaDescription: 'Make Amazon FBA FNSKU labels (Code 128) for free, on Avery 5160 sheets or thermal rolls, with title and condition. Check Seller Central for Amazon\'s latest label rules.',
     h1: 'Free Amazon FBA FNSKU Barcode & Label Generator',
     lead: 'Create standards-compliant Amazon Fulfillment Network Stock Keeping Unit (FNSKU) item labels for Seller Central inventory. Formatted in high-density Code 128 with instant 30-up Avery sheet and thermal roll export.',
     technicalSpec: {
@@ -538,7 +538,7 @@ const SEO_PAGES = [
     faqs: [
       {
         q: 'What barcode symbology does Amazon require for FNSKU labels?',
-        a: 'Amazon Seller Central mandates Code 128 barcodes for all FNSKU item labels. UniversalCodeMaker automatically generates calibrated Code 128 barcodes with crisp bar-width ratios that guarantee 100% first-pass read rates in Amazon fulfillment centers.'
+        a: 'Amazon FNSKU labels use Code 128 barcodes. UniversalCodeMaker draws them with exact bar widths and full quiet zones, which help them scan first time. Print at 100% scale and test-scan one label before labelling your stock.'
       },
       {
         q: 'What information must appear on an Amazon FBA item label?',
@@ -643,7 +643,7 @@ const SEO_PAGES = [
     technicalSpec: {
       standard: 'ISO/IEC 18004 QR Code Model 2',
       protocol: 'NPCI UPI Deep Link Specification (upi://pay?pa={VPA}&pn={Name}&am={Amount}&cu=INR)',
-      compatibility: 'All NPCI-certified UPI applications across Android and iOS',
+      compatibility: 'UPI apps such as Google Pay, PhonePe, Paytm and BHIM (Android and iOS)',
       security: 'Client-side compilation with zero intermediary payment gateways or commissions'
     },
     useCases: [
@@ -702,7 +702,7 @@ const SEO_PAGES = [
       },
       {
         q: 'How do I avoid printing alignment issues on Avery label sheets?',
-        a: 'In your browser or PDF reader print dialog, set Scale to 100% or Actual Size and uncheck Fit to Page or Shrink to Printable Area. Printing at Actual Size guarantees that the generated labels align precisely with the die-cut sticker grid.'
+        a: 'In your browser or PDF reader print dialog, set Scale to 100% or Actual Size and uncheck Fit to Page or Shrink to Printable Area. Printing at Actual Size keeps the labels lined up with the die-cut grid. Print one test page on plain paper first, because printers can shift the page slightly.'
       },
       {
         q: 'Can each label on the sheet have a different code?',
@@ -717,7 +717,7 @@ const SEO_PAGES = [
     queryParam: 'symbology=isbn',
     category: 'Retail & POS',
     metaTitle: 'Free ISBN Barcode Generator (Bookland EAN-13) - 300 DPI Vector SVG',
-    metaDescription: 'Generate 100% compliant ISBN-13 barcodes for Amazon KDP, IngramSpark, and self-publishing. Includes automatic check digit math and optional 5-digit price extension.',
+    metaDescription: 'Make ISBN-13 (Bookland EAN-13) barcodes for book covers, including Amazon KDP and IngramSpark uploads. Automatic check digit and optional 5-digit price add-on.',
     h1: 'Free ISBN-13 Bookland Barcode Generator',
     lead: 'Generate high-contrast Bookland EAN-13 barcodes for paperback, hardcover, and print-on-demand books. Designed to meet strict IngramSpark, Amazon KDP, and Barnes & Noble publishing specifications with vector SVG and 300 DPI print exports.',
     technicalSpec: {
@@ -1419,7 +1419,7 @@ const ENRICHMENTS = {
       "title": "Email QR Standards & Compliance",
       "points": [
         "Compliant with IETF RFC 6068 (The mailto URI scheme).",
-        "Because the email is sent directly from the user’s personal mail client upon explicit confirmation, it is 100% compliant with global anti-spam regulations (CAN-SPAM, GDPR).",
+        "The email is sent from the person's own mail app, and only after they tap Send; this site sends nothing. Whether your use follows anti-spam rules such as CAN-SPAM or GDPR depends on who you ask to email and why.",
         "Special characters (spaces, ampersands, question marks) are automatically percent-encoded for universal email client compatibility."
       ]
     },
@@ -1567,8 +1567,8 @@ const ENRICHMENTS = {
   "google-maps-location-qr-code-generator": {
     "benefits": [
       {
-        "title": "Instant Turn-by-Turn GPS Directions",
-        "desc": "Directs smartphones straight into Google Maps, Apple Maps, or Waze."
+        "title": "Opens Straight in Google Maps",
+        "desc": "One scan opens the place in the Google Maps app (or the browser), where visitors tap Directions to get there."
       },
       {
         "title": "Exact Geographic Coordinates",
@@ -1592,9 +1592,9 @@ const ENRICHMENTS = {
     "legalCaution": {
       "title": "Location QR Accuracy & Navigation Guidelines",
       "points": [
-        "Test your location coordinates in both Google Maps and Apple Maps before printing high-volume promotional signage.",
-        "Ensure the location coordinates point to the public visitor entrance rather than private warehouse loading docks.",
-        "Uses standard HTTPS Google Maps search URL schemes compliant with all mobile browsers."
+        "Scan the printed code on an iPhone and an Android phone before printing in volume, and check it opens the right place.",
+        "Point coordinates at the public visitor entrance rather than a private loading dock or the middle of a large building.",
+        "Uses Google's documented Maps URL format, which needs no API key and opens in the Google Maps app or any web browser."
       ]
     },
     "authorityLinks": [
@@ -1654,8 +1654,8 @@ const ENRICHMENTS = {
   "amazon-fba-fnsku-barcode-generator": {
     "benefits": [
       {
-        "title": "Zero Warehouse Rejection Risk",
-        "desc": "Calibrated Code 128 bar ratios and quiet zones comply strictly with Amazon Seller Central fulfillment guidelines."
+        "title": "Built to Amazon's Label Format",
+        "desc": "Code 128 FNSKU with exact bar widths and quiet zones, plus title and condition, as Amazon's label instructions describe. Check Seller Central for the latest rules."
       },
       {
         "title": "Avery 5160 & Thermal Roll Ready",
@@ -1885,8 +1885,8 @@ const ENRICHMENTS = {
   "isbn-book-barcode-generator": {
     "benefits": [
       {
-        "title": "Amazon KDP & IngramSpark Certified",
-        "desc": "Generates 100% compliant Bookland EAN-13 barcodes with exact quiet zones that pass automated distributor pre-flight checks."
+        "title": "Standard Bookland EAN-13",
+        "desc": "The 978/979 EAN-13 book barcode with correct quiet zones, the format used on covers for Amazon KDP, IngramSpark and bookshops. Check your distributor's current cover specs before uploading."
       },
       {
         "title": "Optional EAN-5 Price Extension",
@@ -2074,6 +2074,40 @@ const ENRICHMENTS = {
  * HTML is allowed in the strings (links, <strong>); keep claims true to what the studio does.
  */
 const GUIDES = {
+  "google-maps-location-qr-code-generator": {
+    "howTo": [
+      "Type your <strong>place name or address</strong>, for example <em>\"Blue Door Café, 12 High Street, Leeds\"</em>. Search for it in Google Maps first and copy the wording that finds the right result.",
+      "For a spot with no address (an event entrance, a car park, a trailhead), fill in <strong>latitude and longitude</strong> instead. In Google Maps, long-press the exact spot (right-click on a computer) and copy the numbers shown.",
+      "Coordinates are used if both are filled in; otherwise the place name or address is searched.",
+      "Scan the preview with your phone and check that Google Maps opens the right place.",
+      "Download <strong>SVG</strong> or <strong>PNG</strong> for flyers, signs and business cards."
+    ],
+    "print": [
+      "<strong>Size:</strong> at least <strong>2 cm (0.8 in)</strong> wide for flyers and cards read up close; for a door or window sign read from a few metres away, about 10 cm (4 in) or more. People scan from roughly 10× the code's width.",
+      "<strong>Add a line of text</strong> such as <em>\"Scan for directions\"</em> and the address, so people know what the code does and can still find you without scanning.",
+      "<strong>Keep the white border</strong> around the code, and print dark on light."
+    ],
+    "mistakes": [
+      "<strong>A vague place name</strong> that matches several places (\"Main Street Café\"). Add the street and town, or use coordinates.",
+      "<strong>Coordinates in the wrong order.</strong> Latitude comes first (north–south, −90 to 90), then longitude (east–west, −180 to 180).",
+      "<strong>Pinning the middle of a big site</strong> instead of the visitor entrance.",
+      "<strong>Not test-scanning on both iPhone and Android</strong> before printing."
+    ],
+    "moreFaqs": [
+      {
+        "q": "Does the QR code open Google Maps or Apple Maps?",
+        "a": "Google Maps. If the Google Maps app is installed it opens there; otherwise the place opens in the phone's web browser on Google Maps. It does not open Apple Maps or Waze."
+      },
+      {
+        "q": "I already have a Google Maps share link. Can I use that?",
+        "a": "Yes. In Google Maps, tap Share and copy the link, then make a Website link QR code with it. That opens the exact place you shared, including its name and reviews."
+      },
+      {
+        "q": "Will the QR code still work if my business moves?",
+        "a": "It keeps pointing to the old place, because the location is stored in the code itself. Make and print a new code after a move."
+      }
+    ]
+  },
   "avery-5160-barcode-generator": {
     "title": "How to Print QR Codes &amp; Barcodes on Avery 5160 Labels",
     "howTo": [

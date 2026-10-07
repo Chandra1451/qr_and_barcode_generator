@@ -28,7 +28,7 @@ Dynamic form compilers with real-time payload generation for:
 - 📞 **Phone Call** (tel: formatted dialing)
 - 💰 **Cryptocurrency** (Bitcoin, Ethereum, Solana, USDT BIP-21 URI schemes)
 - 📅 **Calendar Event** (iCalendar VEVENT format with timestamps and description)
-- 📍 **Geolocation** (geo: coordinates with latitude and longitude)
+- 📍 **Google Maps location** (an address, place name or GPS coordinates, opened with Google's official Maps URL)
 - 📝 **Plain Text** (Multi-line raw string payloads)
 - ⭐ **Google Review** (direct review link from a Place ID or g.page link)
 - 💬 **WhatsApp** (chat link with a pre-filled message)

@@ -272,17 +272,25 @@ export const QR_WIZARDS = {
     id: 'location',
     name: 'Geolocation & Maps',
     icon: '📍',
-    description: 'Direct pinpoint on Google Maps or Apple Maps.',
+    description: 'Opens the place in Google Maps (the app if installed, otherwise the browser).',
     fields: [
-      { id: 'latitude', label: 'Latitude', type: 'text', placeholder: '37.774929', default: '37.774929', required: true },
-      { id: 'longitude', label: 'Longitude', type: 'text', placeholder: '-122.419416', default: '-122.419416', required: true },
-      { id: 'query', label: 'Location Name / Label', type: 'text', placeholder: 'San Francisco City Hall', default: 'San Francisco Landmark' }
+      { id: 'query', label: 'Place Name or Address', type: 'text', placeholder: 'e.g. Eiffel Tower, Paris', default: 'Eiffel Tower, Paris' },
+      { id: 'latitude', label: 'Latitude (optional, overrides the place)', type: 'text', placeholder: '48.858370', default: '' },
+      { id: 'longitude', label: 'Longitude (optional, overrides the place)', type: 'text', placeholder: '2.294481', default: '' }
     ],
+    // Google's documented, key-free Maps URL (developers.google.com/maps/documentation/urls).
+    // Coordinates win when both are valid; otherwise the place name or address is searched.
+    // (The old maps.google.com/?q=lat,lng(label) form is undocumented, and Maps URLs have no label for coordinates.)
     compile(data) {
-      const lat = (data.latitude || '0').trim();
-      const lng = (data.longitude || '0').trim();
-      const q = encodeURIComponent(data.query || '');
-      return `https://maps.google.com/?q=${lat},${lng}${q ? `(${q})` : ''}`;
+      const base = 'https://www.google.com/maps/search/?api=1&query=';
+      const lat = String(data.latitude || '').trim();
+      const lng = String(data.longitude || '').trim();
+      const isNum = (v) => /^-?\d{1,3}(\.\d+)?$/.test(v);
+      if (isNum(lat) && isNum(lng) && Math.abs(Number(lat)) <= 90 && Math.abs(Number(lng)) <= 180) {
+        return `${base}${lat}%2C${lng}`;
+      }
+      const place = String(data.query || '').trim();
+      return place ? `${base}${encodeURIComponent(place)}` : 'https://www.google.com/maps';
     }
   },
 
