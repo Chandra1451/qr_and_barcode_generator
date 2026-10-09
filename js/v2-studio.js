@@ -4,21 +4,20 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.17';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.17';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.18';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.18';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.17';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.17';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.17';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.17';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.17';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.17';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.17';
-import { initCookieBanner } from './core/cookie-banner.js?v=3.17';
+} from './generators/registry.js?v=3.18';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.18';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.18';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.18';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.18';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.18';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.18';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -27,7 +26,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.17';
+} from './export/label-maker.js?v=3.18';
 
 class V2StudioApp {
   constructor() {
@@ -114,9 +113,6 @@ class V2StudioApp {
 
     // Prefetch engines in background
     prefetchEngines();
-
-    // Initialize Privacy & GDPR Consent Notice
-    initCookieBanner();
 
     // Parse URL Search Parameters (Deep linking from Programmatic SEO landing pages)
     const urlParams = new URLSearchParams(window.location.search);

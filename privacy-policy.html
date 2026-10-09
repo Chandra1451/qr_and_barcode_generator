@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0MD85STYZT');
-    // gtag.js loads after the page has rendered so it doesn't compete with CSS/fonts on slow mobile connections
-    window.addEventListener('load', function () {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT';
-      document.head.appendChild(s);
-    });
-  </script>
+  <!-- Google Analytics: loads only after consent (js/core/consent-analytics.js) -->
+  <script src="/js/core/consent-analytics.js?v=1.0" defer></script>
+
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy & Legal Terms | Code Generator - UniversalCodeMaker.com</title>
-  <meta name="description" content="Official Privacy Policy and Legal Compliance documentation for UniversalCodeMaker.com Code Generator. Learn about our 100% client-side zero-data-retention architecture, India DPDP Act 2023, GDPR (EU), UK GDPR, and CCPA compliance.">
+  <meta name="description" content="How UniversalCodeMaker handles your data: codes are made in your browser and never uploaded; what Google Analytics and AdSense do, the consent choices you have, and how to contact us.">
   <link rel="canonical" href="https://universalcodemaker.com/privacy-policy.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -27,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="UniversalCodeMaker">
   <meta property="og:title" content="Privacy Policy &amp; Legal Terms | UniversalCodeMaker.com">
-  <meta property="og:description" content="Official Privacy Policy and Legal Compliance documentation for UniversalCodeMaker.com Code Generator. Learn about our 100% client-side zero-data-retention architecture, India DPDP Act 2023, GDPR (EU), UK GDPR, and CCPA compliance.">
+  <meta property="og:description" content="How UniversalCodeMaker handles your data: codes are made in your browser and never uploaded; what Google Analytics and AdSense do, the consent choices you have, and how to contact us.">
   <meta property="og:url" content="https://universalcodemaker.com/privacy-policy.html">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -39,7 +28,7 @@
       {
         "@type": "WebPage",
         "name": "Privacy Policy & Legal Terms",
-        "description": "Official Privacy Policy and Legal Compliance documentation for UniversalCodeMaker.com Code Generator. Learn about our 100% client-side zero-data-retention architecture, India DPDP Act 2023, GDPR (EU), UK GDPR, and CCPA compliance.",
+        "description": "How UniversalCodeMaker handles your data: codes are made in your browser and never uploaded; what Google Analytics and AdSense do, the consent choices you have, and how to contact us.",
         "url": "https://universalcodemaker.com/privacy-policy.html",
         "inLanguage": "en",
         "publisher": { "@type": "Organization", "name": "UniversalCodeMaker.com", "url": "https://universalcodemaker.com/", "logo": "https://universalcodemaker.com/assets/logo-icon.png" }
@@ -140,8 +129,11 @@
 
     .doc-meta-item {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 0.4rem;
+      min-width: 0;
+      overflow-wrap: anywhere; /* long email address on 320px phones */
     }
 
     /* 2-Column Layout */
@@ -475,24 +467,20 @@
     <div class="doc-hero">
       <div class="doc-badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Zero-Knowledge Privacy Architecture
+        Your codes stay in your browser
       </div>
       <h1 class="doc-title">Privacy Policy & Legal Terms</h1>
       <p class="doc-subtitle">
-        Universal Code Studio is engineered from the ground up as a 100% client-side application. We do not transmit, log, monitor, or store your barcode payloads, Wi-Fi credentials, contact cards, or custom images on any server.
+        Every code on UniversalCodeMaker is made inside your browser. What you type, upload, paste or scan is never sent to our server or to anyone else. The site does use Google Analytics and Google AdSense; this page explains what they do and the choices you have.
       </p>
 
       <div class="doc-meta-row">
         <div class="doc-meta-item">
-          <strong>Effective Date:</strong> September 14, 2026 (updated September 26, 2026)
+          <strong>Effective Date:</strong> September 14, 2026 (updated October 9, 2026)
         </div>
         <div class="doc-meta-item">•</div>
         <div class="doc-meta-item">
-          <strong>Compliance Posture:</strong> DPDP Act 2023 (India), GDPR (EU), UK GDPR, CCPA/CPRA (California), COPPA
-        </div>
-        <div class="doc-meta-item">•</div>
-        <div class="doc-meta-item">
-          <strong>Architecture:</strong> Zero-Data Collection (Local In-Memory Browser Execution)
+          <strong>Contact:</strong> contact@primordialparadigm.com
         </div>
       </div>
     </div>
@@ -515,17 +503,18 @@
         </div>
         <nav>
           <ul class="toc-nav">
-            <li><a href="#sec-zero-data" class="toc-link">1. Zero-Data Retention Model</a></li>
-            <li><a href="#sec-data-processed" class="toc-link">2. Data We Process vs. Collect</a></li>
-            <li><a href="#sec-cookies-ads" class="toc-link">3. Cookies & Advertising (AdSense)</a></li>
-            <li><a href="#sec-dpdp-india" class="toc-link">4. India DPDP Act 2023 & IT Act</a></li>
-            <li><a href="#sec-gdpr" class="toc-link">5. EU & UK GDPR Compliance</a></li>
-            <li><a href="#sec-ccpa" class="toc-link">6. California Privacy (CCPA/CPRA)</a></li>
-            <li><a href="#sec-coppa" class="toc-link">7. Children's Privacy (COPPA & DPDPA)</a></li>
-            <li><a href="#sec-gs1" class="toc-link">8. GS1 Commercial Barcode Disclaimer</a></li>
-            <li><a href="#sec-pre-print" class="toc-link">9. Pre-Print Verification Notice</a></li>
-            <li><a href="#sec-attribution" class="toc-link">10. Open-Source Attribution</a></li>
-            <li><a href="#sec-contact" class="toc-link">11. Inquiries & Grievance Redressal</a></li>
+            <li><a href="#sec-zero-data" class="toc-link">1. Your Codes Stay in Your Browser</a></li>
+            <li><a href="#sec-data-processed" class="toc-link">2. What Is Stored, and Where</a></li>
+            <li><a href="#sec-cookies-ads" class="toc-link">3. Analytics, Advertising &amp; Cookies</a></li>
+            <li><a href="#consent" class="toc-link">4. Your Consent Choices</a></li>
+            <li><a href="#sec-gdpr" class="toc-link">5. Visitors in the EEA &amp; UK</a></li>
+            <li><a href="#sec-dpdp-india" class="toc-link">6. Visitors in India</a></li>
+            <li><a href="#sec-ccpa" class="toc-link">7. Visitors in the United States</a></li>
+            <li><a href="#sec-coppa" class="toc-link">8. Children</a></li>
+            <li><a href="#sec-gs1" class="toc-link">9. GS1 Commercial Barcode Disclaimer</a></li>
+            <li><a href="#sec-pre-print" class="toc-link">10. Pre-Print Verification Notice</a></li>
+            <li><a href="#sec-attribution" class="toc-link">11. Open-Source Attribution</a></li>
+            <li><a href="#sec-contact" class="toc-link">12. Contact</a></li>
           </ul>
         </nav>
       </aside>
@@ -537,32 +526,29 @@
         <section id="sec-zero-data" class="doc-section">
           <div class="section-header">
             <span class="section-num">01</span>
-            <h2 class="section-title">Zero-Data Retention Architecture</h2>
+            <h2 class="section-title">Your Codes Stay in Your Browser</h2>
           </div>
           <p class="doc-p">
-            Traditional web generators require you to upload your sensitive payloads—such as private Wi-Fi passwords, contact card vCards, cryptocurrency addresses, or proprietary inventory SKUs—to a remote server where barcodes are rendered and returned as images. This architecture poses serious confidentiality and regulatory risks.
-          </p>
-          <p class="doc-p">
-            <strong>Universal Code Studio operates on a strictly client-side paradigm.</strong> Every barcode algorithm, checksum computation (GS1 Modulo 10, Luhn Modulo 10, Code 128 Modulo 103), QR styling engine, and vector SVG/PDF exporter executes exclusively inside your device's web browser memory (RAM) using pure JavaScript and HTML5 Canvas.
+            Many online generators send what you type to their server, make the image there and send it back. UniversalCodeMaker doesn't. Every barcode and QR code, check digit, style and download (PNG, SVG, EPS, PDF and ZIP) is made by JavaScript running in your own browser.
           </p>
 
           <div class="privacy-grid">
             <div class="privacy-stat-card secure">
               <div class="stat-header green" style="display: flex; align-items: center; gap: 0.45rem;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Zero Server-Side Transmission
+                Nothing Sent to a Server
               </div>
               <div class="stat-desc">
-                Your keystrokes, URLs, credentials, and uploaded logo files are never transmitted to our web servers or any cloud database.
+                What you type, the logos you add and the lists you paste are never sent to our web server, to a database, to Google Analytics or to advertisers.
               </div>
             </div>
             <div class="privacy-stat-card secure">
               <div class="stat-header green" style="display: flex; align-items: center; gap: 0.45rem;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                Ephemeral Browser Memory
+                Recent Codes, on Your Device Only
               </div>
               <div class="stat-desc">
-                When you close or refresh your browser tab, all entered payloads and generated graphics are instantly purged from your device memory.
+                The studio remembers your 6 most recent barcodes and website-link QR codes in this browser so you can reopen them. Wi-Fi, contact, payment and other QR codes are never saved. The list never leaves your device; press the &times; next to &ldquo;Recents&rdquo; to delete it.
               </div>
             </div>
           </div>
@@ -575,58 +561,67 @@
         <section id="sec-data-processed" class="doc-section">
           <div class="section-header">
             <span class="section-num">02</span>
-            <h2 class="section-title">Data We Process vs. Data We Do NOT Collect</h2>
+            <h2 class="section-title">What Is Stored, and Where</h2>
           </div>
-          <p class="doc-p">
-            To provide total transparency under global data privacy regulations, the following table details the scope of data handling:
-          </p>
 
-          <div class="table-wrapper" tabindex="0" role="region" aria-label="Data processing table (scrollable)">
+          <div class="table-wrapper" tabindex="0" role="region" aria-label="What is stored, and where (scrollable)">
             <table class="compliance-table">
               <thead>
                 <tr>
-                  <th>Data Category</th>
+                  <th>Data</th>
                   <th>How It Is Handled</th>
-                  <th>Stored on Server?</th>
-                  <th>Shared with Third Parties?</th>
+                  <th>Kept Where?</th>
+                  <th>Sent to Anyone?</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Barcode Payloads</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">URLs, text, SKU numbers, Wi-Fi credentials, vCard info</span></td>
-                  <td>Processed in browser RAM via JavaScript</td>
-                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
-                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>Uploaded Logos & Icons</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">PNG, SVG, JPG images embedded in QR codes</span></td>
-                  <td>Read locally via JavaScript <code>FileReader</code> API</td>
-                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                  <td><strong>What your codes contain</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">URLs, text, product numbers, Wi-Fi details, contact cards</span></td>
+                  <td>Made into codes in your browser</td>
+                  <td>Your 6 most recent barcodes and website-link QR codes, in this browser&rsquo;s <code>localStorage</code>, until you clear them; Wi-Fi, contact, payment and other QR codes are never saved</td>
                   <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
                 </tr>
                 <tr>
-                  <td><strong>Scanned Images &amp; Camera Frames</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Photos, screenshots and live camera video used by the Scanner, and the text decoded from them</span></td>
-                  <td>Decoded locally in browser memory by the WebAssembly reader; if you choose &ldquo;Create a copy in Studio&rdquo;, the text is handed to the Studio through your browser&rsquo;s <code>sessionStorage</code> and deleted as soon as the Studio reads it</td>
-                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
-                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>Batch Generation Data</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Pasted CSV rows, sequenced number series</span></td>
-                  <td>Archived locally into ZIP format using client-side JSZip</td>
-                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                  <td><strong>Logos you add</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">PNG, SVG or JPG images placed in QR codes</span></td>
+                  <td>Read in your browser with the <code>FileReader</code> API</td>
+                  <td>Not kept after you leave the page</td>
                   <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
                 </tr>
                 <tr>
-                  <td><strong>User Preferences</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Dark/Light theme toggle, cookie consent state</span></td>
-                  <td>Saved locally in your device's <code>localStorage</code></td>
-                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                  <td><strong>Scanned images &amp; camera frames</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Photos, screenshots and live camera video used by the Scanner, and the text decoded from them</span></td>
+                  <td>Decoded in your browser by the WebAssembly reader; if you choose &ldquo;Create a copy in Studio&rdquo;, the text is handed to the Studio through your browser&rsquo;s <code>sessionStorage</code> and deleted as soon as the Studio reads it</td>
+                  <td>Not kept</td>
                   <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
                 </tr>
                 <tr>
-                  <td><strong>Aggregated Traffic Metrics</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Anonymous pageviews, browser type, device category</span></td>
-                  <td>Processed via privacy-configured analytics & AdSense</td>
-                  <td>Anonymized Only</td>
-                  <td>Google AdSense / Analytics</td>
+                  <td><strong>Batch lists</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Pasted CSV rows, number sequences</span></td>
+                  <td>Made into a ZIP or PDF in your browser</td>
+                  <td>Not kept after you leave the page</td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Settings</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Dark/light theme, accent colour, laser scan animation on or off</span></td>
+                  <td>Saved in this browser&rsquo;s <code>localStorage</code></td>
+                  <td>Your device</td>
+                  <td><strong style="color: var(--sensor-green-text);">NO</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Pages you visit</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Google Analytics (see sections 3 and 4)</span></td>
+                  <td>Only if Analytics is allowed for you</td>
+                  <td>Google</td>
+                  <td>Google</td>
+                </tr>
+                <tr>
+                  <td><strong>Ads</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">Google AdSense (see sections 3 and 4)</span></td>
+                  <td>Google chooses and serves the ads</td>
+                  <td>Google</td>
+                  <td>Google and its ad partners</td>
+                </tr>
+                <tr>
+                  <td><strong>Server logs</strong><br><span style="font-size: 0.76rem; color: var(--text-muted);">IP address, browser, page address</span></td>
+                  <td>Received by our web host (Hostinger) whenever it serves a page, as with any website</td>
+                  <td>Our host&rsquo;s servers</td>
+                  <td>Not by us</td>
                 </tr>
               </tbody>
             </table>
@@ -637,87 +632,45 @@
         <section id="sec-cookies-ads" class="doc-section">
           <div class="section-header">
             <span class="section-num">03</span>
-            <h2 class="section-title">Cookies & Third-Party Advertising</h2>
+            <h2 class="section-title">Analytics, Advertising &amp; Cookies</h2>
           </div>
           <p class="doc-p">
-            Universal Code Studio is 100% free forever for all personal and commercial use. To support server infrastructure and continuous development, we display non-intrusive advertisements served through <strong>Google AdSense</strong>.
+            <strong>Google Analytics.</strong> We use Google Analytics 4 to count visits and see which pages and tools are used. When it is allowed (see section 4), it sets two cookies, <code>_ga</code> and <code>_ga_&lt;ID&gt;</code>, which by default last 2 years, and sends Google information such as the pages you view, your browser, device type and approximate location. Google states that Google Analytics 4 does not log or store IP addresses. If a link puts code content in the page address (<code>?data=</code> or <code>?payload=</code>), our script removes it before Analytics sees the address.
           </p>
           <p class="doc-p">
-            Google AdSense and its certified advertising partners may use cookies and web beacons to serve advertisements based on your prior visits to this website or other websites across the Internet:
+            <strong>Google AdSense.</strong> The site is free and is meant to be supported by ads served by <strong>Google AdSense</strong>.
           </p>
           <ul class="doc-list">
-            <li><strong>Personalized Advertising:</strong> In jurisdictions where you have granted consent, Google may use cookies to serve ads tailored to your browsing interests.</li>
-            <li><strong>Non-Personalized Advertising:</strong> If you decline advertising cookies or visit from a jurisdiction with strict default opt-out requirements, Google serves non-personalized contextual ads based solely on page content and coarse geographical location.</li>
+            <li>Third-party vendors, including Google, use cookies to serve ads based on a user&rsquo;s prior visits to this website or other websites.</li>
+            <li>Google&rsquo;s use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.</li>
+            <li>You may opt out of personalised advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Google&rsquo;s Ads Settings</a>, or opt out of some third-party vendors&rsquo; use of cookies for personalised advertising at <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color: var(--accent-cyan);">www.aboutads.info</a>.</li>
+            <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener" style="color: var(--accent-cyan);">How Google uses information from sites that use its services</a>.</li>
           </ul>
-
-          <div class="callout-box">
-            <div class="callout-title" style="display: flex; align-items: center; gap: 0.45rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="7" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><circle cx="12" cy="12" r="1"/></svg>
-              Your Cookie Preferences &amp; Opt-Out Rights
-            </div>
-            You can modify your advertising cookie choices at any time through Google's Ads Settings at <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color: var(--accent-cyan);">adssettings.google.com</a>, or by visiting the Digital Advertising Alliance opt-out portal at <a href="https://optout.aboutads.info" target="_blank" rel="noopener" style="color: var(--accent-cyan);">aboutads.info</a>.
-            <br><br>
-            <button type="button" id="btn-reset-consent" class="btn-cookie-action" style="display: inline-flex; align-items: center; gap: 0.4rem;">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
-              Reset Cookie Consent on This Device
-            </button>
-            <span id="consent-status-msg" style="margin-left: 0.75rem; font-size: 0.8rem; color: var(--accent-cyan); display: none;">Consent preferences cleared!</span>
-          </div>
-
           <p class="doc-p" style="margin-top: 1.25rem;">
-            <strong>Affiliate Recommendations &amp; Outbound Links:</strong> UniversalCodeMaker participates in the Amazon Services LLC Associates Program. Outbound links to recommended hardware (such as thermal label printers and barcode scanners) include an affiliate identifier (<code>tag=universal0d96-20</code>). As an Amazon Associate, we earn from qualifying purchases. Outbound affiliate links do not transmit personal data from our servers. When you click an external merchant link, your interactions with that website are governed by Amazon's privacy policy.
+            <strong>Affiliate links:</strong> UniversalCodeMaker participates in the Amazon Services LLC Associates Program. Links to recommended hardware (such as thermal label printers and barcode scanners) include our affiliate tag (<code>tag=universal0d96-20</code>). As an Amazon Associate, we earn from qualifying purchases. When you follow one of these links, Amazon&rsquo;s privacy policy applies on Amazon&rsquo;s site.
           </p>
         </section>
 
         <!-- Section 4 -->
-        <section id="sec-dpdp-india" class="doc-section">
+        <section id="consent" class="doc-section">
           <div class="section-header">
             <span class="section-num">04</span>
-            <h2 class="section-title">India: Digital Personal Data Protection Act, 2023 (DPDPA) &amp; IT Act</h2>
+            <h2 class="section-title">Your Consent Choices</h2>
           </div>
           <p class="doc-p">
-            For visitors, businesses, and developers residing in India, Universal Code Studio operates in strict compliance with the <strong>Digital Personal Data Protection Act, 2023 (DPDP Act 2023)</strong> and the <strong>Information Technology Act, 2000</strong> (including the <em>Reasonable Security Practices and Procedures and Sensitive Personal Data or Information Rules, 2011</em>):
+            Visitors in the European Economic Area and the UK see Google&rsquo;s consent message, provided through Google AdSense (Google&rsquo;s certified consent tool). Until you choose, Google Analytics does not load at all. If you choose &ldquo;Do not consent&rdquo;, it never loads, and Google serves only non-personalised or limited ads. Your choice is saved in your browser.
           </p>
-
-          <div class="privacy-grid">
-            <div class="privacy-stat-card secure">
-              <div class="stat-header green" style="display: flex; align-items: center; gap: 0.45rem;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                Data Principal Protections
-              </div>
-              <div class="stat-desc">
-                Under the DPDP Act 2023, you are the <strong>Data Principal</strong>. Because all barcode payloads are processed strictly inside your device's browser RAM, no personal data is collected or retained by us as a Data Fiduciary.
-              </div>
-            </div>
-            <div class="privacy-stat-card secure">
-              <div class="stat-header green" style="display: flex; align-items: center; gap: 0.45rem;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                Sensitive Indian Identifiers
-              </div>
-              <div class="stat-desc">
-                Inputs containing UPI payment strings, phone numbers, contact vCards, or PAN/GSTIN numbers never leave your local physical device and are never transmitted to our servers.
-              </div>
-            </div>
-          </div>
-
           <p class="doc-p">
-            <strong>Key Compliance Commitments under the DPDP Act, 2023:</strong>
+            Where Google does not show its consent message, Google Analytics loads after the page has finished loading.
           </p>
-          <ul class="doc-list">
-            <li><strong>Notice &amp; Lawful Grounds (Sections 5 &amp; 6):</strong> This policy serves as the statutory notice informing you that code generation is executed client-side without collecting digital personal data. Non-essential advertising cookies (Google AdSense) are deployed only in accordance with informed consent standards.</li>
-            <li><strong>Right to Access &amp; Information (Section 11):</strong> As a Data Principal, you have the right to obtain confirmation of whether digital personal data is processed. Because we maintain a zero-retention architecture, we hold no personal data records linked to you.</li>
-            <li><strong>Right to Correction &amp; Erasure (Section 12):</strong> In-memory barcode data is instantly erased the moment your browser tab or session is terminated.</li>
-            <li><strong>Right of Grievance Redressal (Section 13):</strong> You have the right to readily accessible grievance redressal provided by our designated Grievance Officer (see Section 11 for contact details).</li>
-            <li><strong>Right to Nominate (Section 14):</strong> You have the right to nominate an individual to exercise your data rights in the event of death or incapacity.</li>
-            <li><strong>Protection of Children (Section 9):</strong> We do not track, profile, or undertake behavioral monitoring of children, nor do we serve targeted advertising directed towards minors.</li>
-          </ul>
-
           <div class="callout-box">
             <div class="callout-title" style="display: flex; align-items: center; gap: 0.45rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
-              Information Technology Act, 2000 (SPDI Rules)
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="7" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><circle cx="12" cy="12" r="1"/></svg>
+              Changing Your Choice
             </div>
-            Universal Code Studio implements comprehensive reasonable security practices and procedures pursuant to Section 43A of the IT Act, 2000 and Rule 8 of the SPDI Rules, 2011, ensuring complete protection of client-side operations against unauthorized access, loss, or tampering.
+            If you saw Google&rsquo;s consent message, you can change your choice at any time with <strong>Privacy and cookie settings</strong> at the bottom of every page.<span class="js-consent-settings" hidden> Or here: <button type="button" class="btn-cookie-action">Privacy and cookie settings</button></span>
+            <br><br>
+            Anyone can also block or delete cookies in their browser settings, and opt out of personalised ads through <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Google&rsquo;s Ads Settings</a>.
           </div>
         </section>
 
@@ -725,54 +678,52 @@
         <section id="sec-gdpr" class="doc-section">
           <div class="section-header">
             <span class="section-num">05</span>
-            <h2 class="section-title">EU & UK GDPR Compliance</h2>
+            <h2 class="section-title">Visitors in the EEA &amp; UK</h2>
           </div>
-          <p class="doc-p">
-            For individuals residing in the European Economic Area (EEA) and the United Kingdom, our processing activities comply with the <strong>General Data Protection Regulation (GDPR)</strong> and <strong>UK Data Protection Act 2018</strong>:
-          </p>
           <ul class="doc-list">
-            <li><strong>Lawful Basis (Article 6):</strong> Because your barcode payloads are processed solely in local browser memory and never collected, we do not require a processing basis for payload data. For anonymous website telemetry and advertising cookies, our basis is <em>Consent</em> (where affirmatively provided) or <em>Legitimate Interest</em> for essential security operations.</li>
-            <li><strong>Data Minimization (Article 5):</strong> We practice absolute data minimization by collecting zero personal identification data.</li>
-            <li><strong>Data Subject Rights (Articles 15–22):</strong> You have the right to access, rectify, or erase personal data. Because we do not store your name, email, IP address logs, or barcode payloads in any database, we hold no identifiable records that can be linked to your identity.</li>
+            <li><strong>What we rely on:</strong> your consent, given through Google&rsquo;s message, for Google Analytics and for personalised ads.</li>
+            <li><strong>What we hold:</strong> we have no account, sign-up or database with your details. Analytics data is held by Google in our Google Analytics account.</li>
+            <li><strong>Your rights:</strong> you can withdraw consent at any time (section 4), and ask us about, or to delete, data linked to you. Write to the address in section 12 and we&rsquo;ll do what we can through Google&rsquo;s tools. You can also complain to your data protection authority.</li>
           </ul>
         </section>
 
         <!-- Section 6 -->
-        <section id="sec-ccpa" class="doc-section">
+        <section id="sec-dpdp-india" class="doc-section">
           <div class="section-header">
             <span class="section-num">06</span>
-            <h2 class="section-title">California Consumer Privacy (CCPA & CPRA)</h2>
+            <h2 class="section-title">Visitors in India</h2>
           </div>
           <p class="doc-p">
-            Under the <strong>California Consumer Privacy Act (CCPA)</strong> as amended by the <strong>California Privacy Rights Act (CPRA)</strong>, California residents are entitled to specific disclosures regarding personal information:
-          </p>
-          <div class="callout-box">
-            <div class="callout-title" style="display: flex; align-items: center; gap: 0.45rem;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--optic-amber)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-              "Do Not Sell or Share My Personal Information" Notice
-            </div>
-            <strong>We do not sell, rent, or trade your personal information or barcode contents to any data broker or commercial third party.</strong> We do not disclose sensitive personal information for cross-context behavioral advertising without your consent.
-          </div>
-          <p class="doc-p">
-            California consumers have the right to request information regarding data practices and to exercise privacy rights without experiencing discriminatory treatment.
+            Everything you enter, including UPI payment details, phone numbers, contact cards or GSTIN numbers, stays in your browser as described in section 1. For questions or complaints about your data under the Digital Personal Data Protection Act, 2023, write to the address in section 12.
           </p>
         </section>
 
         <!-- Section 7 -->
-        <section id="sec-coppa" class="doc-section">
+        <section id="sec-ccpa" class="doc-section">
           <div class="section-header">
             <span class="section-num">07</span>
-            <h2 class="section-title">Children's Privacy (COPPA &amp; DPDPA Section 9)</h2>
+            <h2 class="section-title">Visitors in the United States</h2>
           </div>
           <p class="doc-p">
-            Universal Code Studio is a general audience developer and business utility. We do not knowingly target, solicit, or collect personal information from children under the age of 13 (under US COPPA) or under the age of 18 (under India DPDP Act Section 9). Because no personal data is collected or retained from any user, our services comply fully with global child protection statutes.
+            We do not sell or rent personal information, and we never see what your codes contain. Google may use cookies to show personalised ads, as described in section 3; you can opt out through <a href="https://adssettings.google.com" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Google&rsquo;s Ads Settings</a> or <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color: var(--accent-cyan);">www.aboutads.info</a>. California and other US residents can write to the address in section 12 about their privacy rights.
           </p>
         </section>
 
-        <!-- Section 8 -->
-        <section id="sec-gs1" class="doc-section">
+        <!-- Section 8 (children) -->
+        <section id="sec-coppa" class="doc-section">
           <div class="section-header">
             <span class="section-num">08</span>
+            <h2 class="section-title">Children</h2>
+          </div>
+          <p class="doc-p">
+            UniversalCodeMaker is a general-audience tool for businesses and individuals. It is not directed at children, and we do not knowingly collect personal information from children.
+          </p>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="sec-gs1" class="doc-section">
+          <div class="section-header">
+            <span class="section-num">09</span>
             <h2 class="section-title">GS1 Commercial Barcode Notice &amp; Legal Disclaimer</h2>
           </div>
           <div class="callout-box warning">
@@ -788,10 +739,10 @@
           </div>
         </section>
 
-        <!-- Section 9 -->
+        <!-- Section 10 -->
         <section id="sec-pre-print" class="doc-section">
           <div class="section-header">
-            <span class="section-num">09</span>
+            <span class="section-num">10</span>
             <h2 class="section-title">Pre-Print Verification &amp; Quality Notice</h2>
           </div>
           <p class="doc-p">
@@ -808,10 +759,10 @@
           </div>
         </section>
 
-        <!-- Section 10 -->
+        <!-- Section 11 -->
         <section id="sec-attribution" class="doc-section">
           <div class="section-header">
-            <span class="section-num">10</span>
+            <span class="section-num">11</span>
             <h2 class="section-title">Open-Source Software & Licensing Attribution</h2>
           </div>
           <p class="doc-p">
@@ -830,41 +781,15 @@
           </p>
         </section>
 
-        <!-- Section 11 -->
+        <!-- Section 12 -->
         <section id="sec-contact" class="doc-section">
           <div class="section-header">
-            <span class="section-num">11</span>
-            <h2 class="section-title">Inquiries & Grievance Redressal</h2>
+            <span class="section-num">12</span>
+            <h2 class="section-title">Contact</h2>
           </div>
           <p class="doc-p">
-            If you have questions, regulatory compliance requests, or grievances regarding this Privacy Policy or our zero-knowledge client-side architecture, please contact our designated offices:
+            For questions, requests about your data or complaints about this Privacy Policy, write to <a href="mailto:contact@primordialparadigm.com" style="color: var(--accent-cyan);">contact@primordialparadigm.com</a>. If you are in India, this address is also our contact for grievances about personal data.
           </p>
-
-          <div class="privacy-grid">
-            <div class="privacy-stat-card">
-              <div class="stat-header green" style="display: flex; align-items: center; gap: 0.45rem;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                Global Privacy Inquiries
-              </div>
-              <div class="stat-desc">
-                <strong>Data Controller &amp; Legal Team</strong><br>
-                Email: <code style="color: var(--accent-text); font-family: var(--font-mono);">privacy@universalcodemaker.com</code><br>
-                Jurisdictions: EU/EEA (GDPR), UK, US (CCPA/CPRA)
-              </div>
-            </div>
-            <div class="privacy-stat-card">
-              <div class="stat-header green" style="display: flex; align-items: center; gap: 0.45rem;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                India Grievance Redressal
-              </div>
-              <div class="stat-desc">
-                <strong>Grievance Officer (DPDP Act 2023 &amp; IT Act)</strong><br>
-                Designation: Grievance Redressal Officer<br>
-                Email: <code style="color: var(--accent-text); font-family: var(--font-mono);">grievance@universalcodemaker.com</code><br>
-                Acknowledgment: Within 24 hours • Resolution: Within 30 days
-              </div>
-            </div>
-          </div>
         </section>
 
       </article>
@@ -905,7 +830,7 @@
             <ul>
               <li><a href="symbology-docs.html">Symbology Documentation</a></li>
               <li><a href="about.html">About &amp; Mission</a></li>
-              <li><a href="privacy-policy.html">Zero-Knowledge Privacy</a></li>
+              <li><a href="privacy-policy.html">Your codes stay in your browser</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
@@ -997,6 +922,7 @@
         <ul class="v2-footer-legal-links">
           <li><a href="terms.html">Terms of Service</a></li>
           <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li class="js-consent-settings" hidden><a href="privacy-policy.html#consent">Privacy and cookie settings</a></li>
           <li><a href="symbology-docs.html">Symbology Docs</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact Us</a></li>
@@ -1009,21 +935,6 @@
   </footer>
 
   <!-- Cookie Consent Reset Script -->
-  <script>
-    const btnResetConsent = document.getElementById('btn-reset-consent');
-    const consentMsg = document.getElementById('consent-status-msg');
-    if (btnResetConsent && consentMsg) {
-      btnResetConsent.addEventListener('click', () => {
-        localStorage.removeItem('ucs_cookie_consent');
-        consentMsg.style.display = 'inline';
-        btnResetConsent.textContent = '✓ Preferences Cleared';
-        setTimeout(() => {
-          consentMsg.style.display = 'none';
-          btnResetConsent.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 0.35rem;"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Reset Cookie Consent on This Device';
-        }, 3000);
-      });
-    }
-  </script>
 
   <!-- Navigation & Theme Sync Script -->
   <script src="js/v2-nav.js?v=2.4"></script>

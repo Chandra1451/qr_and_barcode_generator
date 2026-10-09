@@ -43,7 +43,6 @@ test.describe('LOAD · returning visitor with yesterday\'s cached scripts', () =
   test('LOAD-01 new HTML + cached older JS still boots and every setting works', async ({ browser, baseURL }, testInfo) => {
     test.skip(!gitAvailable(), 'not a git checkout');
     const context = await browser.newContext({ acceptDownloads: true });
-    await context.addInitScript(() => localStorage.setItem('ucs_cookie_consent', 'acknowledged'));
     await context.route(/googlesyndication|googletagmanager|google-analytics|doubleclick|fonts\.g/, (r) => r.fulfill({ status: 200, body: '' }));
     const info = await installStaleCache(context, baseURL);
     const page = await context.newPage();

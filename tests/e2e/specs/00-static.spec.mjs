@@ -344,3 +344,23 @@ test('STATIC-ROOT-01 root pages list is complete', () => {
   const rootHtml = fs.readdirSync(SITE_ROOT).filter((f) => f.endsWith('.html'));
   expect(rootHtml.sort()).toEqual([...ROOT_PAGES].sort());
 });
+
+test.describe('STATIC-CONSENT · Analytics waits for consent on every page', () => {
+  for (const p of ALL_PAGES) {
+    test(`STATIC-CONSENT-01 ${p}: consent loader, AdSense tag and settings link; no direct Analytics`, () => {
+      const html = readSiteFile(p);
+      expect(html, 'shared consent loader in <head>').toMatch(/<head>[\s\S]*<script src="\/js\/core\/consent-analytics\.js\?v=[\w.]+" defer><\/script>[\s\S]*<\/head>/);
+      // Google's consent message is delivered by the AdSense tag; without it Analytics never loads.
+      expect(html, 'AdSense tag').toContain('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072');
+      expect(html, 'hidden "Privacy and cookie settings" link').toMatch(/<li class="js-consent-settings" hidden><a href="[./]*privacy-policy\.html#consent">Privacy and cookie settings<\/a><\/li>/);
+      expect(html, 'Analytics must not be configured or loaded outside the consent loader').not.toMatch(/gtag\('config'|googletagmanager\.com\/gtag\/js/);
+      expect(html, '"zero-knowledge" is not true while Analytics runs').not.toMatch(/zero[- ]knowledge/i);
+    });
+  }
+
+  test('STATIC-CONSENT-02 the loader only loads Analytics on GRANTED or NOT_APPLICABLE', () => {
+    const js = readSiteFile('js/core/consent-analytics.js');
+    expect(js).toContain('CONSENT_MODE_DATA_READY');
+    expect(js).toMatch(/status !== Status\.GRANTED && status !== Status\.NOT_APPLICABLE\) return;/);
+  });
+});

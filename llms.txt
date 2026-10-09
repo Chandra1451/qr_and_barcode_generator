@@ -1,6 +1,6 @@
 # Free QR Code & Barcode Generator - UniversalCodeMaker.com
 
-> A free, privacy-first web app that generates static QR codes and barcodes in the browser: 10 barcode formats and 13 QR code types. No sign-up, no watermark, no tracking, and the codes never expire.
+> A free, privacy-first web app that generates static QR codes and barcodes in the browser: 10 barcode formats and 13 QR code types. No sign-up, no watermark, no tracking redirects in the codes, and the codes never expire.
 
 ## Core Capabilities
 - **QR Codes**: Standard QR Code with custom dot and corner styles, colours, gradients and a centred logo.

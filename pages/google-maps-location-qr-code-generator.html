@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0MD85STYZT');
-    // gtag.js loads after the page has rendered so it doesn't compete with CSS/fonts on slow mobile connections
-    window.addEventListener('load', function () {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT';
-      document.head.appendChild(s);
-    });
-  </script>
+  <!-- Google Analytics: loads only after consent (js/core/consent-analytics.js) -->
+  <script src="/js/core/consent-analytics.js?v=1.0" defer></script>
+
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -860,7 +849,7 @@
             <ul>
               <li><a href="../symbology-docs.html">Symbology Documentation</a></li>
               <li><a href="../about.html">About &amp; Mission</a></li>
-              <li><a href="../privacy-policy.html">Zero-Knowledge Privacy</a></li>
+              <li><a href="../privacy-policy.html">Your codes stay in your browser</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
@@ -952,6 +941,7 @@
         <ul class="v2-footer-legal-links">
           <li><a href="../terms.html">Terms of Service</a></li>
           <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li class="js-consent-settings" hidden><a href="../privacy-policy.html#consent">Privacy and cookie settings</a></li>
           <li><a href="../symbology-docs.html">Symbology Docs</a></li>
           <li><a href="../about.html">About Us</a></li>
           <li><a href="../contact.html">Contact Us</a></li>

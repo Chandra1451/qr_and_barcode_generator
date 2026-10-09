@@ -25,20 +25,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <!-- Google tag (gtag.js) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0MD85STYZT');
-    // gtag.js loads after the page has rendered so it doesn't compete with CSS/fonts on slow mobile connections
-    window.addEventListener('load', function () {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT';
-      document.head.appendChild(s);
-    });
-  </script>
+  <!-- Google Analytics: loads only after consent (js/core/consent-analytics.js) -->
+  <script src="/js/core/consent-analytics.js?v=1.0" defer></script>
+
 
   <!-- Self-hosted fonts (declared in css/v2-theme.css); preload the two visible above the fold -->
   <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -1271,7 +1260,7 @@
             <ul>
               <li><a href="symbology-docs.html">Symbology Documentation</a></li>
               <li><a href="about.html">About &amp; Mission</a></li>
-              <li><a href="privacy-policy.html">Zero-Knowledge Privacy</a></li>
+              <li><a href="privacy-policy.html">Your codes stay in your browser</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
@@ -1363,6 +1352,7 @@
         <ul class="v2-footer-legal-links">
           <li><a href="terms.html">Terms of Service</a></li>
           <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li class="js-consent-settings" hidden><a href="privacy-policy.html#consent">Privacy and cookie settings</a></li>
           <li><a href="symbology-docs.html">Symbology Docs</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact Us</a></li>
@@ -1375,6 +1365,8 @@
   </footer>
 
   <!-- Application Module Entrypoint -->
-  <script type="module" src="js/v2-studio.js?v=3.17"></script>
+  <script type="module" src="js/v2-studio.js?v=3.18"></script>
+  <!-- Google AdSense (also delivers Google's consent message) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
 </body>
 </html>

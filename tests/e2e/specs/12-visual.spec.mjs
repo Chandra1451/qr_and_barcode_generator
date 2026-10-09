@@ -5,7 +5,7 @@
 import { test, expect } from '../support/fixtures.mjs';
 import { ALL_PAGES, GENERATORS } from '../support/catalog.mjs';
 
-test.use({ seedStorage: { ucs_cookie_consent: 'acknowledged', ucm_laser_fx: 'false', ucm_accent: 'crimson' } });
+test.use({ seedStorage: { ucm_laser_fx: 'false', ucm_accent: 'crimson' } });
 
 const VIEWPORTS = { desktop: { width: 1366, height: 900 }, phone: { width: 375, height: 812 } };
 

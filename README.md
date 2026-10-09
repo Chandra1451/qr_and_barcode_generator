@@ -103,7 +103,7 @@ qr_and_barcode_generator/
 │   │   ├── engine.js               # Unified BarcodeEngine rendering orchestrator
 │   │   ├── checksums.js            # Mod-10, EAN, UPC, ITF-14 & Luhn algorithms
 │   │   ├── logo-presets.js         # Embedded vector SVG brand presets
-│   │   └── cookie-banner.js        # Zero-dependency GDPR/ePrivacy consent banner
+│   │   └── consent-analytics.js    # Loads Google Analytics only after consent (Google consent message)
 │   ├── generators/
 │   │   ├── registry.js             # Symbology catalog & metadata registry
 │   │   ├── qr-code.js              # Standard & styled QR plugin

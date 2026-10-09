@@ -809,7 +809,7 @@ const SEO_PAGES = [
       supportedSymbologies: 'All 10 formats, including Code 128, EAN-13, UPC-A, Code 39 and QR Code',
       batchCapacity: 'Up to 200 values per batch, made in your browser; you are told if more were pasted',
       exportFormats: 'ZIP of PNG or SVG images, or Avery PDF sheets (5160, 5163, L7160) with one code per label',
-      privacyStandard: '100% Zero-Knowledge; proprietary inventory data is never uploaded to any server'
+      privacyStandard: 'Your codes stay in your browser; inventory data is never uploaded to any server'
     },
     useCases: [
       'Warehouse inventory counting and annual stock audit tagging',
@@ -828,7 +828,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Is my proprietary inventory or pricing data sent to a cloud server?',
-        a: 'Never. UniversalCodeMaker operates under a strict zero-knowledge architecture. Your CSV spreadsheet data is parsed entirely in your computer RAM and never transmitted across the network.'
+        a: 'Never. The data you paste is processed entirely in your browser and is never sent over the network.'
       },
       {
         q: 'Can I print bulk barcodes directly onto Avery label sheets?',
@@ -1985,7 +1985,7 @@ const ENRICHMENTS = {
         "desc": "Downloads every code as a PNG or SVG in one ZIP, each file numbered and named after its value (e.g. 001_SN-0001.png), or as an Avery PDF with one code per label."
       },
       {
-        "title": "100% Zero-Knowledge Privacy",
+        "title": "Your Data Stays in Your Browser",
         "desc": "Your confidential inventory SKUs, customer lists, and pricing spreadsheets never leave your device."
       }
     ],
@@ -2589,20 +2589,9 @@ function headTopHtml(meta, pageUrl) {
   return `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0MD85STYZT');
-    // gtag.js loads after the page has rendered so it doesn't compete with CSS/fonts on slow mobile connections
-    window.addEventListener('load', function () {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT';
-      document.head.appendChild(s);
-    });
-  </script>
+  <!-- Google Analytics: loads only after consent (js/core/consent-analytics.js) -->
+  <script src="/js/core/consent-analytics.js?v=1.0" defer></script>
+
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -3000,7 +2989,7 @@ const SITE_FOOTER_HTML = `  <!-- Site Footer -->
             <ul>
               <li><a href="../symbology-docs.html">Symbology Documentation</a></li>
               <li><a href="../about.html">About &amp; Mission</a></li>
-              <li><a href="../privacy-policy.html">Zero-Knowledge Privacy</a></li>
+              <li><a href="../privacy-policy.html">Your codes stay in your browser</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
@@ -3092,6 +3081,7 @@ const SITE_FOOTER_HTML = `  <!-- Site Footer -->
         <ul class="v2-footer-legal-links">
           <li><a href="../terms.html">Terms of Service</a></li>
           <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li class="js-consent-settings" hidden><a href="../privacy-policy.html#consent">Privacy and cookie settings</a></li>
           <li><a href="../symbology-docs.html">Symbology Docs</a></li>
           <li><a href="../about.html">About Us</a></li>
           <li><a href="../contact.html">Contact Us</a></li>

@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0MD85STYZT');
-    // gtag.js loads after the page has rendered so it doesn't compete with CSS/fonts on slow mobile connections
-    window.addEventListener('load', function () {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0MD85STYZT';
-      document.head.appendChild(s);
-    });
-  </script>
+  <!-- Google Analytics: loads only after consent (js/core/consent-analytics.js) -->
+  <script src="/js/core/consent-analytics.js?v=1.0" defer></script>
+
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -170,10 +159,10 @@
         <div class="info-block">
           <h3 style="display: flex; align-items: center; gap: 0.45rem;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Zero-Log Privacy Notice
+            Privacy Note
           </h3>
           <p>
-            Please note that UniversalCodeMaker operates under a 100% client-side zero-knowledge architecture. We do not store or track any QR codes or barcodes you generate, so we cannot retrieve or modify previously generated files.
+            Please note that every code is made in your browser and never sent to us. We do not store or see any QR codes or barcodes you generate, so we cannot retrieve or modify previously generated files.
           </p>
         </div>
       </div>
@@ -230,7 +219,7 @@
             <span class="faq-icon">▼</span>
           </summary>
           <div class="faq-answer">
-            <p>No. Because UniversalCodeMaker.com is 100% client-side, your data never reaches our servers. Once you close your browser tab, your codes exist only in the files you downloaded to your computer or device.</p>
+            <p>No. Because UniversalCodeMaker.com is 100% client-side, your data never reaches our servers. Your codes exist only in the files you downloaded and, for your 6 most recent barcodes and website-link QR codes, in the Studio's &ldquo;Recents&rdquo; list in your own browser.</p>
           </div>
         </details>
 
@@ -290,7 +279,7 @@
             <ul>
               <li><a href="symbology-docs.html">Symbology Documentation</a></li>
               <li><a href="about.html">About &amp; Mission</a></li>
-              <li><a href="privacy-policy.html">Zero-Knowledge Privacy</a></li>
+              <li><a href="privacy-policy.html">Your codes stay in your browser</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
@@ -382,6 +371,7 @@
         <ul class="v2-footer-legal-links">
           <li><a href="terms.html">Terms of Service</a></li>
           <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li class="js-consent-settings" hidden><a href="privacy-policy.html#consent">Privacy and cookie settings</a></li>
           <li><a href="symbology-docs.html">Symbology Docs</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact Us</a></li>

@@ -1,6 +1,6 @@
 // Shared Playwright fixtures:
 //  - blocks ads/analytics/Google Fonts so runs are deterministic and private
-//  - pre-acknowledges the cookie banner so it never covers buttons
+//  - can seed localStorage before site scripts run (seedStorage)
 //  - fails any test that produced a console error, page error or failed same-origin request
 //  - exposes `studio` (page object for index.html) and `netLog` (every request made)
 
@@ -26,7 +26,7 @@ export const test = base.extend({
   allowConsoleErrors: [[], { option: true }],
 
   /** localStorage values seeded before any site script runs (only if the key is not already set). */
-  seedStorage: [{ ucs_cookie_consent: 'acknowledged' }, { option: true }],
+  seedStorage: [{}, { option: true }],
 
   netLog: async ({}, use) => {
     await use([]);
