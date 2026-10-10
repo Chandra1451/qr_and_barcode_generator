@@ -364,3 +364,10 @@ test.describe('STATIC-CONSENT · Analytics waits for consent on every page', () 
     expect(js).toMatch(/status !== Status\.GRANTED && status !== Status\.NOT_APPLICABLE\) return;/);
   });
 });
+
+test('STATIC-REDIRECT-01 retired /v2/ and /classic/ URLs keep their permanent redirects', () => {
+  const htaccess = readSiteFile('.htaccess');
+  expect(htaccess).toContain('RewriteRule ^v2(/.*)?$ / [R=301,L]');
+  expect(htaccess).toContain('RewriteRule ^classic(/.*)?$ / [R=301,L]');
+  expect(fs.existsSync(path.join(SITE_ROOT, 'v2')), 'v2/ folder was removed 2026-10-11').toBe(false);
+});

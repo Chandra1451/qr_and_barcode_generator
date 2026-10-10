@@ -182,3 +182,56 @@ test('SCAN-32 nothing but the inputs shows before a scan (no empty preview or ca
   await expect(page.locator('#scan-camera-box')).toBeHidden();
   await expect(page.locator('.scan-result')).toHaveCount(0);
 });
+
+test.describe('SCAN · first-scan loading message', () => {
+  // The reader (~0.4 MB) is pre-loaded when the page is idle; a scan that starts earlier
+  // must say what it is waiting for. The reader script is held back until the test releases it:
+  // a fixed delay raced the (fake) camera, which can take ~9 s to start under parallel load.
+  async function holdReader(page) {
+    let release;
+    const gate = new Promise((r) => { release = r; });
+    await page.route(/zxing-reader\.iife\.js/, async (route) => {
+      await gate;
+      await route.continue();
+    });
+    return release;
+  }
+  async function recordStatuses(page) {
+    await page.evaluate(() => {
+      window.__statuses = [];
+      const el = document.getElementById('scan-status');
+      new MutationObserver(() => window.__statuses.push(el.textContent.trim())).observe(el, { childList: true, characterData: true, subtree: true });
+    });
+  }
+
+  test('SCAN-40 a scan before the reader has loaded says "Loading the reader…", then reads the code; the next scan does not', async ({ studio, page }) => {
+    const png = await qrPng(studio, page, 'FIRST-SCAN-40');
+    const releaseReader = await holdReader(page);
+    // The held reader may be requested before the load event, so don't wait for "load".
+    await page.goto(SCANNER, { waitUntil: 'domcontentloaded' });
+    await recordStatuses(page);
+    await page.setInputFiles('#scan-file', { name: 'a.png', mimeType: 'image/png', buffer: png });
+    await expect(page.locator('#scan-status')).toContainText('Loading the reader (about 0.4 MB, first scan only)');
+    releaseReader();
+    await expect(page.locator('#scan-status')).toHaveAttribute('data-kind', 'ok', { timeout: DECODE_TIMEOUT });
+    expect(await resultTexts(page)).toContain('FIRST-SCAN-40');
+    const first = await page.evaluate(() => window.__statuses.slice());
+    expect(first.indexOf('Reading the image…'), 'reads only after loading').toBeGreaterThan(first.findIndex((s) => s.startsWith('Loading the reader')));
+
+    await page.evaluate(() => { window.__statuses = []; });
+    await page.setInputFiles('#scan-file', { name: 'b.png', mimeType: 'image/png', buffer: png });
+    await expect(page.locator('#scan-status')).toHaveAttribute('data-kind', 'ok', { timeout: DECODE_TIMEOUT });
+    expect((await page.evaluate(() => window.__statuses)).some((s) => s.startsWith('Loading the reader')), 'second scan').toBe(false);
+  });
+
+  test('SCAN-41 the camera says "Loading the reader…" until the reader is ready, then asks to point the camera', async ({ page }) => {
+    const releaseReader = await holdReader(page);
+    // The held reader may be requested before the load event, so don't wait for "load".
+    await page.goto(SCANNER, { waitUntil: 'domcontentloaded' });
+    await page.getByRole('button', { name: /use camera/i }).click();
+    await expect(page.locator('#scan-status')).toContainText('Loading the reader', { timeout: DECODE_TIMEOUT });
+    releaseReader();
+    await expect(page.locator('#scan-status')).toContainText('Point the camera', { timeout: DECODE_TIMEOUT });
+    await page.getByRole('button', { name: /stop/i }).click();
+  });
+});

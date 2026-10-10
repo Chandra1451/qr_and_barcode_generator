@@ -33,9 +33,9 @@ const SEO_PAGES = [
     queryParam: 'symbology=ean-13',
     category: 'Retail & POS',
     metaTitle: 'Free EAN-13 Barcode Generator (300 DPI) - Vector SVG & Avery Print',
-    metaDescription: 'Generate 100% free GS1-compliant EAN-13 retail barcodes online. Features automatic Mod-10 check digit calculation, high-resolution 300 DPI PNG, and vector SVG download.',
+    metaDescription: 'Generate free EAN-13 retail barcodes online with the GS1 check digit calculated automatically. High-resolution 300 DPI PNG and vector SVG download.',
     h1: 'Free GS1 EAN-13 Retail Barcode Generator',
-    lead: 'Create standards-compliant International Article Number (EAN-13) barcodes for global retail packaging, supermarkets, and POS checkout systems with instant vector SVG and 300 DPI PNG export.',
+    lead: 'Create International Article Number (EAN-13) barcodes for retail packaging, supermarkets, and POS checkout systems with instant vector SVG and 300 DPI PNG export.',
     technicalSpec: {
       standard: 'ISO/IEC 15420 / GS1 General Specifications',
       characterSet: 'Numeric digits only (0–9)',
@@ -73,7 +73,7 @@ const SEO_PAGES = [
     metaTitle: 'Free UPC-A Barcode Generator (300 DPI) - US & Canadian Retail Ready',
     metaDescription: 'Generate authentic 12-digit UPC-A barcodes for North American retail. Automatic Mod-10 check digit calculation, vector SVG, and high-DPI raster downloads.',
     h1: 'Free UPC-A Retail Barcode Generator',
-    lead: 'Generate official Universal Product Code (UPC-A) barcodes for US and Canadian retail products. Features automatic check digit calculation, crisp vector SVG, and 300+ DPI print export.',
+    lead: 'Generate Universal Product Code (UPC-A) barcodes for US and Canadian retail products. Features automatic check digit calculation, crisp vector SVG, and 300+ DPI print export.',
     technicalSpec: {
       standard: 'ISO/IEC 15420 / GS1 US Standards',
       characterSet: 'Numeric digits only (0–9)',
@@ -143,7 +143,7 @@ const SEO_PAGES = [
     queryParam: 'symbology=itf-14',
     category: 'Logistics & Shipping',
     metaTitle: 'Free ITF-14 Barcode Generator - Corrugated Shipping Carton Ready',
-    metaDescription: 'Create GS1-compliant ITF-14 shipping carton barcodes with protective bearer bars. Automatic Mod-10 check digit, vector SVG, and high-DPI export.',
+    metaDescription: 'Create ITF-14 shipping carton barcodes with protective bearer bars. Automatic GS1 check digit, vector SVG, and high-DPI export.',
     h1: 'Free ITF-14 Shipping Carton Barcode Generator',
     lead: 'Generate GS1-standard ITF-14 (Interleaved 2 of 5) barcodes with thick protective bearer bars engineered specifically for direct printing onto corrugated cardboard shipping master cases.',
     technicalSpec: {
@@ -177,7 +177,7 @@ const SEO_PAGES = [
     queryParam: 'symbology=data-matrix',
     category: '2D Matrix',
     metaTitle: 'Free Data Matrix Generator (ECC 200) - 2D Square Vector & Print',
-    metaDescription: 'Generate high-density Data Matrix ECC 200 2D barcodes online. Compliant with ISO/IEC 16022, GS1 DataMatrix, and healthcare UDI standards with vector SVG export.',
+    metaDescription: 'Generate high-density Data Matrix ECC 200 2D barcodes online (the ISO/IEC 16022 symbology) for parts, inventory and labels, with vector SVG export.',
     h1: 'Free Data Matrix (ECC 200) 2D Barcode Generator',
     lead: 'Create compact, high-capacity Data Matrix 2D square matrix barcodes engineered for electronic component marking, healthcare pharmaceutical packaging, and aerospace direct part marking (DPM).',
     technicalSpec: {
@@ -240,9 +240,9 @@ const SEO_PAGES = [
     queryParam: 'symbology=pdf417',
     category: '2D Stacked',
     metaTitle: 'Free PDF417 Barcode Generator - Driver License & ID Card Standard',
-    metaDescription: 'Generate authentic PDF417 stacked 2D barcodes online. Fully compliant with AAMVA driver license, airline boarding pass, and postal standards.',
+    metaDescription: 'Generate PDF417 stacked 2D barcodes online: the barcode type used on driver licenses, paper boarding passes and shipping documents. Vector SVG and PNG export.',
     h1: 'Free PDF417 Stacked 2D Barcode Generator',
-    lead: 'Create high-capacity PDF417 stacked 2D barcodes compliant with North American AAMVA driver license specifications, paper airline boarding passes, and government customs forms.',
+    lead: 'Create high-capacity PDF417 stacked 2D barcodes, the symbology used on North American driver licenses, paper airline boarding passes, and customs forms. The studio encodes the text you enter; it does not build AAMVA or boarding-pass data for you.',
     technicalSpec: {
       standard: 'ISO/IEC 15438',
       structure: 'Stacked linear rows (each codeword contains 4 bars and 4 spaces across 17 modules)',
@@ -521,7 +521,7 @@ const SEO_PAGES = [
     metaTitle: 'Free Amazon FBA Barcode Generator (FNSKU) - Avery 5160 & Thermal Roll',
     metaDescription: 'Make Amazon FBA FNSKU labels (Code 128) for free, on Avery 5160 sheets or thermal rolls, with title and condition. Check Seller Central for Amazon\'s latest label rules.',
     h1: 'Free Amazon FBA FNSKU Barcode & Label Generator',
-    lead: 'Create standards-compliant Amazon Fulfillment Network Stock Keeping Unit (FNSKU) item labels for Seller Central inventory. Formatted in high-density Code 128 with instant 30-up Avery sheet and thermal roll export.',
+    lead: 'Create Amazon Fulfillment Network Stock Keeping Unit (FNSKU) item labels for Seller Central inventory. Formatted in high-density Code 128 with instant 30-up Avery sheet and thermal roll export.',
     technicalSpec: {
       standard: 'Amazon Seller Central FNSKU / Code 128 Subset A/B',
       payloadFormat: 'X00-prefix alphanumeric identifier (typically 10 characters)',
@@ -759,9 +759,9 @@ const SEO_PAGES = [
     queryParam: 'symbology=code-39',
     category: 'Logistics & 1D',
     metaTitle: 'Free Code 39 Barcode Generator - Vector SVG & 300 DPI Asset Tags',
-    metaDescription: 'Create free Code 39 (USD-3 / LOGMARS) barcodes online. Ideal for IT asset tracking, government MIL-STD-129 compliance, and internal warehouse inventory.',
+    metaDescription: 'Create free Code 39 (USD-3 / LOGMARS) barcodes online. Ideal for IT asset tracking, equipment labels, and internal warehouse inventory.',
     h1: 'Free Code 39 (USD-3) Barcode Generator',
-    lead: 'Generate industrial-grade Code 39 alphanumeric barcodes for enterprise asset management, Department of Defense LOGMARS compliance, and internal inventory numbering with instant vector SVG and PNG downloads.',
+    lead: 'Generate industrial-grade Code 39 alphanumeric barcodes for enterprise asset management, equipment labels, and internal inventory numbering with instant vector SVG and PNG downloads.',
     technicalSpec: {
       standard: 'ANSI/AIM BC1 / ISO/IEC 16388 / MIL-STD-129',
       characterSet: '43 characters: 0–9, uppercase A–Z, and symbols (- . $ / + % space)',
@@ -1130,10 +1130,10 @@ const ENRICHMENTS = {
       }
     ],
     "legalCaution": {
-      "title": "Data Matrix Specifications & Healthcare Compliance",
+      "title": "Data Matrix Specifications & Healthcare Use",
       "points": [
         "Data Matrix is an open ISO standard (ISO/IEC 16022). It requires an area-imaging scanner (cannot be scanned with older single-line 1D laser scanners).",
-        "When used for FDA UDI or GS1 healthcare, data must include Application Identifiers (e.g. (01) GTIN, (17) Expiry Date, (10) Batch/Lot, (21) Serial Number).",
+        "FDA UDI and GS1 healthcare labels need GS1 DataMatrix: it starts with a special FNC1 character and uses Application Identifiers (e.g. (01) GTIN, (17) Expiry Date, (10) Batch/Lot, (21) Serial Number). This studio makes plain ECC 200 Data Matrix, so it is not suitable for those labels.",
         "Ensure the \"L\" shaped finder pattern on the bottom and left borders remains completely unobstructed."
       ]
     },
@@ -1173,7 +1173,7 @@ const ENRICHMENTS = {
     "decisionGuide": [
       {
         "q": "Issuing airline boarding passes or train tickets?",
-        "a": "Aztec Code is the official standard chosen by the International Air Transport Association (IATA) and European rail systems (UIC)."
+        "a": "Aztec Code is one of the three 2D codes IATA's boarding-pass standard allows on mobile boarding passes, alongside Data Matrix and QR Code."
       },
       {
         "q": "Displaying codes on compact smartphone screens?",
@@ -1258,7 +1258,7 @@ const ENRICHMENTS = {
         "desc": "Built-in camera apps prompt \"Join Network\" without installing any third-party app."
       },
       {
-        "title": "100% Client-Side Privacy Guarantee",
+        "title": "100% Client-Side Privacy",
         "desc": "Your network credentials are never sent across the internet or stored on external servers."
       }
     ],
@@ -1276,7 +1276,7 @@ const ENRICHMENTS = {
       "title": "Wi-Fi Security & Warning Against Dynamic QR Services",
       "points": [
         "Beware of third-party \"dynamic QR code\" generators! Many commercial sites route your Wi-Fi credentials through remote redirect servers that log user IPs and break when monthly subscriptions expire.",
-        "Our studio generates 100% direct, static Wi-Fi payloads following the official Wi-Fi Alliance format. They work offline and will never expire.",
+        "Our studio generates direct, static Wi-Fi payloads in the widely used WIFI: format. They need no internet connection to join and never expire.",
         "For high-security enterprise environments, use a dedicated Guest VLAN to isolate visitors from internal office hardware."
       ]
     },
@@ -1374,7 +1374,7 @@ const ENRICHMENTS = {
       "points": [
         "Cryptocurrency transactions are mathematically irreversible on the blockchain. Always perform a test micro-transaction before printing codes on physical signage.",
         "Verify that your clipboard or browser has not been altered by malicious browser extensions before generating payment addresses.",
-        "Compliant with official Bitcoin Improvement Proposal 21 (BIP-21) and Ethereum EIP-681."
+        "Bitcoin links follow BIP-21, Ethereum links follow EIP-681 (the amount is converted to wei), and Solana uses the solana: link format."
       ]
     },
     "authorityLinks": [
@@ -1416,9 +1416,9 @@ const ENRICHMENTS = {
       }
     ],
     "legalCaution": {
-      "title": "Email QR Standards & Compliance",
+      "title": "Email QR Standards",
       "points": [
-        "Compliant with IETF RFC 6068 (The mailto URI scheme).",
+        "Uses the mailto: link format (IETF RFC 6068) with the subject and body filled in.",
         "The email is sent from the person's own mail app, and only after they tap Send; this site sends nothing. Whether your use follows anti-spam rules such as CAN-SPAM or GDPR depends on who you ask to email and why.",
         "Special characters (spaces, ampersands, question marks) are automatically percent-encoded for universal email client compatibility."
       ]
@@ -1466,7 +1466,7 @@ const ENRICHMENTS = {
       "points": [
         "Ensure compliance with local telecommunications laws (TCPA in the US, GDPR in the EU). Users must explicitly tap \"Send\" in their SMS app to transmit the message.",
         "Clearly state in your promotional signage that standard message and data rates may apply according to the user’s mobile carrier plan.",
-        "Compliant with standard RFC 5724 (URI Scheme for Global System for Mobile Communications Short Message Service)."
+        "Uses the widely supported SMSTO: format (smsto:number:message), not the sms: link defined in RFC 5724."
       ]
     },
     "authorityLinks": [
@@ -1507,7 +1507,7 @@ const ENRICHMENTS = {
       "points": [
         "Always format telephone numbers in international E.164 format (+[country code][number]) so international travelers can connect without dialing errors.",
         "Smartphones will always prompt the user to confirm the call before dialing, preventing accidental or phantom outgoing calls.",
-        "Compliant with IETF RFC 3966 (tel URI scheme)."
+        "Uses the tel: link format (IETF RFC 3966)."
       ]
     },
     "authorityLinks": [
@@ -1530,7 +1530,7 @@ const ENRICHMENTS = {
       },
       {
         "title": "Universal iCalendar VEVENT Standard",
-        "desc": "Fully compliant with RFC 5545 specifications supported across all modern smartphones."
+        "desc": "Encodes the event as iCalendar (VEVENT) text, the format defined by RFC 5545."
       }
     ],
     "decisionGuide": [
@@ -1548,7 +1548,7 @@ const ENRICHMENTS = {
       "points": [
         "Always specify UTC timestamps or explicit timezone identifiers (TZID) to ensure event times do not shift when imported by attendees traveling across time zones.",
         "Keep event descriptions concise to maintain high QR code scannability on printed paper invitations.",
-        "Compliant with IETF RFC 5545 (Internet Calendaring and Scheduling Core Object Specification)."
+        "Event text uses the iCalendar VEVENT structure from IETF RFC 5545, simplified (no UID or timestamp fields); test-scan with the phones your guests use."
       ]
     },
     "authorityLinks": [
@@ -1635,7 +1635,7 @@ const ENRICHMENTS = {
       "points": [
         "Plain text QR codes are completely unencrypted and can be read by anyone with a smartphone camera. Never encode sensitive passwords or personal health data in plaintext.",
         "For high-density text (>500 characters), select Error Correction Level L or M to prevent the QR matrix from becoming excessively dense.",
-        "Compliant with international standard ISO/IEC 18004."
+        "Standard QR Code symbols (ISO/IEC 18004). Dot styles and logos rely on the code's error correction, so test-scan styled codes before printing."
       ]
     },
     "authorityLinks": [
@@ -1935,8 +1935,8 @@ const ENRICHMENTS = {
         "desc": "Encodes capital letters A–Z, numbers 0–9, and key operational symbols (- . $ / + % space) for intuitive asset naming."
       },
       {
-        "title": "Defense & Military (MIL-STD-129) Ready",
-        "desc": "Fully compliant with US Department of Defense LOGMARS logistics standards for military supply contracts."
+        "title": "Known as LOGMARS in US Defense Logistics",
+        "desc": "LOGMARS is the US Department of Defense's use of Code 39 and adds its own size and density rules; check them against your contract before printing."
       },
       {
         "title": "Self-Checking Robust Architecture",

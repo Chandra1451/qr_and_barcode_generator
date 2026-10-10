@@ -4,20 +4,20 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.18';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.18';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.19';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.19';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.18';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.18';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.18';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.18';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.18';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.18';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.18';
+} from './generators/registry.js?v=3.19';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.19';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.19';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.19';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.19';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.19';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.19';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -26,7 +26,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.18';
+} from './export/label-maker.js?v=3.19';
 
 class V2StudioApp {
   constructor() {
@@ -34,6 +34,8 @@ class V2StudioApp {
     this.currentGenerator = null;
     this.activeCategory = 'all';
     this.debounceTimer = null;
+    this.announceTimer = null;
+    this.lastAnnouncement = '';
     this.currentOptions = {};
 
     // QR Wizard & Customization State
@@ -252,6 +254,7 @@ class V2StudioApp {
       qrStyledContainer: document.getElementById('qr-styled-container'),
       previewErrorBox: document.getElementById('preview-error-box'),
       previewErrorText: document.getElementById('preview-error-text'),
+      previewStatus: document.getElementById('preview-status'),
 
       // Readout & Meta
       specFormat: document.getElementById('spec-format'),
@@ -1130,9 +1133,25 @@ class V2StudioApp {
       if (validation.valid && payload && restorable) {
         this.scheduleHistorySave(this.currentGenerator, payload);
       }
+
+      this.announce(validation.valid
+        ? `Preview updated: ${this.currentGenerator.name}`
+        : `Check the input: ${validation.error}`);
     } catch (err) {
       this.showError(err.message || 'Render failed. Check payload format.');
+      this.announce(`Preview not updated: ${err.message || 'render failed'}`);
     }
+  }
+
+  // Screen readers hear changes of state only (new format, a new problem, recovery), not every
+  // redraw while typing: repeats are dropped and the message waits until input settles.
+  announce(message) {
+    if (!this.dom.previewStatus || message === this.lastAnnouncement) return;
+    this.lastAnnouncement = message;
+    clearTimeout(this.announceTimer);
+    this.announceTimer = setTimeout(() => {
+      this.dom.previewStatus.textContent = message;
+    }, 700);
   }
 
   showError(msg) {

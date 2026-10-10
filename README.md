@@ -26,7 +26,7 @@ Dynamic form compilers with real-time payload generation for:
 - ✉️ **Email** (mailto: with subject and body)
 - 💬 **SMS** (smsto: with phone and pre-filled message)
 - 📞 **Phone Call** (tel: formatted dialing)
-- 💰 **Cryptocurrency** (Bitcoin, Ethereum, Solana, USDT BIP-21 URI schemes)
+- 💰 **Cryptocurrency** (Bitcoin BIP-21, Ethereum EIP-681, Solana `solana:` links)
 - 📅 **Calendar Event** (iCalendar VEVENT format with timestamps and description)
 - 📍 **Google Maps location** (an address, place name or GPS coordinates, opened with Google's official Maps URL)
 - 📝 **Plain Text** (Multi-line raw string payloads)

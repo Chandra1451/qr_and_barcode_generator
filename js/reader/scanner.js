@@ -123,6 +123,11 @@ export function safeHttpUrl(text) {
 /* ------------------------------------------------------------------ decoder */
 
 let decoderPromise = null;
+let decoderReady = false;
+
+// Shown only if a scan starts before the idle-time warm-up has finished.
+// Measured 2026-10-11: ~12.7 KB script + ~413 KB WebAssembly as transferred (compressed).
+const LOADING_READER = 'Loading the reader (about 0.4 MB, first scan only)…';
 
 function loadDecoder() {
   if (decoderPromise) return decoderPromise;
@@ -141,6 +146,7 @@ function loadDecoder() {
       overrides: { locateFile: (path, prefix) => (path.endsWith('.wasm') ? wasmUrl : prefix + path) },
       fireImmediately: true
     });
+    decoderReady = true;
     return zx;
   }).catch((err) => {
     decoderPromise = null; // allow a retry
@@ -311,6 +317,15 @@ class ScannerPage {
     }
     this.showPreview(file);
     this.clearResults();
+    if (!decoderReady) {
+      this.setStatus(LOADING_READER, 'busy');
+      try {
+        await loadDecoder();
+      } catch {
+        this.setStatus('The reader could not start. Check your connection and reload the page.', 'error');
+        return;
+      }
+    }
     this.setStatus('Reading the image…', 'busy');
 
     let drawable;
@@ -363,8 +378,15 @@ class ScannerPage {
     cameraBox.hidden = false;
     cameraBtn.hidden = true;
     try { await video.play(); } catch { /* autoplay of muted inline video is allowed; ignore */ }
-    this.setStatus('Point the camera at a QR code or barcode…', 'busy');
-    loadDecoder().catch(() => this.setStatus('The reader could not start. Check your connection and reload the page.', 'error'));
+    const pointCamera = () => this.setStatus('Point the camera at a QR code or barcode…', 'busy');
+    if (decoderReady) {
+      pointCamera();
+    } else {
+      this.setStatus(LOADING_READER, 'busy');
+      loadDecoder()
+        .then(() => { if (this.stream) pointCamera(); })
+        .catch(() => this.setStatus('The reader could not start. Check your connection and reload the page.', 'error'));
+    }
     this.scheduleFrame();
   }
 

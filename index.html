@@ -155,7 +155,7 @@
           <li class="v2-spec-cell">
             <span class="v2-spec-head"><span class="v2-spec-idx">06</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
             <strong class="v2-spec-title">Free, and never expires</strong>
-            <span class="v2-spec-note">No sign-up, no watermark. Static codes keep working forever.</span>
+            <span class="v2-spec-note">No sign-up, no watermark. Static codes never expire.</span>
           </li>
         </ul>
 
@@ -625,6 +625,8 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
               <span id="preview-error-text">Encoding Error</span>
             </div>
+            <!-- Screen-reader announcements for preview changes and errors (visually hidden) -->
+            <div id="preview-status" role="status" aria-live="polite" aria-atomic="true" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;"></div>
           </div>
 
           <!-- Sensor Readout Panel -->
@@ -634,7 +636,7 @@
               <span class="readout-val" id="spec-format">QR Code</span>
             </div>
             <div class="readout-row">
-              <span class="readout-label">Compliance Standard:</span>
+              <span class="readout-label">Standard:</span>
               <span class="readout-val" id="spec-iso">ISO/IEC 18004</span>
             </div>
             <div class="readout-row">
@@ -711,8 +713,8 @@
           </div>
         </section>
 
-        <!-- Privacy Guarantee & Equipment Recommendation Bar -->
-        <div class="v2-equipment-dock" aria-label="Privacy Guarantee &amp; Recommended Hardware">
+        <!-- Privacy & Equipment Recommendation Bar -->
+        <div class="v2-equipment-dock" aria-label="Privacy &amp; Recommended Hardware">
           <div style="display: flex; align-items: center; gap: 0.75rem;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -761,7 +763,7 @@
           <span class="mono-eyebrow">GS1 &amp; ISO Matrix Directory</span>
           <h2>Supported Symbologies &amp; Standards</h2>
           <p style="color: var(--text-secondary); max-width: 680px; font-weight: 600;">
-            Click any format below to immediately load it into the Studio with standards-compliant default parameters.
+            Click any format below to immediately load it into the Studio with sensible default settings.
           </p>
         </div>
         <a href="symbology-docs.html" class="btn btn-ink btn-sm">Full Technical Documentation ↗</a>
@@ -816,11 +818,11 @@
           <div class="home-faq">
             <details>
               <summary>Is it really free?</summary>
-              <p>Yes. Every format, download size and label sheet is free, with no sign-up and no watermark. The site is supported by ads and affiliate links.</p>
+              <p>Yes. Every format, download size and label sheet is free, with no sign-up and no watermark. The site is meant to be supported by ads, and by affiliate links.</p>
             </details>
             <details>
               <summary>Do the QR codes expire?</summary>
-              <p>No. They are static codes: your link or text is stored in the code itself, not behind a redirect service, so they keep working forever. To change what a code says, make a new one.</p>
+              <p>No. They are static codes: your link or text is stored in the code itself, not behind a redirect service, so nothing on our side can make them stop working. To change what a code says, make a new one.</p>
             </details>
             <details>
               <summary>Is my data uploaded anywhere?</summary>
@@ -828,7 +830,7 @@
             </details>
             <details>
               <summary>Can I use these barcodes on products in stores?</summary>
-              <p>Yes, if the number is yours. Retailers and marketplaces such as Amazon expect product numbers licensed from GS1. We draw the barcode to the GS1 specification; the number itself has to come from GS1 or your retailer. Step by step: <a href="pages/how-to-get-a-barcode-for-your-product.html">how to get a barcode for your product</a>.</p>
+              <p>Yes, if the number is yours. Retailers and marketplaces such as Amazon expect product numbers licensed from GS1. We draw the barcode and calculate its check digit; the number itself has to come from GS1 or your retailer. Step by step: <a href="pages/how-to-get-a-barcode-for-your-product.html">how to get a barcode for your product</a>.</p>
             </details>
           </div>
         </div>
@@ -1365,7 +1367,7 @@
   </footer>
 
   <!-- Application Module Entrypoint -->
-  <script type="module" src="js/v2-studio.js?v=3.18"></script>
+  <script type="module" src="js/v2-studio.js?v=3.19"></script>
   <!-- Google AdSense (also delivers Google's consent message) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
 </body>

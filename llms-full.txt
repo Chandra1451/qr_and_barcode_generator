@@ -85,7 +85,6 @@ END:VCARD
 - Bitcoin: `bitcoin:<address>?amount=<val>` (BIP-21)
 - Ethereum: `ethereum:<address>?value=<wei>` (EIP-681; the amount is converted to wei)
 - Solana: `solana:<address>?amount=<val>`
-- USDT: `usdt:<address>?amount=<val>`
 
 ### iCalendar VEVENT
 ```

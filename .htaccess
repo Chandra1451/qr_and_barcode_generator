@@ -23,8 +23,8 @@
   # Block direct access to hidden files/directories (e.g. .git, .env)
   RewriteRule ^\..* - [F,L]
 
-  # Old V2 preview URL: permanent redirect to the homepage (query string such as ?symbology= is kept)
-  RewriteRule ^v2/?(index\.html)?$ / [R=301,L]
+  # Retired V2 preview (folder removed 2026-10-11): permanent redirect to the homepage; query string such as ?symbology= is kept
+  RewriteRule ^v2(/.*)?$ / [R=301,L]
 
   # Retired Classic V1 studio: permanent redirect to the homepage so Google drops the old URL
   # and passes its signals on (files were removed; Hostinger's Git deploy may leave copies behind)

@@ -102,7 +102,8 @@ test.describe('LINK · parameter handling', () => {
 
   test('LINK-15 /v2/ redirects to the studio and keeps the query string', async ({ page }) => {
     await page.goto('/v2/index.html?symbology=aztec');
-    await page.waitForURL(/\/index\.html\?symbology=aztec$/);
+    // Live: the server 301s to /?symbology=…; local static server: v2/index.html redirects to ../index.html?symbology=…
+    await page.waitForURL(/\/(index\.html)?\?symbology=aztec$/);
     await expect(page.locator('#symbology-select')).toHaveValue('aztec');
   });
 });

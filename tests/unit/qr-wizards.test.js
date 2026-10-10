@@ -113,6 +113,16 @@ export async function runWizardTests(assert) {
     'solana:SolanaWalletAddress123?amount=10',
     'Compiles Solana URI with amount parameter'
   );
+  // Every coin offered must produce its own standard scheme (USDT's non-standard `usdt:` was removed 2026-10-11).
+  const STANDARD_CRYPTO_SCHEMES = { bitcoin: 'bitcoin:', ethereum: 'ethereum:', solana: 'solana:' };
+  const offeredCoins = cryptoWz.fields.find((f) => f.id === 'currency').options.map((o) => o.value);
+  assert.equal(offeredCoins.slice().sort().join(','), Object.keys(STANDARD_CRYPTO_SCHEMES).sort().join(','), 'Crypto wizard offers only coins with a standard link scheme');
+  for (const coin of offeredCoins) {
+    assert.isTrue(
+      cryptoWz.compile({ currency: coin, address: 'ADDR123', amount: '' }).startsWith(STANDARD_CRYPTO_SCHEMES[coin]),
+      `${coin} compiles to ${STANDARD_CRYPTO_SCHEMES[coin]}`
+    );
+  }
 
   // Test 9: Calendar Event Wizard
   const eventWz = getWizard('event');

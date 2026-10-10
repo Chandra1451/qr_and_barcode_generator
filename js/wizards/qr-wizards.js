@@ -4,7 +4,7 @@
  * 
  * Compiles user-friendly form inputs into industry-standard QR payload strings:
  * - URL, Wi-Fi (WPA/WPA2/WEP/Open), vCard 3.0, Email (mailto), SMS (smsto),
- *   Phone (tel), Crypto (BTC/ETH/SOL/USDT), Calendar Event (iCal), Geolocation, Plain Text.
+ *   Phone (tel), Crypto (BTC/ETH/SOL), Calendar Event (iCal), Geolocation, Plain Text.
  */
 
 /**
@@ -196,7 +196,7 @@ export const QR_WIZARDS = {
     id: 'crypto',
     name: 'Crypto Payment',
     icon: '🪙',
-    description: 'Scan-to-pay wallet address for Bitcoin, Ethereum, Solana, and USDT.',
+    description: 'Scan-to-pay wallet address for Bitcoin, Ethereum and Solana.',
     fields: [
       {
         id: 'currency',
@@ -205,8 +205,8 @@ export const QR_WIZARDS = {
         options: [
           { label: 'Bitcoin (BTC)', value: 'bitcoin' },
           { label: 'Ethereum (ETH)', value: 'ethereum' },
-          { label: 'Solana (SOL)', value: 'solana' },
-          { label: 'USDT (Tether)', value: 'usdt' }
+          { label: 'Solana (SOL)', value: 'solana' }
+          // USDT removed 2026-10-11: it produced a non-standard `usdt:` link that wallets may not recognise.
         ],
         default: 'bitcoin'
       },
@@ -218,17 +218,15 @@ export const QR_WIZARDS = {
       const addr = (data.address || '').trim();
       const amt = data.amount ? String(data.amount).trim() : '';
 
-      if (curr === 'bitcoin') {
-        return `bitcoin:${addr}${amt ? `?amount=${amt}` : ''}`;
-      } else if (curr === 'ethereum') {
+      if (curr === 'ethereum') {
         // EIP-681: value is an integer amount in wei (0.05 ETH = 50000000000000000)
         const wei = amt ? ethToWei(amt) : '';
         return `ethereum:${addr}${wei ? `?value=${wei}` : ''}`;
-      } else if (curr === 'solana') {
-        return `solana:${addr}${amt ? `?amount=${amt}` : ''}`;
-      } else {
-        return `usdt:${addr}${amt ? `?amount=${amt}` : ''}`;
       }
+      if (curr === 'solana') {
+        return `solana:${addr}${amt ? `?amount=${amt}` : ''}`;
+      }
+      return `bitcoin:${addr}${amt ? `?amount=${amt}` : ''}`; // BIP-21
     }
   },
 

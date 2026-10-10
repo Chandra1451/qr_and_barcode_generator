@@ -51,6 +51,13 @@ const server = http.createServer((req, res) => {
   const isUnitRunner = urlPath === '/tests/test-runner.html' || urlPath.startsWith('/tests/unit/');
   if (/^\/(tools|tests)(\/|$)/.test(urlPath) && !isUnitRunner) return send404(res, urlPath);
 
+  // Production parity: .htaccess 301s the retired /v2/ and /classic/ studios to the homepage, keeping the query.
+  if (/^\/(v2|classic)(\/.*)?$/.test(urlPath)) {
+    res.writeHead(301, { Location: '/' + new URL(req.url, 'http://x').search, 'Cache-Control': 'no-store' });
+    res.end();
+    return;
+  }
+
   if (urlPath.endsWith('/')) urlPath += 'index.html';
   const filePath = path.normalize(path.join(SITE_ROOT, urlPath));
   if (!filePath.startsWith(SITE_ROOT)) return send404(res, urlPath);
