@@ -6,7 +6,7 @@
  * compliant with ISO 2108, Amazon KDP, and IngramSpark publishing specifications.
  */
 
-import { bwipHeightMm } from '../../core/print-size.js?v=3.20';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.21';
 
 export default {
   id: "isbn",
@@ -54,8 +54,10 @@ export default {
       label: "Bar Height",
       min: 20,
       max: 60,
-      default: 30,
-      unit: "mm"
+      step: 0.05,
+      default: 22.85, // GS1 nominal bar height at 100% size (ISBN is an EAN-13)
+      unit: "mm",
+      warnBelow: { value: 22.85, text: "Below GS1's minimum bar height (22.85 mm at 100% size). GS1 allows shorter (truncated) bars only when a full-height barcode cannot fit; they lose omnidirectional scanning at the checkout." }
     },
     {
       id: "scale",
@@ -94,10 +96,9 @@ export default {
       bcid: unHyphenated ? "ean13" : "isbn",
       text: cleanText, // "ISBN [addon]" — both bcids take the add-on after a space
       scale: options.scale || 3,
-      height: bwipHeightMm(options.height || 30, this.moduleMm), // bars print this many mm tall
+      height: bwipHeightMm(options.height || 22.85, this.moduleMm), // bars print this many mm tall
       includetext: options.includetext !== false,
-      textxalign: "center",
-      guardwhitespace: true,
+      guardwhitespace: options.includetext !== false, // ">" quiet-zone marker only alongside the digits
       paddingwidth: options.padding !== undefined ? options.padding : 10,
       paddingheight: options.padding !== undefined ? options.padding : 10
     });

@@ -832,3 +832,77 @@ test.describe('EXP-SIZE · real print size and quiet zones', () => {
     }
   });
 });
+
+// GS1 TEXT LAYOUT AND GUARD BARS — GS1 General Specifications R26.0: guard bars extend 5X below the
+// other bars (also UPC-A's first and last characters); EAN-13's leading digit sits left of the start
+// guard (5.2.5). bwip-js's own EAN/UPC layout does this; a centred text string did not
+// (projects/universalcodemaker/20_features/guard-bars.md).
+test.describe('EXP-GUARD · GS1 guard bars and digit layout', () => {
+  const EAN_UPC = ['ean-13', 'upc-a', 'isbn'];
+
+  function profile(png) {
+    const dark = (x, y) => { const i = (y * png.width + x) * 4; return png.data[i + 3] > 128 && png.data[i] + png.data[i + 1] + png.data[i + 2] < 300; };
+    const y0 = Math.round(png.height * 0.3);
+    const bars = []; let x = 0;
+    while (x < png.width) { const d = dark(x, y0); const s = x; while (x < png.width && dark(x, y0) === d) x++; if (d) bars.push({ s, e: x }); }
+    const X = Math.min(...bars.map((b) => b.e - b.s));
+    const span = bars.map((b) => {
+      const cx = b.s + Math.floor((b.e - b.s) / 2);
+      let top = y0, bot = y0;
+      while (top > 0 && dark(cx, top - 1)) top--;
+      while (bot < png.height - 1 && dark(cx, bot + 1)) bot++;
+      return { top, bot };
+    });
+    const bottoms = span.map((r) => r.bot).sort((a, b) => a - b);
+    const normalBottom = bottoms[Math.floor(bottoms.length / 2)];
+    const guards = span.filter((r) => r.bot > normalBottom + X);
+    // GS1 layout: digits sit level with the guard extensions (between the ordinary bars' bottom and
+    // the guards' bottom). A centred string sits wholly below the guards instead.
+    const guardBottom = Math.max(...span.map((r) => r.bot));
+    const inGuard = (xx) => bars.some((b, i) => span[i].bot > normalBottom + X && xx >= b.s - 1 && xx <= b.e);
+    let besideGuards = 0, leftInk = 0, rightInk = 0, underStartGuard = 0;
+    for (let y = normalBottom + 2; y <= guardBottom; y++) {
+      for (let xx = 0; xx < png.width; xx++) {
+        if (!dark(xx, y) || inGuard(xx)) continue;
+        besideGuards++;
+        if (xx < bars[0].s - 1) leftInk++;
+        if (xx > bars.at(-1).e + 1) rightInk++;
+        // Between the start guard's two bars: empty in GS1's layout, crossed by a centred string.
+        if (xx >= bars[0].s && xx <= bars[1].e) underStartGuard++;
+      }
+    }
+    // Gap (in X) between the leading digit and the start guard, in the digit row: GS1's layout
+    // leaves clear space; a centred string runs into the guard.
+    let nearest = -1;
+    for (let y = normalBottom + 2; y <= guardBottom; y++) {
+      for (let xx = bars[0].s - 1; xx >= 0; xx--) if (dark(xx, y)) { nearest = Math.max(nearest, xx); break; }
+    }
+    const leadingGap = nearest < 0 ? Infinity : (bars[0].s - 1 - nearest) / X;
+    return { X, normalBottom, guards, besideGuards, leftInk, rightInk, underStartGuard, leadingGap };
+  }
+
+  for (const id of EAN_UPC) {
+    test(`EXP-GUARD-01 ${id}: guard bars extend 5X below the other bars`, async ({ studio, page }) => {
+      await studio.open(`?symbology=${id}`);
+      await page.selectOption('#scale-factor-select', '4');
+      const png = readPng((await studio.download(page.locator('#btn-download-png'))).buffer);
+      const { X, normalBottom, guards } = profile(png);
+      expect(guards.length, 'extended bars found').toBeGreaterThanOrEqual(6);
+      for (const g of guards) {
+        const ext = (g.bot - normalBottom) / X;
+        expect(Math.abs(ext - 5), `guard extension ${ext.toFixed(2)}X`).toBeLessThan(0.6);
+      }
+      if (id === 'upc-a') expect(guards.length, 'UPC-A: guards + first/last character bars').toBeGreaterThan(6);
+    });
+
+    test(`EXP-GUARD-02 ${id}: the leading digit is printed left of the bars`, async ({ studio, page }) => {
+      await studio.open(`?symbology=${id}`);
+      await page.selectOption('#scale-factor-select', '4');
+      const png = readPng((await studio.download(page.locator('#btn-download-png'))).buffer);
+      const { leftInk, rightInk, leadingGap } = profile(png);
+      expect(leftInk, 'digit left of the start guard').toBeGreaterThan(50);
+      expect(leadingGap, `gap between the leading digit and the start guard: ${leadingGap.toFixed(2)}X (GS1 R26 5.2.5)`).toBeGreaterThan(1);
+      if (id === 'upc-a') expect(rightInk, 'UPC-A check digit right of the end guard').toBeGreaterThan(50);
+    });
+  }
+});

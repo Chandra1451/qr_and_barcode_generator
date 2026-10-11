@@ -938,6 +938,14 @@ h1, h2, h3, h4 {
   gap: 0.3rem;
 }
 
+/* GS1 minimum warnings under sliders (e.g. bar height below 22.85 mm) */
+.control-warning {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--laser-text);
+}
+
 /* --- Customization Collapsible Accordion --- */
 .accordion-box {
   margin-top: 1.5rem;

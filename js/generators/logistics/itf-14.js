@@ -5,8 +5,8 @@
  * Powered by bwip-js (bcid: itf14). Heavy-duty packaging code with bearer bars.
  */
 
-import { bwipHeightMm } from '../../core/print-size.js?v=3.20';
-import { computeItf14 } from '../../core/checksums.js?v=3.20';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.21';
+import { computeItf14 } from '../../core/checksums.js?v=3.21';
 
 export default {
   id: "itf-14",
@@ -46,7 +46,8 @@ export default {
       min: 25,
       max: 80,
       default: 40,
-      unit: "mm"
+      unit: "mm",
+      warnBelow: { value: 31.75, text: "Below GS1's minimum bar height for ITF-14 in general distribution (31.75 mm)." }
     },
     {
       id: "scale",

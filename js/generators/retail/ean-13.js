@@ -5,8 +5,8 @@
  * Powered by bwip-js (bcid: ean13). Standard global retail product barcode.
  */
 
-import { bwipHeightMm } from '../../core/print-size.js?v=3.20';
-import { computeEan13 } from '../../core/checksums.js?v=3.20';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.21';
+import { computeEan13 } from '../../core/checksums.js?v=3.21';
 
 export default {
   id: "ean-13",
@@ -45,8 +45,10 @@ export default {
       label: "Bar Height",
       min: 20,
       max: 70,
-      default: 35,
-      unit: "mm"
+      step: 0.05,
+      default: 22.85, // GS1 nominal bar height at 100% size (General Specifications R26.0, 5.2.3.2)
+      unit: "mm",
+      warnBelow: { value: 22.85, text: "Below GS1's minimum bar height (22.85 mm at 100% size). GS1 allows shorter (truncated) bars only when a full-height barcode cannot fit; they lose omnidirectional scanning at the checkout." }
     },
     {
       id: "scale",
@@ -81,10 +83,9 @@ export default {
       bcid: "ean13",
       text: finalPayload,
       scale: options.scale || 3,
-      height: bwipHeightMm(options.height || 35, this.moduleMm), // bars print this many mm tall
+      height: bwipHeightMm(options.height || 22.85, this.moduleMm), // bars print this many mm tall
       includetext: options.includetext !== false,
-      textxalign: "center",
-      guardwhitespace: true,
+      guardwhitespace: options.includetext !== false, // ">" quiet-zone marker only alongside the digits
       barcolor: options.barcolor,
       backgroundcolor: options.backgroundcolor,
       transparentBg: options.transparentBg,

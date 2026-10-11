@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.20';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.21';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.
@@ -15,6 +15,9 @@ import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.20';
  * @param {string} text
  * @returns {string}
  */
+// EAN/UPC symbols keep bwip-js's standard text layout (5X guard bars, leading digit outside the guards).
+const EAN_UPC_BCIDS = new Set(['ean13', 'ean8', 'upca', 'upce', 'isbn', 'ismn', 'issn']);
+
 export function toQrByteString(text) {
   const str = String(text ?? '');
   if (!/[^\x00-\x7F]/.test(str)) return str;
@@ -309,8 +312,7 @@ export class BarcodeEngine {
     const config = {
       scale: 3,
       includetext: true,
-      textxalign: 'center',
-      textsize: 13,
+      ...(!EAN_UPC_BCIDS.has(bwipOptions.bcid) && { textxalign: 'center', textsize: 13 }),
       ...(!is2DCode && { height: 35 }),
       ...bwipOptions,
       paddingwidth: finalPad,
@@ -380,8 +382,7 @@ export class BarcodeEngine {
     const config = {
       scale: 3,
       includetext: true,
-      textxalign: 'center',
-      textsize: 13,
+      ...(!EAN_UPC_BCIDS.has(bwipOptions.bcid) && { textxalign: 'center', textsize: 13 }),
       ...(!is2DCode && { height: 35 }),
       ...bwipOptions,
       paddingwidth: finalPad,

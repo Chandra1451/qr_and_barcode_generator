@@ -4,20 +4,20 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.20';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.20';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.21';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.21';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.20';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.20';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.20';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.20';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.20';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.20';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.20';
+} from './generators/registry.js?v=3.21';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.21';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.21';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.21';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.21';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.21';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.21';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -26,7 +26,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.20';
+} from './export/label-maker.js?v=3.21';
 
 class V2StudioApp {
   constructor() {
@@ -631,9 +631,10 @@ class V2StudioApp {
               data-unit="${unit}"
               min="${ctrl.min}" 
               max="${ctrl.max}" 
-              value="${val}" 
+              value="${val}"
               step="${ctrl.step || 1}"
             >
+            ${ctrl.warnBelow ? `<p class="control-warning" id="warn-${ctrl.id}" role="status" ${Number(val) < ctrl.warnBelow.value ? '' : 'hidden'}>${ctrl.warnBelow.text}</p>` : ''}
           </div>
         `;
       }
@@ -704,6 +705,10 @@ class V2StudioApp {
           this.currentOptions[id] = numVal;
           const badge = document.getElementById(`val-${id}`);
           if (badge) badge.textContent = el.value + (el.dataset.unit || '');
+          // GS1 minimums (e.g. bar height) warn instead of blocking: users with tiny packs may need less.
+          const warning = document.getElementById(`warn-${id}`);
+          const limit = generator.controls.find((c) => c.id === id)?.warnBelow;
+          if (warning && limit) warning.hidden = !(numVal < limit.value);
         } else if (type === 'toggle') {
           this.currentOptions[id] = el.checked;
         } else if (type === 'select') {
@@ -1462,6 +1467,7 @@ class V2StudioApp {
       if (this.dom.btnClearHistory && !this.dom.btnClearHistory.dataset.bound) {
         this.dom.btnClearHistory.dataset.bound = 'true';
         this.dom.btnClearHistory.addEventListener('click', () => {
+          clearTimeout(this.historyTimer); // a save still pending from the last redraw would bring the list back
           localStorage.removeItem('ucm_recent_history');
           this.renderHistoryChips();
           this.showToast('Recent history cleared.');

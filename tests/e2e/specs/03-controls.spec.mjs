@@ -201,3 +201,32 @@ test.describe('CTRL · barcode styling panel (all non-QR generators)', () => {
     }
   });
 });
+
+// GS1 MINIMUM BAR HEIGHT — default at GS1's nominal 22.85 mm (EAN-13/UPC-A/ISBN); going lower is
+// allowed but warns (GS1 R26.0: truncation only when a full-size barcode cannot fit).
+test.describe('CTRL-GS1 · bar height warnings', () => {
+  // [id, GS1 minimum, a value below it, the lowest slider value at or above it (ITF-14 moves in 1 mm steps)]
+  const CASES = [['ean-13', 22.85, 20, 22.85], ['upc-a', 22.85, 20, 22.85], ['isbn', 22.85, 20, 22.85], ['itf-14', 31.75, 31, 32]];
+  for (const [id, minimum, low, ok] of CASES) {
+    test(`CTRL-GS1-01 ${id}: warning shows below ${minimum} mm and hides at or above it`, async ({ studio, page }) => {
+      await studio.open(`?symbology=${id}`);
+      const slider = page.locator('#ctrl-height');
+      const warning = page.locator('#warn-height');
+      if (id !== 'itf-14') {
+        await expect(slider).toHaveValue(String(minimum));
+        await expect(page.locator('#val-height')).toHaveText(`${minimum}mm`);
+      }
+      await expect(warning).toBeHidden();
+      await slider.fill(String(low));
+      await expect(warning).toBeVisible();
+      await expect(warning).toContainText('GS1');
+      await slider.fill(String(ok));
+      await expect(warning).toBeHidden();
+    });
+  }
+
+  test('CTRL-GS1-02 Code 128 has no GS1 height warning', async ({ studio, page }) => {
+    await studio.open('?symbology=code-128');
+    await expect(page.locator('#warn-height')).toHaveCount(0);
+  });
+});
