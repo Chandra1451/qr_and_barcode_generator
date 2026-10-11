@@ -5,8 +5,8 @@
  * Powered by bwip-js (bcid: ean13). Standard global retail product barcode.
  */
 
-import { bwipHeightMm } from '../../core/print-size.js?v=3.22';
-import { computeEan13 } from '../../core/checksums.js?v=3.22';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.23';
+import { computeEan13 } from '../../core/checksums.js?v=3.23';
 
 export default {
   id: "ean-13",
@@ -65,7 +65,7 @@ export default {
       min: 0,
       max: 40,
       default: 10,
-      unit: "px"
+      unit: "x" // modules (bar widths): bwip-js padding is in points = modules
     }
   ],
 

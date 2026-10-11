@@ -41,7 +41,7 @@ test.describe('BOOT · controls work immediately after page load', () => {
       await studio.nudgeSlider('padding', 'ArrowRight', 5);
       await studio.waitForChange(before, { what: 'moving Quiet Zone Padding with the keyboard' });
       const value = Number(await studio.control('padding').inputValue());
-      expect(await studio.badgeText('padding')).toBe(`${value}px`);
+      expect(await studio.badgeText('padding')).toBe(`${value}x`); // barcode padding is in modules (X), not pixels
       await expectMatchesReference(studio, context, '?symbology=pdf417', { padding: value }, 'cold load');
     });
 

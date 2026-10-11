@@ -379,3 +379,12 @@ test('STATIC-CONSENT-03 the shared loader adds the Cloudflare Web Analytics beac
   // Not gated on consent: it must not sit inside the CONSENT_MODE_DATA_READY callback.
   expect(js.indexOf('cloudflareinsights')).toBeGreaterThan(js.indexOf('function openConsentSettings'));
 });
+
+test('STATIC-UNIT-01 barcode quiet-zone padding is labelled in modules (x), QR in preview pixels', () => {
+  // bwip-js padding is in points, and every barcode module is 1 point (EXP-SIZE), so 10 = 10 modules.
+  for (const g of GENERATORS) {
+    const pad = g.controls.find((c) => c.id === 'padding');
+    if (!pad) continue;
+    expect(pad.unit, `${g.id} padding unit`).toBe(g.id === 'qr-code' ? 'px' : 'x');
+  }
+});

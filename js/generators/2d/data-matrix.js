@@ -37,7 +37,7 @@ export default {
       min: 0,
       max: 40,
       default: 10,
-      unit: "px"
+      unit: "x" // modules (bar widths): bwip-js padding is in points = modules
     }
   ],
 

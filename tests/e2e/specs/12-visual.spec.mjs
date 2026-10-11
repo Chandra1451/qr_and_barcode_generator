@@ -11,7 +11,9 @@ const VIEWPORTS = { desktop: { width: 1366, height: 900 }, phone: { width: 375, 
 
 async function prepare(page) {
   // Freeze anything that moves or changes between runs.
-  await page.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important} .adsbygoogle,#toast-container,#recent-history-container{visibility:hidden!important}' });
+  // The Recents box fills in ~1.2 s after the first render (history save), adding ~124 px to the page:
+  // remove it from the layout (display:none), or the screenshot depends on timing (found 2026-10-11).
+  await page.addStyleTag({ content: '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important} .adsbygoogle,#toast-container{visibility:hidden!important} #recent-history-container{display:none!important}' });
   await page.evaluate(() => document.fonts.ready);
 }
 

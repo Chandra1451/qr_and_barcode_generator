@@ -6,7 +6,7 @@
  * compliant with ISO 2108, Amazon KDP, and IngramSpark publishing specifications.
  */
 
-import { bwipHeightMm } from '../../core/print-size.js?v=3.22';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.23';
 
 export default {
   id: "isbn",
@@ -74,7 +74,7 @@ export default {
       min: 0,
       max: 40,
       default: 10,
-      unit: "px"
+      unit: "x" // modules (bar widths): bwip-js padding is in points = modules
     }
   ],
 
