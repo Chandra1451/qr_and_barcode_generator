@@ -371,3 +371,11 @@ test('STATIC-REDIRECT-01 retired /v2/ and /classic/ URLs keep their permanent re
   expect(htaccess).toContain('RewriteRule ^classic(/.*)?$ / [R=301,L]');
   expect(fs.existsSync(path.join(SITE_ROOT, 'v2')), 'v2/ folder was removed 2026-10-11').toBe(false);
 });
+
+test('STATIC-CONSENT-03 the shared loader adds the Cloudflare Web Analytics beacon (cookie-free visit counts)', () => {
+  const js = readSiteFile('js/core/consent-analytics.js');
+  expect(js).toContain("cf.src = 'https://static.cloudflareinsights.com/beacon.min.js';");
+  expect(js).toContain(`cf.setAttribute('data-cf-beacon', '{"token": "802562c8d21a4b6490f5b19388694bc4"}');`);
+  // Not gated on consent: it must not sit inside the CONSENT_MODE_DATA_READY callback.
+  expect(js.indexOf('cloudflareinsights')).toBeGreaterThan(js.indexOf('function openConsentSettings'));
+});

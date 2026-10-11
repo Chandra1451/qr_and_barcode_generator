@@ -133,3 +133,18 @@ test.describe('CONSENT · "Privacy and cookie settings" link', () => {
     await expect(page.locator('#cookie-consent-banner')).toHaveCount(0);
   });
 });
+
+test.describe('CONSENT · cookie-free visit counts', () => {
+  for (const url of ['/', '/privacy-policy.html', '/pages/ean-13-barcode-generator.html']) {
+    test(`CON-09 ${url}: Cloudflare Web Analytics loads with the site token, whatever Google's consent script says`, async ({ page, netLog }) => {
+      // No answer from Google's consent script (fixtures serve it empty): Google Analytics stays off...
+      await page.goto(url, { waitUntil: 'load' });
+      await page.waitForTimeout(500);
+      expect(netLog.some((r) => /googletagmanager\.com\/gtag\/js/.test(r.url))).toBe(false);
+      // ...but the cookie-free counter still loads, once, as the module script the dashboard gave.
+      expect(netLog.filter((r) => r.url === 'https://static.cloudflareinsights.com/beacon.min.js')).toHaveLength(1);
+      const tag = await page.locator('script[src="https://static.cloudflareinsights.com/beacon.min.js"]').evaluate((s) => ({ type: s.type, beacon: s.getAttribute('data-cf-beacon') }));
+      expect(tag).toEqual({ type: 'module', beacon: '{"token": "802562c8d21a4b6490f5b19388694bc4"}' });
+    });
+  }
+});

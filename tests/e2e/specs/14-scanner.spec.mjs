@@ -89,7 +89,7 @@ test.describe('SCAN · privacy', () => {
     const leaks = netLog.filter((r) => r.url.includes(secret) || r.postData.includes(secret) || (r.method !== 'GET' && new URL(r.url).origin === origin));
     expect(leaks, 'decoded text must never leave the browser').toEqual([]);
     const thirdParty = netLog.filter((r) => !r.url.startsWith(origin) && !/^data:|^blob:/.test(r.url)
-      && !/googlesyndication|doubleclick|adservice\.google|googletagmanager|google-analytics|fonts\.g/.test(r.url));
+      && !/googlesyndication|doubleclick|adservice\.google|googletagmanager|google-analytics|cloudflareinsights|fonts\.g/.test(r.url));
     expect(thirdParty.map((r) => r.url), 'unexpected third-party requests').toEqual([]);
   });
 

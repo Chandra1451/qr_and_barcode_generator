@@ -10,7 +10,7 @@ import { Studio } from './studio.mjs';
 export { expect };
 
 const THIRD_PARTY_STUBS = [
-  { pattern: /googlesyndication\.com|doubleclick\.net|adservice\.google|googletagmanager\.com|google-analytics\.com/, type: 'text/javascript', body: '' },
+  { pattern: /googlesyndication\.com|doubleclick\.net|adservice\.google|googletagmanager\.com|google-analytics\.com|cloudflareinsights\.com/, type: 'text/javascript', body: '' },
   { pattern: /fonts\.googleapis\.com/, type: 'text/css', body: '' },
   { pattern: /fonts\.gstatic\.com/, type: 'font/woff2', body: '' },
 ];

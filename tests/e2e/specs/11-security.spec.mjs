@@ -90,7 +90,9 @@ test.describe('SEC · privacy: nothing typed leaves the browser', () => {
     await studio.selectGenerator('pdf417');
     await page.locator('#btn-open-label-modal').click();
     await page.waitForTimeout(500);
-    const allowedHosts = [new URL(baseURL).host, 'pagead2.googlesyndication.com', 'www.googletagmanager.com', 'www.google-analytics.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
+    const allowedHosts = [new URL(baseURL).host, 'pagead2.googlesyndication.com', 'www.googletagmanager.com', 'www.google-analytics.com', 'fonts.googleapis.com', 'fonts.gstatic.com',
+      // Cloudflare Web Analytics: cookie-free visit counts (beacon script + its report endpoint).
+      'static.cloudflareinsights.com', 'cloudflareinsights.com'];
     const unexpected = [...new Set(netLog.map((r) => { try { return new URL(r.url).host; } catch { return ''; } }))]
       .filter((h) => h && !allowedHosts.includes(h) && !h.endsWith('.google.com') && !h.endsWith('.doubleclick.net'));
     expect(unexpected).toEqual([]);

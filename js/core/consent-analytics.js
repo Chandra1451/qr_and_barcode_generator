@@ -83,4 +83,14 @@
       window.googlefc.showRevocationMessage();
     }
   }
+
+  // Cookie-free visit counts: Cloudflare Web Analytics (owner decision 2026-10-11). It stores nothing
+  // on the device (no cookies or localStorage), so it does not wait for consent. Checked 2026-10-11
+  // (beacon 2026.10.0): it sends the page address and referrer without their query strings, so
+  // ?data= / ?payload= code content never reaches Cloudflare. Same snippet as the Cloudflare dashboard.
+  var cf = document.createElement('script');
+  cf.type = 'module';
+  cf.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  cf.setAttribute('data-cf-beacon', '{"token": "802562c8d21a4b6490f5b19388694bc4"}');
+  document.body.appendChild(cf);
 })();

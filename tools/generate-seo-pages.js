@@ -2590,7 +2590,7 @@ function headTopHtml(meta, pageUrl) {
 <html lang="en" data-theme="dark">
 <head>
   <!-- Google Analytics: loads only after consent (js/core/consent-analytics.js) -->
-  <script src="/js/core/consent-analytics.js?v=1.0" defer></script>
+  <script src="/js/core/consent-analytics.js?v=1.1" defer></script>
 
 
   <meta charset="UTF-8">
