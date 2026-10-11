@@ -42,7 +42,8 @@ Dynamic form compilers with real-time payload generation for:
 - **Auto-Lock Error Correction**: Center logo embedding automatically engages Level H error correction (30% recovery capability) with clean background dot clearing.
 
 ### 5. Multi-Resolution & Vector Export
-- **Multi-Resolution PNG**: 1x Web standard, 2x Retina, 4x Ultra-High 300+ DPI print-ready.
+- **Multi-Resolution PNG**: 1x Web standard, 2x Retina, 4x print (2x and 4x are 300+ DPI at real size).
+- **Real print size**: barcode PNG (DPI tag), SVG (mm) and EPS open at real size: EAN-13, UPC-A and ISBN at GS1's recommended 0.33 mm bar width, ITF-14 at 0.495 mm, other barcodes at 1 pt (0.353 mm) per module.
 - **Vector SVG**: Infinite-resolution scalable vector graphics for professional laser engraving, die-cutting, and packaging.
 - **Vector EPS** (barcodes): the same shapes as the SVG, at 1 point per module, with pure black written as 100% K for print.
 - **1-Click Clipboard**: Instant image copy via modern Clipboard API.

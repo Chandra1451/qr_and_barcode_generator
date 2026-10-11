@@ -5,12 +5,15 @@
  * Powered by bwip-js (bcid: upca). Standard retail barcode in North America (USA & Canada).
  */
 
-import { computeUpcA } from '../../core/checksums.js?v=3.19';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.20';
+import { computeUpcA } from '../../core/checksums.js?v=3.20';
 
 export default {
   id: "upc-a",
   name: "UPC-A (North American Retail)",
   category: "retail",
+  quietZone: "9x left, 9x right",
+  moduleMm: 0.33, // GS1 recommended X-dimension (100% size) (js/core/print-size.js)
   description: "Universal Product Code standard 12-digit barcode used at retail POS checkouts across the United States and Canada.",
 
   schema: {
@@ -77,7 +80,7 @@ export default {
       bcid: "upca",
       text: finalPayload,
       scale: options.scale || 3,
-      height: options.height || 35,
+      height: bwipHeightMm(options.height || 35, this.moduleMm), // bars print this many mm tall
       includetext: options.includetext !== false,
       textxalign: "center",
       guardwhitespace: true,

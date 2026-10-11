@@ -6,10 +6,14 @@
  * compliant with ISO 2108, Amazon KDP, and IngramSpark publishing specifications.
  */
 
+import { bwipHeightMm } from '../../core/print-size.js?v=3.20';
+
 export default {
   id: "isbn",
   name: "ISBN-13 (Book Publishing)",
   category: "retail",
+  quietZone: "11x left, 7x right",
+  moduleMm: 0.33, // GS1 recommended X-dimension (100% size; ISBN is an EAN-13) (js/core/print-size.js)
   description: "International Standard Book Number (Bookland EAN-13) for paperback, hardcover, and self-published books. Supports official 978/979 prefixes and optional 5-digit price extensions (EAN-5).",
 
   schema: {
@@ -90,7 +94,7 @@ export default {
       bcid: unHyphenated ? "ean13" : "isbn",
       text: cleanText, // "ISBN [addon]" — both bcids take the add-on after a space
       scale: options.scale || 3,
-      height: options.height || 30,
+      height: bwipHeightMm(options.height || 30, this.moduleMm), // bars print this many mm tall
       includetext: options.includetext !== false,
       textxalign: "center",
       guardwhitespace: true,

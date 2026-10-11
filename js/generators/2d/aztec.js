@@ -9,6 +9,7 @@ export default {
   id: "aztec",
   name: "Aztec Code",
   category: "2d",
+  quietZone: "None required (1 module helps some scanners)",
   description: "High-efficiency 2D matrix barcode featuring a central square bullseye finder pattern. Standard for commercial airline boarding passes, train ticketing, and car registration documents.",
 
   schema: {

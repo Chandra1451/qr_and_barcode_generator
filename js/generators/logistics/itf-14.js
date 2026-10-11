@@ -5,12 +5,15 @@
  * Powered by bwip-js (bcid: itf14). Heavy-duty packaging code with bearer bars.
  */
 
-import { computeItf14 } from '../../core/checksums.js?v=3.19';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.20';
+import { computeItf14 } from '../../core/checksums.js?v=3.20';
 
 export default {
   id: "itf-14",
   name: "ITF-14 (Shipping Outer Case)",
   category: "logistics",
+  quietZone: "10x narrow bar, inside the bearer bars",
+  moduleMm: 0.495, // GS1 minimum and recommended X-dimension for ITF-14 (js/core/print-size.js)
   description: "Interleaved 2 of 5 standard 14-digit code enclosed in thick bearer bars. Designed to print reliably on corrugated cardboard cartons and master shipping cases.",
 
   schema: {
@@ -77,7 +80,7 @@ export default {
       bcid: "itf14",
       text: finalPayload,
       scale: options.scale || 3,
-      height: options.height || 40,
+      height: bwipHeightMm(options.height || 40, this.moduleMm), // bars print this many mm tall
       includetext: options.includetext !== false,
       textxalign: "center",
       guardwhitespace: true,

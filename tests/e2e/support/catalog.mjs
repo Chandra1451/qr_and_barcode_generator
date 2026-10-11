@@ -44,6 +44,8 @@ export const GENERATORS = registry.getAllGenerators().map((g) => ({
   inputType: g.schema?.inputType ?? 'text',
   regex: g.schema?.regex ?? null,
   controls: (g.controls || []).map((c) => ({ ...c })),
+  quietZone: g.quietZone ?? null,
+  moduleMm: g.moduleMm ?? null,
 }));
 
 export const QR_ID = 'qr-code';

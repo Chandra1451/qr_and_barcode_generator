@@ -7,9 +7,10 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine } from '../core/engine.js?v=3.19';
-import { loadJsZip } from '../core/dynamic-loader.js?v=3.19';
-import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.19';
+import { engine } from '../core/engine.js?v=3.20';
+import { loadJsZip } from '../core/dynamic-loader.js?v=3.20';
+import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.20';
+import { pngDpiFor, pngDataUrlWithDpi, svgWithPrintSize } from '../core/print-size.js?v=3.20';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads
@@ -156,7 +157,7 @@ export async function generateBatchZip({
         // Same generator render path as the preview (format, checksum, colours, padding).
         let svgString = await engine.renderSVG(generator, item, { ...options, scale: (Number(options.scale) || 3) * scaleFactor, cornerRadius: (Number(options.cornerRadius) || 0) * scaleFactor });
         if (Number(options.cornerRadius) > 0) svgString = applySvgCornerRadius(svgString, Number(options.cornerRadius) * scaleFactor);
-        zip.file(filename, svgString);
+        zip.file(filename, svgWithPrintSize(svgString, generator, (Number(options.scale) || 3) * scaleFactor));
       }
     } else {
       // PNG Format
@@ -166,7 +167,7 @@ export async function generateBatchZip({
       } else {
         // Same generator render path as the preview (format, checksum, colours, padding, corners).
         await engine.render(generator, item, { ...options, scale: (Number(options.scale) || 3) * scaleFactor, cornerRadius: (Number(options.cornerRadius) || 0) * scaleFactor }, { canvas: offscreenCanvas });
-        const dataUrl = offscreenCanvas.toDataURL('image/png');
+        const dataUrl = pngDataUrlWithDpi(offscreenCanvas.toDataURL('image/png'), pngDpiFor(generator, (Number(options.scale) || 3) * scaleFactor));
         const base64Data = dataUrl.split(',')[1];
         zip.file(filename, base64Data, { base64: true });
       }

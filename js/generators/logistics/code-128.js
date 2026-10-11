@@ -9,6 +9,7 @@ export default {
   id: "code-128",
   name: "Code 128 (Logistics & Inventory)",
   category: "logistics",
+  quietZone: "10x narrow bar, each side",
   description: "High-density universal linear barcode capable of encoding all 128 ASCII characters. The world standard for inventory management, shipping labels, and enterprise asset tracking.",
 
   schema: {

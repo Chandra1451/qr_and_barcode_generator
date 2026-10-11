@@ -9,6 +9,7 @@ export default {
   id: "data-matrix",
   name: "Data Matrix (ECC 200)",
   category: "2d",
+  quietZone: "1 module on every side",
   description: "High-density 2D matrix barcode capable of encoding large datasets in minuscule footprints. Standard in pharmaceutical tracking, surgical equipment, and aerospace parts.",
 
   schema: {

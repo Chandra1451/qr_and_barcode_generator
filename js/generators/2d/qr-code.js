@@ -9,6 +9,7 @@ export default {
   id: "qr-code",
   name: "QR Code (Stylized & Standard)",
   category: "2d",
+  quietZone: "4 modules on every side",
   description: "Standard 2D Quick Response matrix code. Supports high-density URLs, text, Wi-Fi configurations, vCards, and custom styling geometries.",
 
   schema: {

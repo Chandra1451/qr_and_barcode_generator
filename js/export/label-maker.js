@@ -7,8 +7,9 @@
  * and Avery multi-label sheets.
  */
 
-import { loadJsPdf } from '../core/dynamic-loader.js?v=3.19';
-import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.19';
+import { loadJsPdf } from '../core/dynamic-loader.js?v=3.20';
+import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.20';
+import { pngBlobWithDpi } from '../core/print-size.js?v=3.20';
 
 export const LABEL_PRESETS = {
   'retail-225-125': {
@@ -510,8 +511,10 @@ export function renderLabelToCanvas(canvas, {
  * Triggers a 300 DPI PNG download of the rendered label
  */
 export function exportLabelPng(canvas, filename = 'product-label.png') {
-  canvas.toBlob((blob) => {
-    if (!blob) return;
+  canvas.toBlob(async (rawBlob) => {
+    if (!rawBlob) return;
+    // The label canvas is drawn at 300 px per inch of label; tag it so it prints at label size.
+    const blob = await pngBlobWithDpi(rawBlob, 300);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;

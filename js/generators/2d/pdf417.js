@@ -9,6 +9,7 @@ export default {
   id: "pdf417",
   name: "PDF417 (Stacked 2D)",
   category: "2d",
+  quietZone: "2 modules on every side",
   description: "Stacked linear 2D barcode format capable of holding over a kilobyte of data. Standard on national identity cards, state driver licenses, and customs declarations.",
 
   schema: {

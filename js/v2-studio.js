@@ -4,20 +4,20 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.19';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.19';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.20';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.20';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.19';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.19';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.19';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.19';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.19';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.19';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.19';
+} from './generators/registry.js?v=3.20';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.20';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.20';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.20';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.20';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.20';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.20';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -26,7 +26,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.19';
+} from './export/label-maker.js?v=3.20';
 
 class V2StudioApp {
   constructor() {
@@ -548,7 +548,8 @@ class V2StudioApp {
     // Update Dossier Readouts
     this.dom.specFormat.textContent = gen.name;
     this.dom.specIso.textContent = gen.specStandards || (isQR ? 'ISO/IEC 18004' : (gen.category === 'retail' ? 'GS1 General Specifications' : 'ISO/IEC 15417'));
-    this.dom.specQuietZone.textContent = isQR ? '4 modules' : (gen.category === '2d' ? '2-4 modules' : '10x narrow bar width');
+    // Each generator states its own minimum quiet zone (sources: projects/.../20_features/print-size.md).
+    this.dom.specQuietZone.textContent = gen.quietZone || '';
 
     if (!isQR) {
       this.setPayloadMultiline(gen.schema?.inputType === 'textarea');

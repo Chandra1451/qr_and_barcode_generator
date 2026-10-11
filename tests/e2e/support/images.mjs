@@ -85,3 +85,19 @@ export function aspect(w, h) {
 export function relDiff(a, b) {
   return Math.abs(a - b) / Math.max(Math.abs(b), 1e-9);
 }
+
+/** DPI from a PNG's pHYs chunk (null if the file has none). */
+export function pngDpi(buf) {
+  let o = 8;
+  while (o + 12 <= buf.length) {
+    const len = buf.readUInt32BE(o);
+    const type = buf.toString('ascii', o + 4, o + 8);
+    if (type === 'pHYs') {
+      const ppuX = buf.readUInt32BE(o + 8), ppuY = buf.readUInt32BE(o + 12), unit = buf[o + 16];
+      return unit === 1 ? { x: ppuX * 0.0254, y: ppuY * 0.0254 } : null;
+    }
+    if (type === 'IEND') break;
+    o += 12 + len;
+  }
+  return null;
+}

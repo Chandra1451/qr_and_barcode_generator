@@ -10,6 +10,7 @@ export default {
   id: "code-39",
   name: "Code 39 (Asset & Inventory)",
   category: "logistics",
+  quietZone: "10x narrow bar, each side",
   description: "Standard industrial alphanumeric barcode supporting uppercase letters, numbers, and key symbols. Widely used for IT asset tags, healthcare specimen tracking, and military logistics.",
 
   schema: {

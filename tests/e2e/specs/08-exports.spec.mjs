@@ -6,7 +6,7 @@ import JSZip from 'jszip';
 import zlib from 'node:zlib';
 import { decodeFirst } from '../support/decode.mjs';
 import { GENERATORS, BARCODE_GENERATORS, expectedScanText, normaliseScan } from '../support/catalog.mjs';
-import { isPng, readPng, colorStats, hexToRgb, colorDistance, alphaAt, svgSize, pdfInfo, relDiff } from '../support/images.mjs';
+import { isPng, readPng, colorStats, hexToRgb, colorDistance, alphaAt, svgSize, pdfInfo, relDiff, pngDpi } from '../support/images.mjs';
 
 /** Rasterise SVG text in the browser (white background, extra quiet zone) → PNG buffer. */
 async function rasterizeSvg(page, svgText, targetWidth = 1200) {
@@ -723,5 +723,112 @@ test.describe('EXP-LBL · label maker exports', () => {
     const png = await studio.download(page.locator('#btn-export-label-png'));
     const text = await decodeFirst(png.buffer);
     expect(text, 'FNSKU barcode does not scan').toMatch(/^X00[0-9A-Z]{7}$/);
+  });
+});
+
+// PRINT SIZE — downloads carry the barcode's real size (js/core/print-size.js; research and
+// sources in projects/universalcodemaker/20_features/print-size.md). Registry-driven: every
+// barcode generator, using its declared module width (moduleMm, default 1 pt = 0.3528 mm).
+test.describe('EXP-SIZE · real print size and quiet zones', () => {
+  const POINT_MM = 25.4 / 72;
+  const LINEAR = BARCODE_GENERATORS.filter((g) => g.category !== '2d');
+
+  /** Narrowest bar and the tallest bar run (in px) along a row through the bars. */
+  function measureBars(png) {
+    const dark = (x, y) => { const i = (y * png.width + x) * 4; return png.data[i + 3] > 128 && png.data[i] + png.data[i + 1] + png.data[i + 2] < 300; };
+    const y = Math.round(png.height * 0.3);
+    const bars = []; let x = 0;
+    while (x < png.width) { const d = dark(x, y); const s = x; while (x < png.width && dark(x, y) === d) x++; if (d) bars.push({ start: s, len: x - s }); }
+    const X = Math.min(...bars.map((b) => b.len));
+    const heights = bars.map((b) => {
+      const cx = b.start + Math.floor(b.len / 2);
+      let run = 0, best = 0;
+      for (let yy = 0; yy < png.height; yy++) { if (dark(cx, yy)) { run++; best = Math.max(best, run); } else run = 0; }
+      return best;
+    }).sort((a, b) => a - b);
+    // Median = an ordinary bar (EAN/UPC guard bars are longer and a minority).
+    return { X, typical: heights[Math.floor(heights.length / 2)], bars };
+  }
+
+  const defaultScale = (g) => g.controls.find((c) => c.id === 'scale')?.default || 3;
+
+  for (const g of BARCODE_GENERATORS) {
+    const moduleMm = g.moduleMm || POINT_MM;
+
+    test(`EXP-SIZE-01 ${g.id}: PNG carries a DPI tag that prints it at real size`, async ({ studio, page }) => {
+      await studio.open(`?symbology=${g.id}`);
+      await page.selectOption('#scale-factor-select', '2');
+      const file = await studio.download(page.locator('#btn-download-png'));
+      const png = readPng(file.buffer); // pngjs checks every chunk CRC, including the new pHYs
+      const dpi = pngDpi(file.buffer);
+      expect(dpi, 'pHYs chunk').not.toBeNull();
+      expect(Math.abs(dpi.x - dpi.y)).toBeLessThan(0.01);
+      const scale = defaultScale(g) * 2; // default scale × 2x export
+      expect(relDiff(dpi.x, (25.4 * scale) / moduleMm), 'DPI = 25.4 × scale ÷ module mm').toBeLessThan(0.002);
+      if (g.category !== '2d') {
+        const { X } = measureBars(png);
+        expect(relDiff((X / dpi.x) * 25.4, moduleMm), `narrow bar ${(X / dpi.x * 25.4).toFixed(3)} mm`).toBeLessThan(0.03);
+      }
+    });
+
+    test(`EXP-SIZE-02 ${g.id}: SVG has its real size in mm, and EPS matches it`, async ({ studio, page }) => {
+      await studio.open(`?symbology=${g.id}`);
+      const svg = (await studio.download(page.locator('#btn-download-svg'))).buffer.toString('utf8');
+      const tag = svg.match(/<svg[^>]*>/)[0];
+      const w = Number((tag.match(/\swidth="([\d.]+)mm"/) || [])[1]);
+      const h = Number((tag.match(/\sheight="([\d.]+)mm"/) || [])[1]);
+      expect(w > 0 && h > 0, `width/height in mm on <svg>: ${tag.slice(0, 160)}`).toBe(true);
+      const vb = svgSize(svg);
+      expect(relDiff(w / (vb.width / defaultScale(g)), moduleMm), 'mm per module').toBeLessThan(0.002);
+      expect(relDiff(w / h, vb.width / vb.height), 'aspect ratio kept').toBeLessThan(0.002);
+      const eps = (await studio.download(page.locator('#btn-download-eps'))).buffer.toString('latin1');
+      const bb = eps.match(/%%BoundingBox:\s*(-?\d+)\s+(-?\d+)\s+(-?\d+)\s+(-?\d+)/).slice(1).map(Number);
+      expect(Math.abs((bb[2] - bb[0]) * POINT_MM - w), `EPS width ${((bb[2] - bb[0]) * POINT_MM).toFixed(1)} mm vs SVG ${w} mm`).toBeLessThan(1);
+    });
+
+    test(`EXP-SIZE-03 ${g.id}: the studio readout shows this format's quiet zone`, async ({ studio, page }) => {
+      expect(g.quietZone, 'generator declares quietZone').toBeTruthy();
+      await studio.open(`?symbology=${g.id}`);
+      await expect(page.locator('#spec-quiet-zone')).toHaveText(g.quietZone);
+    });
+  }
+
+  for (const g of LINEAR) {
+    const moduleMm = g.moduleMm || POINT_MM;
+    test(`EXP-SIZE-04 ${g.id}: bars print as tall as the Bar Height setting says`, async ({ studio, page }) => {
+      const heightControl = g.controls.find((c) => c.id === 'height');
+      test.skip(!heightControl, 'no bar height control');
+      await studio.open(`?symbology=${g.id}`);
+      await page.selectOption('#scale-factor-select', '2');
+      const file = await studio.download(page.locator('#btn-download-png'));
+      const png = readPng(file.buffer);
+      const dpi = pngDpi(file.buffer).x;
+      const { X, typical } = measureBars(png);
+      // ITF-14's bearer bars touch the bars top and bottom (bwip-js border 4 modules each side).
+      const bearer = g.id === 'itf-14' ? 2 * 4 * X : 0;
+      const mm = ((typical - bearer) / dpi) * 25.4;
+      expect(Math.abs(mm - heightControl.default), `measured ${mm.toFixed(2)} mm for a ${heightControl.default} mm setting (module ${moduleMm} mm)`).toBeLessThan(0.6);
+    });
+  }
+
+  test('EXP-SIZE-05 label maker PNG is tagged 300 DPI, so it prints at label size', async ({ studio, page }) => {
+    await studio.open('?symbology=code-128');
+    await page.locator('#btn-open-label-modal').click();
+    await page.waitForTimeout(800);
+    const file = await studio.download(page.locator('#btn-export-label-png'));
+    readPng(file.buffer);
+    expect(Math.round(pngDpi(file.buffer).x)).toBe(300);
+  });
+
+  test('EXP-SIZE-06 quiet zones actually drawn meet each linear format\'s minimum', async ({ studio, page }) => {
+    const minimum = { 'ean-13': [11, 7], isbn: [11, 7], 'upc-a': [9, 9], 'code-128': [10, 10], 'code-39': [10, 10] };
+    for (const [id, [left, right]] of Object.entries(minimum)) {
+      await studio.open(`?symbology=${id}`);
+      const png = readPng((await studio.download(page.locator('#btn-download-png'))).buffer);
+      const { X, bars } = measureBars(png);
+      const lq = bars[0].start / X, rq = (png.width - (bars.at(-1).start + bars.at(-1).len)) / X;
+      expect(lq, `${id} left quiet zone`).toBeGreaterThanOrEqual(left - 0.01);
+      expect(rq, `${id} right quiet zone`).toBeGreaterThanOrEqual(right - 0.01);
+    }
   });
 });

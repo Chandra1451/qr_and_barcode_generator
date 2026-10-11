@@ -8,8 +8,9 @@
  * - Direct 1-click clipboard copy
  */
 
-import { engine, applyCanvasCornerRadius, svgWithRoundedCorners } from '../core/engine.js?v=3.19';
-import { svgToEps } from './eps-exporter.js?v=3.19';
+import { engine, applyCanvasCornerRadius, svgWithRoundedCorners } from '../core/engine.js?v=3.20';
+import { svgToEps } from './eps-exporter.js?v=3.20';
+import { pngDpiFor, pngDataUrlWithDpi, svgWithPrintSize, epsPtPerUnit } from '../core/print-size.js?v=3.20';
 
 /**
  * Injects a rounded clipPath into an SVG XML string to export lossless rounded corners
@@ -94,7 +95,8 @@ export async function exportHighResPng({ generator, payload, options, scaleFacto
   // (engine.render rounds the corners and sizes the quiet zone for them.)
   await engine.render(generator, payload, scaledOptions, { canvas: offscreenCanvas });
 
-  const dataUrl = offscreenCanvas.toDataURL('image/png');
+  // DPI tag so the file opens and prints at the barcode's real size (js/core/print-size.js).
+  const dataUrl = pngDataUrlWithDpi(offscreenCanvas.toDataURL('image/png'), pngDpiFor(generator, scaledOptions.scale));
   downloadDataUrl(dataUrl, filename);
   return { success: true, filename };
 }
@@ -132,6 +134,7 @@ export async function exportVectorSvg({ generator, payload, options, logoDataUrl
   if (cornerRadius > 0) {
     svgString = applySvgCornerRadius(svgString, cornerRadius);
   }
+  svgString = svgWithPrintSize(svgString, generator, Number(options.scale) || 3); // real size in mm
   const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
   downloadBlob(blob, filename);
   return { success: true, filename };
@@ -148,7 +151,7 @@ export async function exportVectorEps({ generator, payload, options }) {
   // Same render path as the SVG download, so the EPS matches the SVG shape for shape.
   const { svg, scale } = await engine.renderVector(generator, payload, options);
   const eps = svgToEps(svg, {
-    ptPerUnit: 1 / scale,
+    ptPerUnit: epsPtPerUnit(generator, scale),
     cornerRadius: Number(options.cornerRadius) || 0,
     title: `${generator.name} ${payload}`
   });
