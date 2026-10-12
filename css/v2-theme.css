@@ -365,3 +365,8 @@
   color: var(--accent-text);
 }
 
+/* --- In-page links land below the sticky top bar. --header-h is the bar's measured height
+   (js/core/header-offset.js; the bar wraps on phones); 5.25rem is its desktop height, the fallback. --- */
+html {
+  scroll-padding-top: calc(var(--header-h, 5.25rem) + 1rem);
+}

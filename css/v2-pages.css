@@ -1059,7 +1059,9 @@ body {
 
 .article-toc {
   position: sticky;
-  top: 1.25rem;
+  top: calc(var(--header-h, 5.25rem) + 1rem); /* below the sticky top bar (js/core/header-offset.js) */
+  max-height: calc(100vh - var(--header-h, 5.25rem) - 2rem); /* never runs off the screen; long lists scroll inside */
+  overflow-y: auto;
   background: var(--surface);
   border: var(--border-ink);
   border-radius: var(--radius-sm);
@@ -1109,7 +1111,6 @@ body {
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-ink);
   padding: 1.75rem 2rem;
-  scroll-margin-top: 1.25rem;
 }
 
 .article-section h2 {

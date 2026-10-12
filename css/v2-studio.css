@@ -1020,9 +1020,19 @@ h1, h2, h3, h4 {
 /* --- Inspector Live Preview Dock --- */
 .inspector-card {
   position: sticky;
-  top: 5rem;
+  top: calc(var(--header-h, 5.25rem) + 1rem); /* below the sticky top bar (js/core/header-offset.js) */
   border: var(--border-ink);
   box-shadow: 6px 6px 0 var(--scanner-laser);
+}
+
+/* Two-column studio: on short screens (e.g. laptops at 125% zoom) the panel is taller than the screen and its
+   download buttons were hidden while pinned. Owner chose: cap it to the screen and scroll inside it (2026-10-12).
+   One column (<=1080px): the panel follows the controls and never pins, so no cap. */
+@media (min-width: 1081px) {
+  .inspector-card {
+    max-height: calc(100vh - var(--header-h, 5.25rem) - 2rem);
+    overflow-y: auto;
+  }
 }
 
 .preview-stage {

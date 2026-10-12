@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- Google Analytics: loads only after consent (js/core/consent-analytics.js) -->
+  <script src="/js/core/consent-analytics.js?v=1.1" defer></script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do I Need a Barcode to Sell on Amazon? UPC, GTIN Exemption & FNSKU (2026)</title>
+  <meta name="description" content="Amazon uses two barcodes: a UPC or EAN to list a product and an FNSKU label for FBA. What Amazon US and Amazon.in ask for in 2026, GS1 costs, and the GTIN exemption.">
+  <link rel="canonical" href="https://universalcodemaker.com/pages/do-i-need-a-barcode-to-sell-on-amazon.html">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <meta name="theme-color" content="#06b6d4">
+
+  <!-- Favicons & App Icons (Google Search & Multi-Platform Compliant) -->
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+
+  <!-- Open Graph & Social -->
+  <meta property="og:title" content="Do I Need a Barcode to Sell on Amazon? UPC, GTIN Exemption & FNSKU (2026)">
+  <meta property="og:description" content="Amazon uses two barcodes: a UPC or EAN to list a product and an FNSKU label for FBA. What Amazon US and Amazon.in ask for in 2026, GS1 costs, and the GTIN exemption.">
+  <meta property="og:url" content="https://universalcodemaker.com/pages/do-i-need-a-barcode-to-sell-on-amazon.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Do I Need a Barcode to Sell on Amazon? UPC, GTIN Exemption & FNSKU (2026)">
+  <meta name="twitter:description" content="Amazon uses two barcodes: a UPC or EAN to list a product and an FNSKU label for FBA. What Amazon US and Amazon.in ask for in 2026, GS1 costs, and the GTIN exemption.">
+  <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
+
+  <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
+  <link rel="preload" href="../assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="../css/v2-theme.css?v=3.4">
+  <link rel="stylesheet" href="../css/v2-pages.css?v=3.4">
+
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('ucm_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const savedAccent = localStorage.getItem('ucm_accent') || 'crimson';
+      document.documentElement.setAttribute('data-accent', savedAccent);
+    })();
+  </script>
+
+  <style>
+    .seo-page-container {
+      max-width: 1080px;
+      margin: 2.25rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+    .hero-banner {
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-ink);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--optic-blue-tint);
+      border: 1.5px solid var(--optic-blue);
+      border-radius: var(--radius-full);
+      color: var(--accent-text); /* text-safe on the tint in both themes */
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 820px;
+      margin-bottom: 1.75rem;
+    }
+    .cta-launch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent-fill);
+      color: #ffffff;
+      padding: 0.85rem 1.6rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: var(--shadow-ink);
+      transition: all var(--transition-fast);
+    }
+    .cta-launch-btn:hover {
+      background: var(--accent-fill-hover);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-laser);
+      color: #ffffff;
+    }
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .content-grid { grid-template-columns: 1fr; }
+    }
+    .info-card {
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-ink);
+      padding: 1.5rem;
+    }
+    .info-card-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .spec-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.85rem;
+    }
+    .spec-key {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    .spec-val {
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+      font-weight: 600;
+      text-align: right;
+    }
+    .use-cases-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding: 0;
+      margin: 0;
+    }
+    .use-case-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .use-case-check {
+      color: var(--optic-blue);
+      font-weight: 700;
+    }
+    .faq-section {
+      margin-bottom: 3rem;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-ink);
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+    .faq-item[open] {
+      border-color: var(--border-color);
+    }
+    .faq-question {
+      padding: 1rem 1.25rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-primary);
+      user-select: none;
+    }
+    .faq-answer {
+      padding: 0 1.25rem 1.1rem 1.25rem;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .related-card {
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-ink);
+      padding: 1rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: all var(--transition-fast);
+    }
+    .related-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-blue);
+      border-color: var(--optic-blue);
+    }
+    .related-tag {
+      font-size: 0.72rem;
+      color: var(--optic-blue);
+      font-weight: 700;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .related-title {
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .related-arrow {
+      color: var(--optic-blue);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+    }
+    .hardware-box {
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-ink);
+      padding: 1.25rem 1.5rem;
+      margin: 2.25rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .hardware-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .hardware-box-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .hardware-box-disclosure {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .hardware-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+    .hardware-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      background: var(--surface);
+      border: var(--border-ink);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      box-shadow: 2px 2px 0 var(--border-color);
+      transition: all var(--transition-fast);
+    }
+    .hardware-pill:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--scanner-laser);
+      border-color: var(--scanner-laser);
+      color: var(--laser-text);
+    }
+  </style>
+
+  <!-- Structured Data JSON-LD Schemas -->
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Do I Need a Barcode to Sell on Amazon?",
+  "description": "Amazon uses two barcodes: a UPC or EAN to list a product and an FNSKU label for FBA. What Amazon US and Amazon.in ask for in 2026, GS1 costs, and the GTIN exemption.",
+  "url": "https://universalcodemaker.com/pages/do-i-need-a-barcode-to-sell-on-amazon.html",
+  "mainEntityOfPage": "https://universalcodemaker.com/pages/do-i-need-a-barcode-to-sell-on-amazon.html",
+  "datePublished": "2026-10-12",
+  "author": {
+    "@type": "Organization",
+    "name": "UniversalCodeMaker",
+    "url": "https://universalcodemaker.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "UniversalCodeMaker",
+    "url": "https://universalcodemaker.com/"
+  },
+  "image": "https://universalcodemaker.com/assets/og-preview.png"
+}
+  </script>
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I buy cheap UPC codes online for Amazon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is risky. Amazon checks UPCs against the GS1 database and removes listings whose numbers don't match, and GS1 US warns that a number associated with another company risks rejection. Amazon US tells sellers to get UPCs directly from GS1. GS1 India says only it can issue barcodes starting with 890."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need my own barcode to resell another brand's product on Amazon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On Amazon.in, no: a product ID is only needed to add a product that isn't already sold on Amazon. For FBA, resellers need an FNSKU label on each unit: in the US since 31 March 2026 even if the product has a UPC, and on Amazon.in by default."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use the same UPC on Amazon and in shops?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A GTIN identifies the product itself, so it works on Amazon, in stores and on other marketplaces. The FNSKU is Amazon-only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I print FNSKU labels on an inkjet printer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Amazon says not to use inkjet printers for its barcodes, because inkjet labels smear more easily. Use a thermal printer or a laser printer with label sheets such as Avery 5160, at 300 dpi or more."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a barcode to sell on Amazon India?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To add a product that isn't already on Amazon.in, yes, or a GTIN exemption. To sell something already listed, no. For FBA, each unit needs an FNSKU label unless it's a book in the stickerless programme."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://universalcodemaker.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Do I Need a Barcode to Sell on Amazon?",
+      "item": "https://universalcodemaker.com/pages/do-i-need-a-barcode-to-sell-on-amazon.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="v2-header">
+    <div class="wrap">
+      <div class="v2-header-container">
+        <a href="../index.html" class="v2-brand">
+          <div class="v2-brand-badge" style="background: var(--surface);">
+            <img src="../assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
+          </div>
+          <div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker
+              <span class="v2-version-tag">FREE</span>
+            </div>
+            <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
+          </div>
+        </a>
+
+        <div class="v2-nav-links">
+          <a href="../index.html?symbology=upc-a" class="btn btn-laser btn-sm" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Launch Studio
+          </a>
+          <a href="../about.html" class="v2-nav-link">About</a>
+          <a href="../symbology-docs.html" class="v2-nav-link">Docs</a>
+          <a href="../barcode-scanner.html" class="v2-nav-link">Scanner</a>
+          <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
+            <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
+            <button type="button" class="accent-dot" data-accent="cobalt" title="Signal Cobalt"></button>
+            <button type="button" class="accent-dot" data-accent="amber" title="Cyber Amber"></button>
+            <button type="button" class="accent-dot" data-accent="emerald" title="Matrix Emerald"></button>
+          </div>
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Optical Theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>Obsidian Laser</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="seo-page-container">
+
+    <section class="hero-banner">
+      <div class="hero-badge">
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="10"/></svg>
+        Seller Guide
+      </div>
+      <h1 class="hero-title">Do I Need a Barcode to Sell on Amazon?</h1>
+      <p class="hero-lead">Usually yes, and often two different ones: a product number (UPC or EAN) to create the listing, and an Amazon label (FNSKU) on every unit if Amazon stores and ships your stock. This guide covers what Amazon US and Amazon.in ask for in 2026, and what each costs.</p>
+      <div class="article-ctas">
+        <a href="../index.html?symbology=upc-a" class="cta-launch-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Make a UPC-A barcode
+        </a>
+        <a href="../index.html?symbology=code-128&preset=amazon-fnsku-5160&label=1" class="cta-launch-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Make FNSKU labels
+        </a>
+      </div>
+    </section>
+
+    <div class="article-layout">
+      <nav class="article-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#short-answer">The short answer</a></li>
+          <li><a href="#two-barcodes">Two different barcodes</a></li>
+          <li><a href="#product-id">Step 1: the product number you need to list</a></li>
+          <li><a href="#gtin-exemption">No barcode? The GTIN exemption</a></li>
+          <li><a href="#fba-labels">Step 2: FBA labels (FNSKU)</a></li>
+          <li><a href="#who-ships">Who ships your orders changes what you need</a></li>
+          <li><a href="#costs">What the numbers cost (checked 12 October 2026)</a></li>
+          <li><a href="#what-changed">What changed in 2026</a></li>
+          <li><a href="#faq">Frequently asked questions</a></li>
+        </ol>
+      </nav>
+
+      <article class="article-body">
+
+    <section class="article-section" id="short-answer" aria-labelledby="short-answer-title">
+      <h2 id="short-answer-title">The short answer</h2>
+      <ol>
+          <li><strong>To list a new product</strong>, most Amazon categories need a product number (a GTIN: UPC, EAN, JAN or ISBN). Amazon checks UPCs against the GS1 database, so get yours from GS1. No barcode at all? Many private-label, handmade and generic products can get a <a href="#gtin-exemption">GTIN exemption</a> instead.</li>
+          <li><strong>To ship to Amazon's warehouses (FBA)</strong>, every unit needs a barcode Amazon can track. Since 31 March 2026 in the US, only brand owners registered as brand representatives can use the product's own UPC; everyone else puts an Amazon <strong>FNSKU</strong> label on each unit. On Amazon.in, FNSKU labels are the default.</li>
+          <li><strong>If you ship orders yourself</strong>, you don't need FNSKU labels: they are only for stock sent to Amazon's fulfilment centres.</li>
+          <li><strong>Making the barcode image is free.</strong> What costs money is the GS1 number: $30 for a single number from GS1 US, from ₹50,200 for the first year from GS1 India (<a href="#costs">costs</a>).</li>
+        </ol>
+        <div class="article-callout"><p>Amazon's rules change. Everything here was checked against Amazon Seller Central help and GS1's own websites on 12 October 2026; follow the links to see the current version.</p></div>
+    </section>
+
+    <section class="article-section" id="two-barcodes" aria-labelledby="two-barcodes-title">
+      <h2 id="two-barcodes-title">Two different barcodes</h2>
+      <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead><tr><th></th><th>Product number (GTIN)</th><th>Amazon barcode (FNSKU)</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">What it identifies</th><td>The product, everywhere it's sold</td><td>Your units in Amazon's warehouses</td></tr>
+              <tr><th scope="row">Where it comes from</th><td>GS1 (for books: your ISBN agency)</td><td>Your Seller Central account</td></tr>
+              <tr><th scope="row">Barcode</th><td><a href="./upc-a-barcode-generator.html">UPC-A</a> or <a href="./ean-13-barcode-generator.html">EAN-13</a>, printed on the pack</td><td><a href="./amazon-fba-fnsku-barcode-generator.html">Code 128</a> on a sticker; starts with an X</td></tr>
+              <tr><th scope="row">Needed for</th><td>Creating a new listing (most categories)</td><td>Sending stock to FBA (see below)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The GTIN works on Amazon, in shops and on other marketplaces. The FNSKU only means something inside Amazon.</p>
+    </section>
+
+    <section class="article-section" id="product-id" aria-labelledby="product-id-title">
+      <h2 id="product-id-title">Step 1: the product number you need to list</h2>
+      <ul>
+          <li><strong>Amazon US</strong>: "For most categories, you are required to provide a unique product identifier, known as a GTIN (Global Trade Item Number), to create new listings." Amazon checks UPCs against the GS1 database; UPCs that don't match GS1's records are invalid, and invalid listings are removed, which can cost you the right to create listings or to sell.</li>
+          <li><strong>Get numbers from GS1</strong>, not from resellers. GS1 US explains that a UPC looked up in the GS1 database shows the company it is registered to, and a number "associated with another company" risks rejection. Amazon US says to obtain UPCs "directly from GS1 (and not from other third parties selling UPC licenses)".</li>
+          <li><strong>Category rules differ.</strong> In most US categories, major brands need a UPC and private-label brands can ask for an exemption; books need an ISBN, EAN or JAN; bundles in electronics, office products and video games need their own UPC.</li>
+          <li><strong>Amazon.in</strong>: a product ID is needed to add a product that isn't already sold on Amazon; if another seller already sells it, you can add your offer without one. Amazon.in runs the same GS1 database check.</li>
+        </ul>
+        <p>How to get GS1 numbers, give each variant its own number and print them at the right size: <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a>.</p>
+    </section>
+
+    <section class="article-section" id="gtin-exemption" aria-labelledby="gtin-exemption-title">
+      <h2 id="gtin-exemption-title">No barcode? The GTIN exemption</h2>
+      <p>If your product has never had a barcode, you can apply in Seller Central to list it without one. Amazon US accepts applications for:</p>
+        <ul>
+          <li>private-label or handmade products,</li>
+          <li>products you make, brand or publish without barcodes,</li>
+          <li>parts without a product number (for example car parts or phone accessories),</li>
+          <li>bundles, and generic unbranded products.</li>
+        </ul>
+        <p>You can't get one if the product already has a GS1 barcode or GTIN, is already in Amazon's catalogue, or belongs to a brand that requires a UPC. Expect to send real photos of all six sides of the product and packaging, with the brand name permanently on the product.</p>
+        <p><strong>Exempt products still need FNSKU labels</strong> for FBA: only products with a valid GTIN can skip them.</p>
+    </section>
+
+    <section class="article-section" id="fba-labels" aria-labelledby="fba-labels-title">
+      <h2 id="fba-labels-title">Step 2: FBA labels (FNSKU)</h2>
+      <p>Every unit you send to an Amazon fulfilment centre needs a scannable barcode. Which one depends on who you are and where you sell.</p>
+        <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead><tr><th>You are…</th><th>Amazon US (since 31 March 2026)</th><th>Amazon.in</th></tr></thead>
+            <tbody>
+              <tr><td>Brand owner, brand representative in Brand Registry, product has one scannable UPC/EAN/ISBN</td><td>Manufacturer barcode allowed, no sticker</td><td>FNSKU label on each unit</td></tr>
+              <tr><td>Reseller (including authorised resellers)</td><td>FNSKU label on each unit, even with a UPC</td><td>FNSKU label on each unit</td></tr>
+              <tr><td>Product has no barcode, or a GTIN exemption</td><td>FNSKU label on each unit</td><td>FNSKU label on each unit</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>Why it changed</strong>: Amazon US stopped "commingling", where one seller's order could be filled with another seller's identical unit. Labels keep each seller's stock separate.</li>
+          <li><strong>Amazon.in</strong> labels units with FNSKUs by default and allows stickerless, shared stock for books only.</li>
+          <li><strong>Amazon US no longer labels for you</strong>: its prep and item-labelling service ended on 1 January 2026. Units that arrive without a required label are marked as defective.</li>
+          <li><strong>Label rules</strong>: 1" × 2" to 2" × 3", black on white, removable adhesive; white space of 0.25" on the sides and 0.125" at the top and bottom; FNSKU, product name and condition on the label; thermal or laser printer, never inkjet; cover every other barcode on the unit. Details and a free label maker: <a href="./amazon-fba-fnsku-barcode-generator.html">Amazon FBA FNSKU label generator</a>.</li>
+        </ul>
+    </section>
+
+    <section class="article-section" id="who-ships" aria-labelledby="who-ships-title">
+      <h2 id="who-ships-title">Who ships your orders changes what you need</h2>
+      <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead><tr><th>Option</th><th>Who stores and packs</th><th>Who delivers</th><th>FNSKU labels?</th></tr></thead>
+            <tbody>
+              <tr><td>Fulfillment by Amazon (FBA), US and India</td><td>Amazon</td><td>Amazon</td><td>Yes, as in the table above</td></tr>
+              <tr><td>Fulfilled by Merchant (US)</td><td>You</td><td>You or your carrier</td><td>No</td></tr>
+              <tr><td>Easy Ship (India)</td><td>You</td><td>Amazon picks up and delivers</td><td>No</td></tr>
+              <tr><td>Self-Ship (India)</td><td>You</td><td>You or your courier</td><td>No</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Whichever you choose, a new listing still needs its product number (Step 1). You can pick a different option for each product; Amazon India says most sellers use a mix.</p>
+    </section>
+
+    <section class="article-section" id="costs" aria-labelledby="costs-title">
+      <h2 id="costs-title">What the numbers cost (checked 12 October 2026)</h2>
+      <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead><tr><th>GS1 office</th><th>Smallest option</th><th>First year</th><th>After that</th></tr></thead>
+            <tbody>
+              <tr><td>GS1 US</td><td>1 GTIN</td><td>$30</td><td>No annual fee</td></tr>
+              <tr><td>GS1 US</td><td>Company prefix, 10 products</td><td>$250</td><td>$50 a year</td></tr>
+              <tr><td>GS1 India</td><td>100 barcodes, turnover up to ₹5 crore</td><td>₹50,200 (₹27,000 registration + ₹13,000 subscription + 18% GST + ₹3,000 security deposit)</td><td>Renew the subscription to keep using the numbers (GS1 India's fee table)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li>GS1 US prices: <a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US get-started guide</a>. GS1 India prices: <a href="https://www.gs1india.org/register-for-barcodes" target="_blank" rel="noopener noreferrer">GS1 India registration</a> (fee table effective 1 October 2026; longer terms and larger capacities cost more).</li>
+          <li>In India, barcodes starting with 890 come only from GS1 India, and only the brand owner (or someone it authorises) can apply. You choose 100, 1,000, 10,000 or 1,00,000 numbers, and can't change that later.</li>
+          <li>Indian micro-manufacturing enterprises can get up to 80% of the GS1 fees for the first 3 years refunded (up to ₹50,650) under the Ministry of MSME's barcode scheme, for the 100 and 1,000 barcode plans.</li>
+          <li>FNSKUs don't come from GS1: you print them from your Seller Central account.</li>
+        </ul>
+    </section>
+
+    <section class="article-section" id="what-changed" aria-labelledby="what-changed-title">
+      <h2 id="what-changed-title">What changed in 2026</h2>
+      <ul>
+          <li><strong>1 January</strong>: Amazon US ended its FBA prep and item-labelling service. You apply your own labels.</li>
+          <li><strong>31 March</strong>: Amazon US ended commingling. Resellers must label every FBA unit; brand representatives can use the manufacturer barcode.</li>
+          <li><strong>1 October</strong>: GS1 India's new fee table took effect.</li>
+        </ul>
+    </section>
+      </article>
+    </div>
+
+    <section class="faq-section" id="faq">
+      <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">Frequently Asked Questions</h2>
+      <div class="faq-accordion">
+        
+    <details class="faq-item" open>
+      <summary class="faq-question">
+        <span>Can I buy cheap UPC codes online for Amazon?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>It is risky. Amazon checks UPCs against the GS1 database and removes listings whose numbers don't match, and GS1 US warns that a number associated with another company risks rejection. Amazon US tells sellers to get UPCs directly from GS1. GS1 India says only it can issue barcodes starting with 890.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Do I need my own barcode to resell another brand's product on Amazon?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>On Amazon.in, no: a product ID is only needed to add a product that isn't already sold on Amazon. For FBA, resellers need an FNSKU label on each unit: in the US since 31 March 2026 even if the product has a UPC, and on Amazon.in by default.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I use the same UPC on Amazon and in shops?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. A GTIN identifies the product itself, so it works on Amazon, in stores and on other marketplaces. The FNSKU is Amazon-only.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I print FNSKU labels on an inkjet printer?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. Amazon says not to use inkjet printers for its barcodes, because inkjet labels smear more easily. Use a thermal printer or a laser printer with label sheets such as Avery 5160, at 300 dpi or more.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Do I need a barcode to sell on Amazon India?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>To add a product that isn't already on Amazon.in, yes, or a GTIN exemption. To sell something already listed, no. For FBA, each unit needs an FNSKU label unless it's a book in the stickerless programme.</p>
+      </div>
+    </details>
+  
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="v2-footer">
+    <div class="wrap">
+      <!-- Same footer as the studio and root pages (keep in sync with index.html) -->
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div class="v2-brand-badge" style="width: 38px; height: 38px; background: var(--surface);">
+              <img src="../assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="30" height="30" style="display: block; object-fit: contain;">
+            </div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker <span class="v2-version-tag">V2</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="../index.html">Optical Studio</a></li>
+              <li><a href="../index.html#symbologies">Symbologies Directory</a></li>
+              <li><a href="../barcode-scanner.html">Barcode &amp; QR Scanner</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Standards &amp; Docs</h4>
+            <ul>
+              <li><a href="../symbology-docs.html">Symbology Documentation</a></li>
+              <li><a href="../about.html">About &amp; Mission</a></li>
+              <li><a href="../privacy-policy.html">Your codes stay in your browser</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://primordialparadigm.com" target="_blank" rel="noopener">Primordial Paradigm ↗</a></li>
+              <li><a href="../contact.html">Report Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5-Column Programmatic SEO & Symbology Directory Matrix -->
+      <div class="v2-footer-matrix">
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Retail &amp; Publishing
+          </h4>
+          <ul>
+            <li><a href="./ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
+            <li><a href="./upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
+            <li><a href="./isbn-book-barcode-generator.html">ISBN Bookland Barcode</a></li>
+            <li><a href="./shopify-barcode-generator.html">Shopify Product Barcode</a></li>
+            <li><a href="./amazon-fba-fnsku-barcode-generator.html">Amazon FBA / FNSKU Barcode</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            Logistics, Sheets &amp; Bulk
+          </h4>
+          <ul>
+            <li><a href="./avery-5160-barcode-generator.html">Avery 5160 Label Generator</a></li>
+            <li><a href="./bulk-barcode-generator-excel.html">Bulk Excel Barcode Generator</a></li>
+            <li><a href="./code-128-barcode-generator.html">Code 128 Shipping Barcode</a></li>
+            <li><a href="./code-39-barcode-generator.html">Code 39 Asset Barcode</a></li>
+            <li><a href="./itf-14-barcode-generator.html">ITF-14 Carton Barcode</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            2D Industrial &amp; Density
+          </h4>
+          <ul>
+            <li><a href="./data-matrix-generator.html">Data Matrix 2D Generator</a></li>
+            <li><a href="./aztec-code-generator.html">Aztec Code Generator</a></li>
+            <li><a href="./pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
+            <li><a href="../symbology-docs.html">Barcode &amp; QR Symbology Guides</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Smart QR Generators
+          </h4>
+          <ul>
+            <li><a href="./google-reviews-qr-code-generator.html">Google Reviews 5-Star QR</a></li>
+            <li><a href="./upi-qr-code-generator.html">UPI Scan-to-Pay QR</a></li>
+            <li><a href="./wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
+            <li><a href="./vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
+            <li><a href="./google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
+            <li><a href="./crypto-qr-code-generator.html">Crypto Wallet QR Code</a></li>
+            <li><a href="./calendar-event-qr-code-generator.html">Calendar Event (iCal) QR</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Messaging &amp; Text QR
+          </h4>
+          <ul>
+            <li><a href="./whatsapp-qr-code-generator.html">WhatsApp Direct Chat QR</a></li>
+            <li><a href="./email-qr-code-generator.html">Email Message QR Code</a></li>
+            <li><a href="./sms-qr-code-generator.html">SMS Direct Message QR</a></li>
+            <li><a href="./phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>
+            <li><a href="./plain-text-qr-code-generator.html">Plain Text QR Code</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <ul class="v2-footer-legal-links">
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li class="js-consent-settings" hidden><a href="../privacy-policy.html#consent">Privacy and cookie settings</a></li>
+          <li><a href="../symbology-docs.html">Symbology Docs</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contact.html">Contact Us</a></li>
+        </ul>
+        <div class="v2-trademark-notice">
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. Amazon is a trademark of Amazon.com, Inc. or its affiliates. Google and Google Reviews are trademarks of Google LLC. WhatsApp is a registered trademark of Meta Platforms, Inc. UPI is a registered trademark of NPCI. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Navigation & Theme Sync Script -->
+  <script src="../js/v2-nav.js?v=2.4"></script>
+  <script src="../js/core/header-offset.js?v=1.0"></script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
+
+</body>
+</html>

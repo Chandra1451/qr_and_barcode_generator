@@ -58,8 +58,8 @@
   <link rel="preload" href="/assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- V2 Stylesheets -->
-  <link rel="stylesheet" href="css/v2-theme.css?v=3.3">
-  <link rel="stylesheet" href="css/v2-pages.css?v=3.3">
+  <link rel="stylesheet" href="css/v2-theme.css?v=3.4">
+  <link rel="stylesheet" href="css/v2-pages.css?v=3.4">
 
   <style>
     /* Privacy Policy Neubrutalist Enhancements */
@@ -155,7 +155,9 @@
 
     .doc-sidebar {
       position: sticky;
-      top: 5.5rem;
+      top: calc(var(--header-h, 5.25rem) + 1rem);
+      max-height: calc(100vh - var(--header-h, 5.25rem) - 2rem); /* never runs off the screen; the list scrolls inside */
+      overflow-y: auto;
       background: var(--surface);
       border: 2.5px solid var(--border);
       border-radius: var(--radius-md);
@@ -181,8 +183,6 @@
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
-      max-height: calc(100vh - 12rem);
-      overflow-y: auto;
       padding: 0;
       margin: 0;
     }
@@ -217,7 +217,6 @@
       border-radius: var(--radius-lg);
       padding: 2rem 2.25rem;
       box-shadow: var(--shadow-ink);
-      scroll-margin-top: 5.5rem;
     }
 
     .section-header {
@@ -959,6 +958,7 @@
 
   <!-- Navigation & Theme Sync Script -->
   <script src="js/v2-nav.js?v=2.4"></script>
+  <script src="js/core/header-offset.js?v=1.0"></script>
 
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072" crossorigin="anonymous"></script>
