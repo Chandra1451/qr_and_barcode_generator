@@ -1,6 +1,6 @@
 # UniversalCodeMaker — E2E & Output-Quality Test Suite
 
-Automated tests that open the real site in Microsoft Edge, click every button, move every slider, and **scan every generated code with an independent decoder** to prove the output is correct. The full list of test cases, with the reason for each one, is in [TEST_PLAN.md](TEST_PLAN.md).
+Automated tests that open the real site in Chromium (the engine of Google Chrome; the smoke tests also run in Microsoft Edge), click every button, move every slider, and **scan every generated code with an independent decoder** to prove the output is correct. The full list of test cases, with the reason for each one, is in [TEST_PLAN.md](TEST_PLAN.md).
 
 The suite lives in `tests/e2e/`. `.htaccess` already returns 404 for `/tests/`, so it is never public.
 
@@ -8,7 +8,9 @@ The suite lives in `tests/e2e/`. `.htaccess` already returns 404 for `/tests/`, 
 
 ## 1. One-time setup
 
-Requirements: Node.js **22.12 or newer** (you have 24) and Microsoft Edge (already installed). No browser download is needed.
+Requirements: Node.js **22.12 or newer** (you have 24), Playwright's Chromium (`npx playwright install chromium`, already installed) and Microsoft Edge for the `edge-smoke` project (already installed).
+
+Why Chromium by default (2026-10-12): in automation, Edge opens its downloads panel after a page's first download and then delays or swallows the next download, which made download tests fail at random.
 
 ```powershell
 cd D:\websites_with_AI\qr_and_barcode_generator\tests\e2e
@@ -58,7 +60,7 @@ PowerShell: `$env:NAME = "value"` before the command.
 | `UCM_BOOT_ITERATIONS` | `5` | How many times each boot scenario repeats. Use 20+ when hunting the intermittent bug. |
 | `UCM_MAX_STAGE_JUMP_PX` | `120` | How far the preview stage may grow or shrink when a control changes. |
 | `UCM_MAX_STAGE_HEIGHT_PX` | `640` | Maximum preview stage height. |
-| `UCM_BROWSER_CHANNEL` | `msedge` | `chrome`, or `chromium` after `npx playwright install chromium`. |
+| `UCM_BROWSER_CHANNEL` | bundled Chromium | `msedge` or `chrome` to run every project in that browser (the `edge-smoke` project always uses Edge). |
 | `UCM_WORKERS` | CPU-based | Parallel workers. Use `1` if the machine struggles. |
 | `UCM_PORT` | `8099` | Local server port. |
 

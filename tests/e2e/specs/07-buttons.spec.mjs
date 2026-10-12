@@ -173,6 +173,13 @@ test.describe('BTN · format selection', () => {
       await page.locator(`.matrix-load-btn[data-id="${id}"]`).click();
       await expect(studio.symbologySelect).toHaveValue(id);
       await expect(page.locator('#studio')).toBeInViewport({ ratio: 0.2 });
+      // Let the smooth scroll finish before the next click: clicking the next card mid-scroll
+      // starts a new scroll that cancels this one (normal browser behaviour, seen in Chromium).
+      await page.waitForFunction(() => new Promise((resolve) => {
+        let last = scrollY, same = 0;
+        const tick = () => { if (scrollY === last) same++; else { same = 0; last = scrollY; } if (same >= 5) resolve(true); else requestAnimationFrame(tick); };
+        requestAnimationFrame(tick);
+      }));
     }
   });
 

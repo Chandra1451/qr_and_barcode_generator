@@ -27,7 +27,10 @@ for (const [vpName, viewport] of Object.entries(VIEWPORTS)) {
           await page.goto(`/${p}`);
           await page.waitForLoadState('networkidle');
           await prepare(page);
-          await expect(page).toHaveScreenshot(`${p.replace(/[/.]/g, '_')}-${vpName}-${theme}.png`, { fullPage: true, maxDiffPixelRatio: 0.01 });
+          // Capture exactly the page's height: Chromium's full-page capture of the ~15,000 px docs page
+          // sometimes came out 35 px taller (footer background only), so the screenshot never settled.
+          const size = await page.evaluate(() => ({ width: document.documentElement.clientWidth, height: document.documentElement.scrollHeight }));
+          await expect(page).toHaveScreenshot(`${p.replace(/[/.]/g, '_')}-${vpName}-${theme}.png`, { fullPage: true, clip: { x: 0, y: 0, ...size }, maxDiffPixelRatio: 0.01 });
         });
       }
     });

@@ -4,16 +4,18 @@
 // Set UCM_BASE_URL to run against another host, e.g. the live site:
 //   PowerShell:  $env:UCM_BASE_URL = "https://universalcodemaker.com"; npx playwright test --project=desktop
 //
-// Uses the installed Microsoft Edge (channel "msedge"), so no browser download is
-// needed. Set UCM_BROWSER_CHANNEL=chromium (after `npx playwright install chromium`)
-// or UCM_BROWSER_CHANNEL=chrome to switch.
+// Uses Playwright's bundled Chromium (the engine of Google Chrome) by default (owner decision
+// 2026-10-12). Microsoft Edge in automation opens its downloads panel after a page's first
+// download and then delays or swallows the next one, which made download tests flaky (kit 14 #27).
+// The "edge-smoke" project still runs the smoke tests in the installed Microsoft Edge.
+// Set UCM_BROWSER_CHANNEL=msedge or =chrome to run everything in that browser instead.
 
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = Number(process.env.UCM_PORT || 8099);
 const externalBaseUrl = process.env.UCM_BASE_URL?.replace(/\/$/, '');
 const baseURL = externalBaseUrl || `http://127.0.0.1:${PORT}`;
-const channel = process.env.UCM_BROWSER_CHANNEL === 'chromium' ? undefined : (process.env.UCM_BROWSER_CHANNEL || 'msedge');
+const channel = !process.env.UCM_BROWSER_CHANNEL || process.env.UCM_BROWSER_CHANNEL === 'chromium' ? undefined : process.env.UCM_BROWSER_CHANNEL;
 
 const browserUse = {
   channel,
@@ -70,6 +72,12 @@ export default defineConfig({
       name: 'visual',
       testMatch: /12-visual\.spec\.mjs/,
       use: { ...devices['Desktop Chrome'], ...browserUse, viewport: { width: 1366, height: 900 } },
+    },
+    {
+      // A short check in the installed Microsoft Edge on every full run (the main suite runs in Chromium).
+      name: 'edge-smoke',
+      testMatch: /01-smoke\.spec\.mjs/,
+      use: { ...devices['Desktop Edge'], ...browserUse, channel: 'msedge', viewport: { width: 1366, height: 900 } },
     },
   ],
 
