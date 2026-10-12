@@ -724,6 +724,64 @@ test.describe('EXP-LBL · label maker exports', () => {
     const text = await decodeFirst(png.buffer);
     expect(text, 'FNSKU barcode does not scan').toMatch(/^X00[0-9A-Z]{7}$/);
   });
+
+  // Amazon (US and India help, checked 2026-10-12): white space of 0.25" on the sides and 0.125" on the
+  // top and bottom around the barcode and text and from the label edges. Short and two-line titles.
+  for (const title of ['Organic Dark Roast Coffee', 'Organic Dark Roast Whole Bean Coffee, Single Origin Colombia, 16 oz Resealable Bag']) {
+    test(`EXP-52 Amazon FNSKU label keeps Amazon's white space at the edges (title ${title.length} chars)`, async ({ studio, page }) => {
+      await studio.open('?symbology=code-128&preset=amazon-fnsku-5160&label=1');
+      await expect(page.locator('#label-maker-modal')).toHaveClass(/open/);
+      await page.locator('#label-field-title').fill(title);
+      await page.waitForTimeout(500);
+      const png = await studio.download(page.locator('#btn-export-label-png'));
+      const img = readPng(png.buffer);
+      const ppi = img.width / 2.625;
+      let minX = img.width, maxX = -1, minY = img.height, maxY = -1;
+      for (let y = 0; y < img.height; y++) {
+        for (let x = 0; x < img.width; x++) {
+          const i = (y * img.width + x) * 4;
+          // Ink = clearly darker than paper (anti-aliased text edges count too).
+          if (img.data[i + 3] > 128 && img.data[i] + img.data[i + 1] + img.data[i + 2] < 600) {
+            minX = Math.min(minX, x); maxX = Math.max(maxX, x); minY = Math.min(minY, y); maxY = Math.max(maxY, y);
+          }
+        }
+      }
+      const inches = (px) => (px / ppi).toFixed(3);
+      expect(maxX, 'label has no ink').toBeGreaterThan(0);
+      expect(minX, `left white space ${inches(minX)}" < 0.25"`).toBeGreaterThanOrEqual(Math.floor(0.25 * ppi));
+      expect(img.width - 1 - maxX, `right white space ${inches(img.width - 1 - maxX)}" < 0.25"`).toBeGreaterThanOrEqual(Math.floor(0.25 * ppi));
+      expect(minY, `top white space ${inches(minY)}" < 0.125"`).toBeGreaterThanOrEqual(Math.floor(0.125 * ppi));
+      expect(img.height - 1 - maxY, `bottom white space ${inches(img.height - 1 - maxY)}" < 0.125"`).toBeGreaterThanOrEqual(Math.floor(0.125 * ppi));
+      expect(await decodeFirst(png.buffer), 'FNSKU barcode does not scan').toMatch(/^X00[0-9A-Z]{7}$/);
+    });
+  }
+
+  // Amazon counts a label that doesn't match the unit as "mislabeled": the FNSKU text and the bars must agree.
+  test('EXP-53 Amazon label: typing an FNSKU changes the barcode itself', async ({ studio, page }) => {
+    await studio.open('?symbology=code-128&preset=amazon-fnsku-5160&label=1');
+    await expect(page.locator('#label-maker-modal')).toHaveClass(/open/);
+    await page.locator('#label-field-sku').fill('X00ZQ4TEST');
+    await expect(page.locator('#payload-input')).toHaveValue('X00ZQ4TEST');
+    await page.waitForTimeout(800);
+    const png = await studio.download(page.locator('#btn-export-label-png'));
+    expect(await decodeFirst(png.buffer), 'label barcode ≠ the FNSKU typed in the label field').toBe('X00ZQ4TEST');
+  });
+
+  test('EXP-54 Amazon preset chosen in the label maker: FNSKU field shows the barcode value; product name starts empty', async ({ studio, page }) => {
+    await studio.open('?symbology=code-128');
+    await studio.setPayload('ABC-12345');
+    await page.locator('#btn-open-label-modal').click();
+    await page.selectOption('#label-preset-select', 'amazon-fnsku-5160');
+    await expect(page.locator('#label-field-sku'), 'FNSKU field shows text the barcode does not encode').toHaveValue('ABC-12345');
+    await expect(page.locator('#label-field-title'), 'product name pre-filled with the format name').toHaveValue('');
+    await expect(page.locator('label[for="label-field-title"]')).toHaveText('Product name');
+    await page.waitForTimeout(800);
+    const png = await studio.download(page.locator('#btn-export-label-png'));
+    expect(await decodeFirst(png.buffer)).toBe('ABC-12345');
+    // Back to a general preset: the general captions return.
+    await page.selectOption('#label-preset-select', 'retail-225-125');
+    await expect(page.locator('label[for="label-field-sku"]')).toHaveText('SKU / Item Identifier');
+  });
 });
 
 // PRINT SIZE — downloads carry the barcode's real size (js/core/print-size.js; research and

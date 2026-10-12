@@ -4,20 +4,20 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.23';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.23';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.24';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.24';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.23';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.23';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.23';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.23';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.23';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.23';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.23';
+} from './generators/registry.js?v=3.24';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.24';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.24';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.24';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.24';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.24';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.24';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -26,7 +26,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.23';
+} from './export/label-maker.js?v=3.24';
 
 class V2StudioApp {
   constructor() {
@@ -1715,8 +1715,9 @@ class V2StudioApp {
         }
       }
       if (preset.id === 'amazon-fnsku-5160') {
-        if (this.dom.labelFieldSku && (!this.dom.labelFieldSku.value || !this.dom.labelFieldSku.value.startsWith('X00'))) {
-          this.dom.labelFieldSku.value = 'X003B7TEST';
+        // The FNSKU line is the barcode's own value (renderLabelPreview); the name must be the real product's.
+        if (this.dom.labelFieldTitle && this.dom.labelFieldTitle.value === this.currentGenerator.name) {
+          this.dom.labelFieldTitle.value = '';
         }
         if (this.dom.labelFieldFootnote) {
           this.dom.labelFieldFootnote.value = 'New';
@@ -1756,6 +1757,15 @@ class V2StudioApp {
       input?.addEventListener('input', () => this.renderLabelPreview());
       input?.addEventListener('change', () => this.renderLabelPreview());
     });
+    // Amazon layout: the FNSKU field edits the barcode's payload, so the printed text and the bars can't differ
+    // (Amazon counts a label that doesn't match the unit as "mislabeled"). Runs before the listeners above.
+    this.dom.labelFieldSku?.addEventListener('input', (e) => {
+      if (this.labelState.layoutId !== 'amazon-fba' || !this.dom.payloadInput) return;
+      const value = this.dom.labelFieldSku.value.trim();
+      if (value === this.dom.payloadInput.value.trim()) return;
+      this.dom.payloadInput.value = value;
+      this.dom.payloadInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }, { capture: true });
 
     // Export: Browser Thermal Print
     this.dom.btnPrintThermal?.addEventListener('click', () => {
@@ -1829,11 +1839,10 @@ class V2StudioApp {
     let targetLayout = isSquare2D ? 'side-by-side' : 'vertical-stack';
     if (this.labelState.presetId === 'amazon-fnsku-5160') {
       targetLayout = 'amazon-fba';
-      if (this.dom.labelFieldSku && (!this.dom.labelFieldSku.value || !this.dom.labelFieldSku.value.startsWith('X00'))) {
-        this.dom.labelFieldSku.value = (payload && payload.startsWith('X00')) ? payload : 'X003B7TEST';
-      }
-      if (this.dom.labelFieldTitle && !this.dom.labelFieldTitle.value) {
-        this.dom.labelFieldTitle.value = 'Amazon FBA Product Unit';
+      // FNSKU line = the barcode's payload (renderLabelPreview); product name starts empty so it isn't
+      // printed with a placeholder by mistake.
+      if (this.dom.labelFieldTitle) {
+        this.dom.labelFieldTitle.value = '';
       }
       if (this.dom.labelFieldFootnote) {
         this.dom.labelFieldFootnote.value = 'New';
@@ -1876,6 +1885,12 @@ class V2StudioApp {
       codeImg = this.dom.previewCanvas;
     }
 
+    // Amazon layout: the FNSKU line is the value the drawn barcode encodes, never separate text.
+    const isFba = this.labelState.layoutId === 'amazon-fba';
+    const payloadNow = (this.dom.payloadInput?.value || '').trim();
+    const codeText = codeImg === this.labelCodeCanvas && this.labelCodePayload != null ? this.labelCodePayload : payloadNow;
+    this.syncLabelFieldsForLayout(isFba, payloadNow);
+
     renderLabelToCanvas(this.dom.labelPreviewCanvas, {
       presetId: this.labelState.presetId,
       layoutId: this.labelState.layoutId,
@@ -1888,8 +1903,30 @@ class V2StudioApp {
       showCutline: Boolean(this.dom.labelToggleCutline?.checked),
       showCodeText: true,
       codeImage: codeImg,
+      codeText: isFba ? codeText : '',
       isSquare2D
     });
+  }
+
+  /** Field captions for the Amazon layout (product name, FNSKU, condition) vs the general ones. */
+  syncLabelFieldsForLayout(isFba, payload) {
+    if (!this.labelFieldDefaults) {
+      const caption = (el) => (el ? document.querySelector(`label[for="${el.id}"]`) : null);
+      this.labelFieldDefaults = [
+        [this.dom.labelFieldTitle, 'Product name', 'Product name (Amazon requires it)'],
+        [this.dom.labelFieldSku, 'FNSKU (also sets the barcode)', 'e.g. X00…'],
+        [this.dom.labelFieldFootnote, 'Condition', 'e.g. New']
+      ].filter(([el]) => el).map(([el, fbaCaption, fbaPlaceholder]) => ({
+        el, captionEl: caption(el), caption: caption(el)?.textContent, placeholder: el.placeholder, fbaCaption, fbaPlaceholder
+      }));
+    }
+    for (const f of this.labelFieldDefaults) {
+      if (f.captionEl) f.captionEl.textContent = isFba ? f.fbaCaption : f.caption;
+      f.el.placeholder = isFba ? f.fbaPlaceholder : f.placeholder;
+    }
+    if (isFba && this.dom.labelFieldSku && document.activeElement !== this.dom.labelFieldSku && this.dom.labelFieldSku.value !== payload) {
+      this.dom.labelFieldSku.value = payload;
+    }
   }
 
   /**
@@ -1917,11 +1954,12 @@ class V2StudioApp {
     try {
       await engine.render(gen, payload, options, { canvas });
     } catch {
-      if (this.labelCodeKey === key) this.labelCodeCanvas = null;
+      if (this.labelCodeKey === key) { this.labelCodeCanvas = null; this.labelCodePayload = null; }
       return;
     }
     if (this.labelCodeKey !== key) return; // a newer request superseded this one
     this.labelCodeCanvas = canvas;
+    this.labelCodePayload = payload;
     this.renderLabelPreview();
   }
 

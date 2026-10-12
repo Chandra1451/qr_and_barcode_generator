@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Amazon FBA Barcode Generator (FNSKU) - Avery 5160 & Thermal Roll</title>
-  <meta name="description" content="Make Amazon FBA FNSKU labels (Code 128) for free, on Avery 5160 sheets or thermal rolls, with title and condition. Check Seller Central for Amazon's latest label rules.">
+  <meta name="description" content="Make Amazon FBA FNSKU labels (Code 128) for free on Avery 5160 sheets or thermal rolls, with product name, condition and Amazon's white space. Updated for the 2026 rules.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/amazon-fba-fnsku-barcode-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -24,13 +24,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free Amazon FBA Barcode Generator (FNSKU) - Avery 5160 & Thermal Roll">
-  <meta property="og:description" content="Make Amazon FBA FNSKU labels (Code 128) for free, on Avery 5160 sheets or thermal rolls, with title and condition. Check Seller Central for Amazon's latest label rules.">
+  <meta property="og:description" content="Make Amazon FBA FNSKU labels (Code 128) for free on Avery 5160 sheets or thermal rolls, with product name, condition and Amazon's white space. Updated for the 2026 rules.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/amazon-fba-fnsku-barcode-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Amazon FBA Barcode Generator (FNSKU) - Avery 5160 & Thermal Roll">
-  <meta name="twitter:description" content="Make Amazon FBA FNSKU labels (Code 128) for free, on Avery 5160 sheets or thermal rolls, with title and condition. Check Seller Central for Amazon's latest label rules.">
+  <meta name="twitter:description" content="Make Amazon FBA FNSKU labels (Code 128) for free on Avery 5160 sheets or thermal rolls, with product name, condition and Amazon's white space. Updated for the 2026 rules.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -329,7 +329,7 @@
   "@type": "WebApplication",
   "name": "Amazon FBA / FNSKU Barcode Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/amazon-fba-fnsku-barcode-generator.html",
-  "description": "Make Amazon FBA FNSKU labels (Code 128) for free, on Avery 5160 sheets or thermal rolls, with title and condition. Check Seller Central for Amazon's latest label rules.",
+  "description": "Make Amazon FBA FNSKU labels (Code 128) for free on Avery 5160 sheets or thermal rolls, with product name, condition and Amazon's white space. Updated for the 2026 rules.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -347,34 +347,42 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What barcode symbology does Amazon require for FNSKU labels?",
+      "name": "What barcode does Amazon use for FNSKU labels?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Amazon FNSKU labels use Code 128 barcodes. UniversalCodeMaker draws them with exact bar widths and full quiet zones, which help them scan first time. Print at 100% scale and test-scan one label before labelling your stock."
+        "text": "Code 128, carrying just the FNSKU with no extra digits. Our generator encodes exactly the FNSKU you enter, and the text printed under the bars is always that same value. Print at 100% scale and test-scan one label before labelling your stock."
       }
     },
     {
       "@type": "Question",
-      "name": "What information must appear on an Amazon FBA item label?",
+      "name": "What has to be on an Amazon FBA item label?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Amazon packaging guidelines require four mandatory elements on every unit label: 1) The scannable Code 128 barcode, 2) The human-readable FNSKU alphanumeric string (e.g., X003B7TEST), 3) The product title (shortened if necessary), and 4) The condition of the item (e.g., \"New\" or \"Used - Like New\")."
+        "text": "Amazon lists the barcode with the FNSKU (or ASIN), the product name and the item condition, with white space of 0.25 inch on the sides and 0.125 inch at the top and bottom. Our Amazon layout prints all of these inside those margins."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I print FNSKU labels on Avery 5160 sheets or thermal roll printers?",
+      "name": "Can I print FNSKU labels on Avery 5160 sheets?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Our physical label studio includes dedicated presets for standard 30-up sheets (Avery 5160 / 1.0\" × 2.625\") and 1-click thermal roll printing for Rollo, MUNBYN, and Zebra thermal printers with zero margin clipping."
+        "text": "Yes, on a laser printer. Amazon supports 30-up 1\" × 2⅝\" US Letter sheets (the Avery 5160 size) and says not to use inkjet printers, because inkjet labels smear more easily. Thermal printers work too. Set printer scaling to 100% or \"Actual size\"."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I avoid Amazon inventory placement rejection fees?",
+      "name": "Do I still need FNSKU labels after the 2026 changes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ensure your barcodes maintain high print contrast (pure black on crisp white background), observe the minimum 0.25\" quiet zones, do not place transparent tape over the barcode, and completely cover any existing manufacturer UPC/EAN barcodes so only the FNSKU is visible to warehouse scanners."
+        "text": "In the US, since 31 March 2026, resellers (including authorised resellers) must put an Amazon barcode on every unit, even if it has a UPC. Brand owners with the Brand Representative role in Amazon Brand Registry can use the manufacturer barcode instead. Products with no manufacturer barcode always need an Amazon barcode. On Amazon.in, units are labelled with FNSKUs by default. Check Seller Central for your marketplace."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will Amazon put the labels on for me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not in the US: Amazon ended its prep and item-labelling service on 1 January 2026, so sellers apply their own labels. Units that arrive without a required label are marked as defective. Amazon India's help still describes an FBA Label Service."
       }
     }
   ]
@@ -452,7 +460,7 @@
         Retail & POS Standard
       </div>
       <h1 class="hero-title">Free Amazon FBA FNSKU Barcode & Label Generator</h1>
-      <p class="hero-lead">Create Amazon Fulfillment Network Stock Keeping Unit (FNSKU) item labels for Seller Central inventory. Formatted in high-density Code 128 with instant 30-up Avery sheet and thermal roll export.</p>
+      <p class="hero-lead">Make FNSKU item labels for Fulfillment by Amazon: a Code 128 barcode with its FNSKU, your product name and the condition, laid out with the white space Amazon asks for, on Avery 5160 sheets or thermal rolls.</p>
       
       <a href="../index.html?symbology=code-128&preset=amazon-fnsku-5160&label=1" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -473,27 +481,32 @@
           
     <div class="spec-row">
       <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">Amazon Seller Central FNSKU / Code 128 Subset A/B</dd>
+      <dd class="spec-val">Code 128 carrying your FNSKU (Amazon barcodes start with an X)</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Payload Format</dt>
-      <dd class="spec-val">X00-prefix alphanumeric identifier (typically 10 characters)</dd>
+      <dd class="spec-val">The FNSKU shown for the product in Seller Central</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Label Dimensions</dt>
-      <dd class="spec-val">1.0" × 2.625" (Avery 5160 / 30-up) or 2.25" × 1.25" Direct Thermal Roll</dd>
+      <dd class="spec-val">1" × 2⅝" (Avery 5160, 30 per US Letter sheet, or a thermal roll of that size). Amazon accepts 1" × 2" to 2" × 3".</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Mandatory Elements</dt>
-      <dd class="spec-val">Scannable Barcode, FNSKU Code Text, Product Title (max 2 lines), Condition Note (e.g. "New")</dd>
+      <dt class="spec-key">Label Contents</dt>
+      <dd class="spec-val">FNSKU barcode and its text, product name, condition (e.g. "New")</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Quiet Zones</dt>
-      <dd class="spec-val">Minimum 0.25" (6.35mm) side margins and 0.125" top/bottom margin</dd>
+      <dt class="spec-key">White Space</dt>
+      <dd class="spec-val">0.25" (6.35 mm) on the sides and 0.125" (3.18 mm) at the top and bottom, as Amazon requires; built into our Amazon layout</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Printer</dt>
+      <dd class="spec-val">Thermal or laser, 300 dpi or more. Amazon says not to use inkjet printers.</dd>
     </div>
   
         </dl>
@@ -508,22 +521,22 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Amazon FBA private label product prep and fulfillment compliance</span>
+      <span>Labelling units for Fulfillment by Amazon (FBA) shipments</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Avery 5160 / 30-up laser and inkjet label sheets for bulk batch preparation</span>
+      <span>Avery 5160 / 30-up sheets on a laser printer (Amazon says not inkjet)</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Direct thermal roll printing (MUNBYN, Rollo, Zebra) for fast on-demand tagging</span>
+      <span>Thermal label printers (MUNBYN, Rollo, Zebra) for one label at a time</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Covering existing manufacturer UPC/EAN barcodes to prevent co-mingled inventory errors</span>
+      <span>US resellers: an FNSKU label on every unit since 31 March 2026, covering the manufacturer barcode</span>
     </li>
   
         </ul>
@@ -576,9 +589,9 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Built to Amazon's Label Format</h4>
+        <h4>Amazon's White Space Built In</h4>
       </div>
-      <p>Code 128 FNSKU with exact bar widths and quiet zones, plus title and condition, as Amazon's label instructions describe. Check Seller Central for the latest rules.</p>
+      <p>The Amazon layout keeps 0.25" clear on the sides and 0.125" at the top and bottom, the margins Amazon asks for around the barcode and text.</p>
     </div>
   
     <div class="benefit-card">
@@ -586,15 +599,15 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         <h4>Avery 5160 & Thermal Roll Ready</h4>
       </div>
-      <p>Print 30-up letter sheets on standard office printers or stream continuous labels to MUNBYN, Rollo, and Zebra thermal printers.</p>
+      <p>Print 30-up US Letter sheets on a laser printer, or single labels on MUNBYN, Rollo and Zebra thermal printers.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Automatic FNSKU Layout Composition</h4>
+        <h4>Text Always Matches the Bars</h4>
       </div>
-      <p>Instantly composes scannable barcode, human-readable code text, product title, and condition indicator into standard 1.0" × 2.625" dimensions.</p>
+      <p>The FNSKU printed under the barcode is the value the barcode encodes, so a typo can't leave the text and the bars saying different things.</p>
     </div>
   
       </div>
@@ -618,17 +631,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Should I use manufacturer UPC or Amazon FNSKU barcode?</span>
+        <span>Manufacturer barcode or Amazon barcode (FNSKU)?</span>
       </h3>
-      <p>Amazon requires FNSKUs (starting with X00) for products that are private-label or not eligible for commingling. Using FNSKUs ensures your inventory is tracked exclusively to your seller account and never mixed with competing sellers.</p>
+      <p>US, since 31 March 2026: if you are the brand owner with the Brand Representative role in Amazon Brand Registry, and the product has one scannable UPC, EAN or ISBN matching one ASIN, you can send it with the manufacturer barcode. Resellers must use Amazon barcodes. Products without a manufacturer barcode, or with a GTIN exemption, need Amazon barcodes. Amazon.in: Amazon barcodes by default; only books can go stickerless.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Which label printer type is best for FBA shipments?</span>
+        <span>Which printer for FBA labels?</span>
       </h3>
-      <p>Direct thermal roll printers (e.g. Rollo, Zebra, MUNBYN) are fastest for on-demand tagging because they require no ink or toner. Standard laser printers using Avery 5160 30-up sheets are ideal for high-volume batch prep.</p>
+      <p>A thermal printer (Amazon's own fulfilment centres use direct thermal Zebra GX430t printers) or a laser printer with Avery 5160 sheets. Not inkjet: Amazon says not to use it. Either way, 300 dpi or more.</p>
     </div>
   
       </div>
@@ -643,28 +656,33 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Legal &amp; Compliance Guide
         </span>
-        <h3>Amazon FBA Shipment Compliance & Policy Guidelines</h3>
+        <h3>Amazon's Label Rules (Seller Central help, checked 12 Oct 2026)</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Each unit must have a single scannable barcode. Any existing manufacturer UPC, EAN, or ISBN barcodes must be fully covered by the FNSKU label.</span>
+      <span>Cover every other barcode on the unit (UPC, EAN, ISBN) with the FNSKU label, except serial-number and Transparency codes.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Labels must measure between 1.0" × 2.0" and 2.0" × 3.0". UniversalCodeMaker uses the standard 1.0" × 2.625" template (Avery 5160 / 30-up).</span>
+      <span>Labels must be 1" × 2" to 2" × 3", black on white, non-reflective, with removable adhesive. Our template is 1" × 2⅝" (Avery 5160 size).</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Do not place transparent tape, shrink-wrap seams, or shipping labels over the FNSKU barcode, as reflective glare causes scanner misreads.</span>
+      <span>Don't put the label on a curve or corner, keep 0.25" between the label and the edge of the package, and make sure it still scans after poly-bagging or other prep.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>FNSKU barcodes must strictly use Code 128 symbology with pure black print on white non-reflective label paper.</span>
+      <span>Use a thermal or laser printer at 300 dpi or more, never inkjet. Labels must stay scannable for 24 months.</span>
+    </li>
+  
+    <li>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span>Amazon India adds: don't tape over labels, and don't use QR codes on them.</span>
     </li>
   
       </ul>
@@ -683,20 +701,28 @@
       </div>
       <div class="authority-links-grid">
         
-    <a href="https://sellercentral.amazon.com/help/hub/reference/external/200141490" target="_blank" rel="noopener noreferrer" class="authority-link-item">
+    <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200141490" target="_blank" rel="noopener noreferrer" class="authority-link-item">
       <div class="authority-link-title">
-        <span>Amazon Seller Central: FBA Product Barcode Requirements</span>
+        <span>Amazon (US): Use Amazon barcodes for FBA</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </div>
-      <div class="authority-link-desc">Official Amazon documentation for FNSKU label specifications and packaging standards.</div>
+      <div class="authority-link-desc">Label size, contents, placement, printer and label paper rules.</div>
     </a>
   
-    <a href="https://www.gs1us.org/" target="_blank" rel="noopener noreferrer" class="authority-link-item">
+    <a href="https://sellercentral.amazon.com/help/hub/reference/external/GEFKUGES6NSE7CBP" target="_blank" rel="noopener noreferrer" class="authority-link-item">
       <div class="authority-link-title">
-        <span>GS1 US: Code 128 Guidelines</span>
+        <span>Amazon (US): FBA barcode choice and labeling FAQ</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </div>
-      <div class="authority-link-desc">General specifications for high-density alphanumeric linear barcodes.</div>
+      <div class="authority-link-desc">The 31 March 2026 change: brand owners and resellers.</div>
+    </a>
+  
+    <a href="https://sellercentral.amazon.in/help/hub/reference/external/G201100910" target="_blank" rel="noopener noreferrer" class="authority-link-item">
+      <div class="authority-link-title">
+        <span>Amazon (India): FBA product barcode requirements</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </div>
+      <div class="authority-link-desc">Labelling rules for Amazon.in fulfilment centres.</div>
     </a>
   
       </div>
@@ -713,41 +739,51 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>What barcode symbology does Amazon require for FNSKU labels?</span>
+        <span>What barcode does Amazon use for FNSKU labels?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Amazon FNSKU labels use Code 128 barcodes. UniversalCodeMaker draws them with exact bar widths and full quiet zones, which help them scan first time. Print at 100% scale and test-scan one label before labelling your stock.</p>
+        <p>Code 128, carrying just the FNSKU with no extra digits. Our generator encodes exactly the FNSKU you enter, and the text printed under the bars is always that same value. Print at 100% scale and test-scan one label before labelling your stock.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>What information must appear on an Amazon FBA item label?</span>
+        <span>What has to be on an Amazon FBA item label?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Amazon packaging guidelines require four mandatory elements on every unit label: 1) The scannable Code 128 barcode, 2) The human-readable FNSKU alphanumeric string (e.g., X003B7TEST), 3) The product title (shortened if necessary), and 4) The condition of the item (e.g., "New" or "Used - Like New").</p>
+        <p>Amazon lists the barcode with the FNSKU (or ASIN), the product name and the item condition, with white space of 0.25 inch on the sides and 0.125 inch at the top and bottom. Our Amazon layout prints all of these inside those margins.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Can I print FNSKU labels on Avery 5160 sheets or thermal roll printers?</span>
+        <span>Can I print FNSKU labels on Avery 5160 sheets?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. Our physical label studio includes dedicated presets for standard 30-up sheets (Avery 5160 / 1.0" × 2.625") and 1-click thermal roll printing for Rollo, MUNBYN, and Zebra thermal printers with zero margin clipping.</p>
+        <p>Yes, on a laser printer. Amazon supports 30-up 1" × 2⅝" US Letter sheets (the Avery 5160 size) and says not to use inkjet printers, because inkjet labels smear more easily. Thermal printers work too. Set printer scaling to 100% or "Actual size".</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>How do I avoid Amazon inventory placement rejection fees?</span>
+        <span>Do I still need FNSKU labels after the 2026 changes?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Ensure your barcodes maintain high print contrast (pure black on crisp white background), observe the minimum 0.25" quiet zones, do not place transparent tape over the barcode, and completely cover any existing manufacturer UPC/EAN barcodes so only the FNSKU is visible to warehouse scanners.</p>
+        <p>In the US, since 31 March 2026, resellers (including authorised resellers) must put an Amazon barcode on every unit, even if it has a UPC. Brand owners with the Brand Representative role in Amazon Brand Registry can use the manufacturer barcode instead. Products with no manufacturer barcode always need an Amazon barcode. On Amazon.in, units are labelled with FNSKUs by default. Check Seller Central for your marketplace.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Will Amazon put the labels on for me?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Not in the US: Amazon ended its prep and item-labelling service on 1 January 2026, so sellers apply their own labels. Units that arrive without a required label are marked as defective. Amazon India's help still describes an FBA Label Service.</p>
       </div>
     </details>
   
@@ -946,7 +982,7 @@
           <li><a href="../contact.html">Contact Us</a></li>
         </ul>
         <div class="v2-trademark-notice">
-          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. Amazon, Amazon FBA, and FNSKU are registered trademarks of Amazon.com, Inc. or its affiliates. Google and Google Reviews are trademarks of Google LLC. WhatsApp is a registered trademark of Meta Platforms, Inc. UPI is a registered trademark of NPCI. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. Amazon is a trademark of Amazon.com, Inc. or its affiliates. Google and Google Reviews are trademarks of Google LLC. WhatsApp is a registered trademark of Meta Platforms, Inc. UPI is a registered trademark of NPCI. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
         </div>
       </div>
     </div>

@@ -519,38 +519,43 @@ const SEO_PAGES = [
     queryParam: 'symbology=code-128&preset=amazon-fnsku-5160&label=1',
     category: 'Retail & POS',
     metaTitle: 'Free Amazon FBA Barcode Generator (FNSKU) - Avery 5160 & Thermal Roll',
-    metaDescription: 'Make Amazon FBA FNSKU labels (Code 128) for free, on Avery 5160 sheets or thermal rolls, with title and condition. Check Seller Central for Amazon\'s latest label rules.',
+    metaDescription: 'Make Amazon FBA FNSKU labels (Code 128) for free on Avery 5160 sheets or thermal rolls, with product name, condition and Amazon\'s white space. Updated for the 2026 rules.',
     h1: 'Free Amazon FBA FNSKU Barcode & Label Generator',
-    lead: 'Create Amazon Fulfillment Network Stock Keeping Unit (FNSKU) item labels for Seller Central inventory. Formatted in high-density Code 128 with instant 30-up Avery sheet and thermal roll export.',
+    lead: 'Make FNSKU item labels for Fulfillment by Amazon: a Code 128 barcode with its FNSKU, your product name and the condition, laid out with the white space Amazon asks for, on Avery 5160 sheets or thermal rolls.',
     technicalSpec: {
-      standard: 'Amazon Seller Central FNSKU / Code 128 Subset A/B',
-      payloadFormat: 'X00-prefix alphanumeric identifier (typically 10 characters)',
-      labelDimensions: '1.0" × 2.625" (Avery 5160 / 30-up) or 2.25" × 1.25" Direct Thermal Roll',
-      mandatoryElements: 'Scannable Barcode, FNSKU Code Text, Product Title (max 2 lines), Condition Note (e.g. "New")',
-      quietZones: 'Minimum 0.25" (6.35mm) side margins and 0.125" top/bottom margin'
+      standard: 'Code 128 carrying your FNSKU (Amazon barcodes start with an X)',
+      payloadFormat: 'The FNSKU shown for the product in Seller Central',
+      labelDimensions: '1" × 2⅝" (Avery 5160, 30 per US Letter sheet, or a thermal roll of that size). Amazon accepts 1" × 2" to 2" × 3".',
+      labelContents: 'FNSKU barcode and its text, product name, condition (e.g. "New")',
+      whiteSpace: '0.25" (6.35 mm) on the sides and 0.125" (3.18 mm) at the top and bottom, as Amazon requires; built into our Amazon layout',
+      printer: 'Thermal or laser, 300 dpi or more. Amazon says not to use inkjet printers.'
     },
     useCases: [
-      'Amazon FBA private label product prep and fulfillment compliance',
-      'Avery 5160 / 30-up laser and inkjet label sheets for bulk batch preparation',
-      'Direct thermal roll printing (MUNBYN, Rollo, Zebra) for fast on-demand tagging',
-      'Covering existing manufacturer UPC/EAN barcodes to prevent co-mingled inventory errors'
+      'Labelling units for Fulfillment by Amazon (FBA) shipments',
+      'Avery 5160 / 30-up sheets on a laser printer (Amazon says not inkjet)',
+      'Thermal label printers (MUNBYN, Rollo, Zebra) for one label at a time',
+      'US resellers: an FNSKU label on every unit since 31 March 2026, covering the manufacturer barcode'
     ],
     faqs: [
       {
-        q: 'What barcode symbology does Amazon require for FNSKU labels?',
-        a: 'Amazon FNSKU labels use Code 128 barcodes. UniversalCodeMaker draws them with exact bar widths and full quiet zones, which help them scan first time. Print at 100% scale and test-scan one label before labelling your stock.'
+        q: 'What barcode does Amazon use for FNSKU labels?',
+        a: 'Code 128, carrying just the FNSKU with no extra digits. Our generator encodes exactly the FNSKU you enter, and the text printed under the bars is always that same value. Print at 100% scale and test-scan one label before labelling your stock.'
       },
       {
-        q: 'What information must appear on an Amazon FBA item label?',
-        a: 'Amazon packaging guidelines require four mandatory elements on every unit label: 1) The scannable Code 128 barcode, 2) The human-readable FNSKU alphanumeric string (e.g., X003B7TEST), 3) The product title (shortened if necessary), and 4) The condition of the item (e.g., "New" or "Used - Like New").'
+        q: 'What has to be on an Amazon FBA item label?',
+        a: 'Amazon lists the barcode with the FNSKU (or ASIN), the product name and the item condition, with white space of 0.25 inch on the sides and 0.125 inch at the top and bottom. Our Amazon layout prints all of these inside those margins.'
       },
       {
-        q: 'Can I print FNSKU labels on Avery 5160 sheets or thermal roll printers?',
-        a: 'Yes. Our physical label studio includes dedicated presets for standard 30-up sheets (Avery 5160 / 1.0" × 2.625") and 1-click thermal roll printing for Rollo, MUNBYN, and Zebra thermal printers with zero margin clipping.'
+        q: 'Can I print FNSKU labels on Avery 5160 sheets?',
+        a: 'Yes, on a laser printer. Amazon supports 30-up 1" × 2⅝" US Letter sheets (the Avery 5160 size) and says not to use inkjet printers, because inkjet labels smear more easily. Thermal printers work too. Set printer scaling to 100% or "Actual size".'
       },
       {
-        q: 'How do I avoid Amazon inventory placement rejection fees?',
-        a: 'Ensure your barcodes maintain high print contrast (pure black on crisp white background), observe the minimum 0.25" quiet zones, do not place transparent tape over the barcode, and completely cover any existing manufacturer UPC/EAN barcodes so only the FNSKU is visible to warehouse scanners.'
+        q: 'Do I still need FNSKU labels after the 2026 changes?',
+        a: 'In the US, since 31 March 2026, resellers (including authorised resellers) must put an Amazon barcode on every unit, even if it has a UPC. Brand owners with the Brand Representative role in Amazon Brand Registry can use the manufacturer barcode instead. Products with no manufacturer barcode always need an Amazon barcode. On Amazon.in, units are labelled with FNSKUs by default. Check Seller Central for your marketplace.'
+      },
+      {
+        q: 'Will Amazon put the labels on for me?',
+        a: 'Not in the US: Amazon ended its prep and item-labelling service on 1 January 2026, so sellers apply their own labels. Units that arrive without a required label are marked as defective. Amazon India\'s help still describes an FBA Label Service.'
       }
     ]
   },
@@ -1654,47 +1659,53 @@ const ENRICHMENTS = {
   "amazon-fba-fnsku-barcode-generator": {
     "benefits": [
       {
-        "title": "Built to Amazon's Label Format",
-        "desc": "Code 128 FNSKU with exact bar widths and quiet zones, plus title and condition, as Amazon's label instructions describe. Check Seller Central for the latest rules."
+        "title": "Amazon's White Space Built In",
+        "desc": "The Amazon layout keeps 0.25\" clear on the sides and 0.125\" at the top and bottom, the margins Amazon asks for around the barcode and text."
       },
       {
         "title": "Avery 5160 & Thermal Roll Ready",
-        "desc": "Print 30-up letter sheets on standard office printers or stream continuous labels to MUNBYN, Rollo, and Zebra thermal printers."
+        "desc": "Print 30-up US Letter sheets on a laser printer, or single labels on MUNBYN, Rollo and Zebra thermal printers."
       },
       {
-        "title": "Automatic FNSKU Layout Composition",
-        "desc": "Instantly composes scannable barcode, human-readable code text, product title, and condition indicator into standard 1.0\" × 2.625\" dimensions."
+        "title": "Text Always Matches the Bars",
+        "desc": "The FNSKU printed under the barcode is the value the barcode encodes, so a typo can't leave the text and the bars saying different things."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Should I use manufacturer UPC or Amazon FNSKU barcode?",
-        "a": "Amazon requires FNSKUs (starting with X00) for products that are private-label or not eligible for commingling. Using FNSKUs ensures your inventory is tracked exclusively to your seller account and never mixed with competing sellers."
+        "q": "Manufacturer barcode or Amazon barcode (FNSKU)?",
+        "a": "US, since 31 March 2026: if you are the brand owner with the Brand Representative role in Amazon Brand Registry, and the product has one scannable UPC, EAN or ISBN matching one ASIN, you can send it with the manufacturer barcode. Resellers must use Amazon barcodes. Products without a manufacturer barcode, or with a GTIN exemption, need Amazon barcodes. Amazon.in: Amazon barcodes by default; only books can go stickerless."
       },
       {
-        "q": "Which label printer type is best for FBA shipments?",
-        "a": "Direct thermal roll printers (e.g. Rollo, Zebra, MUNBYN) are fastest for on-demand tagging because they require no ink or toner. Standard laser printers using Avery 5160 30-up sheets are ideal for high-volume batch prep."
+        "q": "Which printer for FBA labels?",
+        "a": "A thermal printer (Amazon's own fulfilment centres use direct thermal Zebra GX430t printers) or a laser printer with Avery 5160 sheets. Not inkjet: Amazon says not to use it. Either way, 300 dpi or more."
       }
     ],
     "legalCaution": {
-      "title": "Amazon FBA Shipment Compliance & Policy Guidelines",
+      "title": "Amazon's Label Rules (Seller Central help, checked 12 Oct 2026)",
       "points": [
-        "Each unit must have a single scannable barcode. Any existing manufacturer UPC, EAN, or ISBN barcodes must be fully covered by the FNSKU label.",
-        "Labels must measure between 1.0\" × 2.0\" and 2.0\" × 3.0\". UniversalCodeMaker uses the standard 1.0\" × 2.625\" template (Avery 5160 / 30-up).",
-        "Do not place transparent tape, shrink-wrap seams, or shipping labels over the FNSKU barcode, as reflective glare causes scanner misreads.",
-        "FNSKU barcodes must strictly use Code 128 symbology with pure black print on white non-reflective label paper."
+        "Cover every other barcode on the unit (UPC, EAN, ISBN) with the FNSKU label, except serial-number and Transparency codes.",
+        "Labels must be 1\" × 2\" to 2\" × 3\", black on white, non-reflective, with removable adhesive. Our template is 1\" × 2⅝\" (Avery 5160 size).",
+        "Don't put the label on a curve or corner, keep 0.25\" between the label and the edge of the package, and make sure it still scans after poly-bagging or other prep.",
+        "Use a thermal or laser printer at 300 dpi or more, never inkjet. Labels must stay scannable for 24 months.",
+        "Amazon India adds: don't tape over labels, and don't use QR codes on them."
       ]
     },
     "authorityLinks": [
       {
-        "name": "Amazon Seller Central: FBA Product Barcode Requirements",
-        "desc": "Official Amazon documentation for FNSKU label specifications and packaging standards.",
-        "url": "https://sellercentral.amazon.com/help/hub/reference/external/200141490"
+        "name": "Amazon (US): Use Amazon barcodes for FBA",
+        "desc": "Label size, contents, placement, printer and label paper rules.",
+        "url": "https://sellercentral.amazon.com/help/hub/reference/external/G200141490"
       },
       {
-        "name": "GS1 US: Code 128 Guidelines",
-        "desc": "General specifications for high-density alphanumeric linear barcodes.",
-        "url": "https://www.gs1us.org/"
+        "name": "Amazon (US): FBA barcode choice and labeling FAQ",
+        "desc": "The 31 March 2026 change: brand owners and resellers.",
+        "url": "https://sellercentral.amazon.com/help/hub/reference/external/GEFKUGES6NSE7CBP"
+      },
+      {
+        "name": "Amazon (India): FBA product barcode requirements",
+        "desc": "Labelling rules for Amazon.in fulfilment centres.",
+        "url": "https://sellercentral.amazon.in/help/hub/reference/external/G201100910"
       }
     ]
   },
@@ -3087,7 +3098,7 @@ const SITE_FOOTER_HTML = `  <!-- Site Footer -->
           <li><a href="../contact.html">Contact Us</a></li>
         </ul>
         <div class="v2-trademark-notice">
-          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. Amazon, Amazon FBA, and FNSKU are registered trademarks of Amazon.com, Inc. or its affiliates. Google and Google Reviews are trademarks of Google LLC. WhatsApp is a registered trademark of Meta Platforms, Inc. UPI is a registered trademark of NPCI. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. Amazon is a trademark of Amazon.com, Inc. or its affiliates. Google and Google Reviews are trademarks of Google LLC. WhatsApp is a registered trademark of Meta Platforms, Inc. UPI is a registered trademark of NPCI. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
         </div>
       </div>
     </div>
