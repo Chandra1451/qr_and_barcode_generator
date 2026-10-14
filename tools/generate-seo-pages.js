@@ -2155,7 +2155,7 @@ const GUIDES = {
   "upc-a-barcode-generator": {
     "howTo": [
       "Get your 12-digit product number (GTIN-12) from <strong>GS1 US</strong> (or GS1 Canada). Depending on how many products you have, you can license a company prefix or, in the US, buy single GTINs. Our guide <a href=\"./how-to-get-a-barcode-for-your-product.html\">How to get a barcode for your product</a> walks through it.",
-      "Open the studio with <strong>UPC-A</strong> selected (the button above does this) and type the first <strong>11 digits</strong>. The 12th check digit is calculated for you. If you enter all 12, the studio checks the last one.",
+      "Open the studio with <strong>UPC-A</strong> selected (the button above does this) and type the first <strong>11 digits</strong>. The 12th check digit is calculated for you. If you enter all 12, the studio checks the last one. Got a 13-digit number instead? That's an EAN-13: see <a href=\"./upc-vs-ean-13-barcode.html\">UPC vs EAN-13</a>.",
       "Keep the human-readable digits under the bars switched on, as retail packaging needs them.",
       "Scan the preview with the built-in <a href=\"../barcode-scanner.html\">barcode scanner</a> or a phone to confirm it reads back the right 12 digits.",
       "Download <strong>SVG</strong> for packaging artwork, or print label sheets with the Avery label maker."
@@ -2267,7 +2267,7 @@ const GUIDES = {
   "ean-13-barcode-generator": {
     "howTo": [
       "Get your product number (GTIN-13) from <strong>GS1</strong>, or from your retailer if it assigns numbers. Don't make up numbers for products sold in shops or on marketplaces. Our guide <a href=\"./how-to-get-a-barcode-for-your-product.html\">How to get a barcode for your product</a> explains how.",
-      "Open the studio with <strong>EAN-13</strong> selected (the button above does this) and type the first <strong>12 digits</strong>. The 13th check digit is calculated for you. If you enter all 13, the studio checks the last one.",
+      "Open the studio with <strong>EAN-13</strong> selected (the button above does this) and type the first <strong>12 digits</strong>. The 13th check digit is calculated for you. If you enter all 13, the studio checks the last one. Got a 12-digit number instead? That's a UPC-A: see <a href=\"./upc-vs-ean-13-barcode.html\">UPC vs EAN-13</a>.",
       "Keep the human-readable digits under the bars switched on, as retail packaging needs them.",
       "Scan the preview with the built-in <a href=\"../barcode-scanner.html\">barcode scanner</a> or a phone to confirm it reads back the right 13 digits.",
       "Download <strong>SVG</strong> for packaging artwork (vector, so bars stay exact at any size), or print sheets with the Avery label maker."
@@ -2348,7 +2348,7 @@ const ARTICLES = [
             </tbody>
           </table>
         </div>
-        <p>Put a 0 in front of a 12-digit UPC-A number and you have the same product's 13-digit number. Checkout scanners around the world read both barcodes, so a UPC-A product can be sold in Europe and an EAN-13 product in the US. Some US retailers still ask suppliers for UPC-A, so check what your buyer wants.</p>`
+        <p>Put a 0 in front of a 12-digit UPC-A number and you have the same product's 13-digit number. Checkout scanners around the world read both barcodes, so a UPC-A product can be sold in Europe and an EAN-13 product in the US. Some US retailers still ask suppliers for UPC-A, so check what your buyer wants. More: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: which barcode do you need?</a></p>`
       },
       {
         id: 'do-you-need-gs1',
@@ -2633,6 +2633,131 @@ const ARTICLES = [
       {
         q: 'Do I need a barcode to sell on Amazon India?',
         a: 'To add a product that isn\'t already on Amazon.in, yes, or a GTIN exemption. To sell something already listed, no. For FBA, each unit needs an FNSKU label unless it\'s a book in the stickerless programme.'
+      }
+    ]
+  },
+  // Guide "UPC vs EAN-13" (owner choice 2026-10-14). Facts and sources: projects/universalcodemaker/50_content/guide-upc-vs-ean.md.
+  {
+    slug: 'upc-vs-ean-13-barcode',
+    name: 'UPC vs EAN-13: Which Barcode Do You Need?',
+    badge: 'Seller Guide',
+    queryParam: 'symbology=ean-13',
+    metaTitle: 'UPC vs EAN-13: Which Barcode Do You Need?',
+    metaDescription: 'UPC-A has 12 digits, EAN-13 has 13. How they differ, why both scan in the US and worldwide, how to convert between them, and which one to get.',
+    h1: 'UPC vs EAN-13: Which Barcode Do You Need?',
+    lead: 'UPC-A and EAN-13 are the two barcodes on retail products. They carry the same kind of number, scan at checkouts around the world, and are the same size. The difference is mostly where your number comes from.',
+    datePublished: '2026-10-14',
+    ctas: [
+      { href: '../index.html?symbology=ean-13', label: 'Make an EAN-13 barcode' },
+      { href: '../index.html?symbology=upc-a', label: 'Make a UPC-A barcode' }
+    ],
+    sections: [
+      {
+        id: 'short-answer',
+        h2: 'The short answer',
+        html: `
+        <ul>
+          <li><strong>UPC-A</strong> carries a 12-digit product number (a GTIN-12). It's the usual barcode in the US and Canada.</li>
+          <li><strong>EAN-13</strong> carries a 13-digit product number (a GTIN-13). It's the usual barcode almost everywhere else.</li>
+          <li><strong>Both scan worldwide.</strong> North American retailers were asked to read EAN-13 from 1 January 2005, and GS1 US says your EAN code works in the US and your UPC works in Europe.</li>
+          <li><strong>Use the one your number is.</strong> A 12-digit number goes in UPC-A, a 13-digit number in EAN-13. You don't need both.</li>
+        </ul>`
+      },
+      {
+        id: 'side-by-side',
+        h2: 'Side by side',
+        html: `
+        <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead><tr><th></th><th>UPC-A</th><th>EAN-13</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Digits</th><td>12 (GTIN-12)</td><td>13 (GTIN-13)</td></tr>
+              <tr><th scope="row">Number parts</th><td>Company prefix + item number (11 digits) + check digit</td><td>Company prefix + item number (12 digits) + check digit</td></tr>
+              <tr><th scope="row">Usual in</th><td>US and Canada</td><td>Most countries outside the US and Canada</td></tr>
+              <tr><th scope="row">Digits printed</th><td>Check digit to the right of the bars</td><td>First digit to the left of the bars, check digit under them</td></tr>
+              <tr><th scope="row">Blank margin (quiet zone)</th><td>9 bar-widths each side</td><td>11 bar-widths left, 7 right</td></tr>
+              <tr><th scope="row">Size at 100%</th><td colspan="2">Same for both: 37.29 mm (1.468 in) wide including margins, bars 22.85 mm (0.900 in) high</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Sizes and margins are from the GS1 General Specifications (Release 26.0, January 2026). Print sizes, smallest and largest, are in <a href="./how-to-get-a-barcode-for-your-product.html#size">How to get a barcode for your product</a>.</p>`
+      },
+      {
+        id: 'ean-in-the-us',
+        h2: 'Can I use EAN-13 in the US, or UPC-A outside it?',
+        html: `
+        <p>Yes, in both directions. Before 2005, products sold in the US and Canada had to carry a 12-digit UPC, so foreign makers relabelled their goods. GS1 US then set <strong>1 January 2005</strong> (the "Sunrise" date) as the day retailers and their partners that scan UPCs should handle 13-digit EAN-13 codes too.</p>
+        <ul>
+          <li>GS1 Greece: "Since that date most retailers have been able to handle products marked with EAN-13 symbols."</li>
+          <li>GS1 US: "your EAN code works in the U.S. and … your UPC is functional in Europe."</li>
+          <li>Amazon accepts UPC, EAN, JAN and ISBN product numbers (<a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Do I need a barcode to sell on Amazon?</a>).</li>
+        </ul>
+        <p>One caution from GS1 Greece: if you're exporting to the US or Canada, check with your buyer. If a retailer insists on a 12-digit UPC, your GS1 office can arrange a UPC company prefix.</p>`
+      },
+      {
+        id: 'converting',
+        h2: 'Converting between UPC-A and EAN-13',
+        html: `
+        <ul>
+          <li><strong>UPC-A to EAN-13:</strong> put a 0 in front. The check digit stays the same, because a leading 0 adds nothing to the check-digit sum. Example: UPC-A <strong>036000291452</strong> becomes <strong>0036000291452</strong>.</li>
+          <li><strong>EAN-13 to UPC-A:</strong> only possible when the EAN-13 starts with 0; drop that 0. GS1 US says a company prefix used to create a 13-digit number begins with 1–9, so a "real" EAN-13 has no UPC-A form.</li>
+          <li><strong>Databases:</strong> GS1 US's guide to GTINs gives the standard database format as 14 digits, padded with zeros on the left (for example 00614141000005), whatever the length of the number.</li>
+        </ul>
+        <p>Our <a href="./ean-13-barcode-generator.html">EAN-13 generator</a> takes 12 or 13 digits and the <a href="./upc-a-barcode-generator.html">UPC-A generator</a> takes 11 or 12: give one digit fewer and the check digit is calculated for you; give the full number and it's checked.</p>`
+      },
+      {
+        id: 'which-to-get',
+        h2: 'Which one should I get?',
+        html: `
+        <ul>
+          <li><strong>In the US:</strong> GS1 US sells both. Its single GTIN and company prefixes give you UPC numbers, and it also sells a "GS1 Company Prefix – EAN" for 13-digit numbers. UPC is the usual choice for US retail.</li>
+          <li><strong>Outside the US and Canada:</strong> your national GS1 office issues 13-digit numbers, so you use EAN-13. GS1 Greece notes that since 2005 UPC prefixes have rarely been issued to companies outside the US and Canada. In India, GS1 India issues numbers starting with 890.</li>
+          <li><strong>Selling into the US from abroad:</strong> your EAN-13 normally works; ask your buyer if they require a UPC.</li>
+        </ul>
+        <p>How to get the numbers from GS1, and what they cost: <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a>.</p>`
+      },
+      {
+        id: 'related-codes',
+        h2: 'Smaller and related barcodes',
+        html: `
+        <ul>
+          <li><strong>EAN-8 and UPC-E</strong>: short versions for very small packs (8 digits). Our generator doesn't make these.</li>
+          <li><strong>ISBN</strong>: books use an EAN-13 whose number starts with 978 or 979, from your national ISBN agency rather than GS1. <a href="./isbn-book-barcode-generator.html">ISBN barcode generator</a>.</li>
+          <li><strong>ITF-14</strong>: outer cartons and cases use a 14-digit number in an ITF-14 barcode, not EAN-13 or UPC-A. <a href="./itf-14-barcode-generator.html">ITF-14 generator</a>.</li>
+        </ul>`
+      },
+      {
+        id: 'mistakes',
+        h2: 'Common mistakes',
+        html: `
+        <ul>
+          <li><strong>Buying cheap numbers from resellers.</strong> GS1 US warns that a number "associated with another company" in the GS1 database risks rejection, and Amazon removes listings whose UPCs don't match GS1's records.</li>
+          <li><strong>Mixing up GTIN and SKU.</strong> A GTIN is issued by GS1 and identifies the product everywhere. A SKU is your own internal code.</li>
+          <li><strong>Turning an EAN-13 into a UPC-A</strong> when it doesn't start with 0. It can't be done; keep the EAN-13.</li>
+          <li><strong>Buying a second number "for Europe" or "for the US".</strong> One number works in both: GS1 US says your UPC works in Europe and your EAN in the US.</li>
+        </ul>`
+      }
+    ],
+    faqs: [
+      {
+        q: 'Is a UPC the same as an EAN?',
+        a: 'They are the same family. A UPC-A carries a 12-digit number and an EAN-13 a 13-digit one. A UPC-A number with a 0 in front is the same number in 13-digit form.'
+      },
+      {
+        q: 'Will an EAN-13 barcode scan in US stores?',
+        a: 'Normally, yes. North American retailers were asked to handle EAN-13 from 1 January 2005, and GS1 US says EAN codes work in the US. If you supply a US retailer, check that they don\'t require a UPC.'
+      },
+      {
+        q: 'How do I convert a UPC to an EAN-13?',
+        a: 'Add a 0 in front of the 12 digits. The check digit doesn\'t change. For example, 036000291452 becomes 0036000291452.'
+      },
+      {
+        q: 'Are UPC-A and EAN-13 barcodes the same size?',
+        a: 'Yes. At the standard 100% size both are 37.29 mm (1.468 in) wide including their blank margins, with bars 22.85 mm high (GS1 General Specifications).'
+      },
+      {
+        q: 'Do I need both a UPC and an EAN for my product?',
+        a: 'No. One number works worldwide: GS1 US says a UPC works in Europe and an EAN works in the US. Amazon also accepts both.'
       }
     ]
   }

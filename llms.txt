@@ -32,6 +32,7 @@
 ## Guides
 - [How to Get a Barcode for Your Product (EAN-13, UPC-A & GTIN explained)](https://universalcodemaker.com/pages/how-to-get-a-barcode-for-your-product.html): where product numbers come from (GS1), EAN-13 vs UPC-A vs GTIN, the check digit, print sizes and testing.
 - [Do I Need a Barcode to Sell on Amazon? (US and India, 2026)](https://universalcodemaker.com/pages/do-i-need-a-barcode-to-sell-on-amazon.html): the two barcodes Amazon uses (a product number to list, an FNSKU label for FBA), the GTIN exemption, the 2026 FBA label changes, fulfilment options and GS1 US/India costs, checked against Amazon and GS1 on 2026-10-12.
+- [UPC vs EAN-13: Which Barcode Do You Need?](https://universalcodemaker.com/pages/upc-vs-ean-13-barcode.html): UPC-A (12 digits) vs EAN-13 (13 digits), why both scan worldwide since 2005, converting with a leading zero, sizes and quiet zones, which one to get; from GS1 US, GS1 Greece and the GS1 General Specifications, checked 2026-10-14.
 
 ## Full Documentation for AI Agents
 For complete technical specifications, character set limits, and checksum formulas for all barcode types, refer to [llms-full.txt](https://universalcodemaker.com/llms-full.txt).
