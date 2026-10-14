@@ -154,6 +154,18 @@ test.describe('STATIC-PAGE · page structure', () => {
       if (p !== '404.html') expect(html).toMatch(/<meta\s+name="description"\s+content="[^"]{50,}"/i);
     });
 
+    // Search results cut longer titles (Google ~60 characters; Bing flags > 70) and descriptions (> 160).
+    // Lengths in characters as shown, after decoding &amp; etc. (2026-10-14, 50_content/titles-and-descriptions.md).
+    test(`STATIC-PAGE-05 ${p}: title ≤ 60 and description 70–160 characters`, () => {
+      const decode = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+      const title = decode(htmlOf[p].match(/<title>([^<]*)<\/title>/)[1].trim());
+      expect(title.length, `title is ${title.length} characters: "${title}"`).toBeLessThanOrEqual(60);
+      if (p === '404.html') return;
+      const desc = decode(htmlOf[p].match(/<meta\s+name="description"\s+content="([^"]*)"/i)[1]);
+      expect(desc.length, `description is ${desc.length} characters`).toBeGreaterThanOrEqual(70);
+      expect(desc.length, `description is ${desc.length} characters`).toBeLessThanOrEqual(160);
+    });
+
     if (p !== '404.html') {
       test(`STATIC-PAGE-02 ${p}: canonical URL matches the file`, () => {
         const m = htmlOf[p].match(/<link\s+rel="canonical"\s+href="([^"]+)"/i);
@@ -294,6 +306,17 @@ test.describe('STATIC-CACHE · returning visitors get matching code', () => {
   const gitCmd = (args) => execFileSync('git', args, { cwd: SITE_ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
   const inGit = (() => { try { gitCmd(['rev-parse', '--is-inside-work-tree']); return true; } catch { return false; } })();
 
+  // Scripts that pages load with their OWN ?v= (classic scripts such as js/v2-nav.js, js/core/header-offset.js,
+  // js/core/consent-analytics.js, js/reader/scanner.js), as { 'js/…': Set of versions seen }. The studio script and
+  // everything it imports share the studio's ?v= (STATIC-CACHE-01/03); these are bumped by hand (STATIC-CACHE-04).
+  const ownVersioned = {};
+  for (const p of ALL_PAGES) {
+    for (const mm of htmlOf[p].matchAll(/src="(?:\.\.\/|\/)?(js\/[^"?]+\.js)\?v=([^"]+)"/g)) {
+      if (mm[1] === 'js/v2-studio.js' || mm[1].startsWith('js/vendor/')) continue;
+      (ownVersioned[mm[1]] ??= new Set()).add(mm[2]);
+    }
+  }
+
   test('STATIC-CACHE-01 every JS change since the last studio version bump came with a new ?v=', () => {
     test.skip(!inGit, 'not a git checkout');
     const m = readSiteFile('index.html').match(/src="js\/v2-studio\.js\?v=([^"]+)"/);
@@ -302,8 +325,27 @@ test.describe('STATIC-CACHE · returning visitors get matching code', () => {
     // Version not in any commit yet = it was bumped in the working tree alongside the JS change.
     test.skip(!commits.length, `v=${m[1]} is a new, uncommitted bump — commit it together with the JS changes`);
     const bump = commits[commits.length - 1];
-    const changedSince = gitCmd(['diff', '--name-only', bump, '--', 'js']).split('\n').filter((f) => f && !f.startsWith('js/vendor/'));
+    const changedSince = gitCmd(['diff', '--name-only', bump, '--', 'js'])
+      .split('\n').filter((f) => f && !f.startsWith('js/vendor/') && !ownVersioned[f]);
     expect(changedSince, `JS changed after v2-studio.js?v=${m[1]} was introduced (${bump.slice(0, 7)}) but the version was not bumped (run: node tools/bump-js-version.mjs)`).toEqual([]);
+  });
+
+  // Found 2026-10-13: js/core/header-offset.js (own ?v=1.0) made STATIC-CACHE-01 fail, although it can't go stale
+  // under the studio's number; and nothing checked that a hand-versioned script gets a new ?v= when it changes.
+  test('STATIC-CACHE-04 each script with its own ?v= is the same on every page and got a new ?v= when it changed', () => {
+    expect(Object.keys(ownVersioned).length, 'no separately versioned scripts found').toBeGreaterThan(0);
+    const mixed = Object.entries(ownVersioned).filter(([, v]) => v.size > 1).map(([f, v]) => `${f}: ${[...v].join(', ')}`);
+    expect(mixed, 'pages load different ?v= of the same script').toEqual([]);
+    test.skip(!inGit, 'not a git checkout');
+    const stale = [];
+    for (const [file, versions] of Object.entries(ownVersioned)) {
+      const tag = `${path.basename(file)}?v=${[...versions][0]}`;
+      const commits = gitCmd(['log', '--format=%H', '-S', tag, '--', '*.html']).split('\n').filter(Boolean);
+      if (!commits.length) continue; // new, uncommitted ?v= = bumped in the working tree together with the change
+      const introduced = commits[commits.length - 1];
+      if (gitCmd(['diff', '--name-only', introduced, '--', file])) stale.push(`${file} changed after ${tag} was introduced (${introduced.slice(0, 7)}): raise its ?v= on every page and in tools/generate-seo-pages.js`);
+    }
+    expect(stale).toEqual([]);
   });
 
   test('STATIC-CACHE-03 every relative import uses the same ?v= as the studio script', () => {
@@ -370,6 +412,12 @@ test('STATIC-REDIRECT-01 retired /v2/ and /classic/ URLs keep their permanent re
   expect(htaccess).toContain('RewriteRule ^v2(/.*)?$ / [R=301,L]');
   expect(htaccess).toContain('RewriteRule ^classic(/.*)?$ / [R=301,L]');
   expect(fs.existsSync(path.join(SITE_ROOT, 'v2')), 'v2/ folder was removed 2026-10-11').toBe(false);
+});
+
+test('STATIC-REDIRECT-02 http, www and the Hostinger preview address all redirect to https://universalcodemaker.com in one hop', () => {
+  const htaccess = readSiteFile('.htaccess');
+  const block = htaccess.match(/RewriteCond %\{HTTPS\} off \[OR\]\s*\n\s*RewriteCond %\{HTTP_HOST\} \^www\\\.universalcodemaker\\\.com\$ \[NC,OR\]\s*\n\s*RewriteCond %\{HTTP_HOST\} \\\.hostingersite\\\.com\$ \[NC\]\s*\n\s*RewriteRule \^\(\.\*\)\$ https:\/\/universalcodemaker\.com\/\$1 \[L,R=301\]/);
+  expect(block, 'canonical-host rule with the three conditions (https off, www, *.hostingersite.com) not found').toBeTruthy();
 });
 
 test('STATIC-CONSENT-03 the shared loader adds the Cloudflare Web Analytics beacon (cookie-free visit counts)', () => {

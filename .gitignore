@@ -52,3 +52,9 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Owner's search and analytics exports: never commit or deploy (added 2026-10-14)
+bing indexing reports/
+CloudFlare reports/
+google perfoamance report/
+google indexing report/
