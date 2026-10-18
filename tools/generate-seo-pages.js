@@ -56,7 +56,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Do I need to buy official EAN-13 numbers from GS1?',
-        a: 'If you are selling products in commercial supermarkets or retail chains, you must get your numbers from GS1 (a company prefix, or in some countries single GTINs). For internal inventory, internal POS systems, or private cataloging, you can freely assign numbers using prefixes 200–299.'
+        a: 'Retailers and marketplaces may require a licensed GS1 GTIN. For closed-loop inventory that does not need a retail GTIN, use an internal identifier in a format such as Code 128 and confirm the receiving system accepts it.'
       },
       {
         q: 'Can I download an EAN-13 barcode in vector SVG for packaging design?',
@@ -217,7 +217,7 @@ const SEO_PAGES = [
     technicalSpec: {
       standard: 'ISO/IEC 24778',
       finderPattern: 'Central concentric square bullseye target pattern',
-      quietZone: 'Zero required quiet zone (scans right up to graphic edges)',
+      quietZone: 'The standard permits a 0-module quiet zone; leave practical separation where possible and test the final layout',
       capacity: 'Up to 3,832 numeric digits or 3,067 alphanumeric characters'
     },
     useCases: [
@@ -229,7 +229,7 @@ const SEO_PAGES = [
     faqs: [
       {
         q: 'Why do transit authorities prefer Aztec codes over QR codes?',
-        a: 'Aztec codes require zero quiet zone (margin) around the code, meaning they can be printed right up to the edge of paper tickets or mobile display viewports without read failures.'
+        a: 'The Aztec standard permits a zero-module quiet zone, which can help in tight layouts. Leave practical separation where possible and test the final printed or on-screen symbol with the scanners you expect to use.'
       }
     ]
   },
@@ -242,7 +242,7 @@ const SEO_PAGES = [
     metaTitle: 'Free PDF417 Barcode Generator: SVG & PNG',
     metaDescription: 'Make PDF417 stacked 2D barcodes online for documents, shipping papers and paper boarding passes. Vector SVG and PNG download, free, no sign-up.',
     h1: 'Free PDF417 Stacked 2D Barcode Generator',
-    lead: 'Create high-capacity PDF417 stacked 2D barcodes, the symbology used on North American driver licenses, paper airline boarding passes, and customs forms. The studio encodes the text you enter; it does not build AAMVA or boarding-pass data for you.',
+    lead: 'Create PDF417 stacked 2D barcodes for multi-line text, inventory records, document references, and other structured data. The studio encodes exactly the text you enter; it does not build industry-specific data formats.',
     technicalSpec: {
       standard: 'ISO/IEC 15438',
       structure: 'Stacked linear rows (each codeword contains 4 bars and 4 spaces across 17 modules)',
@@ -250,10 +250,10 @@ const SEO_PAGES = [
       capacity: 'Over 1.1 kilobytes of machine-readable data per symbol'
     },
     useCases: [
-      'State DMV and provincial driver licenses (AAMVA standard)',
-      'Paper airline boarding passes (IATA BCBP standard)',
-      'USPS and FedEx package shipping documents',
-      'Government tax filing and customs declaration forms'
+      'Inventory and asset records',
+      'Document and form references',
+      'Shipping or warehouse records you define',
+      'Multi-line text that benefits from a stacked symbol'
     ],
     faqs: [
       {
@@ -358,7 +358,7 @@ const SEO_PAGES = [
     queryParam: 'wizard=email',
     category: 'Smart QR',
     metaTitle: 'Free Email QR Code Generator (mailto)',
-    metaDescription: 'Generate instant mailto QR codes with pre-filled recipient email, subject line, and body text. 100% free with vector SVG and 300 DPI PNG export.',
+    metaDescription: 'Generate mailto QR codes with a recipient, subject line and body text. Free to use, with vector SVG and high-resolution PNG export.',
     h1: 'Free Pre-Filled Email (mailto) QR Code Generator',
     lead: 'Create interactive email QR codes that automatically open the user’s default mail app (Apple Mail, Gmail, Outlook) with your recipient email, subject line, and body message pre-populated.',
     technicalSpec: {
@@ -385,7 +385,7 @@ const SEO_PAGES = [
     queryParam: 'wizard=sms',
     category: 'Smart QR',
     metaTitle: 'Free SMS Text Message QR Code Generator - Scan to Send SMS',
-    metaDescription: 'Generate scan-to-text SMS QR codes with pre-written message body and recipient phone number. Zero tracking, permanent free codes.',
+    metaDescription: 'Generate a static SMS QR code with a recipient and pre-written message. The payload is created in your browser for free PNG or SVG export.',
     h1: 'Free SMS Text Message QR Code Generator',
     lead: 'Create scan-to-text QR codes that immediately launch the native SMS/Messaging application with a pre-written text message ready to send to your target phone number.',
     technicalSpec: {
@@ -466,7 +466,7 @@ const SEO_PAGES = [
     queryParam: 'wizard=location',
     category: 'Smart QR',
     metaTitle: 'Free Google Maps QR Code Generator',
-    metaDescription: 'Make a QR code that opens a place in Google Maps: type an address, a place name or GPS coordinates. Free, static and never expires.',
+    metaDescription: 'Make a static QR code that opens a place in Google Maps from an address, place name or GPS coordinates. Free PNG or SVG export.',
     h1: 'Free Google Maps Location QR Code Generator',
     lead: 'Create a QR code that opens your shop, venue or meeting point in Google Maps. Type an address or place name, or use exact GPS coordinates for spots without an address. It opens in the Google Maps app if installed, otherwise in the browser.',
     technicalSpec: {
@@ -593,7 +593,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Will this QR code ever expire or require a monthly payment?',
-        a: 'No. UniversalCodeMaker creates 100% static, client-side QR codes. There are zero redirect intermediaries, zero subscription paywalls, and zero scan limits. Your code functions permanently.'
+        a: 'UniversalCodeMaker stores the review URL directly in a static QR code and does not control a redirect or expiry for it. The destination remains subject to Google, the business profile and the encoded URL, so test it before printing.'
       }
     ]
   },
@@ -644,7 +644,7 @@ const SEO_PAGES = [
     metaTitle: 'Free UPI QR Code Generator (GPay, PhonePe, Paytm)',
     metaDescription: 'Make a UPI payment QR code for your shop that works with Google Pay, PhonePe, Paytm and BHIM, with an optional preset amount. SVG or PNG, free.',
     h1: 'Free UPI Scan-to-Pay QR Code Generator',
-    lead: 'Create instant UPI scan-to-pay QR codes for merchant stores, freelancers, and billing invoices. Fully compatible with Google Pay, PhonePe, Paytm, CRED, and BHIM.',
+    lead: 'Create UPI scan-to-pay QR codes for merchant stores, freelancers, and invoices. Receiving-app support can vary, so verify the VPA and test the code in the apps your customers use.',
     technicalSpec: {
       standard: 'ISO/IEC 18004 QR Code Model 2',
       protocol: 'NPCI UPI Deep Link Specification (upi://pay?pa={VPA}&pn={Name}&am={Amount}&cu=INR)',
@@ -854,7 +854,7 @@ const SEO_PAGES = [
     technicalSpec: {
       retailStandards: 'UPC-A (12 digits for US/CA) and EAN-13 (13 digits for International)',
       internalSkuFormat: 'Code 128 alphanumeric symbology for internal variant SKUs',
-      posHardwareCompatibility: '100% compatible with Shopify POS barcode scanners (Socket Mobile, Zebra, Honeywell)',
+      posHardwareCompatibility: 'Compatibility depends on the selected symbology, scanner model, Shopify setup, label size and print quality; test before rollout',
       labelDimensions: 'Standard 2.25\" × 1.25\" direct thermal price tags and Avery 5160 multi-pack sheets'
     },
     useCases: [
@@ -911,7 +911,7 @@ const ENRICHMENTS = {
       },
       {
         "q": "Need barcodes for internal warehouse or asset tracking?",
-        "a": "Do not buy EAN-13! Use Code 128 (free, no license required) or assign private internal EAN-13 numbers using prefixes 200–299."
+        "a": "Use an internal identifier in a format such as Code 128 when the code stays inside your own system. Confirm the format and data rules with the warehouse, retailer or platform that will receive it."
       }
     ],
     "legalCaution": {
@@ -925,7 +925,7 @@ const ENRICHMENTS = {
     "authorityLinks": [
       {
         "name": "Wikipedia: International Article Number (EAN)",
-        "desc": "Full encyclopedic history, mathematical Mod-10 checksum algorithm, and country prefix table.",
+        "desc": "Full encyclopedic history, mathematical Mod-10 checksum algorithm, and GS1 prefix reference.",
         "url": "https://en.wikipedia.org/wiki/International_Article_Number"
       },
       {
@@ -998,8 +998,8 @@ const ENRICHMENTS = {
   "code-128-barcode-generator": {
     "benefits": [
       {
-        "title": "100% Free & Open (No GS1 Fees)",
-        "desc": "Requires no licensing, fees, or registration. Anyone can generate and print Code 128 barcodes freely forever."
+        "title": "Useful for Internal Identifiers",
+        "desc": "Create Code 128 graphics for identifiers you control. Confirm any customer, carrier, or platform requirements before production use."
       },
       {
         "title": "Full 128 ASCII Alphanumeric Range",
@@ -1123,11 +1123,11 @@ const ENRICHMENTS = {
     "decisionGuide": [
       {
         "q": "Marking electronic components, PCBs, or surgical tools?",
-        "a": "Data Matrix is the mandated standard for micro-electronics, aerospace parts, and FDA Unique Device Identification (UDI)."
+        "a": "Data Matrix is used in electronics, aerospace and UDI workflows. The required carrier, encoded data and verification rules depend on the applicable programme and receiving organisation."
       },
       {
         "q": "Packaging pharmaceuticals (prescription medicine)?",
-        "a": "GS1 DataMatrix is legally required on medicine packaging under the US DSCSA and EU Falsified Medicines Directive (FMD)."
+        "a": "GS1 DataMatrix is used in regulated pharmaceutical traceability workflows. Exact marking and data requirements depend on the product, role and jurisdiction, so verify the current official rules before use."
       },
       {
         "q": "Should I use Data Matrix or QR Code for consumer advertising?",
@@ -1163,8 +1163,8 @@ const ENRICHMENTS = {
   "aztec-code-generator": {
     "benefits": [
       {
-        "title": "Zero Quiet Zone Requirement",
-        "desc": "Can be printed right up to the edge of tickets or screen borders without read failures."
+        "title": "Compact Layout Option",
+        "desc": "The standard permits a zero-module quiet zone, but practical layouts should leave separation where possible and be tested with the intended scanners."
       },
       {
         "title": "Fast Center-Out Bullseye Lock",
@@ -1209,40 +1209,40 @@ const ENRICHMENTS = {
   "pdf417-barcode-generator": {
     "benefits": [
       {
-        "title": "Massive Data Storage (>1 Kilobyte)",
-        "desc": "Can store full driver license profiles, digital signatures, and biometric records completely offline."
+        "title": "Multi-Line Data Capacity",
+        "desc": "Can encode more text than typical 1D barcodes, making it useful for structured records and document references."
       },
       {
         "title": "Stacked Linear Robustness",
         "desc": "Can be read by both area-imaging cameras and rastering linear laser scanners."
       },
       {
-        "title": "Government & Legal Standard",
-        "desc": "Official standard for North American driver licenses (AAMVA) and customs forms."
+        "title": "Document-Friendly Format",
+        "desc": "Its stacked rows and configurable error correction suit records that need more capacity than a typical linear barcode."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Encoding driver license or state identification data?",
-        "a": "PDF417 is mandated by the American Association of Motor Vehicle Administrators (AAMVA) for all US and Canadian driver licenses."
+        "q": "Encoding a multi-line inventory or document record?",
+        "a": "PDF417 can encode the text as supplied. Define and validate the record structure required by your own workflow before printing."
       },
       {
         "q": "Printing postal shipping documents or freight manifests?",
-        "a": "USPS, FedEx, and international customs authorities use PDF417 to encode full multi-line package manifests."
+        "a": "PDF417 can hold multi-line shipping or freight references, but carrier formats vary. Use the carrier's current specification and test the finished label."
       }
     ],
     "legalCaution": {
       "title": "PDF417 Capacity & Aspect Ratio Guidelines",
       "points": [
-        "PDF417 is an open standard (ISO/IEC 15438) with no licensing fees for private or commercial use.",
-        "When encoding AAMVA driver license data, strictly follow the AAMVA DL/ID Card Design Standard data structure.",
-        "Keep the symbol aspect ratio between 2:1 and 4:1 to ensure easy scanning with standard handheld scanners."
+        "PDF417 is specified by ISO/IEC 15438; this page does not certify a symbol for a particular workflow.",
+        "Use only data you are authorized to encode, and follow the receiving system's current data specification.",
+        "Choose an aspect ratio that fits the layout, then test the final output with the intended scanner and print process."
       ]
     },
     "authorityLinks": [
       {
         "name": "Wikipedia: PDF417",
-        "desc": "Complete breakdown of codewords, error correction levels (0–8), and AAMVA usage.",
+        "desc": "Overview of PDF417 codewords, layout, capacity, and error-correction concepts.",
         "url": "https://en.wikipedia.org/wiki/PDF417"
       },
       {
@@ -1263,8 +1263,8 @@ const ENRICHMENTS = {
         "desc": "Built-in camera apps prompt \"Join Network\" without installing any third-party app."
       },
       {
-        "title": "100% Client-Side Privacy",
-        "desc": "Your network credentials are never sent across the internet or stored on external servers."
+        "title": "Browser-Based Payload Generation",
+        "desc": "The Wi-Fi fields used to build the code are processed in your browser rather than submitted to UniversalCodeMaker's server. See the Privacy Policy for site analytics and advertising details."
       }
     ],
     "decisionGuide": [
@@ -1281,7 +1281,7 @@ const ENRICHMENTS = {
       "title": "Wi-Fi Security & Warning Against Dynamic QR Services",
       "points": [
         "Beware of third-party \"dynamic QR code\" generators! Many commercial sites route your Wi-Fi credentials through remote redirect servers that log user IPs and break when monthly subscriptions expire.",
-        "Our studio generates direct, static Wi-Fi payloads in the widely used WIFI: format. They need no internet connection to join and never expire.",
+        "Our studio generates direct, static Wi-Fi payloads in the widely used WIFI: format. UniversalCodeMaker does not control a redirect or expiry, but credentials, device support and network settings can change.",
         "For high-security enterprise environments, use a dedicated Guest VLAN to isolate visitors from internal office hardware."
       ]
     },
@@ -1767,7 +1767,7 @@ const ENRICHMENTS = {
       },
       {
         "title": "Privacy-Safe Direct Communication",
-        "desc": "No server logs or phone data collection. Compiled 100% locally in your browser memory."
+        "desc": "The phone number and message fields are compiled into the QR payload in your browser rather than submitted to UniversalCodeMaker's server."
       }
     ],
     "decisionGuide": [
@@ -1808,8 +1808,8 @@ const ENRICHMENTS = {
         "desc": "Scannable across Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay, and all Indian banking apps."
       },
       {
-        "title": "Zero Commission & Direct Bank Settlement",
-        "desc": "No payment gateway cut or transaction charges. 100% of customer funds transfer directly to your registered UPI VPA."
+        "title": "Direct UPI Payment Details",
+        "desc": "UniversalCodeMaker does not process or settle payments or set bank, app or merchant fees. Verify the recipient, amount and settlement terms with your payment provider."
       },
       {
         "title": "Flexible Static or Preset Amount",
@@ -1829,7 +1829,7 @@ const ENRICHMENTS = {
     "legalCaution": {
       "title": "NPCI Unified Payments Interface Guidelines",
       "points": [
-        "UniversalCodeMaker is an offline static code generator and is never in the flow of funds. All financial settlement occurs through NPCI member banks.",
+        "UniversalCodeMaker creates the QR payload but does not process or settle payments. Payment handling, fees and settlement terms are controlled by the payer's and recipient's payment providers.",
         "Always test-scan your generated QR code with a ₹1 test transaction before printing physical shop signage to verify your VPA spelling.",
         "Ensure your merchant name matches the official registration on your bank account to avoid customer confusion during payment verification."
       ]
@@ -3272,7 +3272,7 @@ const SITE_FOOTER_HTML = `  <!-- Site Footer -->
             </div>
           </div>
           <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
-            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
+            Browser-based QR &amp; barcode tools with local payload generation, practical export options, and print-testing guidance.
           </p>
         </div>
 
@@ -3378,7 +3378,7 @@ const SITE_FOOTER_HTML = `  <!-- Site Footer -->
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <p>&copy; 2026 UniversalCodeMaker.com. Free, Client-Side Code Generator.</p>
         <ul class="v2-footer-legal-links">
           <li><a href="../terms.html">Terms of Service</a></li>
           <li><a href="../privacy-policy.html">Privacy Policy</a></li>

@@ -6,7 +6,7 @@
  * compliant with ISO 2108, Amazon KDP, and IngramSpark publishing specifications.
  */
 
-import { bwipHeightMm } from '../../core/print-size.js?v=3.24';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.25';
 
 export default {
   id: "isbn",

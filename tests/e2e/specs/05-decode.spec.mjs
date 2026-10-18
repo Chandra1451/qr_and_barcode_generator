@@ -36,7 +36,7 @@ test.describe('DEC · barcodes scan back to the payload', () => {
   };
 
   test('DEC-08 generators whose schema asks for a textarea get a multi-line input', async ({ studio, page }) => {
-    // PDF417 (driver licences, AAMVA) and 2D codes often carry line breaks; a single-line
+    // PDF417 and other 2D codes often carry multi-line records; a single-line
     // <input> silently strips them, which changes the encoded data.
     const problems = [];
     for (const g of BARCODE_GENERATORS.filter((x) => x.inputType === 'textarea')) {

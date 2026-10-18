@@ -144,6 +144,42 @@ test.describe('STATIC-WIZ · QR wizards', () => {
 
 const htmlOf = Object.fromEntries(ALL_PAGES.map((p) => [p, readSiteFile(p)]));
 
+test.describe('STATIC-CLAIM - public copy stays within verified product claims', () => {
+  test('STATIC-CLAIM-01 published and canonical copy avoids unsafe targeting and absolute promises', () => {
+    const sources = {
+      ...htmlOf,
+      'llms.txt': readSiteFile('llms.txt'),
+      'llms-full.txt': readSiteFile('llms-full.txt'),
+      'tools/generate-seo-pages.js': readSiteFile('tools/generate-seo-pages.js'),
+      'js/generators/2d/pdf417.js': readSiteFile('js/generators/2d/pdf417.js'),
+    };
+    const forbidden = [
+      ['identity-document targeting', /AAMVA|driver licen[cs]e/i],
+      ['permanence promise', /100%\s+free(?:\s+forever)?|free forever|permanent\s+free|functions\s+permanently|never\s+expire/i],
+      ['scan-success guarantee', /without read failures/i],
+      ['legal-requirement claim', /legally required/i],
+      ['ownership guarantee', /you own full rights/i],
+      ['tracking absolute', /zero(?:\s|-)+tracking/i],
+      ['privacy absolute', /100%\s+client-side privacy|total privacy/i],
+      ['compatibility absolute', /100%\s+compatible|fully compatible/i],
+      ['rights absolute', /100%\s+royalty-free/i],
+      ['server-log absolute', /no server logs/i],
+      ['payment-funds absolute', /100%\s+of customer funds/i],
+      ['standards mandate claim', /mandated standard/i],
+      ['unsafe internal EAN prefix advice', /free internal alternative|prefixes?(?:\s|<[^>]+>)*200\s*[\u2013-]\s*299/i],
+      ['edge-scanning absolute', /scans right up to[^.\n<]{0,80}edges?/i],
+      ['strict-conformance claim', /strictly (?:adhere|follow)/i],
+    ];
+    const problems = [];
+    for (const [file, content] of Object.entries(sources)) {
+      for (const [label, pattern] of forbidden) {
+        if (pattern.test(content)) problems.push(`${file}: ${label} (${pattern})`);
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+});
+
 test.describe('STATIC-PAGE · page structure', () => {
   for (const p of ALL_PAGES) {
     test(`STATIC-PAGE-01 ${p}: one <h1>, a <title>, meta description, lang`, () => {

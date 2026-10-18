@@ -2,7 +2,7 @@
  * PDF417 Stacked 2D Barcode Generator Plugin
  * Universal QR, Barcode & Code Generator Suite
  * 
- * Powered by bwip-js (bcid: pdf417). Widely used on driver's licenses, IDs, and customs/shipping manifests.
+ * Powered by bwip-js (bcid: pdf417). Suitable for multi-line text and structured records.
  */
 
 export default {
@@ -10,14 +10,14 @@ export default {
   name: "PDF417 (Stacked 2D)",
   category: "2d",
   quietZone: "2 modules on every side",
-  description: "Stacked linear 2D barcode format capable of holding over a kilobyte of data. Standard on national identity cards, state driver licenses, and customs declarations.",
+  description: "Stacked linear 2D barcode format for multi-line text and structured records. This tool encodes the text you provide; it does not create application-specific data formats.",
 
   schema: {
     inputType: "textarea",
-    placeholder: "e.g. ANSI 6360000102DL00390237DLDAQD12345678...",
-    regex: /\S/, // any non-blank text; line breaks allowed (AAMVA ID data)
+    placeholder: "e.g. ORDER:10482\nBATCH:2026-10\nZONE:A3",
+    regex: /\S/, // any non-blank text; line breaks are preserved
     errorMessage: "PDF417 payload cannot be empty.",
-    defaultPayload: "ID-US-DL:SMITH,JOHN:DOB-19880415:EXP-20290415",
+    defaultPayload: "ORDER:10482\nBATCH:2026-10\nZONE:A3",
     autoChecksum: false
   },
 

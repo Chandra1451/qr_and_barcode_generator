@@ -5,8 +5,8 @@
  * Powered by bwip-js (bcid: ean13). Standard global retail product barcode.
  */
 
-import { bwipHeightMm } from '../../core/print-size.js?v=3.24';
-import { computeEan13 } from '../../core/checksums.js?v=3.24';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.25';
+import { computeEan13 } from '../../core/checksums.js?v=3.25';
 
 export default {
   id: "ean-13",
@@ -14,7 +14,7 @@ export default {
   category: "retail",
   quietZone: "11x left, 7x right",
   moduleMm: 0.33, // GS1 recommended X-dimension (100% size) (js/core/print-size.js)
-  description: "Standard 13-digit European Article Number used across global retail point-of-sale systems. Encodes a country prefix, manufacturer code, product identifier, and Mod-10 check digit.",
+  description: "Thirteen-digit retail GTIN format with a GS1 prefix, company and item references, and a Mod-10 check digit. The prefix does not identify a product's country of origin.",
 
   schema: {
     inputType: "text",

@@ -31,7 +31,7 @@ Sum of (start character value + Σ(character value × character position 1..N)) 
 - Standard: ISO/IEC 24778
 - Max Capacity: 3,832 numeric, 3,067 alphanumeric
 - Finder Pattern: Concentric square bullseye pattern at exact center
-- Quiet Zone: 0X (no quiet zone required)
+- Quiet Zone: the standard permits 0X; leave practical separation where possible and test the final layout
 
 ### PDF417
 - Standard: ISO/IEC 15438

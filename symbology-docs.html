@@ -838,7 +838,7 @@
           </div>
 
           <p class="docs-text">
-            Data Matrix ECC 200 features an "L-shaped" solid alignment finder pattern on two adjacent borders and alternating dark/light timing cells on the opposite edges. It offers the highest information density per square millimeter of any 2D code.
+            Data Matrix ECC 200 features an "L-shaped" solid alignment finder pattern on two adjacent borders and alternating dark/light timing cells on the opposite edges. It is a compact, high-density option for small labels and direct-part marking.
           </p>
 
           <div class="specs-grid">
@@ -861,7 +861,7 @@
           </div>
 
           <p class="docs-text">
-            Widely mandated by the US Department of Defense (MIL-STD-130 UID) and global pharmaceutical serialization standards (GS1 DataMatrix) for direct part marking (DPM) via laser etching and dot peen.
+            Data Matrix is used in direct-part marking and regulated traceability workflows. The required data, symbol size and verification process depend on the applicable specification and recipient.
           </p>
                   <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
@@ -896,7 +896,7 @@
           <div class="specs-grid">
             <div class="spec-item">
               <div class="spec-label">Quiet Zone</div>
-              <div class="spec-value">Zero (None Required)</div>
+              <div class="spec-value">0 modules permitted by the standard</div>
             </div>
             <div class="spec-item">
               <div class="spec-label">Max Alphanumeric</div>
@@ -904,7 +904,7 @@
             </div>
             <div class="spec-item">
               <div class="spec-label">Key Advantage</div>
-              <div class="spec-value">Zero margin allows tight borders</div>
+              <div class="spec-value">Compact layouts; test final placement</div>
             </div>
             <div class="spec-item">
               <div class="spec-label">Primary Industry</div>
@@ -913,7 +913,7 @@
           </div>
 
           <p class="docs-text">
-            Because Aztec Code requires <strong>zero quiet zone margins</strong>, it can be printed right up to the edge of boarding passes, tickets, or smartphone screens without sacrificing decodability.
+            The Aztec standard permits a <strong>zero-module quiet zone</strong>. In a real layout, leave separation where practical and test the printed or on-screen symbol with the intended scanners.
           </p>
                   <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
@@ -942,7 +942,7 @@
           </div>
 
           <p class="docs-text">
-            PDF417 consists of stacked rows of 1D linear codes. Each codeword is 17 modules wide and composed of 4 bars and 4 spaces. It can encode large text payloads, binary files, and biometric fingerprints directly on card stock.
+            PDF417 consists of stacked rows of linear codewords. Each codeword is 17 modules wide and composed of 4 bars and 4 spaces. It can encode larger text or binary payloads than typical 1D symbols.
           </p>
 
           <div class="specs-grid">
@@ -960,7 +960,7 @@
             </div>
             <div class="spec-item">
               <div class="spec-label">Primary Use</div>
-              <div class="spec-value">Driver Licenses (AAMVA), FedEx/USPS</div>
+              <div class="spec-value">Structured records, documents, shipping data</div>
             </div>
           </div>
                   <nav class="docs-related" aria-label="Related generators">
@@ -990,7 +990,7 @@
           </div>
 
           <p class="docs-text">
-            Code 128 is the highest-density 1D linear symbology in commercial use. It encodes the entire 128-character ASCII table using three dynamic subsets:
+            Code 128 is a dense 1D symbology for alphanumeric data. It represents the ASCII character set using three subsets:
           </p>
           <ul class="docs-text" style="margin-left: 1.5rem;">
             <li><strong>Subset A:</strong> Uppercase letters, digits, control characters, ASCII 00-95.</li>
@@ -1044,7 +1044,7 @@
           </div>
 
           <p class="docs-text">
-            EAN-13 (European / International Article Number) is the global standard for retail point-of-sale scanning everywhere outside North America. It encodes a 13-digit sequence: Country Prefix (2-3 digits), Manufacturer Code, Product Code, and a final Modulo 10 Check Digit.
+            EAN-13 represents a 13-digit GTIN for retail point-of-sale use. The number includes a GS1 prefix, company and item references, and a final Modulo 10 check digit; the prefix does not identify where a product was made.
           </p>
 
           <div class="specs-grid">
@@ -1062,7 +1062,7 @@
             </div>
             <div class="spec-item">
               <div class="spec-label">Licensing Note</div>
-              <div class="spec-value">Requires GS1 Registration for Retail</div>
+              <div class="spec-value">Retail GTIN acceptance depends on the recipient and market</div>
             </div>
           </div>
                   <nav class="docs-related" aria-label="Related generators">
@@ -1238,11 +1238,11 @@
                 <span class="scenario-rec-val">EAN-13 (GTIN-13)</span>
               </div>
               <p class="scenario-desc">
-                Mandatory for commercial products sold in supermarkets and retail stores across Europe, UK, Asia, Australia, and Latin America. Recognized by all omnidirectional checkout laser scanners.
+                Commonly used for retail GTIN-13 symbols. The identifier and barcode requirements depend on the retailer, marketplace, product category and market.
               </p>
               <div class="scenario-meta">
-                <div><strong>Registration:</strong> Official GS1 Company Prefix required for commercial open markets.</div>
-                <div><strong>Free Internal Alternative:</strong> For private closed-loop inventory or in-house retail POS, freely assign numbers using prefixes <strong>200–299</strong> with zero fees.</div>
+                <div><strong>Open retail use:</strong> Obtain identifiers accepted by the retailer or marketplace; many use GS1-licensed GTINs.</div>
+                <div><strong>Closed-loop alternative:</strong> For internal inventory that does not need a retail GTIN, define an internal identifier in Code 128 or another format accepted by your own system.</div>
               </div>
               <a href="index.html?symbology=ean-13" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate EAN-13 in Studio</a>
             </div>
@@ -1256,10 +1256,10 @@
                 <span class="scenario-rec-val">UPC-A (GTIN-12)</span>
               </div>
               <p class="scenario-desc">
-                The standard 12-digit point-of-sale barcode across all North American retail store chains, pharmacies, grocery checkout registers, and Amazon US listings.
+                A 12-digit retail barcode commonly used in the United States and Canada. Confirm the required identifier and label specification with the receiving retailer or marketplace.
               </p>
               <div class="scenario-meta">
-                <div><strong>Registration:</strong> Must obtain an authentic 12-digit UPC company prefix from GS1 US. Third-party recycled UPCs are frequently flagged and delisted by Amazon.</div>
+                <div><strong>Identifier source:</strong> Use a GTIN accepted by the recipient; marketplace and retailer policies can differ and may change.</div>
                 <div><strong>Check Digit:</strong> 12th digit is calculated using GS1 Modulo-10 parity.</div>
               </div>
               <a href="index.html?symbology=upc-a" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate UPC-A in Studio</a>
@@ -1277,7 +1277,7 @@
                 Printed on outer master cartons containing multipacks (e.g. 6, 12, or 24 retail units). Heavy black bearer bars prevent uneven flexographic ink spread on coarse brown corrugated cardboard.
               </p>
               <div class="scenario-meta">
-                <div><strong>Usage Warning:</strong> Never scan at retail cash registers. Intended strictly for warehouse receiving, conveyor scanners, and long-range forklift scans.</div>
+                <div><strong>Usage note:</strong> ITF-14 is intended for logistics units such as cartons, not ordinary retail point-of-sale scanning.</div>
                 <div><strong>Licensing:</strong> Incorporates your item's GTIN plus packaging indicator digit.</div>
               </div>
               <a href="index.html?symbology=itf-14" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate ITF-14 in Studio</a>
@@ -1285,7 +1285,7 @@
 
             <!-- Scenario 4: Warehouse Bins & Asset Tracking -->
             <div class="scenario-card" data-category="warehouse">
-              <div class="scenario-badge cyan">100% Free • No GS1 Fees Ever</div>
+              <div class="scenario-badge cyan">Internal Identifiers • No Retail GTIN Implied</div>
               <h3 class="scenario-card-title">Warehouse Bins, Shelves, Pallets &amp; Company IT Assets</h3>
               <div class="scenario-rec">
                 <span class="scenario-rec-label">Recommended Code:</span>
@@ -1295,7 +1295,7 @@
                 The universal workhorse for warehouse management systems (WMS), inventory tracking, serial numbers, tool labeling, and internal logistics.
               </p>
               <div class="scenario-meta">
-                <div><strong>Legal Status:</strong> Open public standard (ISO/IEC 15417). 100% royalty-free. Zero registration required. Anyone can generate custom SKU labels immediately.</div>
+                <div><strong>Identifier note:</strong> You can define internal SKU values, but customers and trading partners may impose their own data, label, or registration requirements.</div>
                 <div><strong>Character Support:</strong> Full 128 ASCII alphabet (letters, digits, symbols).</div>
               </div>
               <a href="index.html?symbology=code-128" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Code 128 in Studio</a>
@@ -1313,7 +1313,7 @@
                 Ultra-compact 2D matrix symbol capable of encoding serial numbers and lot dates in spaces as small as 2mm × 2mm. Engineered for Direct Part Marking (laser etching and dot-peening).
               </p>
               <div class="scenario-meta">
-                <div><strong>Regulatory Mandates:</strong> Legally required for FDA Unique Device Identification (UDI) and EU Falsified Medicines Directive (FMD).</div>
+                <div><strong>Regulated use:</strong> Data Matrix is used in UDI and pharmaceutical traceability systems; verify the current rule, required data and issuing authority for your product and market.</div>
                 <div><strong>Scanners:</strong> Requires 2D area-imager cameras (cannot use 1D red lasers).</div>
               </div>
               <a href="index.html?symbology=datamatrix" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Data Matrix in Studio</a>
@@ -1321,14 +1321,14 @@
 
             <!-- Scenario 6: Tickets, Passes & Badges -->
             <div class="scenario-card" data-category="ticketing">
-              <div class="scenario-badge purple">Zero Quiet Zone / Stacked</div>
-              <h3 class="scenario-card-title">Airline Boarding Passes, Rail Tickets &amp; Driver Licenses</h3>
+              <div class="scenario-badge purple">Compact Matrix / Stacked</div>
+              <h3 class="scenario-card-title">Tickets, Passes &amp; Structured Document Records</h3>
               <div class="scenario-rec">
                 <span class="scenario-rec-label">Recommended Code:</span>
                 <span class="scenario-rec-val">Aztec Code or PDF417</span>
               </div>
               <p class="scenario-desc">
-                Aztec Code requires <strong>zero quiet zones</strong>, making it ideal for mobile phone screen displays and ticket margins. PDF417 is mandated across North America for AAMVA driver licenses and state IDs.
+                Aztec Code permits a zero-module quiet zone and PDF417 offers stacked rows for larger records. In either case, follow the receiving system's data format and test the final symbol.
               </p>
               <div class="scenario-meta">
                 <div><strong>Standards:</strong> Aztec Code (ISO/IEC 24778) used by European rail networks (Eurostar, DB). PDF417 (ISO/IEC 15438) used for commercial freight bills of lading.</div>
@@ -1338,23 +1338,23 @@
 
             <!-- Scenario 7: Consumer QR & Marketing -->
             <div class="scenario-card" data-category="consumer" style="border-color: var(--scanner-laser);">
-              <div class="scenario-badge red">Permanent Direct-Payload • No Trap</div>
+              <div class="scenario-badge red">Static Direct Payload</div>
               <h3 class="scenario-card-title">Packaging URLs, Restaurant Menus, Wi-Fi &amp; Business Cards</h3>
               <div class="scenario-rec">
                 <span class="scenario-rec-label">Recommended Code:</span>
                 <span class="scenario-rec-val">Static QR Code (ISO/IEC 18004)</span>
               </div>
               <p class="scenario-desc">
-                Scanned natively by all iPhone and Android camera apps without installing third-party software. Perfect for consumer engagement, contactless menus, and Wi-Fi credentials.
+                Standard QR codes are supported by many current phone camera apps. Actual behaviour depends on the device, app, encoded content, symbol size and print quality, so test the intended workflow.
               </p>
               <div class="scenario-meta" style="background: var(--scanner-laser-tint); border: 1.5px solid var(--scanner-laser); padding: 0.75rem; border-radius: var(--radius-sm); margin-top: 0.5rem;">
                 <strong style="color: var(--laser-text); display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.25rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                  The "Dynamic QR" Subscription Trap:
+                  Static and hosted QR services:
                 </strong>
-                Commercial QR websites generate "dynamic" redirects through their private servers, then deactivate your codes after a 14-day trial and charge $15–$50/month. UniversalCodeMaker produces 100% direct-payload static QR codes with no subscriptions, no tracking redirects, and no expiry date.
+                UniversalCodeMaker stores the destination or other payload directly in a static QR code and does not control a redirect or expiry for it. The encoded destination, credentials, receiving app and third-party services can still change or stop working.
               </div>
-              <a href="index.html?symbology=qrcode" class="scenario-btn" style="background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Permanent QR in Studio</a>
+              <a href="index.html?symbology=qrcode" class="scenario-btn" style="background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Static QR in Studio</a>
             </div>
 
           </div>
@@ -1417,7 +1417,7 @@
                   <td>Full ASCII / Binary</td>
                   <td>1,850 chars</td>
                   <td>Reed-Solomon (Levels 0-8)</td>
-                  <td>Driver Licenses, Government ID, Shipping</td>
+                  <td>Structured Records, Documents, Shipping Data</td>
                 </tr>
                 <tr>
                   <td><strong>Code 128</strong></td>
@@ -1537,8 +1537,8 @@
                   <tr>
                     <td><strong>PDF417</strong></td>
                     <td><code>ISO/IEC 15438:2015</code></td>
-                    <td>ISO / AAMVA</td>
-                    <td>Multi-row stacked linear symbology, Levels 0-8 error correction, driver licenses.</td>
+                    <td>ISO</td>
+                    <td>Multi-row stacked linear symbology with configurable error-correction levels.</td>
                     <td><a href="https://www.iso.org/standard/65502.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); font-weight: 700;">ISO 15438 ↗</a></td>
                   </tr>
                   <tr>
@@ -1567,34 +1567,34 @@
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
                 <h4 style="font-family: var(--font-heading); color: var(--laser-text); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                  You need GS1 numbers when:
+                  You may need GS1 identifiers when:
                 </h4>
                 <ul style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem;">
-                  <li>Selling packaged products through retailers and supermarket chains (Walmart, Target, Tesco, Carrefour and others).</li>
-                  <li>Listing products on marketplaces such as Amazon or Google Shopping, which check product numbers against the GS1 database. Amazon offers a GTIN exemption for some brands.</li>
-                  <li>Selling medical devices or medicines: UDI rules (FDA, EU MDR) and the EU Falsified Medicines Directive require numbers from an accredited issuing agency, such as GS1.</li>
+                  <li>A retailer or supermarket requires a GS1-licensed GTIN for packaged products.</li>
+                  <li>A marketplace requires a GTIN and validates it against GS1 records; exemptions and category rules vary by platform.</li>
+                  <li>A regulated product workflow specifies a GS1 identifier or another authorised issuing system. Check the current rule for the product and market.</li>
                 </ul>
               </div>
 
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem; box-shadow: 2px 2px 0 var(--border);">
                 <h4 style="font-family: var(--font-heading); color: var(--sensor-green-text); font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 10 11 15 8 12"/></svg>
-                  No GS1 fees needed for:
+                  Closed-loop uses that may not need a retail GTIN:
                 </h4>
                 <ul style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem;">
                   <li>Internal warehouse bins, shelves, aisles and pallet racks (Code 128 / Code 39).</li>
                   <li>Asset tracking: laptops, furniture, machinery, tools.</li>
-                  <li>Items sold only in your own shop on your own till system: use in-store EAN-13 prefixes <strong>200–299</strong> or UPC-A number system <strong>2</strong>. These numbers only work inside your own system.</li>
-                  <li>QR codes of any kind: links, Wi-Fi, contact cards, menus, reviews, payments.</li>
+                  <li>Items tracked only inside your own system: define an internal identifier in a format such as Code 128 and keep it separate from retail GTIN data.</li>
+                  <li>QR payloads such as links, Wi-Fi details or contact cards generally do not use retail GTINs, though destinations, payment providers and recipient apps can impose their own rules.</li>
                 </ul>
               </div>
             </div>
 
-            <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 1.75rem 0 0.6rem;">The process for products you sell</h4>
+            <h4 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin: 1.75rem 0 0.6rem;">When a recipient requires retail GTINs</h4>
             <ol style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary); padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem;">
-              <li><strong>License your numbers</strong> from the GS1 organisation in your country: usually a company prefix (for a range of products) or, in some countries, single GTINs (for one or two products).</li>
+              <li><strong>Obtain accepted identifiers</strong> from the GS1 organisation in your country or another source expressly accepted by the recipient.</li>
               <li><strong>Assign one number per product variant</strong>: every size, colour and pack count gets its own GTIN. Record the product details with GS1.</li>
-              <li><strong>Generate the barcode</strong> here with that number: <a href="index.html?symbology=ean-13">EAN-13</a> outside North America, <a href="index.html?symbology=upc-a">UPC-A</a> in the US and Canada, <a href="index.html?symbology=itf-14">ITF-14</a> for outer cartons.</li>
+              <li><strong>Generate the required carrier</strong> with that number: the recipient may specify <a href="index.html?symbology=ean-13">EAN-13</a>, <a href="index.html?symbology=upc-a">UPC-A</a>, or <a href="index.html?symbology=itf-14">ITF-14</a> for a logistics unit.</li>
               <li><strong>Print at the right size and test</strong>: a narrowest-bar width (X-dimension) of 0.264–0.660 mm (target 0.330 mm, often called 80%–200%), full quiet zones, dark bars on a light background. Scan a printed proof before a full run; some retailers ask for a verification report (ISO/IEC 15416 grade C or better).</li>
               <li><strong>Share the numbers</strong> with your retailers or marketplace listings.</li>
             </ol>
@@ -1648,7 +1648,7 @@ function calculateMod10(digits) {<br>
 
             <p class="docs-text" style="font-size: 0.88rem; margin-top: 0.5rem;">
               <strong>Code 128 Modulo-103:</strong> The check character is calculated by taking the Start code value, adding the product of each character's value multiplied by its position index (1, 2, 3...), and taking the modulo 103 remainder.<br>
-              <strong>2D Reed-Solomon Error Correction:</strong> Implemented over Galois Fields (GF(256)) to compute generator polynomials. If a barcode module is physically obliterated or torn, linear feedback shift register decoding mathematically reconstructs the original payload.
+              <strong>2D Reed-Solomon Error Correction:</strong> Adds redundant codewords that can help a compatible decoder recover some damaged or missing data, up to the symbol's configured correction capacity. It cannot guarantee recovery from every defect.
             </p>
           </div>
 
@@ -1660,12 +1660,12 @@ function calculateMod10(digits) {<br>
             </h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem;">
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1rem;">
-                <strong style="color: var(--text-primary); font-family: var(--font-heading); display: block; margin-bottom: 0.35rem;">Mandatory Quiet Zones</strong>
+                <strong style="color: var(--text-primary); font-family: var(--font-heading); display: block; margin-bottom: 0.35rem;">Quiet-Zone Guidance</strong>
                 <p style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
                   • <strong>Code 128:</strong> Minimum 10X module width left &amp; right.<br>
                   • <strong>EAN-13:</strong> 3.63mm left, 2.31mm right.<br>
                   • <strong>QR Code:</strong> 4 modules on all 4 sides.<br>
-                  • <strong>Aztec Code:</strong> 0 modules (zero quiet zone required).
+                  • <strong>Aztec Code:</strong> the standard permits 0 modules; leave practical separation where possible and test the final layout.
                 </p>
               </div>
               <div style="background: var(--surface-alt); border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 1rem;">
@@ -1683,23 +1683,23 @@ function calculateMod10(digits) {<br>
             </div>
           </div>
 
-          <!-- 5. Legal Permissions, Open Source & Fair Use -->
+          <!-- 5. Software and third-party references -->
           <div style="margin: 2rem 0 0.5rem; background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-ink);">
             <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--optic-amber)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              Legal Permissions, Open-Source Licensing &amp; Fair Use
+              Software Licences &amp; Third-Party References
             </h3>
             <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0.75rem;">
-              <strong>1. Open-Source Engine:</strong> UniversalCodeMaker renders barcodes client-side in your browser using pure open-source MIT-licensed libraries (bwip-js and qrcode-generator). There are no proprietary backend locks or server telemetry.
+              <strong>1. Rendering libraries:</strong> UniversalCodeMaker renders codes in the browser using third-party libraries. Their names, pinned versions and licence notices are recorded in the site's third-party notices.
             </p>
             <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0.75rem;">
-              <strong>2. DENSO WAVE Patent Pledge:</strong> QR Code was invented by Masahiro Hara at DENSO WAVE in 1994 (Patent JP 3343360). DENSO WAVE famously declared they would not exercise patent rights over standard-compliant implementations, permitting worldwide free commercial and personal usage.
+              <strong>2. Standards and identifiers:</strong> Creating a symbol does not issue an identifier, certify compliance, or grant rights in encoded content. Check the current requirements of the organisation that will receive or scan the code.
             </p>
             <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0.75rem;">
-              <strong>3. Nominative Fair Use:</strong> References to trademarked terms including "Avery&reg;", "GS1&reg;", "DENSO WAVE&reg;", "Walmart", and "Amazon" are made strictly under the doctrine of <em>Nominative Fair Use</em> to identify compatibility, operational requirements, and packaging standards. UniversalCodeMaker is an independent utility and is not affiliated with or endorsed by these entities.
+              <strong>3. Product and organisation names:</strong> Names such as Avery&reg;, GS1&reg;, Walmart and Amazon identify third-party products or requirements. UniversalCodeMaker is independent and is not affiliated with or endorsed by those organisations.
             </p>
             <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 0;">
-              <strong>4. Hyperlinking Legality:</strong> All authority links to public documentation (such as Wikipedia, ISO.org, GS1.org) are public hyperlinks for reference. Linking to public websites is a fundamental architectural right of the open web and requires zero licensing, approvals, or fees.
+              <strong>4. External references:</strong> Links to ISO, GS1 and other sources are provided for reference. Their terms, specifications and availability are controlled by their respective owners.
             </p>
           </div>
 
@@ -1765,7 +1765,7 @@ bwipjs.toCanvas('myCanvas', {
 });">Copy Code</button>
             </div>
             <code>// 1. Include bwip-js browser bundle in your HTML:<br>
-&lt;script src="https://cdn.jsdelivr.net/npm/bwip-js@latest/dist/bwip-js-min.js"&gt;&lt;/script&gt;<br><br>
+&lt;script src="https://cdn.jsdelivr.net/npm/bwip-js@4.11.4/dist/bwip-js-min.js"&gt;&lt;/script&gt;<br><br>
 // 2. Render barcode directly to an HTML5 canvas element:<br>
 bwipjs.toCanvas('myCanvas', {<br>
 &nbsp;&nbsp;bcid: 'code128',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Symbology identifier<br>
@@ -1798,7 +1798,7 @@ bwipjs.toCanvas('myCanvas', {<br>
             </div>
           </div>
           <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
-            100% Client-Side QR &amp; Barcode Engineering Studio. Built with zero tracking redirects, zero paywalls, and uncompromising optical precision.
+            Browser-based QR &amp; barcode tools with local payload generation, practical export options, and print-testing guidance.
           </p>
         </div>
 
@@ -1904,7 +1904,7 @@ bwipjs.toCanvas('myCanvas', {<br>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 UniversalCodeMaker.com. Client-Side Code Generator. 100% Free Forever.</p>
+        <p>&copy; 2026 UniversalCodeMaker.com. Free, Client-Side Code Generator.</p>
         <ul class="v2-footer-legal-links">
           <li><a href="terms.html">Terms of Service</a></li>
           <li><a href="privacy-policy.html">Privacy Policy</a></li>

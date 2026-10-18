@@ -1,6 +1,6 @@
 # Free QR Code & Barcode Generator - UniversalCodeMaker.com
 
-> A free, privacy-first web app that generates static QR codes and barcodes in the browser: 10 barcode formats and 13 QR code types. No sign-up, no watermark, no tracking redirects in the codes, and the codes never expire.
+> A free, privacy-first web app that generates static QR codes and barcodes in the browser: 10 barcode formats and 13 QR code types. No sign-up or watermark; UniversalCodeMaker does not control a redirect or expiry for the generated static codes.
 
 ## Core Capabilities
 - **QR Codes**: Standard QR Code with custom dot and corner styles, colours, gradients and a centred logo.
@@ -27,7 +27,7 @@
 - [ITF-14 Shipping Carton Barcode Generator](https://universalcodemaker.com/pages/itf-14-barcode-generator.html)
 - [Data Matrix Healthcare & Industrial Barcode Generator](https://universalcodemaker.com/pages/data-matrix-generator.html)
 - [Aztec Code Ticketing Barcode Generator](https://universalcodemaker.com/pages/aztec-code-generator.html)
-- [PDF417 Driver License & ID Barcode Generator](https://universalcodemaker.com/pages/pdf417-barcode-generator.html)
+- [PDF417 Stacked Barcode Generator](https://universalcodemaker.com/pages/pdf417-barcode-generator.html)
 
 ## Guides
 - [How to Get a Barcode for Your Product (EAN-13, UPC-A & GTIN explained)](https://universalcodemaker.com/pages/how-to-get-a-barcode-for-your-product.html): where product numbers come from (GS1), EAN-13 vs UPC-A vs GTIN, the check digit, print sizes and testing.
