@@ -31,6 +31,8 @@ google indexing report/
 # 5. Dependency Directories & Package Caches
 node_modules/
 package-lock.json
+!/package-lock.json
+!tests/e2e/package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
@@ -58,3 +60,7 @@ bing indexing reports/
 CloudFlare reports/
 google perfoamance report/
 google indexing report/
+
+# Local mutation-test sandboxes and generated reports.
+.stryker-tmp/
+tests/mutation/reports/

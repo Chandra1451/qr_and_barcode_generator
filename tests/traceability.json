@@ -1,0 +1,188 @@
+{
+  "_about": "Draft owner acceptance checks for the 13 feature specs. Wording remains draft until the owner approves it; test IDs are enforced by TRACE-01.",
+  "updated": "2026-10-19",
+  "features": [
+    {
+      "feature": "avery-sheet-per-label",
+      "spec": "20_features/avery-sheet-per-label.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-AVERY-01",
+          "given": "A valid list of barcode or QR values",
+          "when": "the user exports an Avery sheet with one code per label",
+          "then": "every value appears once, spans additional pages when needed, and scans back correctly",
+          "testIds": ["EXP-46", "EXP-47", "EXP-49"]
+        }
+      ]
+    },
+    {
+      "feature": "barcode-formats",
+      "spec": "20_features/barcode-formats.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-FORMAT-01",
+          "given": "Any registered barcode format and its valid default or supported edge input",
+          "when": "the studio renders the code",
+          "then": "the registry is valid and an independent decoder returns the intended value",
+          "testIds": ["STATIC-REG-01", "STATIC-REG-02", "DEC-01", "DEC-02"]
+        }
+      ]
+    },
+    {
+      "feature": "barcode-styling",
+      "spec": "20_features/barcode-styling.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-BSTYLE-01",
+          "given": "A supported barcode and visible style controls",
+          "when": "the user changes colour, padding, scale, height, text, or corners",
+          "then": "the preview changes and supported exports preserve the chosen styling",
+          "testIds": ["CTRL-02", "CTRL-06", "CTRL-07", "EXP-02", "EXP-11"]
+        }
+      ]
+    },
+    {
+      "feature": "batch",
+      "spec": "20_features/batch.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-BATCH-01",
+          "given": "A sequence or pasted list within the documented limit",
+          "when": "the user exports a ZIP or Avery PDF",
+          "then": "each valid value is exported once and invalid or excess lines are reported",
+          "testIds": ["BTN-62", "BTN-63", "EXP-40", "EXP-41", "EXP-47", "EXP-48"]
+        }
+      ]
+    },
+    {
+      "feature": "deep-links",
+      "spec": "20_features/deep-links.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-LINK-01",
+          "given": "A documented studio or legacy deep link",
+          "when": "a visitor opens it",
+          "then": "the intended format, wizard, payload and modal state open safely and legacy links retain their query",
+          "testIds": ["LINK-01", "LINK-02", "LINK-10", "LINK-11", "LINK-12", "LINK-13", "LINK-14", "LINK-15"]
+        }
+      ]
+    },
+    {
+      "feature": "export",
+      "spec": "20_features/export.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-EXPORT-01",
+          "given": "A valid rendered code",
+          "when": "the user downloads PNG, SVG, EPS or PDF",
+          "then": "the file is valid, matches the preview's data and supported styling, and scans independently",
+          "testIds": ["EXP-01", "EXP-03", "EXP-10", "EXP-12", "EXP-14", "EXP-30"]
+        }
+      ]
+    },
+    {
+      "feature": "guard-bars",
+      "spec": "20_features/guard-bars.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-GUARD-01",
+          "given": "An EAN-13, UPC-A or ISBN barcode with human-readable text",
+          "when": "it is rendered",
+          "then": "guard bars extend by 5X and the leading digit uses the standard outside position",
+          "testIds": ["EXP-GUARD-01", "EXP-GUARD-02"]
+        }
+      ]
+    },
+    {
+      "feature": "history",
+      "spec": "20_features/history.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-HISTORY-01",
+          "given": "Codes created in the studio, including unsafe-looking text",
+          "when": "history records, restores or clears them",
+          "then": "history stays bounded, avoids partial entries, restores the value, and never executes markup",
+          "testIds": ["BTN-50", "BTN-51", "BTN-52", "SEC-01", "SEC-04"]
+        }
+      ]
+    },
+    {
+      "feature": "label-maker",
+      "spec": "20_features/label-maker.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-LABEL-01",
+          "given": "A supported code and label preset",
+          "when": "the user edits the layout and exports or prints it",
+          "then": "the label dimensions, text and encoded value agree, including an empty-by-default Amazon FNSKU",
+          "testIds": ["BTN-64", "BTN-70", "BTN-71", "BTN-72", "EXP-50", "EXP-51", "EXP-53", "EXP-54"]
+        }
+      ]
+    },
+    {
+      "feature": "print-size",
+      "spec": "20_features/print-size.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-SIZE-01",
+          "given": "A barcode or label with a documented physical size",
+          "when": "the user exports PNG, SVG or EPS",
+          "then": "the file carries matching physical dimensions and required quiet zones",
+          "testIds": ["EXP-SIZE-01", "EXP-SIZE-02", "EXP-SIZE-03", "EXP-SIZE-04", "EXP-SIZE-05", "EXP-SIZE-06"]
+        }
+      ]
+    },
+    {
+      "feature": "qr-styling",
+      "spec": "20_features/qr-styling.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-QRSTYLE-01",
+          "given": "A QR code with supported dots, eyes, colours, gradient, padding, logo or corners",
+          "when": "the user previews and exports it",
+          "then": "the chosen appearance is preserved and the result remains independently scannable",
+          "testIds": ["QRC-01", "QRC-03", "QRC-04", "QRC-09", "EXP-15"]
+        }
+      ]
+    },
+    {
+      "feature": "qr-types",
+      "spec": "20_features/qr-types.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-QRTYPE-01",
+          "given": "Any supported QR wizard with valid inputs",
+          "when": "the user selects it or edits its fields",
+          "then": "the correct fields appear and the decoded payload follows that format's rules",
+          "testIds": ["DEC-QR-01", "DEC-QR-02", "DEC-QR-03", "DEC-QR-04", "DEC-QR-05", "QRC-07", "QRC-08"]
+        }
+      ]
+    },
+    {
+      "feature": "scanner",
+      "spec": "20_features/scanner.md",
+      "approval": "draft - owner review required",
+      "acceptanceChecks": [
+        {
+          "id": "AC-SCAN-01",
+          "given": "An uploaded image or camera stream containing a supported code",
+          "when": "the visitor scans it",
+          "then": "the reader returns the value locally, handles unsafe content as text, and can hand safe data to the studio",
+          "testIds": ["SCAN-01", "SCAN-02", "SCAN-10", "SCAN-11", "SCAN-20", "SCAN-31", "SCAN-40"]
+        }
+      ]
+    }
+  ]
+}

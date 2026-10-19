@@ -18,6 +18,11 @@
     "test:consistency": "playwright test --project=desktop --project=phone specs/10-consistency.spec.mjs",
     "test:security": "playwright test --project=desktop specs/11-security.spec.mjs",
     "test:loading": "playwright test --project=desktop specs/13-loading.spec.mjs",
+    "test:integrity": "node ../../tools/test-integrity.mjs --run-list . --inventory ../test-inventory.json --specs specs,../unit",
+    "test:lint": "eslint .",
+    "test:quality": "npm run test:integrity && npm run test:lint",
+    "test:ci": "playwright test --project=static --project=desktop --project=phone --fail-on-flaky-tests",
+    "test:summary": "node ../../tools/test-summary.mjs reports/results.json --repo ../.. --expect-projects static,desktop,phone --allow-skips 3",
     "test:visual": "playwright test --project=visual",
     "baselines:update": "playwright test --project=visual --update-snapshots",
     "report": "playwright show-report reports/html",
@@ -26,6 +31,8 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
     "@playwright/test": "^1.55.0",
+    "eslint": "^10.13.0",
+    "eslint-plugin-playwright": "^2.12.1",
     "jszip": "^3.10.1",
     "pngjs": "^7.0.0",
     "zxing-wasm": "^2.2.0"

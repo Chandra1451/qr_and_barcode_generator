@@ -33,6 +33,7 @@ export default defineConfig({
   snapshotPathTemplate: '{testDir}/../baselines/{testFileName}/{arg}-{projectName}{ext}',
 
   timeout: 90_000,
+  globalTimeout: process.env.CI ? 30 * 60_000 : undefined,
   expect: {
     timeout: 10_000,
     toHaveScreenshot: { maxDiffPixelRatio: 0.01, animations: 'disabled', caret: 'hide' },
@@ -56,6 +57,7 @@ export default defineConfig({
       // Pure file-system checks. No browser is launched.
       name: 'static',
       testMatch: /00-static\.spec\.mjs/,
+      use: { baseURL },
     },
     {
       name: 'desktop',

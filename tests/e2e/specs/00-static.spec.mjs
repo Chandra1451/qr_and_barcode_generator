@@ -14,6 +14,47 @@ import {
 const allowlist = JSON.parse(fs.readFileSync(path.join(E2E_ROOT, 'consistency-allowlist.json'), 'utf8'));
 const allowed = (key) => allowlist.allowed.some((a) => a.key === key);
 
+test('BUILD-01 served asset stamp matches this checkout or the expected release', async ({ request }) => {
+  const response = await request.get(`/index.html?build-stamp-check=${Date.now()}`);
+  expect(response.ok(), `index returned ${response.status()}`).toBe(true);
+  const servedMatch = (await response.text()).match(/js\/v2-studio\.js\?v=([\w.-]+)/);
+  const checkoutMatch = readSiteFile('index.html').match(/js\/v2-studio\.js\?v=([\w.-]+)/);
+  const expected = process.env.UCM_EXPECTED_ASSET_VERSION || checkoutMatch?.[1];
+  expect(servedMatch?.[1], 'served index is missing the v2-studio asset stamp').toBeTruthy();
+  expect(servedMatch?.[1], 'the server is serving a different checkout/release').toBe(expected);
+});
+
+test('TRACE-01 every feature has draft acceptance checks that point to existing test IDs', () => {
+  const matrix = JSON.parse(fs.readFileSync(path.join(SITE_ROOT, 'tests', 'traceability.json'), 'utf8'));
+  const expectedFeatures = [
+    'avery-sheet-per-label', 'barcode-formats', 'barcode-styling', 'batch', 'deep-links',
+    'export', 'guard-bars', 'history', 'label-maker', 'print-size', 'qr-styling', 'qr-types', 'scanner',
+  ];
+  expect(matrix.features.map((feature) => feature.feature).sort()).toEqual(expectedFeatures.sort());
+
+  const testSources = fs.readdirSync(path.join(E2E_ROOT, 'specs'))
+    .filter((name) => name.endsWith('.mjs'))
+    .map((name) => fs.readFileSync(path.join(E2E_ROOT, 'specs', name), 'utf8'))
+    .join('\n');
+  const missingTestIds = [];
+  for (const feature of matrix.features) {
+    expect(feature.spec).toBe(`20_features/${feature.feature}.md`);
+    expect(feature.approval).toContain('draft');
+    expect(feature.acceptanceChecks.length, `${feature.feature} has no acceptance checks`).toBeGreaterThan(0);
+    for (const check of feature.acceptanceChecks) {
+      expect(check.given, `${check.id} has no Given condition`).toBeTruthy();
+      expect(check.when, `${check.id} has no When action`).toBeTruthy();
+      expect(check.then, `${check.id} has no Then outcome`).toBeTruthy();
+      expect(check.testIds.length, `${check.id} has no test IDs`).toBeGreaterThan(0);
+      for (const id of check.testIds) {
+        const escaped = id.replace(/[.*+?^\\${}()|[\\]\\\\]/g, '\\\\$&');
+        if (!new RegExp(`\\b${escaped}\\b`).test(testSources)) missingTestIds.push(`${check.id}: ${id}`);
+      }
+    }
+  }
+  expect(missingTestIds, 'acceptance checks point to missing test IDs').toEqual([]);
+});
+
 test.describe('STATIC-REG · generator registry schema', () => {
   test('STATIC-REG-01 generator ids are unique and categories are known', () => {
     const ids = GENERATORS.map((g) => g.id);
