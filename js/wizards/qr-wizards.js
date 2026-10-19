@@ -34,6 +34,27 @@ function ethToWei(amount) {
   return (whole * 10n ** 18n + frac).toString();
 }
 
+export function getDefaultEventDateTimes(now = new Date()) {
+  const start = new Date(now);
+  start.setDate(start.getDate() + 7);
+  start.setHours(9, 0, 0, 0);
+
+  const end = new Date(start);
+  end.setHours(17, 0, 0, 0);
+
+  const toLocalInputValue = (date) => {
+    const pad = (value) => String(value).padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  };
+
+  return {
+    start: toLocalInputValue(start),
+    end: toLocalInputValue(end)
+  };
+}
+
+const DEFAULT_EVENT_DATE_TIMES = getDefaultEventDateTimes();
+
 export const QR_WIZARDS = {
   url: {
     id: 'url',
@@ -238,16 +259,16 @@ export const QR_WIZARDS = {
     fields: [
       { id: 'title', label: 'Event Title', type: 'text', placeholder: 'Annual Tech Conference', default: 'Global AI & Web Summit 2026', required: true },
       { id: 'location', label: 'Event Location', type: 'text', placeholder: 'Convention Center, Room 101', default: 'Moscone Center, San Francisco' },
-      { id: 'startDate', label: 'Start Date & Time', type: 'datetime-local', default: '2026-10-15T09:00' },
-      { id: 'endDate', label: 'End Date & Time', type: 'datetime-local', default: '2026-10-15T17:00' },
+      { id: 'startDate', label: 'Start Date & Time', type: 'datetime-local', default: DEFAULT_EVENT_DATE_TIMES.start },
+      { id: 'endDate', label: 'End Date & Time', type: 'datetime-local', default: DEFAULT_EVENT_DATE_TIMES.end },
       { id: 'description', label: 'Notes / Description', type: 'textarea', placeholder: 'Details about the event...', default: 'Keynote sessions and workshops.' }
     ],
     compile(data) {
-      const formatDT = (dtStr) => {
+      const formatDT = (dtStr, fallback) => {
         // datetime-local gives the creator's local time; convert it to real UTC so the
         // trailing Z is true and the event shows at the right time in every time zone.
-        const d = dtStr ? new Date(dtStr) : null;
-        if (!d || isNaN(d.getTime())) return '20261015T090000Z';
+        let d = new Date(dtStr || fallback);
+        if (isNaN(d.getTime())) d = new Date(fallback);
         return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); // 20261015T130000Z
       };
 
@@ -257,8 +278,8 @@ export const QR_WIZARDS = {
         'BEGIN:VEVENT',
         `SUMMARY:${data.title || 'Event'}`,
         data.location ? `LOCATION:${data.location}` : '',
-        `DTSTART:${formatDT(data.startDate)}`,
-        `DTEND:${formatDT(data.endDate)}`,
+        `DTSTART:${formatDT(data.startDate, DEFAULT_EVENT_DATE_TIMES.start)}`,
+        `DTEND:${formatDT(data.endDate, DEFAULT_EVENT_DATE_TIMES.end)}`,
         data.description ? `DESCRIPTION:${data.description}` : '',
         'END:VEVENT',
         'END:VCALENDAR'

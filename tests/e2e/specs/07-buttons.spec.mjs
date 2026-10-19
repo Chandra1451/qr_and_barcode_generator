@@ -156,8 +156,9 @@ test.describe('BTN · format selection', () => {
       expect(state.generatorId, `quick button "${b.text}"`).toBe(b.symbology);
       if (b.wizard) expect(state.wizardId, `quick button "${b.text}"`).toBe(b.wizard);
       if (b.fnsku === 'true') {
-        await expect(studio.payloadInput).toHaveValue(/^X00/);
+        await expect(studio.payloadInput, 'FNSKU quick launch must not supply test data').toHaveValue('');
         if (b.preset) await expect(page.locator('#label-preset-select')).toHaveValue(b.preset);
+        await studio.setPayload('X00TEST123');
       }
       await studio.waitForStableRender();
       await studio.expectNoRenderError();

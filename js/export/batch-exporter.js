@@ -7,10 +7,10 @@
  * Zero server communication, zero data leakage.
  */
 
-import { engine } from '../core/engine.js?v=3.25';
-import { loadJsZip } from '../core/dynamic-loader.js?v=3.25';
-import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.25';
-import { pngDpiFor, pngDataUrlWithDpi, svgWithPrintSize } from '../core/print-size.js?v=3.25';
+import { engine } from '../core/engine.js?v=3.26';
+import { loadJsZip } from '../core/dynamic-loader.js?v=3.26';
+import { downloadBlob, applySvgCornerRadius } from './image-exporter.js?v=3.26';
+import { pngDpiFor, pngDataUrlWithDpi, svgWithPrintSize } from '../core/print-size.js?v=3.26';
 
 /**
  * Generates an array of sequenced alphanumeric string payloads

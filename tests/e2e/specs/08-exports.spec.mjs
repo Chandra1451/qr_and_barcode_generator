@@ -716,21 +716,28 @@ test.describe('EXP-LBL · label maker exports', () => {
     }
   });
 
-  test('EXP-51 Amazon FNSKU preset produces a scannable Code 128 FNSKU label', async ({ studio, page }) => {
-    await studio.open('?symbology=code-128&preset=amazon-fnsku-5160&label=1');
+  test('EXP-51 Amazon FNSKU preset starts empty, then produces a scannable Code 128 FNSKU label', async ({ studio, page }) => {
+    await studio.open('?symbology=code-128&preset=amazon-fnsku-5160&label=1', { waitForRender: false });
     await expect(page.locator('#label-maker-modal')).toHaveClass(/open/);
+    await expect(page.locator('#payload-input'), 'preset must not supply a test FNSKU').toHaveValue('');
+    await expect(page.locator('#label-field-sku'), 'FNSKU field must start empty').toHaveValue('');
+    await expect(page.locator('#label-field-sku')).toHaveAttribute('placeholder', /^e\.g\. X00/);
+    await page.locator('#label-field-sku').fill('X00TEST123');
+    await studio.waitForStableRender();
     await page.waitForTimeout(500);
     const png = await studio.download(page.locator('#btn-export-label-png'));
     const text = await decodeFirst(png.buffer);
-    expect(text, 'FNSKU barcode does not scan').toMatch(/^X00[0-9A-Z]{7}$/);
+    expect(text, 'FNSKU barcode does not scan').toBe('X00TEST123');
   });
 
   // Amazon (US and India help, checked 2026-10-12): white space of 0.25" on the sides and 0.125" on the
   // top and bottom around the barcode and text and from the label edges. Short and two-line titles.
   for (const title of ['Organic Dark Roast Coffee', 'Organic Dark Roast Whole Bean Coffee, Single Origin Colombia, 16 oz Resealable Bag']) {
     test(`EXP-52 Amazon FNSKU label keeps Amazon's white space at the edges (title ${title.length} chars)`, async ({ studio, page }) => {
-      await studio.open('?symbology=code-128&preset=amazon-fnsku-5160&label=1');
+      await studio.open('?symbology=code-128&preset=amazon-fnsku-5160&label=1', { waitForRender: false });
       await expect(page.locator('#label-maker-modal')).toHaveClass(/open/);
+      await page.locator('#label-field-sku').fill('X00TEST123');
+      await studio.waitForStableRender();
       await page.locator('#label-field-title').fill(title);
       await page.waitForTimeout(500);
       const png = await studio.download(page.locator('#btn-export-label-png'));
@@ -758,10 +765,11 @@ test.describe('EXP-LBL · label maker exports', () => {
 
   // Amazon counts a label that doesn't match the unit as "mislabeled": the FNSKU text and the bars must agree.
   test('EXP-53 Amazon label: typing an FNSKU changes the barcode itself', async ({ studio, page }) => {
-    await studio.open('?symbology=code-128&preset=amazon-fnsku-5160&label=1');
+    await studio.open('?symbology=code-128&preset=amazon-fnsku-5160&label=1', { waitForRender: false });
     await expect(page.locator('#label-maker-modal')).toHaveClass(/open/);
     await page.locator('#label-field-sku').fill('X00ZQ4TEST');
     await expect(page.locator('#payload-input')).toHaveValue('X00ZQ4TEST');
+    await studio.waitForStableRender();
     await page.waitForTimeout(800);
     const png = await studio.download(page.locator('#btn-export-label-png'));
     expect(await decodeFirst(png.buffer), 'label barcode ≠ the FNSKU typed in the label field').toBe('X00ZQ4TEST');

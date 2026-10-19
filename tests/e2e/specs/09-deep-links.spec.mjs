@@ -32,8 +32,9 @@ function expectedState(query) {
 test.describe('LINK · studio links used on the site', () => {
   for (const { query, from } of studioLinks()) {
     test(`LINK-01 ?${query} (from ${from})`, async ({ studio, page }) => {
-      await studio.open(`?${query}`);
       const want = expectedState(query);
+      const emptyFnsku = want.generatorId === 'code-128' && want.preset === 'amazon-fnsku-5160' && !want.payload;
+      await studio.open(`?${query}`, { waitForRender: !emptyFnsku });
       const state = await studio.appState();
       expect(state.generatorId, 'wrong format opened').toBe(want.generatorId);
       await expect(studio.symbologySelect).toHaveValue(want.generatorId);
@@ -45,6 +46,12 @@ test.describe('LINK · studio links used on the site', () => {
       if (want.label) await expect(page.locator('#label-maker-modal')).toHaveClass(/open/);
       if (want.preset) await expect(page.locator('#label-preset-select')).toHaveValue(want.preset);
       if (want.batch) await expect(page.locator('#batch-modal')).toHaveClass(/open/);
+      if (emptyFnsku) {
+        await expect(studio.payloadInput, 'FNSKU deep link must not supply test data').toHaveValue('');
+        await expect(page.locator('#label-field-sku')).toHaveValue('');
+        await page.locator('#label-field-sku').fill('X00TEST123');
+        await studio.waitForStableRender();
+      }
       await studio.expectNoRenderError();
     });
   }
@@ -58,6 +65,11 @@ test.describe('LINK · clicking the real CTA on each landing page', () => {
       await expect(cta, 'landing page has no link into the studio').toHaveCount(1);
       await cta.click();
       await page.waitForURL(/index\.html/);
+      if (p === 'pages/amazon-fba-fnsku-barcode-generator.html') {
+        await expect(studio.payloadInput, 'FNSKU CTA must not supply test data').toHaveValue('');
+        await expect(page.locator('#label-maker-modal')).toHaveClass(/open/);
+        await page.locator('#label-field-sku').fill('X00TEST123');
+      }
       await studio.waitForStableRender();
       await studio.expectNoRenderError();
     });

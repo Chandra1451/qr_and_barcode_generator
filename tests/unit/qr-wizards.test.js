@@ -6,7 +6,7 @@
  * handle character escaping, and apply parameter encodings.
  */
 
-import { QR_WIZARDS, getAllWizards, getWizard } from '../../js/wizards/qr-wizards.js';
+import { QR_WIZARDS, getAllWizards, getDefaultEventDateTimes, getWizard } from '../../js/wizards/qr-wizards.js';
 
 export async function runWizardTests(assert) {
   // Test 1: Registry check
@@ -126,6 +126,15 @@ export async function runWizardTests(assert) {
 
   // Test 9: Calendar Event Wizard
   const eventWz = getWizard('event');
+  const eventDefaults = getDefaultEventDateTimes(new Date(2026, 9, 19, 18, 30));
+  assert.equal(eventDefaults.start, '2026-10-26T09:00', 'Default event starts seven local-calendar days later at 09:00');
+  assert.equal(eventDefaults.end, '2026-10-26T17:00', 'Default event ends on the same day at 17:00');
+  const yearBoundaryDefaults = getDefaultEventDateTimes(new Date(2026, 11, 29, 12, 0));
+  assert.equal(yearBoundaryDefaults.start, '2027-01-05T09:00', 'Default event handles month and year rollover');
+  assert.isTrue(
+    new Date(eventWz.fields.find((field) => field.id === 'startDate').default).getTime() > Date.now(),
+    'Rendered event default is in the future'
+  );
   const eventPayload = eventWz.compile({
     title: 'Launch Day',
     location: 'Headquarters',

@@ -4,20 +4,20 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.25';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.25';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.26';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.26';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.25';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.25';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.25';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.25';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.25';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.25';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.25';
+} from './generators/registry.js?v=3.26';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.26';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.26';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.26';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.26';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.26';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.26';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -26,7 +26,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.25';
+} from './export/label-maker.js?v=3.26';
 
 class V2StudioApp {
   constructor() {
@@ -159,7 +159,7 @@ class V2StudioApp {
     const paramLabel = urlParams.get('label') || urlParams.get('labelmaker');
 
     if (paramPreset === 'amazon-fnsku-5160' && !paramPayload && targetGenId === 'code-128') {
-      this.dom.payloadInput.value = 'X003B7TEST';
+      this.dom.payloadInput.value = '';
       this.scheduleRender();
     }
 
@@ -1992,7 +1992,7 @@ class V2StudioApp {
         // 3. Amazon FBA Special Handling
         if (isFnsku) {
           if (this.dom.payloadInput && !/^X00[0-9A-Z]{7}$/i.test(this.dom.payloadInput.value.trim())) {
-            this.dom.payloadInput.value = 'X003B7TEST';
+            this.dom.payloadInput.value = '';
             this.scheduleRender();
           }
           if (preset && this.dom.labelPresetSelect) {
