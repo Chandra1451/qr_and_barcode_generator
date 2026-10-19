@@ -23,6 +23,7 @@
     "test:quality": "npm run test:integrity && npm run test:lint",
     "test:ci": "playwright test --project=static --project=desktop --project=phone --fail-on-flaky-tests",
     "test:summary": "node ../../tools/test-summary.mjs reports/results.json --repo ../.. --expect-projects static,desktop,phone --allow-skips 3",
+    "check:cmp": "node tools/check-live-cmp.mjs",
     "test:visual": "playwright test --project=visual",
     "baselines:update": "playwright test --project=visual --update-snapshots",
     "report": "playwright show-report reports/html",

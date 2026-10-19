@@ -39,6 +39,7 @@ All commands run from `tests/e2e/`. The local server (port 8099) starts and stop
 | Cross-page design consistency | `npm run test:consistency` | 5 min |
 | Security & privacy | `npm run test:security` | 1 min |
 | Loading & stale-cache problems | `npm run test:loading` | 2 min |
+| Live Google consent message | `npm run check:cmp` | ~15 s |
 | Visual screenshots | `npm run test:visual` (after creating baselines, see §4) | 3 min |
 | One test by ID | `npx playwright test -g "BOOT-02"` | — |
 | Watch it run in a visible browser | add `--headed --workers=1` | — |
@@ -71,6 +72,16 @@ $env:UCM_BASE_URL = "https://universalcodemaker.com"; npx playwright test --proj
 ```
 
 `SMOKE-05` (private folders return 404) only runs in this mode. `SMOKE-04` (existing unit-test runner) is skipped there because `/tests/` is blocked.
+
+### Live Google consent-message diagnostic
+
+`npm run check:cmp` opens the live homepage with Google's documented
+`?fc=alwaysshow&fctype=gdpr` parameters. It reports whether the Funding Choices
+dialog and APIs appeared, records only request origins and paths (not query strings),
+and writes `reports/cmp/cmp-live.json` plus `cmp-live.png`. The command exits 1
+when the page loads but no dialog appears, or 2 when the page itself cannot be loaded.
+Pass another site URL after `--` if needed, and set `UCM_BROWSER_CHANNEL=msedge`
+to repeat the diagnostic in Edge.
 
 ---
 
