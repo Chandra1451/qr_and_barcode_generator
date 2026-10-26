@@ -33,7 +33,5 @@ Disallow: /scratch/
 Disallow: /temp/
 Disallow: /tests/
 
-# Sitemaps & AI Agent Context Files
+# Sitemap
 Sitemap: https://universalcodemaker.com/sitemap.xml
-LLMs-Txt: https://universalcodemaker.com/llms.txt
-LLMs-Full-Txt: https://universalcodemaker.com/llms-full.txt
