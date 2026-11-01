@@ -376,6 +376,38 @@ test.describe('STATIC-LINK · links, deep links, sitemap', () => {
   });
 });
 
+test.describe('STATIC-INDEXNOW · release notifications are constrained and deployable', () => {
+  const scriptPath = path.join(SITE_ROOT, 'tools', 'submit-indexnow.mjs');
+  const script = fs.readFileSync(scriptPath, 'utf8');
+  const key = script.match(/const INDEXNOW_KEY = "([a-f0-9]{32})";/)?.[1];
+
+  test('STATIC-INDEXNOW-01 key file name and contents match the submission tool', () => {
+    expect(key, '32-character hexadecimal IndexNow key in the tool').toBeTruthy();
+    const keyFile = path.join(SITE_ROOT, `${key}.txt`);
+    expect(fs.existsSync(keyFile), 'root key file exists').toBe(true);
+    expect(fs.readFileSync(keyFile, 'utf8').trim(), 'key file contains only the matching key').toBe(key);
+  });
+
+  test('STATIC-INDEXNOW-02 dry run accepts sitemap URLs and rejects unsafe or unlisted URLs', () => {
+    const run = (...args) => execFileSync(process.execPath, [scriptPath, ...args], {
+      cwd: SITE_ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    const dryRun = JSON.parse(run('--url', 'https://universalcodemaker.com/'));
+    expect(dryRun.mode).toBe('dry-run');
+    expect(dryRun.urlList).toEqual(['https://universalcodemaker.com/']);
+    expect(() => run('--url', 'http://universalcodemaker.com/')).toThrow();
+    expect(() => run('--url', 'https://example.com/')).toThrow();
+    expect(() => run('--url', 'https://universalcodemaker.com/not-in-sitemap.html')).toThrow();
+  });
+
+  test('STATIC-INDEXNOW-03 manual deployment package includes the public key file', () => {
+    const packager = readSiteFile('tools/build-hostinger-package.js');
+    expect(packager).toContain(`'${key}.txt'`);
+  });
+});
+
 test.describe('STATIC-CACHE · returning visitors get matching code', () => {
   // .htaccess caches JS for a day under the same URL. If code changes without a new URL,
   // returning visitors run old scripts against new HTML ("some settings don't work").

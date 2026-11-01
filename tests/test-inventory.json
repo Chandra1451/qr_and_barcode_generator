@@ -53,6 +53,9 @@
    "00-static.spec.mjs › STATIC-CONSENT · Analytics waits for consent on every page › STATIC-CONSENT-01 terms.html: consent loader, AdSense tag and settings link; no direct Analytics",
    "00-static.spec.mjs › STATIC-CONSENT · Analytics waits for consent on every page › STATIC-CONSENT-02 the loader only loads Analytics on GRANTED or NOT_APPLICABLE",
    "00-static.spec.mjs › STATIC-CONSENT-03 the shared loader adds the Cloudflare Web Analytics beacon (cookie-free visit counts)",
+   "00-static.spec.mjs › STATIC-INDEXNOW · release notifications are constrained and deployable › STATIC-INDEXNOW-01 key file name and contents match the submission tool",
+   "00-static.spec.mjs › STATIC-INDEXNOW · release notifications are constrained and deployable › STATIC-INDEXNOW-02 dry run accepts sitemap URLs and rejects unsafe or unlisted URLs",
+   "00-static.spec.mjs › STATIC-INDEXNOW · release notifications are constrained and deployable › STATIC-INDEXNOW-03 manual deployment package includes the public key file",
    "00-static.spec.mjs › STATIC-LINK · links, deep links, sitemap › STATIC-LINK-01 every internal href/src points to an existing file",
    "00-static.spec.mjs › STATIC-LINK · links, deep links, sitemap › STATIC-LINK-02 same-page #anchors exist",
    "00-static.spec.mjs › STATIC-LINK · links, deep links, sitemap › STATIC-LINK-03 studio deep links use real generator, wizard and preset ids",
@@ -1563,7 +1566,7 @@
   ]
  },
  "assertions": {
-  "e2e/specs/00-static.spec.mjs": 78,
+  "e2e/specs/00-static.spec.mjs": 87,
   "e2e/specs/01-smoke.spec.mjs": 13,
   "e2e/specs/02-studio-boot.spec.mjs": 5,
   "e2e/specs/03-controls.spec.mjs": 41,
@@ -1693,5 +1696,5 @@
   ]
  },
  "_about": "Test inventory for test-integrity.mjs (kit core 05, D2). Every change to this file is shown to the owner: removed tests, new skips and allowed hits need a reason.",
- "updated": "2026-10-19"
+ "updated": "2026-11-01"
 }
