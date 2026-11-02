@@ -469,8 +469,9 @@ test.describe('STATIC-CONSENT · Analytics waits for consent on every page', () 
     test(`STATIC-CONSENT-01 ${p}: consent loader, AdSense tag and settings link; no direct Analytics`, () => {
       const html = readSiteFile(p);
       expect(html, 'shared consent loader in <head>').toMatch(/<head>[\s\S]*<script src="\/js\/core\/consent-analytics\.js\?v=[\w.]+" defer><\/script>[\s\S]*<\/head>/);
-      // Google's consent message is delivered by the AdSense tag; without it Analytics never loads.
-      expect(html, 'AdSense tag').toContain('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3988564922048072');
+      // Error and supporting screens are explicitly outside the proposed ad inventory.
+      const excludedFromAds = ['404.html', 'about.html', 'contact.html', 'terms.html', 'privacy-policy.html'].includes(p);
+      expect(/adsbygoogle|pagead2\.googlesyndication\.com/.test(html), 'reviewed ad-inventory eligibility').toBe(!excludedFromAds);
       expect(html, 'hidden "Privacy and cookie settings" link').toMatch(/<li class="js-consent-settings" hidden><a href="[./]*privacy-policy\.html#consent">Privacy and cookie settings<\/a><\/li>/);
       expect(html, 'Analytics must not be configured or loaded outside the consent loader').not.toMatch(/gtag\('config'|googletagmanager\.com\/gtag\/js/);
       expect(html, '"zero-knowledge" is not true while Analytics runs').not.toMatch(/zero[- ]knowledge/i);

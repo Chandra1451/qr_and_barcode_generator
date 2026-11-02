@@ -2,14 +2,13 @@
 //
 // js/core/consent-analytics.js waits for Google's consent message (delivered by the AdSense
 // tag) to run its CONSENT_MODE_DATA_READY callbacks, then loads gtag.js only when the
-// analytics-storage status is GRANTED (1) or NOT_APPLICABLE (3). Here the AdSense tag is
-// replaced by a fake that implements the documented googlefc API with a chosen status
+// analytics-storage status is GRANTED (1) or NOT_APPLICABLE (3). Here a fake protocol is
+// supplied independently of ad eligibility, implementing the googlefc API with a chosen status
 // (https://developers.google.com/funding-choices/fc-api-docs). The real message is checked
 // on the live site with ?fc=alwaysshow&fctype=gdpr.
 
 import { test, expect } from '../support/fixtures.mjs';
 
-const ADSENSE = /pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/;
 const GTAG = /googletagmanager\.com\/gtag\/js/;
 
 const STATUS = { UNKNOWN: 0, GRANTED: 1, DENIED: 2, NOT_APPLICABLE: 3, NOT_CONFIGURED: 4 };
@@ -38,9 +37,10 @@ function fakeConsentScript(status, gdprApplies) {
 }
 
 async function useFakeConsent(page, status, gdprApplies = false) {
-  await page.route(ADSENSE, (route) =>
-    route.fulfill({ status: 200, contentType: 'text/javascript', body: fakeConsentScript(status, gdprApplies) }),
-  );
+  // Supply the consent protocol independently: utility pages intentionally have no ad loader.
+  await page.addInitScript({
+    content: `if (!sessionStorage.getItem('__ucm_test_skip_consent')) { ${fakeConsentScript(status, gdprApplies)} }`,
+  });
 }
 
 /** Loads the page and reports whether gtag.js was requested (it loads after window 'load'). */
@@ -122,7 +122,8 @@ test.describe('CONSENT · "Privacy and cookie settings" link', () => {
     await page.goto('/pages/wifi-qr-code-generator.html');
     await expect(page.locator('.js-consent-settings')).toHaveCount(1);
     await expect(page.locator('.js-consent-settings')).toBeHidden();
-    await page.unroute(ADSENSE);
+    // Disable the page-owned protocol fixture for the next navigation, exercising no answer.
+    await page.evaluate(() => sessionStorage.setItem('__ucm_test_skip_consent', 'true'));
     await page.goto('/');
     await expect(page.locator('.js-consent-settings').first()).toBeHidden();
   });
