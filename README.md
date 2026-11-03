@@ -1,181 +1,69 @@
-# Universal QR & Barcode Generator Suite
+# UniversalCodeMaker
 
-> **100% Client-Side, Privacy-First, High-Resolution Barcode & QR Code Production Studio**
+UniversalCodeMaker is a browser-based QR code and barcode generator. It's free to use, with no account required and no watermark on downloads.
 
-A blazingly fast, zero-dependency, static web application that generates 10 barcode formats and 13 QR code types, including branded static QR codes with logos and gradients, print-ready Avery label sheets, and serialized batch ZIP archives—all executed **100% in client-side browser memory**.
+[Open the studio](https://universalcodemaker.com/) to choose a format, enter your data and download a code. For product packaging, the [EAN-13 page](https://universalcodemaker.com/pages/ean-13-barcode-generator.html) has its own generator alongside the printing guide.
 
----
+## What it does
 
-## 🚀 Key Features
+- Generates 10 barcode formats and 13 QR code types.
+- Lets you change colours, padding and text, and style QR codes with gradients, dot patterns and logos.
+- Downloads SVG and PNG images, with EPS export for non-QR barcodes.
+- Makes PDF label sheets for Avery 5160, 5163 and L7160, plus individual label layouts.
+- Generates batches from a list or number sequence, saved as a ZIP or a PDF sheet with a different code on each label.
+- Reads codes from an image or camera using the [scanner](https://universalcodemaker.com/barcode-scanner.html).
 
-### 1. 100% Client-Side & Zero-State Privacy
-- **Zero Server Compute**: All encoding, rendering, canvas scaling, and PDF/ZIP generation occur strictly in the user's browser.
-- **Zero-Storage Privacy**: No payload data, Wi-Fi credentials, contact details, or uploaded logos are ever transmitted to a backend, logged, or stored in any database.
-- **Permanent Static Codes**: Generated QR codes are encoded directly with the target data—no expiring redirects or third-party tracking URLs.
+## Supported codes
 
-### 2. 10 Barcode Formats
-- **2D Codes**: QR Code, Data Matrix (ECC 200, square), Aztec Code, PDF417 (stacked 2D; the column slider only offers counts that keep it wider than tall).
-- **Retail & Point-of-Sale**: EAN-13, UPC-A, ISBN-13.
-- **Industrial & Logistics**: Code 128, Code 39, ITF-14.
+The 10 formats are grouped in the studio:
 
-### 3. 13 QR Code Types
-Dynamic form compilers with real-time payload generation for:
-- 🌐 **Website URL**
-- 📶 **Wi-Fi Network** (WPA/WPA2/WPA3, WEP, Open, Hidden SSID)
-- 👤 **vCard 3.0** (Full contact card with phone, email, address, org, title)
-- ✉️ **Email** (mailto: with subject and body)
-- 💬 **SMS** (smsto: with phone and pre-filled message)
-- 📞 **Phone Call** (tel: formatted dialing)
-- 💰 **Cryptocurrency** (Bitcoin BIP-21, Ethereum EIP-681, Solana `solana:` links)
-- 📅 **Calendar Event** (iCalendar VEVENT format with timestamps and description)
-- 📍 **Google Maps location** (an address, place name or GPS coordinates, opened with Google's official Maps URL)
-- 📝 **Plain Text** (Multi-line raw string payloads)
-- ⭐ **Google Review** (direct review link from a Place ID or g.page link)
-- 💬 **WhatsApp** (chat link with a pre-filled message)
-- 💳 **UPI Payment** (India: Google Pay, PhonePe, Paytm, BHIM)
+- Retail: EAN-13, UPC-A and ISBN-13.
+- Inventory and shipping: Code 128, Code 39 and ITF-14.
+- QR and other 2D codes: QR Code, Data Matrix, Aztec and PDF417.
 
-### 4. Advanced QR Visual Customizer
-- **Color Gradient**: two-colour linear gradient with an adjustable angle.
-- **Dot Styles**: Square, rounded, dots, classy, classy-rounded, extra-rounded.
-- **Corner Styles**: Square, dot, extra-rounded eye shapes.
-- **Brand Logo Presets**: 1-click vector SVG brand logos (Wi-Fi, WhatsApp, Instagram, YouTube, X/Twitter, LinkedIn, GitHub, Bitcoin, Ethereum) or custom image dropzone.
-- **Auto-Lock Error Correction**: Center logo embedding automatically engages Level H error correction (30% recovery capability) with clean background dot clearing.
+The 13 QR types cover website links, Wi-Fi, vCard contacts, email, SMS, phone calls, cryptocurrency payment links, calendar events, map locations, plain text, Google Reviews, WhatsApp and UPI payments.
 
-### 5. Multi-Resolution & Vector Export
-- **Multi-Resolution PNG**: 1x Web standard, 2x Retina, 4x print (2x and 4x are 300+ DPI at real size).
-- **Real print size**: barcode PNG (DPI tag), SVG (mm) and EPS open at real size: EAN-13, UPC-A and ISBN at GS1's recommended 0.33 mm bar width, ITF-14 at 0.495 mm, other barcodes at 1 pt (0.353 mm) per module.
-- **Vector SVG**: Infinite-resolution scalable vector graphics for professional laser engraving, die-cutting, and packaging.
-- **Vector EPS** (barcodes): the same shapes as the SVG, at 1 point per module, with pure black written as 100% K for print.
-- **1-Click Clipboard**: Instant image copy via modern Clipboard API.
+## Printing and product numbers
 
-### 6. Print-Ready Avery PDF Label Sheets
-Generates client-side vector PDF sheets ready to print on standard laser/inkjet label paper:
-- **Avery 5160**: 30 address labels per sheet (3 columns × 10 rows, Letter).
-- **Avery 5163**: 10 shipping labels per sheet (2 columns × 5 rows, Letter).
-- **Avery L7160**: 21 European standard labels per sheet (3 columns × 7 rows, A4).
-- **Single Display Sign**: Centered presentation page for storefronts and event signage.
+The generator draws a barcode from the number you supply. It does not issue GS1 identifiers or establish retailer acceptance. See the [product-barcode guide](https://universalcodemaker.com/pages/how-to-get-a-barcode-for-your-product.html) if you need help deciding which number to use.
 
-### 7. Batch Mode: ZIP or Avery Sheet
-- **Sequenced Numbers**: prefix, start number, how many (up to 100) and digits (e.g. `LOT-001` to `LOT-100`).
-- **Paste List / CSV**: one value per line (first column of CSV text), up to 200 values; the tool says how many were left out if more are pasted.
-- **Checked first**: every value is validated (format and check digit); invalid lines are listed by line number and nothing is made until they are fixed.
-- **Outputs**: a ZIP of PNG or SVG images, or an **Avery PDF sheet** (5160, 5163, L7160) with a different code on each label and an optional caption.
+SVG and EPS are useful when you need to resize artwork. PNG resolution depends on the export scale and the size you place it at. Print and scan a sample before using a batch of labels. The [format reference](https://universalcodemaker.com/symbology-docs.html) covers check digits, sizing and quiet zones.
 
-### 8. Programmatic SEO & Deep-Linking
-- 16+ dedicated keyword-targeted landing pages with technical specifications, industry use cases, and FAQ accordions.
-- Schema.org JSON-LD structured data (`WebApplication`, `FAQPage`, `BreadcrumbList`).
-- Deep-linking URL routing (`?symbology=datamatrix`, `?wizard=wifi`) for instant transitions from search landing pages into the live studio.
+## Privacy
 
----
+Code generation and scanning run in your browser. The generator and scanner do not upload your code data, logos, scan images or camera frames. The website still uses analytics and hosting infrastructure; the [privacy policy](https://universalcodemaker.com/privacy-policy.html) explains those separately.
 
-## 🛠️ Architecture & Tech Stack
+QR codes contain the data you enter, without a redirect service managed by UniversalCodeMaker. A website linked by a code can still move or stop working.
 
-| Layer | Implementation | Details |
-|---|---|---|
-| **Core Structure** | HTML5 Semantic SPA | Pure static markup with accessible ARIA semantics |
-| **Styling** | Modern CSS3 | CSS Custom Properties, Dark Mode, Flexbox, Responsive Grid |
-| **Logic** | Modular ES6+ JavaScript | Zero-framework Vanilla JS; clean separation of concerns |
-| **1D/2D Engine** | `bwip-js` | Barcode Writer in Pure JavaScript (100+ symbologies) |
-| **Styled QR Engine** | `qr-code-styling` | Branded QR rendering with SVG/Canvas outputs |
-| **PDF Generation** | `jspdf` | Client-side print-ready vector PDF document compiler |
-| **ZIP Compression** | `jszip` | In-memory asynchronous archive packaging |
-| **Hosting Target** | Static / LiteSpeed | Apache `.htaccess` with aggressive browser caching & Gzip |
+## Run locally
 
----
+There is no frontend build step. From the repository root, start a local server with Python:
 
-## 📂 Directory Structure
-
-```
-qr_and_barcode_generator/
-├── index.html                      # Main Live Reactive Studio
-├── .htaccess                       # LiteSpeed caching, compression & security headers
-├── robots.txt                      # 2026 search crawler directives
-├── llms.txt                        # AI agent capability summary
-├── llms-full.txt                   # Complete technical knowledge spec for LLMs
-├── sitemap.xml                     # Search engine sitemap index
-├── css/
-│   ├── theme.css                   # Color tokens, typography, glassmorphism variables
-│   ├── main.css                    # Responsive layout & utility classes
-│   └── components.css              # Panels, tabs, preview box, buttons & alerts
-├── js/
-│   ├── app.js                      # Application coordinator & state controller
-│   ├── core/
-│   │   ├── dynamic-loader.js       # CDN dynamic lazy-loader with memoization
-│   │   ├── engine.js               # Unified BarcodeEngine rendering orchestrator
-│   │   ├── checksums.js            # Mod-10, EAN, UPC, ITF-14 & Luhn algorithms
-│   │   ├── logo-presets.js         # Embedded vector SVG brand presets
-│   │   └── consent-analytics.js    # Loads Google Analytics only after consent (Google consent message)
-│   ├── generators/
-│   │   ├── registry.js             # Symbology catalog & metadata registry
-│   │   ├── qr-code.js              # Standard & styled QR plugin
-│   │   ├── data-matrix.js          # Data Matrix ECC 200 plugin (square symbols)
-│   │   ├── aztec.js                # Square 1:1 high-density 2D plugin
-│   │   ├── pdf417.js               # Stacked 2D (2.5:1 ratio) plugin
-│   │   ├── ean-13.js               # Retail POS plugin with auto-checksum
-│   │   ├── upc-a.js                # North American retail plugin
-│   │   ├── code-128.js             # High-density alphanumeric logistics plugin
-│   │   └── itf-14.js               # Outer carton shipping container plugin
-│   ├── wizards/
-│   │   └── qr-wizards.js           # 10 Smart QR payload compilers & UI forms
-│   └── export/
-│       ├── image-exporter.js       # PNG (1x/2x/4x), SVG and EPS vector exporter
-│       ├── eps-exporter.js         # bwip-js SVG → EPS converter (barcodes)
-│       ├── pdf-exporter.js         # Avery label sheet PDF compiler
-│       └── batch-exporter.js       # Batch sequential & CSV ZIP archiver
-├── pages/                          # 16 Programmatic SEO landing pages
-│   ├── ean-13-barcode-generator.html
-│   ├── qr-code-wifi-generator.html
-│   ├── upc-a-barcode-generator.html
-│   └── ...
-├── tests/
-│   ├── test-runner.html            # In-browser test runner (193/193 assertions passing)
-│   └── unit/                       # Unit test suites (checksums, wizards, exports, batch)
-└── tools/
-    └── generate-seo-pages.js       # Static SEO page generator script
+```sh
+python -m http.server 8080 --bind 127.0.0.1
 ```
 
----
+Open <http://127.0.0.1:8080/>. Use a server rather than opening the HTML file directly, since the JavaScript uses ES modules.
 
-## 💻 Local Development
+## Code and tests
 
-Because the project is 100% client-side with ES modules, it can be served using any local static web server:
+The frontend uses plain HTML, CSS and JavaScript. Barcode rendering uses bwip-js, styled QR codes use qr-code-styling, and exports use jsPDF and JSZip. The scanner uses ZXing WASM. These libraries are bundled in `js/vendor/`.
 
-```powershell
-# Using Python
-python -m http.server 8080
+The main files are:
 
-# Using Node.js http-server or npx serve
-npx serve . -p 8080
-```
+- `index.html` and `js/v2-studio.js`: the studio interface and controls.
+- `js/generators/`: format plugins and their registry.
+- `js/wizards/qr-wizards.js`: QR input forms and payload builders.
+- `js/core/`: rendering, check digits, print sizing and library loading.
+- `js/export/`: image, EPS, PDF, label and batch exports.
+- `js/reader/scanner.js`: image and camera scanning.
+- `js/ean-onpage.js`: the EAN-13 landing-page tool.
+- `tools/generate-seo-pages.js`: generated tool pages, guides and sitemap.
 
-Open `http://localhost:8080` in your browser.
+With the local server running, open <http://127.0.0.1:8080/tests/test-runner.html> for the browser unit tests. Playwright setup and commands are in [tests/e2e/README.md](tests/e2e/README.md). That suite checks rendering, independently decoded outputs, downloads, layout, accessibility and privacy behaviour.
 
----
+The live site deploys from `main`, so changes need release checks before merging.
 
-## 🧪 Testing & Verification
+## License
 
-Run the comprehensive in-browser test suite:
-1. Start your local static server.
-2. Navigate to `http://localhost:8080/tests/test-runner.html`.
-3. View real-time test execution:
-   - **Checksum Suite**: GS1 Mod-10, EAN-13, UPC-A, ITF-14, Luhn calculations.
-   - **QR Wizard Suite**: Wi-Fi formatting, vCard 3.0 escaping, Crypto URI schemes, iCalendar dates.
-   - **Export Suite**: Canvas scaling, SVG conformance, Avery label grid math.
-   - **Batch Suite**: Sequential pad numbering, delimiter parsing, payload chunking.
-   - **Result**: **193 / 193 Assertions Passing**.
-
----
-
-## 📜 Production Deployment
-
-Deploy the files directly to any static web hosting provider (e.g., Hostinger Business Hosting, Cloudflare Pages, Netlify, Vercel, or Apache/LiteSpeed web root):
-
-1. Upload the project files to `public_html/`.
-2. Ensure `.htaccess` is present for LiteSpeed/Apache caching and Gzip compression.
-3. Verify that `robots.txt` and `sitemap.xml` are accessible at the root domain.
-
----
-
-## 📄 License
-
-MIT License. Designed for open-source utility and commercial deployment.
+This repository does not currently include a `LICENSE` file. Third-party libraries and fonts have their own notices in [js/vendor/THIRD_PARTY_NOTICES.txt](js/vendor/THIRD_PARTY_NOTICES.txt), the [scanner notices](js/vendor/zxing-wasm-3.1.4/THIRD_PARTY_NOTICES.txt) and [assets/fonts/README.txt](assets/fonts/README.txt).
