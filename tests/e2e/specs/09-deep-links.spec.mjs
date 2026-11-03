@@ -61,7 +61,8 @@ test.describe('LINK · clicking the real CTA on each landing page', () => {
   for (const p of LANDING_PAGES) {
     test(`LINK-02 ${p}: primary CTA opens a working studio`, async ({ page, studio }) => {
       await page.goto(`/${p}`);
-      const cta = page.locator('main a[href*="index.html"]').first();
+      // A JavaScript startup fallback may precede the live CTA but be hidden after initialization.
+      const cta = page.locator('main a[href*="index.html"]:visible').first();
       await expect(cta, 'landing page has no link into the studio').toHaveCount(1);
       await cta.click();
       await page.waitForURL(/index\.html/);
