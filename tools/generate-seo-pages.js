@@ -14,6 +14,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { eanOnpageHtml } from './ean-onpage-template.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -104,7 +105,7 @@ function eanPackagingHtml() {
     </tbody></table>
     <h2>From product number to printed packaging</h2>
     <ol>
-      <li><strong>Enter your number.</strong> <a href="../index.html?symbology=ean-13">Open the EAN-13 generator</a> and use the complete number or unfinished data portion as explained above. Keep the human-readable digits switched on.</li>
+      <li><strong>Enter your number.</strong> Use the <a href="#ean-onpage">EAN-13 generator on this page</a> with the complete number or unfinished data portion as explained above. The human-readable digits are included.</li>
       <li><strong>Choose the file.</strong> Use SVG for vector packaging artwork. Choose 2x or 4x PNG when your document workflow needs a higher-resolution raster image. EPS is also available for barcodes.</li>
       <li><strong>Place the barcode.</strong> Keep its proportions, full bar height and blank margins. Check final physical dimensions in your artwork; the preview's screen size is not its print size.</li>
       <li><strong>Check the file.</strong> Decode an exported PNG with a compatible reader, such as the <a href="../barcode-scanner.html">site's scanner</a>, and compare every digit with your source product record.</li>
@@ -3009,7 +3010,7 @@ function headTopHtml(meta, pageUrl) {
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="stylesheet" href="../css/v2-theme.css?v=${ASSET_VERSION}">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=${ASSET_VERSION}">${eanWorkflowStyles(page.slug)}
+  <link rel="stylesheet" href="../css/v2-pages.css?v=${ASSET_VERSION}">${page.slug === 'ean-13-barcode-generator' ? '\n  <link rel="stylesheet" href="../css/ean-onpage.css?v=1.0">' : ''}${eanWorkflowStyles(page.slug)}
 
   <script>
     (function () {
@@ -3779,13 +3780,13 @@ ${siteHeaderHtml(page.queryParam)}
         ${page.category} Standard
       </div>
       <h1 class="hero-title">${page.h1}</h1>
-      <p class="hero-lead">${page.lead}</p>
+      <p class="hero-lead">${page.lead}</p>${page.slug === 'ean-13-barcode-generator' ? '\n      ' + eanOnpageHtml() : ''}
       
-      <a href="../index.html?${page.queryParam}" class="cta-launch-btn">
+      <a href="../index.html?${page.queryParam}" class="${page.slug === 'ean-13-barcode-generator' ? 'ean-full-studio' : 'cta-launch-btn'}">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
-        ${page.slug === 'ean-13-barcode-generator' ? 'Open EAN-13 Generator' : `Generate ${page.shortName} Now (Instant & Free)`}
+        ${page.slug === 'ean-13-barcode-generator' ? 'Launch studio for full customization' : `Generate ${page.shortName} Now (Instant & Free)`}
       </a>${hasEanWorkflow(page.slug) ? identifierNoticeHtml() : ''}
     </section>${page.slug === 'ean-13-barcode-generator' ? '\n' + eanPackagingHtml() : ''}
 

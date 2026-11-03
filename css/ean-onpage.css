@@ -1,0 +1,38 @@
+/* Scoped EAN landing tool; shared studio and content styles remain unchanged. */
+.seo-page-container .hero-banner:has(#ean-onpage) { padding:1.5rem; }
+.ean-onpage { text-align:left; margin:1.75rem 0 1rem; border:2px solid var(--border); border-radius:var(--radius-sm); background:var(--surface); color:var(--text-primary); overflow:hidden; }
+.ean-onpage-heading { padding:1rem 1.25rem; border-bottom:2px solid var(--border); display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:.5rem; background:var(--surface-alt); }
+.ean-onpage-heading h2 { margin:0; font:700 clamp(1.15rem,3vw,1.4rem) var(--font-display); }
+.ean-onpage-heading span { font-size:.85rem; color:var(--text-secondary); }
+.ean-onpage-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.ean-onpage form,.ean-result { padding:1.25rem; min-width:0; }
+.ean-onpage form { border-right:2px solid var(--border); }
+.ean-onpage label { display:block; font-weight:800; font-size:1rem; }
+.ean-onpage p { font-size:.92rem; line-height:1.6; margin:.65rem 0; color:var(--text-secondary); }
+.ean-onpage input { box-sizing:border-box; width:100%; min-width:0; min-height:48px; padding:.8rem; border:2px solid var(--border); border-radius:4px; color:var(--text-primary); background:var(--surface); font:600 1.1rem var(--font-mono); }
+.ean-onpage input::placeholder { font:400 .88rem var(--font-body); color:var(--text-secondary); opacity:1; }
+.ean-onpage input[aria-invalid="true"] { border-color:var(--laser-text); }
+.ean-onpage a { color:var(--accent-text); text-decoration:underline; }
+.ean-actions,.ean-downloads { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1rem; }
+.ean-onpage button { min-height:44px; padding:.65rem .85rem; border:2px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text-primary); font:700 .9rem var(--font-body); cursor:pointer; }
+.ean-onpage #ean-generate { background:var(--accent); color:var(--on-accent); }
+.ean-onpage button:disabled { opacity:.5; cursor:default; }
+.ean-onpage :is(input,button,a):focus-visible { outline:3px solid var(--accent-text); outline-offset:3px; }
+.ean-onpage button:not(:disabled):hover { box-shadow:2px 2px 0 var(--border); }
+.ean-preview { min-height:148px; display:flex; align-items:center; justify-content:center; background:#fff; color:#17212b; border:1px solid #b1b5bf; padding:1rem; box-sizing:border-box; }
+.ean-preview p { color:#465061; text-align:center; }
+.ean-preview canvas { display:block; max-width:100%; height:auto; }
+.ean-onpage #ean-status { min-height:3.2em; color:var(--text-primary); font-weight:700; overflow-wrap:anywhere; }
+.ean-onpage .ean-print-help { font-size:.83rem; }
+a.ean-full-studio { display:inline-flex; align-items:center; gap:.6rem; margin:.75rem 0; max-width:100%; box-sizing:border-box; min-height:44px; padding:.85rem 1.1rem; border:2px solid var(--border); border-radius:4px; background:var(--accent); color:var(--on-accent); text-decoration:none; font-weight:700; line-height:1.5; box-shadow:var(--shadow-ink); }
+a.ean-full-studio svg { flex-shrink:0; }
+a.ean-full-studio:hover { background:var(--accent-hover); box-shadow:2px 2px 0 var(--border); }
+a.ean-full-studio:focus-visible { outline:3px solid var(--accent-text); outline-offset:3px; }
+@media(max-width:700px) {
+  .seo-page-container .hero-banner:has(#ean-onpage) { padding:1rem; }
+  .ean-onpage-grid { grid-template-columns:minmax(0,1fr); }
+  .ean-onpage form { border-right:0; border-bottom:2px solid var(--border); }
+  .ean-onpage form,.ean-result,.ean-onpage-heading { padding:1rem; }
+  .ean-actions button { flex:1 1 120px; }
+  .ean-downloads button { flex:1 1 auto; }
+}

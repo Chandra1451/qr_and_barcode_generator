@@ -1104,7 +1104,22 @@
    "17-layout.spec.mjs › LAYOUT-STICKY-01 / LAYOUT-ANCHOR-01 pages/wifi-qr-code-generator.html: sticky boxes and link targets stay below the top bar",
    "17-layout.spec.mjs › LAYOUT-STICKY-01 / LAYOUT-ANCHOR-01 privacy-policy.html: sticky boxes and link targets stay below the top bar",
    "17-layout.spec.mjs › LAYOUT-STICKY-01 / LAYOUT-ANCHOR-01 symbology-docs.html: sticky boxes and link targets stay below the top bar",
-   "17-layout.spec.mjs › LAYOUT-STICKY-01 / LAYOUT-ANCHOR-01 terms.html: sticky boxes and link targets stay below the top bar"
+   "17-layout.spec.mjs › LAYOUT-STICKY-01 / LAYOUT-ANCHOR-01 terms.html: sticky boxes and link targets stay below the top bar",
+   "18-ean-onpage.spec.mjs › Actual SVG and both PNG downloads decode and preserve physical size metadata",
+   "18-ean-onpage.spec.mjs › Editing during slow library loading cancels obsolete preview; retry succeeds",
+   "18-ean-onpage.spec.mjs › Empty, valid, invalid and changed values never leave stale downloads",
+   "18-ean-onpage.spec.mjs › Example is explicitly a demonstration and normal edits remove that label",
+   "18-ean-onpage.spec.mjs › Full customization opens the EAN studio without putting the entered number in its URL",
+   "18-ean-onpage.spec.mjs › Intentional render failure › Render failure is actionable and can recover",
+   "18-ean-onpage.spec.mjs › JavaScript unavailable leaves guidance and an explicit fallback",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 1366px dark",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 1366px light",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 320px dark",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 320px light",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 375px dark",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 375px light",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 390px dark",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 390px light"
   ],
   "phone": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1361,7 +1376,22 @@
    "14-scanner.spec.mjs › SCAN · untrusted content is handled safely › SCAN-22 \"data:\" content is never turned into a link",
    "14-scanner.spec.mjs › SCAN · untrusted content is handled safely › SCAN-22 \"file:\" content is never turned into a link",
    "14-scanner.spec.mjs › SCAN · untrusted content is handled safely › SCAN-22 \"javascript:\" content is never turned into a link",
-   "14-scanner.spec.mjs › SCAN-32 nothing but the inputs shows before a scan (no empty preview or camera box)"
+   "14-scanner.spec.mjs › SCAN-32 nothing but the inputs shows before a scan (no empty preview or camera box)",
+   "18-ean-onpage.spec.mjs › Actual SVG and both PNG downloads decode and preserve physical size metadata",
+   "18-ean-onpage.spec.mjs › Editing during slow library loading cancels obsolete preview; retry succeeds",
+   "18-ean-onpage.spec.mjs › Empty, valid, invalid and changed values never leave stale downloads",
+   "18-ean-onpage.spec.mjs › Example is explicitly a demonstration and normal edits remove that label",
+   "18-ean-onpage.spec.mjs › Full customization opens the EAN studio without putting the entered number in its URL",
+   "18-ean-onpage.spec.mjs › Intentional render failure › Render failure is actionable and can recover",
+   "18-ean-onpage.spec.mjs › JavaScript unavailable leaves guidance and an explicit fallback",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 1366px dark",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 1366px light",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 320px dark",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 320px light",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 375px dark",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 375px light",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 390px dark",
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 390px light"
   ],
   "edge-smoke": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1587,7 +1617,8 @@
   "unit/generator-registry.test.js": 14,
   "unit/logo-presets.test.js": 29,
   "unit/qr-wizards.test.js": 48,
-  "unit/rendering.test.js": 4
+  "unit/rendering.test.js": 4,
+  "e2e/specs/18-ean-onpage.spec.mjs": 35
  },
  "allowedSkips": [
   {
@@ -1693,5 +1724,5 @@
   ]
  },
  "_about": "Test inventory for test-integrity.mjs (kit core 05, D2). Every change to this file is shown to the owner: removed tests, new skips and allowed hits need a reason.",
- "updated": "2026-10-19"
+ "updated": "2026-11-03"
 }

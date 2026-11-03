@@ -38,7 +38,8 @@
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="stylesheet" href="../css/v2-theme.css?v=3.4">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=3.4"><style>
+  <link rel="stylesheet" href="../css/v2-pages.css?v=3.4">
+  <link rel="stylesheet" href="../css/ean-onpage.css?v=1.0"><style>
     .identifier-notice,.ean-workflow,.ean-diagram { background:var(--surface); color:var(--text-primary); border:2px solid var(--border); border-radius:var(--radius-sm); padding:clamp(1rem,3vw,1.75rem); margin:1.5rem 0; text-align:left; min-width:0; }
     .identifier-notice p { margin:.5rem 0 0; color:var(--text-secondary); line-height:1.65; }
     .ean-workflow h2 { font-size:clamp(1.3rem,3vw,1.65rem); margin:0 0 1rem; }
@@ -494,12 +495,32 @@
       </div>
       <h1 class="hero-title">Free EAN-13 Barcode Generator</h1>
       <p class="hero-lead">Make an EAN-13 barcode image from your existing product number. Enter 12 digits to calculate the check digit, or all 13 digits to check it. Download SVG, EPS or PNG for your artwork and labels.</p>
+      <section id="ean-onpage" class="ean-onpage" aria-labelledby="ean-tool-title">
+        <div class="ean-onpage-heading"><h2 id="ean-tool-title">Make your EAN-13 barcode</h2><span>SVG &amp; PNG downloads</span></div>
+        <div class="ean-onpage-grid">
+          <form id="ean-form" novalidate>
+            <label for="ean-number">Product number</label>
+            <p id="ean-help">Enter all 13 digits, or the first 12 digits of an unfinished GTIN-13 to calculate the last digit.</p>
+            <input id="ean-number" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-describedby="ean-help ean-format-help ean-status" placeholder="Your assigned product number">
+            <p id="ean-format-help">Already have a complete 12-digit UPC-A? Use the <a href="./upc-a-barcode-generator.html">UPC-A generator</a>.</p>
+            <div class="ean-actions"><button id="ean-generate" type="submit" disabled>Generate barcode</button><button id="ean-example" type="button" disabled>Try an example</button></div>
+          </form>
+          <div class="ean-result">
+            <div id="ean-preview" class="ean-preview" aria-label="Barcode preview"><p>Your barcode will appear here.</p></div>
+            <p id="ean-status" role="status" aria-live="polite" aria-atomic="true">Enter a product number to begin.</p>
+            <div class="ean-downloads" aria-label="Barcode downloads"><button type="button" data-ean-export="svg" disabled>Download SVG</button><button type="button" data-ean-export="png2" disabled>PNG 2×</button><button type="button" data-ean-export="png4" disabled>PNG 4×</button></div>
+            <p class="ean-print-help">Black bars on white. Bar height: 22.85 mm. SVG keeps physical dimensions; PNG includes print-resolution metadata. Preview is scaled to fit. Test a printed sample before a production run.</p>
+          </div>
+        </div>
+        <p id="ean-startup">This tool needs JavaScript. If it does not start, enable JavaScript and reload, or <a href="../index.html?symbology=ean-13">open the full studio</a>. The printing guide is below.</p>
+      </section>
+      <script type="module" src="../js/ean-onpage.js?v=1.0"></script>
       
-      <a href="../index.html?symbology=ean-13" class="cta-launch-btn">
+      <a href="../index.html?symbology=ean-13" class="ean-full-studio">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
-        Open EAN-13 Generator
+        Launch studio for full customization
       </a><aside class="identifier-notice" aria-label="Product identifier notice"><strong>Product identifier notice</strong><p>Use the number assigned to your product. UniversalCodeMaker creates the barcode image; obtain the identifier from the appropriate issuer and check your retailer's requirements. <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a> explains the steps.</p></aside>
     </section>
 <section class="ean-workflow" aria-labelledby="ean-input-title">
@@ -513,7 +534,7 @@
     </tbody></table>
     <h2>From product number to printed packaging</h2>
     <ol>
-      <li><strong>Enter your number.</strong> <a href="../index.html?symbology=ean-13">Open the EAN-13 generator</a> and use the complete number or unfinished data portion as explained above. Keep the human-readable digits switched on.</li>
+      <li><strong>Enter your number.</strong> Use the <a href="#ean-onpage">EAN-13 generator on this page</a> with the complete number or unfinished data portion as explained above. The human-readable digits are included.</li>
       <li><strong>Choose the file.</strong> Use SVG for vector packaging artwork. Choose 2x or 4x PNG when your document workflow needs a higher-resolution raster image. EPS is also available for barcodes.</li>
       <li><strong>Place the barcode.</strong> Keep its proportions, full bar height and blank margins. Check final physical dimensions in your artwork; the preview's screen size is not its print size.</li>
       <li><strong>Check the file.</strong> Decode an exported PNG with a compatible reader, such as the <a href="../barcode-scanner.html">site's scanner</a>, and compare every digit with your source product record.</li>
