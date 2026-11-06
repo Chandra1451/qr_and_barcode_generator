@@ -4,6 +4,10 @@ UniversalCodeMaker is a browser-based QR code and barcode generator. It's free t
 
 [Open the studio](https://universalcodemaker.com/) to choose a format, enter your data and download a code. For product packaging, the [EAN-13 page](https://universalcodemaker.com/pages/ean-13-barcode-generator.html) has its own generator alongside the printing guide.
 
+## Try it
+
+For a simple example, choose QR Code in the studio, select Website URL and enter `https://example.com/`. Download an SVG or PNG, then scan it with your phone to check that it opens the address you entered. Replace the example address with your own before printing.
+
 ## What it does
 
 - Generates 10 barcode formats and 13 QR code types.
@@ -21,7 +25,7 @@ The 10 formats are grouped in the studio:
 - Inventory and shipping: Code 128, Code 39 and ITF-14.
 - QR and other 2D codes: QR Code, Data Matrix, Aztec and PDF417.
 
-The 13 QR types cover website links, Wi-Fi, vCard contacts, email, SMS, phone calls, cryptocurrency payment links, calendar events, map locations, plain text, Google Reviews, WhatsApp and UPI payments.
+The 13 QR input types include website links, Wi-Fi, contacts and payment links. Choose a type in the studio to see its input fields.
 
 ## Printing and product numbers
 
@@ -37,7 +41,7 @@ QR codes contain the data you enter, without a redirect service managed by Unive
 
 ## Run locally
 
-There is no frontend build step. From the repository root, start a local server with Python:
+You need Python 3 installed. There is no frontend build step. From the repository root, start a local server:
 
 ```sh
 python -m http.server 8080 --bind 127.0.0.1
@@ -52,18 +56,20 @@ The frontend uses plain HTML, CSS and JavaScript. Barcode rendering uses bwip-js
 The main files are:
 
 - `index.html` and `js/v2-studio.js`: the studio interface and controls.
-- `js/generators/`: format plugins and their registry.
-- `js/wizards/qr-wizards.js`: QR input forms and payload builders.
-- `js/core/`: rendering, check digits, print sizing and library loading.
-- `js/export/`: image, EPS, PDF, label and batch exports.
-- `js/reader/scanner.js`: image and camera scanning.
-- `js/ean-onpage.js`: the EAN-13 landing-page tool.
+- `js/generators/`, `js/core/` and `js/export/`: code generation, rendering and downloads.
+- `js/reader/scanner.js` and `js/ean-onpage.js`: the scanner and the EAN-13 page tool.
 - `tools/generate-seo-pages.js`: generated tool pages, guides and sitemap.
 
 With the local server running, open <http://127.0.0.1:8080/tests/test-runner.html> for the browser unit tests. Playwright setup and commands are in [tests/e2e/README.md](tests/e2e/README.md). That suite checks rendering, independently decoded outputs, downloads, layout, accessibility and privacy behaviour.
 
 The live site deploys from `main`, so changes need release checks before merging.
 
+## Questions and bugs
+
+[Open an issue](https://github.com/Chandra1451/qr_and_barcode_generator/issues) with what you tried, what happened and your browser. Use sample data instead of private code contents or personal information.
+
 ## License
 
-This repository does not currently include a `LICENSE` file. Third-party libraries and fonts have their own notices in [js/vendor/THIRD_PARTY_NOTICES.txt](js/vendor/THIRD_PARTY_NOTICES.txt), the [scanner notices](js/vendor/zxing-wasm-3.1.4/THIRD_PARTY_NOTICES.txt) and [assets/fonts/README.txt](assets/fonts/README.txt).
+The project's original code is available under the [MIT License](LICENSE).
+
+Bundled third-party libraries and fonts retain their own licenses and copyright notices. See [js/vendor/THIRD_PARTY_NOTICES.txt](js/vendor/THIRD_PARTY_NOTICES.txt), the [scanner notices](js/vendor/zxing-wasm-3.1.4/THIRD_PARTY_NOTICES.txt) and [assets/fonts/README.txt](assets/fonts/README.txt).
