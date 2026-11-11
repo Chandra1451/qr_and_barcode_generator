@@ -2395,11 +2395,11 @@ const ARTICLES = [
     badge: 'Seller Guide',
     queryParam: 'symbology=ean-13',
     metaTitle: 'How to Get a Barcode for Your Product (GTIN Guide)',
-    metaDescription: 'Where product barcode numbers come from, EAN-13 vs UPC-A vs GTIN, how the check digit works, the right print size, and how to make the barcode free.',
+    metaDescription: 'Step-by-step guide to getting product barcodes: official GS1 pricing ($30 single GTIN), EAN-13 vs UPC-A, check digit calculation, and free vector generation.',
     h1: 'How to Get a Barcode for Your Product',
     lead: 'For a retail product, first obtain or confirm the product identifier your retailer requires. Then make the barcode image that carries it. This guide explains the difference between a GTIN and its barcode, how to choose the matching generator, and what to check before printing.',
     datePublished: '2026-10-07',
-    dateModified: '2026-11-02',
+    dateModified: '2026-11-11',
     ctas: [
       { href: '../index.html?symbology=ean-13', label: 'Make an EAN-13 barcode' },
       { href: '../index.html?symbology=upc-a', label: 'Make a UPC-A barcode' }
@@ -2414,8 +2414,92 @@ const ARTICLES = [
           <li><strong>Obtain or confirm the assigned number.</strong> For GS1 identifiers, use the organisation serving your country and check its current licensing options.</li>
           <li><strong>Match the number to its carrier.</strong> Use EAN-13 for a GTIN-13 and UPC-A for a GTIN-12. Check how your recipient expects any padded database representation to be supplied.</li>
           <li><strong>Make the image, then check the file and printed proof.</strong> Compare the decoded number with the source record before printing in volume.</li>
-        </ol><p>For stock-room bins or company assets, see <a href="#internal-use">internal identifiers</a>.</p>
-        `
+        </ol>
+        <p>For stock-room bins or company assets, see <a href="#internal-use">internal identifiers</a>.</p>
+
+        <figure class="ean-diagram">
+          <svg class="ean-diagram-art diagram-wide" viewBox="0 0 1000 240" role="img" aria-labelledby="product-pipeline-title product-pipeline-desc">
+            <title id="product-pipeline-title">Product barcode creation pipeline: from GS1 GTIN to printed packaging</title>
+            <desc id="product-pipeline-desc">4-step visual flow: 1. License official GTIN from GS1; 2. Assign unique variant GTIN per SKU; 3. Generate vector barcode in UniversalCodeMaker; 4. Test scan and proof print before mass production.</desc>
+            <defs>
+              <marker id="pipe-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse">
+                <path d="M1 1L5 3L1 5" fill="none" stroke="var(--optic-blue)" stroke-width="1.2"/>
+              </marker>
+            </defs>
+
+            <!-- Card 1: License GTIN -->
+            <g transform="translate(10, 15)">
+              <rect width="220" height="210" rx="8" fill="var(--surface-alt)" stroke="var(--border-subtle)"/>
+              <rect x="16" y="16" width="60" height="20" rx="4" fill="var(--optic-blue-tint)"/>
+              <text x="46" y="30" font-family="var(--font-mono, monospace)" font-size="11" font-weight="700" fill="var(--optic-blue)" text-anchor="middle">STEP 1</text>
+              <text x="16" y="60" font-family="var(--font-heading, sans-serif)" font-size="16" font-weight="700" fill="var(--text-primary)">License GTIN</text>
+              <text x="16" y="80" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-secondary)">Official GS1 Registry</text>
+              <path d="M16 95h188" stroke="var(--border-subtle)" stroke-width="1"/>
+              <text x="16" y="118" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• 12 digits (UPC-A) for US</text>
+              <text x="16" y="138" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• 13 digits (EAN) worldwide</text>
+              <text x="16" y="158" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Brand recorded in GEPIR</text>
+              <text x="16" y="190" font-family="var(--font-mono, monospace)" font-size="11" fill="var(--optic-blue)">$30 Single / $250 Prefix</text>
+            </g>
+
+            <!-- Arrow 1 -> 2 -->
+            <path d="M242 120h16" stroke="var(--optic-blue)" stroke-width="2" marker-end="url(#pipe-arrow)"/>
+
+            <!-- Card 2: Assign Variant -->
+            <g transform="translate(268, 15)">
+              <rect width="220" height="210" rx="8" fill="var(--surface-alt)" stroke="var(--border-subtle)"/>
+              <rect x="16" y="16" width="60" height="20" rx="4" fill="var(--optic-blue-tint)"/>
+              <text x="46" y="30" font-family="var(--font-mono, monospace)" font-size="11" font-weight="700" fill="var(--optic-blue)" text-anchor="middle">STEP 2</text>
+              <text x="16" y="60" font-family="var(--font-heading, sans-serif)" font-size="16" font-weight="700" fill="var(--text-primary)">Assign by Variant</text>
+              <text x="16" y="80" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-secondary)">One per Distinct SKU</text>
+              <path d="M16 95h188" stroke="var(--border-subtle)" stroke-width="1"/>
+              <text x="16" y="118" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Different size = new GTIN</text>
+              <text x="16" y="138" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Multipack = new GTIN</text>
+              <text x="16" y="158" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Never reuse old numbers</text>
+              <text x="16" y="190" font-family="var(--font-mono, monospace)" font-size="11" fill="var(--text-secondary)">Track in master inventory</text>
+            </g>
+
+            <!-- Arrow 2 -> 3 -->
+            <path d="M500 120h16" stroke="var(--optic-blue)" stroke-width="2" marker-end="url(#pipe-arrow)"/>
+
+            <!-- Card 3: Generate Vector -->
+            <g transform="translate(526, 15)">
+              <rect width="220" height="210" rx="8" fill="var(--surface-alt)" stroke="var(--border-subtle)"/>
+              <rect x="16" y="16" width="60" height="20" rx="4" fill="var(--optic-blue-tint)"/>
+              <text x="46" y="30" font-family="var(--font-mono, monospace)" font-size="11" font-weight="700" fill="var(--optic-blue)" text-anchor="middle">STEP 3</text>
+              <text x="16" y="60" font-family="var(--font-heading, sans-serif)" font-size="16" font-weight="700" fill="var(--text-primary)">Generate Vector</text>
+              <text x="16" y="80" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-secondary)">UniversalCodeMaker</text>
+              <path d="M16 95h188" stroke="var(--border-subtle)" stroke-width="1"/>
+              <text x="16" y="118" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Automatic check digit</text>
+              <text x="16" y="138" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• SVG / EPS vector files</text>
+              <text x="16" y="158" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Enforce quiet zones</text>
+              <text x="16" y="190" font-family="var(--font-mono, monospace)" font-size="11" fill="var(--sensor-green)">Free Local Generation</text>
+            </g>
+
+            <!-- Arrow 3 -> 4 -->
+            <path d="M758 120h16" stroke="var(--optic-blue)" stroke-width="2" marker-end="url(#pipe-arrow)"/>
+
+            <!-- Card 4: Proof & Print -->
+            <g transform="translate(784, 15)">
+              <rect width="206" height="210" rx="8" fill="var(--surface-alt)" stroke="var(--border-subtle)"/>
+              <rect x="16" y="16" width="60" height="20" rx="4" fill="var(--optic-blue-tint)"/>
+              <text x="46" y="30" font-family="var(--font-mono, monospace)" font-size="11" font-weight="700" fill="var(--optic-blue)" text-anchor="middle">STEP 4</text>
+              <text x="16" y="60" font-family="var(--font-heading, sans-serif)" font-size="16" font-weight="700" fill="var(--text-primary)">Proof &amp; Verify</text>
+              <text x="16" y="80" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-secondary)">Pre-Production Check</text>
+              <path d="M16 95h174" stroke="var(--border-subtle)" stroke-width="1"/>
+              <text x="16" y="118" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• 100% size: 37.29 mm</text>
+              <text x="16" y="138" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Test read with scanner</text>
+              <text x="16" y="158" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Check contrast &amp; margins</text>
+              <text x="16" y="190" font-family="var(--font-mono, monospace)" font-size="11" fill="var(--text-secondary)">Barcode Scanner Tool</text>
+            </g>
+          </svg>
+          <ol class="ean-diagram-legend">
+            <li><strong>1. License GTIN:</strong> Obtain your product number directly from GS1 to ensure your company is registered in the official GEPIR registry.</li>
+            <li><strong>2. Assign by Variant:</strong> Assign a distinct GTIN to every sellable consumer variant (e.g. 250 ml vs 500 ml, red vs blue).</li>
+            <li><strong>3. Generate Vector Barcode:</strong> Enter your digits in UniversalCodeMaker to compute the check digit and export sharp vector files (SVG/EPS) for packaging artwork.</li>
+            <li><strong>4. Proof &amp; Verify:</strong> Test-scan a sample print using our <a href="../barcode-scanner.html">Barcode Scanner</a> before commissioning volume print runs.</li>
+          </ol>
+          <figcaption>Schematic workflow overview. Dimensions and standards source: <a href="https://www.gs1.org/standards/barcodes-epcrfid-id-keys/gs1-general-specifications" target="_blank" rel="noopener noreferrer">GS1 General Specifications</a>.</figcaption>
+        </figure>`
       },
       {
         id: 'gtin-ean-upc',
@@ -2424,7 +2508,7 @@ const ARTICLES = [
         <p><strong>GTIN</strong> (Global Trade Item Number) is the product number. <strong>EAN-13</strong> and <strong>UPC-A</strong> are the barcodes that carry it at the checkout.</p>
         <div class="article-table-wrap" tabindex="0">
           <table class="article-table">
-            <thead><tr><th>Number</th><th>Digits</th><th>Barcode</th><th>Where it's used</th></tr></thead>
+            <thead><tr><th scope="col">Number</th><th scope="col">Digits</th><th scope="col">Barcode format</th><th scope="col">Where it's used</th></tr></thead>
             <tbody>
               <tr><td>GTIN-13</td><td>13</td><td><a href="./ean-13-barcode-generator.html">EAN-13</a></td><td>Retail almost everywhere outside the US and Canada</td></tr>
               <tr><td>GTIN-12</td><td>12</td><td><a href="./upc-a-barcode-generator.html">UPC-A</a></td><td>Retail in the US and Canada</td></tr>
@@ -2433,7 +2517,7 @@ const ARTICLES = [
             </tbody>
           </table>
         </div>
-        <p>Put a 0 in front of a 12-digit UPC-A number and you have the same product's 13-digit number. Checkout scanners around the world read both barcodes, so a UPC-A product can be sold in Europe and an EAN-13 product in the US. Some US retailers still ask suppliers for UPC-A, so check what your buyer wants. More: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: which barcode do you need?</a></p>`
+        <p>Put a 0 in front of a 12-digit UPC-A number and you have the same product's 13-digit number. Checkout scanners around the world read both barcodes, so a UPC-A product can be sold in Europe and an EAN-13 product in the US. Some US retailers still ask suppliers for UPC-A, so check what your buyer wants. For full visual diagrams and quiet zone specs, see our <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: which barcode do you need?</a> comparison guide.</p>`
       },
       {
         id: 'do-you-need-gs1',
@@ -2442,20 +2526,68 @@ const ARTICLES = [
         <p>Start with the organisation that will receive or scan the code. Retailers and marketplaces may require GS1 identifiers, but the rules depend on the recipient, category and market. Check before buying numbers or printing packaging. For an existing product, confirm its assigned identifier before obtaining another one.</p>
         <p><strong>Selling on Amazon involves two jobs.</strong> The listing uses a product identifier such as a GTIN, unless an applicable exemption is approved. For FBA stock, check which barcode must be on each unit: an accepted manufacturer barcode or an Amazon barcode (FNSKU), according to the current rules for your marketplace and seller/product status. An FNSKU comes from Seller Central and is separate from the retail GTIN.</p>
         <p>See <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Do I need a barcode to sell on Amazon?</a> for the US/India decision guide, and check current Seller Central instructions before preparing stock. Amazon explains <a href="https://sell.amazon.com/blog/amazon-gtin-guide" target="_blank" rel="noopener noreferrer">listing identifiers</a> and <a href="https://sell.amazon.com/blog/fba-packaging-prep-labeling" target="_blank" rel="noopener noreferrer">FBA labelling</a> separately.</p>
-        <p id="internal-use">For identifiers used only inside your own inventory system, such as stock-room bins or company assets, <a href="./code-128-barcode-generator.html">Code 128</a> can carry your own SKU or asset number. Choose a format your software and scanners accept. Keep internal identifiers separate from retail GTINs and check requirements when a trading partner receives the labels.</p>
-        `
+        <p id="internal-use">For identifiers used only inside your own inventory system, such as stock-room bins or company assets, <a href="./code-128-barcode-generator.html">Code 128</a> can carry your own SKU or asset number. Choose a format your software and scanners accept. Keep internal identifiers separate from retail GTINs and check requirements when a trading partner receives the labels.</p>`
       },
       {
         id: 'get-numbers',
         h2: 'Step 2: Get your numbers from GS1',
         html: `
-        <ul>
-          <li>Go to <a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">gs1.org</a> and choose your country, or go straight to your national office, for example <a href="https://www.gs1us.org/" target="_blank" rel="noopener noreferrer">GS1 US</a>, <a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a> or <a href="https://www.gs1india.org/" target="_blank" rel="noopener noreferrer">GS1 India</a>.</li>
-          <li>Most offices license a <strong>company prefix</strong>: a block of numbers sized to how many products you plan to sell. GS1 US also sells <strong>single GTINs</strong> for sellers with only a few products.</li>
-          <li>Fees depend on the country and the number of products. A company prefix usually has a yearly renewal fee; GS1 US single GTINs are a one-time purchase. Check your office's current price list.</li>
-        </ul>
-        <div class="article-callout">
-          <strong>Avoid cheap numbers from resellers.</strong> Those numbers were licensed to another company, and the GS1 database still shows that company as the owner. Marketplaces and retailers that check the database can reject or remove your listings.
+        <p>UniversalCodeMaker generates barcode graphic files (SVG, EPS, PNG) from numbers you provide for free. However, if your product is sold through commercial retail stores, distributors, or major online marketplaces, the <strong>product identifier itself must be licensed from GS1</strong> so it is registered to your company in the official global registry.</p>
+
+        <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead>
+              <tr>
+                <th scope="col">Licensing office / option</th>
+                <th scope="col">Initial cost</th>
+                <th scope="col">Annual renewal</th>
+                <th scope="col">Best suited for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode" target="_blank" rel="noopener noreferrer">GS1 US</a>: Single GTIN-12</strong></th>
+                <td>USD $30</td>
+                <td><strong>$0 (No renewal fee)</strong></td>
+                <td>Small businesses selling 1 to 9 products or variants in North America / Amazon</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US</a>: Company Prefix (1–10 items)</strong></th>
+                <td>USD $250</td>
+                <td>USD $50 / year</td>
+                <td>Growing businesses planning larger catalogues under their own brand prefix</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a>: Small Business Band</strong></th>
+                <td>£50 + VAT</td>
+                <td>£50 + VAT / year</td>
+                <td>UK &amp; European sellers with up to 10 product lines (turnover under £100k)</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong><a href="https://www.gs1india.org/register-for-barcodes" target="_blank" rel="noopener noreferrer">GS1 India</a>: 100 Barcode Block</strong></th>
+                <td>From ₹50,200 (10-yr term)</td>
+                <td>Included in term</td>
+                <td>Indian manufacturers &amp; exporters (eligible micro-enterprises can receive up to 80% MSME subsidy refund)</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong><a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">National GS1 Offices (Global)</a></strong></th>
+                <td>Varies by country</td>
+                <td>Country-dependent</td>
+                <td>Direct registration in local currency (e.g. GS1 Canada, GS1 Australia, GS1 Germany)</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong>Third-Party Resellers (brokers)</strong></th>
+                <td>$5 – $10</td>
+                <td>$0</td>
+                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon and major retail chains reject unverified barcodes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ean-callout" style="margin-top: 1.25rem;">
+          <strong>Why cheap reseller barcodes fail on Amazon and retail:</strong>
+          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the <a href="https://gepir.gs1.org/" target="_blank" rel="noopener noreferrer">GS1 GEPIR database</a> under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
         </div>`
       },
       {
@@ -2484,12 +2616,62 @@ const ARTICLES = [
         id: 'make',
         h2: 'Step 5: Make the barcode',
         html: `
-        <ol>
-          <li>Open the <a href="./ean-13-barcode-generator.html">EAN-13 generator</a> for a 13-digit number or the <a href="./upc-a-barcode-generator.html">UPC-A generator</a> for a 12-digit number.</li>
-          <li>Type your number. A complete 12-digit GTIN-12 goes in UPC-A; only use the EAN-13 tool's 12-digit input for the unfinished data portion of a GTIN-13. Keep the human-readable digits switched on.</li>
-          <li>Download <strong>SVG</strong> for packaging artwork, since it stays sharp at any size and your designer can place it exactly. Use <strong>PNG at 4×</strong> for documents and labels.</li>
-          <li>For sticker labels, use the label maker with <a href="./avery-5160-barcode-generator.html">Avery 5160</a> and similar sheets, or a thermal roll. To make many at once, use the <a href="./bulk-barcode-generator-excel.html">batch generator</a>.</li>
-        </ol>
+        <p>Once you have your GS1-assigned number, select the matching generator below to create print-ready vector artwork or label sheets:</p>
+
+        <div class="content-grid" style="margin: 1.5rem 0 2rem;">
+          <div class="info-card" style="border-top: 4px solid var(--accent);">
+            <h3 class="info-card-title">Make a UPC-A Barcode</h3>
+            <p>For products sold in the United States or Canada. Enter 11 data digits to calculate the 12th check digit, or all 12 digits to verify.</p>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.75rem 0 1.25rem 1.2rem;">
+              <li>12 digits (GTIN-12)</li>
+              <li>Vector SVG &amp; EPS for packaging</li>
+              <li>Avery label sheet layouts</li>
+            </ul>
+            <a href="./upc-a-barcode-generator.html" class="cta-launch-btn" style="text-decoration: none; display: inline-flex; justify-content: center;">
+              Open UPC-A Generator
+            </a>
+          </div>
+
+          <div class="info-card" style="border-top: 4px solid var(--optic-blue);">
+            <h3 class="info-card-title">Make an EAN-13 Barcode</h3>
+            <p>For products sold internationally, outside North America, or on global Amazon stores. Generate directly on the page or open in the studio.</p>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.75rem 0 1.25rem 1.2rem;">
+              <li>13 digits (GTIN-13)</li>
+              <li>On-page generator &amp; preview</li>
+              <li>Quiet-zone &amp; packaging guide</li>
+            </ul>
+            <a href="./ean-13-barcode-generator.html" class="cta-launch-btn" style="text-decoration: none; display: inline-flex; justify-content: center;">
+              Open EAN-13 Generator
+            </a>
+          </div>
+
+          <div class="info-card" style="border-top: 4px solid var(--sensor-green);">
+            <h3 class="info-card-title">UPC vs EAN-13 Comparison</h3>
+            <p>Need help choosing between the two? See our side-by-side technical comparison, quiet zone schematics, and zero-prefix database conversion guide.</p>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.75rem 0 1.25rem 1.2rem;">
+              <li>Side-by-side specs &amp; quiet zones</li>
+              <li>Modulo-10 leading zero proof</li>
+              <li>Retail checkout compatibility</li>
+            </ul>
+            <a href="./upc-vs-ean-13-barcode.html" class="cta-launch-btn" style="text-decoration: none; display: inline-flex; justify-content: center;">
+              Read Comparison Guide
+            </a>
+          </div>
+
+          <div class="info-card" style="border-top: 4px solid #f59e0b;">
+            <h3 class="info-card-title">Make Carton Barcodes (ITF-14)</h3>
+            <p>For corrugated outer shipping cartons and wholesale master cases. Encodes a 14-digit GTIN-14 with thick bearer bars.</p>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.75rem 0 1.25rem 1.2rem;">
+              <li>14 digits (GTIN-14)</li>
+              <li>Outer master case packaging</li>
+              <li>Bearer bars for rough printing</li>
+            </ul>
+            <a href="./itf-14-barcode-generator.html" class="cta-launch-btn" style="text-decoration: none; display: inline-flex; justify-content: center;">
+              Open ITF-14 Generator
+            </a>
+          </div>
+        </div>
+
         <p>The generator processes product-number fields in your browser rather than uploading them to UniversalCodeMaker's server. See the <a href="../privacy-policy.html">Privacy Policy</a> for site measurement, advertising and hosting details.</p>`
       },
       {
@@ -2532,24 +2714,32 @@ const ARTICLES = [
     ],
     faqs: [
       {
-        q: 'Can I just make up my own barcode number?',
-        a: 'For internal bins or assets, Code 128 can carry identifiers you define. For retail products, use the assigned product identifier and check the receiving organisation\'s requirements before making labels.'
+        q: 'Can I buy a single barcode number instead of an expensive company prefix?',
+        a: 'Yes. For small businesses needing 1 to 9 codes, GS1 US offers individual GTIN-12 identifiers for $30 each with no annual renewal fee. In the UK, GS1 UK offers small business memberships for £50 + VAT per year. Avoid cheap third-party brokers, as unverified reseller barcodes risk rejection on Amazon and retail stores.'
       },
       {
-        q: 'How much does a product barcode cost?',
-        a: 'Identifier fees depend on your GS1 organisation, licensing option and number of products. Some options have renewal fees; GS1 US also offers individual GTINs without annual renewal. Check current official options for your country. UniversalCodeMaker currently charges no fee to generate the image.'
+        q: 'Why do cheap reseller barcodes get rejected by Amazon and major retailers?',
+        a: 'Marketplaces such as Amazon automatically verify barcode numbers against the official GS1 GEPIR database. When you buy recycled numbers from third-party brokers, the database shows the previous company\'s name instead of your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.'
+      },
+      {
+        q: 'Do I need a barcode to sell on Shopify or Etsy?',
+        a: 'Shopify does not require barcodes to create listings, but strongly recommends GTINs for automated inventory tracking and syncing with Google Shopping. Etsy does not require barcodes for handmade, vintage, or craft supply items.'
+      },
+      {
+        q: 'What is the difference between a SKU and a barcode (GTIN)?',
+        a: 'A SKU (Stock Keeping Unit) is an internal inventory code created by you for internal warehouse management. A GTIN (such as a UPC or EAN) is a globally unique identifier issued by GS1 that allows retailers, distributors, and checkout scanners worldwide to recognize your product.'
       },
       {
         q: 'Should I use EAN-13 or UPC-A?',
-        a: 'Use the barcode that matches your number: EAN-13 for a 13-digit GTIN, UPC-A for a 12-digit GTIN. Use the assigned number rather than choosing by sales country alone. Ask your GS1 office or receiving retailer if you are unsure.'
+        a: 'Use whichever format your number was issued in: EAN-13 for a 13-digit number (standard outside North America and accepted on Amazon), or UPC-A for a 12-digit number (standard in the US and Canada). Scanners worldwide read both formats.'
       },
       {
-        q: 'Can I use the same barcode on Amazon and in shops?',
-        a: 'Yes. A GTIN identifies the product itself, so the same number works on Amazon, in stores and with distributors. Amazon may also ask for an FNSKU label on FBA stock, which is a separate Amazon-only code.'
+        q: 'Can I just make up my own barcode numbers?',
+        a: 'For internal stockrooms, asset tags, or closed-loop warehouse tracking, you can create internal codes using Code 128. However, for products sold through commercial retail stores, distributors, or major online marketplaces, you must use an official GS1-assigned GTIN.'
       },
       {
         q: 'Do I need a new barcode if I change the packaging?',
-        a: 'Usually not for a small design change. A new number is needed when the product changes in a way buyers or stores need to tell apart, such as a different size, quantity or variant. GS1 publishes detailed rules for when a new GTIN is required.'
+        a: 'Usually not for minor visual redesigns. A new barcode is required if the product changes in size, weight, formulation, quantity, or variant (such as color or flavor) so that retailers and consumers can distinguish between versions.'
       }
     ]
   },
