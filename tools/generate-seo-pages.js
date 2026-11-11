@@ -306,31 +306,58 @@ const SEO_PAGES = [
     shortName: 'ITF-14',
     queryParam: 'symbology=itf-14',
     category: 'Logistics & Shipping',
-    metaTitle: 'Free ITF-14 Barcode Generator for Shipping Cartons',
-    metaDescription: 'Create ITF-14 shipping carton barcodes with protective bearer bars. Automatic GS1 check digit, vector SVG, and high-DPI export.',
+    metaTitle: 'Free ITF-14 Barcode Generator: Shipping Carton GTIN-14',
+    metaDescription: 'Generate free 14-digit ITF-14 master carton barcodes with bearer bars. Automatic Modulo-10 check digit calculation, vector SVG export & corrugated box specs.',
     h1: 'Free ITF-14 Shipping Carton Barcode Generator',
-    lead: 'Generate GS1-standard ITF-14 (Interleaved 2 of 5) barcodes with thick protective bearer bars engineered specifically for direct printing onto corrugated cardboard shipping master cases.',
+    lead: 'Generate GS1-standard ITF-14 (Interleaved 2 of 5) barcodes with thick protective bearer bars engineered specifically for direct printing onto corrugated cardboard shipping cartons, master cases, and wholesale pallets.',
     technicalSpec: {
-      standard: 'ISO/IEC 16390 / GS1 General Specifications',
-      characterSet: 'Numeric digits only (0–9)',
-      payloadLength: '13 data digits + 1 Mod-10 check digit (14 digits total)',
-      bearerBars: 'Top and bottom bars or full surrounding frame (typically 4.8mm thick)',
-      aspectRatio: 'Wide linear ratio (typically 3:1 to 4:1)'
+      standard: 'ISO/IEC 16390 & GS1 General Specifications (Section 5.3)',
+      dataStructure: '14 digits total: 1 Indicator digit + 12 GTIN data digits + 1 Modulo-10 check digit',
+      bearerBars: 'Top and bottom bars or full surrounding frame (nominal 4.8 mm / 0.190 in thickness)',
+      corrugatedTolerance: 'High tolerance for flexographic printing, uneven fluting, and absorbent brown kraft paper',
+      quietZones: 'Minimum 10X module width (at least 6.4 mm / 0.25 in) on left and right margins',
+      privacy: '100% client-side generation; carton GTINs, case counts, and logistics data are never uploaded'
     },
     useCases: [
-      'Corrugated cardboard outer shipping cartons and master cases',
-      'Wholesale pallet distribution and receiving scanning',
-      'Cross-docking logistics tracking in automated distribution centers'
+      'Direct flexographic printing onto corrugated cardboard outer shipping cartons and brown kraft master cases',
+      'Wholesale pallet distribution, high-speed automated conveyor sorting, and dock receiving scanners',
+      'Case-pack aggregation linking retail items (UPC-A / EAN-13) to master carton logistics units',
+      'Beverage crate packaging, bulk dry goods shipping boxes, and secondary industrial packaging',
+      'Cross-docking logistics tracking and bulk warehouse inventory verification'
     ],
     faqs: [
       {
-        q: 'Why does an ITF-14 barcode have thick bearer bars?',
-        a: 'Bearer bars equalize printing plate pressure when printing directly onto rough, undulating corrugated cardboard, and prevent barcode laser scanners from misreading a partial slice of the code.'
+        q: 'Why does an ITF-14 barcode have thick protective bearer bars?',
+        a: 'Bearer bars serve two critical functions: 1) Printing plate support: they equalize impression cylinder pressure across flexographic printing plates when stamping onto rough, undulating corrugated cardboard, preventing uneven ink spread and plate wear; and 2) Misread prevention: they prevent skewed laser scanner beams from entering or exiting the top or bottom edge of the symbol and accidentally registering a partial "short scan" of fewer than 14 digits.'
       },
       {
-        q: 'Can an ITF-14 barcode be scanned at retail cash registers?',
-        a: 'No. ITF-14 barcodes are strictly meant for master cases and wholesale shipping cartons, not consumer-facing retail checkouts.'
+        q: 'How do I derive a 14-digit GTIN-14 from my product\'s retail UPC-A or EAN-13?',
+        a: 'An ITF-14 barcode carries a 14-digit GTIN-14 constructed from your retail product\'s GTIN. Start with an Indicator digit (values 1 through 8 signify different packaging hierarchy levels, such as a 6-pack case vs. a 24-pack master carton). Next, insert the 12 data digits of your retail code (for a 12-digit UPC-A, prepend a leading 0 followed by the first 11 digits; for a 13-digit EAN-13, take the first 12 digits, dropping the retail check digit). Finally, calculate the new 14th check digit using the GS1 Modulo-10 algorithm. Our generator performs this check digit calculation automatically in real time.'
+      },
+      {
+        q: 'What are the official GS1 size and quiet zone specifications for ITF-14?',
+        a: 'Under GS1 General Specifications, the nominal X-dimension (narrow bar width) for an ITF-14 symbol intended for automated warehouse scanning is 1.016 mm (0.040 in), yielding a nominal symbol height of 31.75 mm (1.25 in) excluding bearer bars. When direct-printing onto corrugated cardboard, GS1 permits a magnification range from 50% to 100% (or up to 102%). Quiet zones on the left and right margins must be at least 10 times the X-dimension (minimum 6.4 mm / 0.25 in) to prevent adjacent text or carton seams from disrupting laser decoders.'
+      },
+      {
+        q: 'Can an ITF-14 barcode be scanned at retail point-of-sale (POS) cash registers?',
+        a: 'No. ITF-14 barcodes are engineered strictly for non-retail logistics units—such as master shipping cartons, bulk cases, and warehouse pallets. Retail supermarket and department store POS registers use omnidirectional laser and imaging scanners configured specifically for GTIN-12 (UPC-A) and GTIN-13 (EAN-13) symbols. If a master carton is opened and individual consumer units are sold separately, each inner unit must carry its own UPC-A or EAN-13 barcode. Learn more in our <a href="./how-to-get-a-barcode-for-your-product.html">Product Barcode Guide</a>.'
+      },
+      {
+        q: 'Can I export an ITF-14 barcode in vector SVG format for box die lines and prepress packaging?',
+        a: 'Yes. UniversalCodeMaker exports pristine, infinitely scalable vector SVG files that packaging engineers and graphic designers can place directly into Adobe Illustrator, CorelDRAW, or ArtiosCAD packaging dielines. You can also export high-resolution PNG or EPS files with exact bearer bar thickness and quiet zones pre-configured.'
+      },
+      {
+        q: 'Are my master carton GTINs, warehouse codes, or company data uploaded to external servers?',
+        a: 'No. UniversalCodeMaker operates entirely inside your local web browser using client-side JavaScript. Your GTIN-14 numbers, warehouse SKU references, and packaging configurations are processed locally on your computer and are never transmitted to, logged on, or stored on any external server.'
       }
+    ],
+    relatedSlugs: [
+      'code-128-barcode-generator',
+      'ean-13-barcode-generator',
+      'upc-a-barcode-generator',
+      'amazon-fba-fnsku-barcode-generator',
+      'how-to-get-a-barcode-for-your-product',
+      'bulk-barcode-generator-excel'
     ]
   },
   // 2D Matrix Codes
