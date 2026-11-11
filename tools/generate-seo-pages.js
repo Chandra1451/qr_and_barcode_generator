@@ -838,36 +838,58 @@ const SEO_PAGES = [
     shortName: 'Google Review QR',
     queryParam: 'symbology=qr-code&wizard=google_review',
     category: 'Smart QR',
-    metaTitle: 'Free Google Review QR Code Generator',
-    metaDescription: 'Make a QR code that opens your business\'s Google review form. Paste your review link or Place ID, then download SVG or PNG for print. Free, no scan limits.',
+    metaTitle: 'Free Google Reviews QR Code Generator: Direct 5-Star Link',
+    metaDescription: 'Create free Google review QR codes that open directly to your 5-star review form. Paste your Place ID or Business Profile link. Download SVG & 300 DPI PNG.',
     h1: 'Free Google Reviews QR Code Generator',
     lead: 'Turn in-person customers into verified 5-star Google reviews effortlessly. Generate custom QR codes that launch directly into your Google Business review box with one quick scan.',
     technicalSpec: {
       standard: 'ISO/IEC 18004 QR Code Model 2',
-      destinationType: 'Direct review dialog URL (https://search.google.com/local/writereview?placeid={ID} or g.page shortlink)',
-      supportedInputs: 'Google Review Share Link, Google Maps Profile URL, or Google Place ID',
-      errorCorrection: 'Level M (15% redundancy) or Level Q (25% redundancy with custom center icon)',
-      exportFormats: 'SVG Vector (lossless packaging), 300 DPI PNG, PDF Countertop Stand Sign'
+      destinationUrl: 'https://search.google.com/local/writereview?placeid={PlaceID} or g.page shortlink',
+      supportedInputs: 'Google Place ID (ChIJ...), Google Business Profile review link, Google Maps URL',
+      errorCorrection: 'Level M (15% recovery) or Level Q (25% recovery for center logo inserts)',
+      deepLinkRouting: 'Direct native launch into Google Maps review dialogue on Android and iOS',
+      privacy: '100% client-side generation; Place IDs and review URLs are never logged or stored'
     },
     useCases: [
-      'Restaurant table tents, bill presenters, and payment receipt footers',
-      'Retail counter checkout displays, window decals, and exit doors',
-      'Field service invoices, technician business cards, and leave-behind cards',
-      'Product packaging inserts, delivery boxes, and customer thank-you notes'
+      'Restaurant and cafe tabletop acrylic stands, check presenters, and takeaway menus',
+      'Retail checkout point-of-sale displays, window stickers, and exit door decals',
+      'Medical clinics, dental offices, salons, and wellness center reception desks',
+      'Home service contractor leave-behind cards, service invoices, and vehicle decals',
+      'E-commerce packaging inserts, shipping boxes, and unboxing thank-you cards'
     ],
     faqs: [
       {
-        q: 'How does a Google Review QR code take customers directly to the review form?',
-        a: 'By linking to Google\'s specialized review URL or compiling your Google Place ID into "https://search.google.com/local/writereview?placeid=...", smartphones immediately open the Google Maps app or browser directly into the 5-star rating and comment submission dialog.'
+        q: 'How does a Google Review QR code take customers directly to the review submission form?',
+        a: 'By encoding Google\'s dedicated review URL (https://search.google.com/local/writereview?placeid={PlaceID}) or your verified Google Business Profile shortlink (g.page/.../review), scanning instantly launches the Google Maps app or mobile browser directly into the 5-star rating selector and comment box, completely bypassing search results, competitors, and map navigation.'
       },
       {
-        q: 'How do I find my business Google Review link or Place ID?',
-        a: 'Open Google Search, search for your business name (while logged into your Google Business Profile account), click "Ask for reviews", and copy the review link. Alternatively, paste your Google Maps business link into our wizard and we format it automatically.'
+        q: 'How do I find my business Google Place ID or review share link?',
+        a: 'Sign in to Google Search or Google Maps with your Google Business Profile account, search for your business name, click "Ask for reviews", and copy the generated review link. If you prefer using your official Place ID (starting with "ChIJ..."), look it up using Google\'s Place ID Finder tool or paste your Maps URL into our generator and we will compile the direct review endpoint automatically.'
       },
       {
-        q: 'Will this QR code ever expire or require a monthly payment?',
-        a: 'UniversalCodeMaker stores the review URL directly in a static QR code and does not control a redirect or expiry for it. The destination remains subject to Google, the business profile and the encoded URL, so test it before printing.'
+        q: 'Why is a direct review QR code more effective than linking to our website or Maps profile?',
+        a: 'Every additional tap or search step dramatically increases customer drop-off. A standard link requires customers to search your business, find the Reviews tab, and scroll to write a review. A direct Google Review QR code eliminates all intermediate friction by loading the review dialogue immediately upon camera scan, resulting in significantly higher review completion rates.'
+      },
+      {
+        q: 'Does the QR code open in the Google Maps app or the mobile web browser?',
+        a: 'On smartphones with Google Maps installed (all Android phones and most iPhones), scanning automatically triggers deep-linking into the native Google Maps app, where the customer is already logged into their personal Google account. If Google Maps is not installed, it falls back seamlessly to the user\'s default mobile web browser.'
+      },
+      {
+        q: 'What is the recommended print size and placement for countertop review QR signs?',
+        a: 'For tabletop tents, counter displays, and checkout stands, print the QR code at a minimum size of 1.2 × 1.2 inches (30 × 30 mm) at 300 DPI or higher to guarantee rapid scanning from 1 to 2 feet away. Place review signs at natural dwell points—such as the checkout register, dining tables while waiting for the bill, or customer exit areas—paired with a clear call-to-action like "Scan to share your experience on Google".'
+      },
+      {
+        q: 'Will this Google Review QR code ever expire or require a recurring monthly subscription?',
+        a: 'No. UniversalCodeMaker generates 100% static QR codes that embed your Google review URL directly into the barcode pattern itself. There are no scan limits, no redirects through third-party domains, and no ongoing subscription fees. As long as your Google Business Profile remains active and the printed QR code remains clean and legible, it will work permanently.'
       }
+    ],
+    relatedSlugs: [
+      'google-maps-location-qr-code-generator',
+      'wifi-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'vcard-qr-code-generator',
+      'upi-qr-code-generator',
+      'calendar-event-qr-code-generator'
     ]
   },
   {
