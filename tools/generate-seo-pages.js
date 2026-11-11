@@ -787,21 +787,23 @@ const SEO_PAGES = [
     shortName: 'UPI Payment QR',
     queryParam: 'symbology=qr-code&wizard=upi',
     category: 'Smart QR',
-    metaTitle: 'Free UPI QR Code Generator (GPay, PhonePe, Paytm)',
-    metaDescription: 'Make a UPI payment QR code for your shop that works with Google Pay, PhonePe, Paytm and BHIM, with an optional preset amount. SVG or PNG, free.',
+    metaTitle: 'Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount',
+    metaDescription: 'Generate free UPI payment QR codes for Google Pay, PhonePe, and Paytm. Support custom VPA, fixed amount, merchant name, and zero fees in vector SVG.',
     h1: 'Free UPI Scan-to-Pay QR Code Generator',
     lead: 'Create UPI scan-to-pay QR codes for merchant stores, freelancers, and invoices. Receiving-app support can vary, so verify the VPA and test the code in the apps your customers use.',
     technicalSpec: {
       standard: 'ISO/IEC 18004 QR Code Model 2',
       protocol: 'NPCI UPI Deep Link Specification (upi://pay?pa={VPA}&pn={Name}&am={Amount}&cu=INR)',
-      compatibility: 'UPI apps such as Google Pay, PhonePe, Paytm and BHIM (Android and iOS)',
-      security: 'Client-side compilation with zero intermediary payment gateways or commissions'
+      parameters: 'pa (UPI ID / VPA), pn (Merchant Name), am (Preset Amount), cu (Currency INR), tn (Note)',
+      compatibility: 'Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay & 300+ Indian banking apps',
+      security: '100% in-browser generation with zero payment intermediaries, tracking, or fees'
     },
     useCases: [
-      'Retail checkout counter stands, acrylic tents, and cash registers',
-      'Freelance digital invoices and client billing receipts',
-      'Food delivery boxes, restaurant table bills, and street market stalls',
-      'Non-profit charity donations and event registration ticketing'
+      'Retail checkout counters, acrylic billing stands, and point-of-sale displays',
+      'Freelance digital invoices, consulting receipts, and client payment links',
+      'Restaurant table billing, food delivery packaging, and cafe ordering menus',
+      'Direct non-profit charity donations and event entry registration desks',
+      'Immediate scan-and-pay across all Indian bank accounts with zero commission'
     ],
     faqs: [
       {
@@ -815,7 +817,27 @@ const SEO_PAGES = [
       {
         q: 'Can I specify a fixed amount or let customers enter their own?',
         a: 'Both options are supported. Leave the amount blank to let the customer enter any amount, or specify a fixed amount to lock the payment to an exact invoice figure.'
+      },
+      {
+        q: 'How do I generate a UPI QR code with a fixed payment amount?',
+        a: 'In the generator wizard, enter your UPI ID (VPA), your merchant or personal name, and the exact rupee amount in the Amount field. The generator appends the &am= parameter to the open NPCI URI (for example, upi://pay?pa=store@bank&pn=MyStore&am=250.00&cu=INR). When scanned, the customer\'s payment app pre-fills and locks the amount to prevent payment discrepancies.'
+      },
+      {
+        q: 'What is a universal UPI QR code and does it work across all payment apps?',
+        a: 'A universal UPI QR code follows the National Payments Corporation of India (NPCI) interoperable deep-linking standard. It is not locked to any single vendor like PhonePe or Google Pay. Any UPI-compliant app installed on an Android or iOS smartphone can decode the URI and initiate a secure, immediate payment directly from the payer\'s linked bank account.'
+      },
+      {
+        q: 'What is the best format to print a UPI payment QR code for a store counter?',
+        a: 'Download the code in scalable vector SVG format for professional graphic design, or high-resolution PNG for direct desktop printing. For retail checkout stands and acrylic holders, print at a minimum size of 2" × 2" (50 mm × 50 mm) at 300 DPI or higher. Use a matte finish or non-reflective acrylic stand to eliminate harsh overhead lighting glare that can hinder camera autofocus.'
       }
+    ],
+    relatedSlugs: [
+      'google-reviews-qr-code-generator',
+      'google-maps-location-qr-code-generator',
+      'wifi-qr-code-generator',
+      'vcard-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'plain-text-qr-code-generator'
     ]
   }
 ,
