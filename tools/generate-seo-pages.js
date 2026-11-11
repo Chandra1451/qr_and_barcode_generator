@@ -246,32 +246,58 @@ const SEO_PAGES = [
     shortName: 'Code 128',
     queryParam: 'symbology=code-128',
     category: 'Logistics & Shipping',
-    metaTitle: 'Free Code 128 Barcode Generator: SVG, EPS & PNG',
-    metaDescription: 'Generate high-density Code 128 barcodes online. Supports full ASCII 128 character set, automatic subset switching (A/B/C), vector SVG, and 300 DPI PNG.',
+    metaTitle: 'Free Code 128 Barcode Generator: High-Density Shipping SVG',
+    metaDescription: 'Generate free Code 128 barcodes online. Full 128 ASCII character set, automatic subset switching (A/B/C), Mod-103 checksum, vector SVG & Avery label maker.',
     h1: 'Free Code 128 Logistics Barcode Generator',
-    lead: 'Create compact, high-density Code 128 barcodes supporting the complete 128 ASCII character set with automatic subset optimization for warehouse, logistics, and asset tracking.',
+    lead: 'Create compact, high-density Code 128 linear barcodes supporting the complete 128 ASCII character set with automatic subset optimization for warehouse logistics, shipping labels, and enterprise asset tracking.',
     technicalSpec: {
-      standard: 'ISO/IEC 15417',
-      characterSet: 'Full ASCII 128 (Letters, numbers, punctuation, control chars)',
-      subsets: 'Code 128A (Caps/Control), Code 128B (ASCII), Code 128C (Double-density numeric pairs)',
-      checksum: 'Modulo 103 check character (calculated automatically)',
-      quietZones: '10X minimum on both ends'
+      standard: 'ISO/IEC 15417 & AIM BC4',
+      characterEncoding: 'Full 128 ASCII character set (Alphanumeric, symbols, control codes)',
+      subsetSwitching: 'Code 128A (Caps/Control), Code 128B (ASCII), Code 128C (Double-density numeric pairs)',
+      checksumAlgorithm: 'Weighted Modulo 103 check character (calculated automatically)',
+      quietZones: '10X module width minimum on both left and right margins',
+      privacy: '100% in-browser generation; asset tags, serial numbers, and shipping data are never stored'
     },
     useCases: [
-      'Warehouse bin and pallet rack labeling',
-      'Shipping container and carton tracking (UCC/EAN-128)',
-      'Enterprise asset tags and equipment serial numbers',
-      'Medical laboratory specimen tube labeling'
+      'Warehouse pallet racking, inventory bin locations, and storage tote labels',
+      'Supply chain carton logistics, shipping container labels, and freight waybills',
+      'Enterprise IT equipment asset tags, serial numbers, and calibration stickers',
+      'Healthcare, pharmaceutical packaging, and laboratory specimen test tubes',
+      'Manufacturing work-in-progress (WIP) tracking and factory routing cards'
     ],
     faqs: [
       {
         q: 'What characters can I encode into a Code 128 barcode?',
-        a: 'Code 128 can encode all 128 standard ASCII characters, including uppercase letters, lowercase letters, numbers, punctuation symbols, and control codes.'
+        a: 'Code 128 can encode all 128 standard ASCII characters (values 0 through 127). This includes uppercase and lowercase English letters (A-Z, a-z), all numeric digits (0-9), punctuation marks, arithmetic symbols, and non-printable control characters such as Tab (HT), Line Feed (LF), and Carriage Return (CR).'
       },
       {
-        q: 'Does your engine use Code 128 subset C for numeric data?',
-        a: 'Yes. Our engine uses automatic optimization to switch into Code 128C whenever strings of digits appear, compressing two numeric digits into a single barcode character for maximum compactness.'
+        q: 'How does automatic subset switching (Subsets A, B, and C) work?',
+        a: 'Code 128 uses three distinct code sets: Subset A (standard alphanumeric plus ASCII control characters), Subset B (standard alphanumeric plus lowercase letters and punctuation), and Subset C (double-density pairs of numeric digits from 00 to 99). Our generator automatically analyzes your input payload and dynamically inserts shift/code-switch characters to use Subset C for long numeric sequences, compressing the physical barcode width by up to 50%.'
+      },
+      {
+        q: 'How is the weighted Modulo-103 check character calculated and verified?',
+        a: 'Code 128 features a built-in mathematical self-check character calculated using weighted Modulo-103 arithmetic: the start code value is added to the sum of each data character value multiplied by its sequential position in the symbol (1, 2, 3, etc.). The total is divided by 103, and the remainder determines the check character. The generator calculates this automatically and appends it immediately before the stop character.'
+      },
+      {
+        q: 'Can I generate and print Code 128 barcode label sheets on Avery paper?',
+        a: 'Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1" × 2-5/8") or Avery 5163 (10 shipping labels per sheet, 2" × 4"). Each barcode is rendered with vector sharpness and calibrated margins to ensure reliable thermal or laser printing.'
+      },
+      {
+        q: 'What is the difference between standard Code 128 and GS1-128 (UCC/EAN-128)?',
+        a: 'Standard Code 128 is an open symbology that can encode any arbitrary ASCII string for proprietary internal tracking, warehouse management, or asset tagging. GS1-128 (formerly UCC/EAN-128) is a specialized application standard that uses Code 128 symbology but mandates a leading FNC1 (Function 1) character and structured Application Identifiers (AIs) like (01) for GTIN, (10) for Batch/Lot, and (17) for Expiration Date.'
+      },
+      {
+        q: 'Are my internal serial numbers, SKU lists, or asset tags stored on UniversalCodeMaker servers?',
+        a: 'No. UniversalCodeMaker runs completely inside your local web browser. Your private inventory serial numbers, employee badge IDs, internal tracking codes, and asset tags are rendered directly into SVG or PNG graphics on your device and are never uploaded to, transmitted across, or stored on any external server.'
       }
+    ],
+    relatedSlugs: [
+      'amazon-fba-fnsku-barcode-generator',
+      'itf-14-barcode-generator',
+      'data-matrix-generator',
+      'code-39-barcode-generator',
+      'avery-5160-barcode-generator',
+      'bulk-barcode-generator-excel'
     ]
   },
   {
