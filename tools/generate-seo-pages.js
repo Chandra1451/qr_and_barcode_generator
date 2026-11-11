@@ -2437,7 +2437,7 @@ const ARTICLES = [
               <path d="M16 95h188" stroke="var(--border-subtle)" stroke-width="1"/>
               <text x="16" y="118" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• 12 digits (UPC-A) for US</text>
               <text x="16" y="138" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• 13 digits (EAN) worldwide</text>
-              <text x="16" y="158" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Brand recorded in GEPIR</text>
+              <text x="16" y="158" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Verified by GS1 / GEPIR</text>
               <text x="16" y="190" font-family="var(--font-mono, monospace)" font-size="11" fill="var(--optic-blue)">$30 Single / $250 Prefix</text>
             </g>
 
@@ -2493,7 +2493,7 @@ const ARTICLES = [
             </g>
           </svg>
           <ol class="ean-diagram-legend">
-            <li><strong>1. License GTIN:</strong> Obtain your product number directly from GS1 to ensure your company is registered in the official GEPIR registry.</li>
+            <li><strong>1. License GTIN:</strong> Obtain your product number directly from GS1 to ensure your company is registered in the official GS1 registry (Verified by GS1 / GEPIR).</li>
             <li><strong>2. Assign by Variant:</strong> Assign a distinct GTIN to every sellable consumer variant (e.g. 250 ml vs 500 ml, red vs blue).</li>
             <li><strong>3. Generate Vector Barcode:</strong> Enter your digits in UniversalCodeMaker to compute the check digit and export sharp vector files (SVG/EPS) for packaging artwork.</li>
             <li><strong>4. Proof &amp; Verify:</strong> Test-scan a sample print using our <a href="../barcode-scanner.html">Barcode Scanner</a> before commissioning volume print runs.</li>
@@ -2587,7 +2587,7 @@ const ARTICLES = [
 
         <div class="ean-callout" style="margin-top: 1.25rem;">
           <strong>Why cheap reseller barcodes fail on Amazon and retail:</strong>
-          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the <a href="https://gepir.gs1.org/" target="_blank" rel="noopener noreferrer">GS1 GEPIR database</a> under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
+          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the official GS1 database (via <a href="https://www.gs1.org/services/verified-by-gs1" target="_blank" rel="noopener noreferrer">Verified by GS1</a>, formerly GEPIR) under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
         </div>`
       },
       {
@@ -2719,7 +2719,7 @@ const ARTICLES = [
       },
       {
         q: 'Why do cheap reseller barcodes get rejected by Amazon and major retailers?',
-        a: 'Marketplaces such as Amazon automatically verify barcode numbers against the official GS1 GEPIR database. When you buy recycled numbers from third-party brokers, the database shows the previous company\'s name instead of your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.'
+        a: 'Marketplaces such as Amazon automatically verify barcode numbers against the official GS1 database (Verified by GS1, formerly known as GEPIR). When you buy recycled numbers from third-party brokers, the database shows the previous company\'s name instead of your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.'
       },
       {
         q: 'Do I need a barcode to sell on Shopify or Etsy?',
