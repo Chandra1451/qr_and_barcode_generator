@@ -1178,40 +1178,58 @@ const SEO_PAGES = [
     shortName: 'Code 39 Asset',
     queryParam: 'symbology=code-39',
     category: 'Logistics & 1D',
-    metaTitle: 'Free Code 39 Barcode Generator for Asset Tags',
-    metaDescription: 'Create free Code 39 (USD-3 / LOGMARS) barcodes online. Ideal for IT asset tracking, equipment labels, and internal warehouse inventory.',
-    h1: 'Free Code 39 (USD-3) Barcode Generator',
-    lead: 'Generate industrial-grade Code 39 alphanumeric barcodes for enterprise asset management, equipment labels, and internal inventory numbering with instant vector SVG and PNG downloads.',
+    metaTitle: 'Free Code 39 Barcode Generator: Asset Tags & Mod-43 SVG',
+    metaDescription: 'Generate free Code 39 (Code 3 of 9) barcodes online. Alphanumeric asset tags, optional Mod-43 check digit, Avery label maker & sharp vector SVG export.',
+    h1: 'Free Code 39 Asset & Industrial Barcode Generator',
+    lead: 'Generate industrial-standard Code 39 (Code 3 of 9 / USD-3) linear barcodes for IT asset tracking, manufacturing parts marking, defense logistics, and warehouse equipment numbering with instant vector SVG and Avery label sheet printing.',
     technicalSpec: {
-      standard: 'ANSI/AIM BC1 / ISO/IEC 16388 / MIL-STD-129',
+      standard: 'ISO/IEC 16388 & ANSI/AIM BC1 (USD-3 / LOGMARS)',
       characterSet: '43 characters: 0–9, uppercase A–Z, and symbols (- . $ / + % space)',
-      checkDigit: 'Optional Modulo-43 checksum calculation',
-      densityType: 'Variable-length discrete symbology with start/stop asterisk (*) characters',
-      exportOptions: 'Crisp Vector SVG, 300 DPI Thermal Print, Avery Label Sheets'
+      checksumAlgorithm: 'Self-checking symbology; optional weighted Modulo-43 checksum',
+      symbologyStructure: 'Discrete variable-length symbology with automatic start/stop asterisks (*)',
+      quietZones: 'Minimum 10X module width (at least 6.4 mm / 0.25 in) on left and right margins',
+      privacy: '100% client-side generation; asset IDs, serial numbers, and equipment tags are never uploaded'
     },
     useCases: [
-      'IT hardware asset tags (laptops, monitors, networking gear)',
-      'US Department of Defense (DoD) military supply shipments under MIL-STD-129',
-      'Hospital and clinical laboratory specimen tube tracking',
-      'Automotive manufacturing sub-assemblies (AIAG standard)'
+      'Enterprise IT hardware asset tags (laptops, servers, monitors, networking gear)',
+      'US Department of Defense (DoD) military supply shipments under MIL-STD-129 / MIL-STD-130',
+      'Automotive manufacturing sub-assemblies and replacement parts (AIAG B-1 standard)',
+      'Hospital clinical laboratory specimen tube labeling and healthcare asset tracking',
+      'Warehouse storage bin locations, maintenance tooling badges, and factory route sheets'
     ],
     faqs: [
       {
+        q: 'What characters can be encoded in a standard Code 39 barcode?',
+        a: 'Standard Code 39 natively encodes 43 individual characters: 10 numeric digits (0–9), 26 uppercase English letters (A–Z), and seven punctuation and mathematical symbols: hyphen (-), period (.), space ( ), dollar sign ($), slash (/), plus (+), and percent (%). Lowercase letters entered into standard mode are automatically capitalized. For full ASCII support including lowercase letters and control characters, Full ASCII Extended Code 39 combines these standard symbols in pairs.'
+      },
+      {
         q: 'What is the difference between Code 39 and Code 128?',
-        a: 'Code 39 is a simpler, self-checking symbology widely adopted by government, defense, and healthcare due to its reliability on older scanners. Code 128 is more compact (encodes data in less physical bar space) and supports the full 128 ASCII character set.'
+        a: 'Code 39 is a discrete symbology where each character is separated by an inter-character gap, making it simpler, highly resilient, and decodable by virtually all legacy barcode readers without specialized software. However, Code 39 requires significantly more physical horizontal space per character. Code 128 is a continuous, high-density symbology that encodes the entire 128 ASCII table in approximately half the horizontal width and features dynamic numeric compaction (Subset C). For compact spaces, choose <a href="./code-128-barcode-generator.html">Code 128</a>; for legacy defense, automotive, or simple asset tracking, choose Code 39.'
       },
       {
-        q: 'Do Code 39 barcodes require a check digit?',
-        a: 'Code 39 includes inherent self-checking architecture, making a check digit optional in most commercial uses. However, high-integrity environments (such as DoD LOGMARS or healthcare) often enable the Modulo-43 checksum for maximum error prevention.'
+        q: 'Why do Code 39 barcodes have asterisks (*) at the beginning and end?',
+        a: 'The asterisk (*) character is the designated start and stop delimiter in the Code 39 specification. It tells optical barcode scanners which direction the beam is reading across the bars (left-to-right or right-to-left) so the decoder can orient the payload accurately. In modern scanners, the asterisks are stripped automatically and are not transmitted to your inventory database or spreadsheet.'
       },
       {
-        q: 'Can Code 39 encode lowercase letters or symbols?',
-        a: 'Standard Code 39 natively encodes uppercase A–Z, numbers 0–9, and seven special symbols (- . $ / + % and space). Extended Code 39 uses two-character pairs to encode the full ASCII table.'
+        q: 'How is the optional Modulo-43 check digit calculated for Code 39?',
+        a: 'Code 39 has built-in self-checking properties due to its fixed pattern ratio (each character contains 9 elements: 3 wide and 6 narrow). However, high-reliability applications (such as DoD LOGMARS or healthcare asset tracking) add a Modulo-43 check character: each character in the payload is assigned a numerical value from 0 to 42, all values are summed, the sum is divided by 43, and the remainder maps back to the corresponding check character appended to the end of the data.'
       },
       {
-        q: 'Why do I see asterisks (*) at the beginning and end of Code 39 data?',
-        a: 'The asterisk (*) serves as the start/stop pattern that tells the optical barcode scanner which direction the barcode is being read. Our generator automatically renders the start/stop bars.'
+        q: 'Can I print Code 39 asset barcodes on Avery adhesive label sheets?',
+        a: 'Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1" × 2-5/8") or Avery 5163 (10 labels per sheet, 2" × 4"). Each barcode is rendered with calibrated quiet zones and razor-sharp vectors to guarantee crisp scanning on both thermal transfer and office laser printers.'
+      },
+      {
+        q: 'Are my enterprise asset tags, serial numbers, or internal inventory lists stored on UniversalCodeMaker servers?',
+        a: 'No. All barcode rendering, vector generation, and checksum arithmetic take place 100% client-side in your local web browser. Your private asset serial numbers, equipment tags, employee IDs, and company inventory codes never leave your device and are never uploaded to, transmitted across, or stored on any external server.'
       }
+    ],
+    relatedSlugs: [
+      'code-128-barcode-generator',
+      'avery-5160-barcode-generator',
+      'bulk-barcode-generator-excel',
+      'data-matrix-generator',
+      'itf-14-barcode-generator',
+      'amazon-fba-fnsku-barcode-generator'
     ]
   },
   {
