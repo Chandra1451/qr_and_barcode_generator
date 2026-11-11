@@ -4865,7 +4865,7 @@ ARTICLES.forEach(article => {
 // Generate sitemap.xml
 console.log('Generating sitemap.xml...');
 const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
-const today = new Date().toISOString().split('T')[0];
+const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date());
 
 // <lastmod> = the date the page's content really last changed: today if it has uncommitted
 // content edits, otherwise the newest commit that changed its content. Changes that only bump
