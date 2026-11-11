@@ -300,8 +300,8 @@ const SEO_PAGES = [
     shortName: 'Data Matrix',
     queryParam: 'symbology=data-matrix',
     category: '2D Matrix',
-    metaTitle: 'Free Data Matrix Code Generator (ECC 200)',
-    metaDescription: 'Generate high-density Data Matrix ECC 200 2D barcodes online (the ISO/IEC 16022 symbology) for parts, inventory and labels, with vector SVG export.',
+    metaTitle: 'Free Data Matrix ECC 200 Generator: Parts Marking & SVG',
+    metaDescription: 'Generate ISO/IEC 16022 Data Matrix ECC 200 2D barcodes for parts marking, GS1 serialization and electronics. Free vector SVG and PNG export with zero sign-up.',
     h1: 'Free Data Matrix (ECC 200) 2D Barcode Generator',
     lead: 'Create compact, high-capacity Data Matrix 2D square matrix barcodes engineered for electronic component marking, healthcare pharmaceutical packaging, and aerospace direct part marking (DPM).',
     technicalSpec: {
@@ -312,10 +312,10 @@ const SEO_PAGES = [
       aspectRatio: 'Square (rectangular sizes are also part of the standard)'
     },
     useCases: [
-      'FDA Unique Device Identification (UDI) for medical instruments',
-      'Direct Part Marking (DPM) on aerospace and automotive steel components',
-      'Printed circuit board (PCB) micro-labeling',
-      'European Falsified Medicines Directive (FMD) serial packs'
+      'Direct Part Marking (DPM) on aerospace, automotive, and defense hardware (MIL-STD-130)',
+      'FDA Unique Device Identification (UDI) for surgical instruments and medical devices',
+      'Pharmaceutical serialization under US DSCSA and EU Falsified Medicines Directive (FMD)',
+      'Printed circuit board (PCB) micro-labeling and electronic component traceability'
     ],
     faqs: [
       {
@@ -325,8 +325,17 @@ const SEO_PAGES = [
       {
         q: 'Can Data Matrix codes be read if partially scratched or damaged?',
         a: 'Yes! The ECC 200 specification utilizes Reed-Solomon error correction algorithms capable of recovering up to 30% of obscured or scratched modules.'
+      },
+      {
+        q: 'Why is ECC 200 the only Data Matrix version used in modern manufacturing?',
+        a: 'Legacy Data Matrix versions (ECC 000 through 140) used older convolution error correction. The ISO/IEC 16022 standard established ECC 200 using advanced Reed-Solomon error correction and an even number of rows and columns. Today, all industrial scanners, automotive specs, and GS1 standards exclusively mandate ECC 200.'
+      },
+      {
+        q: 'What is the difference between Data Matrix and QR Code?',
+        a: 'While both are 2D matrix symbologies, Data Matrix can encode high-density alphanumeric data in a footprint up to 30 times smaller than a standard barcode and requires smaller quiet zones (1 module vs 4 modules for QR codes). This makes Data Matrix the global standard for micro-electronics, surgical tools, and direct part marking, whereas QR codes are favored for consumer-facing smartphone scanning.'
       }
-    ]
+    ],
+    relatedSlugs: ['pdf417-barcode-generator', 'aztec-code-generator', 'code-128-barcode-generator']
   },
   {
     slug: 'aztec-code-generator',
@@ -363,8 +372,8 @@ const SEO_PAGES = [
     shortName: 'PDF417',
     queryParam: 'symbology=pdf417',
     category: '2D Stacked',
-    metaTitle: 'Free PDF417 Barcode Generator: SVG & PNG',
-    metaDescription: 'Make PDF417 stacked 2D barcodes online for documents, shipping papers and paper boarding passes. Vector SVG and PNG download, free, no sign-up.',
+    metaTitle: 'Free PDF417 Barcode Generator: ID Badges, Cards & SVG',
+    metaDescription: 'Create ISO/IEC 15438 PDF417 stacked 2D barcodes for ID badges, shipping papers and documents. Free client-side vector SVG and PNG download with zero sign-up.',
     h1: 'Free PDF417 Stacked 2D Barcode Generator',
     lead: 'Create PDF417 stacked 2D barcodes for multi-line text, inventory records, document references, and other structured data. The studio encodes exactly the text you enter; it does not build industry-specific data formats.',
     technicalSpec: {
@@ -374,17 +383,30 @@ const SEO_PAGES = [
       capacity: 'Over 1.1 kilobytes of machine-readable data per symbol'
     },
     useCases: [
-      'Inventory and asset records',
-      'Document and form references',
-      'Shipping or warehouse records you define',
-      'Multi-line text that benefits from a stacked symbol'
+      'Personnel identification badges, access cards, and visitor passes',
+      'Commercial transport & airline boarding passes (BCBP standard)',
+      'USPS parcel shipping papers and logistics records',
+      'Multi-line technical text and high-density document archiving'
     ],
     faqs: [
       {
         q: 'What does PDF417 stand for?',
         a: 'PDF stands for "Portable Data File". The "417" signifies that each pattern is 17 modules wide and consists of 4 bars and 4 spaces.'
+      },
+      {
+        q: 'Can I generate employee ID cards and personnel badges with PDF417?',
+        a: 'Yes. PDF417 is widely used for employee identification cards, facility access badges, and event credentials because its high data density allows encoding names, employee numbers, and security hashes directly within the symbol without requiring an active database lookup at the scanner.'
+      },
+      {
+        q: 'What error correction level should I choose for PDF417?',
+        a: 'PDF417 supports error correction levels 0 through 8 using Reed-Solomon algorithms. For standard identification cards, shipping labels, and documents, level 4 or 5 provides robust protection against surface scratches, print distortion, and ink smudges.'
+      },
+      {
+        q: 'Can I export PDF417 as vector SVG for high-resolution printing?',
+        a: 'Yes! UniversalCodeMaker produces crisp mathematical vector SVG exports that scale infinitely without pixelation, making them ideal for high-DPI badge printers, offset commercial printing, and technical documentation.'
       }
-    ]
+    ],
+    relatedSlugs: ['data-matrix-generator', 'aztec-code-generator', 'code-128-barcode-generator']
   },
   // Smart QR Wizards
   {
