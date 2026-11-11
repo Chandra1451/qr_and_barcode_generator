@@ -843,36 +843,58 @@ const SEO_PAGES = [
     shortName: 'WhatsApp QR',
     queryParam: 'symbology=qr-code&wizard=whatsapp',
     category: 'Smart QR',
-    metaTitle: 'Free WhatsApp QR Code Generator (wa.me Link)',
-    metaDescription: 'Make a WhatsApp QR code that opens a chat with your number and an optional pre-filled message (wa.me link). SVG or PNG for print, free, no sign-up.',
+    metaTitle: 'Free WhatsApp QR Code Generator: Direct Chat & wa.me Link',
+    metaDescription: 'Generate free WhatsApp QR codes with pre-filled messages and direct wa.me links. Customers start conversations in one scan without saving your phone number.',
     h1: 'Free WhatsApp Direct Chat QR Code Generator',
     lead: 'Allow customers, clients, and guests to initiate a WhatsApp conversation with your business in one scan. Supports international numbers and pre-filled introductory messages.',
     technicalSpec: {
       standard: 'ISO/IEC 18004 QR Code Model 2',
-      protocol: 'Official WhatsApp Web & App Intent (https://wa.me/{phone}?text={message})',
-      phoneFormat: 'E.164 International Format (Country Code + Phone Number, digits only)',
-      messageEncoding: 'RFC 3986 URI component encoding with automated line break normalization',
-      errorCorrection: 'Level M (15% recovery) or Level H (30% recovery with custom WhatsApp logo)'
+      protocol: 'Official WhatsApp Deep Link (https://wa.me/{phone}?text={encoded_message})',
+      phoneFormat: 'E.164 International Format (Country Code + Number without + or dashes)',
+      messageEncoding: 'RFC 3986 percent-encoding with automated newline conversion (%0A)',
+      compatibility: 'WhatsApp on Android, iOS, iPadOS, WhatsApp Business, WhatsApp Web & Desktop',
+      privacy: '100% in-browser generation; phone numbers and messages are never logged or stored'
     },
     useCases: [
-      'Customer support kiosks and service desks for instant messaging',
-      'Restaurant and café table menus for WhatsApp order placement',
-      'Real estate "For Sale" yard signs and flyers for quick agent inquiries',
-      'Ecommerce delivery packaging inserts for direct customer care'
+      'Customer service desks, support kiosks, and storefront window decals',
+      'Restaurant, cafe, and bar dining table stands for ordering and reservations',
+      'Ecommerce shipping box inserts, warranty cards, and product packaging',
+      'Real estate for-sale lawn signs, open house flyers, and property listings',
+      'Marketing event banners, trade show booth backdrops, and speaker presentation decks'
     ],
     faqs: [
       {
-        q: 'How does a customer start a WhatsApp chat from scanning a QR code?',
-        a: 'When a smartphone camera scans the QR code, it detects the wa.me protocol and prompts the user to open WhatsApp directly with your number in the chat window, ready to send your pre-filled inquiry.'
+        q: 'How does a customer start a WhatsApp chat by scanning this QR code?',
+        a: 'When scanned with any smartphone camera, the operating system detects the official https://wa.me/ URI and displays a prompt to open WhatsApp. Tapping it opens an active chat with your phone number directly on the user\'s screen. If you included a pre-filled introductory message, it is pre-populated in their text input box ready for them to tap send.'
       },
       {
         q: 'Do customers need to save my phone number in their contacts first?',
-        a: 'No. The wa.me intent opens a conversation immediately without requiring the user to add your contact details to their address book first.'
+        a: 'No. The universal wa.me deep link bypasses the need for the recipient to create a new address book contact. The chat window opens immediately, removing all friction from first-time customer inquiries, product support, or booking requests.'
       },
       {
-        q: 'Can I include a pre-filled greeting or order template?',
-        a: 'Yes. Enter your custom text (e.g. "Hi, I would like to inquire about...") in our wizard and it will be pre-populated in the user\'s chat input box when they scan.'
+        q: 'How do I format an international phone number for the WhatsApp generator?',
+        a: 'Enter your full phone number in E.164 international format including your country code, but omit plus signs (+), zeroes at the beginning, spaces, dashes, or parentheses. For example, use 15551234567 for the United States or 447911123456 for the United Kingdom.'
+      },
+      {
+        q: 'Does this QR code work with WhatsApp Business accounts?',
+        a: 'Yes. The wa.me protocol functions identically across both standard personal WhatsApp accounts and official WhatsApp Business accounts. When scanned, it routes incoming inquiries directly to your registered business profile.'
+      },
+      {
+        q: 'Will this WhatsApp QR code ever expire or require a monthly fee?',
+        a: 'No. UniversalCodeMaker creates permanent static QR codes. The destination phone number and optional message are encoded directly into the optical matrix without middleman tracking redirects or subscription gates. As long as your phone number remains active on WhatsApp, your printed QR code will work indefinitely.'
+      },
+      {
+        q: 'What size should I print a WhatsApp QR code on signs and packaging?',
+        a: 'For small handheld surfaces like product packaging inserts, receipt footers, or business cards, print at a minimum of 0.8 × 0.8 inches (20 × 20 mm). For restaurant table acrylic stands or counter displays scanned from 1–2 feet away, print at least 1.5 × 1.5 inches (38 × 38 mm). Always download vector SVG for crisp printing at any physical scale.'
       }
+    ],
+    relatedSlugs: [
+      'upi-qr-code-generator',
+      'wifi-qr-code-generator',
+      'vcard-qr-code-generator',
+      'google-maps-location-qr-code-generator',
+      'google-reviews-qr-code-generator',
+      'plain-text-qr-code-generator'
     ]
   },
   {
