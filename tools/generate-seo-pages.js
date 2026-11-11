@@ -2903,7 +2903,7 @@ const ARTICLES = [
             <li><strong>3. Identical Symbol Footprint:</strong> Both barcodes share the exact same total width (37.29 mm) and bar height (22.85 mm) at nominal 100% scale.</li>
             <li><strong>4. Leading Zero Conversion:</strong> Retail inventory databases convert a 12-digit UPC-A into a 13-digit GTIN-13 by prepending a 0. The check digit is unchanged.</li>
           </ol>
-          <figcaption>Schematic illustration, not a scan sample. Dimensions source: GS1 General Specifications Release 24.0 / 26.0.</figcaption>
+          <figcaption>Schematic illustration, not a scan sample. Dimensions source: <a href="https://www.gs1.org/standards/barcodes-epcrfid-id-keys/gs1-general-specifications" target="_blank" rel="noopener noreferrer">GS1 General Specifications</a> (Sections 5.2.1.1 &amp; 5.2.1.4).</figcaption>
         </figure>`
       },
       {
@@ -2913,8 +2913,8 @@ const ARTICLES = [
         <p>Yes, in both directions. Before 2005, products sold in the US and Canada had to carry a 12-digit UPC, so foreign makers relabelled their goods. GS1 US then set <strong>1 January 2005</strong> (the "Sunrise" date) as the day retailers and their partners that scan UPCs should handle 13-digit EAN-13 codes too.</p>
         <ul>
           <li>GS1 Greece: "Since that date most retailers have been able to handle products marked with EAN-13 symbols."</li>
-          <li>GS1 US: "your EAN code works in the U.S. and … your UPC is functional in Europe."</li>
-          <li>Amazon accepts UPC, EAN, JAN and ISBN product numbers (<a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Do I need a barcode to sell on Amazon?</a>).</li>
+          <li><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US guidance</a> confirms: "your EAN code works in the U.S. and … your UPC is functional in Europe."</li>
+          <li>Amazon accepts UPC, EAN, JAN and ISBN product numbers per <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon GTIN requirements</a> (see also our guide: <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Do I need a barcode to sell on Amazon?</a>).</li>
         </ul>
         <p>One caution from GS1 Greece: if you're exporting to the US or Canada, check with your buyer. If a retailer insists on a 12-digit UPC, your GS1 office can arrange a UPC company prefix.</p>`
       },
@@ -2927,7 +2927,7 @@ const ARTICLES = [
         <ul>
           <li><strong>UPC-A to EAN-13 (Add a leading 0):</strong> To represent a 12-digit UPC-A in a 13-digit EAN system, place a single <code>0</code> at the beginning. The check digit does not change.
             <br><em>Example:</em> UPC-A <code>036000291452</code> becomes EAN-13 <code>0036000291452</code>.
-            <br><small>Why? In the GS1 Modulo-10 checksum calculation, the added 0 is multiplied by 3 (or 1 depending on direction), adding 0 to the sum. The final check digit remains identical.</small>
+            <br><small>Why? In the <a href="https://www.gs1uk.org/knowledge-hub/standards/what-is-a-check-digit" target="_blank" rel="noopener noreferrer">GS1 Modulo-10 checksum calculation</a>, the added 0 adds 0 to the weighted sum. The final check digit remains identical.</small>
           </li>
           <li><strong>EAN-13 to UPC-A (Only if starting with 0):</strong> An EAN-13 can only be converted to a UPC-A if its first digit is <code>0</code>. If an EAN-13 begins with any other digit (such as <code>590...</code> or <code>890...</code>), it represents an international GS1 prefix and <strong>cannot</strong> be shortened to a 12-digit UPC. Do not truncate the first digit to force a foreign EAN into a UPC barcode.</li>
           <li><strong>14-Digit Database Padding (GTIN-14):</strong> In warehouse logistics and EDI systems, both codes are padded with leading zeros to fill 14 characters:
@@ -2941,7 +2941,7 @@ const ARTICLES = [
         id: 'barcode-costs',
         h2: 'Where to get barcodes and what they cost',
         html: `
-        <p>UniversalCodeMaker generates barcode graphic files (SVG, EPS, PNG) from numbers you provide for free. However, if your product is sold in retail stores or online marketplaces, the <strong>product identifier itself must be licensed from GS1</strong> so it is registered to your company in the official global registry.</p>
+        <p>UniversalCodeMaker generates barcode graphic files (SVG, EPS, PNG) from numbers you provide for free. However, if your product is sold in retail stores or online marketplaces, the <strong>product identifier itself must be licensed from GS1</strong> so it is registered to your company in the <a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">official global GS1 registry</a>.</p>
 
         <div class="article-table-wrap" tabindex="0">
           <table class="article-table">
@@ -2955,25 +2955,25 @@ const ARTICLES = [
             </thead>
             <tbody>
               <tr>
-                <th scope="row"><strong>GS1 US: Single GTIN-12</strong></th>
+                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode" target="_blank" rel="noopener noreferrer">GS1 US</a>: Single GTIN-12</strong></th>
                 <td>USD $30</td>
                 <td><strong>$0 (No renewal fee)</strong></td>
                 <td>Small businesses selling 1 to 9 products or variants in North America / Amazon</td>
               </tr>
               <tr>
-                <th scope="row"><strong>GS1 US: Company Prefix (1–10 items)</strong></th>
+                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US</a>: Company Prefix (1–10 items)</strong></th>
                 <td>USD $250</td>
                 <td>USD $50 / year</td>
                 <td>Growing businesses planning larger catalogues under their own brand prefix</td>
               </tr>
               <tr>
-                <th scope="row"><strong>GS1 UK: Small Business Band</strong></th>
+                <th scope="row"><strong><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a>: Small Business Band</strong></th>
                 <td>£50 + VAT</td>
                 <td>£50 + VAT / year</td>
                 <td>UK / European sellers with up to 10 product lines</td>
               </tr>
               <tr>
-                <th scope="row"><strong>National GS1 Offices (Global)</strong></th>
+                <th scope="row"><strong><a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">National GS1 Offices (Global)</a></strong></th>
                 <td>Varies by country</td>
                 <td>Country-dependent</td>
                 <td>Local national currency pricing (e.g. GS1 India, GS1 Australia, GS1 Germany)</td>
@@ -2990,7 +2990,7 @@ const ARTICLES = [
 
         <div class="ean-callout">
           <strong>Why cheap reseller barcodes fail on Amazon and retail:</strong>
-          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the GS1 GEPIR database. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
+          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the <a href="https://gepir.gs1.org/" target="_blank" rel="noopener noreferrer">GS1 GEPIR database</a> under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
         </div>`
       },
       {
