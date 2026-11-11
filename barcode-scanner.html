@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Online Barcode &amp; QR Code Scanner (Photo or Camera)</title>
-  <meta name="description" content="Scan a QR code or barcode from a photo, screenshot or your camera. Decoded in your browser, nothing uploaded. Reads QR, Data Matrix, PDF417, EAN, UPC, Code 128.">
+  <meta name="description" content="Scan barcodes and QR codes online from photos, screenshots, or camera. In-browser WebAssembly decoding, zero uploads. Reads UPC, EAN, QR, Data Matrix, PDF417.">
   <link rel="canonical" href="https://universalcodemaker.com/barcode-scanner.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#ff2a4b">
@@ -47,6 +47,7 @@
   "name": "Online Barcode & QR Code Scanner",
   "url": "https://universalcodemaker.com/barcode-scanner.html",
   "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Barcode & QR Scanner",
   "operatingSystem": "Any (runs in the browser)",
   "isAccessibleForFree": true,
   "offers": {
@@ -55,6 +56,15 @@
     "priceCurrency": "USD"
   },
   "description": "Read QR codes and barcodes from an image or your camera, privately in your browser. Nothing is uploaded.",
+  "featureList": [
+    "Instant client-side decoding using WebAssembly ZXing-C++",
+    "Photo, screenshot, and clipboard image scanning (PNG, JPG, WebP, SVG)",
+    "Live smartphone and webcam video barcode scanner",
+    "Multi-code detection in a single image",
+    "Reads 1D retail barcodes (UPC-A, EAN-13, ISBN, Code 128, ITF-14)",
+    "Reads 2D matrix symbologies (QR, Micro QR, Data Matrix, Aztec, PDF417)",
+    "Private browser-only processing with zero image or camera uploads"
+  ],
   "publisher": {
     "@type": "Organization",
     "name": "UniversalCodeMaker.com",
@@ -77,10 +87,26 @@
     },
     {
       "@type": "Question",
+      "name": "Can I scan barcodes directly from image files or screenshots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can drag and drop, choose from your files, or paste (Ctrl+V / Cmd+V) any image file up to 25 MB—including PNG, JPG, WebP, GIF, BMP, and vector SVG. The scanner decodes all 1D and 2D barcodes visible in the image directly in your browser."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Which barcode types can it read?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "QR Code, Micro QR, rMQR, Data Matrix, Aztec, PDF417 and MaxiCode, plus the common 1D barcodes: EAN-13, EAN-8, UPC-A, UPC-E, Code 128 (including GS1-128), Code 39, Code 93, Codabar, ITF / ITF-14 and GS1 DataBar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if a barcode in my photo cannot be read or is damaged?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If a barcode on packaging is smudged, torn, or low-contrast, locate the 12-digit UPC or 13-digit EAN number printed under the bars and regenerate a fresh vector SVG or 300 DPI print file using our free EAN-13 Barcode Generator or UPC-A Barcode Generator."
       }
     },
     {
@@ -211,7 +237,25 @@
       <h2>Supported barcode types</h2>
       <p><strong>2D codes:</strong> QR Code, Micro QR, rMQR, Data Matrix, Aztec, PDF417 and MaxiCode.</p>
       <p><strong>1D barcodes:</strong> EAN-13, EAN-8, UPC-A, UPC-E, ISBN (Bookland EAN), Code 128 and GS1-128, Code 39, Code 93, Codabar, ITF / ITF-14 and GS1 DataBar.</p>
-      <p>Need to make one instead? <a href="index.html">Open the free barcode &amp; QR code generator</a> or read the <a href="symbology-docs.html">symbology guides</a>.</p>
+      <div class="scanner-tools-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.25rem;">
+        <a href="pages/ean-13-barcode-generator.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
+          <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">EAN-13 Generator &rarr;</strong>
+          <span style="font-size: 0.85rem; color: var(--text-secondary);">Generate 13-digit worldwide retail barcodes with automatic check digits.</span>
+        </a>
+        <a href="pages/upc-a-barcode-generator.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
+          <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">UPC-A Generator &rarr;</strong>
+          <span style="font-size: 0.85rem; color: var(--text-secondary);">Generate 12-digit North American retail product barcodes in vector SVG.</span>
+        </a>
+        <a href="pages/data-matrix-generator.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
+          <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Data Matrix (ECC 200) &rarr;</strong>
+          <span style="font-size: 0.85rem; color: var(--text-secondary);">High-density 2D codes for parts marking, electronics, and medicine packaging.</span>
+        </a>
+        <a href="pages/how-to-get-a-barcode-for-your-product.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
+          <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Product Barcode Guide &rarr;</strong>
+          <span style="font-size: 0.85rem; color: var(--text-secondary);">Official GS1 licensing, packaging dimensions, and Amazon verification guide.</span>
+        </a>
+      </div>
+      <p style="margin-top: 1.25rem;">Need another format? <a href="index.html">Open the full barcode &amp; QR code generator</a> or read our <a href="symbology-docs.html">symbology documentation</a>.</p>
     </section>
 
     <section class="doc-section">
@@ -225,8 +269,12 @@
       <h2>Frequently asked questions</h2>
       <h3>Is it safe to scan a code here? Are my images uploaded?</h3>
       <p>Your images are never uploaded. The picture is decoded by your own browser, and the reader runs locally as WebAssembly. Photos, camera frames and the decoded text are not sent to our server, not stored, and not shared with analytics or advertising partners.</p>
+      <h3>Can I scan barcodes directly from image files or screenshots?</h3>
+      <p>Yes. You can drag and drop, choose from your files, or paste (Ctrl+V / Cmd+V) any image file up to 25 MB—including PNG, JPG, WebP, GIF, BMP, and vector SVG. The scanner decodes all 1D and 2D barcodes visible in the image directly in your browser.</p>
       <h3>Which barcode types can it read?</h3>
       <p>QR Code, Micro QR, rMQR, Data Matrix, Aztec, PDF417 and MaxiCode, plus the common 1D barcodes: EAN-13, EAN-8, UPC-A, UPC-E, Code 128 (including GS1-128), Code 39, Code 93, Codabar, ITF / ITF-14 and GS1 DataBar.</p>
+      <h3>What should I do if a barcode in my photo cannot be read or is damaged?</h3>
+      <p>If a barcode on packaging is smudged, torn, or low-contrast, locate the 12-digit UPC or 13-digit EAN number printed under the bars and regenerate a fresh vector SVG or 300 DPI print file using our free <a href="pages/ean-13-barcode-generator.html">EAN-13 Barcode Generator</a> or <a href="pages/upc-a-barcode-generator.html">UPC-A Barcode Generator</a>.</p>
       <h3>Why is no code found in my photo?</h3>
       <p>Use a sharp, well-lit photo in which the whole code is visible, including the blank margin around it. Avoid strong glare and very steep angles. Screenshots of on-screen codes work best.</p>
       <h3>Can I scan with my phone camera?</h3>
