@@ -96,7 +96,7 @@ function eanDiagramHtml(id) {
 function eanPackagingHtml() {
   return `<section class="ean-workflow" aria-labelledby="ean-input-title">
     <h2 id="ean-input-title">Check what the tool will encode</h2>
-    <p>Enter the first 12 data digits of a GTIN-13 to calculate digit 13, or enter all 13 digits to check the last digit. A complete 12-digit GTIN-12 belongs in the <a href="./upc-a-barcode-generator.html">UPC-A generator</a>.</p>
+    <p>Enter the first 12 data digits of a GTIN-13 to calculate digit 13, or enter all 13 digits to check the last digit. A complete 12-digit GTIN-12 belongs in the <a href="./upc-a-barcode-generator.html">UPC-A generator</a>. Need help deciding between the two? Read our side-by-side technical comparison: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: Which Barcode Do You Need?</a>, or follow our complete seller walkthrough: <a href="./how-to-get-a-barcode-for-your-product.html">How to Get a Barcode for Your Product</a>.</p>
     <p>These are demonstration values, not identifiers issued to you for retail use.</p>
     <table class="ean-data-table"><thead><tr><th scope="col">Input</th><th scope="col">Expected result</th></tr></thead><tbody>
       <tr><th scope="row"><code>590123412345</code></th><td>The tool calculates the last digit and encodes <code>5901234123457</code>.</td></tr>
@@ -153,6 +153,14 @@ const SEO_PAGES = [
       'Packaging artwork that needs a vector barcode graphic',
       'Reprinting a product barcode while preserving the assigned number'
     ],
+    relatedSlugs: [
+      'upc-vs-ean-13-barcode',
+      'how-to-get-a-barcode-for-your-product',
+      'upc-a-barcode-generator',
+      'itf-14-barcode-generator',
+      'isbn-book-barcode-generator',
+      'shopify-barcode-generator'
+    ],
     faqs: [
       {
         q: 'How is the 13th check digit of an EAN-13 barcode calculated?',
@@ -160,7 +168,11 @@ const SEO_PAGES = [
       },
       {
         q: 'Do I need to buy official EAN-13 numbers from GS1?',
-        a: 'Retailers and marketplaces may require a licensed GS1 GTIN. For closed-loop inventory that does not need a retail GTIN, use an internal identifier in a format such as Code 128 and confirm the receiving system accepts it.'
+        a: 'Retailers and marketplaces may require a licensed GS1 GTIN. To license numbers directly from GS1 and register your brand in the official database, see our guide: <a href="./how-to-get-a-barcode-for-your-product.html">How to Get a Barcode for Your Product</a>. For closed-loop inventory that does not need a retail GTIN, use an internal identifier in a format such as Code 128.'
+      },
+      {
+        q: 'Should I use EAN-13 or UPC-A for retail checkout?',
+        a: 'If your product is sold primarily in the United States or Canada, retailers often expect a 12-digit UPC-A. For products sold outside North America or exported internationally, use a 13-digit EAN-13. Point-of-sale scanners worldwide decode both formats. See our full comparison: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: Which Barcode Do You Need?</a>.'
       },
       {
         q: 'Can I download an EAN-13 barcode in vector SVG for packaging design?',
@@ -191,10 +203,18 @@ const SEO_PAGES = [
       'Wholesale packaging and consumer goods',
       'Inventory tracking in big-box retail (Walmart, Target)'
     ],
+    relatedSlugs: [
+      'upc-vs-ean-13-barcode',
+      'how-to-get-a-barcode-for-your-product',
+      'ean-13-barcode-generator',
+      'itf-14-barcode-generator',
+      'shopify-barcode-generator',
+      'amazon-fba-fnsku-barcode-generator'
+    ],
     faqs: [
       {
         q: 'What is the difference between UPC-A and EAN-13?',
-        a: 'UPC-A is a 12-digit standard primarily used in the USA and Canada, while EAN-13 is a 13-digit standard used across the rest of the world. In fact, a UPC-A code is simply an EAN-13 code with a leading zero.'
+        a: 'UPC-A is a 12-digit standard primarily used in the USA and Canada, while EAN-13 is a 13-digit standard used across the rest of the world. In fact, a UPC-A code is simply an EAN-13 code with a leading zero. Read our detailed technical breakdown: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: Which Barcode Do You Need?</a>.'
       },
       {
         q: 'Does this generator check my UPC-A check digit?',
@@ -2400,6 +2420,14 @@ const ARTICLES = [
     lead: 'For a retail product, first obtain or confirm the product identifier your retailer requires. Then make the barcode image that carries it. This guide explains the difference between a GTIN and its barcode, how to choose the matching generator, and what to check before printing.',
     datePublished: '2026-10-07',
     dateModified: '2026-11-11',
+    relatedSlugs: [
+      'upc-vs-ean-13-barcode',
+      'ean-13-barcode-generator',
+      'upc-a-barcode-generator',
+      'do-i-need-a-barcode-to-sell-on-amazon',
+      'shopify-barcode-generator',
+      'itf-14-barcode-generator'
+    ],
     ctas: [
       { href: '../index.html?symbology=ean-13', label: 'Make an EAN-13 barcode' },
       { href: '../index.html?symbology=upc-a', label: 'Make a UPC-A barcode' }
@@ -2754,6 +2782,14 @@ const ARTICLES = [
     h1: 'Do I Need a Barcode to Sell on Amazon?',
     lead: 'Usually yes, and often two different ones: a product number (UPC or EAN) to create the listing, and an Amazon label (FNSKU) on every unit if Amazon stores and ships your stock. This guide covers what Amazon US and Amazon.in ask for in 2026, and what each costs.',
     datePublished: '2026-10-12',
+    relatedSlugs: [
+      'how-to-get-a-barcode-for-your-product',
+      'upc-vs-ean-13-barcode',
+      'upc-a-barcode-generator',
+      'ean-13-barcode-generator',
+      'amazon-fba-fnsku-barcode-generator',
+      'code-128-barcode-generator'
+    ],
     ctas: [
       { href: '../index.html?symbology=upc-a', label: 'Make a UPC-A barcode' },
       { href: '../index.html?symbology=code-128&preset=amazon-fnsku-5160&label=1', label: 'Make FNSKU labels' }
@@ -2920,6 +2956,14 @@ const ARTICLES = [
     lead: 'UPC-A (12 digits) and EAN-13 (13 digits) are the primary barcodes used at retail checkout around the world. They share the same physical size, bar geometry and scanner compatibility. The difference lies in where your product number originates, how quiet zones are arranged, and where you sell.',
     datePublished: '2026-10-14',
     dateModified: '2026-11-11',
+    relatedSlugs: [
+      'how-to-get-a-barcode-for-your-product',
+      'ean-13-barcode-generator',
+      'upc-a-barcode-generator',
+      'do-i-need-a-barcode-to-sell-on-amazon',
+      'itf-14-barcode-generator',
+      'shopify-barcode-generator'
+    ],
     ctas: [
       { href: '../index.html?symbology=ean-13', label: 'Make an EAN-13 barcode' },
       { href: '../index.html?symbology=upc-a', label: 'Make a UPC-A barcode' }
@@ -3180,8 +3224,9 @@ const ARTICLES = [
 
         <div class="ean-callout">
           <strong>Why cheap reseller barcodes fail on Amazon and retail:</strong>
-          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the <a href="https://gepir.gs1.org/" target="_blank" rel="noopener noreferrer">GS1 GEPIR database</a> under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
-        </div>`
+          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the official GS1 database (via <a href="https://www.gs1.org/services/verified-by-gs1" target="_blank" rel="noopener noreferrer">Verified by GS1</a>, formerly GEPIR) under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
+        </div>
+        <p style="margin-top: 1rem;">Need step-by-step guidance on licensing your company prefix from GS1, assigning unique variant numbers per SKU, and testing printed proofs before manufacturing? Read our complete seller walkthrough: <a href="./how-to-get-a-barcode-for-your-product.html">How to Get a Barcode for Your Product (GTIN Guide)</a>.</p>`
       },
       {
         id: 'choose-generator',
@@ -3212,6 +3257,19 @@ const ARTICLES = [
             </ul>
             <a href="./ean-13-barcode-generator.html" class="cta-launch-btn" style="text-decoration: none; display: inline-flex; justify-content: center;">
               Open EAN-13 Generator
+            </a>
+          </div>
+
+          <div class="info-card" style="border-top: 4px solid var(--sensor-green);">
+            <h3 class="info-card-title">How to Get a Barcode for Your Product</h3>
+            <p>Step-by-step walkthrough: licensing your GTIN, assigning variant numbers per SKU, and testing proofs before printing.</p>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.75rem 0 1.25rem 1.2rem;">
+              <li>4-step packaging pipeline</li>
+              <li>Official national fee comparison</li>
+              <li>Amazon &amp; retailer verification rules</li>
+            </ul>
+            <a href="./how-to-get-a-barcode-for-your-product.html" class="cta-launch-btn" style="text-decoration: none; display: inline-flex; justify-content: center;">
+              Read Product Barcode Guide
             </a>
           </div>
         </div>`
@@ -3250,7 +3308,7 @@ const ARTICLES = [
       },
       {
         q: 'What is the cheapest way to get a legitimate UPC or EAN barcode?',
-        a: 'For small businesses needing 1 to 9 codes, GS1 US offers single GTIN-12 identifiers for $30 with no annual renewal fees. In the UK, GS1 UK offers small business memberships for £50 + VAT per year. Avoid cheap third-party brokers, as unverified reseller barcodes risk rejection on Amazon and retail stores.'
+        a: 'For small businesses needing 1 to 9 codes, GS1 US offers single GTIN-12 identifiers for $30 with no annual renewal fees. In the UK, GS1 UK offers small business memberships for £50 + VAT per year. Avoid cheap third-party brokers, as unverified reseller barcodes risk rejection on Amazon and retail stores. For a complete breakdown of licensing options, see our guide: <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a>.'
       },
       {
         q: 'How do I convert a UPC-A to an EAN-13?',
@@ -3379,6 +3437,28 @@ ${sectionsHtml}
       <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">Frequently Asked Questions</h2>
       <div class="faq-accordion">
         ${faqItemsHtml}
+      </div>
+    </section>
+
+    <!-- Related Guides & Barcode Tools -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Related Guides &amp; Barcode Tools
+      </h2>
+      <div class="related-grid">
+        ${((article.relatedSlugs && article.relatedSlugs.length > 0)
+          ? article.relatedSlugs.map(s => [...SEO_PAGES, ...ARTICLES].find(x => x.slug === s)).filter(Boolean)
+          : SEO_PAGES.filter(p => p.slug !== article.slug).slice(0, 6)
+        ).map(p => `
+          <a href="./${p.slug}.html" class="related-card">
+            <span class="related-tag">${p.category || p.badge || 'Seller Guide'}</span>
+            <span class="related-title">
+              <span>${p.name}</span>
+              <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </span>
+          </a>
+        `).join('')}
       </div>
     </section>
 
@@ -3992,9 +4072,14 @@ function generatePageHtml(page) {
     </li>
   `).join('') : '';
 
-  const relatedPagesHtml = SEO_PAGES.filter(p => p.slug !== page.slug).slice(0, 6).map(p => `
+  const allItems = [...SEO_PAGES, ...ARTICLES];
+  const relatedItems = (page.relatedSlugs && page.relatedSlugs.length > 0)
+    ? page.relatedSlugs.map(s => allItems.find(x => x.slug === s)).filter(Boolean)
+    : SEO_PAGES.filter(p => p.slug !== page.slug).slice(0, 6);
+
+  const relatedPagesHtml = relatedItems.map(p => `
     <a href="./${p.slug}.html" class="related-card">
-      <span class="related-tag">${p.category}</span>
+      <span class="related-tag">${p.category || p.badge || 'Seller Guide'}</span>
       <span class="related-title">
         <span>${p.name}</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
