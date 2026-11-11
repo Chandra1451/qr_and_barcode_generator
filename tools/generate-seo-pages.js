@@ -858,45 +858,58 @@ const SEO_PAGES = [
     shortName: 'Amazon FBA / FNSKU',
     queryParam: 'symbology=code-128&preset=amazon-fnsku-5160&label=1',
     category: 'Retail & POS',
-    metaTitle: 'Free Amazon FBA FNSKU Label Generator (Avery 5160)',
-    metaDescription: 'Make Amazon FBA FNSKU labels (Code 128) free on Avery 5160 sheets or thermal rolls, with product name, condition and the white space Amazon requires.',
+    metaTitle: 'Free Amazon FBA FNSKU Barcode Generator: Avery 5160 SVG',
+    metaDescription: 'Generate free Amazon FBA FNSKU barcodes online (Code 128). Print Avery 5160 sheets or thermal rolls with product title, mandatory condition line & vector SVG.',
     h1: 'Free Amazon FBA FNSKU Barcode & Label Generator',
-    lead: 'Make FNSKU item labels for Fulfillment by Amazon: a Code 128 barcode with its FNSKU, your product name and the condition, laid out with the white space Amazon asks for, on Avery 5160 sheets or thermal rolls.',
+    lead: 'Generate official Amazon FBA item labels and FNSKU barcodes using Code 128 symbology. Automatically format product titles, condition lines, and quiet zones for 30-up Avery 5160 sheets or direct thermal rolls.',
     technicalSpec: {
-      standard: 'Code 128 carrying your FNSKU (Amazon barcodes start with an X)',
-      payloadFormat: 'The FNSKU shown for the product in Seller Central',
-      labelDimensions: '1" × 2⅝" (Avery 5160, 30 per US Letter sheet, or a thermal roll of that size). Amazon accepts 1" × 2" to 2" × 3".',
-      labelContents: 'FNSKU barcode and its text, product name, condition (e.g. "New")',
-      whiteSpace: '0.25" (6.35 mm) on the sides and 0.125" (3.18 mm) at the top and bottom, as Amazon requires; built into our Amazon layout',
-      printer: 'Thermal or laser, 300 dpi or more. Amazon says not to use inkjet printers.'
+      standard: 'Code 128 linear symbology (ISO/IEC 15417) encoding 10-character FNSKU',
+      payloadFormat: 'X00... (merchant-specific) or B00... (ASIN-matched) FNSKU identifier',
+      labelDimensions: '1" × 2-5/8" (Avery 5160, 30 per sheet) or direct thermal roll (e.g. 2.25" × 1.25" / 2" × 4")',
+      mandatoryContents: 'Code 128 barcode + human-readable FNSKU, product title, and item condition (e.g. "New")',
+      quietZones: '0.25" (6.35 mm) side margins and 0.125" (3.18 mm) top/bottom margins mandated by Amazon',
+      printingSpecs: '300 DPI thermal or laser printing; client-side generation ensures seller data is never stored'
     },
     useCases: [
-      'Labelling units for Fulfillment by Amazon (FBA) shipments',
-      'Avery 5160 / 30-up sheets on a laser printer (Amazon says not inkjet)',
-      'Thermal label printers (MUNBYN, Rollo, Zebra) for one label at a time',
-      'US resellers: an FNSKU label on every unit since 31 March 2026, covering the manufacturer barcode'
+      'Item-level unit labeling for Fulfillment by Amazon (FBA) inbound shipments',
+      'Avery 5160 / 30-up US Letter label sheets on laser printers',
+      'Direct thermal shipping printers (Rollo, Zebra, MUNBYN, Brother) for single rolls',
+      'Covering manufacturer UPC/EAN barcodes to prevent Amazon inventory commingling',
+      'Private label FBA inventory preparation and Seller Central compliance'
     ],
     faqs: [
       {
-        q: 'What barcode does Amazon use for FNSKU labels?',
-        a: 'Code 128, carrying just the FNSKU with no extra digits. Our generator encodes exactly the FNSKU you enter, and the text printed under the bars is always that same value. Print at 100% scale and test-scan one label before labelling your stock.'
+        q: 'What is an Amazon FNSKU and how is it different from a UPC or ASIN?',
+        a: 'An ASIN (Amazon Standard Identification Number) is Amazon\'s internal catalog identifier for a product page. A UPC is a universal retail GTIN assigned to the product packaging. An FNSKU (Fulfillment Network Stock Keeping Unit) is an Amazon-exclusive fulfillment barcode (typically starting with "X00") that ties an individual physical item directly to your specific seller account. This prevents commingling with identical inventory sold by other merchants in Amazon fulfillment centers. If you sell via FBA, Amazon usually requires each unit to carry an FNSKU barcode.'
       },
       {
-        q: 'What has to be on an Amazon FBA item label?',
-        a: 'Amazon lists the barcode with the FNSKU (or ASIN), the product name and the item condition, with white space of 0.25 inch on the sides and 0.125 inch at the top and bottom. Our Amazon layout prints all of these inside those margins.'
+        q: 'What barcode symbology does Amazon FBA require for FNSKU labels?',
+        a: 'Amazon FBA mandates Code 128 (specifically Code 128-A, B, or C) for all FNSKU item barcodes. The barcode must encode exactly the 10-character FNSKU string with no extra digits, spaces, or prefixes. The human-readable FNSKU text must be printed cleanly directly beneath the bars. Our generator uses calibrated Code 128 vector rendering that complies precisely with Amazon Seller Central packaging requirements.'
       },
       {
-        q: 'Can I print FNSKU labels on Avery 5160 sheets?',
-        a: 'Yes, on a laser printer. Amazon supports 30-up 1" × 2⅝" US Letter sheets (the Avery 5160 size) and says not to use inkjet printers, because inkjet labels smear more easily. Thermal printers work too. Set printer scaling to 100% or "Actual size".'
+        q: 'What mandatory text must appear on an Amazon FBA item label?',
+        a: 'Under official Amazon FBA label guidelines, every unit label must contain three key elements: 1) The Code 128 barcode with human-readable FNSKU digits beneath; 2) The product title or item description (truncated cleanly to fit); and 3) The mandatory item condition line (e.g., "New", "Used - Like New", "Used - Good", or "Refurbished"). Furthermore, labels must include at least 0.25" (6.35 mm) quiet zones on the left and right sides and 0.125" (3.18 mm) at the top and bottom.'
       },
       {
-        q: 'Do I still need FNSKU labels after the 2026 changes?',
-        a: 'In the US, since 31 March 2026, resellers (including authorised resellers) must put an Amazon barcode on every unit, even if it has a UPC. Brand owners with the Brand Representative role in Amazon Brand Registry can use the manufacturer barcode instead. Products with no manufacturer barcode always need an Amazon barcode. On Amazon.in, units are labelled with FNSKUs by default. Check Seller Central for your marketplace.'
+        q: 'Can I print Amazon FBA labels on Avery 5160 sheets with an office printer?',
+        a: 'Yes. UniversalCodeMaker includes a built-in Avery 5160 PDF label maker. Standard Avery 5160 sheets feature 30 labels per US Letter sheet (1" × 2-5/8" per label). Amazon explicitly recommends laser printing for label sheets because inkjets can smear when moisture or handling occurs during transit. Ensure your PDF print dialog is set to "Actual Size" or 100% scaling—never select "Fit to Page", which shifts label alignment.'
       },
       {
-        q: 'Will Amazon put the labels on for me?',
-        a: 'Not in the US: Amazon ended its prep and item-labelling service on 1 January 2026, so sellers apply their own labels. Units that arrive without a required label are marked as defective. Amazon India\'s help still describes an FBA Label Service.'
+        q: 'Do I need to cover the existing manufacturer UPC or EAN barcode on the box?',
+        a: 'Yes! Amazon FBA scanning policy strictly requires that only one scannable barcode is visible on the exterior packaging of each unit. If your product packaging already has a pre-printed UPC, EAN, or manufacturer barcode, you must apply the FNSKU label directly over the original barcode to cover it completely. Leaving two barcodes exposed leads to scanning confusion at fulfillment centers, delayed receiving, and unplanned prep fee penalties. For more details, see our <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Amazon Barcode Guide</a>.'
+      },
+      {
+        q: 'Are my private Amazon ASINs, FNSKUs, or seller SKU lists stored on your servers?',
+        a: 'No. UniversalCodeMaker operates 100% inside your local web browser using client-side JavaScript. Your confidential Amazon FNSKU numbers, private-label product titles, inventory counts, and SKU lists never touch an external server and are never uploaded or tracked. Your catalog data remains completely private on your local machine.'
       }
+    ],
+    relatedSlugs: [
+      'do-i-need-a-barcode-to-sell-on-amazon',
+      'avery-5160-barcode-generator',
+      'code-128-barcode-generator',
+      'upc-a-barcode-generator',
+      'how-to-get-a-barcode-for-your-product',
+      'bulk-barcode-generator-excel'
     ]
   },
   {
