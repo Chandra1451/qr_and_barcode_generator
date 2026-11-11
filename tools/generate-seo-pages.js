@@ -611,24 +611,58 @@ const SEO_PAGES = [
     shortName: 'Maps QR',
     queryParam: 'wizard=location',
     category: 'Smart QR',
-    metaTitle: 'Free Google Maps QR Code Generator',
-    metaDescription: 'Make a static QR code that opens a place in Google Maps from an address, place name or GPS coordinates. Free PNG or SVG export.',
+    metaTitle: 'Free Google Maps Location QR Code Generator (GPS & Address)',
+    metaDescription: 'Generate free Google Maps QR codes from addresses, place names, or GPS coordinates. Opens instant turn-by-turn directions in Google Maps on iOS & Android.',
     h1: 'Free Google Maps Location QR Code Generator',
-    lead: 'Create a QR code that opens your shop, venue or meeting point in Google Maps. Type an address or place name, or use exact GPS coordinates for spots without an address. It opens in the Google Maps app if installed, otherwise in the browser.',
+    lead: 'Create a static QR code that opens your storefront, event venue, or meeting point in Google Maps. Type an address or place name, or enter exact GPS coordinates for locations without a street address. Recipient devices open Google Maps instantly for turn-by-turn navigation.',
     technicalSpec: {
-      uriFormat: 'https://www.google.com/maps/search/?api=1&query=… (Google Maps URLs)',
-      compatibility: 'Google Maps app on Android and iPhone, or any web browser'
+      standard: 'ISO/IEC 18004 QR Code Model 2',
+      uriFormat: 'https://www.google.com/maps/search/?api=1&query={Address or Lat,Lng}',
+      directGpsUri: 'geo:{Latitude},{Longitude}?q={Latitude},{Longitude} (RFC 5870)',
+      plusCodeFormat: 'https://www.google.com/maps/dir/?api=1&destination={PlusCode}',
+      compatibility: 'Google Maps app on Android & iOS, Apple Maps fallback, or any web browser',
+      privacy: '100% in-browser generation; location coordinates and place names are never uploaded or stored'
     },
     useCases: [
-      'Storefront window decals and retail shopping center directories',
-      'Wedding venues, conference hall entrances, and festival grounds',
-      'Real estate open house directional signs'
+      'Retail storefront window decals, business cards, and promotional flyers',
+      'Wedding invitations, party RSVP cards, and event venue directional signs',
+      'Real estate open house lawn signs and property brochure map links',
+      'Hotel front-desk check-in cards, tourist guides, and city landmark markers',
+      'Parking lot entrances, warehouse loading docks, and remote GPS hiking trailheads'
     ],
     faqs: [
       {
-        q: 'Can I use latitude and longitude coordinates instead of an address?',
-        a: 'Yes. Coordinates pin an exact spot even where there is no street address, such as a car park entrance or a field gate. If you fill them in, they are used instead of the place name.'
+        q: 'Can I use latitude and longitude GPS coordinates instead of a street address?',
+        a: 'Yes. If your destination lacks a standard postal street address—such as a rural wedding venue, festival campsite, park entrance, or warehouse loading dock—you can enter decimal latitude and longitude coordinates (e.g., 37.7749, -122.4194). When scanned, the QR code drops a precise Google Maps pin directly onto those exact geographic coordinates.'
+      },
+      {
+        q: 'Does this QR code open turn-by-turn navigation or just a map pin?',
+        a: 'When scanned with a smartphone camera, the standard Google Maps link (https://www.google.com/maps/search/?api=1&query=...) opens the Google Maps native app on Android and iOS (or web browser if the app is absent). The recipient sees the exact pinned location and can immediately tap "Directions" or "Start" to launch instant turn-by-turn voice navigation from their current GPS position.'
+      },
+      {
+        q: 'How do I find the decimal GPS coordinates of a location in Google Maps?',
+        a: 'On a desktop browser, open Google Maps, right-click any point on the map, and click the top coordinate numbers (e.g., 40.7128, -74.0060) to automatically copy them to your clipboard. On mobile, touch and hold any point on the map until a red pin drops, then look at the search bar at the top to copy the decimal latitude and longitude numbers.'
+      },
+      {
+        q: 'Will this Google Maps QR code ever expire or stop working?',
+        a: 'No. The generated QR code is a static QR code that encodes the destination URL or geographic coordinates directly into the black-and-white module matrix. UniversalCodeMaker does not use intermediate tracking redirects, account logins, or recurring subscription fees. As long as Google Maps services the encoded URL or coordinates, your printed QR code remains functional indefinitely.'
+      },
+      {
+        q: 'Can I use a Google Plus Code (digital location code) in the generator?',
+        a: 'Yes. Google Plus Codes (Open Location Codes, such as 7FG8+H2 Paris, France) represent street-less locations globally. You can enter a full Plus Code along with its locality into the address field. Google Maps resolves Plus Codes directly to drop the pin at the designated parcel or entrance.'
+      },
+      {
+        q: 'What size should I print a Google Maps QR code on invitations or signs?',
+        a: 'For handheld printed materials like wedding invitations, RSVP cards, or business flyers scanned from 8–12 inches away, print the QR code at least 0.8 × 0.8 inches (20 × 20 mm). For roadside signs, shop windows, or real estate lawn signs scanned from 3–5 feet away, scale the QR code to at least 4 × 4 inches (100 × 100 mm). Export in vector SVG format to ensure razor-sharp edges at any print scale.'
       }
+    ],
+    relatedSlugs: [
+      'google-reviews-qr-code-generator',
+      'upi-qr-code-generator',
+      'wifi-qr-code-generator',
+      'vcard-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'calendar-event-qr-code-generator'
     ]
   },
   {

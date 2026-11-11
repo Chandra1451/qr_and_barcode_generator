@@ -7,8 +7,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Google Maps QR Code Generator</title>
-  <meta name="description" content="Make a static QR code that opens a place in Google Maps from an address, place name or GPS coordinates. Free PNG or SVG export.">
+  <title>Free Google Maps Location QR Code Generator (GPS & Address)</title>
+  <meta name="description" content="Generate free Google Maps QR codes from addresses, place names, or GPS coordinates. Opens instant turn-by-turn directions in Google Maps on iOS & Android.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/google-maps-location-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -23,14 +23,14 @@
   <link rel="manifest" href="../site.webmanifest">
 
   <!-- Open Graph & Social -->
-  <meta property="og:title" content="Free Google Maps QR Code Generator">
-  <meta property="og:description" content="Make a static QR code that opens a place in Google Maps from an address, place name or GPS coordinates. Free PNG or SVG export.">
+  <meta property="og:title" content="Free Google Maps Location QR Code Generator (GPS & Address)">
+  <meta property="og:description" content="Generate free Google Maps QR codes from addresses, place names, or GPS coordinates. Opens instant turn-by-turn directions in Google Maps on iOS & Android.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/google-maps-location-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Free Google Maps QR Code Generator">
-  <meta name="twitter:description" content="Make a static QR code that opens a place in Google Maps from an address, place name or GPS coordinates. Free PNG or SVG export.">
+  <meta name="twitter:title" content="Free Google Maps Location QR Code Generator (GPS & Address)">
+  <meta name="twitter:description" content="Generate free Google Maps QR codes from addresses, place names, or GPS coordinates. Opens instant turn-by-turn directions in Google Maps on iOS & Android.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -329,7 +329,7 @@
   "@type": "WebApplication",
   "name": "Google Maps Location QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/google-maps-location-qr-code-generator.html",
-  "description": "Make a static QR code that opens a place in Google Maps from an address, place name or GPS coordinates. Free PNG or SVG export.",
+  "description": "Generate free Google Maps QR codes from addresses, place names, or GPS coordinates. Opens instant turn-by-turn directions in Google Maps on iOS & Android.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -347,10 +347,50 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Can I use latitude and longitude coordinates instead of an address?",
+      "name": "Can I use latitude and longitude GPS coordinates instead of a street address?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Coordinates pin an exact spot even where there is no street address, such as a car park entrance or a field gate. If you fill them in, they are used instead of the place name."
+        "text": "Yes. If your destination lacks a standard postal street address—such as a rural wedding venue, festival campsite, park entrance, or warehouse loading dock—you can enter decimal latitude and longitude coordinates (e.g., 37.7749, -122.4194). When scanned, the QR code drops a precise Google Maps pin directly onto those exact geographic coordinates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this QR code open turn-by-turn navigation or just a map pin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When scanned with a smartphone camera, the standard Google Maps link (https://www.google.com/maps/search/?api=1&query=...) opens the Google Maps native app on Android and iOS (or web browser if the app is absent). The recipient sees the exact pinned location and can immediately tap \"Directions\" or \"Start\" to launch instant turn-by-turn voice navigation from their current GPS position."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find the decimal GPS coordinates of a location in Google Maps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a desktop browser, open Google Maps, right-click any point on the map, and click the top coordinate numbers (e.g., 40.7128, -74.0060) to automatically copy them to your clipboard. On mobile, touch and hold any point on the map until a red pin drops, then look at the search bar at the top to copy the decimal latitude and longitude numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will this Google Maps QR code ever expire or stop working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The generated QR code is a static QR code that encodes the destination URL or geographic coordinates directly into the black-and-white module matrix. UniversalCodeMaker does not use intermediate tracking redirects, account logins, or recurring subscription fees. As long as Google Maps services the encoded URL or coordinates, your printed QR code remains functional indefinitely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use a Google Plus Code (digital location code) in the generator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Google Plus Codes (Open Location Codes, such as 7FG8+H2 Paris, France) represent street-less locations globally. You can enter a full Plus Code along with its locality into the address field. Google Maps resolves Plus Codes directly to drop the pin at the designated parcel or entrance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What size should I print a Google Maps QR code on invitations or signs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For handheld printed materials like wedding invitations, RSVP cards, or business flyers scanned from 8–12 inches away, print the QR code at least 0.8 × 0.8 inches (20 × 20 mm). For roadside signs, shop windows, or real estate lawn signs scanned from 3–5 feet away, scale the QR code to at least 4 × 4 inches (100 × 100 mm). Export in vector SVG format to ensure razor-sharp edges at any print scale."
       }
     },
     {
@@ -452,7 +492,7 @@
         Smart QR Standard
       </div>
       <h1 class="hero-title">Free Google Maps Location QR Code Generator</h1>
-      <p class="hero-lead">Create a QR code that opens your shop, venue or meeting point in Google Maps. Type an address or place name, or use exact GPS coordinates for spots without an address. It opens in the Google Maps app if installed, otherwise in the browser.</p>
+      <p class="hero-lead">Create a static QR code that opens your storefront, event venue, or meeting point in Google Maps. Type an address or place name, or enter exact GPS coordinates for locations without a street address. Recipient devices open Google Maps instantly for turn-by-turn navigation.</p>
       
       <a href="../index.html?wizard=location" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -472,13 +512,33 @@
         <dl class="spec-table">
           
     <div class="spec-row">
+      <dt class="spec-key">Standard</dt>
+      <dd class="spec-val">ISO/IEC 18004 QR Code Model 2</dd>
+    </div>
+  
+    <div class="spec-row">
       <dt class="spec-key">Uri Format</dt>
-      <dd class="spec-val">https://www.google.com/maps/search/?api=1&query=… (Google Maps URLs)</dd>
+      <dd class="spec-val">https://www.google.com/maps/search/?api=1&query={Address or Lat,Lng}</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Direct Gps Uri</dt>
+      <dd class="spec-val">geo:{Latitude},{Longitude}?q={Latitude},{Longitude} (RFC 5870)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Plus Code Format</dt>
+      <dd class="spec-val">https://www.google.com/maps/dir/?api=1&destination={PlusCode}</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Compatibility</dt>
-      <dd class="spec-val">Google Maps app on Android and iPhone, or any web browser</dd>
+      <dd class="spec-val">Google Maps app on Android & iOS, Apple Maps fallback, or any web browser</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Privacy</dt>
+      <dd class="spec-val">100% in-browser generation; location coordinates and place names are never uploaded or stored</dd>
     </div>
   
         </dl>
@@ -493,17 +553,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Storefront window decals and retail shopping center directories</span>
+      <span>Retail storefront window decals, business cards, and promotional flyers</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Wedding venues, conference hall entrances, and festival grounds</span>
+      <span>Wedding invitations, party RSVP cards, and event venue directional signs</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Real estate open house directional signs</span>
+      <span>Real estate open house lawn signs and property brochure map links</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Hotel front-desk check-in cards, tourist guides, and city landmark markers</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Parking lot entrances, warehouse loading docks, and remote GPS hiking trailheads</span>
     </li>
   
         </ul>
@@ -714,11 +784,61 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>Can I use latitude and longitude coordinates instead of an address?</span>
+        <span>Can I use latitude and longitude GPS coordinates instead of a street address?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. Coordinates pin an exact spot even where there is no street address, such as a car park entrance or a field gate. If you fill them in, they are used instead of the place name.</p>
+        <p>Yes. If your destination lacks a standard postal street address—such as a rural wedding venue, festival campsite, park entrance, or warehouse loading dock—you can enter decimal latitude and longitude coordinates (e.g., 37.7749, -122.4194). When scanned, the QR code drops a precise Google Maps pin directly onto those exact geographic coordinates.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Does this QR code open turn-by-turn navigation or just a map pin?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>When scanned with a smartphone camera, the standard Google Maps link (https://www.google.com/maps/search/?api=1&query=...) opens the Google Maps native app on Android and iOS (or web browser if the app is absent). The recipient sees the exact pinned location and can immediately tap "Directions" or "Start" to launch instant turn-by-turn voice navigation from their current GPS position.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>How do I find the decimal GPS coordinates of a location in Google Maps?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>On a desktop browser, open Google Maps, right-click any point on the map, and click the top coordinate numbers (e.g., 40.7128, -74.0060) to automatically copy them to your clipboard. On mobile, touch and hold any point on the map until a red pin drops, then look at the search bar at the top to copy the decimal latitude and longitude numbers.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Will this Google Maps QR code ever expire or stop working?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. The generated QR code is a static QR code that encodes the destination URL or geographic coordinates directly into the black-and-white module matrix. UniversalCodeMaker does not use intermediate tracking redirects, account logins, or recurring subscription fees. As long as Google Maps services the encoded URL or coordinates, your printed QR code remains functional indefinitely.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I use a Google Plus Code (digital location code) in the generator?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. Google Plus Codes (Open Location Codes, such as 7FG8+H2 Paris, France) represent street-less locations globally. You can enter a full Plus Code along with its locality into the address field. Google Maps resolves Plus Codes directly to drop the pin at the designated parcel or entrance.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What size should I print a Google Maps QR code on invitations or signs?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>For handheld printed materials like wedding invitations, RSVP cards, or business flyers scanned from 8–12 inches away, print the QR code at least 0.8 × 0.8 inches (20 × 20 mm). For roadside signs, shop windows, or real estate lawn signs scanned from 3–5 feet away, scale the QR code to at least 4 × 4 inches (100 × 100 mm). Export in vector SVG format to ensure razor-sharp edges at any print scale.</p>
       </div>
     </details>
   
@@ -763,50 +883,50 @@
       </h2>
       <div class="related-grid">
         
-    <a href="./ean-13-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./google-reviews-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>EAN-13 Barcode Generator</span>
+        <span>Google Reviews QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./upc-a-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./upi-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>UPC-A Barcode Generator</span>
+        <span>UPI QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./code-128-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./wifi-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Code 128 Barcode Generator</span>
+        <span>Wi-Fi QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./itf-14-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./vcard-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>ITF-14 Barcode Generator</span>
+        <span>vCard QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./data-matrix-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./whatsapp-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Data Matrix Barcode Generator</span>
+        <span>WhatsApp QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./aztec-code-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./calendar-event-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Aztec Code Generator</span>
+        <span>Calendar Event QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
