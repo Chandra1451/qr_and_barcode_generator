@@ -29,9 +29,9 @@ if (!fs.existsSync(PAGES_DIR)) {
 }
 
 
-// Scoped content for the two approved EAN/identifier pages. Other page chrome stays byte-identical.
+// Scoped content for the approved EAN/UPC identifier pages. Other page chrome stays byte-identical.
 function hasEanWorkflow(slug) {
-  return ['ean-13-barcode-generator', 'how-to-get-a-barcode-for-your-product'].includes(slug);
+  return ['ean-13-barcode-generator', 'how-to-get-a-barcode-for-your-product', 'upc-vs-ean-13-barcode'].includes(slug);
 }
 
 function identifierNoticeHtml(showGuideLink = true) {
@@ -64,7 +64,7 @@ function eanWorkflowStyles(slug) {
       .ean-diagram-legend { grid-template-columns:1fr; }
       .ean-data-table th,.ean-data-table td { padding:.65rem .35rem; }
       .ean-data-table th:first-child,.ean-data-table td:first-child { width:36%; }
-    }
+    }${slug === 'upc-vs-ean-13-barcode' ? '\n    .ean-diagram-art.diagram-wide { max-width:820px; }\n    .ean-callout { background:var(--surface-alt); border-left:4px solid var(--optic-blue); padding:1rem 1.25rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:1rem 0; }' : ''}
   </style>`;
 }
 
@@ -2718,17 +2718,18 @@ const ARTICLES = [
       }
     ]
   },
-  // Guide "UPC vs EAN-13" (owner choice 2026-10-14). Facts and sources: projects/universalcodemaker/50_content/guide-upc-vs-ean.md.
+  // Guide "UPC vs EAN-13" (owner choice 2026-10-14, refreshed 2026-11-11). Facts and sources: projects/universalcodemaker/50_content/guide-upc-vs-ean.md.
   {
     slug: 'upc-vs-ean-13-barcode',
     name: 'UPC vs EAN-13: Which Barcode Do You Need?',
     badge: 'Seller Guide',
     queryParam: 'symbology=ean-13',
     metaTitle: 'UPC vs EAN-13: Which Barcode Do You Need?',
-    metaDescription: 'UPC-A has 12 digits, EAN-13 has 13. How they differ, why both scan in the US and worldwide, how to convert between them, and which one to get.',
+    metaDescription: 'UPC-A has 12 digits for US/Canada retail; EAN-13 has 13 digits worldwide. See side-by-side diagrams, quiet zones, official GS1 pricing, and how to convert them.',
     h1: 'UPC vs EAN-13: Which Barcode Do You Need?',
-    lead: 'UPC-A and EAN-13 are the two barcodes on retail products. They carry the same kind of number, scan at checkouts around the world, and are the same size. The difference is mostly where your number comes from.',
+    lead: 'UPC-A (12 digits) and EAN-13 (13 digits) are the primary barcodes used at retail checkout around the world. They share the same physical size, bar geometry and scanner compatibility. The difference lies in where your product number originates, how quiet zones are arranged, and where you sell.',
     datePublished: '2026-10-14',
+    dateModified: '2026-11-11',
     ctas: [
       { href: '../index.html?symbology=ean-13', label: 'Make an EAN-13 barcode' },
       { href: '../index.html?symbology=upc-a', label: 'Make a UPC-A barcode' }
@@ -2738,31 +2739,172 @@ const ARTICLES = [
         id: 'short-answer',
         h2: 'The short answer',
         html: `
+        <div class="ean-callout" style="margin-bottom: 1.5rem;">
+          <strong>Quick rule of thumb:</strong>
+          <ul style="margin: 0.5rem 0 0 1.25rem;">
+            <li><strong>Selling primarily in the US or Canada?</strong> Use a 12-digit <strong>UPC-A</strong>.</li>
+            <li><strong>Selling outside North America, or exporting globally?</strong> Use a 13-digit <strong>EAN-13</strong>.</li>
+            <li><strong>Selling on Amazon?</strong> Amazon accepts both UPC and EAN product identifiers. Use whichever format your GS1 record issued.</li>
+          </ul>
+        </div>
         <ul>
-          <li><strong>UPC-A</strong> carries a 12-digit product number (a GTIN-12). It's the usual barcode in the US and Canada.</li>
-          <li><strong>EAN-13</strong> carries a 13-digit product number (a GTIN-13). It's the usual barcode almost everywhere else.</li>
-          <li><strong>Both scan worldwide.</strong> North American retailers were asked to read EAN-13 from 1 January 2005, and GS1 US says your EAN code works in the US and your UPC works in Europe.</li>
-          <li><strong>Use the one your number is.</strong> A 12-digit number goes in UPC-A, a 13-digit number in EAN-13. You don't need both.</li>
+          <li><strong>Both scan at checkout worldwide.</strong> Modern point-of-sale scanners read both symbologies. North American retailers adopted EAN-13 scanning readiness under the 2005 "Sunrise" initiative, and GS1 US confirms that EAN codes work in the US while UPC codes work in Europe.</li>
+          <li><strong>Use the format your number was issued in.</strong> If your GS1 certificate assigns a 12-digit number (GTIN-12), encode it in UPC-A. If it assigns a 13-digit number (GTIN-13), encode it in EAN-13. Do not invent digits or buy separate numbers for different countries.</li>
+          <li><strong>International sellers exporting to North America:</strong> If your domestic product carries a valid GS1-issued EAN-13, most US retailers and marketplaces accept it without relabelling. Confirm with your distributor or buyer whether they require a 12-digit UPC-A for legacy inventory systems.</li>
         </ul>`
       },
       {
         id: 'side-by-side',
-        h2: 'Side by side',
+        h2: 'Side by side: technical specifications',
         html: `
         <div class="article-table-wrap" tabindex="0">
           <table class="article-table">
-            <thead><tr><th></th><th>UPC-A</th><th>EAN-13</th></tr></thead>
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col">UPC-A</th>
+                <th scope="col">EAN-13</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><th scope="row">Digits</th><td>12 (GTIN-12)</td><td>13 (GTIN-13)</td></tr>
-              <tr><th scope="row">Number parts</th><td>Company prefix + item number (11 digits) + check digit</td><td>Company prefix + item number (12 digits) + check digit</td></tr>
-              <tr><th scope="row">Usual in</th><td>US and Canada</td><td>Most countries outside the US and Canada</td></tr>
-              <tr><th scope="row">Digits printed</th><td>Check digit to the right of the bars</td><td>First digit to the left of the bars, check digit under them</td></tr>
-              <tr><th scope="row">Blank margin (quiet zone)</th><td>9 bar-widths each side</td><td>11 bar-widths left, 7 right</td></tr>
-              <tr><th scope="row">Size at 100%</th><td colspan="2">Same for both: 37.29 mm (1.468 in) wide including margins, bars 22.85 mm (0.900 in) high</td></tr>
+              <tr>
+                <th scope="row">Identifier length</th>
+                <td>12 digits (GTIN-12)</td>
+                <td>13 digits (GTIN-13)</td>
+              </tr>
+              <tr>
+                <th scope="row">Primary geographic region</th>
+                <td>United States and Canada</td>
+                <td>Worldwide (Europe, UK, Asia, Latin America, Australia)</td>
+              </tr>
+              <tr>
+                <th scope="row">Number composition</th>
+                <td>Company prefix + Item reference (11 digits) + Check digit</td>
+                <td>GS1 prefix (country) + Company + Item reference (12 digits) + Check digit</td>
+              </tr>
+              <tr>
+                <th scope="row">Printed digit placement</th>
+                <td>First digit left of bars, check digit right of bars; 10 digits centered below</td>
+                <td>First digit floating outside left quiet zone; remaining 12 digits split below</td>
+              </tr>
+              <tr>
+                <th scope="row">Minimum quiet zones (margins)</th>
+                <td><strong>9X left, 9X right</strong> (symmetric: 2.97 mm each side at 100%)</td>
+                <td><strong>11X left (3.63 mm), 7X right (2.31 mm)</strong> (asymmetric)</td>
+              </tr>
+              <tr>
+                <th scope="row">Target physical size (100%)</th>
+                <td colspan="2">Identical: <strong>37.29 mm wide</strong> (including quiet zones) &times; <strong>22.85 mm high</strong> at X = 0.330 mm</td>
+              </tr>
+              <tr>
+                <th scope="row">Allowed checkout scale</th>
+                <td colspan="2">80% to 200% (X-dimension 0.264 mm to 0.660 mm, height 18.28 mm to 45.70 mm)</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <p>Sizes and margins are from the GS1 General Specifications (Release 26.0, January 2026). Print sizes, smallest and largest, are in <a href="./how-to-get-a-barcode-for-your-product.html#size">How to get a barcode for your product</a>.</p>`
+
+        <figure class="ean-diagram">
+          <svg class="ean-diagram-art diagram-wide" viewBox="0 0 1000 520" role="img" aria-labelledby="upc-ean-diag-title upc-ean-diag-desc">
+            <title id="upc-ean-diag-title">UPC-A vs EAN-13 structural comparison diagram</title>
+            <desc id="upc-ean-diag-desc">Schematic showing UPC-A with 12 digits and 9X symmetric quiet zones versus EAN-13 with 13 digits and 11X left / 7X right quiet zones, plus the leading zero database conversion.</desc>
+            <defs>
+              <pattern id="diag-upc-bars" width="24" height="140" patternUnits="userSpaceOnUse">
+                <rect width="3" height="140" fill="var(--text-primary)"/>
+                <rect x="6" width="6" height="140" fill="var(--text-primary)"/>
+                <rect x="16" width="3" height="140" fill="var(--text-primary)"/>
+              </pattern>
+              <pattern id="diag-ean-bars" width="24" height="140" patternUnits="userSpaceOnUse">
+                <rect width="4" height="140" fill="var(--text-primary)"/>
+                <rect x="7" width="5" height="140" fill="var(--text-primary)"/>
+                <rect x="15" width="4" height="140" fill="var(--text-primary)"/>
+              </pattern>
+              <marker id="diag-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse">
+                <path d="M1 1L5 3L1 5" fill="none" stroke="var(--optic-blue)" stroke-width="1.2"/>
+              </marker>
+            </defs>
+
+            <!-- Main Comparison Card -->
+            <rect x="10" y="10" width="980" height="500" rx="8" fill="var(--surface)" stroke="var(--border-subtle)"/>
+
+            <!-- Header -->
+            <g font-family="var(--font-heading, sans-serif)" fill="var(--text-primary)">
+              <text x="36" y="48" font-size="22" font-weight="700">UPC-A vs. EAN-13: Structure &amp; Margins</text>
+              <text x="36" y="74" font-size="14" fill="var(--text-secondary)">Retail checkout standard · Same physical symbol size (37.29 mm × 22.85 mm at X = 0.330 mm) · Schematic only</text>
+            </g>
+
+            <!-- LEFT: UPC-A -->
+            <g transform="translate(36, 95)">
+              <rect width="440" height="270" rx="6" fill="var(--surface-alt)" stroke="var(--border-subtle)"/>
+              <text x="20" y="32" font-family="var(--font-heading, sans-serif)" font-size="17" font-weight="700" fill="var(--text-primary)">UPC-A (GTIN-12)</text>
+              <text x="20" y="52" font-family="var(--font-body, sans-serif)" font-size="13" fill="var(--text-secondary)">Standard in US &amp; Canada · 12 digits</text>
+
+              <rect x="60" y="72" width="36" height="120" fill="var(--optic-blue-tint)"/>
+              <rect x="96" y="72" width="248" height="120" fill="url(#diag-upc-bars)"/>
+              <rect x="344" y="72" width="36" height="120" fill="var(--optic-blue-tint)"/>
+
+              <g stroke="var(--optic-blue)" stroke-width="1.2" fill="none">
+                <path d="M60 66v-8m36 8v-8M60 62h36"/>
+                <path d="M344 66v-8m36 8v-8M344 62h36"/>
+              </g>
+              <text x="78" y="54" font-family="var(--font-mono, monospace)" font-size="11" font-weight="700" fill="var(--optic-blue)" text-anchor="middle">9X</text>
+              <text x="362" y="54" font-family="var(--font-mono, monospace)" font-size="11" font-weight="700" fill="var(--optic-blue)" text-anchor="middle">9X</text>
+
+              <g font-family="var(--font-mono, monospace)" font-size="18" fill="var(--text-primary)">
+                <text x="42" y="200" fill="var(--text-secondary)">0</text>
+                <text x="110" y="208" letter-spacing="3">36000 29145</text>
+                <rect x="384" y="184" width="22" height="26" rx="3" fill="var(--optic-blue-tint)"/>
+                <text x="389" y="202" font-weight="700" fill="var(--optic-blue)">2</text>
+              </g>
+              <text x="20" y="248" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-secondary)">Symmetric quiet zones: 9X left, 9X right (2.97 mm at 100%)</text>
+            </g>
+
+            <!-- RIGHT: EAN-13 -->
+            <g transform="translate(504, 95)">
+              <rect width="440" height="270" rx="6" fill="var(--surface-alt)" stroke="var(--border-subtle)"/>
+              <text x="20" y="32" font-family="var(--font-heading, sans-serif)" font-size="17" font-weight="700" fill="var(--text-primary)">EAN-13 (GTIN-13)</text>
+              <text x="20" y="52" font-family="var(--font-body, sans-serif)" font-size="13" fill="var(--text-secondary)">Standard Worldwide &amp; Amazon · 13 digits</text>
+
+              <rect x="52" y="72" width="44" height="120" fill="var(--optic-blue-tint)"/>
+              <rect x="96" y="72" width="248" height="120" fill="url(#diag-ean-bars)"/>
+              <rect x="344" y="72" width="28" height="120" fill="var(--optic-blue-tint)"/>
+
+              <g stroke="var(--optic-blue)" stroke-width="1.2" fill="none">
+                <path d="M52 66v-8m44 8v-8M52 62h44"/>
+                <path d="M344 66v-8m28 8v-8M344 62h28"/>
+              </g>
+              <text x="74" y="54" font-family="var(--font-mono, monospace)" font-size="11" font-weight="700" fill="var(--optic-blue)" text-anchor="middle">11X</text>
+              <text x="358" y="54" font-family="var(--font-mono, monospace)" font-size="11" font-weight="700" fill="var(--optic-blue)" text-anchor="middle">7X</text>
+
+              <g font-family="var(--font-mono, monospace)" font-size="18" fill="var(--text-primary)">
+                <text x="34" y="208" font-weight="700" fill="var(--optic-blue)">5</text>
+                <text x="106" y="208" letter-spacing="3">901234 12345</text>
+                <rect x="376" y="190" width="22" height="26" rx="3" fill="var(--optic-blue-tint)"/>
+                <text x="381" y="208" font-weight="700" fill="var(--optic-blue)">7</text>
+              </g>
+              <text x="20" y="248" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-secondary)">Asymmetric quiet zones: 11X left (3.63 mm), 7X right (2.31 mm)</text>
+            </g>
+
+            <!-- BOTTOM: The Database Zero-Prefix Conversion Banner -->
+            <g transform="translate(36, 385)">
+              <rect width="908" height="96" rx="6" fill="var(--surface-alt)" stroke="var(--border-subtle)"/>
+              <text x="24" y="32" font-family="var(--font-heading, sans-serif)" font-size="15" font-weight="700" fill="var(--text-primary)">How Retail Databases Connect Them: The Leading Zero (0)</text>
+              <g font-family="var(--font-mono, monospace)" font-size="15" fill="var(--text-primary)">
+                <text x="24" y="64">UPC-A: <tspan font-weight="700">036000291452</tspan> (12 digits)</text>
+                <path d="M305 59h35" stroke="var(--optic-blue)" stroke-width="2" marker-end="url(#diag-arrow)"/>
+                <text x="355" y="64">GTIN-13: <tspan fill="var(--optic-blue)" font-weight="700">0</tspan><tspan font-weight="700">036000291452</tspan> (13 digits)</text>
+              </g>
+              <text x="640" y="64" font-family="var(--font-body, sans-serif)" font-size="13" fill="var(--text-secondary)">Check digit (2) remains unchanged.</text>
+            </g>
+          </svg>
+          <ol class="ean-diagram-legend">
+            <li><strong>1. UPC-A Quiet Zones:</strong> Requires at least 9 times the narrowest bar width (9X) on both sides (2.97 mm at nominal 0.330 mm).</li>
+            <li><strong>2. EAN-13 Quiet Zones:</strong> Asymmetric layout requiring 11X on the left (3.63 mm) and 7X on the right (2.31 mm) to protect the floating prefix digit.</li>
+            <li><strong>3. Identical Symbol Footprint:</strong> Both barcodes share the exact same total width (37.29 mm) and bar height (22.85 mm) at nominal 100% scale.</li>
+            <li><strong>4. Leading Zero Conversion:</strong> Retail inventory databases convert a 12-digit UPC-A into a 13-digit GTIN-13 by prepending a 0. The check digit is unchanged.</li>
+          </ol>
+          <figcaption>Schematic illustration, not a scan sample. Dimensions source: GS1 General Specifications Release 24.0 / 26.0.</figcaption>
+        </figure>`
       },
       {
         id: 'ean-in-the-us',
@@ -2780,66 +2922,157 @@ const ARTICLES = [
         id: 'converting',
         h2: 'Converting between UPC-A and EAN-13',
         html: `
+        <p>Because point-of-sale systems operate internationally, modern retail databases store product identifiers in standardized 13-digit (GTIN-13) or 14-digit (GTIN-14) data fields. Here is how numbers convert mathematically:</p>
+
         <ul>
-          <li><strong>UPC-A to EAN-13:</strong> put a 0 in front. The check digit stays the same, because a leading 0 adds nothing to the check-digit sum. Example: UPC-A <strong>036000291452</strong> becomes <strong>0036000291452</strong>.</li>
-          <li><strong>EAN-13 to UPC-A:</strong> only possible when the EAN-13 starts with 0; drop that 0. GS1 US says a company prefix used to create a 13-digit number begins with 1–9, so a "real" EAN-13 has no UPC-A form.</li>
-          <li><strong>Databases:</strong> GS1 US's guide to GTINs gives the standard database format as 14 digits, padded with zeros on the left (for example 00614141000005), whatever the length of the number.</li>
+          <li><strong>UPC-A to EAN-13 (Add a leading 0):</strong> To represent a 12-digit UPC-A in a 13-digit EAN system, place a single <code>0</code> at the beginning. The check digit does not change.
+            <br><em>Example:</em> UPC-A <code>036000291452</code> becomes EAN-13 <code>0036000291452</code>.
+            <br><small>Why? In the GS1 Modulo-10 checksum calculation, the added 0 is multiplied by 3 (or 1 depending on direction), adding 0 to the sum. The final check digit remains identical.</small>
+          </li>
+          <li><strong>EAN-13 to UPC-A (Only if starting with 0):</strong> An EAN-13 can only be converted to a UPC-A if its first digit is <code>0</code>. If an EAN-13 begins with any other digit (such as <code>590...</code> or <code>890...</code>), it represents an international GS1 prefix and <strong>cannot</strong> be shortened to a 12-digit UPC. Do not truncate the first digit to force a foreign EAN into a UPC barcode.</li>
+          <li><strong>14-Digit Database Padding (GTIN-14):</strong> In warehouse logistics and EDI systems, both codes are padded with leading zeros to fill 14 characters:
+            <br>UPC-A: <code>00036000291452</code>
+            <br>EAN-13: <code>005901234123457</code>
+          </li>
         </ul>
-        <p>Our <a href="./ean-13-barcode-generator.html">EAN-13 generator</a> takes 12 or 13 digits and the <a href="./upc-a-barcode-generator.html">UPC-A generator</a> takes 11 or 12: give one digit fewer and the check digit is calculated for you; give the full number and it's checked.</p>`
+        <p>UniversalCodeMaker lets you create and verify both formats: enter 11 data digits in the <a href="./upc-a-barcode-generator.html">UPC-A generator</a> to calculate the 12th check digit, or 12 data digits in the <a href="./ean-13-barcode-generator.html">EAN-13 generator</a> for the 13th.</p>`
       },
       {
-        id: 'which-to-get',
-        h2: 'Which one should I get?',
+        id: 'barcode-costs',
+        h2: 'Where to get barcodes and what they cost',
         html: `
-        <ul>
-          <li><strong>In the US:</strong> GS1 US sells both. Its single GTIN and company prefixes give you UPC numbers, and it also sells a "GS1 Company Prefix – EAN" for 13-digit numbers. UPC is the usual choice for US retail.</li>
-          <li><strong>Outside the US and Canada:</strong> your national GS1 office issues 13-digit numbers, so you use EAN-13. GS1 Greece notes that since 2005 UPC prefixes have rarely been issued to companies outside the US and Canada. In India, GS1 India issues numbers starting with 890.</li>
-          <li><strong>Selling into the US from abroad:</strong> your EAN-13 normally works; ask your buyer if they require a UPC.</li>
-        </ul>
-        <p>How to get the numbers from GS1, and what they cost: <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a>.</p>`
+        <p>UniversalCodeMaker generates barcode graphic files (SVG, EPS, PNG) from numbers you provide for free. However, if your product is sold in retail stores or online marketplaces, the <strong>product identifier itself must be licensed from GS1</strong> so it is registered to your company in the official global registry.</p>
+
+        <div class="article-table-wrap" tabindex="0">
+          <table class="article-table">
+            <thead>
+              <tr>
+                <th scope="col">Licensing option</th>
+                <th scope="col">Initial cost</th>
+                <th scope="col">Annual renewal</th>
+                <th scope="col">Best suited for</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><strong>GS1 US: Single GTIN-12</strong></th>
+                <td>USD $30</td>
+                <td><strong>$0 (No renewal fee)</strong></td>
+                <td>Small businesses selling 1 to 9 products or variants in North America / Amazon</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong>GS1 US: Company Prefix (1–10 items)</strong></th>
+                <td>USD $250</td>
+                <td>USD $50 / year</td>
+                <td>Growing businesses planning larger catalogues under their own brand prefix</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong>GS1 UK: Small Business Band</strong></th>
+                <td>£50 + VAT</td>
+                <td>£50 + VAT / year</td>
+                <td>UK / European sellers with up to 10 product lines</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong>National GS1 Offices (Global)</strong></th>
+                <td>Varies by country</td>
+                <td>Country-dependent</td>
+                <td>Local national currency pricing (e.g. GS1 India, GS1 Australia, GS1 Germany)</td>
+              </tr>
+              <tr>
+                <th scope="row"><strong>Third-Party Resellers (brokers)</strong></th>
+                <td>$5 – $10</td>
+                <td>$0</td>
+                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon and major chains reject unverified barcodes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ean-callout">
+          <strong>Why cheap reseller barcodes fail on Amazon and retail:</strong>
+          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the GS1 GEPIR database. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
+        </div>`
+      },
+      {
+        id: 'choose-generator',
+        h2: 'Choose your generator',
+        html: `
+        <p>Once you have your GS1-assigned number, select the generator below to create print-ready vector artwork or label sheets:</p>
+        <div class="content-grid" style="margin: 1.5rem 0 2rem;">
+          <div class="info-card" style="border-top: 4px solid var(--accent);">
+            <h3 class="info-card-title">Make a UPC-A Barcode</h3>
+            <p>For products sold in the United States or Canada. Enter 11 data digits to calculate the 12th check digit, or all 12 digits to verify.</p>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.75rem 0 1.25rem 1.2rem;">
+              <li>12 digits (GTIN-12)</li>
+              <li>Vector SVG &amp; EPS for packaging</li>
+              <li>Avery label sheet layouts</li>
+            </ul>
+            <a href="./upc-a-barcode-generator.html" class="cta-launch-btn" style="text-decoration: none; display: inline-flex; justify-content: center;">
+              Open UPC-A Generator
+            </a>
+          </div>
+
+          <div class="info-card" style="border-top: 4px solid var(--optic-blue);">
+            <h3 class="info-card-title">Make an EAN-13 Barcode</h3>
+            <p>For products sold internationally, outside North America, or on global Amazon stores. Generate directly on the page or open in the studio.</p>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); margin: 0.75rem 0 1.25rem 1.2rem;">
+              <li>13 digits (GTIN-13)</li>
+              <li>On-page generator &amp; preview</li>
+              <li>Quiet-zone &amp; packaging guide</li>
+            </ul>
+            <a href="./ean-13-barcode-generator.html" class="cta-launch-btn" style="text-decoration: none; display: inline-flex; justify-content: center;">
+              Open EAN-13 Generator
+            </a>
+          </div>
+        </div>`
       },
       {
         id: 'related-codes',
         h2: 'Smaller and related barcodes',
         html: `
         <ul>
-          <li><strong>EAN-8 and UPC-E</strong>: short versions for very small packs (8 digits). Our generator doesn't make these.</li>
+          <li><strong>EAN-8 and UPC-E</strong>: short versions for very small packs (8 digits). UniversalCodeMaker does not generate these.</li>
           <li><strong>ISBN</strong>: books use an EAN-13 whose number starts with 978 or 979, from your national ISBN agency rather than GS1. <a href="./isbn-book-barcode-generator.html">ISBN barcode generator</a>.</li>
           <li><strong>ITF-14</strong>: outer cartons and cases use a 14-digit number in an ITF-14 barcode, not EAN-13 or UPC-A. <a href="./itf-14-barcode-generator.html">ITF-14 generator</a>.</li>
         </ul>`
       },
       {
         id: 'mistakes',
-        h2: 'Common mistakes',
+        h2: 'Common mistakes to avoid',
         html: `
         <ul>
-          <li><strong>Buying cheap numbers from resellers.</strong> GS1 US warns that a number "associated with another company" in the GS1 database risks rejection, and Amazon removes listings whose UPCs don't match GS1's records.</li>
-          <li><strong>Mixing up GTIN and SKU.</strong> A GTIN is issued by GS1 and identifies the product everywhere. A SKU is your own internal code.</li>
-          <li><strong>Turning an EAN-13 into a UPC-A</strong> when it doesn't start with 0. It can't be done; keep the EAN-13.</li>
-          <li><strong>Buying a second number "for Europe" or "for the US".</strong> One number works in both: GS1 US says your UPC works in Europe and your EAN in the US.</li>
+          <li><strong>Buying recycled barcodes from brokers.</strong> GS1 US warns that numbers associated with another company risk rejection, and Amazon removes listings whose UPCs don't match GS1's database.</li>
+          <li><strong>Buying separate UPC and EAN numbers for the same item.</strong> Unnecessary expense: scanners worldwide read both; an EAN-13 scans in the US, and a UPC-A scans in Europe.</li>
+          <li><strong>Truncating the first digit of an EAN-13.</strong> Only EAN-13s starting with 0 have a UPC-A counterpart. International prefixes 1–9 cannot be shortened.</li>
+          <li><strong>Encroaching on quiet zones.</strong> UPC-A needs 9X margins each side; EAN-13 needs 11X on the left. Placing artwork, text or box edges too close causes register read errors.</li>
+          <li><strong>Confusing SKU with UPC or EAN.</strong> A SKU is your internal warehouse inventory code. A GTIN is the universal retail identifier recognized across the supply chain.</li>
         </ul>`
       }
     ],
     faqs: [
       {
         q: 'Is a UPC the same as an EAN?',
-        a: 'They are the same family. A UPC-A carries a 12-digit number and an EAN-13 a 13-digit one. A UPC-A number with a 0 in front is the same number in 13-digit form.'
+        a: 'They are part of the same GS1 barcode family. A UPC-A carries a 12-digit number (GTIN-12) primarily used in North America, while an EAN-13 carries a 13-digit number (GTIN-13) used worldwide. Adding a leading 0 to a UPC-A converts it into a valid 13-digit GTIN without changing the check digit.'
       },
       {
-        q: 'Will an EAN-13 barcode scan in US stores?',
-        a: 'Normally, yes. North American retailers were asked to handle EAN-13 from 1 January 2005, and GS1 US says EAN codes work in the US. If you supply a US retailer, check that they don\'t require a UPC.'
+        q: 'Can I use an EAN-13 barcode in the United States?',
+        a: 'Yes. Since the 2005 Sunrise date, point-of-sale barcode scanners across North America have been equipped to decode 13-digit EAN-13 symbols alongside 12-digit UPCs. If supplying a US retailer, confirm whether their inventory system accepts GTIN-13 or requires GTIN-12.'
       },
       {
-        q: 'How do I convert a UPC to an EAN-13?',
-        a: 'Add a 0 in front of the 12 digits. The check digit doesn\'t change. For example, 036000291452 becomes 0036000291452.'
+        q: 'What is the cheapest way to get a legitimate UPC or EAN barcode?',
+        a: 'For small businesses needing 1 to 9 codes, GS1 US offers single GTIN-12 identifiers for $30 with no annual renewal fees. In the UK, GS1 UK offers small business memberships for £50 + VAT per year. Avoid cheap third-party brokers, as unverified reseller barcodes risk rejection on Amazon and retail stores.'
       },
       {
-        q: 'Are UPC-A and EAN-13 barcodes the same size?',
-        a: 'Yes. At the standard 100% size both are 37.29 mm (1.468 in) wide including their blank margins, with bars 22.85 mm high (GS1 General Specifications).'
+        q: 'How do I convert a UPC-A to an EAN-13?',
+        a: 'Add a 0 in front of the 12 digits. The check digit does not change because multiplying the added 0 by 3 adds nothing to the checksum calculation. For example, UPC-A 036000291452 becomes EAN-13 0036000291452.'
+      },
+      {
+        q: 'Are UPC-A and EAN-13 barcodes the same physical size?',
+        a: 'Yes. At the nominal 100% scale, both barcodes share the identical overall width of 37.29 mm (including blank margins) and bar height of 22.85 mm at X = 0.330 mm, per GS1 General Specifications.'
       },
       {
         q: 'Do I need both a UPC and an EAN for my product?',
-        a: 'No. One number works worldwide: GS1 US says a UPC works in Europe and an EAN works in the US. Amazon also accepts both.'
+        a: 'No. One universal GS1 product identifier functions globally. Scanners in Europe can read UPC-A barcodes, and modern scanners in the US can read EAN-13 barcodes. Marketplaces such as Amazon accept both formats.'
       }
     ]
   }
@@ -3947,6 +4180,18 @@ ${SITE_FOOTER_HTML}
 </html>`;
 }
 
+// Helper to avoid unnecessary file rewrites and line-ending churn on unchanged pages
+function writeIfChanged(filePath, content) {
+  if (fs.existsSync(filePath)) {
+    const existing = fs.readFileSync(filePath, 'utf8');
+    if (existing.replace(/\r\n/g, '\n') === content.replace(/\r\n/g, '\n')) {
+      return false;
+    }
+  }
+  fs.writeFileSync(filePath, content, 'utf8');
+  return true;
+}
+
 // Generate pages
 console.log('Generating Programmatic SEO pages...');
 let generatedCount = 0;
@@ -3954,15 +4199,18 @@ let generatedCount = 0;
 SEO_PAGES.forEach(page => {
   const filePath = path.join(PAGES_DIR, `${page.slug}.html`);
   const html = generatePageHtml(page);
-  fs.writeFileSync(filePath, html, 'utf8');
-  generatedCount++;
-  console.log(`Generated: pages/${page.slug}.html`);
+  if (writeIfChanged(filePath, html)) {
+    generatedCount++;
+    console.log(`Generated: pages/${page.slug}.html`);
+  }
 });
 
 ARTICLES.forEach(article => {
-  fs.writeFileSync(path.join(PAGES_DIR, `${article.slug}.html`), generateArticleHtml(article), 'utf8');
-  generatedCount++;
-  console.log(`Generated: pages/${article.slug}.html (guide)`);
+  const filePath = path.join(PAGES_DIR, `${article.slug}.html`);
+  if (writeIfChanged(filePath, generateArticleHtml(article))) {
+    generatedCount++;
+    console.log(`Generated: pages/${article.slug}.html (guide)`);
+  }
 });
 
 // Generate sitemap.xml
@@ -4061,7 +4309,10 @@ ${ARTICLES.map(a => `  <url>
 </urlset>
 `;
 
-fs.writeFileSync(sitemapPath, sitemapXml, 'utf8');
-console.log(`Saved sitemap.xml with ${(sitemapXml.match(/<loc>/g) || []).length} URLs.`);
+if (writeIfChanged(sitemapPath, sitemapXml)) {
+  console.log(`Saved sitemap.xml with ${(sitemapXml.match(/<loc>/g) || []).length} URLs.`);
+} else {
+  console.log(`sitemap.xml unchanged.`);
+}
 
 console.log(`All ${generatedCount} pages (landing pages + guides) generated successfully!`);
