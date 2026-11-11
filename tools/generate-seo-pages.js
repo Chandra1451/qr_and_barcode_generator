@@ -644,25 +644,58 @@ const SEO_PAGES = [
     shortName: 'Event QR',
     queryParam: 'wizard=event',
     category: 'Smart QR',
-    metaTitle: 'Free Calendar Event QR Code Generator (iCal)',
-    metaDescription: 'Create iCal calendar event QR codes with event title, start/end dates, location, and description. Instant add to Google Calendar and Apple Calendar.',
+    metaTitle: 'Free Calendar Event QR Code Generator (iCal & Outlook)',
+    metaDescription: 'Generate free calendar event QR codes with date, time, location & description. Attendees add events to Google Calendar, Apple Calendar & Outlook in one scan.',
     h1: 'Free iCal Calendar Event QR Code Generator',
-    lead: 'Generate universal vEvent / iCalendar QR codes. When scanned, smartphones prompt users to add your webinar, concert, party, or conference directly to their personal calendar.',
+    lead: 'Generate universal vEvent / iCalendar QR codes with start and end times, venue location, and event notes. When scanned with iOS Camera or Android Google Lens, attendees can add weddings, conferences, webinars, or parties directly to Google Calendar, Apple Calendar, or Outlook with one tap.',
     technicalSpec: {
-      standard: 'iCalendar VEVENT Specification (RFC 5545)',
-      fields: 'SUMMARY, LOCATION, DESCRIPTION, DTSTART, DTEND',
-      timestamps: 'ISO 8601 formatted UTC/Local timestamps'
+      standard: 'ISO/IEC 18004 QR Code Model 2',
+      payloadFormat: 'iCalendar 2.0 (IETF RFC 5545 VEVENT standard)',
+      syntaxStructure: 'BEGIN:VCALENDAR / BEGIN:VEVENT ... END:VEVENT / END:VCALENDAR',
+      timestampEncoding: 'ISO 8601 UTC (YYYYMMDDTHHMMSSZ) or local floating time',
+      compatibility: 'Apple Calendar (iOS/macOS), Google Calendar (Android/Web), Microsoft Outlook',
+      privacy: '100% in-browser generation; event details and attendee schedules are never uploaded or stored'
     },
     useCases: [
-      'Concert, theater, and sports match tickets',
-      'Wedding invitations and birthday party save-the-dates',
-      'Corporate webinars, seminars, and product launch invitations'
+      'Wedding invitations, save-the-dates, and family anniversary celebrations',
+      'Conference schedules, keynote speaker sessions, and panel workshops',
+      'Concert tickets, theater performances, festival lineups, and sporting events',
+      'Corporate webinars, virtual product launches, and quarterly meetings',
+      'University lecture timetables, academic exams, and campus orientation events'
     ],
     faqs: [
       {
-        q: 'Does it work with both Apple Calendar and Google Calendar?',
-        a: 'Yes! All modern smartphones natively recognize VEVENT data blocks and open the user’s default calendar application.'
+        q: 'How does scanning a calendar QR code automatically add an event to my calendar?',
+        a: 'When scanned with an iPhone Camera or Android Google Lens, the operating system recognizes the standard iCalendar BEGIN:VCALENDAR / BEGIN:VEVENT data block. Instead of opening a web browser, the device displays an interactive banner prompting you to "Add to Calendar" or "Open in Calendar". Tapping the prompt opens your default calendar app (Apple Calendar, Google Calendar, or Samsung Calendar) with the event title, start and end dates, venue address, and description pre-filled for one-tap saving.'
+      },
+      {
+        q: 'Does the calendar QR code support automatic timezone conversions?',
+        a: 'Yes. When event start and end timestamps are formatted in UTC ending with a "Z" (such as 20261115T183000Z), the attendee\'s smartphone automatically converts the time into their device\'s active local timezone. For in-person venue events, local floating time (omitting the trailing "Z") ensures the event registers at the exact local wall-clock time regardless of where the attendee travels from.'
+      },
+      {
+        q: 'What is the difference between an all-day event and a timed event in a QR code?',
+        a: 'A timed event includes specific start and finish clock hours in ISO 8601 format (DTSTART:20261115T090000), booking off exact time slots in the recipient\'s calendar view. An all-day event specifies only calendar dates without clock hours (DTSTART;VALUE=DATE:20261115), placing a banner across the top of the attendee\'s day view without triggering specific minute-by-minute reminders—perfect for birthdays, anniversaries, and multi-day exhibitions.'
+      },
+      {
+        q: 'Does this calendar QR code work across Google Calendar, Apple Calendar, and Microsoft Outlook?',
+        a: 'Yes. The VEVENT payload adheres strictly to IETF RFC 5545, the universal open standard supported across all major operating systems and calendar software. Native iOS and iPadOS devices parse it directly into Apple Calendar, Android devices import it into Google Calendar, and desktop or mobile email apps import it smoothly into Microsoft Outlook.'
+      },
+      {
+        q: 'Are my private event details or guest schedules logged or saved on your servers?',
+        a: 'No. UniversalCodeMaker processes all QR code generation 100% client-side in your local web browser using JavaScript and WebAssembly. Your event titles, dates, private notes, and venue locations are encoded directly into the QR pattern on your computer and are never transmitted to, logged on, or retained by any server.'
+      },
+      {
+        q: 'What is the recommended print size for event QR codes on invitations and flyers?',
+        a: 'For personal handheld print materials such as wedding invitations, save-the-date cards, or conference badges, we recommend printing the calendar QR code at a minimum of 1.0 × 1.0 inch (25 × 25 mm) at 300 DPI. For large event posters, roll-up banners, and entrance signs scanned from a distance of 3 to 6 feet, scale the QR code to 3 to 6 inches (75 to 150 mm) or larger. Always export in vector SVG format to ensure crisp vector edges and flawless scanning across any commercial press.'
       }
+    ],
+    relatedSlugs: [
+      'google-maps-location-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'vcard-qr-code-generator',
+      'wifi-qr-code-generator',
+      'upi-qr-code-generator',
+      'google-reviews-qr-code-generator'
     ]
   },
   {
