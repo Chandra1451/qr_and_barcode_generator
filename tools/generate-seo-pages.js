@@ -867,8 +867,8 @@ const SEO_PAGES = [
     shortName: 'ISBN-13 Bookland',
     queryParam: 'symbology=isbn',
     category: 'Retail & POS',
-    metaTitle: 'Free ISBN Barcode Generator (Bookland EAN-13)',
-    metaDescription: 'Make ISBN-13 (Bookland EAN-13) barcodes for book covers, including Amazon KDP and IngramSpark uploads. Automatic check digit and optional 5-digit price add-on.',
+    metaTitle: 'Free ISBN Book Barcode Generator: Bookland EAN-13 & SVG',
+    metaDescription: 'Generate ISBN-13 and Bookland EAN barcodes for book covers, Amazon KDP and IngramSpark. Includes automatic check digit and 5-digit price add-on in vector SVG.',
     h1: 'Free ISBN-13 Bookland Barcode Generator',
     lead: 'Generate high-contrast Bookland EAN-13 barcodes for paperback, hardcover, and print-on-demand books. Designed to meet strict IngramSpark, Amazon KDP, and Barnes & Noble publishing specifications with vector SVG and 300 DPI print exports.',
     technicalSpec: {
@@ -886,6 +886,10 @@ const SEO_PAGES = [
     ],
     faqs: [
       {
+        q: 'How do I get a barcode for my book?',
+        a: 'To put a barcode on your book cover, follow four steps: 1) Obtain an official 13-digit ISBN from your national agency (such as Bowker in the US, Nielsen in the UK, Library and Archives Canada) or choose a free ISBN directly in Amazon KDP; 2) Enter your 13-digit ISBN (beginning with 978 or 979) into UniversalCodeMaker\'s Bookland generator; 3) Optionally configure an EAN-5 supplemental price code (e.g. 51999 for $19.99 USD or 90000 for unpriced books); 4) Download the vector SVG or high-resolution PNG and place it in the lower-right area of your back cover design.'
+      },
+      {
         q: 'Where do I obtain an official ISBN for my book?',
         a: 'In the United States, official ISBNs are issued by Bowker (myidentifiers.com). In Canada, they are issued free by Library and Archives Canada. In the UK, Nielsen Book is the official agency. In India, Raja Rammohun Roy National Agency issues ISBNs. Amazon KDP also provides free ISBNs for platform-exclusive publishing.'
       },
@@ -898,10 +902,15 @@ const SEO_PAGES = [
         a: 'Yes. UniversalCodeMaker exports clean, vector SVG and high-DPI 300+ PPI PNG files with exact quiet zones, ensuring razor-sharp reproduction that will pass KDP and IngramSpark automated pre-flight checks.'
       },
       {
+        q: 'Where should the ISBN barcode be placed on a book cover?',
+        a: 'Book industry standards (BISG) specify placing the barcode in the lower-right quadrant of the back cover, at least 0.25 to 0.5 inches (6 to 13 mm) away from the trim edge and spine. Ensure the light quiet-zone margins on both sides of the barcode remain completely unobstructed by cover artwork or dark backgrounds.'
+      },
+      {
         q: 'Can I convert an old 10-digit ISBN to the modern 13-digit format?',
         a: 'Yes. Simply prefix the 9-digit core with 978 and calculate the new 13th Mod-10 check digit. Our generator handles this math automatically.'
       }
-    ]
+    ],
+    relatedSlugs: ['how-to-get-a-barcode-for-your-product', 'ean-13-barcode-generator', 'upc-vs-ean-13-barcode']
   },
   {
     slug: 'code-39-barcode-generator',
