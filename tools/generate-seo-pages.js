@@ -186,22 +186,24 @@ const SEO_PAGES = [
     shortName: 'UPC-A',
     queryParam: 'symbology=upc-a',
     category: 'Retail & POS',
-    metaTitle: 'Free UPC-A Barcode Generator: SVG, EPS & PNG',
-    metaDescription: 'Generate authentic 12-digit UPC-A barcodes for North American retail. Automatic Mod-10 check digit calculation, vector SVG, and high-DPI raster downloads.',
+    metaTitle: 'Free UPC-A Barcode Generator: 12-Digit Retail GTIN-12',
+    metaDescription: 'Create free 12-digit UPC-A barcodes for US & Canadian retail products. Instant Modulo-10 check digit calculation, vector SVG export & Avery label printing.',
     h1: 'Free UPC-A Retail Barcode Generator',
-    lead: 'Generate Universal Product Code (UPC-A) barcodes for US and Canadian retail products. Features automatic check digit calculation, crisp vector SVG, and 300+ DPI print export.',
+    lead: 'Generate standard 12-digit Universal Product Code (UPC-A) barcodes for US and Canadian retail point-of-sale packaging. Features real-time Modulo-10 check digit calculation, crisp vector SVG downloads, and built-in Avery label sheet printing.',
     technicalSpec: {
-      standard: 'ISO/IEC 15420 / GS1 US Standards',
-      characterSet: 'Numeric digits only (0–9)',
-      payloadLength: '11 data digits + 1 Mod-10 check digit (total 12 digits)',
-      size: 'Bar width (X-dimension) 0.264–0.660 mm, target 0.330 mm: 1.468" wide incl. quiet zones, bars 0.900" high',
-      quietZones: 'Left and Right: 9X module width minimum'
+      standard: 'GS1 General Specifications & ISO/IEC 15420',
+      payloadFormat: '12-digit GTIN-12 (11 data digits + 1 Modulo-10 check digit)',
+      nominalDimensions: '100% scale (X=0.330 mm): 37.29 mm wide × 25.91 mm high',
+      quietZones: '9X module width minimum on both left and right margins',
+      retailCompatibility: 'US & Canadian retail POS, Amazon North America FBA, Walmart, Target',
+      privacy: '100% in-browser generation; barcode numbers and product data are never uploaded or stored'
     },
     useCases: [
-      'United States and Canada retail store checkout',
-      'Amazon North America FBA product labeling',
-      'Wholesale packaging and consumer goods',
-      'Inventory tracking in big-box retail (Walmart, Target)'
+      'United States and Canada brick-and-mortar retail checkout POS',
+      'Amazon North America FBA product packaging and catalog listings',
+      'Big-box retail distribution (Walmart, Target, Costco, Kroger)',
+      'Shopify POS and Square in-store retail barcode labeling',
+      'Consumer packaged goods (CPG), apparel tags, and food packaging'
     ],
     relatedSlugs: [
       'upc-vs-ean-13-barcode',
@@ -214,15 +216,27 @@ const SEO_PAGES = [
     faqs: [
       {
         q: 'What is the difference between UPC-A and EAN-13?',
-        a: 'UPC-A is a 12-digit standard primarily used in the USA and Canada, while EAN-13 is a 13-digit standard used across the rest of the world. In fact, a UPC-A code is simply an EAN-13 code with a leading zero. Read our detailed technical breakdown: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: Which Barcode Do You Need?</a>.'
+        a: 'UPC-A is a 12-digit standard primarily used for retail products in the United States and Canada, while EAN-13 is a 13-digit standard used across Europe and the rest of the world. Mechanically, any UPC-A code can be converted into an EAN-13 by prepending a single leading zero (0), which produces an identical Modulo-10 check digit. Modern point-of-sale scanners worldwide read both formats seamlessly. For a complete comparison, read our guide: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: Which Barcode Do You Need?</a>.'
       },
       {
-        q: 'Does this generator check my UPC-A check digit?',
-        a: 'Yes. Enter either 11 digits to have the check digit automatically appended, or enter all 12 digits to have the check digit mathematically verified against GS1 Mod-10 specifications.'
+        q: 'How does the generator calculate and verify the 12th Modulo-10 check digit?',
+        a: 'When you enter the first 11 data digits, the generator calculates the final 12th digit in real time using the official GS1 Modulo-10 algorithm: odd-position digits (1st, 3rd, 5th, etc.) are multiplied by 3, even-position digits are multiplied by 1, all products are summed, and the check digit is the number required to round up to the nearest multiple of 10. If you enter all 12 digits, the studio verifies the check digit and alerts you if there is a mismatch.'
       },
       {
-        q: 'Can I print UPC-A barcodes on Avery sticky labels?',
-        a: 'Yes. Open the generator, click "Print Avery PDF Label Sheet", and choose Avery 5160 (30 address labels) or Avery 5163 (10 shipping labels). For a title or price next to the barcode, use the label maker instead.'
+        q: 'Do I need a UPC-A barcode to list and sell products on Amazon?',
+        a: 'Yes, for most physical products listed on Amazon North America (US, Canada, Mexico), Amazon requires a valid GS1 GTIN-12 (UPC-A) or GTIN-13 (EAN-13). Amazon automatically cross-checks your barcode number against the GS1 GEPIR / Verified by GS1 database; if the company prefix does not match your brand or legal business entity, the listing may be rejected. If you manufacture private label products or handmade goods without barcodes, you can request a GTIN exemption directly in Amazon Seller Central. See our complete walkthrough: <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Amazon Barcode Requirements</a>.'
+      },
+      {
+        q: 'Can I print UPC-A barcodes on Avery adhesive label sheets?',
+        a: 'Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1" × 2-5/8") or Avery 5163 (10 labels per sheet, 2" × 4"). Each barcode is rendered with vector sharpness and calibrated margins to ensure reliable thermal or laser printing.'
+      },
+      {
+        q: 'Why is truncating or shortening UPC-A bars discouraged on retail packaging?',
+        a: 'GS1 General Specifications strongly advise against truncating (reducing the vertical bar height below the nominal 22.85 mm / 0.900 in). Retail supermarket and department store checkout lanes use omnidirectional laser scanners that rely on diagonal scan lines crossing the full pattern. Truncating bars reduces the scan line intercept angle, causing scanning failures and forcing cashiers to enter numbers manually.'
+      },
+      {
+        q: 'Are my product numbers, SKUs, or inventory details stored on UniversalCodeMaker servers?',
+        a: 'No. All barcode generation, check digit mathematics, and image rendering execute 100% client-side in your local web browser using JavaScript and WebAssembly. Your GTIN-12 numbers, product titles, and label designs are never uploaded to, logged on, or stored on any server.'
       }
     ]
   },
