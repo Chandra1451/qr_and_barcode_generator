@@ -2808,8 +2808,9 @@ const ARTICLES = [
     name: 'Do I Need a Barcode to Sell on Amazon?',
     badge: 'Seller Guide',
     queryParam: 'symbology=upc-a',
-    metaTitle: 'Do I Need a Barcode to Sell on Amazon? (2026)',
-    metaDescription: 'Amazon uses two barcodes: a UPC/EAN to list and an FNSKU label for FBA. What Amazon US and Amazon.in require in 2026, GS1 costs and the GTIN exemption.',
+    metaTitle: 'Amazon Barcode Requirements (2026): UPC, GTIN & FNSKU Guide',
+    metaDescription: 'Complete 2026 Amazon barcode requirements: when you need a GS1 GTIN/UPC to list vs FNSKU labels for FBA, exact label sizes, exemptions, and official costs.',
+    dateModified: '2026-11-11',
     h1: 'Do I Need a Barcode to Sell on Amazon?',
     lead: 'Usually yes, and often two different ones: a product number (UPC or EAN) to create the listing, and an Amazon label (FNSKU) on every unit if Amazon stores and ships your stock. This guide covers what Amazon US and Amazon.in ask for in 2026, and what each costs.',
     datePublished: '2026-10-12',
@@ -2836,7 +2837,25 @@ const ARTICLES = [
           <li><strong>If you ship orders yourself</strong>, you don't need FNSKU labels: they are only for stock sent to Amazon's fulfilment centres.</li>
           <li><strong>Making the barcode image is free.</strong> What costs money is the GS1 number: $30 for a single number from GS1 US, from ₹50,200 for the first year from GS1 India (<a href="#costs">costs</a>).</li>
         </ol>
-        <div class="article-callout"><p>Amazon's rules change. Everything here was checked against Amazon Seller Central help and GS1's own websites on 12 October 2026; follow the links to see the current version.</p></div>`
+        <div class="article-callout"><p>Amazon's rules change. Everything here was checked against Amazon Seller Central help and GS1's own websites on 12 October 2026; follow the links to see the current version.</p></div>
+        <div class="seller-guide-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+          <a href="./amazon-fba-fnsku-barcode-generator.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Amazon FBA Label Generator &rarr;</strong>
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Generate ready-to-print FNSKU Code 128 stickers for Avery 5160 30-up sheets and thermal rolls.</span>
+          </a>
+          <a href="./how-to-get-a-barcode-for-your-product.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Product Barcode Guide &rarr;</strong>
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Complete retail barcode licensing walkthrough, national GS1 fee tables, and packaging specs.</span>
+          </a>
+          <a href="./upc-a-barcode-generator.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">UPC-A Generator &rarr;</strong>
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Generate 12-digit standard retail barcodes for US &amp; Canadian product listings in vector SVG.</span>
+          </a>
+          <a href="./upc-vs-ean-13-barcode.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
+            <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">UPC vs EAN-13 Guide &rarr;</strong>
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Compare 12-digit US and 13-digit global retail codes, check digits, and quiet zones.</span>
+          </a>
+        </div>`
       },
       {
         id: 'two-barcodes',
@@ -2879,6 +2898,16 @@ const ARTICLES = [
           <li>bundles, and generic unbranded products.</li>
         </ul>
         <p>You can't get one if the product already has a GS1 barcode or GTIN, is already in Amazon's catalogue, or belongs to a brand that requires a UPC. Expect to send real photos of all six sides of the product and packaging, with the brand name permanently on the product.</p>
+        <div class="gtin-exemption-steps" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.25rem 0;">
+          <h4 style="margin-top: 0; color: var(--text-primary); font-size: 1.05rem;">How to Apply for a GTIN Exemption in Seller Central</h4>
+          <ol style="margin-bottom: 0; padding-left: 1.25rem;">
+            <li>Log in to Amazon Seller Central, go to <strong>Catalog</strong> &rarr; <strong>Add Products</strong>, and click <strong>"I am adding a product not sold on Amazon"</strong>.</li>
+            <li>Select your product category and check <strong>"I don't have a Product ID"</strong>.</li>
+            <li>Enter your exact Brand name (or select "Generic" if unbranded) and click <strong>Apply for GTIN Exemption</strong>.</li>
+            <li>Submit unedited photos of all sides of your product and packaging demonstrating that no barcode is present and that brand labeling meets Amazon standards.</li>
+            <li>Approval is typically granted within 24 to 48 hours and applies across that entire brand and category combination.</li>
+          </ol>
+        </div>
         <p><strong>Exempt products still need FNSKU labels</strong> for FBA: only products with a valid GTIN can skip them.</p>`
       },
       {
@@ -2901,7 +2930,18 @@ const ARTICLES = [
           <li><strong>Amazon.in</strong> labels units with FNSKUs by default and allows stickerless, shared stock for books only.</li>
           <li><strong>Amazon US no longer labels for you</strong>: its prep and item-labelling service ended on 1 January 2026. Units that arrive without a required label are marked as defective.</li>
           <li><strong>Label rules</strong>: 1" × 2" to 2" × 3", black on white, removable adhesive; white space of 0.25" on the sides and 0.125" at the top and bottom; FNSKU, product name and condition on the label; thermal or laser printer, never inkjet; cover every other barcode on the unit. Details and a free label maker: <a href="./amazon-fba-fnsku-barcode-generator.html">Amazon FBA FNSKU label generator</a>.</li>
-        </ul>`
+        </ul>
+        <div class="fba-label-specs" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.25rem 0;">
+          <h4 style="margin-top: 0; color: var(--text-primary); font-size: 1.05rem;">Amazon FBA Label Dimensions &amp; Print Specifications</h4>
+          <ul style="margin-bottom: 0; padding-left: 1.25rem;">
+            <li><strong>Standard Label Size:</strong> 1" &times; 2⅝" (25.4 mm &times; 66.7 mm) — standard 30-up Avery 5160 / 5960 / 8160 sheets or direct thermal rolls. Supported range is 1" &times; 2" up to 2" &times; 3".</li>
+            <li><strong>Quiet Zones (Margins):</strong> Minimum 0.25" (6.35 mm) blank margin on left and right sides; minimum 0.125" (3.175 mm) top and bottom. Never truncate quiet zones.</li>
+            <li><strong>Required Information:</strong> FNSKU barcode in Code 128 (starts with "X"), human-readable FNSKU string, product title (up to 50 characters), and item condition (e.g., "New" or "Used").</li>
+            <li><strong>Print Technology:</strong> Direct thermal (Zebra GX430t or similar) or laser printer at 300 DPI or higher. Inkjet printers are strictly prohibited by Amazon due to ink smudging risks.</li>
+            <li><strong>Placement:</strong> Cover any existing manufacturer barcodes (UPC/EAN/ISBN) completely. Place on a flat, smooth surface; do not fold over edges, curves, or package seals.</li>
+          </ul>
+        </div>
+        <p>Need to print Amazon labels now? Use our free <a href="./amazon-fba-fnsku-barcode-generator.html">Amazon FBA FNSKU Label Generator</a> to format single thermal stickers or 30-up Avery 5160 PDF sheets directly in your browser.</p>`
       },
       {
         id: 'who-ships',
@@ -2972,6 +3012,18 @@ const ARTICLES = [
       {
         q: 'Do I need a barcode to sell on Amazon India?',
         a: 'To add a product that isn\'t already on Amazon.in, yes, or a GTIN exemption. To sell something already listed, no. For FBA, each unit needs an FNSKU label unless it\'s a book in the stickerless programme.'
+      },
+      {
+        q: 'What is the exact barcode label size required for Amazon FBA?',
+        a: 'Amazon FBA requires barcode labels to measure between 1" × 2" and 2" × 3". The most popular standard format is 1" × 2⅝" (Avery 5160 30-up sheets or direct thermal roll equivalent). Labels must feature at least 0.25" (6.35 mm) side quiet zones and 0.125" (3.175 mm) top and bottom margins, printed at 300 DPI or higher using direct thermal or laser printers. Inkjet printing is prohibited.'
+      },
+      {
+        q: 'How do I buy a legitimate GTIN barcode to list products on Amazon?',
+        a: 'Obtain your product identifiers directly from your national GS1 organization (such as GS1 US, GS1 UK, or GS1 India). For small catalogs, GS1 US provides single GTINs for $30 with no annual renewal fees, or company prefixes starting at $250 for 10 products. Amazon automatically validates listing GTINs against the GS1 Verified by GS1 database; recycled barcodes from unauthorized third-party resellers are flagged and rejected.'
+      },
+      {
+        q: 'What is the difference between an Amazon FNSKU and a manufacturer UPC barcode?',
+        a: 'A UPC (or EAN) is a global product number that identifies the product item across all retail stores and marketplaces. An FNSKU (Fulfillment Network Stock Keeping Unit) is an Amazon-internal barcode (Code 128 starting with "X") that identifies a specific seller\'s inventory in Amazon warehouses. When preparing units for FBA, the FNSKU label must be placed over the manufacturer\'s UPC barcode.'
       }
     ]
   },
