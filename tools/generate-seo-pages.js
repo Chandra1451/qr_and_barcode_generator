@@ -415,30 +415,58 @@ const SEO_PAGES = [
     shortName: 'Wi-Fi QR',
     queryParam: 'wizard=wifi',
     category: 'Smart QR',
-    metaTitle: 'Free Wi-Fi QR Code Generator: Guests Join in One Scan',
-    metaDescription: 'Generate instant Wi-Fi connect QR codes for home, cafe, and office networks. Supports WPA/WPA2/WPA3, WEP, and hidden networks. Vector SVG and high-res print.',
+    metaTitle: 'Free Wi-Fi QR Code Generator: Auto-Connect Password QR',
+    metaDescription: 'Generate free Wi-Fi QR codes to connect guests instantly without typing passwords. Supports WPA3, WPA2, WEP & hidden SSIDs. 100% private in-browser generation.',
     h1: 'Free Wi-Fi Auto-Connect QR Code Generator',
     lead: 'Create custom branded Wi-Fi QR codes that allow customers, hotel guests, and friends to instantly join your wireless network simply by scanning with their smartphone camera.',
     technicalSpec: {
-      payloadFormat: 'WIFI:T:WPA;S:MyNetwork;P:MyPassword;H:false;;',
-      encryptionProtocols: 'WPA/WPA2/WPA3, WEP, Open (None)',
-      compatibility: 'Native iOS Camera and Android Quick Settings QR Scanner'
+      standard: 'ISO/IEC 18004 QR Code Model 2',
+      protocol: 'ZXing Wi-Fi URI Scheme (WIFI:T:{Auth};S:{SSID};P:{Password};H:{Hidden};;)',
+      encryption: 'WPA/WPA2/WPA3 (Personal), WEP, or Open (nopass)',
+      hiddenSsid: 'H:true parameter for unbroadcast / closed network SSIDs',
+      compatibility: 'Native iOS Camera (iOS 11+), Android Camera & Quick Settings, iPadOS',
+      security: '100% client-side execution; network SSIDs and passwords never leave your device'
     },
     useCases: [
-      'Restaurant, coffee shop, and bar table stands',
-      'Hotel rooms and Airbnb guest welcome books',
-      'Office conference rooms and visitor lobbies',
-      'Home living room guest Wi-Fi sharing signs'
+      'Cafe, coffee shop, and restaurant dining table acrylic stands',
+      'Hotel guest rooms, Airbnb welcome binders, and vacation rental desks',
+      'Office conference rooms, co-working spaces, and visitor reception lobbies',
+      'Event venues, trade show booths, and tech conference registration desks',
+      'Home living rooms and guest bedroom auto-connect wall cards'
     ],
     faqs: [
       {
-        q: 'Do guests need to install an app to scan the Wi-Fi QR code?',
-        a: 'No! Both modern iPhones (iOS 11+) and Android devices natively recognize Wi-Fi QR codes directly inside the built-in Camera app and display an instant "Join Network" button.'
+        q: 'Do guests need a special app to scan and connect to Wi-Fi?',
+        a: 'No. Both modern iPhones (iOS 11 and later) and Android smartphones (Android 10 and later) natively recognize Wi-Fi QR codes directly inside their default Camera apps. Pointing the camera at the QR code displays a one-tap "Join Network" notification that automatically negotiates credentials and connects the device without opening settings.'
       },
       {
-        q: 'Is my Wi-Fi password sent to your servers?',
-        a: 'Never. Our application runs 100% in your browser. Your network name and password never leave your device.'
+        q: 'Is my Wi-Fi network name or password ever transmitted to a server?',
+        a: 'Never. UniversalCodeMaker executes 100% client-side in your web browser using pure JavaScript and WebAssembly. Your network SSID, security encryption type, and Wi-Fi password are never uploaded, logged, or transmitted across the network. Disconnecting your internet connection before generating will verify complete local execution.'
+      },
+      {
+        q: 'Can I generate a Wi-Fi QR code for an open network without a password?',
+        a: 'Yes. If you operate an open public network or guest portal without pre-shared encryption keys, select "Open (No Password)" in the generator. It formats the standard payload as WIFI:T:nopass;S:YourNetwork;;;, allowing visitors to authenticate and join your broadcast network with a single camera tap.'
+      },
+      {
+        q: 'How do I create a QR code for a hidden Wi-Fi network?',
+        a: 'For networks that do not broadcast their SSID, check the "Hidden Network" option in the Wi-Fi wizard. The generator appends the H:true; flag to the standardized string (WIFI:T:WPA;S:SecretNet;P:SecretPass;H:true;;). Mobile operating systems will recognize the hidden flag and probe for the hidden beacon during the handshake.'
+      },
+      {
+        q: 'What happens if I change my Wi-Fi router password later?',
+        a: 'Wi-Fi QR codes are static codes that store the SSID and password directly in the optical matrix. They do not rely on external redirect servers or account subscriptions. If you change your router\'s Wi-Fi password, prior printed codes will no longer connect devices; you simply generate and print an updated QR code with the new password.'
+      },
+      {
+        q: 'What size should I print Wi-Fi QR codes for tables and counters?',
+        a: 'For restaurant table tents, cafe counter stands, and hotel bedside cards scanned from 8–12 inches away, print the QR code at least 1.5 × 1.5 inches (38 × 38 mm). For wall-mounted plaques or conference room displays scanned from 2–3 feet away, print at least 3 × 3 inches (75 × 75 mm). Always download vector SVG for crisp printing at any resolution.'
       }
+    ],
+    relatedSlugs: [
+      'google-reviews-qr-code-generator',
+      'google-maps-location-qr-code-generator',
+      'upi-qr-code-generator',
+      'vcard-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'plain-text-qr-code-generator'
     ]
   },
   {
