@@ -475,26 +475,58 @@ const SEO_PAGES = [
     shortName: 'vCard QR',
     queryParam: 'wizard=vcard',
     category: 'Smart QR',
-    metaTitle: 'Free vCard QR Code Generator: Digital Business Card',
-    metaDescription: 'Create digital business card vCard QR codes. Encodes name, phone, email, company, job title, and website directly into smartphone contacts with zero typing.',
+    metaTitle: 'Free vCard QR Code Generator: Digital Business Card VCF',
+    metaDescription: 'Create free vCard QR codes for digital business cards. Encodes contact details, phone, email & company directly into smartphone address books without typing.',
     h1: 'Free vCard Digital Business Card QR Code Generator',
     lead: 'Generate contactless digital business card QR codes conforming to the universal vCard standard. When scanned, smartphones immediately prompt the user to save your contact card.',
     technicalSpec: {
-      standard: 'vCard 3.0 (IETF RFC 2426)',
-      fields: 'Full Name, Phone, Email, Company, Job Title, Website URL',
-      compatibility: 'Apple Contacts, Google Contacts, Microsoft Outlook'
+      standard: 'vCard 3.0 (IETF RFC 2426) & ISO/IEC 18004 QR Code',
+      vcfMimeType: 'text/vcard (.vcf contact card format)',
+      fields: 'FN (Name), TEL (Work/Mobile), EMAIL, ORG (Company), TITLE, URL, ADR',
+      compatibility: 'Apple Contacts (iOS), Google Contacts (Android), Samsung, Microsoft Outlook',
+      nfcPairing: 'Compatible with NFC smart business cards & digital profile links',
+      privacy: '100% client-side generation; contact personal information is never uploaded or saved'
     },
     useCases: [
-      'Paper business cards and trade show conference badges',
-      'Email signature image badges and LinkedIn profile banners',
-      'Real estate agent yard signs and sales brochures',
-      'Speaker slides and presentation closing decks'
+      'Physical paper business cards and networking event name badges',
+      'NFC smart digital business cards and tap-to-share metal card backings',
+      'Email signature graphic badges and LinkedIn profile background banners',
+      'Conference speaker podium introduction slides and webinar ending decks',
+      'Real estate agent lawn yard signs, property flyers, and vehicle magnetic decals'
     ],
     faqs: [
       {
-        q: 'What happens when someone scans a vCard QR code?',
-        a: 'Their phone automatically launches the Contacts app with all your details pre-filled and a single "Save Contact" button.'
+        q: 'What happens when someone scans a vCard QR code on iPhone or Android?',
+        a: 'When scanned with a native smartphone camera, the operating system parses the standard BEGIN:VCARD payload and automatically presents a native contact card preview. On iOS (Apple Contacts) and Android (Google Contacts), the recipient can review your full name, phone number, email address, job title, company, and website, then tap "Create New Contact" or "Add to Contacts" with zero manual typing.'
+      },
+      {
+        q: 'What is the difference between a vCard QR code and a plain text contact card?',
+        a: 'A plain text QR code simply displays unstructured text on the screen, requiring the recipient to copy and paste individual phone numbers and emails into separate fields. A vCard QR code follows the IETF RFC 2426 specification, structuring data into standardized attributes (FN:, TEL:, EMAIL:, ORG:, URL:) that the smartphone\'s address book immediately recognizes as a structured digital business card (.vcf).'
+      },
+      {
+        q: 'Can I print a vCard QR code on physical paper business cards?',
+        a: 'Yes. A vCard QR code is ideal for standard 3.5 × 2.0 inch (89 × 51 mm) paper business cards. We recommend printing the QR code at a minimum size of 0.8 × 0.8 inches (20 × 20 mm) at 300 DPI or higher to ensure easy focusing by mobile cameras. Export in scalable vector SVG format to ensure razor-sharp edges and scannability across professional offset or digital printing presses.'
+      },
+      {
+        q: 'Can I link this vCard QR code to an NFC smart business card?',
+        a: 'Yes. You can pair a printed vCard QR code with an NFC chip on plastic or metal smart cards. If a contact\'s smartphone lacks NFC or has NFC disabled, they can simply point their camera at the printed QR code to load the identical digital business card (.vcf) profile instantly.'
+      },
+      {
+        q: 'Is my personal contact information stored on UniversalCodeMaker servers?',
+        a: 'No. UniversalCodeMaker runs completely inside your local web browser. Your name, private phone number, email address, company details, and notes are encoded directly into the QR code matrix on your device. We do not store, track, harvest, or transmit your contact data to any external server or database.'
+      },
+      {
+        q: 'Will my vCard QR code expire or stop working after a certain number of scans?',
+        a: 'No. This is a static vCard QR code that embeds your full contact information directly into the barcode pattern itself. There are no scan limits, no monthly subscriptions, and no intermediate redirect servers that could shut down. As long as the QR code image remains readable, it will function permanently on any scanning device.'
       }
+    ],
+    relatedSlugs: [
+      'wifi-qr-code-generator',
+      'google-reviews-qr-code-generator',
+      'google-maps-location-qr-code-generator',
+      'upi-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'plain-text-qr-code-generator'
     ]
   },
   {
