@@ -1269,40 +1269,58 @@ const SEO_PAGES = [
     shortName: 'Bulk Excel / CSV',
     queryParam: 'batch=open',
     category: 'Logistics & 1D',
-    metaTitle: 'Free Bulk Barcode Generator from Excel or CSV',
-    metaDescription: 'Paste a column from Excel, Google Sheets or CSV to make up to 200 barcodes or QR codes at once: a ZIP of PNG/SVG files or an Avery PDF, one code per label.',
+    metaTitle: 'Free Bulk Barcode Generator: Excel, CSV & Sequential',
+    metaDescription: 'Generate bulk barcodes from Excel, CSV, or sequential series. Batch export up to 200 Code 128, UPC, or QR codes as a ZIP of SVGs or Avery PDF label sheets.',
     h1: 'Free Bulk Barcode Generator from Excel & CSV',
-    lead: 'Make up to 200 barcodes or QR codes at once from a numbered sequence or a pasted list. Copy a column from Excel, Google Sheets or your inventory system, paste it in, and download a ZIP of images or an Avery PDF sheet with one code per label.',
+    lead: 'Batch generate up to 200 barcodes or QR codes directly from your Excel spreadsheet, CSV export, or auto-incrementing serial sequence. Download an organized ZIP of vector SVGs or print-ready Avery PDF label sheets with complete client-side privacy.',
     technicalSpec: {
-      inputDataSources: 'Pasted lines or CSV text (first column), or a numbered sequence (up to 100)',
-      supportedSymbologies: 'All 10 formats, including Code 128, EAN-13, UPC-A, Code 39 and QR Code',
-      batchCapacity: 'Up to 200 values per batch, made in your browser; you are told if more were pasted',
-      exportFormats: 'ZIP of PNG or SVG images, or Avery PDF sheets (5160, 5163, L7160) with one code per label',
-      privacyStandard: 'Your codes stay in your browser; inventory data is never uploaded to any server'
+      inputFormats: 'Pasted single column, CSV (IETF RFC 4180), Excel TSV, or auto-incrementing sequential series',
+      batchCapacity: 'Up to 200 barcodes per batch (pre-validation alerts if line count exceeds 200)',
+      supportedSymbologies: 'All 10 formats: Code 128, UPC-A, EAN-13, Code 39, ITF-14, QR Code, Data Matrix, Aztec, PDF417',
+      exportPackaging: 'Consolidated ZIP of individual SVGs/PNGs (001_SKU.svg) or 30-up Avery PDF sheets (5160, 5163, L7160)',
+      errorHandling: 'Pre-render syntax & check digit validation highlighting exact row numbers before generation',
+      dataPrivacy: '100% in-browser WebAssembly/JS execution; proprietary SKU lists and serial numbers are never uploaded'
     },
     useCases: [
-      'Warehouse inventory counting and annual stock audit tagging',
-      'Batch product labeling from Shopify, WooCommerce, or Amazon inventory CSV exports',
-      'Sequential serial numbers and asset tags (e.g. SN-0001 to SN-0100) on Avery labels',
-      'Event badge and trade show attendee registration credentials'
+      'Warehouse cycle counting and annual physical inventory audit asset labeling',
+      'Batch SKU barcode generation from Shopify, WooCommerce, or Amazon Seller inventory CSV exports',
+      'Sequential asset tagging and hardware serial numbering (e.g. SN-0001 to SN-0100) on Avery label sheets',
+      'Trade show attendee credential badges and event ticketing QR code batch runs',
+      'Manufacturing work-in-progress traveler routing tags and laboratory specimen tube labeling'
     ],
     faqs: [
       {
-        q: 'How do I make barcodes from an Excel or Google Sheets column?',
-        a: 'Put one value per row in a single column (SKU, part number or barcode number). Copy the column, open Batch Mode in the studio, choose the Paste List / CSV tab and paste. For CSV text, the first column is used. Up to 200 values per batch.'
+        q: 'How do I generate barcodes from an Excel or Google Sheets spreadsheet column?',
+        a: 'Prepare your spreadsheet with one barcode payload or SKU per row in a single column without formulas or header text. Select and copy the column cells (Ctrl+C / Cmd+C). In UniversalCodeMaker, open Batch Mode, select the Paste List / CSV tab, and paste directly into the input area. The engine automatically trims whitespace and parses tab-separated values (taking column 1 if multiple columns are pasted), supporting up to 200 values per batch.'
       },
       {
-        q: 'How many barcodes can I make at once?',
-        a: 'Up to 200 values per batch. If you paste more, the tool tells you how many were left out, so you can run the rest as a second batch. Everything is made in your browser, so the speed depends on your device.'
+        q: 'What happens if one barcode value in my 200-row batch contains a formatting error or invalid check digit?',
+        a: 'UniversalCodeMaker executes pre-flight validation on every single row before rendering begins. If any item contains illegal characters (such as letters in a UPC-A/EAN-13 numeric string) or an incorrect check digit, generation pauses and displays the exact line number along with the specific error. Nothing is exported until the invalid entry is corrected, guaranteeing zero spoiled labels or wasted sheet paper.'
       },
       {
-        q: 'Is my proprietary inventory or pricing data sent to a cloud server?',
-        a: 'Never. The data you paste is processed entirely in your browser and is never sent over the network.'
+        q: 'Can I generate sequential serial numbers without uploading a spreadsheet file?',
+        a: 'Yes. Under the Sequenced Numbers tab, you can configure an automated series without preparing an external file. Define an alphanumeric prefix (e.g., "SN-" or "LOT2026-"), set a starting integer (e.g., 1001), specify total count (up to 100 per sequence run), and set zero-padding digit width. The studio instantly populates the sequence and generates sequential barcodes in numerical order.'
       },
       {
-        q: 'Can I print bulk barcodes directly onto Avery label sheets?',
-        a: 'Yes. In Batch Mode, set Export Format to Avery PDF sheet, choose 5160, 5163 or L7160, and download a PDF with a different code on each label, in the order of your list. Tick the option to print each value as text under its code.'
+        q: 'Can I print bulk barcodes directly onto Avery label sheets instead of downloading loose image files?',
+        a: 'Yes. In Batch Mode, set Export Format to "Avery PDF Sheet" and select your sheet layout—such as Avery 5160 (30 labels per sheet, 1" × 2-5/8"), Avery 5163 (10 shipping labels per sheet, 2" × 4"), or Avery L7160 (A4 European standard). Each label prints a different code from your list in sequential order, with an optional toggle to include human-readable text beneath the bars.'
+      },
+      {
+        q: 'How are individual barcode files named inside the downloaded ZIP archive?',
+        a: 'When choosing ZIP export (vector SVG or high-resolution PNG), each file is systematically named using its zero-padded list index followed by the encoded value (e.g., 001_SKU-A101.svg, 002_SKU-A102.svg). This consistent naming convention preserves your original spreadsheet row sequence and makes importing into packaging layout software or asset databases effortless.'
+      },
+      {
+        q: 'Is my proprietary inventory, supplier SKU, or pricing data stored on UniversalCodeMaker servers?',
+        a: 'No. UniversalCodeMaker operates completely client-side inside your local web browser using WebAssembly and pure JavaScript. Your pasted product lists, confidential customer numbers, cost data, and internal serial sequences never traverse the internet and are never logged, cached, or stored on any server. You can even run the batch generator completely offline once loaded.'
       }
+    ],
+    relatedSlugs: [
+      'avery-5160-barcode-generator',
+      'code-128-barcode-generator',
+      'code-39-barcode-generator',
+      'shopify-barcode-generator',
+      'amazon-fba-fnsku-barcode-generator',
+      'how-to-get-a-barcode-for-your-product'
     ]
   },
   {
