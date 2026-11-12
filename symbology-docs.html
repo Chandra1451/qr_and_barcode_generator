@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barcode &amp; QR Code Symbology Guide | UniversalCodeMaker</title>
-  <meta name="description" content="How QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417 and ITF-14 work: character sets, check digits, sizes and when to use each.">
+  <meta name="description" content="Complete symbology guide: QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, ITF-14, Code 39, ISBN. Character sets, check digits, and quiet zones.">
   <link rel="canonical" href="https://universalcodemaker.com/symbology-docs.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -16,7 +16,7 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="UniversalCodeMaker">
   <meta property="og:title" content="Barcode &amp; QR Symbology Documentation | UniversalCodeMaker.com">
-  <meta property="og:description" content="Comprehensive technical documentation and developer reference for the barcode symbologies UniversalCodeMaker generates, including QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, and ITF-14. Character sets, checksums, and rendering specifications.">
+  <meta property="og:description" content="Comprehensive technical documentation and developer reference for the 10 barcode symbologies UniversalCodeMaker generates: QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, ITF-14, ISBN-13, and Code 39. Specifications, checksum math, and quiet zones.">
   <meta property="og:url" content="https://universalcodemaker.com/symbology-docs.html">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -28,12 +28,12 @@
       {
         "@type": "TechArticle",
         "headline": "Barcode & QR Symbology Documentation",
-        "description": "Comprehensive technical documentation and developer reference for the barcode symbologies UniversalCodeMaker generates, including QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, and ITF-14. Character sets, checksums, and rendering specifications.",
+        "description": "Comprehensive technical documentation and developer reference for the 10 barcode symbologies UniversalCodeMaker generates: QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, ITF-14, ISBN-13, and Code 39. Specifications, checksum math, and quiet zones.",
         "url": "https://universalcodemaker.com/symbology-docs.html",
         "image": "https://universalcodemaker.com/assets/og-preview.png",
         "inLanguage": "en",
-        "dateModified": "2026-09-24",
-        "about": ["QR Code", "Code 128", "EAN-13", "UPC-A", "Data Matrix", "Aztec Code", "PDF417", "ITF-14"],
+        "dateModified": "2026-11-12",
+        "about": ["QR Code", "Code 128", "EAN-13", "UPC-A", "Data Matrix", "Aztec Code", "PDF417", "ITF-14", "ISBN-13", "Code 39"],
         "author": { "@type": "Organization", "name": "UniversalCodeMaker.com", "url": "https://universalcodemaker.com/", "logo": "https://universalcodemaker.com/assets/logo-icon.png" },
         "publisher": { "@type": "Organization", "name": "UniversalCodeMaker.com", "url": "https://universalcodemaker.com/", "logo": "https://universalcodemaker.com/assets/logo-icon.png" }
       },
@@ -808,13 +808,18 @@
           <p class="docs-text">
             <strong>Logo Embedding Best Practice:</strong> When placing a custom brand logo or icon into the center of a QR code, <em>always enforce Error Correction Level H (30% redundancy)</em>. This ensures the scanner can reconstruct the obscured central data modules without any scanning failure.
           </p>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/wifi-qr-code-generator.html">Wi-Fi QR code generator</a></li>
               <li><a href="pages/vcard-qr-code-generator.html">vCard business card QR code</a></li>
               <li><a href="pages/google-reviews-qr-code-generator.html">Google review QR code</a></li>
-              <li><a href="pages/whatsapp-qr-code-generator.html">WhatsApp QR code</a></li>
+              <li><a href="pages/whatsapp-qr-code-generator.html">WhatsApp direct chat QR</a></li>
+              <li><a href="pages/email-qr-code-generator.html">Email message QR code</a></li>
+              <li><a href="pages/sms-qr-code-generator.html">SMS direct text QR</a></li>
+              <li><a href="pages/phone-call-qr-code-generator.html">Phone call dialer QR</a></li>
+              <li><a href="pages/crypto-qr-code-generator.html">Crypto payment QR</a></li>
+              <li><a href="pages/plain-text-qr-code-generator.html">Plain text QR code</a></li>
             </ul>
           </nav>
         </section>
@@ -863,7 +868,7 @@
           <p class="docs-text">
             Data Matrix is used in direct-part marking and regulated traceability workflows. The required data, symbol size and verification process depend on the applicable specification and recipient.
           </p>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/data-matrix-generator.html">Free Data Matrix code generator</a></li>
@@ -915,7 +920,7 @@
           <p class="docs-text">
             The Aztec standard permits a <strong>zero-module quiet zone</strong>. In a real layout, leave separation where practical and test the printed or on-screen symbol with the intended scanners.
           </p>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/aztec-code-generator.html">Free Aztec code generator</a></li>
@@ -963,7 +968,7 @@
               <div class="spec-value">Structured records, documents, shipping data</div>
             </div>
           </div>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/pdf417-barcode-generator.html">Free PDF417 barcode generator</a></li>
@@ -1016,11 +1021,13 @@
               <div class="spec-value">10x Narrow Bar Width</div>
             </div>
           </div>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/code-128-barcode-generator.html">Free Code 128 barcode generator</a></li>
               <li><a href="pages/amazon-fba-fnsku-barcode-generator.html">Amazon FBA / FNSKU labels</a></li>
+              <li><a href="pages/bulk-barcode-generator-excel.html">Bulk Excel barcode generator</a></li>
+              <li><a href="pages/avery-5160-barcode-generator.html">Print on Avery 5160 sheets</a></li>
             </ul>
           </nav>
         </section>
@@ -1065,12 +1072,14 @@
               <div class="spec-value">Retail GTIN acceptance depends on the recipient and market</div>
             </div>
           </div>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/ean-13-barcode-generator.html">Free EAN-13 barcode generator</a></li>
               <li><a href="pages/shopify-barcode-generator.html">Shopify product barcodes</a></li>
               <li><a href="pages/avery-5160-barcode-generator.html">Print on Avery 5160 labels</a></li>
+              <li><a href="pages/upc-vs-ean-13-barcode.html">UPC vs EAN-13 comparison</a></li>
+              <li><a href="pages/how-to-get-a-barcode-for-your-product.html">How to get a barcode</a></li>
             </ul>
           </nav>
         </section>
@@ -1096,11 +1105,13 @@
           <p class="docs-text">
             UPC-A is the standard retail barcode used throughout the United States and Canada. It encodes exactly 12 numeric digits (or 11 data digits + 1 Modulo 10 check digit). An EAN-13 barcode with a leading zero ('0') is mathematically identical to a 12-digit UPC-A barcode.
           </p>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/upc-a-barcode-generator.html">Free UPC-A barcode generator</a></li>
               <li><a href="pages/shopify-barcode-generator.html">Shopify product barcodes</a></li>
+              <li><a href="pages/upc-vs-ean-13-barcode.html">UPC vs EAN-13 comparison</a></li>
+              <li><a href="pages/how-to-get-a-barcode-for-your-product.html">How to get a barcode</a></li>
             </ul>
           </nav>
         </section>
@@ -1126,10 +1137,11 @@
           <p class="docs-text">
             An ISBN-13 barcode is an EAN-13 symbol whose number starts with the <strong>978</strong> or <strong>979</strong> "Bookland" prefix, so any retail scanner can read it. Enter the ISBN with or without hyphens; the 13th digit is a Modulo 10 check digit, and the studio rejects a wrong one instead of printing an unsellable barcode. An optional 5-digit <strong>EAN-5 price add-on</strong> (for example <code>51999</code> = US $19.99, <code>90000</code> = no suggested price) prints to the right of the main symbol, as many book distributors expect.
           </p>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/isbn-book-barcode-generator.html">Free ISBN book barcode generator</a></li>
+              <li><a href="pages/ean-13-barcode-generator.html">Standard EAN-13 retail barcode</a></li>
             </ul>
           </nav>
         </section>
@@ -1155,10 +1167,11 @@
           <p class="docs-text">
             ITF-14 encodes 14 numeric digits and is printed with heavy black horizontal borders called <strong>Bearer Bars</strong>. These bearer bars suppress plate-spread and stop misreads caused when a handheld laser scanner skims across the edge of corrugated cardboard packaging.
           </p>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/itf-14-barcode-generator.html">Free ITF-14 carton barcode generator</a></li>
+              <li><a href="pages/code-128-barcode-generator.html">Code 128 logistics &amp; pallet labels</a></li>
             </ul>
           </nav>
         </section>
@@ -1184,10 +1197,12 @@
           <p class="docs-text">
             Code 39 encodes uppercase letters A&ndash;Z, digits 0&ndash;9, space and the symbols <code>- . $ / + %</code>. It is self-checking and needs no check digit, which is why it is still common on IT asset tags, ID badges, healthcare specimen labels and defence logistics. An optional <strong>Mod-43 check character</strong> can be added when a customer specification requires it. Code 39 is wide for the amount of data it holds; when space is tight and your scanners support it, Code 128 packs the same data into a much shorter barcode.
           </p>
-                  <nav class="docs-related" aria-label="Related generators">
+          <nav class="docs-related" aria-label="Related generators">
             <span class="docs-related-label">Make one</span>
             <ul>
               <li><a href="pages/code-39-barcode-generator.html">Free Code 39 barcode generator</a></li>
+              <li><a href="pages/avery-5160-barcode-generator.html">Print asset tags on Avery 5160</a></li>
+              <li><a href="pages/bulk-barcode-generator-excel.html">Bulk Excel asset barcodes</a></li>
             </ul>
           </nav>
         </section>
@@ -1216,8 +1231,9 @@
               Filter Scenarios by Use Case:
             </div>
             <div class="scenario-filter-bar" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-              <button type="button" class="scenario-pill active" data-filter="all">All Scenarios (7)</button>
+              <button type="button" class="scenario-pill active" data-filter="all">All Scenarios (8)</button>
               <button type="button" class="scenario-pill" data-filter="retail" style="display: inline-flex; align-items: center; gap: 0.35rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> Retail POS &amp; Supermarkets</button>
+              <button type="button" class="scenario-pill" data-filter="ecommerce" style="display: inline-flex; align-items: center; gap: 0.35rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Amazon &amp; Shopify Marketplaces</button>
               <button type="button" class="scenario-pill" data-filter="logistics" style="display: inline-flex; align-items: center; gap: 0.35rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> Shipping Cartons &amp; Cases</button>
               <button type="button" class="scenario-pill" data-filter="warehouse" style="display: inline-flex; align-items: center; gap: 0.35rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg> Warehouse &amp; Asset Tags</button>
               <button type="button" class="scenario-pill" data-filter="electronics" style="display: inline-flex; align-items: center; gap: 0.35rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg> Electronics &amp; Medical (UDI)</button>
@@ -1243,6 +1259,7 @@
               <div class="scenario-meta">
                 <div><strong>Open retail use:</strong> Obtain identifiers accepted by the retailer or marketplace; many use GS1-licensed GTINs.</div>
                 <div><strong>Closed-loop alternative:</strong> For internal inventory that does not need a retail GTIN, define an internal identifier in Code 128 or another format accepted by your own system.</div>
+                <div><strong>Dedicated Tools &amp; Guides:</strong> Generate retail packaging codes with our <a href="pages/ean-13-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Free EAN-13 Barcode Generator</a>, read our <a href="pages/how-to-get-a-barcode-for-your-product.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">How to Get a Barcode for Your Product</a> guide, or compare standards in <a href="pages/upc-vs-ean-13-barcode.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">UPC vs EAN-13</a>.</div>
               </div>
               <a href="index.html?symbology=ean-13" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate EAN-13 in Studio</a>
             </div>
@@ -1261,6 +1278,7 @@
               <div class="scenario-meta">
                 <div><strong>Identifier source:</strong> Use a GTIN accepted by the recipient; marketplace and retailer policies can differ and may change.</div>
                 <div><strong>Check Digit:</strong> 12th digit is calculated using GS1 Modulo-10 parity.</div>
+                <div><strong>Dedicated Tools &amp; Guides:</strong> Generate North American retail labels with our <a href="pages/upc-a-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Free UPC-A Barcode Generator</a>, read <a href="pages/upc-vs-ean-13-barcode.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">UPC vs EAN-13 Barcode Comparison</a>, or prepare products for <a href="pages/shopify-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Shopify POS Barcodes</a>.</div>
               </div>
               <a href="index.html?symbology=upc-a" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate UPC-A in Studio</a>
             </div>
@@ -1279,6 +1297,7 @@
               <div class="scenario-meta">
                 <div><strong>Usage note:</strong> ITF-14 is intended for logistics units such as cartons, not ordinary retail point-of-sale scanning.</div>
                 <div><strong>Licensing:</strong> Incorporates your item's GTIN plus packaging indicator digit.</div>
+                <div><strong>Dedicated Logistics Tools:</strong> Generate corrugated carton labels with our <a href="pages/itf-14-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Free ITF-14 Barcode Generator</a> or format shipping container manifests with our <a href="pages/code-128-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Code 128 Generator</a>.</div>
               </div>
               <a href="index.html?symbology=itf-14" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate ITF-14 in Studio</a>
             </div>
@@ -1297,6 +1316,7 @@
               <div class="scenario-meta">
                 <div><strong>Identifier note:</strong> You can define internal SKU values, but customers and trading partners may impose their own data, label, or registration requirements.</div>
                 <div><strong>Character Support:</strong> Full 128 ASCII alphabet (letters, digits, symbols).</div>
+                <div><strong>Bulk &amp; Label Tools:</strong> Print high-density asset tags using our <a href="pages/code-128-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Code 128 Barcode Generator</a>, <a href="pages/code-39-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Code 39 Barcode Generator</a>, batch-export from spreadsheets with our <a href="pages/bulk-barcode-generator-excel.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Bulk Excel Barcode Generator</a>, or lay out adhesive sheets with our <a href="pages/avery-5160-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Avery 5160 Label Generator</a>.</div>
               </div>
               <a href="index.html?symbology=code-128" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Code 128 in Studio</a>
             </div>
@@ -1315,6 +1335,7 @@
               <div class="scenario-meta">
                 <div><strong>Regulated use:</strong> Data Matrix is used in UDI and pharmaceutical traceability systems; verify the current rule, required data and issuing authority for your product and market.</div>
                 <div><strong>Scanners:</strong> Requires 2D area-imager cameras (cannot use 1D red lasers).</div>
+                <div><strong>Dedicated Tool:</strong> Design compact industrial 2D symbols with our <a href="pages/data-matrix-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Free Data Matrix 2D Generator</a>.</div>
               </div>
               <a href="index.html?symbology=datamatrix" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Data Matrix in Studio</a>
             </div>
@@ -1332,6 +1353,7 @@
               </p>
               <div class="scenario-meta">
                 <div><strong>Standards:</strong> Aztec Code (ISO/IEC 24778) used by European rail networks (Eurostar, DB). PDF417 (ISO/IEC 15438) used for commercial freight bills of lading.</div>
+                <div><strong>Dedicated Tools:</strong> Generate zero-quiet-zone transit passes with our <a href="pages/aztec-code-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Aztec Code Generator</a> or multi-row documents with our <a href="pages/pdf417-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">PDF417 Barcode Generator</a>.</div>
               </div>
               <a href="index.html?symbology=aztec" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Aztec in Studio</a>
             </div>
@@ -1353,8 +1375,30 @@
                   Static and hosted QR services:
                 </strong>
                 UniversalCodeMaker stores the destination or other payload directly in a static QR code and does not control a redirect or expiry for it. The encoded destination, credentials, receiving app and third-party services can still change or stop working.
+                <div style="margin-top: 0.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                  <strong>Specialized QR Tools:</strong> Generate instant <a href="pages/wifi-qr-code-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Wi-Fi QR codes</a>, digital business cards with <a href="pages/vcard-qr-code-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">vCard QR</a>, customer feedback via <a href="pages/google-reviews-qr-code-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Google Reviews QR</a>, direct customer chat with <a href="pages/whatsapp-qr-code-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">WhatsApp QR</a>, pre-filled emails with <a href="pages/email-qr-code-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Email QR</a>, or 1-tap dialers with <a href="pages/phone-call-qr-code-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Phone Call QR</a>.
+                </div>
               </div>
               <a href="index.html?symbology=qrcode" class="scenario-btn" style="background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Static QR in Studio</a>
+            </div>
+
+            <!-- Scenario 8: Amazon FBA & Online Marketplaces -->
+            <div class="scenario-card" data-category="ecommerce">
+              <div class="scenario-badge amber">Marketplace Fulfillment &amp; eCommerce</div>
+              <h3 class="scenario-card-title">Amazon FBA Inbound, Shopify Stores &amp; Online Inventory</h3>
+              <div class="scenario-rec">
+                <span class="scenario-rec-label">Recommended Code:</span>
+                <span class="scenario-rec-val">Code 128 (FNSKU) / UPC-A / EAN-13</span>
+              </div>
+              <p class="scenario-desc">
+                Selling products online through Amazon FBA or multi-channel Shopify storefronts requires strict adherence to marketplace barcode rules. Amazon requires either the manufacturer GTIN or an Amazon-specific FNSKU sticker.
+              </p>
+              <div class="scenario-meta">
+                <div><strong>Amazon Compliance:</strong> Review platform requirements in our guide <a href="pages/do-i-need-a-barcode-to-sell-on-amazon.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Do I Need a Barcode to Sell on Amazon?</a> or generate compliant item stickers with our <a href="pages/amazon-fba-fnsku-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Amazon FBA / FNSKU Barcode Generator</a>.</div>
+                <div><strong>Shopify &amp; Boutique POS:</strong> Manage boutique product catalogs with our <a href="pages/shopify-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Shopify Product Barcode Generator</a>.</div>
+                <div><strong>Multi-SKU Batch Printing:</strong> Generate hundreds of item labels from spreadsheets with our <a href="pages/bulk-barcode-generator-excel.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Bulk Excel Barcode Generator</a> and format onto sheets with our <a href="pages/avery-5160-barcode-generator.html" style="font-weight: 700; color: var(--accent-text); text-decoration: underline;">Avery 5160 Label Generator</a>.</div>
+              </div>
+              <a href="pages/amazon-fba-fnsku-barcode-generator.html" class="scenario-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Generate Amazon FBA Labels</a>
             </div>
 
           </div>
