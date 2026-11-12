@@ -695,25 +695,59 @@ const SEO_PAGES = [
     shortName: 'Email QR',
     queryParam: 'wizard=email',
     category: 'Smart QR',
-    metaTitle: 'Free Email QR Code Generator (mailto)',
-    metaDescription: 'Generate mailto QR codes with a recipient, subject line and body text. Free to use, with vector SVG and high-resolution PNG export.',
+    metaTitle: 'Free Email QR Code Generator: Pre-Filled mailto & Subject',
+    metaDescription: 'Generate free email QR codes with pre-filled recipient, subject & body message. Uses RFC 6068 mailto URIs for instant 1-tap drafting with vector SVG export.',
     h1: 'Free Pre-Filled Email (mailto) QR Code Generator',
-    lead: 'Create interactive email QR codes that automatically open the user’s default mail app (Apple Mail, Gmail, Outlook) with your recipient email, subject line, and body message pre-populated.',
+    lead: 'Create interactive email QR codes that automatically open native mail apps (Apple Mail, Gmail, Outlook) with your recipient email address, subject line, and draft message pre-populated.',
     technicalSpec: {
-      protocol: 'mailto: URI scheme (RFC 6068)',
-      parameters: 'subject, body, cc, bcc',
-      encoding: 'Standard URL percentage-encoding for special characters'
+      standard: 'IETF RFC 6068 mailto URI Scheme & ISO/IEC 18004:2024 QR Code',
+      uriFormat: 'mailto:recipient@example.com?subject=Encoded%20Subject&body=Encoded%20Body',
+      supportedParameters: 'To: (primary), Subject: (headline), Body: (draft message), CC / BCC fields',
+      characterEncoding: 'Standard RFC 3986 percent-encoding (spaces as %20, line breaks as %0A)',
+      clientCompatibility: 'Apple Mail (iOS/macOS), Gmail (Android/Web), Outlook, Samsung Email, Thunderbird',
+      exportFormats: 'Scalable vector SVG (print-ready) and high-resolution PNG (300 DPI)',
+      privacySecurity: '100% client-side generation. Email addresses and message drafts are never sent to our servers'
     },
     useCases: [
-      'Customer support feedback signs and product warranty cards',
-      'RSVP registration for private events and conferences',
-      'Lead capture on flyers, posters, and billboard ads'
+      'Customer service warranty registration & physical appliance repair requests',
+      'Conference RSVP invitations, private club registration, and speaker feedback',
+      'Real estate agent property inquiries on lawn yard signs and print flyers',
+      'Enterprise IT helpdesk trouble ticketing stickers on office equipment',
+      'Recruitment and hiring resume submission codes on poster job ads'
     ],
     faqs: [
       {
-        q: 'What happens when someone scans an email QR code?',
-        a: 'Their smartphone opens their primary email app with the To:, Subject:, and Body: fields already filled in, ready to send with one tap.'
+        q: 'How does an email QR code work when scanned?',
+        a: 'An email QR code encodes a standard mailto: URI according to IETF RFC 6068. When scanned with any smartphone camera or QR reader, the operating system launches the user’s default email client (such as Apple Mail, Gmail, or Outlook) with the recipient address, subject line, and body draft already filled in. The user simply reviews the draft and taps send.'
+      },
+      {
+        q: 'Does scanning the QR code automatically send the email?',
+        a: 'No. For security and anti-spam reasons, mobile operating systems and email clients require the user to explicitly tap the "Send" button. The QR code only opens the mail compose window and populates the fields; it cannot dispatch an email without user consent.'
+      },
+      {
+        q: 'Can I include line breaks and formatting in the pre-filled email body?',
+        a: 'Yes. UniversalCodeMaker automatically encodes multi-line body templates using standard URL percent-encoding (such as %0A for line breaks and %20 for spaces). When opened in modern email applications, your paragraphs, bullet points, and blank lines appear exactly as drafted.'
+      },
+      {
+        q: 'Can I pre-fill multiple recipient addresses or CC/BCC fields?',
+        a: 'Yes. Under RFC 6068, multiple comma-separated email addresses can be encoded in the recipient field, or passed via standard ?cc= and ?bcc= URL parameters. All recipient addresses will populate directly in the respective fields of the user’s email app.'
+      },
+      {
+        q: 'What is the recommended print size for email QR codes on flyers and business cards?',
+        a: 'For simple email addresses with a short subject line, a print size of 1.0 × 1.0 inch (25 × 25 mm) with a 4-module quiet zone is ideal. If your QR code encodes a detailed multi-sentence body template, the matrix density increases; print at least 1.5 × 1.5 inches (38 × 38 mm) or larger to ensure instant mobile autofocus.'
+      },
+      {
+        q: 'Are my email addresses or message templates stored on your servers?',
+        a: 'Never. UniversalCodeMaker operates completely client-side in your web browser. Email addresses, subject lines, and message bodies are encoded directly in local browser memory using JavaScript. No email addresses or personal correspondence are ever transmitted to or logged on any external server.'
       }
+    ],
+    relatedSlugs: [
+      'sms-qr-code-generator',
+      'phone-call-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'vcard-qr-code-generator',
+      'wifi-qr-code-generator',
+      'plain-text-qr-code-generator'
     ]
   },
   {
