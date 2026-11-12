@@ -7,8 +7,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Shopify Barcode Generator (UPC-A & EAN-13)</title>
-  <meta name="description" content="Make UPC-A and EAN-13 barcodes for Shopify products and POS scanners. Check digit included; vector SVG, PNG and Avery label sheets, free.">
+  <title>Free Shopify Barcode Generator: Product SKUs & POS Tags</title>
+  <meta name="description" content="Generate free Shopify product barcodes & variant SKU labels. Create scannable UPC-A, EAN-13 & Code 128 price tags for Shopify POS without monthly app fees.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/shopify-barcode-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -23,14 +23,14 @@
   <link rel="manifest" href="../site.webmanifest">
 
   <!-- Open Graph & Social -->
-  <meta property="og:title" content="Free Shopify Barcode Generator (UPC-A & EAN-13)">
-  <meta property="og:description" content="Make UPC-A and EAN-13 barcodes for Shopify products and POS scanners. Check digit included; vector SVG, PNG and Avery label sheets, free.">
+  <meta property="og:title" content="Free Shopify Barcode Generator: Product SKUs & POS Tags">
+  <meta property="og:description" content="Generate free Shopify product barcodes & variant SKU labels. Create scannable UPC-A, EAN-13 & Code 128 price tags for Shopify POS without monthly app fees.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/shopify-barcode-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Free Shopify Barcode Generator (UPC-A & EAN-13)">
-  <meta name="twitter:description" content="Make UPC-A and EAN-13 barcodes for Shopify products and POS scanners. Check digit included; vector SVG, PNG and Avery label sheets, free.">
+  <meta name="twitter:title" content="Free Shopify Barcode Generator: Product SKUs & POS Tags">
+  <meta name="twitter:description" content="Generate free Shopify product barcodes & variant SKU labels. Create scannable UPC-A, EAN-13 & Code 128 price tags for Shopify POS without monthly app fees.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -329,7 +329,7 @@
   "@type": "WebApplication",
   "name": "Shopify Product Barcode Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/shopify-barcode-generator.html",
-  "description": "Make UPC-A and EAN-13 barcodes for Shopify products and POS scanners. Check digit included; vector SVG, PNG and Avery label sheets, free.",
+  "description": "Generate free Shopify product barcodes & variant SKU labels. Create scannable UPC-A, EAN-13 & Code 128 price tags for Shopify POS without monthly app fees.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -347,34 +347,50 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Does Shopify require official UPC or EAN barcodes?",
+      "name": "Does Shopify require official GS1 UPC or EAN barcodes for products?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If you are only selling in your own Shopify online store or physical retail location using Shopify POS, you can use any internal SKU or Code 128 barcode. However, if you sync products with Google Shopping, Amazon, or Facebook/Instagram commerce, you must provide authentic GS1 UPC or EAN numbers."
+        "text": "It depends on where you sell. If you only sell on your online store or in-person using Shopify POS, you do not need official GS1 barcodes—you can use free Code 128 barcodes based on your own internal variant SKUs. However, if you sync products to sales channels like Google Shopping, Amazon, Walmart, or Meta commerce, those external marketplaces mandate authentic GS1 UPC-A or EAN-13 barcodes registered under your brand prefix."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I print barcodes for my Shopify products without paying for an app?",
+      "name": "Where do I enter barcode numbers into the Shopify Admin dashboard?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Export your product list from Shopify admin (Products > Export > All products as CSV). Open UniversalCodeMaker, upload the CSV into our Batch Generator, and print directly to Avery sheets or thermal rolls without recurring monthly app subscriptions."
+        "text": "In Shopify Admin, navigate to Products and select an item. For single-variant products, scroll to the Inventory section and enter the number in the \"Barcode (ISBN, UPC, GTIN, etc.)\" field. For products with multiple options (sizes/colors), scroll to the Variants table, click Edit on each variant row, and enter the unique barcode in that variant's inventory settings."
       }
     },
     {
       "@type": "Question",
-      "name": "Which barcode scanner works best with Shopify POS on iPad or iPhone?",
+      "name": "How can I print barcode price tags for my Shopify catalog without paying monthly app fees?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Shopify POS officially recommends Bluetooth 1D/2D barcode scanners (such as Socket Mobile S700 or Tera Wireless Handheld Scanners) that pair via Bluetooth HID keyboard emulation."
+        "text": "Third-party Shopify app store barcode tools frequently charge $10 to $30 per month. UniversalCodeMaker allows you to export your product catalog from Shopify Admin (Products > Export > All products as CSV), copy the SKU or barcode column into our Bulk Barcode Generator, and instantly download print-ready Avery 5160 PDF sheets or thermal roll graphics—completely free with zero subscriptions."
       }
     },
     {
       "@type": "Question",
-      "name": "What label size is standard for Shopify retail clothing and shelf tags?",
+      "name": "What label sizes work best with desktop thermal printers for Shopify retail?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The most popular size for retail boutiques and apparel is 2.25\" × 1.25\" (or 2\" × 1\") direct thermal sticker rolls, which comfortably fit the product name, price, SKU, and barcode."
+        "text": "The retail standard for clothing, gifts, and shelf tags is 2.25\" × 1.25\" (57 mm × 32 mm) or 2\" × 1\" direct thermal rolls. This size provides ample area for the product title, variant attribute (e.g., \"Size: M / Black\"), price, and a scannable 1D barcode with 10X quiet zones. For standard office laser/inkjet printers, 30-up Avery 5160 label sheets (1\" × 2-5/8\") are widely used."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which barcode scanners are compatible with Shopify POS on iPad and iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shopify POS natively integrates with 1D and 2D Bluetooth wireless scanners that support HID (Human Interface Device) keyboard wedge mode, including Socket Mobile S700 / S740, Zebra DS2208, and Tera wireless scanners. When a barcode is scanned, the device inputs the SKU directly into the POS search field, instantly adding the item to the customer's cart."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my Shopify product catalog SKUs or wholesale price lists uploaded to your servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. UniversalCodeMaker operates entirely inside your local web browser. Your private product names, vendor SKUs, inventory counts, and retail prices are processed locally using client-side JavaScript. No data is transmitted across the internet, logged in databases, or stored on external servers."
       }
     }
   ]
@@ -452,7 +468,7 @@
         Retail & POS Standard
       </div>
       <h1 class="hero-title">Free Shopify Product Barcode & SKU Generator</h1>
-      <p class="hero-lead">Create scannable UPC, EAN, and Code 128 barcode labels for your Shopify product catalog and physical retail checkout counters. Easily import your product SKUs, design thermal price tags, and print without expensive third-party Shopify apps.</p>
+      <p class="hero-lead">Create scannable UPC-A, EAN-13, and Code 128 barcode labels for your Shopify online catalog and physical retail store. Design 2.25" × 1.25" thermal price tags and multi-label sheets with variant SKUs, product titles, and prices—free from monthly app fees.</p>
       
       <a href="../index.html?symbology=upc-a&preset=retail-225-125" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -472,23 +488,28 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Retail Standards</dt>
-      <dd class="spec-val">UPC-A (12 digits for US/CA) and EAN-13 (13 digits for International)</dd>
+      <dt class="spec-key">Symbology Options</dt>
+      <dd class="spec-val">UPC-A (12-digit US/CA retail), EAN-13 (13-digit International), and Code 128 (custom alphanumeric variant SKUs)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Internal Sku Format</dt>
-      <dd class="spec-val">Code 128 alphanumeric symbology for internal variant SKUs</dd>
+      <dt class="spec-key">Hardware Compatibility</dt>
+      <dd class="spec-val">Shopify POS Bluetooth scanners (Socket Mobile S700, Zebra ZD421, Tera handhelds via HID keyboard emulation)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Pos Hardware Compatibility</dt>
-      <dd class="spec-val">Compatibility depends on the selected symbology, scanner model, Shopify setup, label size and print quality; test before rollout</dd>
+      <dt class="spec-key">Label Presets</dt>
+      <dd class="spec-val">2.25" × 1.25" direct thermal price tags, 2" × 1" jewelry tags, and standard 30-up Avery 5160 sheets</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Label Dimensions</dt>
-      <dd class="spec-val">Standard 2.25" × 1.25" direct thermal price tags and Avery 5160 multi-pack sheets</dd>
+      <dt class="spec-key">Marketplace Rules</dt>
+      <dd class="spec-val">External channels (Google Shopping, Amazon) mandate authentic GS1 GTINs; internal store/POS can use Code 128 SKUs</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Data Privacy</dt>
+      <dd class="spec-val">100% in-browser generation; your confidential catalog, wholesale costs, and SKU lists never touch a server</dd>
     </div>
   
         </dl>
@@ -503,22 +524,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Shopify POS retail boutique and pop-up shop cash register checkouts</span>
+      <span>Shopify POS brick-and-mortar retail checkout and pop-up shop cash register scanning</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Printing thermal shelf price tags with Product Title, SKU, Price, and Barcode</span>
+      <span>Direct thermal apparel price tag labeling with Product Title, Variant SKU, Price, and Barcode</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Inventory receiving and warehouse stock fulfillment</span>
+      <span>Multi-channel inventory synchronization across Shopify, Google Merchant Center, and Amazon</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Tagging multi-variant apparel and consumer goods</span>
+      <span>Warehouse order picking and fulfillment verification using wireless barcode terminals</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Jewelry, accessories, and small goods tagging with compact high-density thermal stickers</span>
     </li>
   
         </ul>
@@ -703,41 +729,61 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>Does Shopify require official UPC or EAN barcodes?</span>
+        <span>Does Shopify require official GS1 UPC or EAN barcodes for products?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>If you are only selling in your own Shopify online store or physical retail location using Shopify POS, you can use any internal SKU or Code 128 barcode. However, if you sync products with Google Shopping, Amazon, or Facebook/Instagram commerce, you must provide authentic GS1 UPC or EAN numbers.</p>
+        <p>It depends on where you sell. If you only sell on your online store or in-person using Shopify POS, you do not need official GS1 barcodes—you can use free Code 128 barcodes based on your own internal variant SKUs. However, if you sync products to sales channels like Google Shopping, Amazon, Walmart, or Meta commerce, those external marketplaces mandate authentic GS1 UPC-A or EAN-13 barcodes registered under your brand prefix.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>How do I print barcodes for my Shopify products without paying for an app?</span>
+        <span>Where do I enter barcode numbers into the Shopify Admin dashboard?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Export your product list from Shopify admin (Products > Export > All products as CSV). Open UniversalCodeMaker, upload the CSV into our Batch Generator, and print directly to Avery sheets or thermal rolls without recurring monthly app subscriptions.</p>
+        <p>In Shopify Admin, navigate to Products and select an item. For single-variant products, scroll to the Inventory section and enter the number in the "Barcode (ISBN, UPC, GTIN, etc.)" field. For products with multiple options (sizes/colors), scroll to the Variants table, click Edit on each variant row, and enter the unique barcode in that variant's inventory settings.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Which barcode scanner works best with Shopify POS on iPad or iPhone?</span>
+        <span>How can I print barcode price tags for my Shopify catalog without paying monthly app fees?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Shopify POS officially recommends Bluetooth 1D/2D barcode scanners (such as Socket Mobile S700 or Tera Wireless Handheld Scanners) that pair via Bluetooth HID keyboard emulation.</p>
+        <p>Third-party Shopify app store barcode tools frequently charge $10 to $30 per month. UniversalCodeMaker allows you to export your product catalog from Shopify Admin (Products > Export > All products as CSV), copy the SKU or barcode column into our Bulk Barcode Generator, and instantly download print-ready Avery 5160 PDF sheets or thermal roll graphics—completely free with zero subscriptions.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>What label size is standard for Shopify retail clothing and shelf tags?</span>
+        <span>What label sizes work best with desktop thermal printers for Shopify retail?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>The most popular size for retail boutiques and apparel is 2.25" × 1.25" (or 2" × 1") direct thermal sticker rolls, which comfortably fit the product name, price, SKU, and barcode.</p>
+        <p>The retail standard for clothing, gifts, and shelf tags is 2.25" × 1.25" (57 mm × 32 mm) or 2" × 1" direct thermal rolls. This size provides ample area for the product title, variant attribute (e.g., "Size: M / Black"), price, and a scannable 1D barcode with 10X quiet zones. For standard office laser/inkjet printers, 30-up Avery 5160 label sheets (1" × 2-5/8") are widely used.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Which barcode scanners are compatible with Shopify POS on iPad and iPhone?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Shopify POS natively integrates with 1D and 2D Bluetooth wireless scanners that support HID (Human Interface Device) keyboard wedge mode, including Socket Mobile S700 / S740, Zebra DS2208, and Tera wireless scanners. When a barcode is scanned, the device inputs the SKU directly into the POS search field, instantly adding the item to the customer's cart.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Are my Shopify product catalog SKUs or wholesale price lists uploaded to your servers?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. UniversalCodeMaker operates entirely inside your local web browser. Your private product names, vendor SKUs, inventory counts, and retail prices are processed locally using client-side JavaScript. No data is transmitted across the internet, logged in databases, or stored on external servers.</p>
       </div>
     </details>
   
@@ -752,10 +798,18 @@
       </h2>
       <div class="related-grid">
         
-    <a href="./ean-13-barcode-generator.html" class="related-card">
+    <a href="./bulk-barcode-generator-excel.html" class="related-card">
+      <span class="related-tag">Logistics & 1D</span>
+      <span class="related-title">
+        <span>Bulk Barcode Generator from Excel</span>
+        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </span>
+    </a>
+  
+    <a href="./avery-5160-barcode-generator.html" class="related-card">
       <span class="related-tag">Retail & POS</span>
       <span class="related-title">
-        <span>EAN-13 Barcode Generator</span>
+        <span>Avery 5160 Barcode & QR Code Label Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
@@ -776,26 +830,18 @@
       </span>
     </a>
   
-    <a href="./itf-14-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./ean-13-barcode-generator.html" class="related-card">
+      <span class="related-tag">Retail & POS</span>
       <span class="related-title">
-        <span>ITF-14 Barcode Generator</span>
+        <span>EAN-13 Barcode Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./data-matrix-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./how-to-get-a-barcode-for-your-product.html" class="related-card">
+      <span class="related-tag">Seller Guide</span>
       <span class="related-title">
-        <span>Data Matrix Barcode Generator</span>
-        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </span>
-    </a>
-  
-    <a href="./aztec-code-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
-      <span class="related-title">
-        <span>Aztec Code Generator</span>
+        <span>How to Get a Barcode for Your Product</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
