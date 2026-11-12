@@ -410,27 +410,59 @@ const SEO_PAGES = [
     shortName: 'Aztec Code',
     queryParam: 'symbology=aztec',
     category: '2D Matrix',
-    metaTitle: 'Free Aztec Code Generator: 2D Barcode, SVG & PNG',
-    metaDescription: 'Make Aztec 2D codes online, the format used on mobile boarding passes and rail tickets. Download vector SVG or PNG, free and without sign-up.',
+    metaTitle: 'Free Aztec Code Generator: Airline & Transit 2D SVG',
+    metaDescription: 'Generate free Aztec Code 2D barcodes online. Central bullseye finder with zero required quiet zones for airline boarding passes, rail tickets & vector SVG.',
     h1: 'Free Aztec Code 2D Barcode Generator',
-    lead: 'Generate square Aztec 2D barcodes featuring a distinctive central bullseye target finder pattern. Standard format for airline mobile boarding passes and European railway ticketing.',
+    lead: 'Generate high-density Aztec Code 2D matrix barcodes featuring a distinctive central bullseye target finder pattern. The standard format for IATA airline mobile boarding passes, European railway e-ticketing, and compact industrial parts marking.',
     technicalSpec: {
-      standard: 'ISO/IEC 24778',
-      finderPattern: 'Central concentric square bullseye target pattern',
-      quietZone: 'The standard permits a 0-module quiet zone; leave practical separation where possible and test the final layout',
-      capacity: 'Up to 3,832 numeric digits or 3,067 alphanumeric characters'
+      symbologyStandard: 'ISO/IEC 24778:2008 & AIM ITS/97/002 (public domain, patent-free)',
+      finderPattern: 'Central concentric square bullseye target (eliminates perimeter finder clocks)',
+      quietZoneRequirement: '0-module quiet zone permitted by ISO spec; allows full-bleed printing on compact screens',
+      matrixModes: 'Compact Aztec (15×15 to 27×27 modules) and Full-Range Aztec (up to 151×151 modules)',
+      dataCapacity: 'Up to 3,832 numeric digits, 3,067 alphanumeric characters, or 1,914 raw 8-bit bytes',
+      errorCorrection: 'User-selectable Reed-Solomon polynomial algorithm from 5% up to 95% damaged area recovery',
+      clientPrivacy: '100% in-browser generation; transit ticket payloads and personal travel data are never uploaded'
     },
     useCases: [
-      'Airline IATA mobile boarding passes on smartphones',
-      'European rail and transit e-tickets (Eurostar, Deutsche Bahn, SNCF)',
-      'Vehicle registration documents and tax discs',
-      'Hospital patient wristband tracking'
+      'Airline mobile boarding passes on smartphone screens (IATA BCBP 2D standard)',
+      'European railway passenger e-tickets and turnstile gate entry (Eurostar, DB, SNCF, UIC 918-3)',
+      'Automated metro transit turnstiles and concert venue mobile admission passes',
+      'Hospital patient medical wristbands and bedside medication administration verification',
+      'Direct part marking on compact automotive components and microelectronics with zero margins'
     ],
     faqs: [
       {
-        q: 'Why do transit authorities prefer Aztec codes over QR codes?',
-        a: 'The Aztec standard permits a zero-module quiet zone, which can help in tight layouts. Leave practical separation where possible and test the final printed or on-screen symbol with the scanners you expect to use.'
+        q: 'Why do airlines and railway operators prefer Aztec Code over QR Code?',
+        a: 'Airlines (IATA) and European railways (UIC) choose Aztec Code because its central bullseye target finder pattern allows symbols to be decoded reliably from smartphone screens at any orientation, even under low-contrast or glare. Furthermore, unlike QR Codes which require a mandatory 4-module quiet zone border, Aztec Code can be printed or displayed with zero surrounding margin, maximizing scannable surface area on constrained mobile displays and compact ticket stock.'
+      },
+      {
+        q: 'What is the structural difference between Compact Aztec and Full-Range Aztec?',
+        a: 'Compact Aztec uses a 2-ring central bullseye (core size 9×9 modules) with 1 to 4 surrounding data layers, scaling from 15×15 up to 27×27 modules and holding up to 89 numeric or 56 alphanumeric characters. Full-Range Aztec features a 3-ring bullseye (core size 13×13 modules) with up to 32 data layers, reaching 151×151 modules with a maximum capacity of 3,832 numeric digits or 3,067 alphanumeric characters.'
+      },
+      {
+        q: 'Does Aztec Code require a quiet zone margin around its perimeter?',
+        a: 'Under ISO/IEC 24778, Aztec Code is the only major 2D matrix symbology that officially permits a 0-module quiet zone. Because reading begins strictly at the center bullseye and radiates outward, the decoder does not need an empty border to locate the symbol boundary. However, in physical print environments where neighboring text or dark borders are present, maintaining a 1-module separation is recommended to prevent optical bleed.'
+      },
+      {
+        q: 'How does Aztec Code Reed-Solomon error correction work?',
+        a: 'Aztec Code incorporates Reed-Solomon algebraic error correction over Galois Field GF(256) or GF(1024). The user can configure redundancy levels from a minimal 5% up to 95% of data capacity (default is typically 23%). This allows symbols to decode cleanly even if coffee stains, surface scratches, or screen cracks obliterate substantial portions of the outer data layers.'
+      },
+      {
+        q: 'Can standard laser barcode scanners decode Aztec codes?',
+        a: 'No. Traditional 1D linear laser scanners only sweep a single line of red light horizontally, which cannot decode 2D matrix symbols. Aztec Code requires a 2D area-imager scanner (camera-based CMOS/CCD sensor) or a smartphone camera with modern computer vision decoding libraries (such as ZXing or Apple Vision framework).'
+      },
+      {
+        q: 'Are travel itineraries, passenger names, or ticket payloads stored on UniversalCodeMaker servers?',
+        a: 'No. UniversalCodeMaker renders all Aztec symbols 100% locally in your web browser using WebAssembly. Your passenger names, booking references (PNRs), frequent flyer numbers, and transit payloads never traverse the internet and are never logged, stored, or tracked on external servers.'
       }
+    ],
+    relatedSlugs: [
+      'pdf417-barcode-generator',
+      'data-matrix-generator',
+      'code-128-barcode-generator',
+      'code-39-barcode-generator',
+      'bulk-barcode-generator-excel',
+      'avery-5160-barcode-generator'
     ]
   },
   {

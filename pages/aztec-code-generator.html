@@ -7,8 +7,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Aztec Code Generator: 2D Barcode, SVG & PNG</title>
-  <meta name="description" content="Make Aztec 2D codes online, the format used on mobile boarding passes and rail tickets. Download vector SVG or PNG, free and without sign-up.">
+  <title>Free Aztec Code Generator: Airline & Transit 2D SVG</title>
+  <meta name="description" content="Generate free Aztec Code 2D barcodes online. Central bullseye finder with zero required quiet zones for airline boarding passes, rail tickets & vector SVG.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/aztec-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -23,14 +23,14 @@
   <link rel="manifest" href="../site.webmanifest">
 
   <!-- Open Graph & Social -->
-  <meta property="og:title" content="Free Aztec Code Generator: 2D Barcode, SVG & PNG">
-  <meta property="og:description" content="Make Aztec 2D codes online, the format used on mobile boarding passes and rail tickets. Download vector SVG or PNG, free and without sign-up.">
+  <meta property="og:title" content="Free Aztec Code Generator: Airline & Transit 2D SVG">
+  <meta property="og:description" content="Generate free Aztec Code 2D barcodes online. Central bullseye finder with zero required quiet zones for airline boarding passes, rail tickets & vector SVG.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/aztec-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Free Aztec Code Generator: 2D Barcode, SVG & PNG">
-  <meta name="twitter:description" content="Make Aztec 2D codes online, the format used on mobile boarding passes and rail tickets. Download vector SVG or PNG, free and without sign-up.">
+  <meta name="twitter:title" content="Free Aztec Code Generator: Airline & Transit 2D SVG">
+  <meta name="twitter:description" content="Generate free Aztec Code 2D barcodes online. Central bullseye finder with zero required quiet zones for airline boarding passes, rail tickets & vector SVG.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -329,7 +329,7 @@
   "@type": "WebApplication",
   "name": "Aztec Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/aztec-code-generator.html",
-  "description": "Make Aztec 2D codes online, the format used on mobile boarding passes and rail tickets. Download vector SVG or PNG, free and without sign-up.",
+  "description": "Generate free Aztec Code 2D barcodes online. Central bullseye finder with zero required quiet zones for airline boarding passes, rail tickets & vector SVG.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -347,10 +347,50 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Why do transit authorities prefer Aztec codes over QR codes?",
+      "name": "Why do airlines and railway operators prefer Aztec Code over QR Code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Aztec standard permits a zero-module quiet zone, which can help in tight layouts. Leave practical separation where possible and test the final printed or on-screen symbol with the scanners you expect to use."
+        "text": "Airlines (IATA) and European railways (UIC) choose Aztec Code because its central bullseye target finder pattern allows symbols to be decoded reliably from smartphone screens at any orientation, even under low-contrast or glare. Furthermore, unlike QR Codes which require a mandatory 4-module quiet zone border, Aztec Code can be printed or displayed with zero surrounding margin, maximizing scannable surface area on constrained mobile displays and compact ticket stock."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the structural difference between Compact Aztec and Full-Range Aztec?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compact Aztec uses a 2-ring central bullseye (core size 9×9 modules) with 1 to 4 surrounding data layers, scaling from 15×15 up to 27×27 modules and holding up to 89 numeric or 56 alphanumeric characters. Full-Range Aztec features a 3-ring bullseye (core size 13×13 modules) with up to 32 data layers, reaching 151×151 modules with a maximum capacity of 3,832 numeric digits or 3,067 alphanumeric characters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Aztec Code require a quiet zone margin around its perimeter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under ISO/IEC 24778, Aztec Code is the only major 2D matrix symbology that officially permits a 0-module quiet zone. Because reading begins strictly at the center bullseye and radiates outward, the decoder does not need an empty border to locate the symbol boundary. However, in physical print environments where neighboring text or dark borders are present, maintaining a 1-module separation is recommended to prevent optical bleed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Aztec Code Reed-Solomon error correction work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aztec Code incorporates Reed-Solomon algebraic error correction over Galois Field GF(256) or GF(1024). The user can configure redundancy levels from a minimal 5% up to 95% of data capacity (default is typically 23%). This allows symbols to decode cleanly even if coffee stains, surface scratches, or screen cracks obliterate substantial portions of the outer data layers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can standard laser barcode scanners decode Aztec codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Traditional 1D linear laser scanners only sweep a single line of red light horizontally, which cannot decode 2D matrix symbols. Aztec Code requires a 2D area-imager scanner (camera-based CMOS/CCD sensor) or a smartphone camera with modern computer vision decoding libraries (such as ZXing or Apple Vision framework)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are travel itineraries, passenger names, or ticket payloads stored on UniversalCodeMaker servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. UniversalCodeMaker renders all Aztec symbols 100% locally in your web browser using WebAssembly. Your passenger names, booking references (PNRs), frequent flyer numbers, and transit payloads never traverse the internet and are never logged, stored, or tracked on external servers."
       }
     }
   ]
@@ -428,7 +468,7 @@
         2D Matrix Standard
       </div>
       <h1 class="hero-title">Free Aztec Code 2D Barcode Generator</h1>
-      <p class="hero-lead">Generate square Aztec 2D barcodes featuring a distinctive central bullseye target finder pattern. Standard format for airline mobile boarding passes and European railway ticketing.</p>
+      <p class="hero-lead">Generate high-density Aztec Code 2D matrix barcodes featuring a distinctive central bullseye target finder pattern. The standard format for IATA airline mobile boarding passes, European railway e-ticketing, and compact industrial parts marking.</p>
       
       <a href="../index.html?symbology=aztec" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -448,23 +488,38 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO/IEC 24778</dd>
+      <dt class="spec-key">Symbology Standard</dt>
+      <dd class="spec-val">ISO/IEC 24778:2008 & AIM ITS/97/002 (public domain, patent-free)</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Finder Pattern</dt>
-      <dd class="spec-val">Central concentric square bullseye target pattern</dd>
+      <dd class="spec-val">Central concentric square bullseye target (eliminates perimeter finder clocks)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Quiet Zone</dt>
-      <dd class="spec-val">The standard permits a 0-module quiet zone; leave practical separation where possible and test the final layout</dd>
+      <dt class="spec-key">Quiet Zone Requirement</dt>
+      <dd class="spec-val">0-module quiet zone permitted by ISO spec; allows full-bleed printing on compact screens</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Capacity</dt>
-      <dd class="spec-val">Up to 3,832 numeric digits or 3,067 alphanumeric characters</dd>
+      <dt class="spec-key">Matrix Modes</dt>
+      <dd class="spec-val">Compact Aztec (15×15 to 27×27 modules) and Full-Range Aztec (up to 151×151 modules)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Data Capacity</dt>
+      <dd class="spec-val">Up to 3,832 numeric digits, 3,067 alphanumeric characters, or 1,914 raw 8-bit bytes</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Error Correction</dt>
+      <dd class="spec-val">User-selectable Reed-Solomon polynomial algorithm from 5% up to 95% damaged area recovery</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Client Privacy</dt>
+      <dd class="spec-val">100% in-browser generation; transit ticket payloads and personal travel data are never uploaded</dd>
     </div>
   
         </dl>
@@ -479,22 +534,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Airline IATA mobile boarding passes on smartphones</span>
+      <span>Airline mobile boarding passes on smartphone screens (IATA BCBP 2D standard)</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>European rail and transit e-tickets (Eurostar, Deutsche Bahn, SNCF)</span>
+      <span>European railway passenger e-tickets and turnstile gate entry (Eurostar, DB, SNCF, UIC 918-3)</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Vehicle registration documents and tax discs</span>
+      <span>Automated metro transit turnstiles and concert venue mobile admission passes</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Hospital patient wristband tracking</span>
+      <span>Hospital patient medical wristbands and bedside medication administration verification</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Direct part marking on compact automotive components and microelectronics with zero margins</span>
     </li>
   
         </ul>
@@ -679,11 +739,61 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>Why do transit authorities prefer Aztec codes over QR codes?</span>
+        <span>Why do airlines and railway operators prefer Aztec Code over QR Code?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>The Aztec standard permits a zero-module quiet zone, which can help in tight layouts. Leave practical separation where possible and test the final printed or on-screen symbol with the scanners you expect to use.</p>
+        <p>Airlines (IATA) and European railways (UIC) choose Aztec Code because its central bullseye target finder pattern allows symbols to be decoded reliably from smartphone screens at any orientation, even under low-contrast or glare. Furthermore, unlike QR Codes which require a mandatory 4-module quiet zone border, Aztec Code can be printed or displayed with zero surrounding margin, maximizing scannable surface area on constrained mobile displays and compact ticket stock.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What is the structural difference between Compact Aztec and Full-Range Aztec?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Compact Aztec uses a 2-ring central bullseye (core size 9×9 modules) with 1 to 4 surrounding data layers, scaling from 15×15 up to 27×27 modules and holding up to 89 numeric or 56 alphanumeric characters. Full-Range Aztec features a 3-ring bullseye (core size 13×13 modules) with up to 32 data layers, reaching 151×151 modules with a maximum capacity of 3,832 numeric digits or 3,067 alphanumeric characters.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Does Aztec Code require a quiet zone margin around its perimeter?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Under ISO/IEC 24778, Aztec Code is the only major 2D matrix symbology that officially permits a 0-module quiet zone. Because reading begins strictly at the center bullseye and radiates outward, the decoder does not need an empty border to locate the symbol boundary. However, in physical print environments where neighboring text or dark borders are present, maintaining a 1-module separation is recommended to prevent optical bleed.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>How does Aztec Code Reed-Solomon error correction work?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Aztec Code incorporates Reed-Solomon algebraic error correction over Galois Field GF(256) or GF(1024). The user can configure redundancy levels from a minimal 5% up to 95% of data capacity (default is typically 23%). This allows symbols to decode cleanly even if coffee stains, surface scratches, or screen cracks obliterate substantial portions of the outer data layers.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can standard laser barcode scanners decode Aztec codes?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. Traditional 1D linear laser scanners only sweep a single line of red light horizontally, which cannot decode 2D matrix symbols. Aztec Code requires a 2D area-imager scanner (camera-based CMOS/CCD sensor) or a smartphone camera with modern computer vision decoding libraries (such as ZXing or Apple Vision framework).</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Are travel itineraries, passenger names, or ticket payloads stored on UniversalCodeMaker servers?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. UniversalCodeMaker renders all Aztec symbols 100% locally in your web browser using WebAssembly. Your passenger names, booking references (PNRs), frequent flyer numbers, and transit payloads never traverse the internet and are never logged, stored, or tracked on external servers.</p>
       </div>
     </details>
   
@@ -698,34 +808,10 @@
       </h2>
       <div class="related-grid">
         
-    <a href="./ean-13-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./pdf417-barcode-generator.html" class="related-card">
+      <span class="related-tag">2D Stacked</span>
       <span class="related-title">
-        <span>EAN-13 Barcode Generator</span>
-        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </span>
-    </a>
-  
-    <a href="./upc-a-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
-      <span class="related-title">
-        <span>UPC-A Barcode Generator</span>
-        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </span>
-    </a>
-  
-    <a href="./code-128-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
-      <span class="related-title">
-        <span>Code 128 Barcode Generator</span>
-        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </span>
-    </a>
-  
-    <a href="./itf-14-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
-      <span class="related-title">
-        <span>ITF-14 Barcode Generator</span>
+        <span>PDF417 Barcode Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
@@ -738,10 +824,34 @@
       </span>
     </a>
   
-    <a href="./pdf417-barcode-generator.html" class="related-card">
-      <span class="related-tag">2D Stacked</span>
+    <a href="./code-128-barcode-generator.html" class="related-card">
+      <span class="related-tag">Logistics & Shipping</span>
       <span class="related-title">
-        <span>PDF417 Barcode Generator</span>
+        <span>Code 128 Barcode Generator</span>
+        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </span>
+    </a>
+  
+    <a href="./code-39-barcode-generator.html" class="related-card">
+      <span class="related-tag">Logistics & 1D</span>
+      <span class="related-title">
+        <span>Code 39 Barcode Generator</span>
+        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </span>
+    </a>
+  
+    <a href="./bulk-barcode-generator-excel.html" class="related-card">
+      <span class="related-tag">Logistics & 1D</span>
+      <span class="related-title">
+        <span>Bulk Barcode Generator from Excel</span>
+        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </span>
+    </a>
+  
+    <a href="./avery-5160-barcode-generator.html" class="related-card">
+      <span class="related-tag">Retail & POS</span>
+      <span class="related-title">
+        <span>Avery 5160 Barcode & QR Code Label Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
