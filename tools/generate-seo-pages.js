@@ -756,25 +756,59 @@ const SEO_PAGES = [
     shortName: 'SMS QR',
     queryParam: 'wizard=sms',
     category: 'Smart QR',
-    metaTitle: 'Free SMS Text Message QR Code Generator - Scan to Send SMS',
-    metaDescription: 'Generate a static SMS QR code with a recipient and pre-written message. The payload is created in your browser for free PNG or SVG export.',
-    h1: 'Free SMS Text Message QR Code Generator',
-    lead: 'Create scan-to-text QR codes that immediately launch the native SMS/Messaging application with a pre-written text message ready to send to your target phone number.',
+    metaTitle: 'Free SMS QR Code Generator: Pre-Filled Text Message & SVG',
+    metaDescription: 'Generate free SMS QR codes with pre-filled recipient phone number & text message. Uses RFC 5724 sms: URIs for instant 1-tap drafting with vector SVG export.',
+    h1: 'Free Pre-Filled SMS Text Message QR Code Generator',
+    lead: 'Create interactive SMS QR codes that automatically launch native messaging apps (Apple Messages, Google Messages, Samsung Messages) with your target phone number and pre-written text message draft.',
     technicalSpec: {
-      protocol: 'smsto: and sms: URI schemes (RFC 5724)',
-      parameters: 'Recipient phone number, message text',
-      compatibility: 'Universal iOS Messages and Android Messages support'
+      standard: 'IETF RFC 5724 (URI Scheme for GSM Short Message Service) & ISO/IEC 18004:2024',
+      uriFormat: 'sms:+15551234567?body=Pre-filled%20text%20message (RFC 5724) or SMSTO:number:body',
+      phoneFormat: 'ITU-T E.164 international standard (+country code, area code, subscriber number)',
+      supportedParameters: 'Recipient phone number (or commercial short code) and pre-filled body text draft',
+      clientCompatibility: 'Apple Messages (iOS), Google Messages (Android), Samsung Messages, carrier native apps',
+      exportFormats: 'Scalable vector SVG (lossless print) and high-resolution PNG (300 DPI)',
+      privacySecurity: '100% client-side generation. Phone numbers and message drafts are never sent to external servers'
     },
     useCases: [
-      'Keyword opt-in SMS marketing campaigns (e.g. "Send VIP to 555-1234")',
-      'Emergency roadside assistance or maintenance dispatch',
-      'Text-to-win contests and promotional sweepstakes'
+      'Keyword opt-in SMS marketing & VIP club list building on retail posters',
+      'Customer service dispatch & equipment repair ticketing on appliance labels',
+      'Event check-in registration, silent auction bidding, and festival info desks',
+      'Real estate yard signs for instant property information & pricing text inquiries',
+      'Restaurant table feedback & curbside pickup arrival notifications'
     ],
     faqs: [
       {
-        q: 'Does the user get charged automatically when scanning?',
-        a: 'No. The user still has to tap "Send" in their messaging app. It simply pre-fills the message and phone number.'
+        q: 'How does an SMS QR code work when scanned?',
+        a: 'An SMS QR code encodes a standard sms: URI according to IETF RFC 5724 (or the legacy SMSTO: syntax). When scanned with a smartphone camera or QR reader, the operating system launches the user’s default messaging app (such as Apple Messages or Google Messages) with the destination phone number and draft body already filled in. The user merely reviews the message and taps send.'
+      },
+      {
+        q: 'Does scanning an SMS QR code automatically send the text message or charge the user?',
+        a: 'No. For anti-spam, security, and consumer billing protection, mobile operating systems strictly require the user to manually press the "Send" button. The QR code only opens the messaging app and populates the text fields; it cannot dispatch an SMS or trigger carrier charges without explicit user action.'
+      },
+      {
+        q: 'How should phone numbers be formatted for SMS QR codes?',
+        a: 'For reliable global scanning across both domestic and international visitors, use the ITU-T E.164 international phone number format, starting with a plus sign followed by the country code and full phone number (for example, +15551234567 for North America or +447911123456 for the UK). Omit parentheses, dashes, and spaces.'
+      },
+      {
+        q: 'Can I encode SMS marketing keywords or short codes into the QR code?',
+        a: 'Yes. In addition to standard 10-digit mobile phone numbers, SMS QR codes fully support 5-digit or 6-digit commercial short codes (such as 711711). You can pre-fill the exact keyword (e.g., "JOIN" or "DISCOUNT") in the body parameter to automate subscriber opt-in campaigns.'
+      },
+      {
+        q: 'What is the recommended print size for SMS QR codes on flyers and counter signs?',
+        a: 'For standard SMS codes with a short phone number and 1–2 sentence message, print at least 1.0 × 1.0 inch (25 × 25 mm) with a 4-module quiet zone. If your pre-filled text template contains extensive instructions or multiple paragraphs, the QR grid density increases; print at 1.5 × 1.5 inches (38 × 38 mm) or larger to ensure quick autofocus.'
+      },
+      {
+        q: 'Are phone numbers or text message drafts transmitted to your servers?',
+        a: 'Never. UniversalCodeMaker operates completely client-side in your web browser. Phone numbers, marketing keywords, and message bodies are compiled directly in local browser memory using JavaScript. No personal contact numbers, messages, or metadata are ever transmitted to or logged on any external server.'
       }
+    ],
+    relatedSlugs: [
+      'email-qr-code-generator',
+      'phone-call-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'vcard-qr-code-generator',
+      'wifi-qr-code-generator',
+      'plain-text-qr-code-generator'
     ]
   },
   {

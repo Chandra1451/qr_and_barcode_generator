@@ -7,8 +7,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free SMS Text Message QR Code Generator - Scan to Send SMS</title>
-  <meta name="description" content="Generate a static SMS QR code with a recipient and pre-written message. The payload is created in your browser for free PNG or SVG export.">
+  <title>Free SMS QR Code Generator: Pre-Filled Text Message & SVG</title>
+  <meta name="description" content="Generate free SMS QR codes with pre-filled recipient phone number & text message. Uses RFC 5724 sms: URIs for instant 1-tap drafting with vector SVG export.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/sms-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -23,14 +23,14 @@
   <link rel="manifest" href="../site.webmanifest">
 
   <!-- Open Graph & Social -->
-  <meta property="og:title" content="Free SMS Text Message QR Code Generator - Scan to Send SMS">
-  <meta property="og:description" content="Generate a static SMS QR code with a recipient and pre-written message. The payload is created in your browser for free PNG or SVG export.">
+  <meta property="og:title" content="Free SMS QR Code Generator: Pre-Filled Text Message & SVG">
+  <meta property="og:description" content="Generate free SMS QR codes with pre-filled recipient phone number & text message. Uses RFC 5724 sms: URIs for instant 1-tap drafting with vector SVG export.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/sms-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Free SMS Text Message QR Code Generator - Scan to Send SMS">
-  <meta name="twitter:description" content="Generate a static SMS QR code with a recipient and pre-written message. The payload is created in your browser for free PNG or SVG export.">
+  <meta name="twitter:title" content="Free SMS QR Code Generator: Pre-Filled Text Message & SVG">
+  <meta name="twitter:description" content="Generate free SMS QR codes with pre-filled recipient phone number & text message. Uses RFC 5724 sms: URIs for instant 1-tap drafting with vector SVG export.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -329,7 +329,7 @@
   "@type": "WebApplication",
   "name": "SMS Text QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/sms-qr-code-generator.html",
-  "description": "Generate a static SMS QR code with a recipient and pre-written message. The payload is created in your browser for free PNG or SVG export.",
+  "description": "Generate free SMS QR codes with pre-filled recipient phone number & text message. Uses RFC 5724 sms: URIs for instant 1-tap drafting with vector SVG export.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -347,10 +347,50 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Does the user get charged automatically when scanning?",
+      "name": "How does an SMS QR code work when scanned?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. The user still has to tap \"Send\" in their messaging app. It simply pre-fills the message and phone number."
+        "text": "An SMS QR code encodes a standard sms: URI according to IETF RFC 5724 (or the legacy SMSTO: syntax). When scanned with a smartphone camera or QR reader, the operating system launches the user’s default messaging app (such as Apple Messages or Google Messages) with the destination phone number and draft body already filled in. The user merely reviews the message and taps send."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does scanning an SMS QR code automatically send the text message or charge the user?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. For anti-spam, security, and consumer billing protection, mobile operating systems strictly require the user to manually press the \"Send\" button. The QR code only opens the messaging app and populates the text fields; it cannot dispatch an SMS or trigger carrier charges without explicit user action."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How should phone numbers be formatted for SMS QR codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For reliable global scanning across both domestic and international visitors, use the ITU-T E.164 international phone number format, starting with a plus sign followed by the country code and full phone number (for example, +15551234567 for North America or +447911123456 for the UK). Omit parentheses, dashes, and spaces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I encode SMS marketing keywords or short codes into the QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In addition to standard 10-digit mobile phone numbers, SMS QR codes fully support 5-digit or 6-digit commercial short codes (such as 711711). You can pre-fill the exact keyword (e.g., \"JOIN\" or \"DISCOUNT\") in the body parameter to automate subscriber opt-in campaigns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the recommended print size for SMS QR codes on flyers and counter signs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For standard SMS codes with a short phone number and 1–2 sentence message, print at least 1.0 × 1.0 inch (25 × 25 mm) with a 4-module quiet zone. If your pre-filled text template contains extensive instructions or multiple paragraphs, the QR grid density increases; print at 1.5 × 1.5 inches (38 × 38 mm) or larger to ensure quick autofocus."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are phone numbers or text message drafts transmitted to your servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never. UniversalCodeMaker operates completely client-side in your web browser. Phone numbers, marketing keywords, and message bodies are compiled directly in local browser memory using JavaScript. No personal contact numbers, messages, or metadata are ever transmitted to or logged on any external server."
       }
     }
   ]
@@ -427,8 +467,8 @@
         <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="10"/></svg>
         Smart QR Standard
       </div>
-      <h1 class="hero-title">Free SMS Text Message QR Code Generator</h1>
-      <p class="hero-lead">Create scan-to-text QR codes that immediately launch the native SMS/Messaging application with a pre-written text message ready to send to your target phone number.</p>
+      <h1 class="hero-title">Free Pre-Filled SMS Text Message QR Code Generator</h1>
+      <p class="hero-lead">Create interactive SMS QR codes that automatically launch native messaging apps (Apple Messages, Google Messages, Samsung Messages) with your target phone number and pre-written text message draft.</p>
       
       <a href="../index.html?wizard=sms" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -448,18 +488,38 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Protocol</dt>
-      <dd class="spec-val">smsto: and sms: URI schemes (RFC 5724)</dd>
+      <dt class="spec-key">Standard</dt>
+      <dd class="spec-val">IETF RFC 5724 (URI Scheme for GSM Short Message Service) & ISO/IEC 18004:2024</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Parameters</dt>
-      <dd class="spec-val">Recipient phone number, message text</dd>
+      <dt class="spec-key">Uri Format</dt>
+      <dd class="spec-val">sms:+15551234567?body=Pre-filled%20text%20message (RFC 5724) or SMSTO:number:body</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Compatibility</dt>
-      <dd class="spec-val">Universal iOS Messages and Android Messages support</dd>
+      <dt class="spec-key">Phone Format</dt>
+      <dd class="spec-val">ITU-T E.164 international standard (+country code, area code, subscriber number)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Supported Parameters</dt>
+      <dd class="spec-val">Recipient phone number (or commercial short code) and pre-filled body text draft</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Client Compatibility</dt>
+      <dd class="spec-val">Apple Messages (iOS), Google Messages (Android), Samsung Messages, carrier native apps</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Export Formats</dt>
+      <dd class="spec-val">Scalable vector SVG (lossless print) and high-resolution PNG (300 DPI)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Privacy Security</dt>
+      <dd class="spec-val">100% client-side generation. Phone numbers and message drafts are never sent to external servers</dd>
     </div>
   
         </dl>
@@ -474,17 +534,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Keyword opt-in SMS marketing campaigns (e.g. "Send VIP to 555-1234")</span>
+      <span>Keyword opt-in SMS marketing & VIP club list building on retail posters</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Emergency roadside assistance or maintenance dispatch</span>
+      <span>Customer service dispatch & equipment repair ticketing on appliance labels</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Text-to-win contests and promotional sweepstakes</span>
+      <span>Event check-in registration, silent auction bidding, and festival info desks</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Real estate yard signs for instant property information & pricing text inquiries</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Restaurant table feedback & curbside pickup arrival notifications</span>
     </li>
   
         </ul>
@@ -661,11 +731,61 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>Does the user get charged automatically when scanning?</span>
+        <span>How does an SMS QR code work when scanned?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>No. The user still has to tap "Send" in their messaging app. It simply pre-fills the message and phone number.</p>
+        <p>An SMS QR code encodes a standard sms: URI according to IETF RFC 5724 (or the legacy SMSTO: syntax). When scanned with a smartphone camera or QR reader, the operating system launches the user’s default messaging app (such as Apple Messages or Google Messages) with the destination phone number and draft body already filled in. The user merely reviews the message and taps send.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Does scanning an SMS QR code automatically send the text message or charge the user?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. For anti-spam, security, and consumer billing protection, mobile operating systems strictly require the user to manually press the "Send" button. The QR code only opens the messaging app and populates the text fields; it cannot dispatch an SMS or trigger carrier charges without explicit user action.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>How should phone numbers be formatted for SMS QR codes?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>For reliable global scanning across both domestic and international visitors, use the ITU-T E.164 international phone number format, starting with a plus sign followed by the country code and full phone number (for example, +15551234567 for North America or +447911123456 for the UK). Omit parentheses, dashes, and spaces.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I encode SMS marketing keywords or short codes into the QR code?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. In addition to standard 10-digit mobile phone numbers, SMS QR codes fully support 5-digit or 6-digit commercial short codes (such as 711711). You can pre-fill the exact keyword (e.g., "JOIN" or "DISCOUNT") in the body parameter to automate subscriber opt-in campaigns.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What is the recommended print size for SMS QR codes on flyers and counter signs?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>For standard SMS codes with a short phone number and 1–2 sentence message, print at least 1.0 × 1.0 inch (25 × 25 mm) with a 4-module quiet zone. If your pre-filled text template contains extensive instructions or multiple paragraphs, the QR grid density increases; print at 1.5 × 1.5 inches (38 × 38 mm) or larger to ensure quick autofocus.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Are phone numbers or text message drafts transmitted to your servers?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Never. UniversalCodeMaker operates completely client-side in your web browser. Phone numbers, marketing keywords, and message bodies are compiled directly in local browser memory using JavaScript. No personal contact numbers, messages, or metadata are ever transmitted to or logged on any external server.</p>
       </div>
     </details>
   
@@ -680,50 +800,50 @@
       </h2>
       <div class="related-grid">
         
-    <a href="./ean-13-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./email-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>EAN-13 Barcode Generator</span>
+        <span>Email QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./upc-a-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./phone-call-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>UPC-A Barcode Generator</span>
+        <span>Phone Call QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./code-128-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./whatsapp-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Code 128 Barcode Generator</span>
+        <span>WhatsApp QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./itf-14-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./vcard-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>ITF-14 Barcode Generator</span>
+        <span>vCard QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./data-matrix-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./wifi-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Data Matrix Barcode Generator</span>
+        <span>Wi-Fi QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./aztec-code-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./plain-text-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Aztec Code Generator</span>
+        <span>Plain Text QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
