@@ -7,8 +7,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Plain Text QR Code Generator</title>
-  <meta name="description" content="Generate unformatted plain text QR codes for notes, secrets, serial codes, and quotes. Supports up to 4,296 alphanumeric characters.">
+  <title>Free Plain Text QR Code Generator: Raw Notes & Multi-Line</title>
+  <meta name="description" content="Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/plain-text-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -23,14 +23,14 @@
   <link rel="manifest" href="../site.webmanifest">
 
   <!-- Open Graph & Social -->
-  <meta property="og:title" content="Free Plain Text QR Code Generator">
-  <meta property="og:description" content="Generate unformatted plain text QR codes for notes, secrets, serial codes, and quotes. Supports up to 4,296 alphanumeric characters.">
+  <meta property="og:title" content="Free Plain Text QR Code Generator: Raw Notes & Multi-Line">
+  <meta property="og:description" content="Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/plain-text-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Free Plain Text QR Code Generator">
-  <meta name="twitter:description" content="Generate unformatted plain text QR codes for notes, secrets, serial codes, and quotes. Supports up to 4,296 alphanumeric characters.">
+  <meta name="twitter:title" content="Free Plain Text QR Code Generator: Raw Notes & Multi-Line">
+  <meta name="twitter:description" content="Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -329,7 +329,7 @@
   "@type": "WebApplication",
   "name": "Plain Text QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/plain-text-qr-code-generator.html",
-  "description": "Generate unformatted plain text QR codes for notes, secrets, serial codes, and quotes. Supports up to 4,296 alphanumeric characters.",
+  "description": "Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -347,10 +347,50 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is the maximum amount of text I can encode?",
+      "name": "What is a plain text QR code and how does it work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A Version 40 QR code can store up to 4,296 alphanumeric characters or 7,089 numbers. For optimal scan speed, keep text under 300 characters."
+        "text": "A plain text QR code encodes unformatted text strings without any prefix protocol (like https:// or mailto:). When scanned with a smartphone camera, optical scanner, or dedicated barcode reader, the device recognizes the payload as raw text and displays it directly on screen or copies it to the clipboard, functioning entirely offline without an active internet connection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the maximum amount of text that can be encoded in a QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the ISO/IEC 18004 standard, a maximum Version 40 QR code can store up to 7,089 numeric digits, 4,296 alphanumeric characters (capital letters, digits, and basic symbols), or 2,953 binary bytes (UTF-8 text). However, for rapid scanning with standard smartphone cameras under varied lighting, keeping text under 300 to 500 characters is recommended."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a plain text QR code support multi-line text and line breaks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. UniversalCodeMaker preserves standard line breaks (CRLF / LF) and paragraph spacing. When scanned, modern camera apps and text decoders preserve your line breaks, making it ideal for multi-step recipes, equipment maintenance procedures, or multi-field data records."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which error correction level should I choose for long text notes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For lengthy text payloads exceeding 300 characters, choose Error Correction Level L (7% recovery) or Level M (15% recovery). Higher error correction levels (Level Q at 25% or Level H at 30%) add substantial parity modules, making the QR matrix denser and requiring a higher-resolution camera or larger print size to scan reliably."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the recommended print size for high-density plain text QR codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For short text (under 100 characters), a minimum print size of 1.0 × 1.0 inch (25 × 25 mm) is sufficient. For dense text payloads (300 to 800 characters) where matrix dimensions expand to Version 10 or higher (57×57 modules or more), print the QR code at least 2.0 × 2.0 inches (50 × 50 mm) to ensure handheld phone cameras can resolve individual modules."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my text data private when generated on UniversalCodeMaker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. UniversalCodeMaker operates with complete client-side privacy. The QR code is rendered entirely in your web browser using local JavaScript and WebAssembly. Your text messages, internal serial numbers, notes, or keys are never transmitted to any external server or stored in any database."
       }
     }
   ]
@@ -428,7 +468,7 @@
         Smart QR Standard
       </div>
       <h1 class="hero-title">Free Plain Text Multi-Line QR Code Generator</h1>
-      <p class="hero-lead">Encode raw, unformatted text messages, alphanumeric serials, cryptographic keys, or quotes into a high-capacity QR code with up to 4,296 characters.</p>
+      <p class="hero-lead">Encode raw unformatted text messages, multi-line notes, serial tokens, or cryptographic public keys into high-capacity QR codes with complete client-side privacy.</p>
       
       <a href="../index.html?wizard=text" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -448,18 +488,38 @@
         <dl class="spec-table">
           
     <div class="spec-row">
+      <dt class="spec-key">Standard</dt>
+      <dd class="spec-val">ISO/IEC 18004:2024 standard QR code symbology</dd>
+    </div>
+  
+    <div class="spec-row">
       <dt class="spec-key">Character Capacity</dt>
-      <dd class="spec-val">Up to 7,089 numeric, 4,296 alphanumeric, or 2,953 byte characters</dd>
+      <dd class="spec-val">Up to 7,089 numeric, 4,296 alphanumeric, or 2,953 binary bytes (Version 40)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Encoding Modes</dt>
+      <dd class="spec-val">Numeric (3.3 bits/char), Alphanumeric (5.5 bits/char), Byte / UTF-8 (8 bits/char)</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Error Correction</dt>
-      <dd class="spec-val">Level L (7%), M (15%), Q (25%), H (30%)</dd>
+      <dd class="spec-val">Reed-Solomon Level L (7%), Level M (15% default), Level Q (25%), Level H (30%)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Encoding</dt>
-      <dd class="spec-val">UTF-8 multi-byte character support</dd>
+      <dt class="spec-key">Formatting</dt>
+      <dd class="spec-val">Raw unformatted UTF-8 text with multi-line CRLF / LF line break preservation</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Offline Scannability</dt>
+      <dd class="spec-val">100% offline readability. Native camera apps display raw text without network requests</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Privacy Security</dt>
+      <dd class="spec-val">Pure client-side browser generation. Text payloads are never uploaded, logged, or tracked</dd>
     </div>
   
         </dl>
@@ -474,17 +534,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Cryptographic recovery phrases and secure offline backups</span>
+      <span>Offline equipment maintenance notes and machinery operating instructions</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Asset serial numbers and production line batch tokens</span>
+      <span>Cryptographic public keys, deposit addresses, and recovery phrase backups</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Scavenger hunt clues and educational classroom quizzes</span>
+      <span>Asset management serial tokens and warehouse shelf bin identifiers</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Educational classroom quizzes, scavenger hunt clues, and museum exhibit text</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Product ingredient lists, allergy warnings, and compliance labels</span>
     </li>
   
         </ul>
@@ -669,11 +739,61 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>What is the maximum amount of text I can encode?</span>
+        <span>What is a plain text QR code and how does it work?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>A Version 40 QR code can store up to 4,296 alphanumeric characters or 7,089 numbers. For optimal scan speed, keep text under 300 characters.</p>
+        <p>A plain text QR code encodes unformatted text strings without any prefix protocol (like https:// or mailto:). When scanned with a smartphone camera, optical scanner, or dedicated barcode reader, the device recognizes the payload as raw text and displays it directly on screen or copies it to the clipboard, functioning entirely offline without an active internet connection.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What is the maximum amount of text that can be encoded in a QR code?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Under the ISO/IEC 18004 standard, a maximum Version 40 QR code can store up to 7,089 numeric digits, 4,296 alphanumeric characters (capital letters, digits, and basic symbols), or 2,953 binary bytes (UTF-8 text). However, for rapid scanning with standard smartphone cameras under varied lighting, keeping text under 300 to 500 characters is recommended.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Does a plain text QR code support multi-line text and line breaks?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. UniversalCodeMaker preserves standard line breaks (CRLF / LF) and paragraph spacing. When scanned, modern camera apps and text decoders preserve your line breaks, making it ideal for multi-step recipes, equipment maintenance procedures, or multi-field data records.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Which error correction level should I choose for long text notes?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>For lengthy text payloads exceeding 300 characters, choose Error Correction Level L (7% recovery) or Level M (15% recovery). Higher error correction levels (Level Q at 25% or Level H at 30%) add substantial parity modules, making the QR matrix denser and requiring a higher-resolution camera or larger print size to scan reliably.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What is the recommended print size for high-density plain text QR codes?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>For short text (under 100 characters), a minimum print size of 1.0 × 1.0 inch (25 × 25 mm) is sufficient. For dense text payloads (300 to 800 characters) where matrix dimensions expand to Version 10 or higher (57×57 modules or more), print the QR code at least 2.0 × 2.0 inches (50 × 50 mm) to ensure handheld phone cameras can resolve individual modules.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Is my text data private when generated on UniversalCodeMaker?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. UniversalCodeMaker operates with complete client-side privacy. The QR code is rendered entirely in your web browser using local JavaScript and WebAssembly. Your text messages, internal serial numbers, notes, or keys are never transmitted to any external server or stored in any database.</p>
       </div>
     </details>
   
@@ -688,18 +808,34 @@
       </h2>
       <div class="related-grid">
         
-    <a href="./ean-13-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./wifi-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>EAN-13 Barcode Generator</span>
+        <span>Wi-Fi QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./upc-a-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./vcard-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>UPC-A Barcode Generator</span>
+        <span>vCard QR Code Generator</span>
+        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </span>
+    </a>
+  
+    <a href="./crypto-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
+      <span class="related-title">
+        <span>Crypto QR Code Generator</span>
+        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </span>
+    </a>
+  
+    <a href="./google-reviews-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
+      <span class="related-title">
+        <span>Google Reviews QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
@@ -712,26 +848,10 @@
       </span>
     </a>
   
-    <a href="./itf-14-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./bulk-barcode-generator-excel.html" class="related-card">
+      <span class="related-tag">Logistics & 1D</span>
       <span class="related-title">
-        <span>ITF-14 Barcode Generator</span>
-        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </span>
-    </a>
-  
-    <a href="./data-matrix-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
-      <span class="related-title">
-        <span>Data Matrix Barcode Generator</span>
-        <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </span>
-    </a>
-  
-    <a href="./aztec-code-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
-      <span class="related-title">
-        <span>Aztec Code Generator</span>
+        <span>Bulk Barcode Generator from Excel</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>

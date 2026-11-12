@@ -896,25 +896,59 @@ const SEO_PAGES = [
     shortName: 'Text QR',
     queryParam: 'wizard=text',
     category: 'Smart QR',
-    metaTitle: 'Free Plain Text QR Code Generator',
-    metaDescription: 'Generate unformatted plain text QR codes for notes, secrets, serial codes, and quotes. Supports up to 4,296 alphanumeric characters.',
+    metaTitle: 'Free Plain Text QR Code Generator: Raw Notes & Multi-Line',
+    metaDescription: 'Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.',
     h1: 'Free Plain Text Multi-Line QR Code Generator',
-    lead: 'Encode raw, unformatted text messages, alphanumeric serials, cryptographic keys, or quotes into a high-capacity QR code with up to 4,296 characters.',
+    lead: 'Encode raw unformatted text messages, multi-line notes, serial tokens, or cryptographic public keys into high-capacity QR codes with complete client-side privacy.',
     technicalSpec: {
-      characterCapacity: 'Up to 7,089 numeric, 4,296 alphanumeric, or 2,953 byte characters',
-      errorCorrection: 'Level L (7%), M (15%), Q (25%), H (30%)',
-      encoding: 'UTF-8 multi-byte character support'
+      standard: 'ISO/IEC 18004:2024 standard QR code symbology',
+      characterCapacity: 'Up to 7,089 numeric, 4,296 alphanumeric, or 2,953 binary bytes (Version 40)',
+      encodingModes: 'Numeric (3.3 bits/char), Alphanumeric (5.5 bits/char), Byte / UTF-8 (8 bits/char)',
+      errorCorrection: 'Reed-Solomon Level L (7%), Level M (15% default), Level Q (25%), Level H (30%)',
+      formatting: 'Raw unformatted UTF-8 text with multi-line CRLF / LF line break preservation',
+      offlineScannability: '100% offline readability. Native camera apps display raw text without network requests',
+      privacySecurity: 'Pure client-side browser generation. Text payloads are never uploaded, logged, or tracked'
     },
     useCases: [
-      'Cryptographic recovery phrases and secure offline backups',
-      'Asset serial numbers and production line batch tokens',
-      'Scavenger hunt clues and educational classroom quizzes'
+      'Offline equipment maintenance notes and machinery operating instructions',
+      'Cryptographic public keys, deposit addresses, and recovery phrase backups',
+      'Asset management serial tokens and warehouse shelf bin identifiers',
+      'Educational classroom quizzes, scavenger hunt clues, and museum exhibit text',
+      'Product ingredient lists, allergy warnings, and compliance labels'
     ],
     faqs: [
       {
-        q: 'What is the maximum amount of text I can encode?',
-        a: 'A Version 40 QR code can store up to 4,296 alphanumeric characters or 7,089 numbers. For optimal scan speed, keep text under 300 characters.'
+        q: 'What is a plain text QR code and how does it work?',
+        a: 'A plain text QR code encodes unformatted text strings without any prefix protocol (like https:// or mailto:). When scanned with a smartphone camera, optical scanner, or dedicated barcode reader, the device recognizes the payload as raw text and displays it directly on screen or copies it to the clipboard, functioning entirely offline without an active internet connection.'
+      },
+      {
+        q: 'What is the maximum amount of text that can be encoded in a QR code?',
+        a: 'Under the ISO/IEC 18004 standard, a maximum Version 40 QR code can store up to 7,089 numeric digits, 4,296 alphanumeric characters (capital letters, digits, and basic symbols), or 2,953 binary bytes (UTF-8 text). However, for rapid scanning with standard smartphone cameras under varied lighting, keeping text under 300 to 500 characters is recommended.'
+      },
+      {
+        q: 'Does a plain text QR code support multi-line text and line breaks?',
+        a: 'Yes. UniversalCodeMaker preserves standard line breaks (CRLF / LF) and paragraph spacing. When scanned, modern camera apps and text decoders preserve your line breaks, making it ideal for multi-step recipes, equipment maintenance procedures, or multi-field data records.'
+      },
+      {
+        q: 'Which error correction level should I choose for long text notes?',
+        a: 'For lengthy text payloads exceeding 300 characters, choose Error Correction Level L (7% recovery) or Level M (15% recovery). Higher error correction levels (Level Q at 25% or Level H at 30%) add substantial parity modules, making the QR matrix denser and requiring a higher-resolution camera or larger print size to scan reliably.'
+      },
+      {
+        q: 'What is the recommended print size for high-density plain text QR codes?',
+        a: 'For short text (under 100 characters), a minimum print size of 1.0 × 1.0 inch (25 × 25 mm) is sufficient. For dense text payloads (300 to 800 characters) where matrix dimensions expand to Version 10 or higher (57×57 modules or more), print the QR code at least 2.0 × 2.0 inches (50 × 50 mm) to ensure handheld phone cameras can resolve individual modules.'
+      },
+      {
+        q: 'Is my text data private when generated on UniversalCodeMaker?',
+        a: 'Yes. UniversalCodeMaker operates with complete client-side privacy. The QR code is rendered entirely in your web browser using local JavaScript and WebAssembly. Your text messages, internal serial numbers, notes, or keys are never transmitted to any external server or stored in any database.'
       }
+    ],
+    relatedSlugs: [
+      'wifi-qr-code-generator',
+      'vcard-qr-code-generator',
+      'crypto-qr-code-generator',
+      'google-reviews-qr-code-generator',
+      'code-128-barcode-generator',
+      'bulk-barcode-generator-excel'
     ]
   },
   {
