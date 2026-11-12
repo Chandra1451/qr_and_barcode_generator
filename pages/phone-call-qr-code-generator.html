@@ -7,8 +7,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Click-to-Call Phone QR Code Generator - One-Tap Dialing</title>
-  <meta name="description" content="Generate click-to-dial telephone QR codes. Customers tap once to call your business without dialing or saving numbers manually.">
+  <title>Free Phone Call QR Code Generator: 1-Tap tel: Dialing & SVG</title>
+  <meta name="description" content="Generate free click-to-call phone QR codes with direct 1-tap dialing. Uses RFC 3966 tel: URIs with international E.164 formatting & vector SVG print export.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/phone-call-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -23,14 +23,14 @@
   <link rel="manifest" href="../site.webmanifest">
 
   <!-- Open Graph & Social -->
-  <meta property="og:title" content="Free Click-to-Call Phone QR Code Generator - One-Tap Dialing">
-  <meta property="og:description" content="Generate click-to-dial telephone QR codes. Customers tap once to call your business without dialing or saving numbers manually.">
+  <meta property="og:title" content="Free Phone Call QR Code Generator: 1-Tap tel: Dialing & SVG">
+  <meta property="og:description" content="Generate free click-to-call phone QR codes with direct 1-tap dialing. Uses RFC 3966 tel: URIs with international E.164 formatting & vector SVG print export.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/phone-call-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Free Click-to-Call Phone QR Code Generator - One-Tap Dialing">
-  <meta name="twitter:description" content="Generate click-to-dial telephone QR codes. Customers tap once to call your business without dialing or saving numbers manually.">
+  <meta name="twitter:title" content="Free Phone Call QR Code Generator: 1-Tap tel: Dialing & SVG">
+  <meta name="twitter:description" content="Generate free click-to-call phone QR codes with direct 1-tap dialing. Uses RFC 3966 tel: URIs with international E.164 formatting & vector SVG print export.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -329,7 +329,7 @@
   "@type": "WebApplication",
   "name": "Phone Call QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/phone-call-qr-code-generator.html",
-  "description": "Generate click-to-dial telephone QR codes. Customers tap once to call your business without dialing or saving numbers manually.",
+  "description": "Generate free click-to-call phone QR codes with direct 1-tap dialing. Uses RFC 3966 tel: URIs with international E.164 formatting & vector SVG print export.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -347,10 +347,50 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Should I include the country code in the phone number?",
+      "name": "How does a phone call QR code work when scanned?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, always format phone numbers with a leading \"+\" and country code (e.g., +1 for USA/Canada, +44 for UK) to ensure international callers dial successfully."
+        "text": "A phone call QR code encodes a standard tel: URI scheme according to IETF RFC 3966. When scanned with any smartphone camera or QR reader, the operating system recognizes the telephone payload and displays an interactive banner (e.g., \"Call (555) 123-4567\"). Tapping the prompt launches the native phone dialer with the number pre-populated, allowing the user to initiate the call with a single tap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does scanning the QR code immediately place a phone call?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. For user security and to prevent accidental or fraudulent dialing, modern mobile operating systems (iOS and Android) require an explicit confirmation tap before placing an outbound call. The scan only populates the keypad dialer; the call is not connected until the user taps the green call button."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the ITU-T E.164 international format recommended for phone QR codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Formatting your phone number in ITU-T E.164 format (with a leading \"+\" followed by your international country code, area code, and local number, such as +15551234567) ensures seamless dialing regardless of where the caller is located or what mobile network they use. It avoids domestic trunk prefixes (like \"0\") that cause call routing failures for international visitors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I include telephone extensions or pauses in a phone QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under RFC 3966, telephone extensions can be represented using ;ext=123, or legacy DTMF commas (,) for pauses. However, mobile operating system support for automated DTMF pauses in QR codes varies between iOS and Android. For maximum cross-device reliability, direct the QR code to your main direct-inward-dial (DID) telephone number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the optimal print size for phone QR codes on vehicles and storefront signs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For handheld business cards or flyers, a 1.0 × 1.0 inch (25 × 25 mm) QR code is standard. For vehicle decals, lawn signs, or storefront windows where customers scan from several feet away, follow the 10:1 distance-to-size ratio: print at least 3.0 × 3.0 inches (75 × 75 mm) for a 3-foot scanning distance, or 6.0 × 6.0 inches (150 × 150 mm) for drive-by viewing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are phone numbers stored or tracked on UniversalCodeMaker servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never. UniversalCodeMaker operates 100% client-side in your web browser. Phone numbers and tel: payloads are processed entirely in local browser memory using JavaScript. No telephone numbers, call metadata, or analytics logs are ever sent to or stored on any external server."
       }
     }
   ]
@@ -427,8 +467,8 @@
         <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="10"/></svg>
         Smart QR Standard
       </div>
-      <h1 class="hero-title">Free Click-to-Call Phone QR Code Generator</h1>
-      <p class="hero-lead">Create direct telephone dialing QR codes using the RFC 3966 `tel:` URI standard. Scanning automatically prompts the phone dialer to call your customer service or sales line.</p>
+      <h1 class="hero-title">Free Click-to-Call Phone Dialer QR Code Generator</h1>
+      <p class="hero-lead">Create instant click-to-dial telephone QR codes using the IETF RFC 3966 tel: URI standard. Scanning automatically launches native smartphone dialers (iOS Phone, Android Phone) ready to connect with one tap.</p>
       
       <a href="../index.html?wizard=phone" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -448,18 +488,38 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Protocol</dt>
-      <dd class="spec-val">tel: URI scheme (RFC 3966)</dd>
+      <dt class="spec-key">Standard</dt>
+      <dd class="spec-val">IETF RFC 3966 (tel: URI for Telephone Numbers) & ISO/IEC 18004:2024</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Format</dt>
-      <dd class="spec-val">International E.164 format (+1234567890)</dd>
+      <dt class="spec-key">Uri Format</dt>
+      <dd class="spec-val">tel:+15551234567 (RFC 3966 international telephone URI syntax)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Compatibility</dt>
-      <dd class="spec-val">All cellular smartphones and VoIP dialers</dd>
+      <dt class="spec-key">Phone Format</dt>
+      <dd class="spec-val">ITU-T E.164 international standard (+country code, area code, subscriber number)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Supported Dialers</dt>
+      <dd class="spec-val">Apple Phone (iOS), Google Phone / Dialer (Android), Samsung Phone, VoIP SIP apps</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Security Confirmation</dt>
+      <dd class="spec-val">Explicit user tap required on phone dialer prompt; automated dialing is prohibited by OS</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Export Formats</dt>
+      <dd class="spec-val">Scalable vector SVG (lossless print) and high-resolution PNG (300 DPI)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Privacy Security</dt>
+      <dd class="spec-val">100% client-side generation. Telephone numbers are never transmitted to external servers</dd>
     </div>
   
         </dl>
@@ -474,17 +534,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Restaurant takeout ordering signs and menu boards</span>
+      <span>Contractor service vehicle decals & roadside billboard quick-contact signs</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Real estate yard signs and contractor vehicle decals</span>
+      <span>Real estate yard lawn signs & rental listing print flyers for instant broker calls</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Emergency hotlines and 24/7 technical support numbers</span>
+      <span>Restaurant takeout menu boards & reservation desk countertop stands</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>24/7 emergency hotline & corporate technical support equipment tags</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Business storefront door decals for customer service & after-hours inquiries</span>
     </li>
   
         </ul>
@@ -661,11 +731,61 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>Should I include the country code in the phone number?</span>
+        <span>How does a phone call QR code work when scanned?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes, always format phone numbers with a leading "+" and country code (e.g., +1 for USA/Canada, +44 for UK) to ensure international callers dial successfully.</p>
+        <p>A phone call QR code encodes a standard tel: URI scheme according to IETF RFC 3966. When scanned with any smartphone camera or QR reader, the operating system recognizes the telephone payload and displays an interactive banner (e.g., "Call (555) 123-4567"). Tapping the prompt launches the native phone dialer with the number pre-populated, allowing the user to initiate the call with a single tap.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Does scanning the QR code immediately place a phone call?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. For user security and to prevent accidental or fraudulent dialing, modern mobile operating systems (iOS and Android) require an explicit confirmation tap before placing an outbound call. The scan only populates the keypad dialer; the call is not connected until the user taps the green call button.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Why is the ITU-T E.164 international format recommended for phone QR codes?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Formatting your phone number in ITU-T E.164 format (with a leading "+" followed by your international country code, area code, and local number, such as +15551234567) ensures seamless dialing regardless of where the caller is located or what mobile network they use. It avoids domestic trunk prefixes (like "0") that cause call routing failures for international visitors.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I include telephone extensions or pauses in a phone QR code?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Under RFC 3966, telephone extensions can be represented using ;ext=123, or legacy DTMF commas (,) for pauses. However, mobile operating system support for automated DTMF pauses in QR codes varies between iOS and Android. For maximum cross-device reliability, direct the QR code to your main direct-inward-dial (DID) telephone number.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What is the optimal print size for phone QR codes on vehicles and storefront signs?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>For handheld business cards or flyers, a 1.0 × 1.0 inch (25 × 25 mm) QR code is standard. For vehicle decals, lawn signs, or storefront windows where customers scan from several feet away, follow the 10:1 distance-to-size ratio: print at least 3.0 × 3.0 inches (75 × 75 mm) for a 3-foot scanning distance, or 6.0 × 6.0 inches (150 × 150 mm) for drive-by viewing.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Are phone numbers stored or tracked on UniversalCodeMaker servers?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Never. UniversalCodeMaker operates 100% client-side in your web browser. Phone numbers and tel: payloads are processed entirely in local browser memory using JavaScript. No telephone numbers, call metadata, or analytics logs are ever sent to or stored on any external server.</p>
       </div>
     </details>
   
@@ -680,50 +800,50 @@
       </h2>
       <div class="related-grid">
         
-    <a href="./ean-13-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./sms-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>EAN-13 Barcode Generator</span>
+        <span>SMS Text QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./upc-a-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./email-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>UPC-A Barcode Generator</span>
+        <span>Email QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./code-128-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./whatsapp-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Code 128 Barcode Generator</span>
+        <span>WhatsApp QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./itf-14-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./vcard-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>ITF-14 Barcode Generator</span>
+        <span>vCard QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./data-matrix-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./wifi-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Data Matrix Barcode Generator</span>
+        <span>Wi-Fi QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./aztec-code-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./plain-text-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Aztec Code Generator</span>
+        <span>Plain Text QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>

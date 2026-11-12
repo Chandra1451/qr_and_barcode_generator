@@ -817,25 +817,59 @@ const SEO_PAGES = [
     shortName: 'Phone QR',
     queryParam: 'wizard=phone',
     category: 'Smart QR',
-    metaTitle: 'Free Click-to-Call Phone QR Code Generator - One-Tap Dialing',
-    metaDescription: 'Generate click-to-dial telephone QR codes. Customers tap once to call your business without dialing or saving numbers manually.',
-    h1: 'Free Click-to-Call Phone QR Code Generator',
-    lead: 'Create direct telephone dialing QR codes using the RFC 3966 `tel:` URI standard. Scanning automatically prompts the phone dialer to call your customer service or sales line.',
+    metaTitle: 'Free Phone Call QR Code Generator: 1-Tap tel: Dialing & SVG',
+    metaDescription: 'Generate free click-to-call phone QR codes with direct 1-tap dialing. Uses RFC 3966 tel: URIs with international E.164 formatting & vector SVG print export.',
+    h1: 'Free Click-to-Call Phone Dialer QR Code Generator',
+    lead: 'Create instant click-to-dial telephone QR codes using the IETF RFC 3966 tel: URI standard. Scanning automatically launches native smartphone dialers (iOS Phone, Android Phone) ready to connect with one tap.',
     technicalSpec: {
-      protocol: 'tel: URI scheme (RFC 3966)',
-      format: 'International E.164 format (+1234567890)',
-      compatibility: 'All cellular smartphones and VoIP dialers'
+      standard: 'IETF RFC 3966 (tel: URI for Telephone Numbers) & ISO/IEC 18004:2024',
+      uriFormat: 'tel:+15551234567 (RFC 3966 international telephone URI syntax)',
+      phoneFormat: 'ITU-T E.164 international standard (+country code, area code, subscriber number)',
+      supportedDialers: 'Apple Phone (iOS), Google Phone / Dialer (Android), Samsung Phone, VoIP SIP apps',
+      securityConfirmation: 'Explicit user tap required on phone dialer prompt; automated dialing is prohibited by OS',
+      exportFormats: 'Scalable vector SVG (lossless print) and high-resolution PNG (300 DPI)',
+      privacySecurity: '100% client-side generation. Telephone numbers are never transmitted to external servers'
     },
     useCases: [
-      'Restaurant takeout ordering signs and menu boards',
-      'Real estate yard signs and contractor vehicle decals',
-      'Emergency hotlines and 24/7 technical support numbers'
+      'Contractor service vehicle decals & roadside billboard quick-contact signs',
+      'Real estate yard lawn signs & rental listing print flyers for instant broker calls',
+      'Restaurant takeout menu boards & reservation desk countertop stands',
+      '24/7 emergency hotline & corporate technical support equipment tags',
+      'Business storefront door decals for customer service & after-hours inquiries'
     ],
     faqs: [
       {
-        q: 'Should I include the country code in the phone number?',
-        a: 'Yes, always format phone numbers with a leading "+" and country code (e.g., +1 for USA/Canada, +44 for UK) to ensure international callers dial successfully.'
+        q: 'How does a phone call QR code work when scanned?',
+        a: 'A phone call QR code encodes a standard tel: URI scheme according to IETF RFC 3966. When scanned with any smartphone camera or QR reader, the operating system recognizes the telephone payload and displays an interactive banner (e.g., "Call (555) 123-4567"). Tapping the prompt launches the native phone dialer with the number pre-populated, allowing the user to initiate the call with a single tap.'
+      },
+      {
+        q: 'Does scanning the QR code immediately place a phone call?',
+        a: 'No. For user security and to prevent accidental or fraudulent dialing, modern mobile operating systems (iOS and Android) require an explicit confirmation tap before placing an outbound call. The scan only populates the keypad dialer; the call is not connected until the user taps the green call button.'
+      },
+      {
+        q: 'Why is the ITU-T E.164 international format recommended for phone QR codes?',
+        a: 'Formatting your phone number in ITU-T E.164 format (with a leading "+" followed by your international country code, area code, and local number, such as +15551234567) ensures seamless dialing regardless of where the caller is located or what mobile network they use. It avoids domestic trunk prefixes (like "0") that cause call routing failures for international visitors.'
+      },
+      {
+        q: 'Can I include telephone extensions or pauses in a phone QR code?',
+        a: 'Under RFC 3966, telephone extensions can be represented using ;ext=123, or legacy DTMF commas (,) for pauses. However, mobile operating system support for automated DTMF pauses in QR codes varies between iOS and Android. For maximum cross-device reliability, direct the QR code to your main direct-inward-dial (DID) telephone number.'
+      },
+      {
+        q: 'What is the optimal print size for phone QR codes on vehicles and storefront signs?',
+        a: 'For handheld business cards or flyers, a 1.0 × 1.0 inch (25 × 25 mm) QR code is standard. For vehicle decals, lawn signs, or storefront windows where customers scan from several feet away, follow the 10:1 distance-to-size ratio: print at least 3.0 × 3.0 inches (75 × 75 mm) for a 3-foot scanning distance, or 6.0 × 6.0 inches (150 × 150 mm) for drive-by viewing.'
+      },
+      {
+        q: 'Are phone numbers stored or tracked on UniversalCodeMaker servers?',
+        a: 'Never. UniversalCodeMaker operates 100% client-side in your web browser. Phone numbers and tel: payloads are processed entirely in local browser memory using JavaScript. No telephone numbers, call metadata, or analytics logs are ever sent to or stored on any external server.'
       }
+    ],
+    relatedSlugs: [
+      'sms-qr-code-generator',
+      'email-qr-code-generator',
+      'whatsapp-qr-code-generator',
+      'vcard-qr-code-generator',
+      'wifi-qr-code-generator',
+      'plain-text-qr-code-generator'
     ]
   },
   {
