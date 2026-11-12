@@ -37,17 +37,98 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "UniversalCodeMaker – Free QR Code & Barcode Generator",
-    "url": "https://universalcodemaker.com/",
-    "operatingSystem": "All",
-    "applicationCategory": "UtilitiesApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "description": "Free, private QR code and barcode generator that runs in your browser. 10 barcode formats (QR Code, Data Matrix, Aztec, PDF417, EAN-13, UPC-A, ISBN, Code 128, ITF-14, Code 39) and 13 QR code types, with automatic check digits, SVG and PNG downloads, and Avery label sheets."
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "UniversalCodeMaker – Free QR Code & Barcode Generator",
+        "url": "https://universalcodemaker.com/",
+        "operatingSystem": "All",
+        "applicationCategory": "UtilitiesApplication",
+        "applicationSubCategory": "Barcode & QR Code Generator",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Free, private QR code and barcode generator that runs in your browser. 10 barcode formats (QR Code, Data Matrix, Aztec, PDF417, EAN-13, UPC-A, ISBN, Code 128, ITF-14, Code 39) and 13 QR code types, with automatic check digits, SVG and PNG downloads, and Avery label sheets.",
+        "featureList": [
+          "10 standard barcode formats: QR Code, Code 128, EAN-13, UPC-A, Data Matrix, Aztec, PDF417, ITF-14, Code 39, ISBN-13",
+          "13 smart QR code wizards: Wi-Fi, vCard, Google Reviews, WhatsApp, Email, SMS, Phone Call, Crypto, Maps, Events, URLs",
+          "Automated Modulo-10 and Modulo-103 check digit calculation",
+          "30-up Avery 5160 PDF label sheet generation",
+          "Bulk Excel and CSV batch barcode generation up to 200 items",
+          "Direct thermal roll label maker presets for Zebra, MUNBYN, and Rollo",
+          "Pure client-side privacy architecture with zero server data storage",
+          "Lossless vector SVG, PDF, and high-resolution 300 DPI PNG export"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "UniversalCodeMaker.com",
+          "url": "https://universalcodemaker.com/",
+          "logo": "https://universalcodemaker.com/assets/logo-icon.png"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "UniversalCodeMaker.com",
+          "url": "https://universalcodemaker.com/",
+          "logo": "https://universalcodemaker.com/assets/logo-icon.png"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is it really free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Every format, download size and label sheet is free, with no sign-up and no watermark. The site is supported by clean advertising and affiliate partnerships."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do the QR codes expire?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. They are static codes: your link, text, contact, or credentials are encoded directly into the modules of the code itself, not behind an external redirect service. There are no expiration dates or redirect outages."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data uploaded anywhere?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Codes are generated completely inside your browser using client-side JavaScript. Wi-Fi passwords, contact cards, private notes, and internal product numbers never leave your device or touch a server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use these barcodes on products in stores?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, if the number is authorized. Retailers and marketplaces like Amazon expect product GTINs licensed from GS1. UniversalCodeMaker draws the compliant optical symbol and verifies check digits; the number itself must come from GS1 or your retail channel."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I print barcode labels on Avery 5160 sheets or thermal roll printers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can generate print-ready 30-up Avery 5160 PDF sheets directly from the studio or label maker, as well as 300 DPI direct thermal roll layouts for Zebra, MUNBYN, and Rollo label printers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I generate barcodes in bulk from an Excel or CSV file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The Bulk Barcode Generator tool allows you to paste or upload spreadsheets with up to 200 items to export a consolidated ZIP of vector SVGs or print-ready 30-up Avery PDF sheets."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 
@@ -122,7 +203,7 @@
           <p>
             <strong>Using barcodes on products you sell?</strong>
             Retail barcode numbers must be licensed from GS1, and printed codes should be tested before a production run.
-            <a href="symbology-docs.html#gs1-licensing">Read the licensing &amp; printing guide</a> before using codes at commercial scale.
+            Read our step-by-step guide on <a href="pages/how-to-get-a-barcode-for-your-product.html">how to get a barcode for your product</a> or explore the <a href="symbology-docs.html#gs1-licensing">GS1 licensing &amp; printing guide</a>.
           </p>
         </aside>
 
@@ -181,6 +262,14 @@
             <a href="pages/amazon-fba-fnsku-barcode-generator.html" class="v2-quick-btn" data-symbology="code-128" data-preset="amazon-fnsku-5160" data-fnsku="true" title="Generate Amazon FBA FNSKU Product Label">
               <span class="v2-quick-btn-badge v2-badge-fba">FBA</span>
               <span>Amazon FNSKU</span>
+            </a>
+            <a href="pages/bulk-barcode-generator-excel.html" class="v2-quick-btn" data-symbology="code-128" title="Generate Bulk Barcodes from Excel or CSV">
+              <span class="v2-quick-btn-badge">BULK</span>
+              <span>Bulk Excel</span>
+            </a>
+            <a href="pages/avery-5160-barcode-generator.html" class="v2-quick-btn" data-symbology="code-128" title="Print Barcodes on 30-Up Avery 5160 Sheets">
+              <span class="v2-quick-btn-badge">SHEETS</span>
+              <span>Avery 5160</span>
             </a>
             <a href="pages/plain-text-qr-code-generator.html" class="v2-quick-btn" data-symbology="qr-code" data-wizard="url" title="Generate Custom Styled QR Code with Logo &amp; Colors">
               <span class="v2-quick-btn-badge">STYLE</span>
@@ -802,13 +891,17 @@
           <dl class="home-needs">
             <div><dt>Products sold in shops worldwide</dt><dd><a href="pages/ean-13-barcode-generator.html">EAN-13</a></dd></div>
             <div><dt>Products sold in the US &amp; Canada</dt><dd><a href="pages/upc-a-barcode-generator.html">UPC-A</a></dd></div>
-            <div><dt>Amazon FBA inventory labels</dt><dd><a href="pages/amazon-fba-fnsku-barcode-generator.html">FNSKU (Code 128)</a></dd></div>
-            <div><dt>Books</dt><dd><a href="pages/isbn-book-barcode-generator.html">ISBN</a></dd></div>
-            <div><dt>Shipping cartons &amp; cases</dt><dd><a href="pages/itf-14-barcode-generator.html">ITF-14</a></dd></div>
-            <div><dt>Warehouse bins, assets &amp; internal labels</dt><dd><a href="pages/code-128-barcode-generator.html">Code 128</a> or <a href="pages/code-39-barcode-generator.html">Code 39</a></dd></div>
-            <div><dt>Small parts &amp; medical devices</dt><dd><a href="pages/data-matrix-generator.html">Data Matrix</a></dd></div>
-            <div><dt>ID cards, tickets &amp; boarding passes</dt><dd><a href="pages/pdf417-barcode-generator.html">PDF417</a> or <a href="pages/aztec-code-generator.html">Aztec</a></dd></div>
-            <div><dt>Menus, Wi-Fi, business cards &amp; reviews</dt><dd><a href="pages/wifi-qr-code-generator.html">Wi-Fi QR</a>, <a href="pages/vcard-qr-code-generator.html">vCard QR</a>, <a href="pages/google-reviews-qr-code-generator.html">Google review QR</a></dd></div>
+            <div><dt>Amazon FBA inventory &amp; product labels</dt><dd><a href="pages/amazon-fba-fnsku-barcode-generator.html">FNSKU (Code 128)</a></dd></div>
+            <div><dt>Shopify retail &amp; inventory barcodes</dt><dd><a href="pages/shopify-barcode-generator.html">Shopify Barcodes</a></dd></div>
+            <div><dt>Batch spreadsheets &amp; inventory lists</dt><dd><a href="pages/bulk-barcode-generator-excel.html">Bulk Excel Barcodes</a></dd></div>
+            <div><dt>30-up laser &amp; inkjet label sheets</dt><dd><a href="pages/avery-5160-barcode-generator.html">Avery 5160 Sheets</a></dd></div>
+            <div><dt>Books &amp; published media</dt><dd><a href="pages/isbn-book-barcode-generator.html">ISBN</a></dd></div>
+            <div><dt>Shipping cartons &amp; master cases</dt><dd><a href="pages/itf-14-barcode-generator.html">ITF-14</a></dd></div>
+            <div><dt>Warehouse bins, assets &amp; internal stock</dt><dd><a href="pages/code-128-barcode-generator.html">Code 128</a> or <a href="pages/code-39-barcode-generator.html">Code 39</a></dd></div>
+            <div><dt>Small industrial parts &amp; medical devices</dt><dd><a href="pages/data-matrix-generator.html">Data Matrix</a></dd></div>
+            <div><dt>ID cards, event tickets &amp; transport passes</dt><dd><a href="pages/pdf417-barcode-generator.html">PDF417</a> or <a href="pages/aztec-code-generator.html">Aztec</a></dd></div>
+            <div><dt>Menus, Wi-Fi, cards &amp; online reviews</dt><dd><a href="pages/wifi-qr-code-generator.html">Wi-Fi QR</a>, <a href="pages/vcard-qr-code-generator.html">vCard QR</a>, <a href="pages/google-reviews-qr-code-generator.html">Google Review</a></dd></div>
+            <div><dt>Customer messaging &amp; phone contacts</dt><dd><a href="pages/whatsapp-qr-code-generator.html">WhatsApp</a>, <a href="pages/email-qr-code-generator.html">Email</a>, <a href="pages/sms-qr-code-generator.html">SMS</a>, <a href="pages/phone-call-qr-code-generator.html">Phone Call</a></dd></div>
           </dl>
           <p class="home-guide-note">Not sure? The <a href="symbology-docs.html#sec-product-finder">barcode finder</a> walks you through it.</p>
         </div>
@@ -818,7 +911,7 @@
           <div class="home-faq">
             <details>
               <summary>Is it really free?</summary>
-              <p>Yes. Every format, download size and label sheet is free, with no sign-up and no watermark. The site is meant to be supported by ads, and by affiliate links.</p>
+              <p>Yes. Every format, download size and label sheet is free, with no sign-up and no watermark. The site is supported by clean advertising and affiliate partnerships.</p>
             </details>
             <details>
               <summary>Do the QR codes expire?</summary>
@@ -831,6 +924,14 @@
             <details>
               <summary>Can I use these barcodes on products in stores?</summary>
               <p>Yes, if the number is yours. Retailers and marketplaces such as Amazon expect product numbers licensed from GS1. We draw the barcode and calculate its check digit; the number itself has to come from GS1 or your retailer. Step by step: <a href="pages/how-to-get-a-barcode-for-your-product.html">how to get a barcode for your product</a>. Selling on Amazon: <a href="pages/do-i-need-a-barcode-to-sell-on-amazon.html">do I need a barcode to sell on Amazon?</a></p>
+            </details>
+            <details>
+              <summary>Can I print barcode labels on Avery 5160 sheets or thermal roll printers?</summary>
+              <p>Yes. You can generate print-ready 30-up Avery 5160 PDF sheets directly using our <a href="pages/avery-5160-barcode-generator.html">Avery 5160 barcode generator</a> or studio sheet modal, as well as 300 DPI direct thermal roll layouts for Zebra, MUNBYN, and Rollo label printers.</p>
+            </details>
+            <details>
+              <summary>Can I generate barcodes in bulk from an Excel or CSV file?</summary>
+              <p>Yes. Our <a href="pages/bulk-barcode-generator-excel.html">Bulk Barcode Generator</a> allows you to paste or upload spreadsheets with up to 200 items to export a consolidated ZIP of vector SVGs or print-ready 30-up Avery PDF sheets.</p>
             </details>
           </div>
         </div>
