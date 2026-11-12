@@ -7,8 +7,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Crypto QR Code Generator: Bitcoin, Ethereum, Solana</title>
-  <meta name="description" content="Make a payment QR code for a Bitcoin, Ethereum or Solana address, with an optional amount and a Bitcoin logo. Made in your browser, no tracking.">
+  <title>Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana</title>
+  <meta name="description" content="Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/crypto-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -23,14 +23,14 @@
   <link rel="manifest" href="../site.webmanifest">
 
   <!-- Open Graph & Social -->
-  <meta property="og:title" content="Free Crypto QR Code Generator: Bitcoin, Ethereum, Solana">
-  <meta property="og:description" content="Make a payment QR code for a Bitcoin, Ethereum or Solana address, with an optional amount and a Bitcoin logo. Made in your browser, no tracking.">
+  <meta property="og:title" content="Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana">
+  <meta property="og:description" content="Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/crypto-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Free Crypto QR Code Generator: Bitcoin, Ethereum, Solana">
-  <meta name="twitter:description" content="Make a payment QR code for a Bitcoin, Ethereum or Solana address, with an optional amount and a Bitcoin logo. Made in your browser, no tracking.">
+  <meta name="twitter:title" content="Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana">
+  <meta name="twitter:description" content="Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -329,7 +329,7 @@
   "@type": "WebApplication",
   "name": "Crypto QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/crypto-qr-code-generator.html",
-  "description": "Make a payment QR code for a Bitcoin, Ethereum or Solana address, with an optional amount and a Bitcoin logo. Made in your browser, no tracking.",
+  "description": "Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -347,10 +347,50 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Are these QR codes compatible with mobile crypto wallets?",
+      "name": "How do crypto QR codes work with mobile wallets?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The generated codes use official cryptocurrency URI standards (such as BIP-21 for Bitcoin) recognized by Coinbase, Trust Wallet, MetaMask, Phantom, and Ledger."
+        "text": "The generated QR codes encode official cryptocurrency URI standards, such as Bitcoin BIP-21, Ethereum EIP-681, and Solana URI protocols. When scanned with a smartphone camera or mobile wallet app (including Coinbase Wallet, Trust Wallet, MetaMask, Phantom, or Ledger Live), the app automatically parses the public address, pre-populates the destination address field, and applies optional amount and payment reference parameters without manual copy-pasting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I specify an exact invoice or payment amount in the QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. By specifying a requested payment amount in the generator, standard URI parameters are embedded into the payload (for example, bitcoin:address?amount=0.005 or solana:address?amount=1.5). When a customer or client scans the code, their wallet app automatically pre-fills the exact requested transfer amount, reducing checkout friction and eliminating decimal calculation mistakes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does UniversalCodeMaker ever touch or require my private keys or seed phrase?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never. UniversalCodeMaker strictly encodes public wallet addresses and payment request URIs supplied by you. All QR code generation is performed 100% in your local web browser using client-side JavaScript. Private keys, seed phrases, wallet balances, and transaction data are never requested, handled, or transmitted to any server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why should I use Error Correction Level M or Q when embedding a coin logo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When an emblem badge (such as the Bitcoin ₿ or Ethereum Ξ icon) is embedded in the center of a QR code, it covers up to 10% to 15% of the central data modules. Using Reed-Solomon Error Correction Level M (15% data recovery) or Level Q (25% data recovery) ensures the QR code retains sufficient mathematical parity data to decode reliably under all lighting conditions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the recommended print size for physical crypto donation stands and counter signs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For countertop point-of-sale stands, tip jars, and event badges, print QR codes at a minimum physical size of 1.5 × 1.5 inches (38 × 38 mm) with a minimum 4-module quiet zone margin. For livestream overlays, video end screens, or posters viewed from several feet away, display the code at 300 × 300 pixels or larger with high visual contrast."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How should I test a cryptocurrency QR code before printing or publishing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Always verify the code in two steps: first, scan the generated QR code using a mobile wallet app or camera scanner to confirm the decoded public address exactly matches your intended receiving address (especially the first 6 and final 6 alphanumeric characters). Second, execute a small test micro-transaction before printing stickers, retail plaques, or large-format donation banners."
       }
     }
   ]
@@ -428,7 +468,7 @@
         Smart QR Standard
       </div>
       <h1 class="hero-title">Free Crypto Payment & Wallet QR Code Generator</h1>
-      <p class="hero-lead">Generate clean, scannable cryptocurrency wallet QR codes for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) with optional payment request amounts.</p>
+      <p class="hero-lead">Generate clean, scannable cryptocurrency wallet QR codes for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) with standard payment request URIs and complete client-side privacy.</p>
       
       <a href="../index.html?wizard=crypto" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -448,18 +488,38 @@
         <dl class="spec-table">
           
     <div class="spec-row">
+      <dt class="spec-key">Standards</dt>
+      <dd class="spec-val">ISO/IEC 18004:2024, Bitcoin BIP-0021 URI Scheme, Ethereum EIP-681, Solana Pay URI</dd>
+    </div>
+  
+    <div class="spec-row">
       <dt class="spec-key">Supported Chains</dt>
-      <dd class="spec-val">Bitcoin (BIP-21), Ethereum (EIP-681), Solana</dd>
+      <dd class="spec-val">Bitcoin (BTC), Ethereum (ETH & ERC-20), Solana (SOL & SPL Tokens)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Uri Schemes</dt>
-      <dd class="spec-val">bitcoin:, ethereum:, solana:</dd>
+      <dt class="spec-key">Uri Formatting</dt>
+      <dd class="spec-val">bitcoin:address?amount=X&label=Y, ethereum:address?value=X, solana:address?amount=X</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Styling</dt>
-      <dd class="spec-val">Add built-in Bitcoin or Ethereum brand center logos</dd>
+      <dt class="spec-key">Error Correction</dt>
+      <dd class="spec-val">Level M (15%) or Level Q (25%) recommended when embedding center coin badges</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Center Emblems</dt>
+      <dd class="spec-val">Built-in vector Bitcoin (₿) and Ethereum (Ξ) center logo badges with quiet zones</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Export Formats</dt>
+      <dd class="spec-val">Vector SVG (infinitely scalable for physical signage) and high-resolution PNG (300 DPI)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Privacy Security</dt>
+      <dd class="spec-val">100% client-side browser execution. Private keys and seed phrases are never requested or handled</dd>
     </div>
   
         </dl>
@@ -474,22 +534,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Merchant point-of-sale cryptocurrency checkout</span>
+      <span>Merchant point-of-sale cryptocurrency checkout & register displays</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Content creator tip jars on YouTube, Twitch, and blogs</span>
+      <span>Content creator tip jars on YouTube, Twitch, GitHub, and blogs</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Invoicing freelance clients in digital currency</span>
+      <span>Invoicing freelance clients in Bitcoin, Ethereum, or Solana digital currency</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Non-profit cryptocurrency donation banners</span>
+      <span>Non-profit fundraising and cryptocurrency donation banners</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Physical cold-storage wallet public deposit address labelling</span>
     </li>
   
         </ul>
@@ -660,6 +725,14 @@
       <div class="authority-link-desc">Ethereum standard for URL format for transaction requests.</div>
     </a>
   
+    <a href="https://github.com/solana-labs/solana-pay/blob/master/SPEC.md" target="_blank" rel="noopener noreferrer" class="authority-link-item">
+      <div class="authority-link-title">
+        <span>Solana Pay Specification</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </div>
+      <div class="authority-link-desc">Standard specification for Solana payment request URLs and merchant transfers.</div>
+    </a>
+  
       </div>
     </section>
     
@@ -674,11 +747,61 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>Are these QR codes compatible with mobile crypto wallets?</span>
+        <span>How do crypto QR codes work with mobile wallets?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. The generated codes use official cryptocurrency URI standards (such as BIP-21 for Bitcoin) recognized by Coinbase, Trust Wallet, MetaMask, Phantom, and Ledger.</p>
+        <p>The generated QR codes encode official cryptocurrency URI standards, such as Bitcoin BIP-21, Ethereum EIP-681, and Solana URI protocols. When scanned with a smartphone camera or mobile wallet app (including Coinbase Wallet, Trust Wallet, MetaMask, Phantom, or Ledger Live), the app automatically parses the public address, pre-populates the destination address field, and applies optional amount and payment reference parameters without manual copy-pasting.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I specify an exact invoice or payment amount in the QR code?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. By specifying a requested payment amount in the generator, standard URI parameters are embedded into the payload (for example, bitcoin:address?amount=0.005 or solana:address?amount=1.5). When a customer or client scans the code, their wallet app automatically pre-fills the exact requested transfer amount, reducing checkout friction and eliminating decimal calculation mistakes.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Does UniversalCodeMaker ever touch or require my private keys or seed phrase?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Never. UniversalCodeMaker strictly encodes public wallet addresses and payment request URIs supplied by you. All QR code generation is performed 100% in your local web browser using client-side JavaScript. Private keys, seed phrases, wallet balances, and transaction data are never requested, handled, or transmitted to any server.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Why should I use Error Correction Level M or Q when embedding a coin logo?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>When an emblem badge (such as the Bitcoin ₿ or Ethereum Ξ icon) is embedded in the center of a QR code, it covers up to 10% to 15% of the central data modules. Using Reed-Solomon Error Correction Level M (15% data recovery) or Level Q (25% data recovery) ensures the QR code retains sufficient mathematical parity data to decode reliably under all lighting conditions.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What is the recommended print size for physical crypto donation stands and counter signs?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>For countertop point-of-sale stands, tip jars, and event badges, print QR codes at a minimum physical size of 1.5 × 1.5 inches (38 × 38 mm) with a minimum 4-module quiet zone margin. For livestream overlays, video end screens, or posters viewed from several feet away, display the code at 300 × 300 pixels or larger with high visual contrast.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>How should I test a cryptocurrency QR code before printing or publishing?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Always verify the code in two steps: first, scan the generated QR code using a mobile wallet app or camera scanner to confirm the decoded public address exactly matches your intended receiving address (especially the first 6 and final 6 alphanumeric characters). Second, execute a small test micro-transaction before printing stickers, retail plaques, or large-format donation banners.</p>
       </div>
     </details>
   
@@ -693,50 +816,50 @@
       </h2>
       <div class="related-grid">
         
-    <a href="./ean-13-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./upi-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>EAN-13 Barcode Generator</span>
+        <span>UPI QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./upc-a-barcode-generator.html" class="related-card">
-      <span class="related-tag">Retail & POS</span>
+    <a href="./wifi-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>UPC-A Barcode Generator</span>
+        <span>Wi-Fi QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./code-128-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./google-reviews-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Code 128 Barcode Generator</span>
+        <span>Google Reviews QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./itf-14-barcode-generator.html" class="related-card">
-      <span class="related-tag">Logistics & Shipping</span>
+    <a href="./plain-text-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>ITF-14 Barcode Generator</span>
+        <span>Plain Text QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./data-matrix-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./vcard-qr-code-generator.html" class="related-card">
+      <span class="related-tag">Smart QR</span>
       <span class="related-title">
-        <span>Data Matrix Barcode Generator</span>
+        <span>vCard QR Code Generator</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>
   
-    <a href="./aztec-code-generator.html" class="related-card">
-      <span class="related-tag">2D Matrix</span>
+    <a href="./bulk-barcode-generator-excel.html" class="related-card">
+      <span class="related-tag">Logistics & 1D</span>
       <span class="related-title">
-        <span>Aztec Code Generator</span>
+        <span>Bulk Barcode Generator from Excel</span>
         <span class="related-arrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </span>
     </a>

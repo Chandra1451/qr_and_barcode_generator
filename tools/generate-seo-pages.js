@@ -634,26 +634,59 @@ const SEO_PAGES = [
     shortName: 'Crypto QR',
     queryParam: 'wizard=crypto',
     category: 'Smart QR',
-    metaTitle: 'Free Crypto QR Code Generator: Bitcoin, Ethereum, Solana',
-    metaDescription: 'Make a payment QR code for a Bitcoin, Ethereum or Solana address, with an optional amount and a Bitcoin logo. Made in your browser, no tracking.',
+    metaTitle: 'Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana',
+    metaDescription: 'Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.',
     h1: 'Free Crypto Payment & Wallet QR Code Generator',
-    lead: 'Generate clean, scannable cryptocurrency wallet QR codes for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) with optional payment request amounts.',
+    lead: 'Generate clean, scannable cryptocurrency wallet QR codes for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) with standard payment request URIs and complete client-side privacy.',
     technicalSpec: {
-      supportedChains: 'Bitcoin (BIP-21), Ethereum (EIP-681), Solana',
-      uriSchemes: 'bitcoin:, ethereum:, solana:',
-      styling: 'Add built-in Bitcoin or Ethereum brand center logos'
+      standards: 'ISO/IEC 18004:2024, Bitcoin BIP-0021 URI Scheme, Ethereum EIP-681, Solana Pay URI',
+      supportedChains: 'Bitcoin (BTC), Ethereum (ETH & ERC-20), Solana (SOL & SPL Tokens)',
+      uriFormatting: 'bitcoin:address?amount=X&label=Y, ethereum:address?value=X, solana:address?amount=X',
+      errorCorrection: 'Level M (15%) or Level Q (25%) recommended when embedding center coin badges',
+      centerEmblems: 'Built-in vector Bitcoin (₿) and Ethereum (Ξ) center logo badges with quiet zones',
+      exportFormats: 'Vector SVG (infinitely scalable for physical signage) and high-resolution PNG (300 DPI)',
+      privacySecurity: '100% client-side browser execution. Private keys and seed phrases are never requested or handled'
     },
     useCases: [
-      'Merchant point-of-sale cryptocurrency checkout',
-      'Content creator tip jars on YouTube, Twitch, and blogs',
-      'Invoicing freelance clients in digital currency',
-      'Non-profit cryptocurrency donation banners'
+      'Merchant point-of-sale cryptocurrency checkout & register displays',
+      'Content creator tip jars on YouTube, Twitch, GitHub, and blogs',
+      'Invoicing freelance clients in Bitcoin, Ethereum, or Solana digital currency',
+      'Non-profit fundraising and cryptocurrency donation banners',
+      'Physical cold-storage wallet public deposit address labelling'
     ],
     faqs: [
       {
-        q: 'Are these QR codes compatible with mobile crypto wallets?',
-        a: 'Yes. The generated codes use official cryptocurrency URI standards (such as BIP-21 for Bitcoin) recognized by Coinbase, Trust Wallet, MetaMask, Phantom, and Ledger.'
+        q: 'How do crypto QR codes work with mobile wallets?',
+        a: 'The generated QR codes encode official cryptocurrency URI standards, such as Bitcoin BIP-21, Ethereum EIP-681, and Solana URI protocols. When scanned with a smartphone camera or mobile wallet app (including Coinbase Wallet, Trust Wallet, MetaMask, Phantom, or Ledger Live), the app automatically parses the public address, pre-populates the destination address field, and applies optional amount and payment reference parameters without manual copy-pasting.'
+      },
+      {
+        q: 'Can I specify an exact invoice or payment amount in the QR code?',
+        a: 'Yes. By specifying a requested payment amount in the generator, standard URI parameters are embedded into the payload (for example, bitcoin:address?amount=0.005 or solana:address?amount=1.5). When a customer or client scans the code, their wallet app automatically pre-fills the exact requested transfer amount, reducing checkout friction and eliminating decimal calculation mistakes.'
+      },
+      {
+        q: 'Does UniversalCodeMaker ever touch or require my private keys or seed phrase?',
+        a: 'Never. UniversalCodeMaker strictly encodes public wallet addresses and payment request URIs supplied by you. All QR code generation is performed 100% in your local web browser using client-side JavaScript. Private keys, seed phrases, wallet balances, and transaction data are never requested, handled, or transmitted to any server.'
+      },
+      {
+        q: 'Why should I use Error Correction Level M or Q when embedding a coin logo?',
+        a: 'When an emblem badge (such as the Bitcoin ₿ or Ethereum Ξ icon) is embedded in the center of a QR code, it covers up to 10% to 15% of the central data modules. Using Reed-Solomon Error Correction Level M (15% data recovery) or Level Q (25% data recovery) ensures the QR code retains sufficient mathematical parity data to decode reliably under all lighting conditions.'
+      },
+      {
+        q: 'What is the recommended print size for physical crypto donation stands and counter signs?',
+        a: 'For countertop point-of-sale stands, tip jars, and event badges, print QR codes at a minimum physical size of 1.5 × 1.5 inches (38 × 38 mm) with a minimum 4-module quiet zone margin. For livestream overlays, video end screens, or posters viewed from several feet away, display the code at 300 × 300 pixels or larger with high visual contrast.'
+      },
+      {
+        q: 'How should I test a cryptocurrency QR code before printing or publishing?',
+        a: 'Always verify the code in two steps: first, scan the generated QR code using a mobile wallet app or camera scanner to confirm the decoded public address exactly matches your intended receiving address (especially the first 6 and final 6 alphanumeric characters). Second, execute a small test micro-transaction before printing stickers, retail plaques, or large-format donation banners.'
       }
+    ],
+    relatedSlugs: [
+      'upi-qr-code-generator',
+      'wifi-qr-code-generator',
+      'google-reviews-qr-code-generator',
+      'plain-text-qr-code-generator',
+      'vcard-qr-code-generator',
+      'bulk-barcode-generator-excel'
     ]
   },
   {
@@ -1924,6 +1957,11 @@ const ENRICHMENTS = {
         "name": "Ethereum EIP-681 Standard",
         "desc": "Ethereum standard for URL format for transaction requests.",
         "url": "https://eips.ethereum.org/EIPS/eip-681"
+      },
+      {
+        "name": "Solana Pay Specification",
+        "desc": "Standard specification for Solana payment request URLs and merchant transfers.",
+        "url": "https://github.com/solana-labs/solana-pay/blob/master/SPEC.md"
       }
     ]
   },
