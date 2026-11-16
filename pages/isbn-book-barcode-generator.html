@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free ISBN Book Barcode Generator: Bookland EAN-13 & SVG</title>
-  <meta name="description" content="Generate ISBN-13 and Bookland EAN barcodes for book covers, Amazon KDP and IngramSpark. Includes automatic check digit and 5-digit price add-on in vector SVG.">
+  <meta name="description" content="Free ISBN barcode generator for book covers. Enter your 13-digit ISBN and an optional 5-digit price add-on. Download SVG, PNG or EPS for the cover.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/isbn-book-barcode-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free ISBN Book Barcode Generator: Bookland EAN-13 & SVG">
-  <meta property="og:description" content="Generate ISBN-13 and Bookland EAN barcodes for book covers, Amazon KDP and IngramSpark. Includes automatic check digit and 5-digit price add-on in vector SVG.">
+  <meta property="og:description" content="Free ISBN barcode generator for book covers. Enter your 13-digit ISBN and an optional 5-digit price add-on. Download SVG, PNG or EPS for the cover.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/isbn-book-barcode-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free ISBN Book Barcode Generator: Bookland EAN-13 & SVG">
-  <meta name="twitter:description" content="Generate ISBN-13 and Bookland EAN barcodes for book covers, Amazon KDP and IngramSpark. Includes automatic check digit and 5-digit price add-on in vector SVG.">
+  <meta name="twitter:description" content="Free ISBN barcode generator for book covers. Enter your 13-digit ISBN and an optional 5-digit price add-on. Download SVG, PNG or EPS for the cover.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "ISBN Book Barcode Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/isbn-book-barcode-generator.html",
-  "description": "Generate ISBN-13 and Bookland EAN barcodes for book covers, Amazon KDP and IngramSpark. Includes automatic check digit and 5-digit price add-on in vector SVG.",
+  "description": "Free ISBN barcode generator for book covers. Enter your 13-digit ISBN and an optional 5-digit price add-on. Download SVG, PNG or EPS for the cover.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -352,47 +352,31 @@
       "name": "How do I get a barcode for my book?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "To put a barcode on your book cover, follow four steps: 1) Obtain an official 13-digit ISBN from your national agency (such as Bowker in the US, Nielsen in the UK, Library and Archives Canada) or choose a free ISBN directly in Amazon KDP; 2) Enter your 13-digit ISBN (beginning with 978 or 979) into UniversalCodeMaker's Bookland generator; 3) Optionally configure an EAN-5 supplemental price code (e.g. 51999 for $19.99 USD or 90000 for unpriced books); 4) Download the vector SVG or high-resolution PNG and place it in the lower-right area of your back cover design."
+        "text": "First get an ISBN from the ISBN agency for your country (in the US that is Bowker). Then enter the 13-digit ISBN here, add a price add-on if your market uses one, and download the file for your cover designer."
       }
     },
     {
       "@type": "Question",
-      "name": "Where do I obtain an official ISBN for my book?",
+      "name": "What is the 5-digit add-on?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In the United States, official ISBNs are issued by Bowker (myidentifiers.com). In Canada, they are issued free by Library and Archives Canada. In the UK, Nielsen Book is the official agency. In India, Raja Rammohun Roy National Agency issues ISBNs. Amazon KDP also provides free ISBNs for platform-exclusive publishing."
+        "text": "An optional second barcode to the right of the main one. In the US the first digit is the currency (5 for US dollars) and the rest is the price, so 51995 means $19.95. 90000 means no price is encoded."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the 5-digit add-on code next to the ISBN barcode?",
+      "name": "My printer or publishing platform makes a barcode for me. Do I need this?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The 5-digit supplemental code is an EAN-5 price extension. For books sold in the US, the first digit is 5 (denoting USD), followed by the price without decimals. For example, 51999 represents $19.99 USD. If no price is set, 90000 is used."
+        "text": "Some print-on-demand services add a barcode to the cover automatically. Check their cover guidelines; if they do, you don't need a separate one."
       }
     },
     {
       "@type": "Question",
-      "name": "Does Amazon KDP accept vector SVG barcodes generated here?",
+      "name": "Can I use a 10-digit ISBN?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. UniversalCodeMaker exports clean, vector SVG and high-DPI 300+ PPI PNG files with exact quiet zones, ensuring razor-sharp reproduction that will pass KDP and IngramSpark automated pre-flight checks."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Where should the ISBN barcode be placed on a book cover?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Book industry standards (BISG) specify placing the barcode in the lower-right quadrant of the back cover, at least 0.25 to 0.5 inches (6 to 13 mm) away from the trim edge and spine. Ensure the light quiet-zone margins on both sides of the barcode remain completely unobstructed by cover artwork or dark backgrounds."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I convert an old 10-digit ISBN to the modern 13-digit format?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Simply prefix the 9-digit core with 978 and calculate the new 13th Mod-10 check digit. Our generator handles this math automatically."
+        "text": "Not directly. The barcode uses the 13-digit form. Older 10-digit ISBNs have a 978 equivalent; your ISBN agency's records show it."
       }
     }
   ]
@@ -470,7 +454,7 @@
         Retail & POS
       </div>
       <h1 class="hero-title">Free ISBN-13 Bookland Barcode Generator</h1>
-      <p class="hero-lead">Generate high-contrast Bookland EAN-13 barcodes for paperback, hardcover, and print-on-demand books. Designed to meet strict IngramSpark, Amazon KDP, and Barnes & Noble publishing specifications with vector SVG and 300 DPI print exports.</p>
+      <p class="hero-lead">Make the barcode for the back cover of a book from your 13-digit ISBN, with an optional 5-digit price add-on. The ISBN itself comes from your national ISBN agency; this tool draws the barcode.</p>
       
       <a href="../index.html?symbology=isbn" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -490,28 +474,33 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO 2108 / Bookland EAN-13 (GS1 General Specifications)</dd>
+      <dt class="spec-key">Input</dt>
+      <dd class="spec-val">A 13-digit ISBN starting 978 or 979, with or without hyphens</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Prefix Structure</dt>
-      <dd class="spec-val">978 or 979 International Book Industry Prefix</dd>
+      <dt class="spec-key">Symbol</dt>
+      <dd class="spec-val">EAN-13 (Bookland), the barcode used for ISBNs</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Check Digit Math</dt>
-      <dd class="spec-val">Automated GS1 Modulo-10 checksum calculation</dd>
+      <dt class="spec-key">Price Add On</dt>
+      <dd class="spec-val">Optional 5-digit add-on (EAN-5)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Supplemental Addon</dt>
-      <dd class="spec-val">Optional EAN-5 supplemental price code (e.g. 51999 for $19.99 USD / 90000 for no price)</dd>
+      <dt class="spec-key">Print Size</dt>
+      <dd class="spec-val">Based on a 0.330 mm narrow bar, as for EAN-13</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Output Formats</dt>
-      <dd class="spec-val">Scalable Vector SVG, High-Res 300 DPI PNG, Direct Print</dd>
+      <dt class="spec-key">Downloads</dt>
+      <dd class="spec-val">SVG, PNG and EPS</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Privacy</dt>
+      <dd class="spec-val">Built in your browser; the generator does not upload your ISBN</dd>
     </div>
   
         </dl>
@@ -526,22 +515,17 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Amazon KDP (Kindle Direct Publishing) paperback and hardcover back covers</span>
+      <span>Back covers of self-published books</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>IngramSpark and Lightning Source global retail distribution</span>
+      <span>Replacement barcodes when a cover is redesigned</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Bookstore Point-of-Sale (POS) cash register laser scanning</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Independent publishing, literary journals, and self-published textbooks</span>
+      <span>Small presses printing their own covers</span>
     </li>
   
         </ul>
@@ -595,25 +579,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Standard Bookland EAN-13</h4>
+        <h4>Made from your ISBN</h4>
       </div>
-      <p>The 978/979 EAN-13 book barcode with correct quiet zones, the format used on covers for Amazon KDP, IngramSpark and bookshops. Check your distributor's current cover specs before uploading.</p>
+      <p>Paste it with or without hyphens; the barcode uses the 13 digits.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Optional EAN-5 Price Extension</h4>
+        <h4>Price add-on built in</h4>
       </div>
-      <p>Seamlessly append standard 5-digit price codes (e.g. 51999 for $19.99 USD or 90000 for no price) required by US bookstores.</p>
+      <p>Add the 5-digit price code next to the main barcode when your market uses one.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Vector SVG & 300+ DPI Print Files</h4>
+        <h4>Files for cover designers</h4>
       </div>
-      <p>Download crisp vector graphics to embed into Adobe InDesign, Illustrator, Canva, or Photoshop book cover templates.</p>
+      <p>SVG and EPS stay sharp at any size in cover artwork.</p>
     </div>
   
       </div>
@@ -637,17 +621,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Do I need the 5-digit price add-on code on my book?</span>
+        <span>Selling through US bookshops?</span>
       </h3>
-      <p>Major US bookstore chains (such as Barnes & Noble) strongly prefer the 5-digit price extension code to automatically populate the retail price at the cash register. For international or online-only sales, standard 13-digit ISBN is sufficient.</p>
+      <p>Add the 5-digit price add-on, or 90000 if you don't want a price printed.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Can I use the same ISBN for paperback and hardcover editions?</span>
+        <span>Only selling online or through a print-on-demand service?</span>
       </h3>
-      <p>No. Under international publishing standards, every format (paperback, hardcover, audiobook, e-book) requires its own unique ISBN number.</p>
+      <p>Check whether the service adds the barcode for you before making one.</p>
     </div>
   
       </div>
@@ -662,23 +646,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>International ISBN Agency Regulatory Compliance</h3>
+        <h3>Rules to know</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>ISBN barcodes must be derived from genuine ISBN numbers issued by authorized national agencies (Bowker in the US, Nielsen in the UK, etc.).</span>
+      <span>Use an ISBN issued to you by your national ISBN agency. A generated barcode doesn't create a valid ISBN.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Inventing arbitrary 13-digit numbers will result in immediate rejection by book wholesalers, libraries, and Amazon KDP.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Ensure the barcode is printed on an opaque white background on the lower right quadrant of the back cover.</span>
+      <span>Follow your printer's cover guidelines for the barcode's position and size.</span>
     </li>
   
       </ul>
@@ -731,57 +710,37 @@
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>To put a barcode on your book cover, follow four steps: 1) Obtain an official 13-digit ISBN from your national agency (such as Bowker in the US, Nielsen in the UK, Library and Archives Canada) or choose a free ISBN directly in Amazon KDP; 2) Enter your 13-digit ISBN (beginning with 978 or 979) into UniversalCodeMaker's Bookland generator; 3) Optionally configure an EAN-5 supplemental price code (e.g. 51999 for $19.99 USD or 90000 for unpriced books); 4) Download the vector SVG or high-resolution PNG and place it in the lower-right area of your back cover design.</p>
+        <p>First get an ISBN from the ISBN agency for your country (in the US that is Bowker). Then enter the 13-digit ISBN here, add a price add-on if your market uses one, and download the file for your cover designer.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Where do I obtain an official ISBN for my book?</span>
+        <span>What is the 5-digit add-on?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>In the United States, official ISBNs are issued by Bowker (myidentifiers.com). In Canada, they are issued free by Library and Archives Canada. In the UK, Nielsen Book is the official agency. In India, Raja Rammohun Roy National Agency issues ISBNs. Amazon KDP also provides free ISBNs for platform-exclusive publishing.</p>
+        <p>An optional second barcode to the right of the main one. In the US the first digit is the currency (5 for US dollars) and the rest is the price, so 51995 means $19.95. 90000 means no price is encoded.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>What is the 5-digit add-on code next to the ISBN barcode?</span>
+        <span>My printer or publishing platform makes a barcode for me. Do I need this?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>The 5-digit supplemental code is an EAN-5 price extension. For books sold in the US, the first digit is 5 (denoting USD), followed by the price without decimals. For example, 51999 represents $19.99 USD. If no price is set, 90000 is used.</p>
+        <p>Some print-on-demand services add a barcode to the cover automatically. Check their cover guidelines; if they do, you don't need a separate one.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Does Amazon KDP accept vector SVG barcodes generated here?</span>
+        <span>Can I use a 10-digit ISBN?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. UniversalCodeMaker exports clean, vector SVG and high-DPI 300+ PPI PNG files with exact quiet zones, ensuring razor-sharp reproduction that will pass KDP and IngramSpark automated pre-flight checks.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Where should the ISBN barcode be placed on a book cover?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Book industry standards (BISG) specify placing the barcode in the lower-right quadrant of the back cover, at least 0.25 to 0.5 inches (6 to 13 mm) away from the trim edge and spine. Ensure the light quiet-zone margins on both sides of the barcode remain completely unobstructed by cover artwork or dark backgrounds.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Can I convert an old 10-digit ISBN to the modern 13-digit format?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Yes. Simply prefix the 9-digit core with 978 and calculate the new 13th Mod-10 check digit. Our generator handles this math automatically.</p>
+        <p>Not directly. The barcode uses the 13-digit form. Older 10-digit ISBNs have a 978 equivalent; your ISBN agency's records show it.</p>
       </div>
     </details>
   

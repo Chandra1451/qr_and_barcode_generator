@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Code 39 Barcode Generator: Asset Tags & Mod-43 SVG</title>
-  <meta name="description" content="Generate free Code 39 (Code 3 of 9) barcodes online. Alphanumeric asset tags, optional Mod-43 check digit, Avery label maker & sharp vector SVG export.">
+  <meta name="description" content="Free Code 39 barcode generator for asset tags and inventory labels. Uppercase letters, digits and a few symbols, optional Mod-43 check digit. SVG, PNG, EPS.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/code-39-barcode-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free Code 39 Barcode Generator: Asset Tags & Mod-43 SVG">
-  <meta property="og:description" content="Generate free Code 39 (Code 3 of 9) barcodes online. Alphanumeric asset tags, optional Mod-43 check digit, Avery label maker & sharp vector SVG export.">
+  <meta property="og:description" content="Free Code 39 barcode generator for asset tags and inventory labels. Uppercase letters, digits and a few symbols, optional Mod-43 check digit. SVG, PNG, EPS.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/code-39-barcode-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Code 39 Barcode Generator: Asset Tags & Mod-43 SVG">
-  <meta name="twitter:description" content="Generate free Code 39 (Code 3 of 9) barcodes online. Alphanumeric asset tags, optional Mod-43 check digit, Avery label maker & sharp vector SVG export.">
+  <meta name="twitter:description" content="Free Code 39 barcode generator for asset tags and inventory labels. Uppercase letters, digits and a few symbols, optional Mod-43 check digit. SVG, PNG, EPS.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "Code 39 Barcode Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/code-39-barcode-generator.html",
-  "description": "Generate free Code 39 (Code 3 of 9) barcodes online. Alphanumeric asset tags, optional Mod-43 check digit, Avery label maker & sharp vector SVG export.",
+  "description": "Free Code 39 barcode generator for asset tags and inventory labels. Uppercase letters, digits and a few symbols, optional Mod-43 check digit. SVG, PNG, EPS.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -349,50 +349,26 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What characters can be encoded in a standard Code 39 barcode?",
+      "name": "Code 39 or Code 128?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Standard Code 39 natively encodes 43 individual characters: 10 numeric digits (0–9), 26 uppercase English letters (A–Z), and seven punctuation and mathematical symbols: hyphen (-), period (.), space ( ), dollar sign ($), slash (/), plus (+), and percent (%). Lowercase letters entered into standard mode are automatically capitalized. For full ASCII support including lowercase letters and control characters, Full ASCII Extended Code 39 combines these standard symbols in pairs."
+        "text": "Use Code 39 when your system or scanner setup expects it. For anything new, Code 128 is shorter for the same data and takes lowercase letters."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the difference between Code 39 and Code 128?",
+      "name": "Should I add the Mod-43 check digit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Code 39 is a discrete symbology where each character is separated by an inter-character gap, making it simpler, highly resilient, and decodable by virtually all legacy barcode readers without specialized software. However, Code 39 requires significantly more physical horizontal space per character. Code 128 is a continuous, high-density symbology that encodes the entire 128 ASCII table in approximately half the horizontal width and features dynamic numeric compaction (Subset C). For compact spaces, choose <a href=\"./code-128-barcode-generator.html\">Code 128</a>; for legacy defense, automotive, or simple asset tracking, choose Code 39."
+        "text": "Only if the system reading the code expects it. If it doesn't, the extra character can end up in the scanned value."
       }
     },
     {
       "@type": "Question",
-      "name": "Why do Code 39 barcodes have asterisks (*) at the beginning and end?",
+      "name": "Why can't I use lowercase letters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The asterisk (*) character is the designated start and stop delimiter in the Code 39 specification. It tells optical barcode scanners which direction the beam is reading across the bars (left-to-right or right-to-left) so the decoder can orient the payload accurately. In modern scanners, the asterisks are stripped automatically and are not transmitted to your inventory database or spreadsheet."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How is the optional Modulo-43 check digit calculated for Code 39?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Code 39 has built-in self-checking properties due to its fixed pattern ratio (each character contains 9 elements: 3 wide and 6 narrow). However, high-reliability applications (such as DoD LOGMARS or healthcare asset tracking) add a Modulo-43 check character: each character in the payload is assigned a numerical value from 0 to 42, all values are summed, the sum is divided by 43, and the remainder maps back to the corresponding check character appended to the end of the data."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I print Code 39 asset barcodes on Avery adhesive label sheets?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1\" × 2-5/8\") or Avery 5163 (10 labels per sheet, 2\" × 4\"). Each barcode is rendered with calibrated quiet zones and razor-sharp vectors to guarantee crisp scanning on both thermal transfer and office laser printers."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my enterprise asset tags, serial numbers, or internal inventory lists stored on UniversalCodeMaker servers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The barcodes are drawn in your browser, and the generator does not upload your asset numbers or equipment tags."
+        "text": "Standard Code 39 only has 43 characters: digits, uppercase letters, space and six symbols."
       }
     }
   ]
@@ -470,7 +446,7 @@
         Logistics & 1D
       </div>
       <h1 class="hero-title">Free Code 39 Asset & Industrial Barcode Generator</h1>
-      <p class="hero-lead">Generate industrial-standard Code 39 (Code 3 of 9 / USD-3) linear barcodes for IT asset tracking, manufacturing parts marking, defense logistics, and warehouse equipment numbering with instant vector SVG and Avery label sheet printing.</p>
+      <p class="hero-lead">Make a Code 39 barcode for asset tags, inventory and older systems that expect it. It takes uppercase letters, digits and a few symbols, and can add an optional Mod-43 check digit.</p>
       
       <a href="../index.html?symbology=code-39" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -491,32 +467,37 @@
           
     <div class="spec-row">
       <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO/IEC 16388 & ANSI/AIM BC1 (USD-3 / LOGMARS)</dd>
+      <dd class="spec-val">ISO/IEC 16388</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Character Set</dt>
-      <dd class="spec-val">43 characters: 0–9, uppercase A–Z, and symbols (- . $ / + % space)</dd>
+      <dt class="spec-key">Characters</dt>
+      <dd class="spec-val">0–9, A–Z (uppercase), space and - . $ / + %</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Checksum Algorithm</dt>
-      <dd class="spec-val">Self-checking symbology; optional weighted Modulo-43 checksum</dd>
+      <dt class="spec-key">Start Stop</dt>
+      <dd class="spec-val">The * start and stop characters are added for you</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Symbology Structure</dt>
-      <dd class="spec-val">Discrete variable-length symbology with automatic start/stop asterisks (*)</dd>
+      <dt class="spec-key">Check Digit</dt>
+      <dd class="spec-val">Optional Mod-43 (tick Include Mod-43 Check Digit)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Quiet Zones</dt>
-      <dd class="spec-val">Minimum 10X module width (at least 6.4 mm / 0.25 in) on left and right margins</dd>
+      <dt class="spec-key">Quiet Zone</dt>
+      <dd class="spec-val">At least 10 narrow-bar widths on each side</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Downloads</dt>
+      <dd class="spec-val">SVG, PNG and EPS downloads, plus Avery 5160, 5163 and L7160 label sheets</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Privacy</dt>
-      <dd class="spec-val">Built in your browser; asset IDs, serial numbers, and equipment tags are never uploaded</dd>
+      <dd class="spec-val">Built in your browser; the generator does not upload your asset numbers</dd>
     </div>
   
         </dl>
@@ -531,27 +512,17 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Enterprise IT hardware asset tags (laptops, servers, monitors, networking gear)</span>
+      <span>IT and equipment asset tags</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>US Department of Defense (DoD) military supply shipments under MIL-STD-129 / MIL-STD-130</span>
+      <span>Inventory labels for systems that already use Code 39</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Automotive manufacturing sub-assemblies and replacement parts (AIAG B-1 standard)</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Hospital clinical laboratory specimen tube labeling and healthcare asset tracking</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Warehouse storage bin locations, maintenance tooling badges, and factory route sheets</span>
+      <span>Library and file labels</span>
     </li>
   
         </ul>
@@ -605,25 +576,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Full Alphanumeric Character Support</h4>
+        <h4>Simple and widely read</h4>
       </div>
-      <p>Encodes capital letters A–Z, numbers 0–9, and key operational symbols (- . $ / + % space) for intuitive asset naming.</p>
+      <p>An old, simple format that most handheld scanners read.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Known as LOGMARS in US Defense Logistics</h4>
+        <h4>Optional check digit</h4>
       </div>
-      <p>LOGMARS is the US Department of Defense's use of Code 39 and adds its own size and density rules; check them against your contract before printing.</p>
+      <p>Add Mod-43 when your system expects it.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Self-Checking Robust Architecture</h4>
+        <h4>Label sheets</h4>
       </div>
-      <p>Inherent parity check pattern minimizes misread risks, with optional Modulo-43 check digit support for mission-critical tracking.</p>
+      <p>Print asset tags on Avery 5160, 5163 or L7160 sheets.</p>
     </div>
   
       </div>
@@ -647,17 +618,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>When should I choose Code 39 over Code 128?</span>
+        <span>An existing system already uses Code 39?</span>
       </h3>
-      <p>Choose Code 39 when encoding shorter alphanumeric IDs (like ASSET-104) where legacy scanners or government contracts (MIL-STD-129) require it. Choose Code 128 if you have longer strings or space constraints on small labels.</p>
+      <p>Stay with it so scans match what's in your records.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Should I enable the Modulo-43 check digit?</span>
+        <span>Starting fresh?</span>
       </h3>
-      <p>Enable Mod-43 if you are tracking high-value assets, medical specimens, or defense shipments. For casual office inventory, standard Code 39 without check digit is scannable on all hardware.</p>
+      <p>Code 128 makes shorter barcodes for the same data.</p>
     </div>
   
       </div>
@@ -672,23 +643,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>Code 39 Technical Standards & Quiet Zone Rules</h3>
+        <h3>Before you print</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Code 39 requires a minimum quiet zone (blank white margin) of 10 times the narrow bar width on both the left and right sides.</span>
+      <span>Check whether your system expects the Mod-43 check digit before printing a batch.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Standard Code 39 is not case-sensitive; lowercase letters are automatically capitalized upon encoding.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Ensure start and stop asterisks (*) are preserved in the optical pattern to allow bi-directional scanning.</span>
+      <span>Code 39 gets wide quickly; keep values short for small tags.</span>
     </li>
   
       </ul>
@@ -709,10 +675,10 @@
         
     <a href="https://www.aimglobal.org/" target="_blank" rel="noopener noreferrer" class="authority-link-item">
       <div class="authority-link-title">
-        <span>AIM Global: Code 39 Symbology Specification</span>
+        <span>AIM, the barcode industry association</span>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </div>
-      <div class="authority-link-desc">Official standards body documentation for ANSI/AIM BC1 Uniform Symbology Specification Code 39.</div>
+      <div class="authority-link-desc">The industry body behind the original Code 39 specification (ANSI/AIM BC1).</div>
     </a>
   
     <a href="https://quicksearch.dla.mil/" target="_blank" rel="noopener noreferrer" class="authority-link-item">
@@ -737,61 +703,31 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>What characters can be encoded in a standard Code 39 barcode?</span>
+        <span>Code 39 or Code 128?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Standard Code 39 natively encodes 43 individual characters: 10 numeric digits (0–9), 26 uppercase English letters (A–Z), and seven punctuation and mathematical symbols: hyphen (-), period (.), space ( ), dollar sign ($), slash (/), plus (+), and percent (%). Lowercase letters entered into standard mode are automatically capitalized. For full ASCII support including lowercase letters and control characters, Full ASCII Extended Code 39 combines these standard symbols in pairs.</p>
+        <p>Use Code 39 when your system or scanner setup expects it. For anything new, Code 128 is shorter for the same data and takes lowercase letters.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>What is the difference between Code 39 and Code 128?</span>
+        <span>Should I add the Mod-43 check digit?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Code 39 is a discrete symbology where each character is separated by an inter-character gap, making it simpler, highly resilient, and decodable by virtually all legacy barcode readers without specialized software. However, Code 39 requires significantly more physical horizontal space per character. Code 128 is a continuous, high-density symbology that encodes the entire 128 ASCII table in approximately half the horizontal width and features dynamic numeric compaction (Subset C). For compact spaces, choose <a href="./code-128-barcode-generator.html">Code 128</a>; for legacy defense, automotive, or simple asset tracking, choose Code 39.</p>
+        <p>Only if the system reading the code expects it. If it doesn't, the extra character can end up in the scanned value.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Why do Code 39 barcodes have asterisks (*) at the beginning and end?</span>
+        <span>Why can't I use lowercase letters?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>The asterisk (*) character is the designated start and stop delimiter in the Code 39 specification. It tells optical barcode scanners which direction the beam is reading across the bars (left-to-right or right-to-left) so the decoder can orient the payload accurately. In modern scanners, the asterisks are stripped automatically and are not transmitted to your inventory database or spreadsheet.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>How is the optional Modulo-43 check digit calculated for Code 39?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Code 39 has built-in self-checking properties due to its fixed pattern ratio (each character contains 9 elements: 3 wide and 6 narrow). However, high-reliability applications (such as DoD LOGMARS or healthcare asset tracking) add a Modulo-43 check character: each character in the payload is assigned a numerical value from 0 to 42, all values are summed, the sum is divided by 43, and the remainder maps back to the corresponding check character appended to the end of the data.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Can I print Code 39 asset barcodes on Avery adhesive label sheets?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1" × 2-5/8") or Avery 5163 (10 labels per sheet, 2" × 4"). Each barcode is rendered with calibrated quiet zones and razor-sharp vectors to guarantee crisp scanning on both thermal transfer and office laser printers.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Are my enterprise asset tags, serial numbers, or internal inventory lists stored on UniversalCodeMaker servers?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>No. The barcodes are drawn in your browser, and the generator does not upload your asset numbers or equipment tags.</p>
+        <p>Standard Code 39 only has 43 characters: digits, uppercase letters, space and six symbols.</p>
       </div>
     </details>
   

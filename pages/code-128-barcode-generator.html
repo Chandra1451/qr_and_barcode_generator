@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Code 128 Barcode Generator: High-Density Shipping SVG</title>
-  <meta name="description" content="Generate free Code 128 barcodes online. Full 128 ASCII character set, automatic subset switching (A/B/C), Mod-103 checksum, vector SVG & Avery label maker.">
+  <meta name="description" content="Free Code 128 barcode generator for SKUs, shipping and warehouse labels. Letters, numbers and symbols, check character added for you. SVG, PNG, EPS.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/code-128-barcode-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free Code 128 Barcode Generator: High-Density Shipping SVG">
-  <meta property="og:description" content="Generate free Code 128 barcodes online. Full 128 ASCII character set, automatic subset switching (A/B/C), Mod-103 checksum, vector SVG & Avery label maker.">
+  <meta property="og:description" content="Free Code 128 barcode generator for SKUs, shipping and warehouse labels. Letters, numbers and symbols, check character added for you. SVG, PNG, EPS.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/code-128-barcode-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Code 128 Barcode Generator: High-Density Shipping SVG">
-  <meta name="twitter:description" content="Generate free Code 128 barcodes online. Full 128 ASCII character set, automatic subset switching (A/B/C), Mod-103 checksum, vector SVG & Avery label maker.">
+  <meta name="twitter:description" content="Free Code 128 barcode generator for SKUs, shipping and warehouse labels. Letters, numbers and symbols, check character added for you. SVG, PNG, EPS.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "Code 128 Barcode Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/code-128-barcode-generator.html",
-  "description": "Generate free Code 128 barcodes online. Full 128 ASCII character set, automatic subset switching (A/B/C), Mod-103 checksum, vector SVG & Avery label maker.",
+  "description": "Free Code 128 barcode generator for SKUs, shipping and warehouse labels. Letters, numbers and symbols, check character added for you. SVG, PNG, EPS.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -349,50 +349,34 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What characters can I encode into a Code 128 barcode?",
+      "name": "Is this the same as GS1-128?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Code 128 can encode all 128 standard ASCII characters (values 0 through 127). This includes uppercase and lowercase English letters (A-Z, a-z), all numeric digits (0-9), punctuation marks, arithmetic symbols, and non-printable control characters such as Tab (HT), Line Feed (LF), and Carriage Return (CR)."
+        "text": "No. GS1-128 is Code 128 with a special FNC1 character and GS1 data fields, used on retail supply-chain cartons and pallets. This generator makes plain Code 128 and does not add FNC1, so don't use it where a customer asks for GS1-128."
       }
     },
     {
       "@type": "Question",
-      "name": "How does automatic subset switching (Subsets A, B, and C) work?",
+      "name": "Do I need to choose subset A, B or C?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Code 128 uses three distinct code sets: Subset A (standard alphanumeric plus ASCII control characters), Subset B (standard alphanumeric plus lowercase letters and punctuation), and Subset C (double-density pairs of numeric digits from 00 to 99). Our generator automatically analyzes your input payload and dynamically inserts shift/code-switch characters to use Subset C for long numeric sequences, compressing the physical barcode width by up to 50%."
+        "text": "No. The generator picks the subsets for you and switches between them inside one barcode, which keeps it as short as possible."
       }
     },
     {
       "@type": "Question",
-      "name": "How is the weighted Modulo-103 check character calculated and verified?",
+      "name": "Can I use lowercase letters and spaces?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Code 128 features a built-in mathematical self-check character calculated using weighted Modulo-103 arithmetic: the start code value is added to the sum of each data character value multiplied by its sequential position in the symbol (1, 2, 3, etc.). The total is divided by 103, and the remainder determines the check character. The generator calculates this automatically and appends it immediately before the stop character."
+        "text": "Yes. Code 128 covers all ASCII characters. Keep values short anyway; every character makes the barcode wider."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I generate and print Code 128 barcode label sheets on Avery paper?",
+      "name": "How small can I print it?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1\" × 2-5/8\") or Avery 5163 (10 shipping labels per sheet, 2\" × 4\"). Each barcode is rendered with vector sharpness and calibrated margins to ensure reliable thermal or laser printing."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between standard Code 128 and GS1-128 (UCC/EAN-128)?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Standard Code 128 is an open symbology that can encode any arbitrary ASCII string for proprietary internal tracking, warehouse management, or asset tagging. GS1-128 (formerly UCC/EAN-128) is a specialized application standard that uses Code 128 symbology but mandates a leading FNC1 (Function 1) character and structured Application Identifiers (AIs) like (01) for GTIN, (10) for Batch/Lot, and (17) for Expiration Date."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my internal serial numbers, SKU lists, or asset tags stored on UniversalCodeMaker servers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. UniversalCodeMaker runs completely inside your local web browser. Your private inventory serial numbers, employee badge IDs, internal tracking codes, and asset tags are rendered directly into SVG or PNG graphics on your device and are never uploaded to, transmitted across, or stored on any external server."
+        "text": "It depends on your printer and scanner. Keep the quiet zone clear on both sides, print a proof at the final size and scan it with the scanner you will actually use."
       }
     }
   ]
@@ -470,7 +454,7 @@
         Logistics & Shipping
       </div>
       <h1 class="hero-title">Free Code 128 Logistics Barcode Generator</h1>
-      <p class="hero-lead">Create compact, high-density Code 128 linear barcodes supporting the complete 128 ASCII character set with automatic subset optimization for warehouse logistics, shipping labels, and enterprise asset tracking.</p>
+      <p class="hero-lead">Make a Code 128 barcode for SKUs, bin locations, shipping and warehouse labels. It takes letters, numbers and punctuation, packs long numbers compactly, and adds its check character for you.</p>
       
       <a href="../index.html?symbology=code-128" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -491,32 +475,42 @@
           
     <div class="spec-row">
       <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO/IEC 15417 & AIM BC4</dd>
+      <dd class="spec-val">ISO/IEC 15417</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Character Encoding</dt>
-      <dd class="spec-val">Full 128 ASCII character set (Alphanumeric, symbols, control codes)</dd>
+      <dt class="spec-key">Characters</dt>
+      <dd class="spec-val">All 128 ASCII characters: letters, digits, punctuation and spaces</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Subset Switching</dt>
-      <dd class="spec-val">Code 128A (Caps/Control), Code 128B (ASCII), Code 128C (Double-density numeric pairs)</dd>
+      <dt class="spec-key">Subsets</dt>
+      <dd class="spec-val">A, B and C chosen automatically; long runs of digits are packed two per symbol</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Checksum Algorithm</dt>
-      <dd class="spec-val">Weighted Modulo 103 check character (calculated automatically)</dd>
+      <dt class="spec-key">Check Character</dt>
+      <dd class="spec-val">Mod-103, added automatically</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Quiet Zones</dt>
-      <dd class="spec-val">10X module width minimum on both left and right margins</dd>
+      <dt class="spec-key">Not Supported</dt>
+      <dd class="spec-val">GS1-128 (the generator does not add the FNC1 character it needs)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Quiet Zone</dt>
+      <dd class="spec-val">At least 10 narrow-bar widths on each side</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Downloads</dt>
+      <dd class="spec-val">SVG, PNG and EPS downloads, plus Avery 5160, 5163 and L7160 label sheets</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Privacy</dt>
-      <dd class="spec-val">Built in your browser; asset tags, serial numbers, and shipping data are never stored</dd>
+      <dd class="spec-val">Built in your browser; the generator does not upload your SKUs or tracking numbers</dd>
     </div>
   
         </dl>
@@ -531,27 +525,22 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Warehouse pallet racking, inventory bin locations, and storage tote labels</span>
+      <span>Internal SKU and product labels</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Supply chain carton logistics, shipping container labels, and freight waybills</span>
+      <span>Warehouse bin and shelf locations</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Enterprise IT equipment asset tags, serial numbers, and calibration stickers</span>
+      <span>Asset tags for equipment</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Healthcare, pharmaceutical packaging, and laboratory specimen test tubes</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Manufacturing work-in-progress (WIP) tracking and factory routing cards</span>
+      <span>Amazon FNSKU labels (Amazon uses Code 128 for them)</span>
     </li>
   
         </ul>
@@ -605,25 +594,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Useful for Internal Identifiers</h4>
+        <h4>Letters and numbers</h4>
       </div>
-      <p>Create Code 128 graphics for identifiers you control. Confirm any customer, carrier, or platform requirements before production use.</p>
+      <p>SKUs like ABC-1042 work as they are, without converting them to digits.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Full 128 ASCII Alphanumeric Range</h4>
+        <h4>Compact for long numbers</h4>
       </div>
-      <p>Encodes letters (A–Z, a–z), numbers (0–9), punctuation, and control characters.</p>
+      <p>Runs of digits are packed two per symbol, so long numbers stay short.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Auto-Switching High Density</h4>
+        <h4>Read by almost any scanner</h4>
       </div>
-      <p>Automatically switches between subsets A, B, and C to compress paired digits into compact spaces.</p>
+      <p>Code 128 is one of the most widely supported linear barcodes in warehouses and shops.</p>
     </div>
   
       </div>
@@ -647,25 +636,25 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Labeling warehouse shelves, bins, and pallets?</span>
+        <span>Internal SKUs, bins or asset tags?</span>
       </h3>
-      <p>Code 128 is the industry gold standard for warehouse management systems (WMS) and internal logistics.</p>
+      <p>Code 128 is a good default.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Tracking company IT assets, tools, or serialized parts?</span>
+        <span>Products sold in shops?</span>
       </h3>
-      <p>Use Code 128 to encode alphanumeric serial numbers (e.g. LAPTOP-2026-X8) onto durable sticker labels.</p>
+      <p>Checkout systems expect UPC-A or EAN-13 with a GS1 number, not Code 128.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Can I use Code 128 at a grocery store checkout?</span>
+        <span>A retailer asked for GS1-128 on cartons?</span>
       </h3>
-      <p>Standard supermarket cash registers expect 12-digit UPC or 13-digit EAN; use Code 128 for logistics, shipping, and internal operations.</p>
+      <p>This generator can't make GS1-128. Use a tool that supports FNC1 and GS1 application identifiers.</p>
     </div>
   
       </div>
@@ -680,23 +669,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>Code 128 Usage Guidelines & Quiet Zone Rules</h3>
+        <h3>Before you print</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Code 128 is an open public-domain standard (ISO/IEC 15417). No royalties or company prefix registrations are required for private or internal use.</span>
+      <span>Leave a clear margin on both sides of the bars; labels cut too close are a common cause of failed scans.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>When using GS1-128 (formerly UCC/EAN-128) in commercial freight, you must format data with official GS1 Application Identifiers (AIs) and start with an FNC1 character.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Ensure a minimum quiet zone of 10 times the module width (10X) on both ends of the barcode to allow laser scanners to synchronize timing.</span>
+      <span>Scan a printed proof with the scanner you will actually use.</span>
     </li>
   
       </ul>
@@ -753,61 +737,41 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>What characters can I encode into a Code 128 barcode?</span>
+        <span>Is this the same as GS1-128?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Code 128 can encode all 128 standard ASCII characters (values 0 through 127). This includes uppercase and lowercase English letters (A-Z, a-z), all numeric digits (0-9), punctuation marks, arithmetic symbols, and non-printable control characters such as Tab (HT), Line Feed (LF), and Carriage Return (CR).</p>
+        <p>No. GS1-128 is Code 128 with a special FNC1 character and GS1 data fields, used on retail supply-chain cartons and pallets. This generator makes plain Code 128 and does not add FNC1, so don't use it where a customer asks for GS1-128.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>How does automatic subset switching (Subsets A, B, and C) work?</span>
+        <span>Do I need to choose subset A, B or C?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Code 128 uses three distinct code sets: Subset A (standard alphanumeric plus ASCII control characters), Subset B (standard alphanumeric plus lowercase letters and punctuation), and Subset C (double-density pairs of numeric digits from 00 to 99). Our generator automatically analyzes your input payload and dynamically inserts shift/code-switch characters to use Subset C for long numeric sequences, compressing the physical barcode width by up to 50%.</p>
+        <p>No. The generator picks the subsets for you and switches between them inside one barcode, which keeps it as short as possible.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>How is the weighted Modulo-103 check character calculated and verified?</span>
+        <span>Can I use lowercase letters and spaces?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Code 128 features a built-in mathematical self-check character calculated using weighted Modulo-103 arithmetic: the start code value is added to the sum of each data character value multiplied by its sequential position in the symbol (1, 2, 3, etc.). The total is divided by 103, and the remainder determines the check character. The generator calculates this automatically and appends it immediately before the stop character.</p>
+        <p>Yes. Code 128 covers all ASCII characters. Keep values short anyway; every character makes the barcode wider.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Can I generate and print Code 128 barcode label sheets on Avery paper?</span>
+        <span>How small can I print it?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1" × 2-5/8") or Avery 5163 (10 shipping labels per sheet, 2" × 4"). Each barcode is rendered with vector sharpness and calibrated margins to ensure reliable thermal or laser printing.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What is the difference between standard Code 128 and GS1-128 (UCC/EAN-128)?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Standard Code 128 is an open symbology that can encode any arbitrary ASCII string for proprietary internal tracking, warehouse management, or asset tagging. GS1-128 (formerly UCC/EAN-128) is a specialized application standard that uses Code 128 symbology but mandates a leading FNC1 (Function 1) character and structured Application Identifiers (AIs) like (01) for GTIN, (10) for Batch/Lot, and (17) for Expiration Date.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Are my internal serial numbers, SKU lists, or asset tags stored on UniversalCodeMaker servers?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>No. UniversalCodeMaker runs completely inside your local web browser. Your private inventory serial numbers, employee badge IDs, internal tracking codes, and asset tags are rendered directly into SVG or PNG graphics on your device and are never uploaded to, transmitted across, or stored on any external server.</p>
+        <p>It depends on your printer and scanner. Keep the quiet zone clear on both sides, print a proof at the final size and scan it with the scanner you will actually use.</p>
       </div>
     </details>
   

@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free PDF417 Barcode Generator: ID Badges, Cards & SVG</title>
-  <meta name="description" content="Create ISO/IEC 15438 PDF417 stacked 2D barcodes for ID badges, shipping papers and documents. Free client-side vector SVG and PNG download with zero sign-up.">
+  <meta name="description" content="Free PDF417 generator for shipping papers, labels and documents. Encodes exactly the text you enter, with adjustable data columns. SVG or PNG.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/pdf417-barcode-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free PDF417 Barcode Generator: ID Badges, Cards & SVG">
-  <meta property="og:description" content="Create ISO/IEC 15438 PDF417 stacked 2D barcodes for ID badges, shipping papers and documents. Free client-side vector SVG and PNG download with zero sign-up.">
+  <meta property="og:description" content="Free PDF417 generator for shipping papers, labels and documents. Encodes exactly the text you enter, with adjustable data columns. SVG or PNG.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/pdf417-barcode-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free PDF417 Barcode Generator: ID Badges, Cards & SVG">
-  <meta name="twitter:description" content="Create ISO/IEC 15438 PDF417 stacked 2D barcodes for ID badges, shipping papers and documents. Free client-side vector SVG and PNG download with zero sign-up.">
+  <meta name="twitter:description" content="Free PDF417 generator for shipping papers, labels and documents. Encodes exactly the text you enter, with adjustable data columns. SVG or PNG.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "PDF417 Barcode Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/pdf417-barcode-generator.html",
-  "description": "Create ISO/IEC 15438 PDF417 stacked 2D barcodes for ID badges, shipping papers and documents. Free client-side vector SVG and PNG download with zero sign-up.",
+  "description": "Free PDF417 generator for shipping papers, labels and documents. Encodes exactly the text you enter, with adjustable data columns. SVG or PNG.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -349,34 +349,26 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What does PDF417 stand for?",
+      "name": "What do the data columns change?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PDF stands for \"Portable Data File\". The \"417\" signifies that each pattern is 17 modules wide and consists of 4 bars and 4 spaces."
+        "text": "The shape. More columns make the barcode wider and shorter; fewer make it narrower and taller. The data stays the same."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I generate employee ID cards and personnel badges with PDF417?",
+      "name": "Can I make driving licence or ID card barcodes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. PDF417 is widely used for employee identification cards, facility access badges, and event credentials because its high data density allows encoding names, employee numbers, and security hashes directly within the symbol without requiring an active database lookup at the scanner."
+        "text": "No. ID barcodes follow formats controlled by the issuing authority, and this tool is not for making identity documents. It encodes exactly the text you type."
       }
     },
     {
       "@type": "Question",
-      "name": "What error correction level should I choose for PDF417?",
+      "name": "Will phones read it?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PDF417 supports error correction levels 0 through 8 using Reed-Solomon algorithms. For shipping labels and documents, level 4 or 5 gives good protection against surface scratches, print distortion, and ink smudges."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I export PDF417 as vector SVG for high-resolution printing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The SVG download is a vector file, so it stays sharp at any size. That suits high-DPI badge printers, offset commercial printing, and technical documentation."
+        "text": "Many 2D scanner apps do, but phone camera apps vary. Test with the scanner that will read it."
       }
     }
   ]
@@ -454,7 +446,7 @@
         2D Stacked
       </div>
       <h1 class="hero-title">Free PDF417 Stacked 2D Barcode Generator</h1>
-      <p class="hero-lead">Create PDF417 stacked 2D barcodes for multi-line text, inventory records, document references, and other structured data. The studio encodes exactly the text you enter; it does not build industry-specific data formats.</p>
+      <p class="hero-lead">Make a PDF417 barcode, the stacked 2D barcode used on shipping papers, labels and documents. It encodes exactly the text you enter, and you can set how many data columns it uses to make it wider or taller.</p>
       
       <a href="../index.html?symbology=pdf417" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -479,18 +471,28 @@
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Structure</dt>
-      <dd class="spec-val">Stacked linear rows (each codeword contains 4 bars and 4 spaces across 17 modules)</dd>
+      <dt class="spec-key">Layout</dt>
+      <dd class="spec-val">Stacked rows; data columns adjustable from 1 to 30</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Aspect Ratio</dt>
-      <dd class="spec-val">Rectangular format (standard ~2.5:1 ratio)</dd>
+      <dt class="spec-key">Error Correction</dt>
+      <dd class="spec-val">Built in; not adjustable here</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Capacity</dt>
-      <dd class="spec-val">Over 1.1 kilobytes of machine-readable data per symbol</dd>
+      <dt class="spec-key">Quiet Zone</dt>
+      <dd class="spec-val">At least 2 modules on every side</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Scope</dt>
+      <dd class="spec-val">Encodes the text you type; it does not create ID documents</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Privacy</dt>
+      <dd class="spec-val">Built in your browser; the generator does not upload what you encode</dd>
     </div>
   
         </dl>
@@ -505,22 +507,17 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Personnel identification badges, access cards, and visitor passes</span>
+      <span>Shipping papers and delivery notes</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Commercial transport & airline boarding passes (BCBP standard)</span>
+      <span>Inventory and document labels with several fields</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>USPS parcel shipping papers and logistics records</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Multi-line technical text and high-density document archiving</span>
+      <span>Badges for your own organisation's access system</span>
     </li>
   
         </ul>
@@ -574,25 +571,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Multi-Line Data Capacity</h4>
+        <h4>Fits long labels</h4>
       </div>
-      <p>Can encode more text than typical 1D barcodes, making it useful for structured records and document references.</p>
+      <p>The wide, stacked shape suits labels and forms that have more width than height.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Stacked Linear Robustness</h4>
+        <h4>Adjustable shape</h4>
       </div>
-      <p>Can be read by both area-imaging cameras and rastering linear laser scanners.</p>
+      <p>Change the number of data columns to fit the space.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Document-Friendly Format</h4>
+        <h4>Holds a lot of text</h4>
       </div>
-      <p>Its stacked rows and configurable error correction suit records that need more capacity than a typical linear barcode.</p>
+      <p>Several fields fit in one code.</p>
     </div>
   
       </div>
@@ -616,17 +613,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Encoding a multi-line inventory or document record?</span>
+        <span>Long, flat label or form area?</span>
       </h3>
-      <p>PDF417 can encode the text as supplied. Define and validate the record structure required by your own workflow before printing.</p>
+      <p>PDF417 fits well.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Printing postal shipping documents or freight manifests?</span>
+        <span>Small square space?</span>
       </h3>
-      <p>PDF417 can hold multi-line shipping or freight references, but carrier formats vary. Use the carrier's current specification and test the finished label.</p>
+      <p>Data Matrix or QR is more compact.</p>
     </div>
   
       </div>
@@ -641,23 +638,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>PDF417 Capacity & Aspect Ratio Guidelines</h3>
+        <h3>Rules to know</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>PDF417 is specified by ISO/IEC 15438; this page does not certify a symbol for a particular workflow.</span>
+      <span>Do not use this tool to make or copy identity documents or official credentials.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Use only data you are authorized to encode, and follow the receiving system's current data specification.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Choose an aspect ratio that fits the layout, then test the final output with the intended scanner and print process.</span>
+      <span>Test the printed code with the scanner that will read it.</span>
     </li>
   
       </ul>
@@ -706,41 +698,31 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>What does PDF417 stand for?</span>
+        <span>What do the data columns change?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>PDF stands for "Portable Data File". The "417" signifies that each pattern is 17 modules wide and consists of 4 bars and 4 spaces.</p>
+        <p>The shape. More columns make the barcode wider and shorter; fewer make it narrower and taller. The data stays the same.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Can I generate employee ID cards and personnel badges with PDF417?</span>
+        <span>Can I make driving licence or ID card barcodes?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. PDF417 is widely used for employee identification cards, facility access badges, and event credentials because its high data density allows encoding names, employee numbers, and security hashes directly within the symbol without requiring an active database lookup at the scanner.</p>
+        <p>No. ID barcodes follow formats controlled by the issuing authority, and this tool is not for making identity documents. It encodes exactly the text you type.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>What error correction level should I choose for PDF417?</span>
+        <span>Will phones read it?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>PDF417 supports error correction levels 0 through 8 using Reed-Solomon algorithms. For shipping labels and documents, level 4 or 5 gives good protection against surface scratches, print distortion, and ink smudges.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Can I export PDF417 as vector SVG for high-resolution printing?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Yes. The SVG download is a vector file, so it stays sharp at any size. That suits high-DPI badge printers, offset commercial printing, and technical documentation.</p>
+        <p>Many 2D scanner apps do, but phone camera apps vary. Test with the scanner that will read it.</p>
       </div>
     </details>
   

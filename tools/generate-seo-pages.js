@@ -187,23 +187,22 @@ const SEO_PAGES = [
     queryParam: 'symbology=upc-a',
     category: 'Retail & POS',
     metaTitle: 'Free UPC-A Barcode Generator: 12-Digit Retail GTIN-12',
-    metaDescription: 'Create free 12-digit UPC-A barcodes for US & Canadian retail products. Instant Modulo-10 check digit calculation, vector SVG export & Avery label printing.',
+    metaDescription: 'Free UPC-A barcode generator for 12-digit product numbers. Type 11 digits and the check digit is added for you. Download SVG, PNG or EPS, or print label sheets.',
     h1: 'Free UPC-A Retail Barcode Generator',
-    lead: 'Generate standard 12-digit Universal Product Code (UPC-A) barcodes for US and Canadian retail point-of-sale packaging. Features real-time Modulo-10 check digit calculation, crisp vector SVG downloads, and built-in Avery label sheet printing.',
+    lead: "Make a UPC-A barcode, the 12-digit code on products sold in the US and Canada. Type the first 11 digits and the check digit is added for you, or type all 12 and the generator checks it. You still need the number itself from GS1.",
     technicalSpec: {
-      standard: 'GS1 General Specifications & ISO/IEC 15420',
-      payloadFormat: '12-digit GTIN-12 (11 data digits + 1 Modulo-10 check digit)',
-      nominalDimensions: '100% scale (X=0.330 mm): 37.29 mm wide × 25.91 mm high',
-      quietZones: '9X module width minimum on both left and right margins',
-      retailCompatibility: 'US & Canadian retail POS, Amazon North America FBA, Walmart, Target',
-      privacy: 'Built in your browser; barcode numbers and product data are never uploaded or stored'
+      digits: "12 (GTIN-12): type 11 for an automatic check digit, or 12 to have it checked",
+      standard: "ISO/IEC 15420 and the GS1 General Specifications",
+      printSize: "37.29 mm wide including margins, bars 22.85 mm high (0.330 mm narrow bar)",
+      quietZone: "9 narrow-bar widths on each side",
+      downloads: "SVG, PNG and EPS downloads, plus Avery 5160, 5163 and L7160 label sheets",
+      privacy: "Built in your browser; the generator does not upload your product numbers"
     },
     useCases: [
-      'United States and Canada brick-and-mortar retail checkout POS',
-      'Amazon North America FBA product packaging and catalog listings',
-      'Big-box retail distribution (Walmart, Target, Costco, Kroger)',
-      'Shopify POS and Square in-store retail barcode labeling',
-      'Consumer packaged goods (CPG), apparel tags, and food packaging'
+      "Product packaging for shops in the US and Canada",
+      "Amazon and other marketplace listings that ask for a UPC",
+      "Shelf and price labels in a small shop",
+      "Replacing a damaged label with the same number"
     ],
     relatedSlugs: [
       'upc-vs-ean-13-barcode',
@@ -228,11 +227,11 @@ const SEO_PAGES = [
       },
       {
         q: 'Can I print UPC-A barcodes on Avery adhesive label sheets?',
-        a: 'Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1" × 2-5/8") or Avery 5163 (10 labels per sheet, 2" × 4"). Each barcode is rendered with vector sharpness and calibrated margins to ensure reliable thermal or laser printing.'
+        a: 'Yes. UniversalCodeMaker includes a built-in Avery label maker. You can print PDF sheets for Avery 5160 (30 labels per Letter sheet, 1" × 2-5/8"), Avery 5163 (10 per sheet, 2" × 4") or Avery L7160 (21 per A4 sheet). Print at Actual size and test one sheet on plain paper first.'
       },
       {
         q: 'Why is truncating or shortening UPC-A bars discouraged on retail packaging?',
-        a: 'GS1 General Specifications strongly advise against truncating (reducing the vertical bar height below the nominal 22.85 mm / 0.900 in). Retail supermarket and department store checkout lanes use omnidirectional laser scanners that rely on diagonal scan lines crossing the full pattern. Truncating bars reduces the scan line intercept angle, causing scanning failures and forcing cashiers to enter numbers manually.'
+        a: 'GS1 advises against cutting the bars shorter than the nominal 22.85 mm (0.900 in). Checkout scanners read the code from several angles, and short bars leave fewer angles that cross the whole pattern, so the cashier may end up typing the number.'
       },
       {
         q: 'Are my product numbers, SKUs, or inventory details stored on UniversalCodeMaker servers?',
@@ -247,48 +246,41 @@ const SEO_PAGES = [
     queryParam: 'symbology=code-128',
     category: 'Logistics & Shipping',
     metaTitle: 'Free Code 128 Barcode Generator: High-Density Shipping SVG',
-    metaDescription: 'Generate free Code 128 barcodes online. Full 128 ASCII character set, automatic subset switching (A/B/C), Mod-103 checksum, vector SVG & Avery label maker.',
+    metaDescription: 'Free Code 128 barcode generator for SKUs, shipping and warehouse labels. Letters, numbers and symbols, check character added for you. SVG, PNG, EPS.',
     h1: 'Free Code 128 Logistics Barcode Generator',
-    lead: 'Create compact, high-density Code 128 linear barcodes supporting the complete 128 ASCII character set with automatic subset optimization for warehouse logistics, shipping labels, and enterprise asset tracking.',
+    lead: "Make a Code 128 barcode for SKUs, bin locations, shipping and warehouse labels. It takes letters, numbers and punctuation, packs long numbers compactly, and adds its check character for you.",
     technicalSpec: {
-      standard: 'ISO/IEC 15417 & AIM BC4',
-      characterEncoding: 'Full 128 ASCII character set (Alphanumeric, symbols, control codes)',
-      subsetSwitching: 'Code 128A (Caps/Control), Code 128B (ASCII), Code 128C (Double-density numeric pairs)',
-      checksumAlgorithm: 'Weighted Modulo 103 check character (calculated automatically)',
-      quietZones: '10X module width minimum on both left and right margins',
-      privacy: 'Built in your browser; asset tags, serial numbers, and shipping data are never stored'
+      standard: "ISO/IEC 15417",
+      characters: "All 128 ASCII characters: letters, digits, punctuation and spaces",
+      subsets: "A, B and C chosen automatically; long runs of digits are packed two per symbol",
+      checkCharacter: "Mod-103, added automatically",
+      notSupported: "GS1-128 (the generator does not add the FNC1 character it needs)",
+      quietZone: "At least 10 narrow-bar widths on each side",
+      downloads: "SVG, PNG and EPS downloads, plus Avery 5160, 5163 and L7160 label sheets",
+      privacy: "Built in your browser; the generator does not upload your SKUs or tracking numbers"
     },
     useCases: [
-      'Warehouse pallet racking, inventory bin locations, and storage tote labels',
-      'Supply chain carton logistics, shipping container labels, and freight waybills',
-      'Enterprise IT equipment asset tags, serial numbers, and calibration stickers',
-      'Healthcare, pharmaceutical packaging, and laboratory specimen test tubes',
-      'Manufacturing work-in-progress (WIP) tracking and factory routing cards'
+      "Internal SKU and product labels",
+      "Warehouse bin and shelf locations",
+      "Asset tags for equipment",
+      "Amazon FNSKU labels (Amazon uses Code 128 for them)"
     ],
     faqs: [
       {
-        q: 'What characters can I encode into a Code 128 barcode?',
-        a: 'Code 128 can encode all 128 standard ASCII characters (values 0 through 127). This includes uppercase and lowercase English letters (A-Z, a-z), all numeric digits (0-9), punctuation marks, arithmetic symbols, and non-printable control characters such as Tab (HT), Line Feed (LF), and Carriage Return (CR).'
+        q: "Is this the same as GS1-128?",
+        a: "No. GS1-128 is Code 128 with a special FNC1 character and GS1 data fields, used on retail supply-chain cartons and pallets. This generator makes plain Code 128 and does not add FNC1, so don't use it where a customer asks for GS1-128."
       },
       {
-        q: 'How does automatic subset switching (Subsets A, B, and C) work?',
-        a: 'Code 128 uses three distinct code sets: Subset A (standard alphanumeric plus ASCII control characters), Subset B (standard alphanumeric plus lowercase letters and punctuation), and Subset C (double-density pairs of numeric digits from 00 to 99). Our generator automatically analyzes your input payload and dynamically inserts shift/code-switch characters to use Subset C for long numeric sequences, compressing the physical barcode width by up to 50%.'
+        q: "Do I need to choose subset A, B or C?",
+        a: "No. The generator picks the subsets for you and switches between them inside one barcode, which keeps it as short as possible."
       },
       {
-        q: 'How is the weighted Modulo-103 check character calculated and verified?',
-        a: 'Code 128 features a built-in mathematical self-check character calculated using weighted Modulo-103 arithmetic: the start code value is added to the sum of each data character value multiplied by its sequential position in the symbol (1, 2, 3, etc.). The total is divided by 103, and the remainder determines the check character. The generator calculates this automatically and appends it immediately before the stop character.'
+        q: "Can I use lowercase letters and spaces?",
+        a: "Yes. Code 128 covers all ASCII characters. Keep values short anyway; every character makes the barcode wider."
       },
       {
-        q: 'Can I generate and print Code 128 barcode label sheets on Avery paper?',
-        a: 'Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1" × 2-5/8") or Avery 5163 (10 shipping labels per sheet, 2" × 4"). Each barcode is rendered with vector sharpness and calibrated margins to ensure reliable thermal or laser printing.'
-      },
-      {
-        q: 'What is the difference between standard Code 128 and GS1-128 (UCC/EAN-128)?',
-        a: 'Standard Code 128 is an open symbology that can encode any arbitrary ASCII string for proprietary internal tracking, warehouse management, or asset tagging. GS1-128 (formerly UCC/EAN-128) is a specialized application standard that uses Code 128 symbology but mandates a leading FNC1 (Function 1) character and structured Application Identifiers (AIs) like (01) for GTIN, (10) for Batch/Lot, and (17) for Expiration Date.'
-      },
-      {
-        q: 'Are my internal serial numbers, SKU lists, or asset tags stored on UniversalCodeMaker servers?',
-        a: 'No. UniversalCodeMaker runs completely inside your local web browser. Your private inventory serial numbers, employee badge IDs, internal tracking codes, and asset tags are rendered directly into SVG or PNG graphics on your device and are never uploaded to, transmitted across, or stored on any external server.'
+        q: "How small can I print it?",
+        a: "It depends on your printer and scanner. Keep the quiet zone clear on both sides, print a proof at the final size and scan it with the scanner you will actually use."
       }
     ],
     relatedSlugs: [
@@ -307,48 +299,35 @@ const SEO_PAGES = [
     queryParam: 'symbology=itf-14',
     category: 'Logistics & Shipping',
     metaTitle: 'Free ITF-14 Barcode Generator: Shipping Carton GTIN-14',
-    metaDescription: 'Generate free 14-digit ITF-14 master carton barcodes with bearer bars. Automatic Modulo-10 check digit calculation, vector SVG export & corrugated box specs.',
+    metaDescription: 'Free ITF-14 barcode generator for shipping cartons. Type 13 digits and the check digit is added; bearer bars included. Download SVG, PNG or EPS.',
     h1: 'Free ITF-14 Shipping Carton Barcode Generator',
-    lead: 'Generate GS1-standard ITF-14 (Interleaved 2 of 5) barcodes with thick protective bearer bars engineered specifically for direct printing onto corrugated cardboard shipping cartons, master cases, and wholesale pallets.',
+    lead: "Make an ITF-14 barcode for outer shipping cartons and cases. Type 13 digits and the check digit is added, or type 14 to have it checked. The frame around the bars (the bearer bars) is drawn for you.",
     technicalSpec: {
-      standard: 'ISO/IEC 16390 & GS1 General Specifications (Section 5.3)',
-      dataStructure: '14 digits total: 1 Indicator digit + 12 GTIN data digits + 1 Modulo-10 check digit',
-      bearerBars: 'Top and bottom bars or full surrounding frame (nominal 4.8 mm / 0.190 in thickness)',
-      corrugatedTolerance: 'High tolerance for flexographic printing, uneven fluting, and absorbent brown kraft paper',
-      quietZones: 'Minimum 10X module width (at least 6.4 mm / 0.25 in) on left and right margins',
-      privacy: 'Built in your browser; carton GTINs, case counts, and logistics data are never uploaded'
+      digits: "14 (GTIN-14): type 13 for an automatic check digit, or 14 to have it checked",
+      standard: "ISO/IEC 16390 and the GS1 General Specifications",
+      bearerBars: "Drawn around the symbol to protect it when printed on cardboard",
+      defaultNarrowBar: "0.495 mm",
+      quietZone: "10 narrow-bar widths, inside the bearer bars",
+      downloads: "SVG, PNG and EPS downloads, plus Avery 5160, 5163 and L7160 label sheets",
+      privacy: "Built in your browser; the generator does not upload your carton numbers"
     },
     useCases: [
-      'Direct flexographic printing onto corrugated cardboard outer shipping cartons and brown kraft master cases',
-      'Wholesale pallet distribution, high-speed automated conveyor sorting, and dock receiving scanners',
-      'Case-pack aggregation linking retail items (UPC-A / EAN-13) to master carton logistics units',
-      'Beverage crate packaging, bulk dry goods shipping boxes, and secondary industrial packaging',
-      'Cross-docking logistics tracking and bulk warehouse inventory verification'
+      "Outer cartons that hold several retail units",
+      "Cases and inner packs received at a warehouse",
+      "Carton labels for retailer or distributor deliveries"
     ],
     faqs: [
       {
-        q: 'Why does an ITF-14 barcode have thick protective bearer bars?',
-        a: 'Bearer bars serve two critical functions: 1) Printing plate support: they equalize impression cylinder pressure across flexographic printing plates when stamping onto rough, undulating corrugated cardboard, preventing uneven ink spread and plate wear; and 2) Misread prevention: they prevent skewed laser scanner beams from entering or exiting the top or bottom edge of the symbol and accidentally registering a partial "short scan" of fewer than 14 digits.'
+        q: "Can ITF-14 be scanned at a shop checkout?",
+        a: "It isn't meant for checkout. ITF-14 identifies the carton. Anything sold to shoppers one by one needs its own UPC-A or EAN-13."
       },
       {
-        q: 'How do I derive a 14-digit GTIN-14 from my product\'s retail UPC-A or EAN-13?',
-        a: 'An ITF-14 barcode carries a 14-digit GTIN-14 constructed from your retail product\'s GTIN. Start with an Indicator digit (values 1 through 8 signify different packaging hierarchy levels, such as a 6-pack case vs. a 24-pack master carton). Next, insert the 12 data digits of your retail code (for a 12-digit UPC-A, prepend a leading 0 followed by the first 11 digits; for a 13-digit EAN-13, take the first 12 digits, dropping the retail check digit). Finally, calculate the new 14th check digit using the GS1 Modulo-10 algorithm. Our generator performs this check digit calculation automatically in real time.'
+        q: "How do I get a 14-digit carton number?",
+        a: "Under GS1 rules, a carton number is usually built from the product's GTIN: an indicator digit (1 to 8) chosen by the brand owner, then the first 12 digits of the GTIN-13 without its check digit, then a new check digit. Type the first 13 digits here and the check digit is added."
       },
       {
-        q: 'What are the official GS1 size and quiet zone specifications for ITF-14?',
-        a: 'Under GS1 General Specifications, the nominal X-dimension (narrow bar width) for an ITF-14 symbol intended for automated warehouse scanning is 1.016 mm (0.040 in), yielding a nominal symbol height of 31.75 mm (1.25 in) excluding bearer bars. When direct-printing onto corrugated cardboard, GS1 permits a magnification range from 50% to 100% (or up to 102%). Quiet zones on the left and right margins must be at least 10 times the X-dimension (minimum 6.4 mm / 0.25 in) to prevent adjacent text or carton seams from disrupting laser decoders.'
-      },
-      {
-        q: 'Can an ITF-14 barcode be scanned at retail point-of-sale (POS) cash registers?',
-        a: 'No. ITF-14 barcodes are engineered strictly for non-retail logistics units, such as shipping cartons, cases and pallets. Retail supermarket and department store POS registers use omnidirectional laser and imaging scanners configured specifically for GTIN-12 (UPC-A) and GTIN-13 (EAN-13) symbols. If a master carton is opened and individual consumer units are sold separately, each inner unit must carry its own UPC-A or EAN-13 barcode. Learn more in our <a href="./how-to-get-a-barcode-for-your-product.html">Product Barcode Guide</a>.'
-      },
-      {
-        q: 'Can I export an ITF-14 barcode in vector SVG format for box die lines and prepress packaging?',
-        a: 'Yes. UniversalCodeMaker exports pristine, infinitely scalable vector SVG files that packaging engineers and graphic designers can place directly into Adobe Illustrator, CorelDRAW, or ArtiosCAD packaging dielines. You can also export high-resolution PNG or EPS files with exact bearer bar thickness and quiet zones pre-configured.'
-      },
-      {
-        q: 'Are my master carton GTINs, warehouse codes, or company data uploaded to external servers?',
-        a: 'No. UniversalCodeMaker operates entirely inside your local web browser using client-side JavaScript. Your GTIN-14 numbers, warehouse SKU references, and packaging configurations are processed locally on your computer and are never transmitted to, logged on, or stored on any external server.'
+        q: "What are the thick bars around the code for?",
+        a: "They are bearer bars. They spread printing pressure on corrugated board and help stop a scanner reading only part of the code."
       }
     ],
     relatedSlugs: [
@@ -368,38 +347,34 @@ const SEO_PAGES = [
     queryParam: 'symbology=data-matrix',
     category: '2D Matrix',
     metaTitle: 'Free Data Matrix ECC 200 Generator: Parts Marking & SVG',
-    metaDescription: 'Generate ISO/IEC 16022 Data Matrix ECC 200 2D barcodes for parts marking, GS1 serialization and electronics. Free vector SVG and PNG export with zero sign-up.',
+    metaDescription: 'Free Data Matrix (ECC 200) generator for small parts, labels and internal tracking. The size is picked for your data. Download SVG or PNG.',
     h1: 'Free Data Matrix (ECC 200) 2D Barcode Generator',
-    lead: 'Create compact, high-capacity Data Matrix 2D square matrix barcodes engineered for electronic component marking, healthcare pharmaceutical packaging, and aerospace direct part marking (DPM).',
+    lead: "Make a Data Matrix code, the small square 2D code used on parts, electronics and labels where space is tight. Type your text or number and the symbol size is chosen to fit it.",
     technicalSpec: {
-      standard: 'ISO/IEC 16022 (ECC 200 standard with Reed-Solomon error correction)',
-      characterSet: 'Full ASCII, binary, and GS1 Application Identifiers',
-      capacity: 'Up to 3,116 numeric digits or 2,335 alphanumeric characters',
-      finderPattern: 'Solid "L" shaped finder pattern on bottom and left borders',
-      aspectRatio: 'Square (rectangular sizes are also part of the standard)'
+      standard: "ISO/IEC 16022, ECC 200",
+      size: "Chosen automatically from the amount of data",
+      errorCorrection: "Built in (Reed-Solomon); not adjustable here",
+      notSupported: "GS1 DataMatrix (the generator does not add FNC1 or GS1 data fields)",
+      quietZone: "At least 1 module on every side",
+      privacy: "Built in your browser; the generator does not upload what you encode"
     },
     useCases: [
-      'Direct Part Marking (DPM) on aerospace, automotive, and defense hardware (MIL-STD-130)',
-      'FDA Unique Device Identification (UDI) for surgical instruments and medical devices',
-      'Pharmaceutical serialization under US DSCSA and EU Falsified Medicines Directive (FMD)',
-      'Printed circuit board (PCB) micro-labeling and electronic component traceability'
+      "Serial numbers on small parts and circuit boards",
+      "Lab sample and inventory labels",
+      "Internal tracking where a linear barcode won't fit"
     ],
     faqs: [
       {
-        q: 'What is the finder pattern on a Data Matrix code?',
-        a: 'A Data Matrix code features an "L" shaped solid line on two adjacent sides, which cameras use to determine the orientation and module size of the symbol.'
+        q: "Can I use this for GS1 DataMatrix on medicines?",
+        a: "No. GS1 DataMatrix needs an FNC1 character and GS1 application identifiers, which this generator does not add. Use a tool built for GS1 DataMatrix for regulated packaging."
       },
       {
-        q: 'Can Data Matrix codes be read if partially scratched or damaged?',
-        a: 'Yes. ECC 200 uses Reed-Solomon error correction, so a scratched or partly covered code can often still be read. How much damage it tolerates depends on the symbol size.'
+        q: "Can a damaged code still be read?",
+        a: "Often, yes. ECC 200 uses Reed-Solomon error correction, so a scratched or partly covered code can still be read. How much damage it tolerates depends on the symbol size."
       },
       {
-        q: 'Why is ECC 200 the only Data Matrix version used in modern manufacturing?',
-        a: 'Legacy Data Matrix versions (ECC 000 through 140) used older convolution error correction. The ISO/IEC 16022 standard established ECC 200 using advanced Reed-Solomon error correction and an even number of rows and columns. Today, all industrial scanners, automotive specs, and GS1 standards exclusively mandate ECC 200.'
-      },
-      {
-        q: 'What is the difference between Data Matrix and QR Code?',
-        a: 'While both are 2D matrix symbologies, Data Matrix can encode high-density alphanumeric data in a footprint up to 30 times smaller than a standard barcode and requires smaller quiet zones (1 module vs 4 modules for QR codes). This makes Data Matrix the global standard for micro-electronics, surgical tools, and direct part marking, whereas QR codes are favored for consumer-facing smartphone scanning.'
+        q: "Will a phone camera read it?",
+        a: "Many phone scanner apps and most 2D barcode scanners read Data Matrix, but the iPhone and Android camera apps may not. Test with the device your users have."
       }
     ],
     relatedSlugs: ['pdf417-barcode-generator', 'aztec-code-generator', 'code-128-barcode-generator']
@@ -411,49 +386,34 @@ const SEO_PAGES = [
     queryParam: 'symbology=aztec',
     category: '2D Matrix',
     metaTitle: 'Free Aztec Code Generator: Airline & Transit 2D SVG',
-    metaDescription: 'Generate free Aztec Code 2D barcodes online. Central bullseye finder with zero required quiet zones for airline boarding passes, rail tickets & vector SVG.',
+    metaDescription: 'Free Aztec Code generator. Square 2D code with a bullseye centre that needs no blank margin. Type your text; the size is picked for you. SVG or PNG.',
     h1: 'Free Aztec Code 2D Barcode Generator',
-    lead: 'Generate high-density Aztec Code 2D matrix barcodes featuring a distinctive central bullseye target finder pattern. The standard format for IATA airline mobile boarding passes, European railway e-ticketing, and compact industrial parts marking.',
+    lead: "Make an Aztec Code, the square 2D code with a bullseye in the middle that is often seen on transport tickets. It needs no blank margin around it. Type the text to encode and the size is chosen for you.",
     technicalSpec: {
-      symbologyStandard: 'ISO/IEC 24778:2008 & AIM ITS/97/002 (public domain, patent-free)',
-      finderPattern: 'Central concentric square bullseye target (eliminates perimeter finder clocks)',
-      quietZoneRequirement: '0-module quiet zone permitted by ISO spec; allows full-bleed printing on compact screens',
-      matrixModes: 'Compact Aztec (15×15 to 27×27 modules) and Full-Range Aztec (up to 151×151 modules)',
-      dataCapacity: 'Up to 3,832 numeric digits, 3,067 alphanumeric characters, or 1,914 raw 8-bit bytes',
-      errorCorrection: 'User-selectable Reed-Solomon polynomial algorithm from 5% up to 95% damaged area recovery',
-      clientPrivacy: 'Built in your browser; transit ticket payloads and personal travel data are never uploaded'
+      standard: "ISO/IEC 24778",
+      finder: "Bullseye in the centre, so the code can be read without a margin",
+      quietZone: "None required (one module helps some scanners)",
+      size: "Chosen automatically from the amount of data",
+      errorCorrection: "Built in; not adjustable here",
+      privacy: "Built in your browser; the generator does not upload what you encode"
     },
     useCases: [
-      'Airline mobile boarding passes on smartphone screens (IATA BCBP 2D standard)',
-      'European railway passenger e-tickets and turnstile gate entry (Eurostar, DB, SNCF, UIC 918-3)',
-      'Automated metro transit turnstiles and concert venue mobile admission passes',
-      'Hospital patient medical wristbands and bedside medication administration verification',
-      'Direct part marking on compact automotive components and microelectronics with zero margins'
+      "Event and transport tickets for your own system",
+      "Labels where there is no room for a margin",
+      "Screens and phone displays that scanners read"
     ],
     faqs: [
       {
-        q: 'Why do airlines and railway operators prefer Aztec Code over QR Code?',
-        a: 'Airlines (IATA) and European railways (UIC) choose Aztec Code because its central bullseye target finder pattern allows symbols to be decoded reliably from smartphone screens at any orientation, even under low-contrast or glare. Furthermore, unlike QR Codes which require a mandatory 4-module quiet zone border, Aztec Code can be printed or displayed with zero surrounding margin, maximizing scannable surface area on constrained mobile displays and compact ticket stock.'
+        q: "Can I make an airline boarding pass or rail ticket with it?",
+        a: "Only the barcode image. Airline and rail barcodes contain data in formats set by the carrier, and they are issued by the carrier's own systems. This generator encodes exactly the text you type."
       },
       {
-        q: 'What is the structural difference between Compact Aztec and Full-Range Aztec?',
-        a: 'Compact Aztec uses a 2-ring central bullseye (core size 9×9 modules) with 1 to 4 surrounding data layers, scaling from 15×15 up to 27×27 modules and holding up to 89 numeric or 56 alphanumeric characters. Full-Range Aztec features a 3-ring bullseye (core size 13×13 modules) with up to 32 data layers, reaching 151×151 modules with a maximum capacity of 3,832 numeric digits or 3,067 alphanumeric characters.'
+        q: "Why doesn't it need a white border?",
+        a: "Scanners find an Aztec Code from its centre bullseye rather than its edges, so it can be printed right up to other artwork. A thin margin still helps some scanners."
       },
       {
-        q: 'Does Aztec Code require a quiet zone margin around its perimeter?',
-        a: 'Under ISO/IEC 24778, Aztec Code is the only major 2D matrix symbology that officially permits a 0-module quiet zone. Because reading begins strictly at the center bullseye and radiates outward, the decoder does not need an empty border to locate the symbol boundary. However, in physical print environments where neighboring text or dark borders are present, maintaining a 1-module separation is recommended to prevent optical bleed.'
-      },
-      {
-        q: 'How does Aztec Code Reed-Solomon error correction work?',
-        a: 'Aztec Code incorporates Reed-Solomon algebraic error correction over Galois Field GF(256) or GF(1024). The user can configure redundancy levels from a minimal 5% up to 95% of data capacity (default is typically 23%). This allows symbols to decode cleanly even if coffee stains, surface scratches, or screen cracks obliterate substantial portions of the outer data layers.'
-      },
-      {
-        q: 'Can standard laser barcode scanners decode Aztec codes?',
-        a: 'No. Traditional 1D linear laser scanners only sweep a single line of red light horizontally, which cannot decode 2D matrix symbols. Aztec Code requires a 2D area-imager scanner (camera-based CMOS/CCD sensor) or a smartphone camera with modern computer vision decoding libraries (such as ZXing or Apple Vision framework).'
-      },
-      {
-        q: 'Are travel itineraries, passenger names, or ticket payloads stored on UniversalCodeMaker servers?',
-        a: 'No. The Aztec symbol is drawn in your browser, and the generator does not upload what you type, such as a booking reference or ticket number. The privacy policy explains what the site itself measures.'
+        q: "Will phones read it?",
+        a: "Most 2D scanner apps do, but phone camera apps vary. Test with the devices that will scan it."
       }
     ],
     relatedSlugs: [
@@ -472,37 +432,34 @@ const SEO_PAGES = [
     queryParam: 'symbology=pdf417',
     category: '2D Stacked',
     metaTitle: 'Free PDF417 Barcode Generator: ID Badges, Cards & SVG',
-    metaDescription: 'Create ISO/IEC 15438 PDF417 stacked 2D barcodes for ID badges, shipping papers and documents. Free client-side vector SVG and PNG download with zero sign-up.',
+    metaDescription: 'Free PDF417 generator for shipping papers, labels and documents. Encodes exactly the text you enter, with adjustable data columns. SVG or PNG.',
     h1: 'Free PDF417 Stacked 2D Barcode Generator',
-    lead: 'Create PDF417 stacked 2D barcodes for multi-line text, inventory records, document references, and other structured data. The studio encodes exactly the text you enter; it does not build industry-specific data formats.',
+    lead: "Make a PDF417 barcode, the stacked 2D barcode used on shipping papers, labels and documents. It encodes exactly the text you enter, and you can set how many data columns it uses to make it wider or taller.",
     technicalSpec: {
-      standard: 'ISO/IEC 15438',
-      structure: 'Stacked linear rows (each codeword contains 4 bars and 4 spaces across 17 modules)',
-      aspectRatio: 'Rectangular format (standard ~2.5:1 ratio)',
-      capacity: 'Over 1.1 kilobytes of machine-readable data per symbol'
+      standard: "ISO/IEC 15438",
+      layout: "Stacked rows; data columns adjustable from 1 to 30",
+      errorCorrection: "Built in; not adjustable here",
+      quietZone: "At least 2 modules on every side",
+      scope: "Encodes the text you type; it does not create ID documents",
+      privacy: "Built in your browser; the generator does not upload what you encode"
     },
     useCases: [
-      'Personnel identification badges, access cards, and visitor passes',
-      'Commercial transport & airline boarding passes (BCBP standard)',
-      'USPS parcel shipping papers and logistics records',
-      'Multi-line technical text and high-density document archiving'
+      "Shipping papers and delivery notes",
+      "Inventory and document labels with several fields",
+      "Badges for your own organisation's access system"
     ],
     faqs: [
       {
-        q: 'What does PDF417 stand for?',
-        a: 'PDF stands for "Portable Data File". The "417" signifies that each pattern is 17 modules wide and consists of 4 bars and 4 spaces.'
+        q: "What do the data columns change?",
+        a: "The shape. More columns make the barcode wider and shorter; fewer make it narrower and taller. The data stays the same."
       },
       {
-        q: 'Can I generate employee ID cards and personnel badges with PDF417?',
-        a: 'Yes. PDF417 is widely used for employee identification cards, facility access badges, and event credentials because its high data density allows encoding names, employee numbers, and security hashes directly within the symbol without requiring an active database lookup at the scanner.'
+        q: "Can I make driving licence or ID card barcodes?",
+        a: "No. ID barcodes follow formats controlled by the issuing authority, and this tool is not for making identity documents. It encodes exactly the text you type."
       },
       {
-        q: 'What error correction level should I choose for PDF417?',
-        a: 'PDF417 supports error correction levels 0 through 8 using Reed-Solomon algorithms. For shipping labels and documents, level 4 or 5 gives good protection against surface scratches, print distortion, and ink smudges.'
-      },
-      {
-        q: 'Can I export PDF417 as vector SVG for high-resolution printing?',
-        a: 'Yes. The SVG download is a vector file, so it stays sharp at any size. That suits high-DPI badge printers, offset commercial printing, and technical documentation.'
+        q: "Will phones read it?",
+        a: "Many 2D scanner apps do, but phone camera apps vary. Test with the scanner that will read it."
       }
     ],
     relatedSlugs: ['data-matrix-generator', 'aztec-code-generator', 'code-128-barcode-generator']
@@ -957,48 +914,38 @@ const SEO_PAGES = [
     queryParam: 'symbology=code-128&preset=amazon-fnsku-5160&label=1',
     category: 'Retail & POS',
     metaTitle: 'Free Amazon FBA FNSKU Barcode Generator: Avery 5160 SVG',
-    metaDescription: 'Generate free Amazon FBA FNSKU barcodes online (Code 128). Print Avery 5160 sheets or thermal rolls with product title, mandatory condition line & vector SVG.',
+    metaDescription: 'Free Amazon FNSKU label generator. Make Code 128 FNSKU labels with product name and condition on Avery 5160 sheets or thermal labels. Download a PDF.',
     h1: 'Free Amazon FBA FNSKU Barcode & Label Generator',
-    lead: 'Generate official Amazon FBA item labels and FNSKU barcodes using Code 128 symbology. Automatically format product titles, condition lines, and quiet zones for 30-up Avery 5160 sheets or direct thermal rolls.',
+    lead: "Make Amazon FBA unit labels from your FNSKU: a Code 128 barcode with the product name and condition, sized for Avery 5160 sheets or 1 × 2-5/8 inch thermal labels. Seller Central can print these labels too; this is a free alternative when you need more control.",
     technicalSpec: {
-      standard: 'Code 128 linear symbology (ISO/IEC 15417) encoding 10-character FNSKU',
-      payloadFormat: 'X00... (merchant-specific) or B00... (ASIN-matched) FNSKU identifier',
-      labelDimensions: '1" × 2-5/8" (Avery 5160, 30 per sheet) or direct thermal roll (e.g. 2.25" × 1.25" / 2" × 4")',
-      mandatoryContents: 'Code 128 barcode + human-readable FNSKU, product title, and item condition (e.g. "New")',
-      quietZones: '0.25" (6.35 mm) side margins and 0.125" (3.18 mm) top/bottom margins mandated by Amazon',
-      printingSpecs: '300 DPI thermal or laser printing; client-side generation ensures seller data is never stored'
+      barcode: "Code 128 of your FNSKU (from Seller Central)",
+      labelContents: "Product name, FNSKU barcode and condition",
+      labelSize: "1 × 2-5/8 in (Avery 5160 sheet, 30 per page, or thermal)",
+      whiteSpace: "0.25 in at the sides and 0.125 in top and bottom, as Amazon's label instructions describe",
+      printing: "Laser or thermal printer; Amazon advises against inkjet",
+      privacy: "Built in your browser; the generator does not upload your FNSKUs or product names"
     },
     useCases: [
-      'Item-level unit labeling for Fulfillment by Amazon (FBA) inbound shipments',
-      'Avery 5160 / 30-up US Letter label sheets on laser printers',
-      'Direct thermal shipping printers (Rollo, Zebra, MUNBYN, Brother) for single rolls',
-      'Covering manufacturer UPC/EAN barcodes to prevent Amazon inventory commingling',
-      'Private label FBA inventory preparation and Seller Central compliance'
+      "Labelling units before sending them to an Amazon warehouse",
+      "Relabelling returned or damaged-label stock",
+      "Small batches where printing from Seller Central is awkward"
     ],
     faqs: [
       {
-        q: 'What is an Amazon FNSKU and how is it different from a UPC or ASIN?',
-        a: 'An ASIN (Amazon Standard Identification Number) is Amazon\'s internal catalog identifier for a product page. A UPC is a universal retail GTIN assigned to the product packaging. An FNSKU (Fulfillment Network Stock Keeping Unit) is an Amazon-exclusive fulfillment barcode (typically starting with "X00") that ties an individual physical item directly to your specific seller account. This prevents commingling with identical inventory sold by other merchants in Amazon fulfillment centers. If you sell via FBA, Amazon usually requires each unit to carry an FNSKU barcode.'
+        q: "What is the difference between an FNSKU and a UPC?",
+        a: "A UPC is the product's GS1 number and identifies the product anywhere. An FNSKU is Amazon's own code that ties a unit to your seller account inside Amazon's warehouses. Amazon shows the FNSKU for each listing in Seller Central."
       },
       {
-        q: 'What barcode symbology does Amazon FBA require for FNSKU labels?',
-        a: 'Amazon FBA mandates Code 128 (specifically Code 128-A, B, or C) for all FNSKU item barcodes. The barcode must encode exactly the 10-character FNSKU string with no extra digits, spaces, or prefixes. The human-readable FNSKU text must be printed cleanly directly beneath the bars. Our generator uses calibrated Code 128 vector rendering that complies precisely with Amazon Seller Central packaging requirements.'
+        q: "Do I need to cover the original barcode?",
+        a: "Amazon asks for only one scannable barcode on the outside of each unit, so cover any existing barcode with the FNSKU label. Check Amazon's current labelling rules for your marketplace."
       },
       {
-        q: 'What mandatory text must appear on an Amazon FBA item label?',
-        a: 'Under official Amazon FBA label guidelines, every unit label must contain three key elements: 1) The Code 128 barcode with human-readable FNSKU digits beneath; 2) The product title or item description (truncated cleanly to fit); and 3) The mandatory item condition line (e.g., "New", "Used - Like New", "Used - Good", or "Refurbished"). Furthermore, labels must include at least 0.25" (6.35 mm) quiet zones on the left and right sides and 0.125" (3.18 mm) at the top and bottom.'
+        q: "Can I print on an inkjet printer?",
+        a: "Amazon's label guidance asks sellers not to use inkjet printers for these labels, because the ink can smudge. Use a laser or thermal printer."
       },
       {
-        q: 'Can I print Amazon FBA labels on Avery 5160 sheets with an office printer?',
-        a: 'Yes. UniversalCodeMaker includes a built-in Avery 5160 PDF label maker. Standard Avery 5160 sheets feature 30 labels per US Letter sheet (1" × 2-5/8" per label). Amazon explicitly recommends laser printing for label sheets because inkjets can smear when moisture or handling occurs during transit. Ensure your PDF print dialog is set to "Actual Size" or 100% scaling—never select "Fit to Page", which shifts label alignment.'
-      },
-      {
-        q: 'Do I need to cover the existing manufacturer UPC or EAN barcode on the box?',
-        a: 'Yes. Amazon FBA scanning policy strictly requires that only one scannable barcode is visible on the exterior packaging of each unit. If your product packaging already has a pre-printed UPC, EAN, or manufacturer barcode, you must apply the FNSKU label directly over the original barcode to cover it completely. Leaving two barcodes exposed leads to scanning confusion at fulfillment centers, delayed receiving, and unplanned prep fee penalties. For more details, see our <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Amazon Barcode Guide</a>.'
-      },
-      {
-        q: 'Are my private Amazon ASINs, FNSKUs, or seller SKU lists stored on your servers?',
-        a: 'No. FNSKU labels are built in your browser, and the generator does not upload your FNSKUs, product titles or SKU lists.'
+        q: "Does the generator keep my FNSKUs?",
+        a: "No. FNSKU labels are built in your browser, and the generator does not upload your FNSKUs, product titles or SKU lists."
       }
     ],
     relatedSlugs: [
@@ -1165,48 +1112,35 @@ const SEO_PAGES = [
     queryParam: 'label=open&preset=avery-5160',
     category: 'Retail & POS',
     metaTitle: 'Free Avery 5160 Barcode Generator: 30-Up Label Sheet PDF',
-    metaDescription: 'Generate free barcodes on Avery 5160 sheets (30 per page). Print Code 128, UPC, QR codes & FBA labels with calibrated margins in a print-ready vector PDF.',
+    metaDescription: 'Free barcode and QR code labels on Avery 5160 sheets: 30 labels per US Letter page. Same code on every label, or a different code per label. PDF download.',
     h1: 'Free Avery 5160 Barcode & Label Sheet Generator',
-    lead: 'Create and print perfectly aligned barcode and QR code label sheets on standard Avery 5160 templates (30 labels per US Letter sheet). Customize product titles, prices, and SKUs with instant vector PDF sheet downloads.',
+    lead: "Print barcodes and QR codes on Avery 5160 label sheets: 30 labels of 1 × 2-5/8 inches on a US Letter page. Fill the sheet with the same code, or use the batch tool to put a different code on each label.",
     technicalSpec: {
-      templateFormat: 'Avery 5160 / 5260 / 5960 / 8160 / 8460 / 6570 (1" × 2-5/8", 30-up per sheet)',
-      sheetLayout: '3 columns × 10 rows on standard 8.5" × 11" US Letter paper',
-      calibratedMargins: 'Top/Bottom: 0.5", Left/Right: 0.1875" (3/16"), Horizontal pitch: 2.75", Vertical pitch: 1.0"',
-      symbologySupport: 'All 10 formats: Code 128, UPC-A, EAN-13, Code 39, QR Code, Data Matrix, ITF-14, PDF417',
-      printerCompatibility: 'Laser (Avery 5160) and Inkjet (Avery 8160) compatible at 100% / Actual Size print scaling',
-      privacyStandard: 'PDF built in your browser; inventory lists, SKUs and asset numbers are not uploaded'
+      sheet: "US Letter, 3 columns × 10 rows (30 labels)",
+      labelSize: "1 × 2-5/8 in (25.4 × 66.7 mm)",
+      alsoSupported: "Avery 5163 (10 per Letter sheet) and Avery L7160 (21 per A4 sheet)",
+      modes: "Same code on every label, or a list of up to 200 different codes",
+      output: "PDF built in your browser",
+      privacy: "Built in your browser; the generator does not upload your codes or labels"
     },
     useCases: [
-      'Amazon FBA FNSKU 30-up item labeling on office laser printers',
-      'Retail inventory tagging, price stickers, and shelf bin barcode labels',
-      'Enterprise IT asset tracking and office equipment identification tags',
-      'Return shipping address labels and package routing barcodes',
-      'Classroom, library book checkout, and storage container organization'
+      "Product and price labels for a small shop",
+      "Asset tags and inventory labels",
+      "Amazon FNSKU labels",
+      "Address or event labels with a QR code"
     ],
     faqs: [
       {
-        q: 'How many barcode labels fit on an Avery 5160 label sheet?',
-        a: 'An Avery 5160 sheet contains 30 individual labels arranged in 3 columns of 10 rows on standard 8.5" × 11" US Letter paper. Each die-cut label measures exactly 1" tall by 2-5/8" wide (25.4 mm × 66.675 mm). Equivalent Avery template numbers that share identical sheet geometry include 5260, 5960, 8160 (inkjet), 8460, and 6570.'
+        q: "Can each label have a different barcode?",
+        a: "Yes. In the batch tool, paste a list of values or generate a numbered sequence and choose the Avery 5160 sheet. Each value goes on its own label, in order."
       },
       {
-        q: 'How do I prevent alignment and creeping issues when printing Avery 5160 labels?',
-        a: 'The most common cause of misaligned Avery labels is printer scaling. When printing the downloaded PDF from Adobe Acrobat, Chrome, or your operating system\'s print dialog, ensure Page Sizing is set to "Actual Size" or 100% scale. Never select "Fit to Page", "Fit to Printable Area", or "Shrink to Fit", as these options shrink the grid slightly, causing labels to align at the top of the sheet but drift progressively downward toward the bottom. We recommend printing a test sheet on plain paper first and holding it up to the light over an Avery sheet to verify calibration.'
+        q: "My labels don't line up. What should I check?",
+        a: "Print at Actual size or 100%. Fit to page shrinks the layout so labels drift down the sheet. Print one page on plain paper and hold it against a label sheet before using labels."
       },
       {
-        q: 'Can I print different barcodes on each label, or does it repeat the same barcode?',
-        a: 'Both work. In Single Label mode, the studio fills all 30 labels on the sheet with your chosen barcode design, title, and SKU text, which suits labeling batches of the same product. In Bulk / Batch Mode, you can paste a list of distinct SKU numbers or sequential asset tags (e.g., from Excel or Google Sheets), and the generator will place each successive barcode onto its own sequential label across the 30-up sheet.'
-      },
-      {
-        q: 'What is the difference between Avery 5160 and Avery 8160?',
-        a: 'Avery 5160 and Avery 8160 share the exact same physical template layout (30 labels per sheet, 1" × 2-5/8"). The difference is paper stock: Avery 5160 labels are formulated specifically for laser printers (engineered to withstand high fuser drum heat without melting adhesive), while Avery 8160 labels are optimized for inkjet printers (coated with QuickDry ink-absorbing material to prevent smudging). Both work identically with our PDF sheet generator.'
-      },
-      {
-        q: 'Which barcode symbologies can I print on Avery 5160 sheets?',
-        a: 'You can generate and print all 10 supported barcode and 2D symbologies, including Code 128 (shipping and asset tags), UPC-A (North American retail), EAN-13 (international retail), Code 39 (defense and automotive), Amazon FBA FNSKU, QR Code (websites, Wi-Fi, vCard), and Data Matrix (compact 2D). Each format is automatically scaled to fit within the 1" × 2-5/8" label boundaries while preserving mandatory quiet zones.'
-      },
-      {
-        q: 'Are my product lists, serial numbers, or inventory SKUs stored on UniversalCodeMaker servers?',
-        a: 'No. The PDF sheet is put together in your browser, and the generator does not upload your serial numbers, prices or SKUs.'
+        q: "Which other Avery sheets work?",
+        a: "The tool has layouts for Avery 5160 (and 8160, the same layout), 5163 and L7160. Other products work only if they use exactly the same layout."
       }
     ],
     relatedSlugs: [
@@ -1225,46 +1159,38 @@ const SEO_PAGES = [
     queryParam: 'symbology=isbn',
     category: 'Retail & POS',
     metaTitle: 'Free ISBN Book Barcode Generator: Bookland EAN-13 & SVG',
-    metaDescription: 'Generate ISBN-13 and Bookland EAN barcodes for book covers, Amazon KDP and IngramSpark. Includes automatic check digit and 5-digit price add-on in vector SVG.',
+    metaDescription: 'Free ISBN barcode generator for book covers. Enter your 13-digit ISBN and an optional 5-digit price add-on. Download SVG, PNG or EPS for the cover.',
     h1: 'Free ISBN-13 Bookland Barcode Generator',
-    lead: 'Generate high-contrast Bookland EAN-13 barcodes for paperback, hardcover, and print-on-demand books. Designed to meet strict IngramSpark, Amazon KDP, and Barnes & Noble publishing specifications with vector SVG and 300 DPI print exports.',
+    lead: "Make the barcode for the back cover of a book from your 13-digit ISBN, with an optional 5-digit price add-on. The ISBN itself comes from your national ISBN agency; this tool draws the barcode.",
     technicalSpec: {
-      standard: 'ISO 2108 / Bookland EAN-13 (GS1 General Specifications)',
-      prefixStructure: '978 or 979 International Book Industry Prefix',
-      checkDigitMath: 'Automated GS1 Modulo-10 checksum calculation',
-      supplementalAddon: 'Optional EAN-5 supplemental price code (e.g. 51999 for $19.99 USD / 90000 for no price)',
-      outputFormats: 'Scalable Vector SVG, High-Res 300 DPI PNG, Direct Print'
+      input: "A 13-digit ISBN starting 978 or 979, with or without hyphens",
+      symbol: "EAN-13 (Bookland), the barcode used for ISBNs",
+      priceAddOn: "Optional 5-digit add-on (EAN-5)",
+      printSize: "Based on a 0.330 mm narrow bar, as for EAN-13",
+      downloads: "SVG, PNG and EPS",
+      privacy: "Built in your browser; the generator does not upload your ISBN"
     },
     useCases: [
-      'Amazon KDP (Kindle Direct Publishing) paperback and hardcover back covers',
-      'IngramSpark and Lightning Source global retail distribution',
-      'Bookstore Point-of-Sale (POS) cash register laser scanning',
-      'Independent publishing, literary journals, and self-published textbooks'
+      "Back covers of self-published books",
+      "Replacement barcodes when a cover is redesigned",
+      "Small presses printing their own covers"
     ],
     faqs: [
       {
-        q: 'How do I get a barcode for my book?',
-        a: 'To put a barcode on your book cover, follow four steps: 1) Obtain an official 13-digit ISBN from your national agency (such as Bowker in the US, Nielsen in the UK, Library and Archives Canada) or choose a free ISBN directly in Amazon KDP; 2) Enter your 13-digit ISBN (beginning with 978 or 979) into UniversalCodeMaker\'s Bookland generator; 3) Optionally configure an EAN-5 supplemental price code (e.g. 51999 for $19.99 USD or 90000 for unpriced books); 4) Download the vector SVG or high-resolution PNG and place it in the lower-right area of your back cover design.'
+        q: "How do I get a barcode for my book?",
+        a: "First get an ISBN from the ISBN agency for your country (in the US that is Bowker). Then enter the 13-digit ISBN here, add a price add-on if your market uses one, and download the file for your cover designer."
       },
       {
-        q: 'Where do I obtain an official ISBN for my book?',
-        a: 'In the United States, official ISBNs are issued by Bowker (myidentifiers.com). In Canada, they are issued free by Library and Archives Canada. In the UK, Nielsen Book is the official agency. In India, Raja Rammohun Roy National Agency issues ISBNs. Amazon KDP also provides free ISBNs for platform-exclusive publishing.'
+        q: "What is the 5-digit add-on?",
+        a: "An optional second barcode to the right of the main one. In the US the first digit is the currency (5 for US dollars) and the rest is the price, so 51995 means $19.95. 90000 means no price is encoded."
       },
       {
-        q: 'What is the 5-digit add-on code next to the ISBN barcode?',
-        a: 'The 5-digit supplemental code is an EAN-5 price extension. For books sold in the US, the first digit is 5 (denoting USD), followed by the price without decimals. For example, 51999 represents $19.99 USD. If no price is set, 90000 is used.'
+        q: "My printer or publishing platform makes a barcode for me. Do I need this?",
+        a: "Some print-on-demand services add a barcode to the cover automatically. Check their cover guidelines; if they do, you don't need a separate one."
       },
       {
-        q: 'Does Amazon KDP accept vector SVG barcodes generated here?',
-        a: 'Yes. UniversalCodeMaker exports clean, vector SVG and high-DPI 300+ PPI PNG files with exact quiet zones, ensuring razor-sharp reproduction that will pass KDP and IngramSpark automated pre-flight checks.'
-      },
-      {
-        q: 'Where should the ISBN barcode be placed on a book cover?',
-        a: 'Book industry standards (BISG) specify placing the barcode in the lower-right quadrant of the back cover, at least 0.25 to 0.5 inches (6 to 13 mm) away from the trim edge and spine. Ensure the light quiet-zone margins on both sides of the barcode remain completely unobstructed by cover artwork or dark backgrounds.'
-      },
-      {
-        q: 'Can I convert an old 10-digit ISBN to the modern 13-digit format?',
-        a: 'Yes. Simply prefix the 9-digit core with 978 and calculate the new 13th Mod-10 check digit. Our generator handles this math automatically.'
+        q: "Can I use a 10-digit ISBN?",
+        a: "Not directly. The barcode uses the 13-digit form. Older 10-digit ISBNs have a 978 equivalent; your ISBN agency's records show it."
       }
     ],
     relatedSlugs: ['how-to-get-a-barcode-for-your-product', 'ean-13-barcode-generator', 'upc-vs-ean-13-barcode']
@@ -1276,48 +1202,35 @@ const SEO_PAGES = [
     queryParam: 'symbology=code-39',
     category: 'Logistics & 1D',
     metaTitle: 'Free Code 39 Barcode Generator: Asset Tags & Mod-43 SVG',
-    metaDescription: 'Generate free Code 39 (Code 3 of 9) barcodes online. Alphanumeric asset tags, optional Mod-43 check digit, Avery label maker & sharp vector SVG export.',
+    metaDescription: 'Free Code 39 barcode generator for asset tags and inventory labels. Uppercase letters, digits and a few symbols, optional Mod-43 check digit. SVG, PNG, EPS.',
     h1: 'Free Code 39 Asset & Industrial Barcode Generator',
-    lead: 'Generate industrial-standard Code 39 (Code 3 of 9 / USD-3) linear barcodes for IT asset tracking, manufacturing parts marking, defense logistics, and warehouse equipment numbering with instant vector SVG and Avery label sheet printing.',
+    lead: "Make a Code 39 barcode for asset tags, inventory and older systems that expect it. It takes uppercase letters, digits and a few symbols, and can add an optional Mod-43 check digit.",
     technicalSpec: {
-      standard: 'ISO/IEC 16388 & ANSI/AIM BC1 (USD-3 / LOGMARS)',
-      characterSet: '43 characters: 0–9, uppercase A–Z, and symbols (- . $ / + % space)',
-      checksumAlgorithm: 'Self-checking symbology; optional weighted Modulo-43 checksum',
-      symbologyStructure: 'Discrete variable-length symbology with automatic start/stop asterisks (*)',
-      quietZones: 'Minimum 10X module width (at least 6.4 mm / 0.25 in) on left and right margins',
-      privacy: 'Built in your browser; asset IDs, serial numbers, and equipment tags are never uploaded'
+      standard: "ISO/IEC 16388",
+      characters: "0–9, A–Z (uppercase), space and - . $ / + %",
+      startStop: "The * start and stop characters are added for you",
+      checkDigit: "Optional Mod-43 (tick Include Mod-43 Check Digit)",
+      quietZone: "At least 10 narrow-bar widths on each side",
+      downloads: "SVG, PNG and EPS downloads, plus Avery 5160, 5163 and L7160 label sheets",
+      privacy: "Built in your browser; the generator does not upload your asset numbers"
     },
     useCases: [
-      'Enterprise IT hardware asset tags (laptops, servers, monitors, networking gear)',
-      'US Department of Defense (DoD) military supply shipments under MIL-STD-129 / MIL-STD-130',
-      'Automotive manufacturing sub-assemblies and replacement parts (AIAG B-1 standard)',
-      'Hospital clinical laboratory specimen tube labeling and healthcare asset tracking',
-      'Warehouse storage bin locations, maintenance tooling badges, and factory route sheets'
+      "IT and equipment asset tags",
+      "Inventory labels for systems that already use Code 39",
+      "Library and file labels"
     ],
     faqs: [
       {
-        q: 'What characters can be encoded in a standard Code 39 barcode?',
-        a: 'Standard Code 39 natively encodes 43 individual characters: 10 numeric digits (0–9), 26 uppercase English letters (A–Z), and seven punctuation and mathematical symbols: hyphen (-), period (.), space ( ), dollar sign ($), slash (/), plus (+), and percent (%). Lowercase letters entered into standard mode are automatically capitalized. For full ASCII support including lowercase letters and control characters, Full ASCII Extended Code 39 combines these standard symbols in pairs.'
+        q: "Code 39 or Code 128?",
+        a: "Use Code 39 when your system or scanner setup expects it. For anything new, Code 128 is shorter for the same data and takes lowercase letters."
       },
       {
-        q: 'What is the difference between Code 39 and Code 128?',
-        a: 'Code 39 is a discrete symbology where each character is separated by an inter-character gap, making it simpler, highly resilient, and decodable by virtually all legacy barcode readers without specialized software. However, Code 39 requires significantly more physical horizontal space per character. Code 128 is a continuous, high-density symbology that encodes the entire 128 ASCII table in approximately half the horizontal width and features dynamic numeric compaction (Subset C). For compact spaces, choose <a href="./code-128-barcode-generator.html">Code 128</a>; for legacy defense, automotive, or simple asset tracking, choose Code 39.'
+        q: "Should I add the Mod-43 check digit?",
+        a: "Only if the system reading the code expects it. If it doesn't, the extra character can end up in the scanned value."
       },
       {
-        q: 'Why do Code 39 barcodes have asterisks (*) at the beginning and end?',
-        a: 'The asterisk (*) character is the designated start and stop delimiter in the Code 39 specification. It tells optical barcode scanners which direction the beam is reading across the bars (left-to-right or right-to-left) so the decoder can orient the payload accurately. In modern scanners, the asterisks are stripped automatically and are not transmitted to your inventory database or spreadsheet.'
-      },
-      {
-        q: 'How is the optional Modulo-43 check digit calculated for Code 39?',
-        a: 'Code 39 has built-in self-checking properties due to its fixed pattern ratio (each character contains 9 elements: 3 wide and 6 narrow). However, high-reliability applications (such as DoD LOGMARS or healthcare asset tracking) add a Modulo-43 check character: each character in the payload is assigned a numerical value from 0 to 42, all values are summed, the sum is divided by 43, and the remainder maps back to the corresponding check character appended to the end of the data.'
-      },
-      {
-        q: 'Can I print Code 39 asset barcodes on Avery adhesive label sheets?',
-        a: 'Yes. UniversalCodeMaker includes a built-in Avery label maker. You can generate complete PDF print sheets for standard Avery 5160 (30 labels per sheet, 1" × 2-5/8") or Avery 5163 (10 labels per sheet, 2" × 4"). Each barcode is rendered with calibrated quiet zones and razor-sharp vectors to guarantee crisp scanning on both thermal transfer and office laser printers.'
-      },
-      {
-        q: 'Are my enterprise asset tags, serial numbers, or internal inventory lists stored on UniversalCodeMaker servers?',
-        a: 'No. The barcodes are drawn in your browser, and the generator does not upload your asset numbers or equipment tags.'
+        q: "Why can't I use lowercase letters?",
+        a: "Standard Code 39 only has 43 characters: digits, uppercase letters, space and six symbols."
       }
     ],
     relatedSlugs: [
@@ -1336,48 +1249,36 @@ const SEO_PAGES = [
     queryParam: 'batch=open',
     category: 'Logistics & 1D',
     metaTitle: 'Free Bulk Barcode Generator: Excel, CSV & Sequential',
-    metaDescription: 'Generate bulk barcodes from Excel, CSV, or sequential series. Batch export up to 200 Code 128, UPC, or QR codes as a ZIP of SVGs or Avery PDF label sheets.',
+    metaDescription: 'Free bulk barcode generator. Paste a column from Excel or a CSV, or make a numbered series, and download up to 200 codes as a ZIP or Avery label sheets.',
     h1: 'Free Bulk Barcode Generator from Excel & CSV',
-    lead: 'Batch generate up to 200 barcodes or QR codes directly from your Excel spreadsheet, CSV export, or auto-incrementing serial sequence. Download an organized ZIP of vector SVGs or print-ready Avery PDF label sheets. Your list is processed in your browser.',
+    lead: "Make up to 200 barcodes or QR codes at once. Paste a column from Excel or Google Sheets, upload the first column of a CSV, or generate a numbered series. Download them as a ZIP of image files or as Avery label sheets.",
     technicalSpec: {
-      inputFormats: 'Pasted single column, CSV (IETF RFC 4180), Excel TSV, or auto-incrementing sequential series',
-      batchCapacity: 'Up to 200 barcodes per batch (pre-validation alerts if line count exceeds 200)',
-      supportedSymbologies: 'All 10 formats: Code 128, UPC-A, EAN-13, Code 39, ITF-14, QR Code, Data Matrix, Aztec, PDF417',
-      exportPackaging: 'Consolidated ZIP of individual SVGs/PNGs (001_SKU.svg) or 30-up Avery PDF sheets (5160, 5163, L7160)',
-      errorHandling: 'Pre-render syntax & check digit validation highlighting exact row numbers before generation',
-      dataPrivacy: 'Processed by JavaScript in your browser; SKU lists and serial numbers are not uploaded'
+      input: "Pasted lines, the first column of a CSV, or a numbered series",
+      series: "Prefix, start number, count, zero-padding and suffix (e.g. SKU-001 to SKU-200)",
+      limit: "200 values per batch",
+      outputs: "ZIP of SVG or PNG files, or Avery 5160, 5163 or L7160 PDF sheets",
+      fileNames: "Numbered in order, e.g. 001_SKU-A101.svg",
+      checks: "Invalid values (for example a wrong check digit) stop the batch and are listed by line",
+      privacy: "Processed in your browser; the generator does not upload your list"
     },
     useCases: [
-      'Warehouse cycle counting and annual physical inventory audit asset labeling',
-      'Batch SKU barcode generation from Shopify, WooCommerce, or Amazon Seller inventory CSV exports',
-      'Sequential asset tagging and hardware serial numbering (e.g. SN-0001 to SN-0100) on Avery label sheets',
-      'Trade show attendee credential badges and event ticketing QR code batch runs',
-      'Manufacturing work-in-progress traveler routing tags and laboratory specimen tube labeling'
+      "Labels for a whole product range",
+      "Numbered asset tags and serial labels",
+      "QR codes for a list of web addresses",
+      "A sheet of different FNSKU or SKU labels"
     ],
     faqs: [
       {
-        q: 'How do I generate barcodes from an Excel or Google Sheets spreadsheet column?',
-        a: 'Prepare your spreadsheet with one barcode payload or SKU per row in a single column without formulas or header text. Select and copy the column cells (Ctrl+C / Cmd+C). In UniversalCodeMaker, open Batch Mode, select the Paste List / CSV tab, and paste directly into the input area. The engine automatically trims whitespace and parses tab-separated values (taking column 1 if multiple columns are pasted), supporting up to 200 values per batch.'
+        q: "How do I get my data in from Excel?",
+        a: "Select the column of values in Excel or Google Sheets, copy it, and paste it into the batch box. One value per line. For a CSV file, the first column is used."
       },
       {
-        q: 'What happens if one barcode value in my 200-row batch contains a formatting error or invalid check digit?',
-        a: 'UniversalCodeMaker executes pre-flight validation on every single row before rendering begins. If any item contains illegal characters (such as letters in a UPC-A/EAN-13 numeric string) or an incorrect check digit, generation pauses and displays the exact line number along with the specific error. Nothing is exported until the invalid entry is corrected, guaranteeing zero spoiled labels or wasted sheet paper.'
+        q: "What happens if one value is invalid?",
+        a: "The batch stops and lists the line numbers with problems, such as a UPC with a wrong check digit, so you can fix them before printing."
       },
       {
-        q: 'Can I generate sequential serial numbers without uploading a spreadsheet file?',
-        a: 'Yes. Under the Sequenced Numbers tab, you can configure an automated series without preparing an external file. Define an alphanumeric prefix (e.g., "SN-" or "LOT2026-"), set a starting integer (e.g., 1001), specify total count (up to 100 per sequence run), and set zero-padding digit width. The studio instantly populates the sequence and generates sequential barcodes in numerical order.'
-      },
-      {
-        q: 'Can I print bulk barcodes directly onto Avery label sheets instead of downloading loose image files?',
-        a: 'Yes. In Batch Mode, set Export Format to "Avery PDF Sheet" and select your sheet layout, such as Avery 5160 (30 labels per sheet, 1" × 2-5/8"), Avery 5163 (10 shipping labels per sheet, 2" × 4"), or Avery L7160 (A4 European standard). Each label prints a different code from your list in sequential order, with an optional toggle to include human-readable text beneath the bars.'
-      },
-      {
-        q: 'How are individual barcode files named inside the downloaded ZIP archive?',
-        a: 'When choosing ZIP export (vector SVG or high-resolution PNG), each file is systematically named using its zero-padded list index followed by the encoded value (e.g., 001_SKU-A101.svg, 002_SKU-A102.svg). This consistent naming convention preserves your original spreadsheet row sequence and makes importing into packaging layout software or asset databases effortless.'
-      },
-      {
-        q: 'Is my proprietary inventory, supplier SKU, or pricing data stored on UniversalCodeMaker servers?',
-        a: 'No. The pasted list is processed in your browser, and the generator does not upload it.'
+        q: "Why the 200 limit?",
+        a: "Everything is drawn in your browser, and very large batches can make it slow or unstable. Split longer lists into several batches."
       }
     ],
     relatedSlugs: [
@@ -1396,47 +1297,33 @@ const SEO_PAGES = [
     queryParam: 'symbology=upc-a&preset=retail-225-125',
     category: 'Retail & POS',
     metaTitle: 'Free Shopify Barcode Generator: Product SKUs & POS Tags',
-    metaDescription: 'Generate free Shopify product barcodes & variant SKU labels. Create scannable UPC-A, EAN-13 & Code 128 price tags for Shopify POS without monthly app fees.',
+    metaDescription: 'Free barcode labels for Shopify products. Make UPC-A, EAN-13 or Code 128 barcodes from your product list and print price tags or Avery sheets.',
     h1: 'Free Shopify Product Barcode & SKU Generator',
-    lead: 'Create scannable UPC-A, EAN-13, and Code 128 barcode labels for your Shopify online catalog and physical retail store. Design 2.25" × 1.25" thermal price tags and multi-label sheets with variant SKUs, product titles, and prices—free from monthly app fees.',
+    lead: "Make barcode labels for your Shopify products: UPC-A or EAN-13 for products with GS1 numbers, Code 128 for your own SKUs. Print 2.25 × 1.25 inch thermal price tags or Avery sheets, and scan them with Shopify POS.",
     technicalSpec: {
-      symbologyOptions: 'UPC-A (12-digit US/CA retail), EAN-13 (13-digit International), and Code 128 (custom alphanumeric variant SKUs)',
-      hardwareCompatibility: 'Shopify POS Bluetooth scanners (Socket Mobile S700, Zebra ZD421, Tera handhelds via HID keyboard emulation)',
-      labelPresets: '2.25" × 1.25" direct thermal price tags, 2" × 1" jewelry tags, and standard 30-up Avery 5160 sheets',
-      marketplaceRules: 'External channels (Google Shopping, Amazon) mandate authentic GS1 GTINs; internal store/POS can use Code 128 SKUs',
-      dataPrivacy: 'Built in your browser; your confidential catalog, wholesale costs, and SKU lists never touch a server'
+      formats: "UPC-A or EAN-13 (GS1 numbers), Code 128 (your own SKUs)",
+      labels: "2.25 × 1.25 in thermal price tag, or Avery 5160, 5163 and L7160 sheets",
+      bulk: "Paste a column from your Shopify product export, up to 200 values per batch",
+      shopifyField: "Shopify's Barcode field on each variant holds the number",
+      privacy: "Built in your browser; the generator does not upload your product list"
     },
     useCases: [
-      'Shopify POS brick-and-mortar retail checkout and pop-up shop cash register scanning',
-      'Direct thermal apparel price tag labeling with Product Title, Variant SKU, Price, and Barcode',
-      'Multi-channel inventory synchronization across Shopify, Google Merchant Center, and Amazon',
-      'Warehouse order picking and fulfillment verification using wireless barcode terminals',
-      'Jewelry, accessories, and small goods tagging with compact high-density thermal stickers'
+      "Price tags for products in a physical shop",
+      "Variant labels for sizes and colours",
+      "Labels for stock counts with Shopify POS"
     ],
     faqs: [
       {
-        q: 'Does Shopify require official GS1 UPC or EAN barcodes for products?',
-        a: 'It depends on where you sell. If you only sell on your online store or in-person using Shopify POS, you usually do not need GS1 barcodes; Code 128 labels made from your own SKUs work fine with a scanner. If you list products on channels such as Amazon, Walmart or Google Shopping, they generally ask for GS1-issued UPC or EAN numbers (GTINs), though the rules and exemptions differ by channel. Check each channel\'s current requirements before you print.'
+        q: "Do I need GS1 barcodes for Shopify?",
+        a: "It depends on where you sell. If you only sell on your online store or in-person using Shopify POS, you usually do not need GS1 barcodes; Code 128 labels made from your own SKUs work fine with a scanner. If you list products on channels such as Amazon, Walmart or Google Shopping, they generally ask for GS1-issued UPC or EAN numbers (GTINs), though the rules and exemptions differ by channel. Check each channel's current requirements before you print."
       },
       {
-        q: 'Where do I enter barcode numbers into the Shopify Admin dashboard?',
-        a: 'In Shopify Admin, navigate to Products and select an item. For single-variant products, scroll to the Inventory section and enter the number in the "Barcode (ISBN, UPC, GTIN, etc.)" field. For products with multiple options (sizes/colors), scroll to the Variants table, click Edit on each variant row, and enter the unique barcode in that variant\'s inventory settings.'
+        q: "How do I make labels for my whole catalogue?",
+        a: "Export your products from Shopify admin as a CSV, copy the SKU or Barcode column, and paste it into the batch tool. Choose the barcode type and a label sheet, then download the PDF."
       },
       {
-        q: 'How can I print barcode price tags for my Shopify catalog without paying monthly app fees?',
-        a: 'Many barcode apps charge a monthly fee. Instead, you can export your product catalog from Shopify Admin (Products > Export > All products as CSV), copy the SKU or barcode column into our Bulk Barcode Generator, and download Avery 5160 PDF sheets or thermal-roll images at no cost.'
-      },
-      {
-        q: 'What label sizes work best with desktop thermal printers for Shopify retail?',
-        a: 'The retail standard for clothing, gifts, and shelf tags is 2.25" × 1.25" (57 mm × 32 mm) or 2" × 1" direct thermal rolls. This size provides ample area for the product title, variant attribute (e.g., "Size: M / Black"), price, and a scannable 1D barcode with 10X quiet zones. For standard office laser/inkjet printers, 30-up Avery 5160 label sheets (1" × 2-5/8") are widely used.'
-      },
-      {
-        q: 'Which barcode scanners are compatible with Shopify POS on iPad and iPhone?',
-        a: 'Shopify POS natively integrates with 1D and 2D Bluetooth wireless scanners that support HID (Human Interface Device) keyboard wedge mode, including Socket Mobile S700 / S740, Zebra DS2208, and Tera wireless scanners. When a barcode is scanned, the device inputs the SKU directly into the POS search field, instantly adding the item to the customer\'s cart.'
-      },
-      {
-        q: 'Are my Shopify product catalog SKUs or wholesale price lists uploaded to your servers?',
-        a: 'No. UniversalCodeMaker operates entirely inside your local web browser. Your private product names, vendor SKUs, inventory counts, and retail prices are processed locally using client-side JavaScript. No data is transmitted across the internet, logged in databases, or stored on external servers.'
+        q: "Where does the number go in Shopify?",
+        a: "In each product variant, in the Barcode field. Shopify POS scans that number to find the variant."
       }
     ],
     relatedSlugs: [
@@ -1509,38 +1396,37 @@ const ENRICHMENTS = {
   "upc-a-barcode-generator": {
     "benefits": [
       {
-        "title": "US & Canadian Retail Standard",
-        "desc": "The standard 12-digit point-of-sale barcode recognized by every checkout scanner in North America."
+        "title": "Check digit done for you",
+        "desc": "Type 11 digits and the 12th is calculated with the GS1 Mod-10 rule; type 12 and a wrong last digit is flagged."
       },
       {
-        "title": "Zero Latency Point of Sale",
-        "desc": "Fixed 12-digit numeric length allows POS cash registers to verify items in milliseconds."
+        "title": "Print-size aware",
+        "desc": "The default bar height follows the GS1 nominal size, and the height control warns when you go below GS1's minimum."
       },
       {
-        "title": "International Compatibility",
-        "desc": "Scanners worldwide can read UPC-A by simply prepending a leading zero to form a 13-digit GTIN."
+        "title": "Files for print shops",
+        "desc": "SVG and EPS keep the bar widths exact at any size; PNG suits documents and labels."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Selling in Walmart, Target, Kroger, or Canadian retail?",
-        "a": "UPC-A is the usual retail barcode in the United States and Canada, and many US retailers ask suppliers for it. Checkout scanners there also read EAN-13."
+        "q": "Selling in the US or Canada?",
+        "a": "UPC-A is the usual choice. Get the number from GS1 US or GS1 Canada first."
       },
       {
-        "q": "Listing on Amazon North America (FBA)?",
-        "a": "Amazon checks UPC and EAN numbers against the GS1 database, so use numbers licensed to your own company, or apply for a GTIN exemption if your product has no barcode."
+        "q": "Selling mainly outside North America?",
+        "a": "Use EAN-13. Checkout scanners worldwide read both, but EAN-13 is the norm elsewhere."
       },
       {
-        "q": "Need barcodes for shipping cartons or pallets?",
-        "a": "Do not use UPC-A on corrugated outer shipping boxes. Use ITF-14 or GS1-128 for wholesale logistics."
+        "q": "Labelling an outer shipping carton?",
+        "a": "Use ITF-14 rather than UPC-A."
       }
     ],
     "legalCaution": {
-      "title": "GS1 US Registration & Legal Retail Requirements",
+      "title": "Rules to know",
       "points": [
-        "Selling through North American retailers and marketplaces requires numbers licensed from GS1 US (a company prefix or single GTINs) or GS1 Canada. Resold or recycled UPCs registered to another company may be rejected by Amazon and major retail chains.",
-        "Maintain a minimum 9X module quiet zone on both sides of the barcode to prevent scanner beam clipping.",
-        "Use high contrast: black or dark blue bars on a white or light background. Red, orange and yellow bars don't scan under red-light checkout scanners."
+        "Making the barcode image doesn't give you the number. Retail UPCs are licensed through GS1, and marketplaces check the number against GS1's records.",
+        "Each product variant, such as a size or colour, needs its own number."
       ]
     },
     "authorityLinks": [
@@ -1564,38 +1450,37 @@ const ENRICHMENTS = {
   "code-128-barcode-generator": {
     "benefits": [
       {
-        "title": "Useful for Internal Identifiers",
-        "desc": "Create Code 128 graphics for identifiers you control. Confirm any customer, carrier, or platform requirements before production use."
+        "title": "Letters and numbers",
+        "desc": "SKUs like ABC-1042 work as they are, without converting them to digits."
       },
       {
-        "title": "Full 128 ASCII Alphanumeric Range",
-        "desc": "Encodes letters (A–Z, a–z), numbers (0–9), punctuation, and control characters."
+        "title": "Compact for long numbers",
+        "desc": "Runs of digits are packed two per symbol, so long numbers stay short."
       },
       {
-        "title": "Auto-Switching High Density",
-        "desc": "Automatically switches between subsets A, B, and C to compress paired digits into compact spaces."
+        "title": "Read by almost any scanner",
+        "desc": "Code 128 is one of the most widely supported linear barcodes in warehouses and shops."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Labeling warehouse shelves, bins, and pallets?",
-        "a": "Code 128 is the industry gold standard for warehouse management systems (WMS) and internal logistics."
+        "q": "Internal SKUs, bins or asset tags?",
+        "a": "Code 128 is a good default."
       },
       {
-        "q": "Tracking company IT assets, tools, or serialized parts?",
-        "a": "Use Code 128 to encode alphanumeric serial numbers (e.g. LAPTOP-2026-X8) onto durable sticker labels."
+        "q": "Products sold in shops?",
+        "a": "Checkout systems expect UPC-A or EAN-13 with a GS1 number, not Code 128."
       },
       {
-        "q": "Can I use Code 128 at a grocery store checkout?",
-        "a": "Standard supermarket cash registers expect 12-digit UPC or 13-digit EAN; use Code 128 for logistics, shipping, and internal operations."
+        "q": "A retailer asked for GS1-128 on cartons?",
+        "a": "This generator can't make GS1-128. Use a tool that supports FNC1 and GS1 application identifiers."
       }
     ],
     "legalCaution": {
-      "title": "Code 128 Usage Guidelines & Quiet Zone Rules",
+      "title": "Before you print",
       "points": [
-        "Code 128 is an open public-domain standard (ISO/IEC 15417). No royalties or company prefix registrations are required for private or internal use.",
-        "When using GS1-128 (formerly UCC/EAN-128) in commercial freight, you must format data with official GS1 Application Identifiers (AIs) and start with an FNC1 character.",
-        "Ensure a minimum quiet zone of 10 times the module width (10X) on both ends of the barcode to allow laser scanners to synchronize timing."
+        "Leave a clear margin on both sides of the bars; labels cut too close are a common cause of failed scans.",
+        "Scan a printed proof with the scanner you will actually use."
       ]
     },
     "authorityLinks": [
@@ -1619,38 +1504,37 @@ const ENRICHMENTS = {
   "itf-14-barcode-generator": {
     "benefits": [
       {
-        "title": "Engineered for Rough Corrugated Boxes",
-        "desc": "Large bar widths and high tolerances allow reliable scanning directly on brown cardboard."
+        "title": "Check digit done for you",
+        "desc": "Type 13 digits and the 14th is calculated; a wrong 14th digit is flagged."
       },
       {
-        "title": "Thick Protective Bearer Bars",
-        "desc": "Surrounding black bearer bars equalize plate pressure and prevent partial scanner slice misreads."
+        "title": "Bearer bars included",
+        "desc": "The frame that protects the code on cardboard is drawn automatically."
       },
       {
-        "title": "Long-Range Forklift Scanning",
-        "desc": "Warehouse operators can scan ITF-14 barcodes from several meters away without dismounting."
+        "title": "Vector files for box artwork",
+        "desc": "SVG and EPS keep exact bar widths for printed cartons."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Packing master cartons containing multiple retail units?",
-        "a": "ITF-14 is the global standard barcode printed on outer shipping cases containing 6, 12, or 24 individual retail products."
+        "q": "A carton of identical retail units?",
+        "a": "ITF-14 is the usual choice."
       },
       {
-        "q": "Can ITF-14 be scanned at point-of-sale retail checkouts?",
-        "a": "No. ITF-14 is strictly for non-retail logistics, wholesale distribution, and warehouse cross-docking."
+        "q": "A single product sold in shops?",
+        "a": "Use UPC-A or EAN-13 instead."
       },
       {
-        "q": "How does ITF-14 link to the retail item inside?",
-        "a": "The 14-digit number incorporates an Packaging Indicator digit (1–8) followed by the 12-digit GTIN of the enclosed retail unit and a final check digit."
+        "q": "Need batch numbers or dates in the code?",
+        "a": "That needs GS1-128, which this generator can't make."
       }
     ],
     "legalCaution": {
-      "title": "ITF-14 Printing Standards & Bearer Bar Guidelines",
+      "title": "Rules to know",
       "points": [
-        "Always include bearer bars (minimum 4.8mm thick) when printing directly onto corrugated cartons to prevent uneven flexographic plate impression.",
-        "Ensure the barcode is placed at least 32mm from the bottom edge of the box and at least 19mm from vertical edges to prevent corner folding distortion.",
-        "The final 14th digit is a mandatory GS1 Modulo-10 checksum calculated across the first 13 digits."
+        "The 14-digit number comes from your GS1 company prefix; generating the image doesn't license it.",
+        "Corrugated board absorbs ink, so print a proof on the real board and scan it."
       ]
     },
     "authorityLinks": [
@@ -1674,38 +1558,37 @@ const ENRICHMENTS = {
   "data-matrix-generator": {
     "benefits": [
       {
-        "title": "Ultra-Compact Micro Footprint",
-        "desc": "Can encode dozens of characters into a tiny 2mm × 2mm square symbol."
+        "title": "Very small",
+        "desc": "Fits a serial number into a few millimetres, where a linear barcode won't fit."
       },
       {
-        "title": "ECC 200 Reed-Solomon Error Correction",
-        "desc": "Can be read even when up to 30% of the symbol is scratched, torn, or occluded."
+        "title": "Reads when damaged",
+        "desc": "Built-in error correction copes with some scratches and wear."
       },
       {
-        "title": "Direct Part Marking (DPM) Ready",
-        "desc": "Engineered for direct laser engraving and dot-peening onto metal, glass, and silicon."
+        "title": "Size picked for you",
+        "desc": "The symbol grows only as much as your data needs."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Marking electronic components, PCBs, or surgical tools?",
-        "a": "Data Matrix is used in electronics, aerospace and UDI workflows. The required carrier, encoded data and verification rules depend on the applicable programme and receiving organisation."
+        "q": "Tiny parts or labels?",
+        "a": "Data Matrix is a good fit."
       },
       {
-        "q": "Packaging pharmaceuticals (prescription medicine)?",
-        "a": "GS1 DataMatrix is used in regulated pharmaceutical traceability workflows. Exact marking and data requirements depend on the product, role and jurisdiction, so verify the current official rules before use."
+        "q": "Regulated medicine or GS1 healthcare packaging?",
+        "a": "You need GS1 DataMatrix, which this generator can't make."
       },
       {
-        "q": "Should I use Data Matrix or QR Code for consumer advertising?",
-        "a": "Use QR Code for consumers (native smartphone camera apps recognize QR faster); use Data Matrix for industrial, medical, and compact component labeling."
+        "q": "People will scan it with phone cameras?",
+        "a": "A QR code is the safer choice."
       }
     ],
     "legalCaution": {
-      "title": "Data Matrix Specifications & Healthcare Use",
+      "title": "Before you print",
       "points": [
-        "Data Matrix is an open ISO standard (ISO/IEC 16022). It requires an area-imaging scanner (cannot be scanned with older single-line 1D laser scanners).",
-        "FDA UDI and GS1 healthcare labels need GS1 DataMatrix: it starts with a special FNC1 character and uses Application Identifiers (e.g. (01) GTIN, (17) Expiry Date, (10) Batch/Lot, (21) Serial Number). This studio makes plain ECC 200 Data Matrix, so it is not suitable for those labels.",
-        "Ensure the \"L\" shaped finder pattern on the bottom and left borders remains completely unobstructed."
+        "Test the printed code with the scanners that will read it in daily use.",
+        "Keep at least one module of clear space around the code."
       ]
     },
     "authorityLinks": [
@@ -1729,34 +1612,33 @@ const ENRICHMENTS = {
   "aztec-code-generator": {
     "benefits": [
       {
-        "title": "Compact Layout Option",
-        "desc": "The standard permits a zero-module quiet zone, but practical layouts should leave separation where possible and be tested with the intended scanners."
+        "title": "No margin needed",
+        "desc": "Fits in tight spaces because it is found from the centre, not the edges."
       },
       {
-        "title": "Fast Center-Out Bullseye Lock",
-        "desc": "Area imager scanners locate the central concentric square instantly regardless of orientation."
+        "title": "Compact",
+        "desc": "Holds a lot of data in a small square."
       },
       {
-        "title": "Scalable Error Correction",
-        "desc": "User-selectable Reed-Solomon recovery from 5% up to 95% damaged data area."
+        "title": "Size picked for you",
+        "desc": "The symbol grows only as much as your data needs."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Issuing airline boarding passes or train tickets?",
-        "a": "Aztec Code is one of the three 2D codes IATA's boarding-pass standard allows on mobile boarding passes, alongside Data Matrix and QR Code."
+        "q": "Your own tickets or passes?",
+        "a": "Aztec is a good fit, especially on screens."
       },
       {
-        "q": "Displaying codes on compact smartphone screens?",
-        "a": "Because Aztec requires no quiet zone margin around its perimeter, it maximizes scannable area on small smartphone displays."
+        "q": "General public scanning with phones?",
+        "a": "A QR code is more widely recognised by camera apps."
       }
     ],
     "legalCaution": {
-      "title": "Aztec Code Implementation Rules",
+      "title": "Before you use it",
       "points": [
-        "Aztec Code is in the public domain (ISO/IEC 24778) and free of all patent restrictions.",
-        "Requires 2D camera imagers; 1D laser scanners cannot read Aztec symbols.",
-        "Avoid placing graphic borders or icons over the central bullseye finder pattern."
+        "Only encode tickets or passes for a system you run or are allowed to issue for.",
+        "Test the code on the scanners that will read it."
       ]
     },
     "authorityLinks": [
@@ -1775,34 +1657,33 @@ const ENRICHMENTS = {
   "pdf417-barcode-generator": {
     "benefits": [
       {
-        "title": "Multi-Line Data Capacity",
-        "desc": "Can encode more text than typical 1D barcodes, making it useful for structured records and document references."
+        "title": "Fits long labels",
+        "desc": "The wide, stacked shape suits labels and forms that have more width than height."
       },
       {
-        "title": "Stacked Linear Robustness",
-        "desc": "Can be read by both area-imaging cameras and rastering linear laser scanners."
+        "title": "Adjustable shape",
+        "desc": "Change the number of data columns to fit the space."
       },
       {
-        "title": "Document-Friendly Format",
-        "desc": "Its stacked rows and configurable error correction suit records that need more capacity than a typical linear barcode."
+        "title": "Holds a lot of text",
+        "desc": "Several fields fit in one code."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Encoding a multi-line inventory or document record?",
-        "a": "PDF417 can encode the text as supplied. Define and validate the record structure required by your own workflow before printing."
+        "q": "Long, flat label or form area?",
+        "a": "PDF417 fits well."
       },
       {
-        "q": "Printing postal shipping documents or freight manifests?",
-        "a": "PDF417 can hold multi-line shipping or freight references, but carrier formats vary. Use the carrier's current specification and test the finished label."
+        "q": "Small square space?",
+        "a": "Data Matrix or QR is more compact."
       }
     ],
     "legalCaution": {
-      "title": "PDF417 Capacity & Aspect Ratio Guidelines",
+      "title": "Rules to know",
       "points": [
-        "PDF417 is specified by ISO/IEC 15438; this page does not certify a symbol for a particular workflow.",
-        "Use only data you are authorized to encode, and follow the receiving system's current data specification.",
-        "Choose an aspect ratio that fits the layout, then test the final output with the intended scanner and print process."
+        "Do not use this tool to make or copy identity documents or official credentials.",
+        "Test the printed code with the scanner that will read it."
       ]
     },
     "authorityLinks": [
@@ -1967,7 +1848,7 @@ const ENRICHMENTS = {
       {
         "name": "Solana Pay Specification",
         "desc": "Standard specification for Solana payment request URLs and merchant transfers.",
-        "url": "https://github.com/solana-labs/solana-pay/blob/master/SPEC.md"
+        "url": "https://github.com/solana-foundation/pay/blob/main/typescript/packages/solana-pay/spec/SPEC.md"
       }
     ]
   },
@@ -2233,36 +2114,33 @@ const ENRICHMENTS = {
   "amazon-fba-fnsku-barcode-generator": {
     "benefits": [
       {
-        "title": "Amazon's White Space Built In",
-        "desc": "The Amazon layout keeps 0.25\" clear on the sides and 0.125\" at the top and bottom, the margins Amazon asks for around the barcode and text."
+        "title": "Amazon's label contents",
+        "desc": "Product name, FNSKU barcode and condition on each label."
       },
       {
-        "title": "Avery 5160 & Thermal Roll Ready",
-        "desc": "Print 30-up US Letter sheets on a laser printer, or single labels on MUNBYN, Rollo and Zebra thermal printers."
+        "title": "Sheet or thermal",
+        "desc": "Print 30 per page on Avery 5160 or one at a time on 1 × 2-5/8 inch thermal labels."
       },
       {
-        "title": "Text Always Matches the Bars",
-        "desc": "The FNSKU printed under the barcode is the value the barcode encodes, so a typo can't leave the text and the bars saying different things."
+        "title": "Different FNSKU per label",
+        "desc": "The batch tool fills a sheet with a list of different FNSKUs."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Manufacturer barcode or Amazon barcode (FNSKU)?",
-        "a": "US, since 31 March 2026: if you are the brand owner with the Brand Representative role in Amazon Brand Registry, and the product has one scannable UPC, EAN or ISBN matching one ASIN, you can send it with the manufacturer barcode. Resellers must use Amazon barcodes. Products without a manufacturer barcode, or with a GTIN exemption, need Amazon barcodes. Amazon.in: Amazon barcodes by default; only books can go stickerless. More: <a href=\"./do-i-need-a-barcode-to-sell-on-amazon.html\">Do I need a barcode to sell on Amazon?</a>"
+        "q": "Your products already have their own GS1 barcodes?",
+        "a": "Amazon's rules on which units need an FNSKU label have changed over time. Check the barcode type shown for each listing in Seller Central before you print."
       },
       {
-        "q": "Which printer for FBA labels?",
-        "a": "A thermal printer (Amazon's own fulfilment centres use direct thermal Zebra GX430t printers) or a laser printer with Avery 5160 sheets. Not inkjet: Amazon says not to use it. Either way, 300 dpi or more."
+        "q": "Labelling a few units at a time?",
+        "a": "A thermal printer with 1 × 2-5/8 inch labels avoids wasting half-used sheets."
       }
     ],
     "legalCaution": {
-      "title": "Amazon's Label Rules (Seller Central help, checked 12 Oct 2026)",
+      "title": "Amazon rules to check",
       "points": [
-        "Cover every other barcode on the unit (UPC, EAN, ISBN) with the FNSKU label, except serial-number and Transparency codes.",
-        "Labels must be 1\" × 2\" to 2\" × 3\", black on white, non-reflective, with removable adhesive. Our template is 1\" × 2⅝\" (Avery 5160 size).",
-        "Don't put the label on a curve or corner, keep 0.25\" between the label and the edge of the package, and make sure it still scans after poly-bagging or other prep.",
-        "Use a thermal or laser printer at 300 dpi or more, never inkjet. Labels must stay scannable for 24 months.",
-        "Amazon India adds: don't tape over labels, and don't use QR codes on them."
+        "Amazon's labelling rules change. Check the current Seller Central help pages for your marketplace before sending stock.",
+        "Print a test sheet at Actual size and check that the labels line up before printing a full run."
       ]
     },
     "authorityLinks": [
@@ -2322,9 +2200,9 @@ const ENRICHMENTS = {
         "url": "https://support.google.com/business/answer/3474122"
       },
       {
-        "name": "FTC: Guides Concerning the Use of Endorsements and Testimonials",
-        "desc": "Federal Trade Commission compliance guidelines for honest customer feedback and reviews.",
-        "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking"
+        "name": "Google: Maps user-contributed content policy",
+        "desc": "Google's rules for reviews, including no review gating and no incentives.",
+        "url": "https://support.google.com/contributionpolicy/answer/7400114"
       }
     ]
   },
@@ -2421,34 +2299,33 @@ const ENRICHMENTS = {
   "avery-5160-barcode-generator": {
     "benefits": [
       {
-        "title": "Avery's Published 5160 Layout",
-        "desc": "Labels are placed on Avery's 5160 grid: 3 columns × 10 rows of 1\" × 2-5/8\" labels, 0.5\" top margin, 3/16\" side margins and a 1/8\" gap between columns."
+        "title": "Same or different codes",
+        "desc": "Fill all 30 labels with one code, or put a list of different codes on the sheet."
       },
       {
-        "title": "Any Office Printer",
-        "desc": "No thermal printer needed: print on a normal laser printer (5160 labels) or inkjet printer (8160 labels)."
+        "title": "Any code type",
+        "desc": "Barcodes and QR codes from the studio both work on the sheet."
       },
       {
-        "title": "Same Code or a Different One per Label",
-        "desc": "Repeat one design (with a title, price or SKU beside it) using the label maker, or print a list of values with a different code on each label from Batch Mode."
+        "title": "Plain PDF",
+        "desc": "Print from any PDF viewer; no label software needed."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Should I print on Avery 5160 sheets or a direct thermal roll printer?",
-        "a": "Avery 5160 sheets are ideal if you already own a standard office laser/inkjet printer and need to prepare 30 to 300 labels per batch. Thermal roll printers are faster and more economical for continuous, high-volume shipping stations."
+        "q": "Printing at home or in an office?",
+        "a": "Avery 5160 on a laser printer is a simple start."
       },
       {
-        "q": "What printer settings prevent label misalignment?",
-        "a": "Always select Actual Size or Scale: 100% in your print dialog, and turn off Fit to Page or Shrink to Printable Area. Otherwise the labels shift further out of line down the sheet."
+        "q": "Printing labels every day?",
+        "a": "A thermal label printer may be cheaper per label and avoids half-used sheets."
       }
     ],
     "legalCaution": {
-      "title": "Avery Template Compatibility & Trademark Notice",
+      "title": "Before you print",
       "points": [
-        "Avery and Avery template numbers (5160, 5163, etc.) are registered trademarks of Avery Products Corporation / CCL Industries Inc.",
-        "UniversalCodeMaker is an independent utility not affiliated with or endorsed by Avery Products Corporation. Template names are referenced strictly under nominative fair use for sizing compatibility.",
-        "Always test print on plain paper first and hold against an Avery sheet to verify printer roller alignment before printing onto label stock."
+        "Always print a plain-paper test page at Actual size first.",
+        "Amazon advises against inkjet printers for FNSKU labels; use a laser printer for those."
       ]
     },
     "authorityLinks": [
@@ -2456,45 +2333,39 @@ const ENRICHMENTS = {
         "name": "Avery 5160 Template",
         "desc": "Avery's official template page for 1\" × 2-5/8\" address labels (30 per sheet).",
         "url": "https://www.avery.com/templates/5160"
-      },
-      {
-        "name": "USPS Barcode Printing Standards",
-        "desc": "Postal service contrast and barcode readability guidelines for mailers.",
-        "url": "https://postalpro.usps.com/"
       }
     ]
   },
   "isbn-book-barcode-generator": {
     "benefits": [
       {
-        "title": "Standard Bookland EAN-13",
-        "desc": "The 978/979 EAN-13 book barcode with correct quiet zones, the format used on covers for Amazon KDP, IngramSpark and bookshops. Check your distributor's current cover specs before uploading."
+        "title": "Made from your ISBN",
+        "desc": "Paste it with or without hyphens; the barcode uses the 13 digits."
       },
       {
-        "title": "Optional EAN-5 Price Extension",
-        "desc": "Seamlessly append standard 5-digit price codes (e.g. 51999 for $19.99 USD or 90000 for no price) required by US bookstores."
+        "title": "Price add-on built in",
+        "desc": "Add the 5-digit price code next to the main barcode when your market uses one."
       },
       {
-        "title": "Vector SVG & 300+ DPI Print Files",
-        "desc": "Download crisp vector graphics to embed into Adobe InDesign, Illustrator, Canva, or Photoshop book cover templates."
+        "title": "Files for cover designers",
+        "desc": "SVG and EPS stay sharp at any size in cover artwork."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Do I need the 5-digit price add-on code on my book?",
-        "a": "Major US bookstore chains (such as Barnes & Noble) strongly prefer the 5-digit price extension code to automatically populate the retail price at the cash register. For international or online-only sales, standard 13-digit ISBN is sufficient."
+        "q": "Selling through US bookshops?",
+        "a": "Add the 5-digit price add-on, or 90000 if you don't want a price printed."
       },
       {
-        "q": "Can I use the same ISBN for paperback and hardcover editions?",
-        "a": "No. Under international publishing standards, every format (paperback, hardcover, audiobook, e-book) requires its own unique ISBN number."
+        "q": "Only selling online or through a print-on-demand service?",
+        "a": "Check whether the service adds the barcode for you before making one."
       }
     ],
     "legalCaution": {
-      "title": "International ISBN Agency Regulatory Compliance",
+      "title": "Rules to know",
       "points": [
-        "ISBN barcodes must be derived from genuine ISBN numbers issued by authorized national agencies (Bowker in the US, Nielsen in the UK, etc.).",
-        "Inventing arbitrary 13-digit numbers will result in immediate rejection by book wholesalers, libraries, and Amazon KDP.",
-        "Ensure the barcode is printed on an opaque white background on the lower right quadrant of the back cover."
+        "Use an ISBN issued to you by your national ISBN agency. A generated barcode doesn't create a valid ISBN.",
+        "Follow your printer's cover guidelines for the barcode's position and size."
       ]
     },
     "authorityLinks": [
@@ -2513,40 +2384,39 @@ const ENRICHMENTS = {
   "code-39-barcode-generator": {
     "benefits": [
       {
-        "title": "Full Alphanumeric Character Support",
-        "desc": "Encodes capital letters A–Z, numbers 0–9, and key operational symbols (- . $ / + % space) for intuitive asset naming."
+        "title": "Simple and widely read",
+        "desc": "An old, simple format that most handheld scanners read."
       },
       {
-        "title": "Known as LOGMARS in US Defense Logistics",
-        "desc": "LOGMARS is the US Department of Defense's use of Code 39 and adds its own size and density rules; check them against your contract before printing."
+        "title": "Optional check digit",
+        "desc": "Add Mod-43 when your system expects it."
       },
       {
-        "title": "Self-Checking Robust Architecture",
-        "desc": "Inherent parity check pattern minimizes misread risks, with optional Modulo-43 check digit support for mission-critical tracking."
+        "title": "Label sheets",
+        "desc": "Print asset tags on Avery 5160, 5163 or L7160 sheets."
       }
     ],
     "decisionGuide": [
       {
-        "q": "When should I choose Code 39 over Code 128?",
-        "a": "Choose Code 39 when encoding shorter alphanumeric IDs (like ASSET-104) where legacy scanners or government contracts (MIL-STD-129) require it. Choose Code 128 if you have longer strings or space constraints on small labels."
+        "q": "An existing system already uses Code 39?",
+        "a": "Stay with it so scans match what's in your records."
       },
       {
-        "q": "Should I enable the Modulo-43 check digit?",
-        "a": "Enable Mod-43 if you are tracking high-value assets, medical specimens, or defense shipments. For casual office inventory, standard Code 39 without check digit is scannable on all hardware."
+        "q": "Starting fresh?",
+        "a": "Code 128 makes shorter barcodes for the same data."
       }
     ],
     "legalCaution": {
-      "title": "Code 39 Technical Standards & Quiet Zone Rules",
+      "title": "Before you print",
       "points": [
-        "Code 39 requires a minimum quiet zone (blank white margin) of 10 times the narrow bar width on both the left and right sides.",
-        "Standard Code 39 is not case-sensitive; lowercase letters are automatically capitalized upon encoding.",
-        "Ensure start and stop asterisks (*) are preserved in the optical pattern to allow bi-directional scanning."
+        "Check whether your system expects the Mod-43 check digit before printing a batch.",
+        "Code 39 gets wide quickly; keep values short for small tags."
       ]
     },
     "authorityLinks": [
       {
-        "name": "AIM Global: Code 39 Symbology Specification",
-        "desc": "Official standards body documentation for ANSI/AIM BC1 Uniform Symbology Specification Code 39.",
+        "name": "AIM, the barcode industry association",
+        "desc": "The industry body behind the original Code 39 specification (ANSI/AIM BC1).",
         "url": "https://www.aimglobal.org/"
       },
       {
@@ -2559,34 +2429,33 @@ const ENRICHMENTS = {
   "bulk-barcode-generator-excel": {
     "benefits": [
       {
-        "title": "Checked Before Anything Is Made",
-        "desc": "Every value is checked first (format and check digit). If any line is wrong, you see its line number and nothing is made until it is fixed."
+        "title": "Straight from a spreadsheet",
+        "desc": "Copy a column, paste it, and get one code per line."
       },
       {
-        "title": "Single-Click Consolidated ZIP Export",
-        "desc": "Downloads every code as a PNG or SVG in one ZIP, each file numbered and named after its value (e.g. 001_SN-0001.png), or as an Avery PDF with one code per label."
+        "title": "Checked before printing",
+        "desc": "Invalid values are listed by line before any sheet is made."
       },
       {
-        "title": "Your Data Stays in Your Browser",
-        "desc": "Your confidential inventory SKUs, customer lists, and pricing spreadsheets never leave your device."
+        "title": "Files in order",
+        "desc": "ZIP files are numbered so they stay in the same order as your list."
       }
     ],
     "decisionGuide": [
       {
-        "q": "How do I format my spreadsheet before pasting?",
-        "a": "Put one value per row in a single column, with no formulas in the cells. Blank lines are skipped. If you paste CSV text, only the first column is used."
+        "q": "Printing labels?",
+        "a": "Choose an Avery sheet so each value gets its own label."
       },
       {
-        "q": "Can I batch generate sequential numbers without an Excel file?",
-        "a": "Yes. Use the Sequenced Numbers tab: set a prefix (e.g. SKU-), a start number (e.g. 1001), how many (up to 100) and the number of digits, and the tool makes the sequence."
+        "q": "Sending files to a designer or printer?",
+        "a": "Choose the ZIP of SVG files."
       }
     ],
     "legalCaution": {
-      "title": "Batch Inventory Compliance & Data Protection",
+      "title": "Before you print",
       "points": [
-        "UniversalCodeMaker does not store, log, or cache batch data on any server. Be sure to download your generated ZIP file or PDF before closing the browser window.",
-        "When generating retail EAN-13 or UPC-A batches, ensure all numbers correspond to legitimate GS1 Company Prefixes registered to your organization.",
-        "Always perform a sample test scan of at least 3 random barcodes from your batch before committing to large print runs."
+        "Retail barcodes in your list still need GS1-licensed numbers.",
+        "Print one test sheet at Actual size before printing the whole batch."
       ]
     },
     "authorityLinks": [
@@ -2605,34 +2474,33 @@ const ENRICHMENTS = {
   "shopify-barcode-generator": {
     "benefits": [
       {
-        "title": "Zero Monthly App Subscription Fees",
-        "desc": "Create unlimited retail barcodes for your Shopify store without paying $10–$25/month for third-party Shopify apps."
+        "title": "Your own SKUs work",
+        "desc": "Code 128 labels from your SKUs need no GS1 numbers for in-store use."
       },
       {
-        "title": "Direct Shopify POS Scanner Compatibility",
-        "desc": "Encoded with precision quiet zones that work instantly with Socket Mobile, Tera, and Zebra Shopify POS Bluetooth scanners."
+        "title": "Whole catalogue at once",
+        "desc": "Paste a column from your product export, up to 200 values per batch."
       },
       {
-        "title": "Avery & Thermal Price Tag Presets",
-        "desc": "Formatted for 2.25\" × 1.25\" shelf tags and Avery 5160 sheets with Product Title, SKU, Price, and Barcode."
+        "title": "Price-tag size",
+        "desc": "A 2.25 × 1.25 inch thermal layout is built in."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Should I use UPC-A or Code 128 for my Shopify store?",
-        "a": "If you are selling products in external retail marketplaces (like Amazon or Google Shopping), use official GS1 UPC-A barcodes. If you only sell on your own Shopify store and physical boutique, Code 128 using your internal SKUs is fast and free."
+        "q": "Selling only in your own shop and online store?",
+        "a": "Code 128 from your SKUs is usually enough."
       },
       {
-        "q": "How do I add barcodes to my Shopify products?",
-        "a": "In your Shopify Admin, navigate to Products > Select Product > Inventory section, and paste the barcode number into the 'Barcode (ISBN, UPC, GTIN, etc.)' field."
+        "q": "Also selling on Amazon, Walmart or Google Shopping?",
+        "a": "Get GS1 numbers and use UPC-A or EAN-13."
       }
     ],
     "legalCaution": {
-      "title": "Shopify POS & Google Shopping Barcode Policy",
+      "title": "Rules to know",
       "points": [
-        "Shopify and Shopify POS are registered trademarks of Shopify Inc. UniversalCodeMaker is an independent software tool not endorsed by Shopify.",
-        "Google Shopping and marketplace integrations require authentic GS1 GTINs. Do not enter fabricated UPC numbers into Shopify if syncing with Google Merchant Center.",
-        "Ensure thermal labels use high-density thermal paper to prevent barcode fading under retail store lighting."
+        "Marketplaces check retail barcode numbers against GS1 records; don't print UPCs you haven't licensed.",
+        "Test-scan a printed label with your Shopify POS scanner before labelling stock."
       ]
     },
     "authorityLinks": [
@@ -2691,7 +2559,7 @@ const GUIDES = {
     ]
   },
   "avery-5160-barcode-generator": {
-    "title": "How to Print QR Codes &amp; Barcodes on Avery 5160 Labels",
+    "title": "How to print QR codes and barcodes on Avery 5160 labels",
     "howTo": [
       "Make your code in the studio: any of the 10 formats, including <strong>QR codes</strong> for links, Wi-Fi, contact cards or Google reviews. For QR codes, keep the content short (a short link rather than a long one) so the dots stay big enough for a small label.",
       "Open the <strong>Physical Label Maker</strong> and choose <strong>Avery® 5160 — 30 Labels / Sheet</strong>. The button above opens it with this preset.",
