@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount</title>
-  <meta name="description" content="Generate free UPI payment QR codes for Google Pay, PhonePe, and Paytm. Support custom VPA, fixed amount, merchant name, and zero fees in vector SVG.">
+  <meta name="description" content="Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/upi-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount">
-  <meta property="og:description" content="Generate free UPI payment QR codes for Google Pay, PhonePe, and Paytm. Support custom VPA, fixed amount, merchant name, and zero fees in vector SVG.">
+  <meta property="og:description" content="Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/upi-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount">
-  <meta name="twitter:description" content="Generate free UPI payment QR codes for Google Pay, PhonePe, and Paytm. Support custom VPA, fixed amount, merchant name, and zero fees in vector SVG.">
+  <meta name="twitter:description" content="Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "UPI QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/upi-qr-code-generator.html",
-  "description": "Generate free UPI payment QR codes for Google Pay, PhonePe, and Paytm. Support custom VPA, fixed amount, merchant name, and zero fees in vector SVG.",
+  "description": "Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -349,15 +349,23 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Which UPI apps can scan and pay with this QR code?",
+      "name": "Which apps can pay with this code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "All standard payment apps supporting NPCI specifications can scan this code, including Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay, and all Indian banking apps."
+        "text": "It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read. Test it with the apps your customers use before printing."
       }
     },
     {
       "@type": "Question",
-      "name": "Is there any transaction fee or intermediary involved?",
+      "name": "Should I set an amount?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a fixed bill, yes: the payer sees the amount filled in. Leave it blank for a counter stand where every bill is different."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there fees?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID (VPA), so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us."
@@ -365,34 +373,10 @@
     },
     {
       "@type": "Question",
-      "name": "Can I specify a fixed amount or let customers enter their own?",
+      "name": "How do I know a customer has paid?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Both options are supported. Leave the amount blank to let the customer enter any amount, or specify a fixed amount to lock the payment to an exact invoice figure."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I generate a UPI QR code with a fixed payment amount?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In the generator wizard, enter your UPI ID (VPA), your merchant or personal name, and the exact rupee amount in the Amount field. The generator appends the &am= parameter to the open NPCI URI (for example, upi://pay?pa=store@bank&pn=MyStore&am=250.00&cu=INR). When scanned, the customer's payment app pre-fills and locks the amount to prevent payment discrepancies."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a universal UPI QR code and does it work across all payment apps?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A universal UPI QR code follows the National Payments Corporation of India (NPCI) interoperable deep-linking standard. It is not locked to any single vendor like PhonePe or Google Pay. Any UPI-compliant app installed on an Android or iOS smartphone can decode the URI and initiate a secure, immediate payment directly from the payer's linked bank account."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the best format to print a UPI payment QR code for a store counter?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Download the code in scalable vector SVG format for professional graphic design, or high-resolution PNG for direct desktop printing. For retail checkout stands and acrylic holders, print at a minimum size of 2\" × 2\" (50 mm × 50 mm) at 300 DPI or higher. Use a matte finish or non-reflective acrylic stand to eliminate harsh overhead lighting glare that can hinder camera autofocus."
+        "text": "Check your own UPI app or bank notification. Don't rely on a screenshot from the customer."
       }
     }
   ]
@@ -470,7 +454,7 @@
         Smart QR
       </div>
       <h1 class="hero-title">Free UPI Scan-to-Pay QR Code Generator</h1>
-      <p class="hero-lead">Create UPI scan-to-pay QR codes for merchant stores, freelancers, and invoices. Receiving-app support can vary, so verify the VPA and test the code in the apps your customers use.</p>
+      <p class="hero-lead">Make a UPI payment QR code for your UPI ID, with an optional fixed amount and a note. Customers scan it with Google Pay, PhonePe, Paytm, BHIM or their bank's UPI app, check the details and pay.</p>
       
       <a href="../index.html?symbology=qr-code&wizard=upi" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -490,27 +474,22 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO/IEC 18004 QR Code Model 2</dd>
+      <dt class="spec-key">Link</dt>
+      <dd class="spec-val">upi://pay?pa=UPI ID&pn=name&cu=INR&am=amount&tn=note</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Protocol</dt>
-      <dd class="spec-val">NPCI UPI Deep Link Specification (upi://pay?pa={VPA}&pn={Name}&am={Amount}&cu=INR)</dd>
+      <dt class="spec-key">Fields</dt>
+      <dd class="spec-val">UPI ID (VPA), payee name, optional amount in rupees, optional note</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Parameters</dt>
-      <dd class="spec-val">pa (UPI ID / VPA), pn (Merchant Name), am (Preset Amount), cu (Currency INR), tn (Note)</dd>
+      <dt class="spec-key">Currency</dt>
+      <dd class="spec-val">INR</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Compatibility</dt>
-      <dd class="spec-val">Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay & 300+ Indian banking apps</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Security</dt>
+      <dt class="spec-key">Payments</dt>
       <dd class="spec-val">Built in your browser; UniversalCodeMaker never handles the payment</dd>
     </div>
   
@@ -526,27 +505,22 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Retail checkout counters, acrylic billing stands, and point-of-sale displays</span>
+      <span>Counter stands for shops and food stalls</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Freelance digital invoices, consulting receipts, and client payment links</span>
+      <span>Bills and invoices with a fixed amount</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Restaurant table billing, food delivery packaging, and cafe ordering menus</span>
+      <span>Table cards in cafés</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Direct non-profit charity donations and event entry registration desks</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Immediate scan-and-pay across all Indian bank accounts with zero commission</span>
+      <span>Donations and society collections</span>
     </li>
   
         </ul>
@@ -568,25 +542,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Universal NPCI App Compatibility</h4>
+        <h4>Works with the usual UPI apps</h4>
       </div>
-      <p>Scannable across Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay, and all Indian banking apps.</p>
+      <p>One code for customers on Google Pay, PhonePe, Paytm, BHIM and bank apps.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Direct UPI Payment Details</h4>
+        <h4>Optional fixed amount</h4>
       </div>
-      <p>UniversalCodeMaker does not process or settle payments or set bank, app or merchant fees. Verify the recipient, amount and settlement terms with your payment provider.</p>
+      <p>Add the amount for a bill, or leave it open for a shop counter.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Flexible Static or Preset Amount</h4>
+        <h4>No middleman</h4>
       </div>
-      <p>Generate open-amount QR codes for store counters or locked-amount codes for specific invoices and menu items.</p>
+      <p>The code points to your own UPI ID. We never see or touch the payment.</p>
     </div>
   
       </div>
@@ -607,17 +581,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>What is the difference between static and dynamic amount UPI QR codes?</span>
+        <span>A shop counter?</span>
       </h3>
-      <p>Static codes leave the amount blank, allowing customers to key in their own total at checkout. Dynamic amount codes embed a fixed rupee figure (e.g. am=450.00) so the amount is locked when scanned.</p>
+      <p>Leave the amount blank and add your shop name.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Can I print UPI QR codes on tabletop acrylic tent stands?</span>
+        <span>A single bill or invoice?</span>
       </h3>
-      <p>Yes. Download the SVG (vector, sharp at any size) or a 300 DPI PNG and print it on durable vinyl or cardboard standees for checkout counters.</p>
+      <p>Set the amount and put the invoice number in the note.</p>
     </div>
   
       </div>
@@ -632,23 +606,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>NPCI Unified Payments Interface Guidelines</h3>
+        <h3>Before you print</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>UniversalCodeMaker creates the QR payload but does not process or settle payments. Payment handling, fees and settlement terms are controlled by the payer's and recipient's payment providers.</span>
+      <span>Check your UPI ID letter by letter. Money sent to a wrong ID is hard to get back.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Always test-scan your generated QR code with a ₹1 test transaction before printing physical shop signage to verify your VPA spelling.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Ensure your merchant name matches the official registration on your bank account to avoid customer confusion during payment verification.</span>
+      <span>Your bank or payment app may have its own rules for business collections. Check them if you take a lot of payments.</span>
     </li>
   
       </ul>
@@ -697,17 +666,27 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>Which UPI apps can scan and pay with this QR code?</span>
+        <span>Which apps can pay with this code?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>All standard payment apps supporting NPCI specifications can scan this code, including Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay, and all Indian banking apps.</p>
+        <p>It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read. Test it with the apps your customers use before printing.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Is there any transaction fee or intermediary involved?</span>
+        <span>Should I set an amount?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>For a fixed bill, yes: the payer sees the amount filled in. Leave it blank for a counter stand where every bill is different.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Are there fees?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
@@ -717,41 +696,11 @@
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Can I specify a fixed amount or let customers enter their own?</span>
+        <span>How do I know a customer has paid?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Both options are supported. Leave the amount blank to let the customer enter any amount, or specify a fixed amount to lock the payment to an exact invoice figure.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>How do I generate a UPI QR code with a fixed payment amount?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>In the generator wizard, enter your UPI ID (VPA), your merchant or personal name, and the exact rupee amount in the Amount field. The generator appends the &am= parameter to the open NPCI URI (for example, upi://pay?pa=store@bank&pn=MyStore&am=250.00&cu=INR). When scanned, the customer's payment app pre-fills and locks the amount to prevent payment discrepancies.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What is a universal UPI QR code and does it work across all payment apps?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>A universal UPI QR code follows the National Payments Corporation of India (NPCI) interoperable deep-linking standard. It is not locked to any single vendor like PhonePe or Google Pay. Any UPI-compliant app installed on an Android or iOS smartphone can decode the URI and initiate a secure, immediate payment directly from the payer's linked bank account.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What is the best format to print a UPI payment QR code for a store counter?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Download the code in scalable vector SVG format for professional graphic design, or high-resolution PNG for direct desktop printing. For retail checkout stands and acrylic holders, print at a minimum size of 2" × 2" (50 mm × 50 mm) at 300 DPI or higher. Use a matte finish or non-reflective acrylic stand to eliminate harsh overhead lighting glare that can hinder camera autofocus.</p>
+        <p>Check your own UPI app or bank notification. Don't rely on a screenshot from the customer.</p>
       </div>
     </details>
   

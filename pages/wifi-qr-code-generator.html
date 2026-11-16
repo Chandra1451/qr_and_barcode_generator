@@ -349,50 +349,34 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Do guests need a special app to scan and connect to Wi-Fi?",
+      "name": "Do guests need an app to scan it?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Both modern iPhones (iOS 11 and later) and Android smartphones (Android 10 and later) natively recognize Wi-Fi QR codes directly inside their default Camera apps. Pointing the camera at the QR code displays a one-tap \"Join Network\" notification that automatically negotiates credentials and connects the device without opening settings."
+        "text": "Usually not. The camera app on recent iPhones and Android phones recognises Wi-Fi QR codes and offers to join the network. Some older phones need a QR scanner app."
       }
     },
     {
       "@type": "Question",
-      "name": "Is my Wi-Fi network name or password ever transmitted to a server?",
+      "name": "Is it safe to put my Wi-Fi password in a QR code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. The code is built in your browser, and the generator does not upload your network name or password. Remember that the password is readable by anyone who scans the printed code, so only post it where you would happily share the Wi-Fi."
+        "text": "Anyone who scans the code can read the password, just as if it were written on the card. For a code on public display, use a guest network rather than your main one."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I generate a Wi-Fi QR code for an open network without a password?",
+      "name": "My router uses WPA3. Will the code work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. If you operate an open public network or guest portal without pre-shared encryption keys, select \"Open (No Password)\" in the generator. It formats the standard payload as WIFI:T:nopass;S:YourNetwork;;;, allowing visitors to authenticate and join your broadcast network with a single camera tap."
+        "text": "Choose the WPA/WPA2/WPA3 setting. Phones join WPA2 and mixed WPA2/WPA3 networks this way; a few WPA3-only setups may not accept it. Test the code with a couple of phones before printing."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I create a QR code for a hidden Wi-Fi network?",
+      "name": "Does the generator keep my password?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For networks that do not broadcast their SSID, check the \"Hidden Network\" option in the Wi-Fi wizard. The generator appends the H:true; flag to the standardized string (WIFI:T:WPA;S:SecretNet;P:SecretPass;H:true;;). Mobile operating systems will recognize the hidden flag and probe for the hidden beacon during the handshake."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What happens if I change my Wi-Fi router password later?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Wi-Fi QR codes are static codes that store the SSID and password directly in the optical matrix. They do not rely on external redirect servers or account subscriptions. If you change your router's Wi-Fi password, prior printed codes will no longer connect devices; you simply generate and print an updated QR code with the new password."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What size should I print Wi-Fi QR codes for tables and counters?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For restaurant table tents, cafe counter stands, and hotel bedside cards scanned from 8–12 inches away, print the QR code at least 1.5 × 1.5 inches (38 × 38 mm). For wall-mounted plaques or conference room displays scanned from 2–3 feet away, print at least 3 × 3 inches (75 × 75 mm). Always download vector SVG for crisp printing at any resolution."
+        "text": "No. The code is built in your browser, and the generator does not upload your network name or password."
       }
     },
     {
@@ -494,7 +478,7 @@
         Smart QR
       </div>
       <h1 class="hero-title">Free Wi-Fi Auto-Connect QR Code Generator</h1>
-      <p class="hero-lead">Create custom branded Wi-Fi QR codes that allow customers, hotel guests, and friends to instantly join your wireless network simply by scanning with their smartphone camera.</p>
+      <p class="hero-lead">Make a QR code that joins a Wi-Fi network when scanned. Guests point their phone camera at it and tap to connect, so nobody has to spell out the password. It suits home, café and office guest networks that use one shared password.</p>
       
       <a href="../index.html?wizard=wifi" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -514,32 +498,27 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO/IEC 18004 QR Code Model 2</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Protocol</dt>
-      <dd class="spec-val">ZXing Wi-Fi URI Scheme (WIFI:T:{Auth};S:{SSID};P:{Password};H:{Hidden};;)</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Encryption</dt>
-      <dd class="spec-val">WPA/WPA2/WPA3 (Personal), WEP, or Open (nopass)</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Hidden Ssid</dt>
-      <dd class="spec-val">H:true parameter for unbroadcast / closed network SSIDs</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Compatibility</dt>
-      <dd class="spec-val">Native iOS Camera (iOS 11+), Android Camera & Quick Settings, iPadOS</dd>
+      <dt class="spec-key">Contents</dt>
+      <dd class="spec-val">WIFI:S:network;T:security;P:password;H:hidden;; (the usual Wi-Fi QR format)</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Security</dt>
+      <dd class="spec-val">WPA/WPA2/WPA3 (one setting), WEP, or an open network</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Hidden Networks</dt>
+      <dd class="spec-val">Supported; tick Hidden Network so the phone looks for it</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Not For</dt>
+      <dd class="spec-val">Networks that ask each person for a username (WPA2/WPA3-Enterprise)</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Privacy</dt>
       <dd class="spec-val">Built in your browser; the generator does not upload network names or passwords</dd>
     </div>
   
@@ -555,27 +534,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Cafe, coffee shop, and restaurant dining table acrylic stands</span>
+      <span>A table card in a café, restaurant or waiting room</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Hotel guest rooms, Airbnb welcome binders, and vacation rental desks</span>
+      <span>The guest room or the fridge door at home</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Office conference rooms, co-working spaces, and visitor reception lobbies</span>
+      <span>Welcome folders in holiday rentals</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Event venues, trade show booths, and tech conference registration desks</span>
+      <span>Meeting rooms and reception desks on a guest network</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Home living rooms and guest bedroom auto-connect wall cards</span>
+      <span>Events and pop-up shops with temporary Wi-Fi</span>
     </li>
   
         </ul>
@@ -634,25 +613,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>1-Tap Zero-Typing Wi-Fi Access</h4>
+        <h4>No password to spell out</h4>
       </div>
-      <p>Guests connect instantly without mistyping complex WPA2/WPA3 passwords.</p>
+      <p>Guests scan and join. Nobody has to read out a long password full of capitals and symbols.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Native iOS & Android Integration</h4>
+        <h4>Uses the phone's own camera</h4>
       </div>
-      <p>Built-in camera apps prompt "Join Network" without installing any third-party app.</p>
+      <p>Recent iPhones and Android phones read Wi-Fi codes without an extra app.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Browser-Based Payload Generation</h4>
+        <h4>Nothing to keep paying for</h4>
       </div>
-      <p>The Wi-Fi fields used to build the code are processed in your browser rather than submitted to UniversalCodeMaker's server. See the Privacy Policy for site analytics and advertising details.</p>
+      <p>The network details are inside the code, so there is no account or subscription behind it.</p>
     </div>
   
       </div>
@@ -673,17 +652,25 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Running a restaurant, cafe, boutique hotel, or Airbnb?</span>
+        <span>A café, shop or rental with one guest password?</span>
       </h3>
-      <p>Place a Wi-Fi QR code on table stands or guest welcome books to eliminate repetitive password requests.</p>
+      <p>This is what Wi-Fi QR codes are for. Put it on table cards or the welcome sheet.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Setting up meeting rooms in a corporate office?</span>
+        <span>An office network where everyone logs in?</span>
       </h3>
-      <p>Provide temporary guest Wi-Fi access in conference lobbies with one quick camera scan.</p>
+      <p>A Wi-Fi QR code can't hold a username. Set up a guest network with a shared password and make the code for that.</p>
+    </div>
+  
+    <div class="decision-item">
+      <h3 style="display: flex; align-items: center; gap: 0.45rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>You change the guest password often?</span>
+      </h3>
+      <p>Every change needs a new code. Put the code in a frame you can swap rather than printing it on menus.</p>
     </div>
   
       </div>
@@ -698,23 +685,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>Wi-Fi Security & Warning Against Dynamic QR Services</h3>
+        <h3>Before you print</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>"Dynamic" QR codes from subscription services send each scan through a redirect link and can stop working when the subscription ends. A Wi-Fi QR code cannot work that way: the network name and password have to be inside the code itself, which is what this generator makes.</span>
+      <span>Only share a network you are allowed to share, such as your own or a guest network your employer approves.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Our studio generates direct, static Wi-Fi payloads in the widely used WIFI: format. UniversalCodeMaker does not control a redirect or expiry, but credentials, device support and network settings can change.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>For high-security enterprise environments, use a dedicated Guest VLAN to isolate visitors from internal office hardware.</span>
+      <span>If your router offers a guest network, use it, so visitors are kept apart from your own computers and printers.</span>
     </li>
   
       </ul>
@@ -771,61 +753,41 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>Do guests need a special app to scan and connect to Wi-Fi?</span>
+        <span>Do guests need an app to scan it?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>No. Both modern iPhones (iOS 11 and later) and Android smartphones (Android 10 and later) natively recognize Wi-Fi QR codes directly inside their default Camera apps. Pointing the camera at the QR code displays a one-tap "Join Network" notification that automatically negotiates credentials and connects the device without opening settings.</p>
+        <p>Usually not. The camera app on recent iPhones and Android phones recognises Wi-Fi QR codes and offers to join the network. Some older phones need a QR scanner app.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Is my Wi-Fi network name or password ever transmitted to a server?</span>
+        <span>Is it safe to put my Wi-Fi password in a QR code?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>No. The code is built in your browser, and the generator does not upload your network name or password. Remember that the password is readable by anyone who scans the printed code, so only post it where you would happily share the Wi-Fi.</p>
+        <p>Anyone who scans the code can read the password, just as if it were written on the card. For a code on public display, use a guest network rather than your main one.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Can I generate a Wi-Fi QR code for an open network without a password?</span>
+        <span>My router uses WPA3. Will the code work?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. If you operate an open public network or guest portal without pre-shared encryption keys, select "Open (No Password)" in the generator. It formats the standard payload as WIFI:T:nopass;S:YourNetwork;;;, allowing visitors to authenticate and join your broadcast network with a single camera tap.</p>
+        <p>Choose the WPA/WPA2/WPA3 setting. Phones join WPA2 and mixed WPA2/WPA3 networks this way; a few WPA3-only setups may not accept it. Test the code with a couple of phones before printing.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>How do I create a QR code for a hidden Wi-Fi network?</span>
+        <span>Does the generator keep my password?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>For networks that do not broadcast their SSID, check the "Hidden Network" option in the Wi-Fi wizard. The generator appends the H:true; flag to the standardized string (WIFI:T:WPA;S:SecretNet;P:SecretPass;H:true;;). Mobile operating systems will recognize the hidden flag and probe for the hidden beacon during the handshake.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What happens if I change my Wi-Fi router password later?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Wi-Fi QR codes are static codes that store the SSID and password directly in the optical matrix. They do not rely on external redirect servers or account subscriptions. If you change your router's Wi-Fi password, prior printed codes will no longer connect devices; you simply generate and print an updated QR code with the new password.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What size should I print Wi-Fi QR codes for tables and counters?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>For restaurant table tents, cafe counter stands, and hotel bedside cards scanned from 8–12 inches away, print the QR code at least 1.5 × 1.5 inches (38 × 38 mm). For wall-mounted plaques or conference room displays scanned from 2–3 feet away, print at least 3 × 3 inches (75 × 75 mm). Always download vector SVG for crisp printing at any resolution.</p>
+        <p>No. The code is built in your browser, and the generator does not upload your network name or password.</p>
       </div>
     </details>
   

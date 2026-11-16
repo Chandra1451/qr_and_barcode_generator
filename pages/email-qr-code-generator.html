@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Email QR Code Generator: Pre-Filled mailto & Subject</title>
-  <meta name="description" content="Generate free email QR codes with pre-filled recipient, subject & body message. Uses RFC 6068 mailto URIs for instant 1-tap drafting with vector SVG export.">
+  <meta name="description" content="Free email QR code generator. One scan opens a new email with the address, subject and message already filled in. Download SVG or PNG.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/email-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free Email QR Code Generator: Pre-Filled mailto & Subject">
-  <meta property="og:description" content="Generate free email QR codes with pre-filled recipient, subject & body message. Uses RFC 6068 mailto URIs for instant 1-tap drafting with vector SVG export.">
+  <meta property="og:description" content="Free email QR code generator. One scan opens a new email with the address, subject and message already filled in. Download SVG or PNG.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/email-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Email QR Code Generator: Pre-Filled mailto & Subject">
-  <meta name="twitter:description" content="Generate free email QR codes with pre-filled recipient, subject & body message. Uses RFC 6068 mailto URIs for instant 1-tap drafting with vector SVG export.">
+  <meta name="twitter:description" content="Free email QR code generator. One scan opens a new email with the address, subject and message already filled in. Download SVG or PNG.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "Email QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/email-qr-code-generator.html",
-  "description": "Generate free email QR codes with pre-filled recipient, subject & body message. Uses RFC 6068 mailto URIs for instant 1-tap drafting with vector SVG export.",
+  "description": "Free email QR code generator. One scan opens a new email with the address, subject and message already filled in. Download SVG or PNG.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -349,50 +349,34 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How does an email QR code work when scanned?",
+      "name": "Does the code send an email by itself?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "An email QR code encodes a standard mailto: URI according to IETF RFC 6068. When scanned with any smartphone camera or QR reader, the operating system launches the user’s default email client (such as Apple Mail, Gmail, or Outlook) with the recipient address, subject line, and body draft already filled in. The user simply reviews the draft and taps send."
+        "text": "No. It opens a draft. The person sees the recipient, subject and message, can edit them, and decides whether to send."
       }
     },
     {
       "@type": "Question",
-      "name": "Does scanning the QR code automatically send the email?",
+      "name": "Can I add CC or BCC addresses?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. For security and anti-spam reasons, mobile operating systems and email clients require the user to explicitly tap the \"Send\" button. The QR code only opens the mail compose window and populates the fields; it cannot dispatch an email without user consent."
+        "text": "Not at the moment. The generator fills in one recipient, the subject and the message."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I include line breaks and formatting in the pre-filled email body?",
+      "name": "What if the phone has no mail app set up?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. UniversalCodeMaker automatically encodes multi-line body templates using standard URL percent-encoding (such as %0A for line breaks and %20 for spaces). When opened in modern email applications, your paragraphs, bullet points, and blank lines appear exactly as drafted."
+        "text": "Then the phone may show nothing useful when the code is scanned. If your audience mostly uses webmail, consider a Website URL code that links to a contact form instead."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I pre-fill multiple recipient addresses or CC/BCC fields?",
+      "name": "Does the generator keep my address or message?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Under RFC 6068, multiple comma-separated email addresses can be encoded in the recipient field, or passed via standard ?cc= and ?bcc= URL parameters. All recipient addresses will populate directly in the respective fields of the user’s email app."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the recommended print size for email QR codes on flyers and business cards?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For simple email addresses with a short subject line, a print size of 1.0 × 1.0 inch (25 × 25 mm) with a 4-module quiet zone is ideal. If your QR code encodes a detailed multi-sentence body template, the matrix density increases; print at least 1.5 × 1.5 inches (38 × 38 mm) or larger to ensure instant mobile autofocus."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my email addresses or message templates stored on your servers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Never. UniversalCodeMaker operates completely client-side in your web browser. Email addresses, subject lines, and message bodies are encoded directly in local browser memory using JavaScript. No email addresses or personal correspondence are ever transmitted to or logged on any external server."
+        "text": "No. The code is built in your browser, and the generator does not upload them."
       }
     }
   ]
@@ -470,7 +454,7 @@
         Smart QR
       </div>
       <h1 class="hero-title">Free Pre-Filled Email (mailto) QR Code Generator</h1>
-      <p class="hero-lead">Create interactive email QR codes that automatically open native mail apps (Apple Mail, Gmail, Outlook) with your recipient email address, subject line, and draft message pre-populated.</p>
+      <p class="hero-lead">Make a QR code that opens a new email with the address, subject and message already filled in. The person who scans it reviews the draft in their own mail app and taps Send.</p>
       
       <a href="../index.html?wizard=email" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -490,38 +474,23 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">IETF RFC 6068 mailto URI Scheme & ISO/IEC 18004:2024 QR Code</dd>
+      <dt class="spec-key">Link</dt>
+      <dd class="spec-val">mailto:address?subject=…&body=… (RFC 6068)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Uri Format</dt>
-      <dd class="spec-val">mailto:recipient@example.com?subject=Encoded%20Subject&body=Encoded%20Body</dd>
+      <dt class="spec-key">Fields</dt>
+      <dd class="spec-val">Recipient, subject and message</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Supported Parameters</dt>
-      <dd class="spec-val">To: (primary), Subject: (headline), Body: (draft message), CC / BCC fields</dd>
+      <dt class="spec-key">Sending</dt>
+      <dd class="spec-val">Nothing is sent until the person taps Send in their own mail app</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Character Encoding</dt>
-      <dd class="spec-val">Standard RFC 3986 percent-encoding (spaces as %20, line breaks as %0A)</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Client Compatibility</dt>
-      <dd class="spec-val">Apple Mail (iOS/macOS), Gmail (Android/Web), Outlook, Samsung Email, Thunderbird</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Export Formats</dt>
-      <dd class="spec-val">Scalable vector SVG (print-ready) and high-resolution PNG (300 DPI)</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Privacy Security</dt>
-      <dd class="spec-val">Built in your browser. Email addresses and message drafts are never sent to our servers</dd>
+      <dt class="spec-key">Privacy</dt>
+      <dd class="spec-val">Built in your browser; the generator does not upload the address or message</dd>
     </div>
   
         </dl>
@@ -536,27 +505,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Customer service warranty registration & physical appliance repair requests</span>
+      <span>Warranty registration and support requests on product labels</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Conference RSVP invitations, private club registration, and speaker feedback</span>
+      <span>RSVPs for events and club sign-ups</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Real estate agent property inquiries on lawn yard signs and print flyers</span>
+      <span>Feedback cards in shops and hotels</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Enterprise IT helpdesk trouble ticketing stickers on office equipment</span>
+      <span>Job ads and recruitment posters</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Recruitment and hiring resume submission codes on poster job ads</span>
+      <span>Reporting a fault from equipment or a meeting room</span>
     </li>
   
         </ul>
@@ -578,17 +547,9 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Pre-Populated Support Messages</h4>
+        <h4>The right subject every time</h4>
       </div>
-      <p>Automatically fills recipient, subject line, and body template when scanned.</p>
-    </div>
-  
-    <div class="benefit-card">
-      <div class="benefit-card-header">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Direct Native Mail Client Launch</h4>
-      </div>
-      <p>Launches default mail app (Apple Mail, Gmail, Outlook) with one camera scan.</p>
+      <p>A pre-filled subject such as a product model or event name makes incoming mail easy to sort.</p>
     </div>
   
     <div class="benefit-card">
@@ -597,6 +558,14 @@
         <h4>Sent from their own mail app</h4>
       </div>
       <p>A mailto link opens the scanner's own email app. The message goes from their account, not through this site.</p>
+    </div>
+  
+    <div class="benefit-card">
+      <div class="benefit-card-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <h4>No typing the address</h4>
+      </div>
+      <p>Nobody mistypes your email address from a poster.</p>
     </div>
   
       </div>
@@ -609,7 +578,7 @@
       <div class="decision-header">
         <h2 style="display: flex; align-items: center; gap: 0.5rem;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-          Is a Email QR code the right fit?
+          Is an Email QR code the right fit?
         </h2>
       </div>
       <div class="decision-grid">
@@ -617,17 +586,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Customer warranty claims and technical support tickets?</span>
+        <span>Support or warranty requests?</span>
       </h3>
-      <p>Print on equipment labels with pre-filled product model numbers and return instructions.</p>
+      <p>Put the model number in the subject so you know which product the message is about.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Event RSVP and private club registration?</span>
+        <span>Need a name, order number or photo from people?</span>
       </h3>
-      <p>Include pre-written event RSVP responses on printed invitation flyers.</p>
+      <p>A web form collects that more reliably. Use a Website URL code that points to the form.</p>
     </div>
   
       </div>
@@ -642,23 +611,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>Email QR Standards</h3>
+        <h3>Before you print</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Uses the mailto: link format (IETF RFC 6068) with the subject and body filled in.</span>
+      <span>Use an address someone actually reads, and check it by scanning the printed proof.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>The email is sent from the person's own mail app, and only after they tap Send; this site sends nothing. Whether your use follows anti-spam rules such as CAN-SPAM or GDPR depends on who you ask to email and why.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Special characters (spaces, ampersands, question marks) are automatically percent-encoded for universal email client compatibility.</span>
+      <span>Keep the message short. Long text makes the code denser and harder to scan when printed small.</span>
     </li>
   
       </ul>
@@ -707,61 +671,41 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>How does an email QR code work when scanned?</span>
+        <span>Does the code send an email by itself?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>An email QR code encodes a standard mailto: URI according to IETF RFC 6068. When scanned with any smartphone camera or QR reader, the operating system launches the user’s default email client (such as Apple Mail, Gmail, or Outlook) with the recipient address, subject line, and body draft already filled in. The user simply reviews the draft and taps send.</p>
+        <p>No. It opens a draft. The person sees the recipient, subject and message, can edit them, and decides whether to send.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Does scanning the QR code automatically send the email?</span>
+        <span>Can I add CC or BCC addresses?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>No. For security and anti-spam reasons, mobile operating systems and email clients require the user to explicitly tap the "Send" button. The QR code only opens the mail compose window and populates the fields; it cannot dispatch an email without user consent.</p>
+        <p>Not at the moment. The generator fills in one recipient, the subject and the message.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Can I include line breaks and formatting in the pre-filled email body?</span>
+        <span>What if the phone has no mail app set up?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. UniversalCodeMaker automatically encodes multi-line body templates using standard URL percent-encoding (such as %0A for line breaks and %20 for spaces). When opened in modern email applications, your paragraphs, bullet points, and blank lines appear exactly as drafted.</p>
+        <p>Then the phone may show nothing useful when the code is scanned. If your audience mostly uses webmail, consider a Website URL code that links to a contact form instead.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Can I pre-fill multiple recipient addresses or CC/BCC fields?</span>
+        <span>Does the generator keep my address or message?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. Under RFC 6068, multiple comma-separated email addresses can be encoded in the recipient field, or passed via standard ?cc= and ?bcc= URL parameters. All recipient addresses will populate directly in the respective fields of the user’s email app.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What is the recommended print size for email QR codes on flyers and business cards?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>For simple email addresses with a short subject line, a print size of 1.0 × 1.0 inch (25 × 25 mm) with a 4-module quiet zone is ideal. If your QR code encodes a detailed multi-sentence body template, the matrix density increases; print at least 1.5 × 1.5 inches (38 × 38 mm) or larger to ensure instant mobile autofocus.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Are my email addresses or message templates stored on your servers?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Never. UniversalCodeMaker operates completely client-side in your web browser. Email addresses, subject lines, and message bodies are encoded directly in local browser memory using JavaScript. No email addresses or personal correspondence are ever transmitted to or logged on any external server.</p>
+        <p>No. The code is built in your browser, and the generator does not upload them.</p>
       </div>
     </details>
   

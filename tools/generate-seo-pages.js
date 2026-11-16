@@ -517,46 +517,37 @@ const SEO_PAGES = [
     metaTitle: 'Free Wi-Fi QR Code Generator: Auto-Connect Password QR',
     metaDescription: 'Free Wi-Fi QR code generator. Guests scan to join without typing the password. Supports WPA3, WPA2, WEP and hidden networks, and runs in your browser.',
     h1: 'Free Wi-Fi Auto-Connect QR Code Generator',
-    lead: 'Create custom branded Wi-Fi QR codes that allow customers, hotel guests, and friends to instantly join your wireless network simply by scanning with their smartphone camera.',
+    lead: "Make a QR code that joins a Wi-Fi network when scanned. Guests point their phone camera at it and tap to connect, so nobody has to spell out the password. It suits home, café and office guest networks that use one shared password.",
     technicalSpec: {
-      standard: 'ISO/IEC 18004 QR Code Model 2',
-      protocol: 'ZXing Wi-Fi URI Scheme (WIFI:T:{Auth};S:{SSID};P:{Password};H:{Hidden};;)',
-      encryption: 'WPA/WPA2/WPA3 (Personal), WEP, or Open (nopass)',
-      hiddenSsid: 'H:true parameter for unbroadcast / closed network SSIDs',
-      compatibility: 'Native iOS Camera (iOS 11+), Android Camera & Quick Settings, iPadOS',
-      security: 'Built in your browser; the generator does not upload network names or passwords'
+      contents: "WIFI:S:network;T:security;P:password;H:hidden;; (the usual Wi-Fi QR format)",
+      security: "WPA/WPA2/WPA3 (one setting), WEP, or an open network",
+      hiddenNetworks: "Supported; tick Hidden Network so the phone looks for it",
+      notFor: "Networks that ask each person for a username (WPA2/WPA3-Enterprise)",
+      privacy: "Built in your browser; the generator does not upload network names or passwords"
     },
     useCases: [
-      'Cafe, coffee shop, and restaurant dining table acrylic stands',
-      'Hotel guest rooms, Airbnb welcome binders, and vacation rental desks',
-      'Office conference rooms, co-working spaces, and visitor reception lobbies',
-      'Event venues, trade show booths, and tech conference registration desks',
-      'Home living rooms and guest bedroom auto-connect wall cards'
+      "A table card in a café, restaurant or waiting room",
+      "The guest room or the fridge door at home",
+      "Welcome folders in holiday rentals",
+      "Meeting rooms and reception desks on a guest network",
+      "Events and pop-up shops with temporary Wi-Fi"
     ],
     faqs: [
       {
-        q: 'Do guests need a special app to scan and connect to Wi-Fi?',
-        a: 'No. Both modern iPhones (iOS 11 and later) and Android smartphones (Android 10 and later) natively recognize Wi-Fi QR codes directly inside their default Camera apps. Pointing the camera at the QR code displays a one-tap "Join Network" notification that automatically negotiates credentials and connects the device without opening settings.'
+        q: "Do guests need an app to scan it?",
+        a: "Usually not. The camera app on recent iPhones and Android phones recognises Wi-Fi QR codes and offers to join the network. Some older phones need a QR scanner app."
       },
       {
-        q: 'Is my Wi-Fi network name or password ever transmitted to a server?',
-        a: 'No. The code is built in your browser, and the generator does not upload your network name or password. Remember that the password is readable by anyone who scans the printed code, so only post it where you would happily share the Wi-Fi.'
+        q: "Is it safe to put my Wi-Fi password in a QR code?",
+        a: "Anyone who scans the code can read the password, just as if it were written on the card. For a code on public display, use a guest network rather than your main one."
       },
       {
-        q: 'Can I generate a Wi-Fi QR code for an open network without a password?',
-        a: 'Yes. If you operate an open public network or guest portal without pre-shared encryption keys, select "Open (No Password)" in the generator. It formats the standard payload as WIFI:T:nopass;S:YourNetwork;;;, allowing visitors to authenticate and join your broadcast network with a single camera tap.'
+        q: "My router uses WPA3. Will the code work?",
+        a: "Choose the WPA/WPA2/WPA3 setting. Phones join WPA2 and mixed WPA2/WPA3 networks this way; a few WPA3-only setups may not accept it. Test the code with a couple of phones before printing."
       },
       {
-        q: 'How do I create a QR code for a hidden Wi-Fi network?',
-        a: 'For networks that do not broadcast their SSID, check the "Hidden Network" option in the Wi-Fi wizard. The generator appends the H:true; flag to the standardized string (WIFI:T:WPA;S:SecretNet;P:SecretPass;H:true;;). Mobile operating systems will recognize the hidden flag and probe for the hidden beacon during the handshake.'
-      },
-      {
-        q: 'What happens if I change my Wi-Fi router password later?',
-        a: 'Wi-Fi QR codes are static codes that store the SSID and password directly in the optical matrix. They do not rely on external redirect servers or account subscriptions. If you change your router\'s Wi-Fi password, prior printed codes will no longer connect devices; you simply generate and print an updated QR code with the new password.'
-      },
-      {
-        q: 'What size should I print Wi-Fi QR codes for tables and counters?',
-        a: 'For restaurant table tents, cafe counter stands, and hotel bedside cards scanned from 8–12 inches away, print the QR code at least 1.5 × 1.5 inches (38 × 38 mm). For wall-mounted plaques or conference room displays scanned from 2–3 feet away, print at least 3 × 3 inches (75 × 75 mm). Always download vector SVG for crisp printing at any resolution.'
+        q: "Does the generator keep my password?",
+        a: "No. The code is built in your browser, and the generator does not upload your network name or password."
       }
     ],
     relatedSlugs: [
@@ -575,48 +566,35 @@ const SEO_PAGES = [
     queryParam: 'wizard=vcard',
     category: 'Smart QR',
     metaTitle: 'Free vCard QR Code Generator: Digital Business Card VCF',
-    metaDescription: 'Create free vCard QR codes for digital business cards. Encodes contact details, phone, email & company directly into smartphone address books without typing.',
+    metaDescription: 'Free vCard QR code generator. People scan your business card code and save your name, phone, email and website to their contacts without typing.',
     h1: 'Free vCard Digital Business Card QR Code Generator',
-    lead: 'Generate contactless digital business card QR codes conforming to the universal vCard standard. When scanned, smartphones immediately prompt the user to save your contact card.',
+    lead: "Make a QR code that saves your contact details to someone's phone. They scan it, tap Add to Contacts, and your name, number and email are saved without any typing.",
     technicalSpec: {
-      standard: 'vCard 3.0 (IETF RFC 2426) & ISO/IEC 18004 QR Code',
-      vcfMimeType: 'text/vcard (.vcf contact card format)',
-      fields: 'FN (Name), TEL (Work/Mobile), EMAIL, ORG (Company), TITLE, URL, ADR',
-      compatibility: 'Apple Contacts (iOS), Google Contacts (Android), Samsung, Microsoft Outlook',
-      nfcPairing: 'Compatible with NFC smart business cards & digital profile links',
-      privacy: 'Built in your browser; contact personal information is never uploaded or saved'
+      format: "vCard 3.0 (RFC 2426), stored as text inside the code",
+      fields: "First and last name, company, job title, one phone number, email, website, address",
+      opensIn: "The phone's contacts app, which asks before saving",
+      photos: "Not included; a photo is far too large for a QR code",
+      privacy: "Built in your browser; the generator does not upload your contact details"
     },
     useCases: [
-      'Physical paper business cards and networking event name badges',
-      'NFC smart digital business cards and tap-to-share metal card backings',
-      'Email signature graphic badges and LinkedIn profile background banners',
-      'Conference speaker podium introduction slides and webinar ending decks',
-      'Real estate agent lawn yard signs, property flyers, and vehicle magnetic decals'
+      "The back of a printed business card",
+      "Conference badges and name tags",
+      "Email signatures and the last slide of a talk",
+      "Shop counters and service vans, so customers save your number",
+      "Property and recruitment flyers"
     ],
     faqs: [
       {
-        q: 'What happens when someone scans a vCard QR code on iPhone or Android?',
-        a: 'When scanned with a native smartphone camera, the operating system parses the standard BEGIN:VCARD payload and automatically presents a native contact card preview. On iOS (Apple Contacts) and Android (Google Contacts), the recipient can review your full name, phone number, email address, job title, company, and website, then tap "Create New Contact" or "Add to Contacts" with zero manual typing.'
+        q: "What does the other person see when they scan it?",
+        a: "Their camera shows a contact preview. Tapping it opens the contacts app with your details filled in, and they decide whether to save it."
       },
       {
-        q: 'What is the difference between a vCard QR code and a plain text contact card?',
-        a: 'A plain text QR code simply displays unstructured text on the screen, requiring the recipient to copy and paste individual phone numbers and emails into separate fields. A vCard QR code follows the IETF RFC 2426 specification, structuring data into standardized attributes (FN:, TEL:, EMAIL:, ORG:, URL:) that the smartphone\'s address book immediately recognizes as a structured digital business card (.vcf).'
+        q: "Can I add two phone numbers?",
+        a: "Not at the moment. There is one phone field, saved as a work number, so use the number you most want people to call."
       },
       {
-        q: 'Can I print a vCard QR code on physical paper business cards?',
-        a: 'Yes. A vCard QR code is ideal for standard 3.5 × 2.0 inch (89 × 51 mm) paper business cards. We recommend printing the QR code at a minimum size of 0.8 × 0.8 inches (20 × 20 mm) at 300 DPI or higher to ensure easy focusing by mobile cameras. Export in scalable vector SVG format to ensure razor-sharp edges and scannability across professional offset or digital printing presses.'
-      },
-      {
-        q: 'Can I link this vCard QR code to an NFC smart business card?',
-        a: 'Yes. You can pair a printed vCard QR code with an NFC chip on plastic or metal smart cards. If a contact\'s smartphone lacks NFC or has NFC disabled, they can simply point their camera at the printed QR code to load the identical digital business card (.vcf) profile instantly.'
-      },
-      {
-        q: 'Is my personal contact information stored on UniversalCodeMaker servers?',
-        a: 'No. UniversalCodeMaker runs completely inside your local web browser. Your name, private phone number, email address, company details, and notes are encoded directly into the QR code matrix on your device. We do not store, track, harvest, or transmit your contact data to any external server or database.'
-      },
-      {
-        q: 'Will my vCard QR code expire or stop working after a certain number of scans?',
-        a: 'No. This is a static vCard QR code that embeds your full contact information directly into the barcode pattern itself. There are no scan limits, no monthly subscriptions, and no intermediate redirect servers that could shut down. As long as the QR code image remains readable, it will function permanently on any scanning device.'
+        q: "Does the generator keep my details?",
+        a: "No. The card is built in your browser, and the generator does not upload your contact details."
       }
     ],
     relatedSlugs: [
@@ -635,49 +613,38 @@ const SEO_PAGES = [
     queryParam: 'wizard=crypto',
     category: 'Smart QR',
     metaTitle: 'Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana',
-    metaDescription: 'Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.',
+    metaDescription: 'Free crypto QR code generator for Bitcoin, Ethereum and Solana wallet addresses, with an optional amount. Uses standard payment links. Download SVG or PNG.',
     h1: 'Free Crypto Payment & Wallet QR Code Generator',
-    lead: 'Generate clean, scannable cryptocurrency wallet QR codes for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) with standard payment request URIs. Only your public address is needed.',
+    lead: "Make a QR code for your Bitcoin, Ethereum or Solana wallet address, with an optional amount. Wallet apps that read the standard payment links fill in the address for the payer. You only ever need your public address.",
     technicalSpec: {
-      standards: 'ISO/IEC 18004:2024, Bitcoin BIP-0021 URI Scheme, Ethereum EIP-681, Solana Pay URI',
-      supportedChains: 'Bitcoin (BTC), Ethereum (ETH & ERC-20), Solana (SOL & SPL Tokens)',
-      uriFormatting: 'bitcoin:address?amount=X&label=Y, ethereum:address?value=X, solana:address?amount=X',
-      errorCorrection: 'Level M (15%) or Level Q (25%) recommended when embedding center coin badges',
-      centerEmblems: 'Built-in vector Bitcoin (₿) and Ethereum (Ξ) center logo badges with quiet zones',
-      exportFormats: 'Vector SVG (infinitely scalable for physical signage) and high-resolution PNG (300 DPI)',
-      privacySecurity: 'Built in your browser. Only a public address is needed; never enter a private key or recovery phrase'
+      bitcoin: "bitcoin:address?amount=… (BIP-21)",
+      ethereum: "ethereum:address?value=… (EIP-681; the amount is converted to wei)",
+      solana: "solana:address?amount=… (Solana Pay transfer link)",
+      amount: "Optional; leave it blank to let the payer choose",
+      privacy: "Built in your browser. Only a public address is needed; never enter a private key or recovery phrase"
     },
     useCases: [
-      'Merchant point-of-sale cryptocurrency checkout & register displays',
-      'Content creator tip jars on YouTube, Twitch, GitHub, and blogs',
-      'Invoicing freelance clients in Bitcoin, Ethereum, or Solana digital currency',
-      'Non-profit fundraising and cryptocurrency donation banners',
-      'Physical cold-storage wallet public deposit address labelling'
+      "A donation or tip jar on a stream, blog or event poster",
+      "Payment details on a freelance invoice",
+      "A counter sign for a shop that accepts crypto",
+      "Labelling your own receiving address on paper"
     ],
     faqs: [
       {
-        q: 'How do crypto QR codes work with mobile wallets?',
-        a: 'The generated QR codes encode official cryptocurrency URI standards, such as Bitcoin BIP-21, Ethereum EIP-681, and Solana URI protocols. When scanned with a smartphone camera or mobile wallet app (including Coinbase Wallet, Trust Wallet, MetaMask, Phantom, or Ledger Live), the app automatically parses the public address, pre-populates the destination address field, and applies optional amount and payment reference parameters without manual copy-pasting.'
+        q: "Do you ever need my private key or recovery phrase?",
+        a: "No. You only enter a public wallet address and, if you like, an amount. The code is built in your browser and the generator does not upload it. Never type a private key or recovery phrase into any QR generator, this one included."
       },
       {
-        q: 'Can I specify an exact invoice or payment amount in the QR code?',
-        a: 'Yes. By specifying a requested payment amount in the generator, standard URI parameters are embedded into the payload (for example, bitcoin:address?amount=0.005 or solana:address?amount=1.5). When a customer or client scans the code, their wallet app automatically pre-fills the exact requested transfer amount, reducing checkout friction and eliminating decimal calculation mistakes.'
+        q: "Will every wallet read the amount?",
+        a: "Not always. Wallets differ in how much of these payment links they support; some read only the address. Ask the payer to check the address and amount on their screen before sending."
       },
       {
-        q: 'Does UniversalCodeMaker ever touch or require my private keys or seed phrase?',
-        a: 'No. You only enter a public wallet address and, if you like, an amount or label. The code is built in your browser and the generator does not upload it. Never type a private key or recovery phrase into any QR generator, this one included.'
+        q: "Can I use it for tokens such as USDT?",
+        a: "Not at the moment. The generator makes plain BTC, ETH and SOL payment links. Token payments need extra fields that we don't build yet."
       },
       {
-        q: 'Why should I use Error Correction Level M or Q when embedding a coin logo?',
-        a: 'When an emblem badge (such as the Bitcoin ₿ or Ethereum Ξ icon) is embedded in the center of a QR code, it covers up to 10% to 15% of the central data modules. Using Reed-Solomon Error Correction Level M (15% data recovery) or Level Q (25% data recovery) ensures the QR code retains sufficient mathematical parity data to decode reliably under all lighting conditions.'
-      },
-      {
-        q: 'What is the recommended print size for physical crypto donation stands and counter signs?',
-        a: 'For countertop point-of-sale stands, tip jars, and event badges, print QR codes at a minimum physical size of 1.5 × 1.5 inches (38 × 38 mm) with a minimum 4-module quiet zone margin. For livestream overlays, video end screens, or posters viewed from several feet away, display the code at 300 × 300 pixels or larger with high visual contrast.'
-      },
-      {
-        q: 'How should I test a cryptocurrency QR code before printing or publishing?',
-        a: 'Always verify the code in two steps: first, scan the generated QR code using a mobile wallet app or camera scanner to confirm the decoded public address exactly matches your intended receiving address (especially the first 6 and final 6 alphanumeric characters). Second, execute a small test micro-transaction before printing stickers, retail plaques, or large-format donation banners.'
+        q: "How do I check the code before printing?",
+        a: "Scan it with your own wallet app and compare the first and last characters of the address with your wallet's receive screen."
       }
     ],
     relatedSlugs: [
@@ -696,49 +663,38 @@ const SEO_PAGES = [
     queryParam: 'wizard=email',
     category: 'Smart QR',
     metaTitle: 'Free Email QR Code Generator: Pre-Filled mailto & Subject',
-    metaDescription: 'Generate free email QR codes with pre-filled recipient, subject & body message. Uses RFC 6068 mailto URIs for instant 1-tap drafting with vector SVG export.',
+    metaDescription: 'Free email QR code generator. One scan opens a new email with the address, subject and message already filled in. Download SVG or PNG.',
     h1: 'Free Pre-Filled Email (mailto) QR Code Generator',
-    lead: 'Create interactive email QR codes that automatically open native mail apps (Apple Mail, Gmail, Outlook) with your recipient email address, subject line, and draft message pre-populated.',
+    lead: "Make a QR code that opens a new email with the address, subject and message already filled in. The person who scans it reviews the draft in their own mail app and taps Send.",
     technicalSpec: {
-      standard: 'IETF RFC 6068 mailto URI Scheme & ISO/IEC 18004:2024 QR Code',
-      uriFormat: 'mailto:recipient@example.com?subject=Encoded%20Subject&body=Encoded%20Body',
-      supportedParameters: 'To: (primary), Subject: (headline), Body: (draft message), CC / BCC fields',
-      characterEncoding: 'Standard RFC 3986 percent-encoding (spaces as %20, line breaks as %0A)',
-      clientCompatibility: 'Apple Mail (iOS/macOS), Gmail (Android/Web), Outlook, Samsung Email, Thunderbird',
-      exportFormats: 'Scalable vector SVG (print-ready) and high-resolution PNG (300 DPI)',
-      privacySecurity: 'Built in your browser. Email addresses and message drafts are never sent to our servers'
+      link: "mailto:address?subject=…&body=… (RFC 6068)",
+      fields: "Recipient, subject and message",
+      sending: "Nothing is sent until the person taps Send in their own mail app",
+      privacy: "Built in your browser; the generator does not upload the address or message"
     },
     useCases: [
-      'Customer service warranty registration & physical appliance repair requests',
-      'Conference RSVP invitations, private club registration, and speaker feedback',
-      'Real estate agent property inquiries on lawn yard signs and print flyers',
-      'Enterprise IT helpdesk trouble ticketing stickers on office equipment',
-      'Recruitment and hiring resume submission codes on poster job ads'
+      "Warranty registration and support requests on product labels",
+      "RSVPs for events and club sign-ups",
+      "Feedback cards in shops and hotels",
+      "Job ads and recruitment posters",
+      "Reporting a fault from equipment or a meeting room"
     ],
     faqs: [
       {
-        q: 'How does an email QR code work when scanned?',
-        a: 'An email QR code encodes a standard mailto: URI according to IETF RFC 6068. When scanned with any smartphone camera or QR reader, the operating system launches the user’s default email client (such as Apple Mail, Gmail, or Outlook) with the recipient address, subject line, and body draft already filled in. The user simply reviews the draft and taps send.'
+        q: "Does the code send an email by itself?",
+        a: "No. It opens a draft. The person sees the recipient, subject and message, can edit them, and decides whether to send."
       },
       {
-        q: 'Does scanning the QR code automatically send the email?',
-        a: 'No. For security and anti-spam reasons, mobile operating systems and email clients require the user to explicitly tap the "Send" button. The QR code only opens the mail compose window and populates the fields; it cannot dispatch an email without user consent.'
+        q: "Can I add CC or BCC addresses?",
+        a: "Not at the moment. The generator fills in one recipient, the subject and the message."
       },
       {
-        q: 'Can I include line breaks and formatting in the pre-filled email body?',
-        a: 'Yes. UniversalCodeMaker automatically encodes multi-line body templates using standard URL percent-encoding (such as %0A for line breaks and %20 for spaces). When opened in modern email applications, your paragraphs, bullet points, and blank lines appear exactly as drafted.'
+        q: "What if the phone has no mail app set up?",
+        a: "Then the phone may show nothing useful when the code is scanned. If your audience mostly uses webmail, consider a Website URL code that links to a contact form instead."
       },
       {
-        q: 'Can I pre-fill multiple recipient addresses or CC/BCC fields?',
-        a: 'Yes. Under RFC 6068, multiple comma-separated email addresses can be encoded in the recipient field, or passed via standard ?cc= and ?bcc= URL parameters. All recipient addresses will populate directly in the respective fields of the user’s email app.'
-      },
-      {
-        q: 'What is the recommended print size for email QR codes on flyers and business cards?',
-        a: 'For simple email addresses with a short subject line, a print size of 1.0 × 1.0 inch (25 × 25 mm) with a 4-module quiet zone is ideal. If your QR code encodes a detailed multi-sentence body template, the matrix density increases; print at least 1.5 × 1.5 inches (38 × 38 mm) or larger to ensure instant mobile autofocus.'
-      },
-      {
-        q: 'Are my email addresses or message templates stored on your servers?',
-        a: 'Never. UniversalCodeMaker operates completely client-side in your web browser. Email addresses, subject lines, and message bodies are encoded directly in local browser memory using JavaScript. No email addresses or personal correspondence are ever transmitted to or logged on any external server.'
+        q: "Does the generator keep my address or message?",
+        a: "No. The code is built in your browser, and the generator does not upload them."
       }
     ],
     relatedSlugs: [
@@ -757,49 +713,37 @@ const SEO_PAGES = [
     queryParam: 'wizard=sms',
     category: 'Smart QR',
     metaTitle: 'Free SMS QR Code Generator: Pre-Filled Text Message & SVG',
-    metaDescription: 'Generate free SMS QR codes with pre-filled recipient phone number & text message. Uses RFC 5724 sms: URIs for instant 1-tap drafting with vector SVG export.',
+    metaDescription: 'Free SMS QR code generator. One scan opens a text message to your number with the words already filled in. Good for opt-ins, RSVPs and quick replies.',
     h1: 'Free Pre-Filled SMS Text Message QR Code Generator',
-    lead: 'Create interactive SMS QR codes that automatically launch native messaging apps (Apple Messages, Google Messages, Samsung Messages) with your target phone number and pre-written text message draft.',
+    lead: "Make a QR code that opens a text message to your number with the words already written. The person who scans it checks the message and taps Send, which is handy for keyword opt-ins, RSVPs and quick replies.",
     technicalSpec: {
-      standard: 'IETF RFC 5724 (URI Scheme for GSM Short Message Service) & ISO/IEC 18004:2024',
-      uriFormat: 'sms:+15551234567?body=Pre-filled%20text%20message (RFC 5724) or SMSTO:number:body',
-      phoneFormat: 'ITU-T E.164 international standard (+country code, area code, subscriber number)',
-      supportedParameters: 'Recipient phone number (or commercial short code) and pre-filled body text draft',
-      clientCompatibility: 'Apple Messages (iOS), Google Messages (Android), Samsung Messages, carrier native apps',
-      exportFormats: 'Scalable vector SVG (lossless print) and high-resolution PNG (300 DPI)',
-      privacySecurity: 'Built in your browser. Phone numbers and message drafts are never sent to external servers'
+      contents: "SMSTO:number:message (a format phone cameras commonly recognise)",
+      number: "Digits and a leading + are kept; spaces and brackets are removed",
+      sending: "Nothing is sent until the person taps Send; normal text charges apply to them",
+      privacy: "Built in your browser; the generator does not upload the number or message"
     },
     useCases: [
-      'Keyword opt-in SMS marketing & VIP club list building on retail posters',
-      'Customer service dispatch & equipment repair ticketing on appliance labels',
-      'Event check-in registration, silent auction bidding, and festival info desks',
-      'Real estate yard signs for instant property information & pricing text inquiries',
-      'Restaurant table feedback & curbside pickup arrival notifications'
+      "Keyword sign-ups such as JOIN on posters and receipts",
+      "RSVP cards for events",
+      "Curbside pickup signs (text us when you arrive)",
+      "Requests for a call back from a service van or yard sign"
     ],
     faqs: [
       {
-        q: 'How does an SMS QR code work when scanned?',
-        a: 'An SMS QR code encodes a standard sms: URI according to IETF RFC 5724 (or the legacy SMSTO: syntax). When scanned with a smartphone camera or QR reader, the operating system launches the user’s default messaging app (such as Apple Messages or Google Messages) with the destination phone number and draft body already filled in. The user merely reviews the message and taps send.'
+        q: "Does the code send a text by itself?",
+        a: "No. It opens the messaging app with your number and message filled in. The person can edit it and decides whether to send it."
       },
       {
-        q: 'Does scanning an SMS QR code automatically send the text message or charge the user?',
-        a: 'No. For anti-spam, security, and consumer billing protection, mobile operating systems strictly require the user to manually press the "Send" button. The QR code only opens the messaging app and populates the text fields; it cannot dispatch an SMS or trigger carrier charges without explicit user action.'
+        q: "How should I write the phone number?",
+        a: "Include the country code with a +, for example +44 7700 900123. Spaces and brackets are removed for you. Without the country code the text may not reach you from abroad."
       },
       {
-        q: 'How should phone numbers be formatted for SMS QR codes?',
-        a: 'For reliable global scanning across both domestic and international visitors, use the ITU-T E.164 international phone number format, starting with a plus sign followed by the country code and full phone number (for example, +15551234567 for North America or +447911123456 for the UK). Omit parentheses, dashes, and spaces.'
+        q: "Does it work on iPhone and Android?",
+        a: "The SMSTO format is widely recognised, but camera apps differ. Scan the printed code on both an iPhone and an Android phone before printing a batch."
       },
       {
-        q: 'Can I encode SMS marketing keywords or short codes into the QR code?',
-        a: 'Yes. In addition to standard 10-digit mobile phone numbers, SMS QR codes fully support 5-digit or 6-digit commercial short codes (such as 711711). You can pre-fill the exact keyword (e.g., "JOIN" or "DISCOUNT") in the body parameter to automate subscriber opt-in campaigns.'
-      },
-      {
-        q: 'What is the recommended print size for SMS QR codes on flyers and counter signs?',
-        a: 'For standard SMS codes with a short phone number and 1–2 sentence message, print at least 1.0 × 1.0 inch (25 × 25 mm) with a 4-module quiet zone. If your pre-filled text template contains extensive instructions or multiple paragraphs, the QR grid density increases; print at 1.5 × 1.5 inches (38 × 38 mm) or larger to ensure quick autofocus.'
-      },
-      {
-        q: 'Are phone numbers or text message drafts transmitted to your servers?',
-        a: 'Never. UniversalCodeMaker operates completely client-side in your web browser. Phone numbers, marketing keywords, and message bodies are compiled directly in local browser memory using JavaScript. No personal contact numbers, messages, or metadata are ever transmitted to or logged on any external server.'
+        q: "Does the generator keep the number or message?",
+        a: "No. The code is built in your browser, and the generator does not upload them."
       }
     ],
     relatedSlugs: [
@@ -818,49 +762,37 @@ const SEO_PAGES = [
     queryParam: 'wizard=phone',
     category: 'Smart QR',
     metaTitle: 'Free Phone Call QR Code Generator: 1-Tap tel: Dialing & SVG',
-    metaDescription: 'Generate free click-to-call phone QR codes with direct 1-tap dialing. Uses RFC 3966 tel: URIs with international E.164 formatting & vector SVG print export.',
+    metaDescription: 'Free phone call QR code generator. One scan shows your number ready to dial, with no typing. Good for vans, signs, menus and storefronts.',
     h1: 'Free Click-to-Call Phone Dialer QR Code Generator',
-    lead: 'Create instant click-to-dial telephone QR codes using the IETF RFC 3966 tel: URI standard. Scanning automatically launches native smartphone dialers (iOS Phone, Android Phone) ready to connect with one tap.',
+    lead: "Make a QR code that puts your phone number on the caller's screen, ready to dial. The phone always asks before calling, so it is a quick way to get calls from vans, signs, menus and shop doors.",
     technicalSpec: {
-      standard: 'IETF RFC 3966 (tel: URI for Telephone Numbers) & ISO/IEC 18004:2024',
-      uriFormat: 'tel:+15551234567 (RFC 3966 international telephone URI syntax)',
-      phoneFormat: 'ITU-T E.164 international standard (+country code, area code, subscriber number)',
-      supportedDialers: 'Apple Phone (iOS), Google Phone / Dialer (Android), Samsung Phone, VoIP SIP apps',
-      securityConfirmation: 'Explicit user tap required on phone dialer prompt; automated dialing is prohibited by OS',
-      exportFormats: 'Scalable vector SVG (lossless print) and high-resolution PNG (300 DPI)',
-      privacySecurity: 'Built in your browser. Telephone numbers are never transmitted to external servers'
+      link: "tel:+number (RFC 3966)",
+      number: "Digits and a leading + are kept; spaces, dashes and brackets are removed",
+      dialing: "The phone shows the number and asks before calling",
+      privacy: "Built in your browser; the generator does not upload the phone number"
     },
     useCases: [
-      'Contractor service vehicle decals & roadside billboard quick-contact signs',
-      'Real estate yard lawn signs & rental listing print flyers for instant broker calls',
-      'Restaurant takeout menu boards & reservation desk countertop stands',
-      '24/7 emergency hotline & corporate technical support equipment tags',
-      'Business storefront door decals for customer service & after-hours inquiries'
+      "Service vans and trade vehicles",
+      "For-sale and to-let signs",
+      "Takeaway menus and shop doors",
+      "Out-of-hours and help numbers on equipment"
     ],
     faqs: [
       {
-        q: 'How does a phone call QR code work when scanned?',
-        a: 'A phone call QR code encodes a standard tel: URI scheme according to IETF RFC 3966. When scanned with any smartphone camera or QR reader, the operating system recognizes the telephone payload and displays an interactive banner (e.g., "Call (555) 123-4567"). Tapping the prompt launches the native phone dialer with the number pre-populated, allowing the user to initiate the call with a single tap.'
+        q: "Will scanning the code start a call straight away?",
+        a: "No. The phone shows the number and asks the person to confirm before it dials."
       },
       {
-        q: 'Does scanning the QR code immediately place a phone call?',
-        a: 'No. For user security and to prevent accidental or fraudulent dialing, modern mobile operating systems (iOS and Android) require an explicit confirmation tap before placing an outbound call. The scan only populates the keypad dialer; the call is not connected until the user taps the green call button.'
+        q: "How should I write the number?",
+        a: "Use the international format with a +, for example +1 800 555 0199. Without the country code, people calling from another country may not get through."
       },
       {
-        q: 'Why is the ITU-T E.164 international format recommended for phone QR codes?',
-        a: 'Formatting your phone number in ITU-T E.164 format (with a leading "+" followed by your international country code, area code, and local number, such as +15551234567) helps the number dial correctly wherever the caller is and whatever network they use. It avoids domestic trunk prefixes (like "0") that cause call routing failures for international visitors.'
+        q: "Can I add an extension?",
+        a: "Not at the moment. The generator keeps only digits and the +, so extensions are left out. Point the code at a direct line if you have one."
       },
       {
-        q: 'Can I include telephone extensions or pauses in a phone QR code?',
-        a: 'Under RFC 3966, telephone extensions can be represented using ;ext=123, or legacy DTMF commas (,) for pauses. However, mobile operating system support for automated DTMF pauses in QR codes varies between iOS and Android. For maximum cross-device reliability, direct the QR code to your main direct-inward-dial (DID) telephone number.'
-      },
-      {
-        q: 'What is the optimal print size for phone QR codes on vehicles and storefront signs?',
-        a: 'For handheld business cards or flyers, a 1.0 × 1.0 inch (25 × 25 mm) QR code is standard. For vehicle decals, lawn signs, or storefront windows where customers scan from several feet away, follow the 10:1 distance-to-size ratio: print at least 3.0 × 3.0 inches (75 × 75 mm) for a 3-foot scanning distance, or 6.0 × 6.0 inches (150 × 150 mm) for drive-by viewing.'
-      },
-      {
-        q: 'Are phone numbers stored or tracked on UniversalCodeMaker servers?',
-        a: 'No. The code is built in your browser, and the generator does not upload the phone number. The privacy policy explains what the site itself measures.'
+        q: "How big should I print it?",
+        a: "A common rule of thumb is to make the code at least a tenth of the scanning distance: about 3 cm for a menu read at arm's length, about 10 cm for a sign read from a metre away. Test-scan at the real distance."
       }
     ],
     relatedSlugs: [
@@ -879,48 +811,38 @@ const SEO_PAGES = [
     queryParam: 'wizard=event',
     category: 'Smart QR',
     metaTitle: 'Free Calendar Event QR Code Generator (iCal & Outlook)',
-    metaDescription: 'Generate free calendar event QR codes with date, time, location & description. Attendees add events to Google Calendar, Apple Calendar & Outlook in one scan.',
+    metaDescription: 'Free calendar event QR code generator. Add the title, place, start and end time and notes; guests scan to add the event to their phone calendar.',
     h1: 'Free iCal Calendar Event QR Code Generator',
-    lead: 'Generate universal vEvent / iCalendar QR codes with start and end times, venue location, and event notes. When scanned with iOS Camera or Android Google Lens, attendees can add weddings, conferences, webinars, or parties directly to Google Calendar, Apple Calendar, or Outlook with one tap.',
+    lead: "Make a QR code that adds your event to a phone calendar. Enter the title, place, start and end time and a short note. Guests scan it and save the event, already set to the right time in their own time zone.",
     technicalSpec: {
-      standard: 'ISO/IEC 18004 QR Code Model 2',
-      payloadFormat: 'iCalendar 2.0 (IETF RFC 5545 VEVENT standard)',
-      syntaxStructure: 'BEGIN:VCALENDAR / BEGIN:VEVENT ... END:VEVENT / END:VCALENDAR',
-      timestampEncoding: 'ISO 8601 UTC (YYYYMMDDTHHMMSSZ) or local floating time',
-      compatibility: 'Apple Calendar (iOS/macOS), Google Calendar (Android/Web), Microsoft Outlook',
-      privacy: 'Built in your browser; event details and attendee schedules are never uploaded or stored'
+      format: "iCalendar VEVENT text (RFC 5545) inside the code",
+      fields: "Title, location, start, end and notes",
+      times: "Converted to UTC, so phones show the event in the reader's own time zone",
+      allDayEvents: "Not supported yet; use a start and end time",
+      privacy: "Built in your browser; the generator does not upload the event details"
     },
     useCases: [
-      'Wedding invitations, save-the-dates, and family anniversary celebrations',
-      'Conference schedules, keynote speaker sessions, and panel workshops',
-      'Concert tickets, theater performances, festival lineups, and sporting events',
-      'Corporate webinars, virtual product launches, and quarterly meetings',
-      'University lecture timetables, academic exams, and campus orientation events'
+      "Wedding invitations and save-the-date cards",
+      "Posters for talks, classes and open days",
+      "Conference programmes and badges",
+      "Appointment reminder cards"
     ],
     faqs: [
       {
-        q: 'How does scanning a calendar QR code automatically add an event to my calendar?',
-        a: 'When scanned with an iPhone Camera or Android Google Lens, the operating system recognizes the standard iCalendar BEGIN:VCALENDAR / BEGIN:VEVENT data block. Instead of opening a web browser, the device displays an interactive banner prompting you to "Add to Calendar" or "Open in Calendar". Tapping the prompt opens your default calendar app (Apple Calendar, Google Calendar, or Samsung Calendar) with the event title, start and end dates, venue address, and description pre-filled for one-tap saving.'
+        q: "Will the time be right for guests in other time zones?",
+        a: "Yes. The time you enter is taken as your local time and stored in UTC, so each phone shows it in its own time zone. Check the start time after scanning the preview."
       },
       {
-        q: 'Does the calendar QR code support automatic timezone conversions?',
-        a: 'Yes. When event start and end timestamps are formatted in UTC ending with a "Z" (such as 20261115T183000Z), the attendee\'s smartphone automatically converts the time into their device\'s active local timezone. For in-person venue events, local floating time (omitting the trailing "Z") ensures the event registers at the exact local wall-clock time regardless of where the attendee travels from.'
+        q: "Which phones can add the event?",
+        a: "Many phone cameras recognise calendar QR codes and offer to add the event, but support varies by phone and app. Test with an iPhone and an Android phone before printing, and print the date and time next to the code as well."
       },
       {
-        q: 'What is the difference between an all-day event and a timed event in a QR code?',
-        a: 'A timed event includes specific start and finish clock hours in ISO 8601 format (DTSTART:20261115T090000), booking off exact time slots in the recipient\'s calendar view. An all-day event specifies only calendar dates without clock hours (DTSTART;VALUE=DATE:20261115), placing a banner across the top of the attendee\'s day view without triggering specific minute-by-minute reminders—perfect for birthdays, anniversaries, and multi-day exhibitions.'
+        q: "Can I make an all-day event?",
+        a: "Not yet. Every event has a start and an end time. For a whole day, use the opening and closing times."
       },
       {
-        q: 'Does this calendar QR code work across Google Calendar, Apple Calendar, and Microsoft Outlook?',
-        a: 'Yes. The VEVENT payload adheres strictly to IETF RFC 5545, the universal open standard supported across all major operating systems and calendar software. Native iOS and iPadOS devices parse it directly into Apple Calendar, Android devices import it into Google Calendar, and desktop or mobile email apps import it smoothly into Microsoft Outlook.'
-      },
-      {
-        q: 'Are my private event details or guest schedules logged or saved on your servers?',
-        a: 'No. Your browser writes the event details into the QR pattern, and the generator does not upload them. The privacy policy explains what the site itself measures.'
-      },
-      {
-        q: 'What is the recommended print size for event QR codes on invitations and flyers?',
-        a: 'For personal handheld print materials such as wedding invitations, save-the-date cards, or conference badges, we recommend printing the calendar QR code at a minimum of 1.0 × 1.0 inch (25 × 25 mm) at 300 DPI. For large event posters, roll-up banners, and entrance signs scanned from a distance of 3 to 6 feet, scale the QR code to 3 to 6 inches (75 to 150 mm) or larger. Always export in vector SVG format to ensure crisp vector edges and flawless scanning across any commercial press.'
+        q: "What if the date changes?",
+        a: "The details are inside the code, so a new date needs a new code. A Website URL code pointing to an event page is easier to keep current."
       }
     ],
     relatedSlugs: [
@@ -990,49 +912,33 @@ const SEO_PAGES = [
     queryParam: 'wizard=text',
     category: 'Smart QR',
     metaTitle: 'Free Plain Text QR Code Generator: Raw Notes & Multi-Line',
-    metaDescription: 'Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.',
+    metaDescription: 'Free plain text QR code generator for notes, instructions and serial numbers. The text is inside the code, so phones show it without a website.',
     h1: 'Free Plain Text Multi-Line QR Code Generator',
-    lead: 'Put plain text, multi-line notes or serial numbers into a QR code. Phones show the text when scanned, with no website in between.',
+    lead: "Put plain text, multi-line notes or serial numbers into a QR code. Phones show the text when scanned, with no website in between.",
     technicalSpec: {
-      standard: 'ISO/IEC 18004:2024 standard QR code symbology',
-      characterCapacity: 'Up to 7,089 numeric, 4,296 alphanumeric, or 2,953 binary bytes (Version 40)',
-      encodingModes: 'Numeric (3.3 bits/char), Alphanumeric (5.5 bits/char), Byte / UTF-8 (8 bits/char)',
-      errorCorrection: 'Reed-Solomon Level L (7%), Level M (15% default), Level Q (25%), Level H (30%)',
-      formatting: 'Raw unformatted UTF-8 text with multi-line CRLF / LF line break preservation',
-      offlineScannability: '100% offline readability. Native camera apps display raw text without network requests',
-      privacySecurity: 'Pure client-side browser generation. Text payloads are never uploaded, logged, or tracked'
+      contents: "Your text, exactly as typed, including line breaks",
+      capacity: "Up to 2,953 bytes in the largest QR size at error correction level L; short text gives a smaller, easier code",
+      reading: "Shown on the phone without opening a website",
+      privacy: "Built in your browser; the generator does not upload your text"
     },
     useCases: [
-      'Offline equipment maintenance notes and machinery operating instructions',
-      'Public keys and wallet deposit addresses (never private keys or recovery phrases)',
-      'Asset management serial tokens and warehouse shelf bin identifiers',
-      'Educational classroom quizzes, scavenger hunt clues, and museum exhibit text',
-      'Product ingredient lists, allergy warnings, and compliance labels'
+      "Short instructions on equipment and machines",
+      "Serial and asset numbers on labels",
+      "Puzzles, quizzes and scavenger hunts",
+      "Public keys and wallet deposit addresses (never private keys or recovery phrases)"
     ],
     faqs: [
       {
-        q: 'What is a plain text QR code and how does it work?',
-        a: 'A plain text QR code encodes unformatted text strings without any prefix protocol (like https:// or mailto:). When scanned with a smartphone camera, optical scanner, or dedicated barcode reader, the device recognizes the payload as raw text and displays it directly on screen or copies it to the clipboard, functioning entirely offline without an active internet connection.'
+        q: "Is the text private?",
+        a: "The text is encoded in your browser and the generator does not upload it. But a QR code is not encrypted: anyone who scans it can read the text. Do not put passwords, private keys or recovery phrases in a plain text QR code."
       },
       {
-        q: 'What is the maximum amount of text that can be encoded in a QR code?',
-        a: 'Under the ISO/IEC 18004 standard, a maximum Version 40 QR code can store up to 7,089 numeric digits, 4,296 alphanumeric characters (capital letters, digits, and basic symbols), or 2,953 binary bytes (UTF-8 text). However, for rapid scanning with standard smartphone cameras under varied lighting, keeping text under 300 to 500 characters is recommended.'
+        q: "How much text fits?",
+        a: "The QR standard allows up to 2,953 bytes in the largest size, but a code that full is hard to scan. A few lines is a good limit for anything printed smaller than a postcard."
       },
       {
-        q: 'Does a plain text QR code support multi-line text and line breaks?',
-        a: 'Yes. UniversalCodeMaker preserves standard line breaks (CRLF / LF) and paragraph spacing. When scanned, modern camera apps and text decoders preserve your line breaks, making it ideal for multi-step recipes, equipment maintenance procedures, or multi-field data records.'
-      },
-      {
-        q: 'Which error correction level should I choose for long text notes?',
-        a: 'For lengthy text payloads exceeding 300 characters, choose Error Correction Level L (7% recovery) or Level M (15% recovery). Higher error correction levels (Level Q at 25% or Level H at 30%) add substantial parity modules, making the QR matrix denser and requiring a higher-resolution camera or larger print size to scan reliably.'
-      },
-      {
-        q: 'What is the recommended print size for high-density plain text QR codes?',
-        a: 'For short text (under 100 characters), a minimum print size of 1.0 × 1.0 inch (25 × 25 mm) is sufficient. For dense text payloads (300 to 800 characters) where matrix dimensions expand to Version 10 or higher (57×57 modules or more), print the QR code at least 2.0 × 2.0 inches (50 × 50 mm) to ensure handheld phone cameras can resolve individual modules.'
-      },
-      {
-        q: 'Is my text data private when generated on UniversalCodeMaker?',
-        a: 'The text is encoded in your browser and the generator does not upload it. But a QR code is not encrypted: anyone who scans it can read the text. Do not put passwords, private keys or recovery phrases in a plain text QR code.'
+        q: "Will line breaks show?",
+        a: "Yes, they are kept in the code. How they look depends on the scanning app."
       }
     ],
     relatedSlugs: [
@@ -1113,46 +1019,35 @@ const SEO_PAGES = [
     metaTitle: 'Free Google Review QR Code Generator: Open the Review Box',
     metaDescription: 'Make a free QR code that opens your Google review form in one scan. Paste your Place ID or review link, then download SVG or a 300 DPI PNG.',
     h1: 'Free Google Reviews QR Code Generator',
-    lead: 'Make a QR code that opens your Google review box in one scan, so customers can leave a review without searching for your business first.',
+    lead: "Make a QR code that opens your Google review box in one scan, so customers can leave a review without searching for your business first.",
     technicalSpec: {
-      standard: 'ISO/IEC 18004 QR Code Model 2',
-      destinationUrl: 'https://search.google.com/local/writereview?placeid={PlaceID} or g.page shortlink',
-      supportedInputs: 'Google Place ID (ChIJ...), Google Business Profile review link, Google Maps URL',
-      errorCorrection: 'Level M (15% recovery) or Level Q (25% recovery for center logo inserts)',
-      deepLinkRouting: 'Direct native launch into Google Maps review dialogue on Android and iOS',
-      privacy: 'Built in your browser; Place IDs and review URLs are never logged or stored'
+      input: "Your Google review link, or a Place ID that starts with ChIJ",
+      placeIdLink: "search.google.com/local/writereview?placeid=… (built for you from a Place ID)",
+      opensIn: "Google Maps or the browser; posting a review needs a Google account",
+      privacy: "Built in your browser; the generator does not upload your link or Place ID"
     },
     useCases: [
-      'Restaurant and cafe tabletop acrylic stands, check presenters, and takeaway menus',
-      'Retail checkout point-of-sale displays, window stickers, and exit door decals',
-      'Medical clinics, dental offices, salons, and wellness center reception desks',
-      'Home service contractor leave-behind cards, service invoices, and vehicle decals',
-      'E-commerce packaging inserts, shipping boxes, and unboxing thank-you cards'
+      "Counter and table cards in cafés and restaurants",
+      "Receipts and thank-you cards",
+      "Follow-up cards from tradespeople and salons",
+      "Hotel and holiday-rental welcome sheets"
     ],
     faqs: [
       {
-        q: 'How does a Google Review QR code take customers directly to the review submission form?',
-        a: 'By encoding Google\'s dedicated review URL (https://search.google.com/local/writereview?placeid={PlaceID}) or your verified Google Business Profile shortlink (g.page/.../review), scanning instantly launches the Google Maps app or mobile browser directly into the 5-star rating selector and comment box, completely bypassing search results, competitors, and map navigation.'
+        q: "Where do I find my review link?",
+        a: "In your Google Business Profile, look for the option to ask for reviews and copy the link it gives you. Paste it into the generator as it is."
       },
       {
-        q: 'How do I find my business Google Place ID or review share link?',
-        a: 'Sign in to Google Search or Google Maps with your Google Business Profile account, search for your business name, click "Ask for reviews", and copy the generated review link. If you prefer using your official Place ID (starting with "ChIJ..."), look it up using Google\'s Place ID Finder tool or paste your Maps URL into our generator and we will compile the direct review endpoint automatically.'
+        q: "What is a Place ID, and do I need one?",
+        a: "It is Google's ID for your listing and starts with ChIJ. You only need it if you don't have a review link. Paste it and the generator builds the review link."
       },
       {
-        q: 'Why is a direct review QR code more effective than linking to our website or Maps profile?',
-        a: 'Every additional tap or search step dramatically increases customer drop-off. A standard link requires customers to search your business, find the Reviews tab, and scroll to write a review. A direct Google Review QR code eliminates all intermediate friction by loading the review dialogue immediately upon camera scan, resulting in significantly higher review completion rates.'
+        q: "Does the app or the browser open?",
+        a: "If the Google Maps app is installed, the link usually opens there, where the customer is often already signed in. Otherwise it opens in the phone's web browser. Either way, posting a review needs a Google account."
       },
       {
-        q: 'Does the QR code open in the Google Maps app or the mobile web browser?',
-        a: 'If the Google Maps app is installed, the link usually opens there, where the customer is often already signed in. Otherwise it opens in the phone\'s web browser. Either way, posting a review needs a Google account.'
-      },
-      {
-        q: 'What is the recommended print size and placement for countertop review QR signs?',
-        a: 'For tabletop tents, counter displays, and checkout stands, print the QR code at a minimum size of 1.2 × 1.2 inches (30 × 30 mm) for scanning from about a foot away, and larger if people will scan from further back. Put signs where people naturally pause, such as the checkout, a table while they wait for the bill, or the exit, with a clear call-to-action like "Scan to share your experience on Google".'
-      },
-      {
-        q: 'Will this Google Review QR code ever expire or require a recurring monthly subscription?',
-        a: 'No. UniversalCodeMaker generates 100% static QR codes that embed your Google review URL directly into the barcode pattern itself. There are no scan limits, no redirects through third-party domains, and no ongoing subscription fees. As long as your Google Business Profile remains active and the printed QR code remains clean and legible, it will work permanently.'
+        q: "Can I ask only happy customers for a review?",
+        a: "No. Google's review policy doesn't allow businesses to discourage negative reviews or to ask only satisfied customers. Offer the code to everyone, and don't offer rewards for reviews."
       }
     ],
     relatedSlugs: [
@@ -1171,48 +1066,37 @@ const SEO_PAGES = [
     queryParam: 'symbology=qr-code&wizard=whatsapp',
     category: 'Smart QR',
     metaTitle: 'Free WhatsApp QR Code Generator: Direct Chat & wa.me Link',
-    metaDescription: 'Generate free WhatsApp QR codes with pre-filled messages and direct wa.me links. Customers start conversations in one scan without saving your phone number.',
+    metaDescription: 'Free WhatsApp QR code generator. One scan opens a chat with your number and an optional greeting already typed, without saving your number first.',
     h1: 'Free WhatsApp Direct Chat QR Code Generator',
-    lead: 'Allow customers, clients, and guests to initiate a WhatsApp conversation with your business in one scan. Supports international numbers and pre-filled introductory messages.',
+    lead: "Make a QR code that opens a WhatsApp chat with your number, with an optional greeting already typed. Customers don't need to save your number first.",
     technicalSpec: {
-      standard: 'ISO/IEC 18004 QR Code Model 2',
-      protocol: 'Official WhatsApp Deep Link (https://wa.me/{phone}?text={encoded_message})',
-      phoneFormat: 'E.164 International Format (Country Code + Number without + or dashes)',
-      messageEncoding: 'RFC 3986 percent-encoding with automated newline conversion (%0A)',
-      compatibility: 'WhatsApp on Android, iOS, iPadOS, WhatsApp Business, WhatsApp Web & Desktop',
-      privacy: 'Built in your browser; phone numbers and messages are never logged or stored'
+      link: "https://wa.me/number?text=… (WhatsApp's click-to-chat link)",
+      number: "Full international number, digits only; anything else is removed",
+      message: "Optional; the person can edit it before sending",
+      privacy: "Built in your browser; the generator does not upload the number or message"
     },
     useCases: [
-      'Customer service desks, support kiosks, and storefront window decals',
-      'Restaurant, cafe, and bar dining table stands for ordering and reservations',
-      'Ecommerce shipping box inserts, warranty cards, and product packaging',
-      'Real estate for-sale lawn signs, open house flyers, and property listings',
-      'Marketing event banners, trade show booth backdrops, and speaker presentation decks'
+      "Order and booking signs for small shops and home businesses",
+      "Support stickers on products",
+      "Event and tour group check-ins",
+      "Flyers and business cards"
     ],
     faqs: [
       {
-        q: 'How does a customer start a WhatsApp chat by scanning this QR code?',
-        a: 'When scanned with any smartphone camera, the operating system detects the official https://wa.me/ URI and displays a prompt to open WhatsApp. Tapping it opens an active chat with your phone number directly on the user\'s screen. If you included a pre-filled introductory message, it is pre-populated in their text input box ready for them to tap send.'
+        q: "How do I write the number?",
+        a: "Use the full international number without the + or leading zeros, for example 919876543210 for an Indian mobile or 15551234567 for a US one. The generator removes spaces and symbols."
       },
       {
-        q: 'Do customers need to save my phone number in their contacts first?',
-        a: 'No. The universal wa.me deep link bypasses the need for the recipient to create a new address book contact. The chat window opens immediately, removing all friction from first-time customer inquiries, product support, or booking requests.'
+        q: "Does the message send automatically?",
+        a: "No. The chat opens with the greeting in the text box, and the person decides whether to send it."
       },
       {
-        q: 'How do I format an international phone number for the WhatsApp generator?',
-        a: 'Enter your full phone number in E.164 international format including your country code, but omit plus signs (+), zeroes at the beginning, spaces, dashes, or parentheses. For example, use 15551234567 for the United States or 447911123456 for the United Kingdom.'
+        q: "What happens on a computer or a phone without WhatsApp?",
+        a: "The wa.me link opens a WhatsApp page in the browser, which offers WhatsApp Web or the app download."
       },
       {
-        q: 'Does this QR code work with WhatsApp Business accounts?',
-        a: 'Yes. The wa.me protocol functions identically across both standard personal WhatsApp accounts and official WhatsApp Business accounts. When scanned, it routes incoming inquiries directly to your registered business profile.'
-      },
-      {
-        q: 'Will this WhatsApp QR code ever expire or require a monthly fee?',
-        a: 'No. UniversalCodeMaker creates permanent static QR codes. The destination phone number and optional message are encoded directly into the optical matrix without middleman tracking redirects or subscription gates. As long as your phone number remains active on WhatsApp, your printed QR code will work indefinitely.'
-      },
-      {
-        q: 'What size should I print a WhatsApp QR code on signs and packaging?',
-        a: 'For small handheld surfaces like product packaging inserts, receipt footers, or business cards, print at a minimum of 0.8 × 0.8 inches (20 × 20 mm). For restaurant table acrylic stands or counter displays scanned from 1–2 feet away, print at least 1.5 × 1.5 inches (38 × 38 mm). Always download vector SVG for crisp printing at any physical scale.'
+        q: "Does the generator keep my number?",
+        a: "No. The code is built in your browser, and the generator does not upload the number or message."
       }
     ],
     relatedSlugs: [
@@ -1231,47 +1115,37 @@ const SEO_PAGES = [
     queryParam: 'symbology=qr-code&wizard=upi',
     category: 'Smart QR',
     metaTitle: 'Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount',
-    metaDescription: 'Generate free UPI payment QR codes for Google Pay, PhonePe, and Paytm. Support custom VPA, fixed amount, merchant name, and zero fees in vector SVG.',
+    metaDescription: 'Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.',
     h1: 'Free UPI Scan-to-Pay QR Code Generator',
-    lead: 'Create UPI scan-to-pay QR codes for merchant stores, freelancers, and invoices. Receiving-app support can vary, so verify the VPA and test the code in the apps your customers use.',
+    lead: "Make a UPI payment QR code for your UPI ID, with an optional fixed amount and a note. Customers scan it with Google Pay, PhonePe, Paytm, BHIM or their bank's UPI app, check the details and pay.",
     technicalSpec: {
-      standard: 'ISO/IEC 18004 QR Code Model 2',
-      protocol: 'NPCI UPI Deep Link Specification (upi://pay?pa={VPA}&pn={Name}&am={Amount}&cu=INR)',
-      parameters: 'pa (UPI ID / VPA), pn (Merchant Name), am (Preset Amount), cu (Currency INR), tn (Note)',
-      compatibility: 'Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay & 300+ Indian banking apps',
-      security: 'Built in your browser; UniversalCodeMaker never handles the payment'
+      link: "upi://pay?pa=UPI ID&pn=name&cu=INR&am=amount&tn=note",
+      fields: "UPI ID (VPA), payee name, optional amount in rupees, optional note",
+      currency: "INR",
+      payments: "Built in your browser; UniversalCodeMaker never handles the payment"
     },
     useCases: [
-      'Retail checkout counters, acrylic billing stands, and point-of-sale displays',
-      'Freelance digital invoices, consulting receipts, and client payment links',
-      'Restaurant table billing, food delivery packaging, and cafe ordering menus',
-      'Direct non-profit charity donations and event entry registration desks',
-      'Immediate scan-and-pay across all Indian bank accounts with zero commission'
+      "Counter stands for shops and food stalls",
+      "Bills and invoices with a fixed amount",
+      "Table cards in cafés",
+      "Donations and society collections"
     ],
     faqs: [
       {
-        q: 'Which UPI apps can scan and pay with this QR code?',
-        a: 'All standard payment apps supporting NPCI specifications can scan this code, including Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay, and all Indian banking apps.'
+        q: "Which apps can pay with this code?",
+        a: "It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read. Test it with the apps your customers use before printing."
       },
       {
-        q: 'Is there any transaction fee or intermediary involved?',
-        a: 'UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID (VPA), so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us.'
+        q: "Should I set an amount?",
+        a: "For a fixed bill, yes: the payer sees the amount filled in. Leave it blank for a counter stand where every bill is different."
       },
       {
-        q: 'Can I specify a fixed amount or let customers enter their own?',
-        a: 'Both options are supported. Leave the amount blank to let the customer enter any amount, or specify a fixed amount to lock the payment to an exact invoice figure.'
+        q: "Are there fees?",
+        a: "UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID (VPA), so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us."
       },
       {
-        q: 'How do I generate a UPI QR code with a fixed payment amount?',
-        a: 'In the generator wizard, enter your UPI ID (VPA), your merchant or personal name, and the exact rupee amount in the Amount field. The generator appends the &am= parameter to the open NPCI URI (for example, upi://pay?pa=store@bank&pn=MyStore&am=250.00&cu=INR). When scanned, the customer\'s payment app pre-fills and locks the amount to prevent payment discrepancies.'
-      },
-      {
-        q: 'What is a universal UPI QR code and does it work across all payment apps?',
-        a: 'A universal UPI QR code follows the National Payments Corporation of India (NPCI) interoperable deep-linking standard. It is not locked to any single vendor like PhonePe or Google Pay. Any UPI-compliant app installed on an Android or iOS smartphone can decode the URI and initiate a secure, immediate payment directly from the payer\'s linked bank account.'
-      },
-      {
-        q: 'What is the best format to print a UPI payment QR code for a store counter?',
-        a: 'Download the code in scalable vector SVG format for professional graphic design, or high-resolution PNG for direct desktop printing. For retail checkout stands and acrylic holders, print at a minimum size of 2" × 2" (50 mm × 50 mm) at 300 DPI or higher. Use a matte finish or non-reflective acrylic stand to eliminate harsh overhead lighting glare that can hinder camera autofocus.'
+        q: "How do I know a customer has paid?",
+        a: "Check your own UPI app or bank notification. Don't rely on a screenshot from the customer."
       }
     ],
     relatedSlugs: [
@@ -1947,34 +1821,37 @@ const ENRICHMENTS = {
   "wifi-qr-code-generator": {
     "benefits": [
       {
-        "title": "1-Tap Zero-Typing Wi-Fi Access",
-        "desc": "Guests connect instantly without mistyping complex WPA2/WPA3 passwords."
+        "title": "No password to spell out",
+        "desc": "Guests scan and join. Nobody has to read out a long password full of capitals and symbols."
       },
       {
-        "title": "Native iOS & Android Integration",
-        "desc": "Built-in camera apps prompt \"Join Network\" without installing any third-party app."
+        "title": "Uses the phone's own camera",
+        "desc": "Recent iPhones and Android phones read Wi-Fi codes without an extra app."
       },
       {
-        "title": "Browser-Based Payload Generation",
-        "desc": "The Wi-Fi fields used to build the code are processed in your browser rather than submitted to UniversalCodeMaker's server. See the Privacy Policy for site analytics and advertising details."
+        "title": "Nothing to keep paying for",
+        "desc": "The network details are inside the code, so there is no account or subscription behind it."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Running a restaurant, cafe, boutique hotel, or Airbnb?",
-        "a": "Place a Wi-Fi QR code on table stands or guest welcome books to eliminate repetitive password requests."
+        "q": "A café, shop or rental with one guest password?",
+        "a": "This is what Wi-Fi QR codes are for. Put it on table cards or the welcome sheet."
       },
       {
-        "q": "Setting up meeting rooms in a corporate office?",
-        "a": "Provide temporary guest Wi-Fi access in conference lobbies with one quick camera scan."
+        "q": "An office network where everyone logs in?",
+        "a": "A Wi-Fi QR code can't hold a username. Set up a guest network with a shared password and make the code for that."
+      },
+      {
+        "q": "You change the guest password often?",
+        "a": "Every change needs a new code. Put the code in a frame you can swap rather than printing it on menus."
       }
     ],
     "legalCaution": {
-      "title": "Wi-Fi Security & Warning Against Dynamic QR Services",
+      "title": "Before you print",
       "points": [
-        "\"Dynamic\" QR codes from subscription services send each scan through a redirect link and can stop working when the subscription ends. A Wi-Fi QR code cannot work that way: the network name and password have to be inside the code itself, which is what this generator makes.",
-        "Our studio generates direct, static Wi-Fi payloads in the widely used WIFI: format. UniversalCodeMaker does not control a redirect or expiry, but credentials, device support and network settings can change.",
-        "For high-security enterprise environments, use a dedicated Guest VLAN to isolate visitors from internal office hardware."
+        "Only share a network you are allowed to share, such as your own or a guest network your employer approves.",
+        "If your router offers a guest network, use it, so visitors are kept apart from your own computers and printers."
       ]
     },
     "authorityLinks": [
@@ -1998,34 +1875,37 @@ const ENRICHMENTS = {
   "vcard-qr-code-generator": {
     "benefits": [
       {
-        "title": "Instant Address Book Save",
-        "desc": "Prompts smartphones to save contact details directly with zero typing errors."
+        "title": "No typing for the other person",
+        "desc": "Your details land in their contacts app in one scan, spelled the way you spell them."
       },
       {
-        "title": "Zero Paper Business Card Waste",
-        "desc": "Share a contact card with phone, email, website and job title."
+        "title": "Works without internet",
+        "desc": "The contact is inside the code, so saving it does not need a website or a signal."
       },
       {
-        "title": "Cross-Platform vCard 3.0 Standard",
-        "desc": "Opens in the phone's contacts app, such as Apple Contacts or Google Contacts."
+        "title": "Opens in the contacts app",
+        "desc": "iPhone and Android cameras recognise vCard codes and offer to add the contact."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Attending conferences, networking mixers, or trade shows?",
-        "a": "Display your vCard QR code on your badge, phone lock screen, or physical card for instant contact sharing."
+        "q": "Printed business cards?",
+        "a": "Yes. Put the code on the back with a white margin around it, at least 2.5 cm wide."
       },
       {
-        "q": "Real estate agents and independent consultants?",
-        "a": "Print on yard signs, presentation slides, and vehicle decals so prospects can save your number in 2 seconds."
+        "q": "Your details change often?",
+        "a": "A vCard code can't be changed after printing. A Website URL code that points to your own contact page can stay the same while you update the page."
+      },
+      {
+        "q": "Want to share a photo or portfolio?",
+        "a": "Add your website or LinkedIn address to the card. Photos don't fit in a QR code."
       }
     ],
     "legalCaution": {
-      "title": "vCard Best Practices & Payload Optimization",
+      "title": "Before you print",
       "points": [
-        "Keep the vCard payload compact (under 350 characters) to ensure the QR code remains clean, low-density, and scannable even from a distance or in low light.",
-        "Avoid embedding raw image photos directly in the vCard payload, as this creates dense codes that can be difficult for older smartphone cameras to resolve.",
-        "Written as vCard 3.0 (IETF RFC 2426), the version the iPhone and Android contacts apps read directly."
+        "Only include details you are happy for anyone holding the card to save.",
+        "Scan the printed proof at its final size on an iPhone and an Android phone."
       ]
     },
     "authorityLinks": [
@@ -2035,43 +1915,42 @@ const ENRICHMENTS = {
         "url": "https://en.wikipedia.org/wiki/VCard"
       },
       {
-        "name": "IETF RFC 6350 (vCard 4.0)",
-        "desc": "Official Internet Engineering Task Force RFC specification for electronic business cards.",
-        "url": "https://datatracker.ietf.org/doc/html/rfc6350"
+        "name": "IETF RFC 2426 (vCard 3.0)",
+        "desc": "The vCard version this generator writes.",
+        "url": "https://datatracker.ietf.org/doc/html/rfc2426"
       }
     ]
   },
   "crypto-qr-code-generator": {
     "benefits": [
       {
-        "title": "Zero Address Typing Mistakes",
-        "desc": "Eliminates mistyped 42-character public keys and prevents irreversible fund transfers."
+        "title": "No long address to copy",
+        "desc": "Payers scan instead of copying a long address by hand, where one wrong character sends money to the wrong place."
       },
       {
-        "title": "BIP-21 Universal Payment URI",
-        "desc": "Compatible with all major crypto wallets (Metamask, Phantom, Trust Wallet, Ledger)."
+        "title": "Standard payment links",
+        "desc": "Uses the BIP-21, EIP-681 and Solana Pay formats that wallet apps are built to read."
       },
       {
-        "title": "Built-in Crypto Coin Badges",
-        "desc": "Embeds official Bitcoin, Ethereum, or Solana logos directly in the center of the QR code."
+        "title": "Public address only",
+        "desc": "The code holds nothing that could move your funds."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Accepting crypto payments in a retail store or online invoice?",
-        "a": "Pre-configure cryptocurrency QR codes with your recipient address and optional requested payment amounts."
+        "q": "Accepting tips or donations?",
+        "a": "Leave the amount blank so people can choose."
       },
       {
-        "q": "Setting up creator tip jars or non-profit donations?",
-        "a": "Print durable crypto payment QR stickers for live streams, blogs, and fundraising stands."
+        "q": "Billing a fixed amount?",
+        "a": "Add the amount, then check it on the payer's screen before they confirm. Crypto payments can't be reversed."
       }
     ],
     "legalCaution": {
-      "title": "Cryptocurrency Address Safety & Testing Recommendations",
+      "title": "Before you share it",
       "points": [
-        "Cryptocurrency transactions are mathematically irreversible on the blockchain. Always perform a test micro-transaction before printing codes on physical signage.",
-        "Verify that your clipboard or browser has not been altered by malicious browser extensions before generating payment addresses.",
-        "Bitcoin links follow BIP-21, Ethereum links follow EIP-681 (the amount is converted to wei), and Solana uses the solana: link format."
+        "Check the address on your wallet's receive screen. A wrong character can't be fixed after a payment is sent.",
+        "Tax and reporting rules for crypto payments depend on where you live; check them before taking payments for a business."
       ]
     },
     "authorityLinks": [
@@ -2095,34 +1974,33 @@ const ENRICHMENTS = {
   "email-qr-code-generator": {
     "benefits": [
       {
-        "title": "Pre-Populated Support Messages",
-        "desc": "Automatically fills recipient, subject line, and body template when scanned."
-      },
-      {
-        "title": "Direct Native Mail Client Launch",
-        "desc": "Launches default mail app (Apple Mail, Gmail, Outlook) with one camera scan."
+        "title": "The right subject every time",
+        "desc": "A pre-filled subject such as a product model or event name makes incoming mail easy to sort."
       },
       {
         "title": "Sent from their own mail app",
         "desc": "A mailto link opens the scanner's own email app. The message goes from their account, not through this site."
+      },
+      {
+        "title": "No typing the address",
+        "desc": "Nobody mistypes your email address from a poster."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Customer warranty claims and technical support tickets?",
-        "a": "Print on equipment labels with pre-filled product model numbers and return instructions."
+        "q": "Support or warranty requests?",
+        "a": "Put the model number in the subject so you know which product the message is about."
       },
       {
-        "q": "Event RSVP and private club registration?",
-        "a": "Include pre-written event RSVP responses on printed invitation flyers."
+        "q": "Need a name, order number or photo from people?",
+        "a": "A web form collects that more reliably. Use a Website URL code that points to the form."
       }
     ],
     "legalCaution": {
-      "title": "Email QR Standards",
+      "title": "Before you print",
       "points": [
-        "Uses the mailto: link format (IETF RFC 6068) with the subject and body filled in.",
-        "The email is sent from the person's own mail app, and only after they tap Send; this site sends nothing. Whether your use follows anti-spam rules such as CAN-SPAM or GDPR depends on who you ask to email and why.",
-        "Special characters (spaces, ampersands, question marks) are automatically percent-encoded for universal email client compatibility."
+        "Use an address someone actually reads, and check it by scanning the printed proof.",
+        "Keep the message short. Long text makes the code denser and harder to scan when printed small."
       ]
     },
     "authorityLinks": [
@@ -2141,34 +2019,33 @@ const ENRICHMENTS = {
   "sms-qr-code-generator": {
     "benefits": [
       {
-        "title": "1-Tap Text Message Compose",
-        "desc": "Opens default SMS app with pre-filled message text and recipient phone number."
+        "title": "No number to type",
+        "desc": "People don't have to copy your number off a poster or receipt."
       },
       {
-        "title": "Works Without Internet / Wi-Fi",
-        "desc": "Cellular SMS works even in low-reception areas where mobile data is unavailable."
+        "title": "Works without data",
+        "desc": "Texts go over the mobile network, which helps at venues where mobile data is weak."
       },
       {
-        "title": "High Consumer Engagement",
-        "desc": "SMS response rates are over 5x higher than traditional paper forms or email signups."
+        "title": "Your exact wording",
+        "desc": "A pre-filled keyword arrives the same way every time, so it is easy to sort or automate."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Running billboard or transit ads for lead capture?",
-        "a": "Allow commuters to scan and send a pre-filled keyword (e.g. \"QUOTE\") in 2 seconds."
+        "q": "Running a text sign-up list?",
+        "a": "Pre-fill the keyword, and follow the consent rules for marketing texts where you operate."
       },
       {
-        "q": "Dispatching maintenance or roadside assistance?",
-        "a": "Print stickers on rental vehicles with pre-filled emergency dispatch codes."
+        "q": "Your audience mostly uses WhatsApp?",
+        "a": "A WhatsApp QR code opens a chat there instead."
       }
     ],
     "legalCaution": {
-      "title": "SMS Marketing Regulations & Opt-In Rules",
+      "title": "Rules to check",
       "points": [
-        "Ensure compliance with local telecommunications laws (TCPA in the US, GDPR in the EU). Users must explicitly tap \"Send\" in their SMS app to transmit the message.",
-        "Clearly state in your promotional signage that standard message and data rates may apply according to the user’s mobile carrier plan.",
-        "Uses the widely supported SMSTO: format (smsto:number:message), not the sms: link defined in RFC 5724."
+        "Marketing texts usually need the person's consent and a clear way to opt out. Check the rules where you operate before you send replies.",
+        "Don't ask people to text personal or payment details."
       ]
     },
     "authorityLinks": [
@@ -2182,34 +2059,33 @@ const ENRICHMENTS = {
   "phone-call-qr-code-generator": {
     "benefits": [
       {
-        "title": "Instant 1-Tap Telephone Dialing",
-        "desc": "Launches phone dialer with telephone number pre-loaded; zero misdialed digits."
+        "title": "No misdialled numbers",
+        "desc": "The number comes from the code, so a digit can't be misread from a fast-moving van."
       },
       {
-        "title": "Universal Cellular Compatibility",
-        "desc": "Supported natively on every iOS and Android device with zero app requirements."
+        "title": "Works without data",
+        "desc": "The call goes over the normal phone network once the number is on screen."
       },
       {
-        "title": "Emergency Speed",
-        "desc": "Enables immediate voice connection in urgent situations."
+        "title": "Always asks first",
+        "desc": "Phones confirm before dialing, so nobody calls by accident."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Real estate yard signs, contractor trucks, and restaurant storefronts?",
-        "a": "Allow passersby to call your sales office with a single camera tap."
+        "q": "Vans, signs and storefronts?",
+        "a": "Print it large enough for the distance, and also show the number in plain text."
       },
       {
-        "q": "Equipment breakdown or security hotline signage?",
-        "a": "Ensure facility operators can connect directly to security or maintenance personnel."
+        "q": "Want people to save your number for later?",
+        "a": "A vCard QR code saves your name, number and email to their contacts instead."
       }
     ],
     "legalCaution": {
-      "title": "Phone QR Formatting & International Roaming",
+      "title": "Before you print",
       "points": [
-        "Always format telephone numbers in international E.164 format (+[country code][number]) so international travelers can connect without dialing errors.",
-        "Smartphones will always prompt the user to confirm the call before dialing, preventing accidental or phantom outgoing calls.",
-        "Uses the tel: link format (IETF RFC 3966)."
+        "Call the number from the printed code once, from a phone on another network.",
+        "Show the number in plain text too, for people who can't scan."
       ]
     },
     "authorityLinks": [
@@ -2223,34 +2099,33 @@ const ENRICHMENTS = {
   "calendar-event-qr-code-generator": {
     "benefits": [
       {
-        "title": "1-Tap Calendar Synchronization",
-        "desc": "Prompts users to add events directly into Apple Calendar, Google Calendar, or Outlook."
+        "title": "No copying dates by hand",
+        "desc": "Guests save the title, place and time in one scan instead of typing them into a calendar."
       },
       {
-        "title": "Zero Event Misses & Automatic Reminders",
-        "desc": "Pre-configures start time, end time, location address, and reminder notifications."
+        "title": "Time zones handled",
+        "desc": "The time is stored in UTC, so guests travelling in from elsewhere see it at the right hour."
       },
       {
-        "title": "Universal iCalendar VEVENT Standard",
-        "desc": "Encodes the event as iCalendar (VEVENT) text, the format defined by RFC 5545."
+        "title": "No account needed",
+        "desc": "The event is inside the code, not on a server, so there is nothing to sign up for."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Organizing conferences, product launches, or webinars?",
-        "a": "Print calendar event QR codes on tickets and promo posters so attendees save the exact date instantly."
+        "q": "A fixed date on printed invitations?",
+        "a": "Good fit. Print the date and time next to the code too."
       },
       {
-        "q": "Wedding invitations and birthday party save-the-dates?",
-        "a": "Ensure guests never forget the date, venue address, and start time."
+        "q": "Details still likely to change?",
+        "a": "Link to an event web page with a Website URL code instead, and update the page."
       }
     ],
     "legalCaution": {
-      "title": "iCalendar Timezone & Daylight Saving Best Practices",
+      "title": "Before you print",
       "points": [
-        "Always specify UTC timestamps or explicit timezone identifiers (TZID) to ensure event times do not shift when imported by attendees traveling across time zones.",
-        "Keep event descriptions concise to maintain high QR code scannability on printed paper invitations.",
-        "Event text uses the iCalendar VEVENT structure from IETF RFC 5545, simplified (no UID or timestamp fields); test-scan with the phones your guests use."
+        "Scan the printed proof and check the date, time and place in the calendar app.",
+        "Keep the notes short. Long text makes the code dense and harder to scan on small cards."
       ]
     },
     "authorityLinks": [
@@ -2327,8 +2202,8 @@ const ENRICHMENTS = {
     ],
     "decisionGuide": [
       {
-        "q": "Industrial machinery serial numbers and calibration logs?",
-        "a": "Encode permanent equipment metadata directly onto durable metal or vinyl asset tags."
+        "q": "Machine serial numbers or short instructions?",
+        "a": "Good fit. Keep the text short so the code stays easy to scan on small labels."
       },
       {
         "q": "Public keys or wallet addresses?",
@@ -2336,11 +2211,10 @@ const ENRICHMENTS = {
       }
     ],
     "legalCaution": {
-      "title": "Plain Text Security & Visibility Warnings",
+      "title": "Before you print",
       "points": [
-        "Plain text QR codes are completely unencrypted and can be read by anyone with a smartphone camera. Never encode sensitive passwords or personal health data in plaintext.",
-        "For high-density text (>500 characters), select Error Correction Level L or M to prevent the QR matrix from becoming excessively dense.",
-        "Standard QR Code symbols (ISO/IEC 18004). Dot styles and logos rely on the code's error correction, so test-scan styled codes before printing."
+        "Anyone with a phone can read a plain text code. Leave out anything you wouldn't print in plain words.",
+        "For long text, choose error correction level L or M so the code doesn't become too dense."
       ]
     },
     "authorityLinks": [
@@ -2412,34 +2286,33 @@ const ENRICHMENTS = {
   "google-reviews-qr-code-generator": {
     "benefits": [
       {
-        "title": "Direct 1-Tap Review Form Launch",
-        "desc": "Bypasses search results and business listings, opening straight into Google's rating dialog on mobile devices."
+        "title": "Straight to the review box",
+        "desc": "Customers don't have to search for your business and then find the review button."
       },
       {
-        "title": "Permanent & Zero Subscription Fees",
-        "desc": "100% static client-side QR generation. No monthly bills, no scan caps, and no middleman URL redirects that can break."
+        "title": "Works from a link or a Place ID",
+        "desc": "Paste the review link from your Business Profile, or a Place ID if that is what you have."
       },
       {
-        "title": "Print Files for Counters & Table Stands",
-        "desc": "Download a vector SVG or 300 DPI PNG to print on counter cards, table stands or receipts."
+        "title": "Print once",
+        "desc": "The link is inside the code, so the card keeps working without a subscription."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Should I use a shortlink or Google Place ID?",
-        "a": "Both work. If you have your 'g.page' review link from Google Business Profile, paste it directly. If you have a Google Place ID (ChIJ...), the generator turns it into the direct 'writereview' endpoint automatically."
+        "q": "A shop, café or service with a Google Business Profile?",
+        "a": "Good fit. Put the card where people wait, such as the counter or the table."
       },
       {
-        "q": "Where is the best physical location to place review QR codes?",
-        "a": "Where customers finish their visit: the checkout counter, receipts, dining tables or the exit. Asking right after a good experience makes leaving a review easy."
+        "q": "Just want people to find you on the map?",
+        "a": "A Google Maps location QR code opens your place without the review box."
       }
     ],
     "legalCaution": {
-      "title": "Google Business Profile Review Policy Compliance",
+      "title": "Review rules",
       "points": [
-        "Google strictly prohibits 'review gating' (filtering negative reviews by sending dissatisfied customers to a private form while directing positive customers to Google).",
-        "Do not offer monetary incentives, discounts, or gifts in exchange for reviews, as this violates Google Maps Contributor guidelines and FTC endorsement guides.",
-        "Ensure all reviews are genuine and left by authentic customers using their personal Google accounts."
+        "Ask all customers, not only happy ones, and don't offer discounts or gifts for reviews. Google's policies forbid both, and consumer-protection rules in some countries restrict them too.",
+        "Scan the printed card and check it opens your own listing."
       ]
     },
     "authorityLinks": [
@@ -2458,34 +2331,33 @@ const ENRICHMENTS = {
   "whatsapp-qr-code-generator": {
     "benefits": [
       {
-        "title": "Instant Chat Without Saving Number",
-        "desc": "Customers connect immediately via wa.me protocol without needing to create a phone contact first."
+        "title": "No saving the number first",
+        "desc": "The chat opens straight away, without adding you to contacts."
       },
       {
-        "title": "Pre-Filled Inquiries & Order Messages",
-        "desc": "Pre-populate introductory text so customers can send product inquiries or reservations in one tap."
+        "title": "A greeting that tells you why",
+        "desc": "A pre-filled line such as I'd like to book a table shows you where the customer found the code."
       },
       {
-        "title": "Privacy-Safe Direct Communication",
-        "desc": "The phone number and message fields are compiled into the QR payload in your browser rather than submitted to UniversalCodeMaker's server."
+        "title": "Works with WhatsApp Business",
+        "desc": "The same link format opens chats with WhatsApp Business numbers."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Can I use this for personal and WhatsApp Business accounts?",
-        "a": "Yes. The standard wa.me protocol operates universally across personal WhatsApp, WhatsApp Business, and WhatsApp Web on both Android and iOS devices."
+        "q": "Taking orders or bookings by chat?",
+        "a": "Good fit. Pre-fill a greeting that names the product or table."
       },
       {
-        "q": "How should international phone numbers be formatted?",
-        "a": "Include the country code followed by the full mobile number with digits only (e.g. 15550192834 for US or 447911123456 for UK). Do not include plus signs, spaces, or brackets."
+        "q": "Customers without WhatsApp?",
+        "a": "Add an SMS or Phone Call QR code next to it."
       }
     ],
     "legalCaution": {
-      "title": "WhatsApp Business Policy & Messaging Guidelines",
+      "title": "Before you print",
       "points": [
-        "Ensure your customer outreach complies with WhatsApp Business Messaging Policies and applicable telecommunications regulations.",
-        "Do not send unsolicited bulk promotional messages to users who scan your code without explicit opt-in consent.",
-        "WhatsApp and its logos are registered trademarks of Meta Platforms, Inc."
+        "Business use of WhatsApp is covered by WhatsApp's own business policies; check them if you send marketing messages.",
+        "Scan the printed code and send yourself a test message."
       ]
     },
     "authorityLinks": [
@@ -2504,34 +2376,33 @@ const ENRICHMENTS = {
   "upi-qr-code-generator": {
     "benefits": [
       {
-        "title": "Universal NPCI App Compatibility",
-        "desc": "Scannable across Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay, and all Indian banking apps."
+        "title": "Works with the usual UPI apps",
+        "desc": "One code for customers on Google Pay, PhonePe, Paytm, BHIM and bank apps."
       },
       {
-        "title": "Direct UPI Payment Details",
-        "desc": "UniversalCodeMaker does not process or settle payments or set bank, app or merchant fees. Verify the recipient, amount and settlement terms with your payment provider."
+        "title": "Optional fixed amount",
+        "desc": "Add the amount for a bill, or leave it open for a shop counter."
       },
       {
-        "title": "Flexible Static or Preset Amount",
-        "desc": "Generate open-amount QR codes for store counters or locked-amount codes for specific invoices and menu items."
+        "title": "No middleman",
+        "desc": "The code points to your own UPI ID. We never see or touch the payment."
       }
     ],
     "decisionGuide": [
       {
-        "q": "What is the difference between static and dynamic amount UPI QR codes?",
-        "a": "Static codes leave the amount blank, allowing customers to key in their own total at checkout. Dynamic amount codes embed a fixed rupee figure (e.g. am=450.00) so the amount is locked when scanned."
+        "q": "A shop counter?",
+        "a": "Leave the amount blank and add your shop name."
       },
       {
-        "q": "Can I print UPI QR codes on tabletop acrylic tent stands?",
-        "a": "Yes. Download the SVG (vector, sharp at any size) or a 300 DPI PNG and print it on durable vinyl or cardboard standees for checkout counters."
+        "q": "A single bill or invoice?",
+        "a": "Set the amount and put the invoice number in the note."
       }
     ],
     "legalCaution": {
-      "title": "NPCI Unified Payments Interface Guidelines",
+      "title": "Before you print",
       "points": [
-        "UniversalCodeMaker creates the QR payload but does not process or settle payments. Payment handling, fees and settlement terms are controlled by the payer's and recipient's payment providers.",
-        "Always test-scan your generated QR code with a ₹1 test transaction before printing physical shop signage to verify your VPA spelling.",
-        "Ensure your merchant name matches the official registration on your bank account to avoid customer confusion during payment verification."
+        "Check your UPI ID letter by letter. Money sent to a wrong ID is hard to get back.",
+        "Your bank or payment app may have its own rules for business collections. Check them if you take a lot of payments."
       ]
     },
     "authorityLinks": [
@@ -2952,11 +2823,11 @@ const GUIDES = {
     "moreFaqs": [
       {
         "q": "Will a vCard QR code work on both iPhone and Android?",
-        "a": "Yes. The iPhone Camera app and Android camera or Google Lens recognise vCard codes and offer to add the contact. We write vCard 3.0, the version contact apps read most reliably."
+        "a": "Yes. The iPhone Camera app and Android camera or Google Lens recognise vCard codes and offer to add the contact. We write vCard 3.0, which both read."
       },
       {
         "q": "Can I change the details after printing?",
-        "a": "No. The details are stored inside the code, which is what makes it private, free and permanent. If something changes, generate a new code. It takes a few seconds."
+        "a": "No. The details are stored inside the code, so there is no server or subscription behind it, and also no way to edit it. If something changes, generate a new code."
       },
       {
         "q": "Can I put my photo or logo in the contact card?",
@@ -4994,7 +4865,7 @@ ${siteHeaderHtml(page.queryParam)}
       <div class="decision-header">
         <h2 style="display: flex; align-items: center; gap: 0.5rem;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-          ${isQrPage ? `Is a ${page.shortName} code the right fit?` : 'Which barcode do you need?'}
+          ${isQrPage ? `Is ${/^([AEIO]|SMS)/i.test(page.shortName) ? 'an' : 'a'} ${page.shortName} code the right fit?` : 'Which barcode do you need?'}
         </h2>
       </div>${isQrPage ? '' : `
       <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">

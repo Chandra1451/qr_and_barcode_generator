@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Calendar Event QR Code Generator (iCal & Outlook)</title>
-  <meta name="description" content="Generate free calendar event QR codes with date, time, location & description. Attendees add events to Google Calendar, Apple Calendar & Outlook in one scan.">
+  <meta name="description" content="Free calendar event QR code generator. Add the title, place, start and end time and notes; guests scan to add the event to their phone calendar.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/calendar-event-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free Calendar Event QR Code Generator (iCal & Outlook)">
-  <meta property="og:description" content="Generate free calendar event QR codes with date, time, location & description. Attendees add events to Google Calendar, Apple Calendar & Outlook in one scan.">
+  <meta property="og:description" content="Free calendar event QR code generator. Add the title, place, start and end time and notes; guests scan to add the event to their phone calendar.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/calendar-event-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Calendar Event QR Code Generator (iCal & Outlook)">
-  <meta name="twitter:description" content="Generate free calendar event QR codes with date, time, location & description. Attendees add events to Google Calendar, Apple Calendar & Outlook in one scan.">
+  <meta name="twitter:description" content="Free calendar event QR code generator. Add the title, place, start and end time and notes; guests scan to add the event to their phone calendar.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "Calendar Event QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/calendar-event-qr-code-generator.html",
-  "description": "Generate free calendar event QR codes with date, time, location & description. Attendees add events to Google Calendar, Apple Calendar & Outlook in one scan.",
+  "description": "Free calendar event QR code generator. Add the title, place, start and end time and notes; guests scan to add the event to their phone calendar.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -349,50 +349,34 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How does scanning a calendar QR code automatically add an event to my calendar?",
+      "name": "Will the time be right for guests in other time zones?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "When scanned with an iPhone Camera or Android Google Lens, the operating system recognizes the standard iCalendar BEGIN:VCALENDAR / BEGIN:VEVENT data block. Instead of opening a web browser, the device displays an interactive banner prompting you to \"Add to Calendar\" or \"Open in Calendar\". Tapping the prompt opens your default calendar app (Apple Calendar, Google Calendar, or Samsung Calendar) with the event title, start and end dates, venue address, and description pre-filled for one-tap saving."
+        "text": "Yes. The time you enter is taken as your local time and stored in UTC, so each phone shows it in its own time zone. Check the start time after scanning the preview."
       }
     },
     {
       "@type": "Question",
-      "name": "Does the calendar QR code support automatic timezone conversions?",
+      "name": "Which phones can add the event?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. When event start and end timestamps are formatted in UTC ending with a \"Z\" (such as 20261115T183000Z), the attendee's smartphone automatically converts the time into their device's active local timezone. For in-person venue events, local floating time (omitting the trailing \"Z\") ensures the event registers at the exact local wall-clock time regardless of where the attendee travels from."
+        "text": "Many phone cameras recognise calendar QR codes and offer to add the event, but support varies by phone and app. Test with an iPhone and an Android phone before printing, and print the date and time next to the code as well."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the difference between an all-day event and a timed event in a QR code?",
+      "name": "Can I make an all-day event?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A timed event includes specific start and finish clock hours in ISO 8601 format (DTSTART:20261115T090000), booking off exact time slots in the recipient's calendar view. An all-day event specifies only calendar dates without clock hours (DTSTART;VALUE=DATE:20261115), placing a banner across the top of the attendee's day view without triggering specific minute-by-minute reminders—perfect for birthdays, anniversaries, and multi-day exhibitions."
+        "text": "Not yet. Every event has a start and an end time. For a whole day, use the opening and closing times."
       }
     },
     {
       "@type": "Question",
-      "name": "Does this calendar QR code work across Google Calendar, Apple Calendar, and Microsoft Outlook?",
+      "name": "What if the date changes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The VEVENT payload adheres strictly to IETF RFC 5545, the universal open standard supported across all major operating systems and calendar software. Native iOS and iPadOS devices parse it directly into Apple Calendar, Android devices import it into Google Calendar, and desktop or mobile email apps import it smoothly into Microsoft Outlook."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are my private event details or guest schedules logged or saved on your servers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Your browser writes the event details into the QR pattern, and the generator does not upload them. The privacy policy explains what the site itself measures."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the recommended print size for event QR codes on invitations and flyers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For personal handheld print materials such as wedding invitations, save-the-date cards, or conference badges, we recommend printing the calendar QR code at a minimum of 1.0 × 1.0 inch (25 × 25 mm) at 300 DPI. For large event posters, roll-up banners, and entrance signs scanned from a distance of 3 to 6 feet, scale the QR code to 3 to 6 inches (75 to 150 mm) or larger. Always export in vector SVG format to ensure crisp vector edges and flawless scanning across any commercial press."
+        "text": "The details are inside the code, so a new date needs a new code. A Website URL code pointing to an event page is easier to keep current."
       }
     }
   ]
@@ -470,7 +454,7 @@
         Smart QR
       </div>
       <h1 class="hero-title">Free iCal Calendar Event QR Code Generator</h1>
-      <p class="hero-lead">Generate universal vEvent / iCalendar QR codes with start and end times, venue location, and event notes. When scanned with iOS Camera or Android Google Lens, attendees can add weddings, conferences, webinars, or parties directly to Google Calendar, Apple Calendar, or Outlook with one tap.</p>
+      <p class="hero-lead">Make a QR code that adds your event to a phone calendar. Enter the title, place, start and end time and a short note. Guests scan it and save the event, already set to the right time in their own time zone.</p>
       
       <a href="../index.html?wizard=event" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -490,33 +474,28 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO/IEC 18004 QR Code Model 2</dd>
+      <dt class="spec-key">Format</dt>
+      <dd class="spec-val">iCalendar VEVENT text (RFC 5545) inside the code</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Payload Format</dt>
-      <dd class="spec-val">iCalendar 2.0 (IETF RFC 5545 VEVENT standard)</dd>
+      <dt class="spec-key">Fields</dt>
+      <dd class="spec-val">Title, location, start, end and notes</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Syntax Structure</dt>
-      <dd class="spec-val">BEGIN:VCALENDAR / BEGIN:VEVENT ... END:VEVENT / END:VCALENDAR</dd>
+      <dt class="spec-key">Times</dt>
+      <dd class="spec-val">Converted to UTC, so phones show the event in the reader's own time zone</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Timestamp Encoding</dt>
-      <dd class="spec-val">ISO 8601 UTC (YYYYMMDDTHHMMSSZ) or local floating time</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Compatibility</dt>
-      <dd class="spec-val">Apple Calendar (iOS/macOS), Google Calendar (Android/Web), Microsoft Outlook</dd>
+      <dt class="spec-key">All Day Events</dt>
+      <dd class="spec-val">Not supported yet; use a start and end time</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Privacy</dt>
-      <dd class="spec-val">Built in your browser; event details and attendee schedules are never uploaded or stored</dd>
+      <dd class="spec-val">Built in your browser; the generator does not upload the event details</dd>
     </div>
   
         </dl>
@@ -531,27 +510,22 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Wedding invitations, save-the-dates, and family anniversary celebrations</span>
+      <span>Wedding invitations and save-the-date cards</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Conference schedules, keynote speaker sessions, and panel workshops</span>
+      <span>Posters for talks, classes and open days</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Concert tickets, theater performances, festival lineups, and sporting events</span>
+      <span>Conference programmes and badges</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Corporate webinars, virtual product launches, and quarterly meetings</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>University lecture timetables, academic exams, and campus orientation events</span>
+      <span>Appointment reminder cards</span>
     </li>
   
         </ul>
@@ -573,25 +547,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>1-Tap Calendar Synchronization</h4>
+        <h4>No copying dates by hand</h4>
       </div>
-      <p>Prompts users to add events directly into Apple Calendar, Google Calendar, or Outlook.</p>
+      <p>Guests save the title, place and time in one scan instead of typing them into a calendar.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Zero Event Misses & Automatic Reminders</h4>
+        <h4>Time zones handled</h4>
       </div>
-      <p>Pre-configures start time, end time, location address, and reminder notifications.</p>
+      <p>The time is stored in UTC, so guests travelling in from elsewhere see it at the right hour.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Universal iCalendar VEVENT Standard</h4>
+        <h4>No account needed</h4>
       </div>
-      <p>Encodes the event as iCalendar (VEVENT) text, the format defined by RFC 5545.</p>
+      <p>The event is inside the code, not on a server, so there is nothing to sign up for.</p>
     </div>
   
       </div>
@@ -604,7 +578,7 @@
       <div class="decision-header">
         <h2 style="display: flex; align-items: center; gap: 0.5rem;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-          Is a Event QR code the right fit?
+          Is an Event QR code the right fit?
         </h2>
       </div>
       <div class="decision-grid">
@@ -612,17 +586,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Organizing conferences, product launches, or webinars?</span>
+        <span>A fixed date on printed invitations?</span>
       </h3>
-      <p>Print calendar event QR codes on tickets and promo posters so attendees save the exact date instantly.</p>
+      <p>Good fit. Print the date and time next to the code too.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Wedding invitations and birthday party save-the-dates?</span>
+        <span>Details still likely to change?</span>
       </h3>
-      <p>Ensure guests never forget the date, venue address, and start time.</p>
+      <p>Link to an event web page with a Website URL code instead, and update the page.</p>
     </div>
   
       </div>
@@ -637,23 +611,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>iCalendar Timezone & Daylight Saving Best Practices</h3>
+        <h3>Before you print</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Always specify UTC timestamps or explicit timezone identifiers (TZID) to ensure event times do not shift when imported by attendees traveling across time zones.</span>
+      <span>Scan the printed proof and check the date, time and place in the calendar app.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Keep event descriptions concise to maintain high QR code scannability on printed paper invitations.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Event text uses the iCalendar VEVENT structure from IETF RFC 5545, simplified (no UID or timestamp fields); test-scan with the phones your guests use.</span>
+      <span>Keep the notes short. Long text makes the code dense and harder to scan on small cards.</span>
     </li>
   
       </ul>
@@ -702,61 +671,41 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>How does scanning a calendar QR code automatically add an event to my calendar?</span>
+        <span>Will the time be right for guests in other time zones?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>When scanned with an iPhone Camera or Android Google Lens, the operating system recognizes the standard iCalendar BEGIN:VCALENDAR / BEGIN:VEVENT data block. Instead of opening a web browser, the device displays an interactive banner prompting you to "Add to Calendar" or "Open in Calendar". Tapping the prompt opens your default calendar app (Apple Calendar, Google Calendar, or Samsung Calendar) with the event title, start and end dates, venue address, and description pre-filled for one-tap saving.</p>
+        <p>Yes. The time you enter is taken as your local time and stored in UTC, so each phone shows it in its own time zone. Check the start time after scanning the preview.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Does the calendar QR code support automatic timezone conversions?</span>
+        <span>Which phones can add the event?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. When event start and end timestamps are formatted in UTC ending with a "Z" (such as 20261115T183000Z), the attendee's smartphone automatically converts the time into their device's active local timezone. For in-person venue events, local floating time (omitting the trailing "Z") ensures the event registers at the exact local wall-clock time regardless of where the attendee travels from.</p>
+        <p>Many phone cameras recognise calendar QR codes and offer to add the event, but support varies by phone and app. Test with an iPhone and an Android phone before printing, and print the date and time next to the code as well.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>What is the difference between an all-day event and a timed event in a QR code?</span>
+        <span>Can I make an all-day event?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>A timed event includes specific start and finish clock hours in ISO 8601 format (DTSTART:20261115T090000), booking off exact time slots in the recipient's calendar view. An all-day event specifies only calendar dates without clock hours (DTSTART;VALUE=DATE:20261115), placing a banner across the top of the attendee's day view without triggering specific minute-by-minute reminders—perfect for birthdays, anniversaries, and multi-day exhibitions.</p>
+        <p>Not yet. Every event has a start and an end time. For a whole day, use the opening and closing times.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Does this calendar QR code work across Google Calendar, Apple Calendar, and Microsoft Outlook?</span>
+        <span>What if the date changes?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. The VEVENT payload adheres strictly to IETF RFC 5545, the universal open standard supported across all major operating systems and calendar software. Native iOS and iPadOS devices parse it directly into Apple Calendar, Android devices import it into Google Calendar, and desktop or mobile email apps import it smoothly into Microsoft Outlook.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Are my private event details or guest schedules logged or saved on your servers?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>No. Your browser writes the event details into the QR pattern, and the generator does not upload them. The privacy policy explains what the site itself measures.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What is the recommended print size for event QR codes on invitations and flyers?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>For personal handheld print materials such as wedding invitations, save-the-date cards, or conference badges, we recommend printing the calendar QR code at a minimum of 1.0 × 1.0 inch (25 × 25 mm) at 300 DPI. For large event posters, roll-up banners, and entrance signs scanned from a distance of 3 to 6 feet, scale the QR code to 3 to 6 inches (75 to 150 mm) or larger. Always export in vector SVG format to ensure crisp vector edges and flawless scanning across any commercial press.</p>
+        <p>The details are inside the code, so a new date needs a new code. A Website URL code pointing to an event page is easier to keep current.</p>
       </div>
     </details>
   

@@ -4,20 +4,20 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.27';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.27';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.28';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.28';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.27';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.27';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.27';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.27';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.27';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.27';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.27';
+} from './generators/registry.js?v=3.28';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.28';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.28';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.28';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.28';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.28';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.28';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -26,7 +26,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.27';
+} from './export/label-maker.js?v=3.28';
 
 class V2StudioApp {
   constructor() {

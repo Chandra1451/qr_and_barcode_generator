@@ -19,5 +19,5 @@ export function eanOnpageHtml() {
         </div>
         <p id="ean-startup">This tool needs JavaScript. If it does not start, enable JavaScript and reload, or <a href="../index.html?symbology=ean-13">open the full studio</a>. The printing guide is below.</p>
       </section>
-      <script type="module" src="../js/ean-onpage.js?v=1.0"></script>`;
+      <script type="module" src="../js/ean-onpage.js?v=1.1"></script>`;
 }

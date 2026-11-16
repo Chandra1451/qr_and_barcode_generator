@@ -330,7 +330,7 @@ export const QR_WIZARDS = {
     id: 'google_review',
     name: 'Google Review',
     icon: '⭐',
-    description: 'Direct link opening Google Maps rating dialog to collect 5-star customer reviews.',
+    description: 'Opens your Google review box so customers can leave a review.',
     fields: [
       {
         id: 'reviewUrl',

@@ -349,31 +349,23 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How does a Google Review QR code take customers directly to the review submission form?",
+      "name": "Where do I find my review link?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "By encoding Google's dedicated review URL (https://search.google.com/local/writereview?placeid={PlaceID}) or your verified Google Business Profile shortlink (g.page/.../review), scanning instantly launches the Google Maps app or mobile browser directly into the 5-star rating selector and comment box, completely bypassing search results, competitors, and map navigation."
+        "text": "In your Google Business Profile, look for the option to ask for reviews and copy the link it gives you. Paste it into the generator as it is."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I find my business Google Place ID or review share link?",
+      "name": "What is a Place ID, and do I need one?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sign in to Google Search or Google Maps with your Google Business Profile account, search for your business name, click \"Ask for reviews\", and copy the generated review link. If you prefer using your official Place ID (starting with \"ChIJ...\"), look it up using Google's Place ID Finder tool or paste your Maps URL into our generator and we will compile the direct review endpoint automatically."
+        "text": "It is Google's ID for your listing and starts with ChIJ. You only need it if you don't have a review link. Paste it and the generator builds the review link."
       }
     },
     {
       "@type": "Question",
-      "name": "Why is a direct review QR code more effective than linking to our website or Maps profile?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Every additional tap or search step dramatically increases customer drop-off. A standard link requires customers to search your business, find the Reviews tab, and scroll to write a review. A direct Google Review QR code eliminates all intermediate friction by loading the review dialogue immediately upon camera scan, resulting in significantly higher review completion rates."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does the QR code open in the Google Maps app or the mobile web browser?",
+      "name": "Does the app or the browser open?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "If the Google Maps app is installed, the link usually opens there, where the customer is often already signed in. Otherwise it opens in the phone's web browser. Either way, posting a review needs a Google account."
@@ -381,18 +373,10 @@
     },
     {
       "@type": "Question",
-      "name": "What is the recommended print size and placement for countertop review QR signs?",
+      "name": "Can I ask only happy customers for a review?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For tabletop tents, counter displays, and checkout stands, print the QR code at a minimum size of 1.2 × 1.2 inches (30 × 30 mm) for scanning from about a foot away, and larger if people will scan from further back. Put signs where people naturally pause, such as the checkout, a table while they wait for the bill, or the exit, with a clear call-to-action like \"Scan to share your experience on Google\"."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Will this Google Review QR code ever expire or require a recurring monthly subscription?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. UniversalCodeMaker generates 100% static QR codes that embed your Google review URL directly into the barcode pattern itself. There are no scan limits, no redirects through third-party domains, and no ongoing subscription fees. As long as your Google Business Profile remains active and the printed QR code remains clean and legible, it will work permanently."
+        "text": "No. Google's review policy doesn't allow businesses to discourage negative reviews or to ask only satisfied customers. Offer the code to everyone, and don't offer rewards for reviews."
       }
     }
   ]
@@ -490,33 +474,23 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO/IEC 18004 QR Code Model 2</dd>
+      <dt class="spec-key">Input</dt>
+      <dd class="spec-val">Your Google review link, or a Place ID that starts with ChIJ</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Destination Url</dt>
-      <dd class="spec-val">https://search.google.com/local/writereview?placeid={PlaceID} or g.page shortlink</dd>
+      <dt class="spec-key">Place Id Link</dt>
+      <dd class="spec-val">search.google.com/local/writereview?placeid=… (built for you from a Place ID)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Supported Inputs</dt>
-      <dd class="spec-val">Google Place ID (ChIJ...), Google Business Profile review link, Google Maps URL</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Error Correction</dt>
-      <dd class="spec-val">Level M (15% recovery) or Level Q (25% recovery for center logo inserts)</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Deep Link Routing</dt>
-      <dd class="spec-val">Direct native launch into Google Maps review dialogue on Android and iOS</dd>
+      <dt class="spec-key">Opens In</dt>
+      <dd class="spec-val">Google Maps or the browser; posting a review needs a Google account</dd>
     </div>
   
     <div class="spec-row">
       <dt class="spec-key">Privacy</dt>
-      <dd class="spec-val">Built in your browser; Place IDs and review URLs are never logged or stored</dd>
+      <dd class="spec-val">Built in your browser; the generator does not upload your link or Place ID</dd>
     </div>
   
         </dl>
@@ -531,27 +505,22 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Restaurant and cafe tabletop acrylic stands, check presenters, and takeaway menus</span>
+      <span>Counter and table cards in cafés and restaurants</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Retail checkout point-of-sale displays, window stickers, and exit door decals</span>
+      <span>Receipts and thank-you cards</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Medical clinics, dental offices, salons, and wellness center reception desks</span>
+      <span>Follow-up cards from tradespeople and salons</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Home service contractor leave-behind cards, service invoices, and vehicle decals</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>E-commerce packaging inserts, shipping boxes, and unboxing thank-you cards</span>
+      <span>Hotel and holiday-rental welcome sheets</span>
     </li>
   
         </ul>
@@ -573,25 +542,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Direct 1-Tap Review Form Launch</h4>
+        <h4>Straight to the review box</h4>
       </div>
-      <p>Bypasses search results and business listings, opening straight into Google's rating dialog on mobile devices.</p>
+      <p>Customers don't have to search for your business and then find the review button.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Permanent & Zero Subscription Fees</h4>
+        <h4>Works from a link or a Place ID</h4>
       </div>
-      <p>100% static client-side QR generation. No monthly bills, no scan caps, and no middleman URL redirects that can break.</p>
+      <p>Paste the review link from your Business Profile, or a Place ID if that is what you have.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Print Files for Counters & Table Stands</h4>
+        <h4>Print once</h4>
       </div>
-      <p>Download a vector SVG or 300 DPI PNG to print on counter cards, table stands or receipts.</p>
+      <p>The link is inside the code, so the card keeps working without a subscription.</p>
     </div>
   
       </div>
@@ -612,17 +581,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Should I use a shortlink or Google Place ID?</span>
+        <span>A shop, café or service with a Google Business Profile?</span>
       </h3>
-      <p>Both work. If you have your 'g.page' review link from Google Business Profile, paste it directly. If you have a Google Place ID (ChIJ...), the generator turns it into the direct 'writereview' endpoint automatically.</p>
+      <p>Good fit. Put the card where people wait, such as the counter or the table.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Where is the best physical location to place review QR codes?</span>
+        <span>Just want people to find you on the map?</span>
       </h3>
-      <p>Where customers finish their visit: the checkout counter, receipts, dining tables or the exit. Asking right after a good experience makes leaving a review easy.</p>
+      <p>A Google Maps location QR code opens your place without the review box.</p>
     </div>
   
       </div>
@@ -637,23 +606,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>Google Business Profile Review Policy Compliance</h3>
+        <h3>Review rules</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Google strictly prohibits 'review gating' (filtering negative reviews by sending dissatisfied customers to a private form while directing positive customers to Google).</span>
+      <span>Ask all customers, not only happy ones, and don't offer discounts or gifts for reviews. Google's policies forbid both, and consumer-protection rules in some countries restrict them too.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Do not offer monetary incentives, discounts, or gifts in exchange for reviews, as this violates Google Maps Contributor guidelines and FTC endorsement guides.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Ensure all reviews are genuine and left by authentic customers using their personal Google accounts.</span>
+      <span>Scan the printed card and check it opens your own listing.</span>
     </li>
   
       </ul>
@@ -702,37 +666,27 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>How does a Google Review QR code take customers directly to the review submission form?</span>
+        <span>Where do I find my review link?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>By encoding Google's dedicated review URL (https://search.google.com/local/writereview?placeid={PlaceID}) or your verified Google Business Profile shortlink (g.page/.../review), scanning instantly launches the Google Maps app or mobile browser directly into the 5-star rating selector and comment box, completely bypassing search results, competitors, and map navigation.</p>
+        <p>In your Google Business Profile, look for the option to ask for reviews and copy the link it gives you. Paste it into the generator as it is.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>How do I find my business Google Place ID or review share link?</span>
+        <span>What is a Place ID, and do I need one?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Sign in to Google Search or Google Maps with your Google Business Profile account, search for your business name, click "Ask for reviews", and copy the generated review link. If you prefer using your official Place ID (starting with "ChIJ..."), look it up using Google's Place ID Finder tool or paste your Maps URL into our generator and we will compile the direct review endpoint automatically.</p>
+        <p>It is Google's ID for your listing and starts with ChIJ. You only need it if you don't have a review link. Paste it and the generator builds the review link.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Why is a direct review QR code more effective than linking to our website or Maps profile?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Every additional tap or search step dramatically increases customer drop-off. A standard link requires customers to search your business, find the Reviews tab, and scroll to write a review. A direct Google Review QR code eliminates all intermediate friction by loading the review dialogue immediately upon camera scan, resulting in significantly higher review completion rates.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Does the QR code open in the Google Maps app or the mobile web browser?</span>
+        <span>Does the app or the browser open?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
@@ -742,21 +696,11 @@
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>What is the recommended print size and placement for countertop review QR signs?</span>
+        <span>Can I ask only happy customers for a review?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>For tabletop tents, counter displays, and checkout stands, print the QR code at a minimum size of 1.2 × 1.2 inches (30 × 30 mm) for scanning from about a foot away, and larger if people will scan from further back. Put signs where people naturally pause, such as the checkout, a table while they wait for the bill, or the exit, with a clear call-to-action like "Scan to share your experience on Google".</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Will this Google Review QR code ever expire or require a recurring monthly subscription?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>No. UniversalCodeMaker generates 100% static QR codes that embed your Google review URL directly into the barcode pattern itself. There are no scan limits, no redirects through third-party domains, and no ongoing subscription fees. As long as your Google Business Profile remains active and the printed QR code remains clean and legible, it will work permanently.</p>
+        <p>No. Google's review policy doesn't allow businesses to discourage negative reviews or to ask only satisfied customers. Offer the code to everyone, and don't offer rewards for reviews.</p>
       </div>
     </details>
   

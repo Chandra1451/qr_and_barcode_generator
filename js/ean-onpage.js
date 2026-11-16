@@ -1,7 +1,7 @@
 // EAN landing tool: reuse the shared plugin, validation, renderer and exporters.
-import generator from './generators/retail/ean-13.js?v=3.27';
-import { engine } from './core/engine.js?v=3.27';
-import { exportHighResPng, exportVectorSvg } from './export/image-exporter.js?v=3.27';
+import generator from './generators/retail/ean-13.js?v=3.28';
+import { engine } from './core/engine.js?v=3.28';
+import { exportHighResPng, exportVectorSvg } from './export/image-exporter.js?v=3.28';
 
 const form = document.querySelector('#ean-form');
 const input = document.querySelector('#ean-number');

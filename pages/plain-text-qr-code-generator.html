@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Plain Text QR Code Generator: Raw Notes & Multi-Line</title>
-  <meta name="description" content="Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.">
+  <meta name="description" content="Free plain text QR code generator for notes, instructions and serial numbers. The text is inside the code, so phones show it without a website.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/plain-text-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free Plain Text QR Code Generator: Raw Notes & Multi-Line">
-  <meta property="og:description" content="Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.">
+  <meta property="og:description" content="Free plain text QR code generator for notes, instructions and serial numbers. The text is inside the code, so phones show it without a website.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/plain-text-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Plain Text QR Code Generator: Raw Notes & Multi-Line">
-  <meta name="twitter:description" content="Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.">
+  <meta name="twitter:description" content="Free plain text QR code generator for notes, instructions and serial numbers. The text is inside the code, so phones show it without a website.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "Plain Text QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/plain-text-qr-code-generator.html",
-  "description": "Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.",
+  "description": "Free plain text QR code generator for notes, instructions and serial numbers. The text is inside the code, so phones show it without a website.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -349,50 +349,26 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is a plain text QR code and how does it work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A plain text QR code encodes unformatted text strings without any prefix protocol (like https:// or mailto:). When scanned with a smartphone camera, optical scanner, or dedicated barcode reader, the device recognizes the payload as raw text and displays it directly on screen or copies it to the clipboard, functioning entirely offline without an active internet connection."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the maximum amount of text that can be encoded in a QR code?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Under the ISO/IEC 18004 standard, a maximum Version 40 QR code can store up to 7,089 numeric digits, 4,296 alphanumeric characters (capital letters, digits, and basic symbols), or 2,953 binary bytes (UTF-8 text). However, for rapid scanning with standard smartphone cameras under varied lighting, keeping text under 300 to 500 characters is recommended."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does a plain text QR code support multi-line text and line breaks?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. UniversalCodeMaker preserves standard line breaks (CRLF / LF) and paragraph spacing. When scanned, modern camera apps and text decoders preserve your line breaks, making it ideal for multi-step recipes, equipment maintenance procedures, or multi-field data records."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which error correction level should I choose for long text notes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For lengthy text payloads exceeding 300 characters, choose Error Correction Level L (7% recovery) or Level M (15% recovery). Higher error correction levels (Level Q at 25% or Level H at 30%) add substantial parity modules, making the QR matrix denser and requiring a higher-resolution camera or larger print size to scan reliably."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the recommended print size for high-density plain text QR codes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For short text (under 100 characters), a minimum print size of 1.0 × 1.0 inch (25 × 25 mm) is sufficient. For dense text payloads (300 to 800 characters) where matrix dimensions expand to Version 10 or higher (57×57 modules or more), print the QR code at least 2.0 × 2.0 inches (50 × 50 mm) to ensure handheld phone cameras can resolve individual modules."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my text data private when generated on UniversalCodeMaker?",
+      "name": "Is the text private?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "The text is encoded in your browser and the generator does not upload it. But a QR code is not encrypted: anyone who scans it can read the text. Do not put passwords, private keys or recovery phrases in a plain text QR code."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much text fits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The QR standard allows up to 2,953 bytes in the largest size, but a code that full is hard to scan. A few lines is a good limit for anything printed smaller than a postcard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will line breaks show?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, they are kept in the code. How they look depends on the scanning app."
       }
     }
   ]
@@ -490,38 +466,23 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standard</dt>
-      <dd class="spec-val">ISO/IEC 18004:2024 standard QR code symbology</dd>
+      <dt class="spec-key">Contents</dt>
+      <dd class="spec-val">Your text, exactly as typed, including line breaks</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Character Capacity</dt>
-      <dd class="spec-val">Up to 7,089 numeric, 4,296 alphanumeric, or 2,953 binary bytes (Version 40)</dd>
+      <dt class="spec-key">Capacity</dt>
+      <dd class="spec-val">Up to 2,953 bytes in the largest QR size at error correction level L; short text gives a smaller, easier code</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Encoding Modes</dt>
-      <dd class="spec-val">Numeric (3.3 bits/char), Alphanumeric (5.5 bits/char), Byte / UTF-8 (8 bits/char)</dd>
+      <dt class="spec-key">Reading</dt>
+      <dd class="spec-val">Shown on the phone without opening a website</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Error Correction</dt>
-      <dd class="spec-val">Reed-Solomon Level L (7%), Level M (15% default), Level Q (25%), Level H (30%)</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Formatting</dt>
-      <dd class="spec-val">Raw unformatted UTF-8 text with multi-line CRLF / LF line break preservation</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Offline Scannability</dt>
-      <dd class="spec-val">100% offline readability. Native camera apps display raw text without network requests</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Privacy Security</dt>
-      <dd class="spec-val">Pure client-side browser generation. Text payloads are never uploaded, logged, or tracked</dd>
+      <dt class="spec-key">Privacy</dt>
+      <dd class="spec-val">Built in your browser; the generator does not upload your text</dd>
     </div>
   
         </dl>
@@ -536,27 +497,22 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Offline equipment maintenance notes and machinery operating instructions</span>
+      <span>Short instructions on equipment and machines</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Serial and asset numbers on labels</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Puzzles, quizzes and scavenger hunts</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
       <span>Public keys and wallet deposit addresses (never private keys or recovery phrases)</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Asset management serial tokens and warehouse shelf bin identifiers</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Educational classroom quizzes, scavenger hunt clues, and museum exhibit text</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Product ingredient lists, allergy warnings, and compliance labels</span>
     </li>
   
         </ul>
@@ -617,9 +573,9 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Industrial machinery serial numbers and calibration logs?</span>
+        <span>Machine serial numbers or short instructions?</span>
       </h3>
-      <p>Encode permanent equipment metadata directly onto durable metal or vinyl asset tags.</p>
+      <p>Good fit. Keep the text short so the code stays easy to scan on small labels.</p>
     </div>
   
     <div class="decision-item">
@@ -642,23 +598,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>Plain Text Security & Visibility Warnings</h3>
+        <h3>Before you print</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Plain text QR codes are completely unencrypted and can be read by anyone with a smartphone camera. Never encode sensitive passwords or personal health data in plaintext.</span>
+      <span>Anyone with a phone can read a plain text code. Leave out anything you wouldn't print in plain words.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>For high-density text (>500 characters), select Error Correction Level L or M to prevent the QR matrix from becoming excessively dense.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Standard QR Code symbols (ISO/IEC 18004). Dot styles and logos rely on the code's error correction, so test-scan styled codes before printing.</span>
+      <span>For long text, choose error correction level L or M so the code doesn't become too dense.</span>
     </li>
   
       </ul>
@@ -707,61 +658,31 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>What is a plain text QR code and how does it work?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>A plain text QR code encodes unformatted text strings without any prefix protocol (like https:// or mailto:). When scanned with a smartphone camera, optical scanner, or dedicated barcode reader, the device recognizes the payload as raw text and displays it directly on screen or copies it to the clipboard, functioning entirely offline without an active internet connection.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What is the maximum amount of text that can be encoded in a QR code?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Under the ISO/IEC 18004 standard, a maximum Version 40 QR code can store up to 7,089 numeric digits, 4,296 alphanumeric characters (capital letters, digits, and basic symbols), or 2,953 binary bytes (UTF-8 text). However, for rapid scanning with standard smartphone cameras under varied lighting, keeping text under 300 to 500 characters is recommended.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Does a plain text QR code support multi-line text and line breaks?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Yes. UniversalCodeMaker preserves standard line breaks (CRLF / LF) and paragraph spacing. When scanned, modern camera apps and text decoders preserve your line breaks, making it ideal for multi-step recipes, equipment maintenance procedures, or multi-field data records.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Which error correction level should I choose for long text notes?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>For lengthy text payloads exceeding 300 characters, choose Error Correction Level L (7% recovery) or Level M (15% recovery). Higher error correction levels (Level Q at 25% or Level H at 30%) add substantial parity modules, making the QR matrix denser and requiring a higher-resolution camera or larger print size to scan reliably.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What is the recommended print size for high-density plain text QR codes?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>For short text (under 100 characters), a minimum print size of 1.0 × 1.0 inch (25 × 25 mm) is sufficient. For dense text payloads (300 to 800 characters) where matrix dimensions expand to Version 10 or higher (57×57 modules or more), print the QR code at least 2.0 × 2.0 inches (50 × 50 mm) to ensure handheld phone cameras can resolve individual modules.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>Is my text data private when generated on UniversalCodeMaker?</span>
+        <span>Is the text private?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
         <p>The text is encoded in your browser and the generator does not upload it. But a QR code is not encrypted: anyone who scans it can read the text. Do not put passwords, private keys or recovery phrases in a plain text QR code.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>How much text fits?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>The QR standard allows up to 2,953 bytes in the largest size, but a code that full is hard to scan. A few lines is a good limit for anything printed smaller than a postcard.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Will line breaks show?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes, they are kept in the code. How they look depends on the scanning app.</p>
       </div>
     </details>
   

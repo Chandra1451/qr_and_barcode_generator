@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana</title>
-  <meta name="description" content="Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.">
+  <meta name="description" content="Free crypto QR code generator for Bitcoin, Ethereum and Solana wallet addresses, with an optional amount. Uses standard payment links. Download SVG or PNG.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/crypto-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana">
-  <meta property="og:description" content="Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.">
+  <meta property="og:description" content="Free crypto QR code generator for Bitcoin, Ethereum and Solana wallet addresses, with an optional amount. Uses standard payment links. Download SVG or PNG.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/crypto-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana">
-  <meta name="twitter:description" content="Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.">
+  <meta name="twitter:description" content="Free crypto QR code generator for Bitcoin, Ethereum and Solana wallet addresses, with an optional amount. Uses standard payment links. Download SVG or PNG.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "Crypto QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/crypto-qr-code-generator.html",
-  "description": "Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.",
+  "description": "Free crypto QR code generator for Bitcoin, Ethereum and Solana wallet addresses, with an optional amount. Uses standard payment links. Download SVG or PNG.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -349,50 +349,34 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How do crypto QR codes work with mobile wallets?",
+      "name": "Do you ever need my private key or recovery phrase?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The generated QR codes encode official cryptocurrency URI standards, such as Bitcoin BIP-21, Ethereum EIP-681, and Solana URI protocols. When scanned with a smartphone camera or mobile wallet app (including Coinbase Wallet, Trust Wallet, MetaMask, Phantom, or Ledger Live), the app automatically parses the public address, pre-populates the destination address field, and applies optional amount and payment reference parameters without manual copy-pasting."
+        "text": "No. You only enter a public wallet address and, if you like, an amount. The code is built in your browser and the generator does not upload it. Never type a private key or recovery phrase into any QR generator, this one included."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I specify an exact invoice or payment amount in the QR code?",
+      "name": "Will every wallet read the amount?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. By specifying a requested payment amount in the generator, standard URI parameters are embedded into the payload (for example, bitcoin:address?amount=0.005 or solana:address?amount=1.5). When a customer or client scans the code, their wallet app automatically pre-fills the exact requested transfer amount, reducing checkout friction and eliminating decimal calculation mistakes."
+        "text": "Not always. Wallets differ in how much of these payment links they support; some read only the address. Ask the payer to check the address and amount on their screen before sending."
       }
     },
     {
       "@type": "Question",
-      "name": "Does UniversalCodeMaker ever touch or require my private keys or seed phrase?",
+      "name": "Can I use it for tokens such as USDT?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. You only enter a public wallet address and, if you like, an amount or label. The code is built in your browser and the generator does not upload it. Never type a private key or recovery phrase into any QR generator, this one included."
+        "text": "Not at the moment. The generator makes plain BTC, ETH and SOL payment links. Token payments need extra fields that we don't build yet."
       }
     },
     {
       "@type": "Question",
-      "name": "Why should I use Error Correction Level M or Q when embedding a coin logo?",
+      "name": "How do I check the code before printing?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "When an emblem badge (such as the Bitcoin ₿ or Ethereum Ξ icon) is embedded in the center of a QR code, it covers up to 10% to 15% of the central data modules. Using Reed-Solomon Error Correction Level M (15% data recovery) or Level Q (25% data recovery) ensures the QR code retains sufficient mathematical parity data to decode reliably under all lighting conditions."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the recommended print size for physical crypto donation stands and counter signs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For countertop point-of-sale stands, tip jars, and event badges, print QR codes at a minimum physical size of 1.5 × 1.5 inches (38 × 38 mm) with a minimum 4-module quiet zone margin. For livestream overlays, video end screens, or posters viewed from several feet away, display the code at 300 × 300 pixels or larger with high visual contrast."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How should I test a cryptocurrency QR code before printing or publishing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Always verify the code in two steps: first, scan the generated QR code using a mobile wallet app or camera scanner to confirm the decoded public address exactly matches your intended receiving address (especially the first 6 and final 6 alphanumeric characters). Second, execute a small test micro-transaction before printing stickers, retail plaques, or large-format donation banners."
+        "text": "Scan it with your own wallet app and compare the first and last characters of the address with your wallet's receive screen."
       }
     }
   ]
@@ -470,7 +454,7 @@
         Smart QR
       </div>
       <h1 class="hero-title">Free Crypto Payment & Wallet QR Code Generator</h1>
-      <p class="hero-lead">Generate clean, scannable cryptocurrency wallet QR codes for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) with standard payment request URIs. Only your public address is needed.</p>
+      <p class="hero-lead">Make a QR code for your Bitcoin, Ethereum or Solana wallet address, with an optional amount. Wallet apps that read the standard payment links fill in the address for the payer. You only ever need your public address.</p>
       
       <a href="../index.html?wizard=crypto" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -490,37 +474,27 @@
         <dl class="spec-table">
           
     <div class="spec-row">
-      <dt class="spec-key">Standards</dt>
-      <dd class="spec-val">ISO/IEC 18004:2024, Bitcoin BIP-0021 URI Scheme, Ethereum EIP-681, Solana Pay URI</dd>
+      <dt class="spec-key">Bitcoin</dt>
+      <dd class="spec-val">bitcoin:address?amount=… (BIP-21)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Supported Chains</dt>
-      <dd class="spec-val">Bitcoin (BTC), Ethereum (ETH & ERC-20), Solana (SOL & SPL Tokens)</dd>
+      <dt class="spec-key">Ethereum</dt>
+      <dd class="spec-val">ethereum:address?value=… (EIP-681; the amount is converted to wei)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Uri Formatting</dt>
-      <dd class="spec-val">bitcoin:address?amount=X&label=Y, ethereum:address?value=X, solana:address?amount=X</dd>
+      <dt class="spec-key">Solana</dt>
+      <dd class="spec-val">solana:address?amount=… (Solana Pay transfer link)</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Error Correction</dt>
-      <dd class="spec-val">Level M (15%) or Level Q (25%) recommended when embedding center coin badges</dd>
+      <dt class="spec-key">Amount</dt>
+      <dd class="spec-val">Optional; leave it blank to let the payer choose</dd>
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Center Emblems</dt>
-      <dd class="spec-val">Built-in vector Bitcoin (₿) and Ethereum (Ξ) center logo badges with quiet zones</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Export Formats</dt>
-      <dd class="spec-val">Vector SVG (infinitely scalable for physical signage) and high-resolution PNG (300 DPI)</dd>
-    </div>
-  
-    <div class="spec-row">
-      <dt class="spec-key">Privacy Security</dt>
+      <dt class="spec-key">Privacy</dt>
       <dd class="spec-val">Built in your browser. Only a public address is needed; never enter a private key or recovery phrase</dd>
     </div>
   
@@ -536,27 +510,22 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Merchant point-of-sale cryptocurrency checkout & register displays</span>
+      <span>A donation or tip jar on a stream, blog or event poster</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Content creator tip jars on YouTube, Twitch, GitHub, and blogs</span>
+      <span>Payment details on a freelance invoice</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Invoicing freelance clients in Bitcoin, Ethereum, or Solana digital currency</span>
+      <span>A counter sign for a shop that accepts crypto</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Non-profit fundraising and cryptocurrency donation banners</span>
-    </li>
-  
-    <li class="use-case-item">
-      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Physical cold-storage wallet public deposit address labelling</span>
+      <span>Labelling your own receiving address on paper</span>
     </li>
   
         </ul>
@@ -578,25 +547,25 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Zero Address Typing Mistakes</h4>
+        <h4>No long address to copy</h4>
       </div>
-      <p>Eliminates mistyped 42-character public keys and prevents irreversible fund transfers.</p>
+      <p>Payers scan instead of copying a long address by hand, where one wrong character sends money to the wrong place.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>BIP-21 Universal Payment URI</h4>
+        <h4>Standard payment links</h4>
       </div>
-      <p>Compatible with all major crypto wallets (Metamask, Phantom, Trust Wallet, Ledger).</p>
+      <p>Uses the BIP-21, EIP-681 and Solana Pay formats that wallet apps are built to read.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Built-in Crypto Coin Badges</h4>
+        <h4>Public address only</h4>
       </div>
-      <p>Embeds official Bitcoin, Ethereum, or Solana logos directly in the center of the QR code.</p>
+      <p>The code holds nothing that could move your funds.</p>
     </div>
   
       </div>
@@ -617,17 +586,17 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Accepting crypto payments in a retail store or online invoice?</span>
+        <span>Accepting tips or donations?</span>
       </h3>
-      <p>Pre-configure cryptocurrency QR codes with your recipient address and optional requested payment amounts.</p>
+      <p>Leave the amount blank so people can choose.</p>
     </div>
   
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>Setting up creator tip jars or non-profit donations?</span>
+        <span>Billing a fixed amount?</span>
       </h3>
-      <p>Print durable crypto payment QR stickers for live streams, blogs, and fundraising stands.</p>
+      <p>Add the amount, then check it on the payer's screen before they confirm. Crypto payments can't be reversed.</p>
     </div>
   
       </div>
@@ -642,23 +611,18 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
           Rules to know
         </span>
-        <h3>Cryptocurrency Address Safety & Testing Recommendations</h3>
+        <h3>Before you share it</h3>
       </div>
       <ul class="caution-list">
         
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Cryptocurrency transactions are mathematically irreversible on the blockchain. Always perform a test micro-transaction before printing codes on physical signage.</span>
+      <span>Check the address on your wallet's receive screen. A wrong character can't be fixed after a payment is sent.</span>
     </li>
   
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Verify that your clipboard or browser has not been altered by malicious browser extensions before generating payment addresses.</span>
-    </li>
-  
-    <li>
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      <span>Bitcoin links follow BIP-21, Ethereum links follow EIP-681 (the amount is converted to wei), and Solana uses the solana: link format.</span>
+      <span>Tax and reporting rules for crypto payments depend on where you live; check them before taking payments for a business.</span>
     </li>
   
       </ul>
@@ -715,61 +679,41 @@
         
     <details class="faq-item" open>
       <summary class="faq-question">
-        <span>How do crypto QR codes work with mobile wallets?</span>
+        <span>Do you ever need my private key or recovery phrase?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>The generated QR codes encode official cryptocurrency URI standards, such as Bitcoin BIP-21, Ethereum EIP-681, and Solana URI protocols. When scanned with a smartphone camera or mobile wallet app (including Coinbase Wallet, Trust Wallet, MetaMask, Phantom, or Ledger Live), the app automatically parses the public address, pre-populates the destination address field, and applies optional amount and payment reference parameters without manual copy-pasting.</p>
+        <p>No. You only enter a public wallet address and, if you like, an amount. The code is built in your browser and the generator does not upload it. Never type a private key or recovery phrase into any QR generator, this one included.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Can I specify an exact invoice or payment amount in the QR code?</span>
+        <span>Will every wallet read the amount?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>Yes. By specifying a requested payment amount in the generator, standard URI parameters are embedded into the payload (for example, bitcoin:address?amount=0.005 or solana:address?amount=1.5). When a customer or client scans the code, their wallet app automatically pre-fills the exact requested transfer amount, reducing checkout friction and eliminating decimal calculation mistakes.</p>
+        <p>Not always. Wallets differ in how much of these payment links they support; some read only the address. Ask the payer to check the address and amount on their screen before sending.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Does UniversalCodeMaker ever touch or require my private keys or seed phrase?</span>
+        <span>Can I use it for tokens such as USDT?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>No. You only enter a public wallet address and, if you like, an amount or label. The code is built in your browser and the generator does not upload it. Never type a private key or recovery phrase into any QR generator, this one included.</p>
+        <p>Not at the moment. The generator makes plain BTC, ETH and SOL payment links. Token payments need extra fields that we don't build yet.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Why should I use Error Correction Level M or Q when embedding a coin logo?</span>
+        <span>How do I check the code before printing?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>When an emblem badge (such as the Bitcoin ₿ or Ethereum Ξ icon) is embedded in the center of a QR code, it covers up to 10% to 15% of the central data modules. Using Reed-Solomon Error Correction Level M (15% data recovery) or Level Q (25% data recovery) ensures the QR code retains sufficient mathematical parity data to decode reliably under all lighting conditions.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>What is the recommended print size for physical crypto donation stands and counter signs?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>For countertop point-of-sale stands, tip jars, and event badges, print QR codes at a minimum physical size of 1.5 × 1.5 inches (38 × 38 mm) with a minimum 4-module quiet zone margin. For livestream overlays, video end screens, or posters viewed from several feet away, display the code at 300 × 300 pixels or larger with high visual contrast.</p>
-      </div>
-    </details>
-  
-    <details class="faq-item" >
-      <summary class="faq-question">
-        <span>How should I test a cryptocurrency QR code before printing or publishing?</span>
-        <span class="faq-icon">▼</span>
-      </summary>
-      <div class="faq-answer">
-        <p>Always verify the code in two steps: first, scan the generated QR code using a mobile wallet app or camera scanner to confirm the decoded public address exactly matches your intended receiving address (especially the first 6 and final 6 alphanumeric characters). Second, execute a small test micro-transaction before printing stickers, retail plaques, or large-format donation banners.</p>
+        <p>Scan it with your own wallet app and compare the first and last characters of the address with your wallet's receive screen.</p>
       </div>
     </details>
   
