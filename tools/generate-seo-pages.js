@@ -196,7 +196,7 @@ const SEO_PAGES = [
       nominalDimensions: '100% scale (X=0.330 mm): 37.29 mm wide × 25.91 mm high',
       quietZones: '9X module width minimum on both left and right margins',
       retailCompatibility: 'US & Canadian retail POS, Amazon North America FBA, Walmart, Target',
-      privacy: '100% in-browser generation; barcode numbers and product data are never uploaded or stored'
+      privacy: 'Built in your browser; barcode numbers and product data are never uploaded or stored'
     },
     useCases: [
       'United States and Canada brick-and-mortar retail checkout POS',
@@ -216,7 +216,7 @@ const SEO_PAGES = [
     faqs: [
       {
         q: 'What is the difference between UPC-A and EAN-13?',
-        a: 'UPC-A is a 12-digit standard primarily used for retail products in the United States and Canada, while EAN-13 is a 13-digit standard used across Europe and the rest of the world. Mechanically, any UPC-A code can be converted into an EAN-13 by prepending a single leading zero (0), which produces an identical Modulo-10 check digit. Modern point-of-sale scanners worldwide read both formats seamlessly. For a complete comparison, read our guide: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: Which Barcode Do You Need?</a>.'
+        a: 'UPC-A is a 12-digit standard primarily used for retail products in the United States and Canada, while EAN-13 is a 13-digit standard used across Europe and the rest of the world. Mechanically, any UPC-A code can be converted into an EAN-13 by prepending a single leading zero (0), which produces an identical Modulo-10 check digit. Most modern point-of-sale scanners read both. For a complete comparison, read our guide: <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: Which Barcode Do You Need?</a>.'
       },
       {
         q: 'How does the generator calculate and verify the 12th Modulo-10 check digit?',
@@ -236,7 +236,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Are my product numbers, SKUs, or inventory details stored on UniversalCodeMaker servers?',
-        a: 'No. All barcode generation, check digit mathematics, and image rendering execute 100% client-side in your local web browser using JavaScript and WebAssembly. Your GTIN-12 numbers, product titles, and label designs are never uploaded to, logged on, or stored on any server.'
+        a: 'No. The barcode is drawn by JavaScript in your browser, and the generator does not upload your GTIN-12 numbers, product titles or label designs. The privacy policy explains what the site itself measures.'
       }
     ]
   },
@@ -256,7 +256,7 @@ const SEO_PAGES = [
       subsetSwitching: 'Code 128A (Caps/Control), Code 128B (ASCII), Code 128C (Double-density numeric pairs)',
       checksumAlgorithm: 'Weighted Modulo 103 check character (calculated automatically)',
       quietZones: '10X module width minimum on both left and right margins',
-      privacy: '100% in-browser generation; asset tags, serial numbers, and shipping data are never stored'
+      privacy: 'Built in your browser; asset tags, serial numbers, and shipping data are never stored'
     },
     useCases: [
       'Warehouse pallet racking, inventory bin locations, and storage tote labels',
@@ -316,7 +316,7 @@ const SEO_PAGES = [
       bearerBars: 'Top and bottom bars or full surrounding frame (nominal 4.8 mm / 0.190 in thickness)',
       corrugatedTolerance: 'High tolerance for flexographic printing, uneven fluting, and absorbent brown kraft paper',
       quietZones: 'Minimum 10X module width (at least 6.4 mm / 0.25 in) on left and right margins',
-      privacy: '100% client-side generation; carton GTINs, case counts, and logistics data are never uploaded'
+      privacy: 'Built in your browser; carton GTINs, case counts, and logistics data are never uploaded'
     },
     useCases: [
       'Direct flexographic printing onto corrugated cardboard outer shipping cartons and brown kraft master cases',
@@ -340,7 +340,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Can an ITF-14 barcode be scanned at retail point-of-sale (POS) cash registers?',
-        a: 'No. ITF-14 barcodes are engineered strictly for non-retail logistics units—such as master shipping cartons, bulk cases, and warehouse pallets. Retail supermarket and department store POS registers use omnidirectional laser and imaging scanners configured specifically for GTIN-12 (UPC-A) and GTIN-13 (EAN-13) symbols. If a master carton is opened and individual consumer units are sold separately, each inner unit must carry its own UPC-A or EAN-13 barcode. Learn more in our <a href="./how-to-get-a-barcode-for-your-product.html">Product Barcode Guide</a>.'
+        a: 'No. ITF-14 barcodes are engineered strictly for non-retail logistics units, such as shipping cartons, cases and pallets. Retail supermarket and department store POS registers use omnidirectional laser and imaging scanners configured specifically for GTIN-12 (UPC-A) and GTIN-13 (EAN-13) symbols. If a master carton is opened and individual consumer units are sold separately, each inner unit must carry its own UPC-A or EAN-13 barcode. Learn more in our <a href="./how-to-get-a-barcode-for-your-product.html">Product Barcode Guide</a>.'
       },
       {
         q: 'Can I export an ITF-14 barcode in vector SVG format for box die lines and prepress packaging?',
@@ -391,7 +391,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Can Data Matrix codes be read if partially scratched or damaged?',
-        a: 'Yes! The ECC 200 specification utilizes Reed-Solomon error correction algorithms capable of recovering up to 30% of obscured or scratched modules.'
+        a: 'Yes. ECC 200 uses Reed-Solomon error correction, so a scratched or partly covered code can often still be read. How much damage it tolerates depends on the symbol size.'
       },
       {
         q: 'Why is ECC 200 the only Data Matrix version used in modern manufacturing?',
@@ -421,7 +421,7 @@ const SEO_PAGES = [
       matrixModes: 'Compact Aztec (15×15 to 27×27 modules) and Full-Range Aztec (up to 151×151 modules)',
       dataCapacity: 'Up to 3,832 numeric digits, 3,067 alphanumeric characters, or 1,914 raw 8-bit bytes',
       errorCorrection: 'User-selectable Reed-Solomon polynomial algorithm from 5% up to 95% damaged area recovery',
-      clientPrivacy: '100% in-browser generation; transit ticket payloads and personal travel data are never uploaded'
+      clientPrivacy: 'Built in your browser; transit ticket payloads and personal travel data are never uploaded'
     },
     useCases: [
       'Airline mobile boarding passes on smartphone screens (IATA BCBP 2D standard)',
@@ -453,7 +453,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Are travel itineraries, passenger names, or ticket payloads stored on UniversalCodeMaker servers?',
-        a: 'No. UniversalCodeMaker renders all Aztec symbols 100% locally in your web browser using WebAssembly. Your passenger names, booking references (PNRs), frequent flyer numbers, and transit payloads never traverse the internet and are never logged, stored, or tracked on external servers.'
+        a: 'No. The Aztec symbol is drawn in your browser, and the generator does not upload what you type, such as a booking reference or ticket number. The privacy policy explains what the site itself measures.'
       }
     ],
     relatedSlugs: [
@@ -498,11 +498,11 @@ const SEO_PAGES = [
       },
       {
         q: 'What error correction level should I choose for PDF417?',
-        a: 'PDF417 supports error correction levels 0 through 8 using Reed-Solomon algorithms. For standard identification cards, shipping labels, and documents, level 4 or 5 provides robust protection against surface scratches, print distortion, and ink smudges.'
+        a: 'PDF417 supports error correction levels 0 through 8 using Reed-Solomon algorithms. For shipping labels and documents, level 4 or 5 gives good protection against surface scratches, print distortion, and ink smudges.'
       },
       {
         q: 'Can I export PDF417 as vector SVG for high-resolution printing?',
-        a: 'Yes! UniversalCodeMaker produces crisp mathematical vector SVG exports that scale infinitely without pixelation, making them ideal for high-DPI badge printers, offset commercial printing, and technical documentation.'
+        a: 'Yes. The SVG download is a vector file, so it stays sharp at any size. That suits high-DPI badge printers, offset commercial printing, and technical documentation.'
       }
     ],
     relatedSlugs: ['data-matrix-generator', 'aztec-code-generator', 'code-128-barcode-generator']
@@ -515,7 +515,7 @@ const SEO_PAGES = [
     queryParam: 'wizard=wifi',
     category: 'Smart QR',
     metaTitle: 'Free Wi-Fi QR Code Generator: Auto-Connect Password QR',
-    metaDescription: 'Generate free Wi-Fi QR codes to connect guests instantly without typing passwords. Supports WPA3, WPA2, WEP & hidden SSIDs. 100% private in-browser generation.',
+    metaDescription: 'Free Wi-Fi QR code generator. Guests scan to join without typing the password. Supports WPA3, WPA2, WEP and hidden networks, and runs in your browser.',
     h1: 'Free Wi-Fi Auto-Connect QR Code Generator',
     lead: 'Create custom branded Wi-Fi QR codes that allow customers, hotel guests, and friends to instantly join your wireless network simply by scanning with their smartphone camera.',
     technicalSpec: {
@@ -524,7 +524,7 @@ const SEO_PAGES = [
       encryption: 'WPA/WPA2/WPA3 (Personal), WEP, or Open (nopass)',
       hiddenSsid: 'H:true parameter for unbroadcast / closed network SSIDs',
       compatibility: 'Native iOS Camera (iOS 11+), Android Camera & Quick Settings, iPadOS',
-      security: '100% client-side execution; network SSIDs and passwords never leave your device'
+      security: 'Built in your browser; the generator does not upload network names or passwords'
     },
     useCases: [
       'Cafe, coffee shop, and restaurant dining table acrylic stands',
@@ -540,7 +540,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Is my Wi-Fi network name or password ever transmitted to a server?',
-        a: 'Never. UniversalCodeMaker executes 100% client-side in your web browser using pure JavaScript and WebAssembly. Your network SSID, security encryption type, and Wi-Fi password are never uploaded, logged, or transmitted across the network. Disconnecting your internet connection before generating will verify complete local execution.'
+        a: 'No. The code is built in your browser, and the generator does not upload your network name or password. Remember that the password is readable by anyone who scans the printed code, so only post it where you would happily share the Wi-Fi.'
       },
       {
         q: 'Can I generate a Wi-Fi QR code for an open network without a password?',
@@ -584,7 +584,7 @@ const SEO_PAGES = [
       fields: 'FN (Name), TEL (Work/Mobile), EMAIL, ORG (Company), TITLE, URL, ADR',
       compatibility: 'Apple Contacts (iOS), Google Contacts (Android), Samsung, Microsoft Outlook',
       nfcPairing: 'Compatible with NFC smart business cards & digital profile links',
-      privacy: '100% client-side generation; contact personal information is never uploaded or saved'
+      privacy: 'Built in your browser; contact personal information is never uploaded or saved'
     },
     useCases: [
       'Physical paper business cards and networking event name badges',
@@ -637,7 +637,7 @@ const SEO_PAGES = [
     metaTitle: 'Free Crypto QR Code Generator: Bitcoin, Ethereum & Solana',
     metaDescription: 'Generate free cryptocurrency QR codes for Bitcoin, Ethereum & Solana. Supports BIP-21 payment URIs, custom amounts, wallet logos & print-ready vector SVG.',
     h1: 'Free Crypto Payment & Wallet QR Code Generator',
-    lead: 'Generate clean, scannable cryptocurrency wallet QR codes for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) with standard payment request URIs and complete client-side privacy.',
+    lead: 'Generate clean, scannable cryptocurrency wallet QR codes for Bitcoin (BTC), Ethereum (ETH), and Solana (SOL) with standard payment request URIs. Only your public address is needed.',
     technicalSpec: {
       standards: 'ISO/IEC 18004:2024, Bitcoin BIP-0021 URI Scheme, Ethereum EIP-681, Solana Pay URI',
       supportedChains: 'Bitcoin (BTC), Ethereum (ETH & ERC-20), Solana (SOL & SPL Tokens)',
@@ -645,7 +645,7 @@ const SEO_PAGES = [
       errorCorrection: 'Level M (15%) or Level Q (25%) recommended when embedding center coin badges',
       centerEmblems: 'Built-in vector Bitcoin (₿) and Ethereum (Ξ) center logo badges with quiet zones',
       exportFormats: 'Vector SVG (infinitely scalable for physical signage) and high-resolution PNG (300 DPI)',
-      privacySecurity: '100% client-side browser execution. Private keys and seed phrases are never requested or handled'
+      privacySecurity: 'Built in your browser. Only a public address is needed; never enter a private key or recovery phrase'
     },
     useCases: [
       'Merchant point-of-sale cryptocurrency checkout & register displays',
@@ -665,7 +665,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Does UniversalCodeMaker ever touch or require my private keys or seed phrase?',
-        a: 'Never. UniversalCodeMaker strictly encodes public wallet addresses and payment request URIs supplied by you. All QR code generation is performed 100% in your local web browser using client-side JavaScript. Private keys, seed phrases, wallet balances, and transaction data are never requested, handled, or transmitted to any server.'
+        a: 'No. You only enter a public wallet address and, if you like, an amount or label. The code is built in your browser and the generator does not upload it. Never type a private key or recovery phrase into any QR generator, this one included.'
       },
       {
         q: 'Why should I use Error Correction Level M or Q when embedding a coin logo?',
@@ -706,7 +706,7 @@ const SEO_PAGES = [
       characterEncoding: 'Standard RFC 3986 percent-encoding (spaces as %20, line breaks as %0A)',
       clientCompatibility: 'Apple Mail (iOS/macOS), Gmail (Android/Web), Outlook, Samsung Email, Thunderbird',
       exportFormats: 'Scalable vector SVG (print-ready) and high-resolution PNG (300 DPI)',
-      privacySecurity: '100% client-side generation. Email addresses and message drafts are never sent to our servers'
+      privacySecurity: 'Built in your browser. Email addresses and message drafts are never sent to our servers'
     },
     useCases: [
       'Customer service warranty registration & physical appliance repair requests',
@@ -767,7 +767,7 @@ const SEO_PAGES = [
       supportedParameters: 'Recipient phone number (or commercial short code) and pre-filled body text draft',
       clientCompatibility: 'Apple Messages (iOS), Google Messages (Android), Samsung Messages, carrier native apps',
       exportFormats: 'Scalable vector SVG (lossless print) and high-resolution PNG (300 DPI)',
-      privacySecurity: '100% client-side generation. Phone numbers and message drafts are never sent to external servers'
+      privacySecurity: 'Built in your browser. Phone numbers and message drafts are never sent to external servers'
     },
     useCases: [
       'Keyword opt-in SMS marketing & VIP club list building on retail posters',
@@ -828,7 +828,7 @@ const SEO_PAGES = [
       supportedDialers: 'Apple Phone (iOS), Google Phone / Dialer (Android), Samsung Phone, VoIP SIP apps',
       securityConfirmation: 'Explicit user tap required on phone dialer prompt; automated dialing is prohibited by OS',
       exportFormats: 'Scalable vector SVG (lossless print) and high-resolution PNG (300 DPI)',
-      privacySecurity: '100% client-side generation. Telephone numbers are never transmitted to external servers'
+      privacySecurity: 'Built in your browser. Telephone numbers are never transmitted to external servers'
     },
     useCases: [
       'Contractor service vehicle decals & roadside billboard quick-contact signs',
@@ -848,7 +848,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Why is the ITU-T E.164 international format recommended for phone QR codes?',
-        a: 'Formatting your phone number in ITU-T E.164 format (with a leading "+" followed by your international country code, area code, and local number, such as +15551234567) ensures seamless dialing regardless of where the caller is located or what mobile network they use. It avoids domestic trunk prefixes (like "0") that cause call routing failures for international visitors.'
+        a: 'Formatting your phone number in ITU-T E.164 format (with a leading "+" followed by your international country code, area code, and local number, such as +15551234567) helps the number dial correctly wherever the caller is and whatever network they use. It avoids domestic trunk prefixes (like "0") that cause call routing failures for international visitors.'
       },
       {
         q: 'Can I include telephone extensions or pauses in a phone QR code?',
@@ -860,7 +860,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Are phone numbers stored or tracked on UniversalCodeMaker servers?',
-        a: 'Never. UniversalCodeMaker operates 100% client-side in your web browser. Phone numbers and tel: payloads are processed entirely in local browser memory using JavaScript. No telephone numbers, call metadata, or analytics logs are ever sent to or stored on any external server.'
+        a: 'No. The code is built in your browser, and the generator does not upload the phone number. The privacy policy explains what the site itself measures.'
       }
     ],
     relatedSlugs: [
@@ -888,7 +888,7 @@ const SEO_PAGES = [
       syntaxStructure: 'BEGIN:VCALENDAR / BEGIN:VEVENT ... END:VEVENT / END:VCALENDAR',
       timestampEncoding: 'ISO 8601 UTC (YYYYMMDDTHHMMSSZ) or local floating time',
       compatibility: 'Apple Calendar (iOS/macOS), Google Calendar (Android/Web), Microsoft Outlook',
-      privacy: '100% in-browser generation; event details and attendee schedules are never uploaded or stored'
+      privacy: 'Built in your browser; event details and attendee schedules are never uploaded or stored'
     },
     useCases: [
       'Wedding invitations, save-the-dates, and family anniversary celebrations',
@@ -916,7 +916,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Are my private event details or guest schedules logged or saved on your servers?',
-        a: 'No. UniversalCodeMaker processes all QR code generation 100% client-side in your local web browser using JavaScript and WebAssembly. Your event titles, dates, private notes, and venue locations are encoded directly into the QR pattern on your computer and are never transmitted to, logged on, or retained by any server.'
+        a: 'No. Your browser writes the event details into the QR pattern, and the generator does not upload them. The privacy policy explains what the site itself measures.'
       },
       {
         q: 'What is the recommended print size for event QR codes on invitations and flyers?',
@@ -939,48 +939,39 @@ const SEO_PAGES = [
     queryParam: 'wizard=location',
     category: 'Smart QR',
     metaTitle: 'Free Google Maps Location QR Code Generator (GPS & Address)',
-    metaDescription: 'Generate free Google Maps QR codes from addresses, place names, or GPS coordinates. Opens instant turn-by-turn directions in Google Maps on iOS & Android.',
+    metaDescription: 'Make a free QR code that opens a place in Google Maps from an address, a place name or GPS coordinates. Static code, no sign-up. Download SVG or PNG.',
     h1: 'Free Google Maps Location QR Code Generator',
-    lead: 'Create a static QR code that opens your storefront, event venue, or meeting point in Google Maps. Type an address or place name, or enter exact GPS coordinates for locations without a street address. Recipient devices open Google Maps instantly for turn-by-turn navigation.',
+    lead: 'Make a QR code that opens a place in Google Maps: your shop, a wedding venue, the gate of a car park. Type an address or a place name, or use GPS coordinates for a spot that has no address. People scan it, see the pin and tap Directions.',
     technicalSpec: {
-      standard: 'ISO/IEC 18004 QR Code Model 2',
-      uriFormat: 'https://www.google.com/maps/search/?api=1&query={Address or Lat,Lng}',
-      directGpsUri: 'geo:{Latitude},{Longitude}?q={Latitude},{Longitude} (RFC 5870)',
-      plusCodeFormat: 'https://www.google.com/maps/dir/?api=1&destination={PlusCode}',
-      compatibility: 'Google Maps app on Android & iOS, Apple Maps fallback, or any web browser',
-      privacy: '100% in-browser generation; location coordinates and place names are never uploaded or stored'
+      link: 'https://www.google.com/maps/search/?api=1&query=... (Google\'s documented Maps URL; no API key)',
+      whatYouEnter: 'A place name, an address, or latitude and longitude. If both are filled in, the coordinates are used',
+      opensIn: 'The Google Maps app if it is installed, otherwise Google Maps in the phone\'s browser',
+      codeType: 'Static QR code (ISO/IEC 18004). No redirect through us, no account',
+      privacy: 'Built in your browser; the generator does not upload the address or coordinates'
     },
     useCases: [
-      'Retail storefront window decals, business cards, and promotional flyers',
-      'Wedding invitations, party RSVP cards, and event venue directional signs',
-      'Real estate open house lawn signs and property brochure map links',
-      'Hotel front-desk check-in cards, tourist guides, and city landmark markers',
-      'Parking lot entrances, warehouse loading docks, and remote GPS hiking trailheads'
+      'A "find us" code on shop windows, flyers and business cards',
+      'Wedding and party invitations, so guests reach the right venue',
+      'Open-house signs and property brochures',
+      'Check-in cards at hotels and holiday rentals',
+      'Car park entrances, trailheads and event gates that have no street address'
     ],
     faqs: [
       {
-        q: 'Can I use latitude and longitude GPS coordinates instead of a street address?',
-        a: 'Yes. If your destination lacks a standard postal street address—such as a rural wedding venue, festival campsite, park entrance, or warehouse loading dock—you can enter decimal latitude and longitude coordinates (e.g., 37.7749, -122.4194). When scanned, the QR code drops a precise Google Maps pin directly onto those exact geographic coordinates.'
+        q: 'Can I use latitude and longitude instead of an address?',
+        a: 'Yes. Fill in both boxes with decimal numbers, latitude first (for example 37.7749 and -122.4194). This is the best option for places with no street address, such as a field used for a festival or the side gate of a venue.'
       },
       {
-        q: 'Does this QR code open turn-by-turn navigation or just a map pin?',
-        a: 'When scanned with a smartphone camera, the standard Google Maps link (https://www.google.com/maps/search/?api=1&query=...) opens the Google Maps native app on Android and iOS (or web browser if the app is absent). The recipient sees the exact pinned location and can immediately tap "Directions" or "Start" to launch instant turn-by-turn voice navigation from their current GPS position.'
+        q: 'Does the code start turn-by-turn navigation?',
+        a: 'Not straight away. It opens Google Maps with a pin on the place. From there the person taps Directions, and Google Maps routes them from wherever they are.'
       },
       {
-        q: 'How do I find the decimal GPS coordinates of a location in Google Maps?',
-        a: 'On a desktop browser, open Google Maps, right-click any point on the map, and click the top coordinate numbers (e.g., 40.7128, -74.0060) to automatically copy them to your clipboard. On mobile, touch and hold any point on the map until a red pin drops, then look at the search bar at the top to copy the decimal latitude and longitude numbers.'
+        q: 'How do I find the coordinates of a spot?',
+        a: 'On a computer, right-click the spot in Google Maps; the coordinates are the first line of the menu, and clicking them copies them. On a phone, touch and hold the spot until a pin drops, and the coordinates appear at the top of the screen or in the place details.'
       },
       {
-        q: 'Will this Google Maps QR code ever expire or stop working?',
-        a: 'No. The generated QR code is a static QR code that encodes the destination URL or geographic coordinates directly into the black-and-white module matrix. UniversalCodeMaker does not use intermediate tracking redirects, account logins, or recurring subscription fees. As long as Google Maps services the encoded URL or coordinates, your printed QR code remains functional indefinitely.'
-      },
-      {
-        q: 'Can I use a Google Plus Code (digital location code) in the generator?',
-        a: 'Yes. Google Plus Codes (Open Location Codes, such as 7FG8+H2 Paris, France) represent street-less locations globally. You can enter a full Plus Code along with its locality into the address field. Google Maps resolves Plus Codes directly to drop the pin at the designated parcel or entrance.'
-      },
-      {
-        q: 'What size should I print a Google Maps QR code on invitations or signs?',
-        a: 'For handheld printed materials like wedding invitations, RSVP cards, or business flyers scanned from 8–12 inches away, print the QR code at least 0.8 × 0.8 inches (20 × 20 mm). For roadside signs, shop windows, or real estate lawn signs scanned from 3–5 feet away, scale the QR code to at least 4 × 4 inches (100 × 100 mm). Export in vector SVG format to ensure razor-sharp edges at any print scale.'
+        q: 'Will the code expire?',
+        a: 'The code itself does not expire. The Maps link is stored inside it, with no redirect through us and no subscription to lapse. It keeps working for as long as Google supports this link format, which it documents for public use.'
       }
     ],
     relatedSlugs: [
@@ -1001,7 +992,7 @@ const SEO_PAGES = [
     metaTitle: 'Free Plain Text QR Code Generator: Raw Notes & Multi-Line',
     metaDescription: 'Generate free plain text QR codes for raw notes, instructions, multi-line ASCII, and offline reading. Encodes up to 4,296 characters with vector SVG export.',
     h1: 'Free Plain Text Multi-Line QR Code Generator',
-    lead: 'Encode raw unformatted text messages, multi-line notes, serial tokens, or cryptographic public keys into high-capacity QR codes with complete client-side privacy.',
+    lead: 'Put plain text, multi-line notes or serial numbers into a QR code. Phones show the text when scanned, with no website in between.',
     technicalSpec: {
       standard: 'ISO/IEC 18004:2024 standard QR code symbology',
       characterCapacity: 'Up to 7,089 numeric, 4,296 alphanumeric, or 2,953 binary bytes (Version 40)',
@@ -1013,7 +1004,7 @@ const SEO_PAGES = [
     },
     useCases: [
       'Offline equipment maintenance notes and machinery operating instructions',
-      'Cryptographic public keys, deposit addresses, and recovery phrase backups',
+      'Public keys and wallet deposit addresses (never private keys or recovery phrases)',
       'Asset management serial tokens and warehouse shelf bin identifiers',
       'Educational classroom quizzes, scavenger hunt clues, and museum exhibit text',
       'Product ingredient lists, allergy warnings, and compliance labels'
@@ -1041,7 +1032,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Is my text data private when generated on UniversalCodeMaker?',
-        a: 'Yes. UniversalCodeMaker operates with complete client-side privacy. The QR code is rendered entirely in your web browser using local JavaScript and WebAssembly. Your text messages, internal serial numbers, notes, or keys are never transmitted to any external server or stored in any database.'
+        a: 'The text is encoded in your browser and the generator does not upload it. But a QR code is not encrypted: anyone who scans it can read the text. Do not put passwords, private keys or recovery phrases in a plain text QR code.'
       }
     ],
     relatedSlugs: [
@@ -1097,11 +1088,11 @@ const SEO_PAGES = [
       },
       {
         q: 'Do I need to cover the existing manufacturer UPC or EAN barcode on the box?',
-        a: 'Yes! Amazon FBA scanning policy strictly requires that only one scannable barcode is visible on the exterior packaging of each unit. If your product packaging already has a pre-printed UPC, EAN, or manufacturer barcode, you must apply the FNSKU label directly over the original barcode to cover it completely. Leaving two barcodes exposed leads to scanning confusion at fulfillment centers, delayed receiving, and unplanned prep fee penalties. For more details, see our <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Amazon Barcode Guide</a>.'
+        a: 'Yes. Amazon FBA scanning policy strictly requires that only one scannable barcode is visible on the exterior packaging of each unit. If your product packaging already has a pre-printed UPC, EAN, or manufacturer barcode, you must apply the FNSKU label directly over the original barcode to cover it completely. Leaving two barcodes exposed leads to scanning confusion at fulfillment centers, delayed receiving, and unplanned prep fee penalties. For more details, see our <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Amazon Barcode Guide</a>.'
       },
       {
         q: 'Are my private Amazon ASINs, FNSKUs, or seller SKU lists stored on your servers?',
-        a: 'No. UniversalCodeMaker operates 100% inside your local web browser using client-side JavaScript. Your confidential Amazon FNSKU numbers, private-label product titles, inventory counts, and SKU lists never touch an external server and are never uploaded or tracked. Your catalog data remains completely private on your local machine.'
+        a: 'No. FNSKU labels are built in your browser, and the generator does not upload your FNSKUs, product titles or SKU lists.'
       }
     ],
     relatedSlugs: [
@@ -1119,17 +1110,17 @@ const SEO_PAGES = [
     shortName: 'Google Review QR',
     queryParam: 'symbology=qr-code&wizard=google_review',
     category: 'Smart QR',
-    metaTitle: 'Free Google Reviews QR Code Generator: Direct 5-Star Link',
-    metaDescription: 'Create free Google review QR codes that open directly to your 5-star review form. Paste your Place ID or Business Profile link. Download SVG & 300 DPI PNG.',
+    metaTitle: 'Free Google Review QR Code Generator: Open the Review Box',
+    metaDescription: 'Make a free QR code that opens your Google review form in one scan. Paste your Place ID or review link, then download SVG or a 300 DPI PNG.',
     h1: 'Free Google Reviews QR Code Generator',
-    lead: 'Turn in-person customers into verified 5-star Google reviews effortlessly. Generate custom QR codes that launch directly into your Google Business review box with one quick scan.',
+    lead: 'Make a QR code that opens your Google review box in one scan, so customers can leave a review without searching for your business first.',
     technicalSpec: {
       standard: 'ISO/IEC 18004 QR Code Model 2',
       destinationUrl: 'https://search.google.com/local/writereview?placeid={PlaceID} or g.page shortlink',
       supportedInputs: 'Google Place ID (ChIJ...), Google Business Profile review link, Google Maps URL',
       errorCorrection: 'Level M (15% recovery) or Level Q (25% recovery for center logo inserts)',
       deepLinkRouting: 'Direct native launch into Google Maps review dialogue on Android and iOS',
-      privacy: '100% client-side generation; Place IDs and review URLs are never logged or stored'
+      privacy: 'Built in your browser; Place IDs and review URLs are never logged or stored'
     },
     useCases: [
       'Restaurant and cafe tabletop acrylic stands, check presenters, and takeaway menus',
@@ -1153,11 +1144,11 @@ const SEO_PAGES = [
       },
       {
         q: 'Does the QR code open in the Google Maps app or the mobile web browser?',
-        a: 'On smartphones with Google Maps installed (all Android phones and most iPhones), scanning automatically triggers deep-linking into the native Google Maps app, where the customer is already logged into their personal Google account. If Google Maps is not installed, it falls back seamlessly to the user\'s default mobile web browser.'
+        a: 'If the Google Maps app is installed, the link usually opens there, where the customer is often already signed in. Otherwise it opens in the phone\'s web browser. Either way, posting a review needs a Google account.'
       },
       {
         q: 'What is the recommended print size and placement for countertop review QR signs?',
-        a: 'For tabletop tents, counter displays, and checkout stands, print the QR code at a minimum size of 1.2 × 1.2 inches (30 × 30 mm) at 300 DPI or higher to guarantee rapid scanning from 1 to 2 feet away. Place review signs at natural dwell points—such as the checkout register, dining tables while waiting for the bill, or customer exit areas—paired with a clear call-to-action like "Scan to share your experience on Google".'
+        a: 'For tabletop tents, counter displays, and checkout stands, print the QR code at a minimum size of 1.2 × 1.2 inches (30 × 30 mm) for scanning from about a foot away, and larger if people will scan from further back. Put signs where people naturally pause, such as the checkout, a table while they wait for the bill, or the exit, with a clear call-to-action like "Scan to share your experience on Google".'
       },
       {
         q: 'Will this Google Review QR code ever expire or require a recurring monthly subscription?',
@@ -1189,7 +1180,7 @@ const SEO_PAGES = [
       phoneFormat: 'E.164 International Format (Country Code + Number without + or dashes)',
       messageEncoding: 'RFC 3986 percent-encoding with automated newline conversion (%0A)',
       compatibility: 'WhatsApp on Android, iOS, iPadOS, WhatsApp Business, WhatsApp Web & Desktop',
-      privacy: '100% in-browser generation; phone numbers and messages are never logged or stored'
+      privacy: 'Built in your browser; phone numbers and messages are never logged or stored'
     },
     useCases: [
       'Customer service desks, support kiosks, and storefront window decals',
@@ -1248,7 +1239,7 @@ const SEO_PAGES = [
       protocol: 'NPCI UPI Deep Link Specification (upi://pay?pa={VPA}&pn={Name}&am={Amount}&cu=INR)',
       parameters: 'pa (UPI ID / VPA), pn (Merchant Name), am (Preset Amount), cu (Currency INR), tn (Note)',
       compatibility: 'Google Pay, PhonePe, Paytm, BHIM, CRED, Amazon Pay & 300+ Indian banking apps',
-      security: '100% in-browser generation with zero payment intermediaries, tracking, or fees'
+      security: 'Built in your browser; UniversalCodeMaker never handles the payment'
     },
     useCases: [
       'Retail checkout counters, acrylic billing stands, and point-of-sale displays',
@@ -1264,7 +1255,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Is there any transaction fee or intermediary involved?',
-        a: 'None. UniversalCodeMaker does not process payments or handle funds. The QR code points directly to your Virtual Payment Address (VPA / UPI ID) so 100% of funds go straight into your bank account.'
+        a: 'UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID (VPA), so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us.'
       },
       {
         q: 'Can I specify a fixed amount or let customers enter their own?',
@@ -1309,7 +1300,7 @@ const SEO_PAGES = [
       calibratedMargins: 'Top/Bottom: 0.5", Left/Right: 0.1875" (3/16"), Horizontal pitch: 2.75", Vertical pitch: 1.0"',
       symbologySupport: 'All 10 formats: Code 128, UPC-A, EAN-13, Code 39, QR Code, Data Matrix, ITF-14, PDF417',
       printerCompatibility: 'Laser (Avery 5160) and Inkjet (Avery 8160) compatible at 100% / Actual Size print scaling',
-      privacyStandard: '100% in-browser PDF rendering; inventory lists, SKUs, and asset numbers are never uploaded'
+      privacyStandard: 'PDF built in your browser; inventory lists, SKUs and asset numbers are not uploaded'
     },
     useCases: [
       'Amazon FBA FNSKU 30-up item labeling on office laser printers',
@@ -1329,7 +1320,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Can I print different barcodes on each label, or does it repeat the same barcode?',
-        a: 'Both options are supported! In Single Label mode, the studio fills all 30 labels on the sheet with your chosen barcode design, title, and SKU text—ideal for labeling batches of the same product. In Bulk / Batch Mode, you can paste a list of distinct SKU numbers or sequential asset tags (e.g., from Excel or Google Sheets), and the generator will place each successive barcode onto its own sequential label across the 30-up sheet.'
+        a: 'Both work. In Single Label mode, the studio fills all 30 labels on the sheet with your chosen barcode design, title, and SKU text, which suits labeling batches of the same product. In Bulk / Batch Mode, you can paste a list of distinct SKU numbers or sequential asset tags (e.g., from Excel or Google Sheets), and the generator will place each successive barcode onto its own sequential label across the 30-up sheet.'
       },
       {
         q: 'What is the difference between Avery 5160 and Avery 8160?',
@@ -1341,7 +1332,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Are my product lists, serial numbers, or inventory SKUs stored on UniversalCodeMaker servers?',
-        a: 'No. All PDF document assembly, vector SVG rendering, and layout calculations occur 100% client-side inside your local web browser. Your private inventory serial numbers, product pricing, employee badge numbers, and internal company SKUs are never transmitted to, logged on, or stored on any external server.'
+        a: 'No. The PDF sheet is put together in your browser, and the generator does not upload your serial numbers, prices or SKUs.'
       }
     ],
     relatedSlugs: [
@@ -1420,7 +1411,7 @@ const SEO_PAGES = [
       checksumAlgorithm: 'Self-checking symbology; optional weighted Modulo-43 checksum',
       symbologyStructure: 'Discrete variable-length symbology with automatic start/stop asterisks (*)',
       quietZones: 'Minimum 10X module width (at least 6.4 mm / 0.25 in) on left and right margins',
-      privacy: '100% client-side generation; asset IDs, serial numbers, and equipment tags are never uploaded'
+      privacy: 'Built in your browser; asset IDs, serial numbers, and equipment tags are never uploaded'
     },
     useCases: [
       'Enterprise IT hardware asset tags (laptops, servers, monitors, networking gear)',
@@ -1452,7 +1443,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Are my enterprise asset tags, serial numbers, or internal inventory lists stored on UniversalCodeMaker servers?',
-        a: 'No. All barcode rendering, vector generation, and checksum arithmetic take place 100% client-side in your local web browser. Your private asset serial numbers, equipment tags, employee IDs, and company inventory codes never leave your device and are never uploaded to, transmitted across, or stored on any external server.'
+        a: 'No. The barcodes are drawn in your browser, and the generator does not upload your asset numbers or equipment tags.'
       }
     ],
     relatedSlugs: [
@@ -1473,14 +1464,14 @@ const SEO_PAGES = [
     metaTitle: 'Free Bulk Barcode Generator: Excel, CSV & Sequential',
     metaDescription: 'Generate bulk barcodes from Excel, CSV, or sequential series. Batch export up to 200 Code 128, UPC, or QR codes as a ZIP of SVGs or Avery PDF label sheets.',
     h1: 'Free Bulk Barcode Generator from Excel & CSV',
-    lead: 'Batch generate up to 200 barcodes or QR codes directly from your Excel spreadsheet, CSV export, or auto-incrementing serial sequence. Download an organized ZIP of vector SVGs or print-ready Avery PDF label sheets with complete client-side privacy.',
+    lead: 'Batch generate up to 200 barcodes or QR codes directly from your Excel spreadsheet, CSV export, or auto-incrementing serial sequence. Download an organized ZIP of vector SVGs or print-ready Avery PDF label sheets. Your list is processed in your browser.',
     technicalSpec: {
       inputFormats: 'Pasted single column, CSV (IETF RFC 4180), Excel TSV, or auto-incrementing sequential series',
       batchCapacity: 'Up to 200 barcodes per batch (pre-validation alerts if line count exceeds 200)',
       supportedSymbologies: 'All 10 formats: Code 128, UPC-A, EAN-13, Code 39, ITF-14, QR Code, Data Matrix, Aztec, PDF417',
       exportPackaging: 'Consolidated ZIP of individual SVGs/PNGs (001_SKU.svg) or 30-up Avery PDF sheets (5160, 5163, L7160)',
       errorHandling: 'Pre-render syntax & check digit validation highlighting exact row numbers before generation',
-      dataPrivacy: '100% in-browser WebAssembly/JS execution; proprietary SKU lists and serial numbers are never uploaded'
+      dataPrivacy: 'Processed by JavaScript in your browser; SKU lists and serial numbers are not uploaded'
     },
     useCases: [
       'Warehouse cycle counting and annual physical inventory audit asset labeling',
@@ -1504,7 +1495,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Can I print bulk barcodes directly onto Avery label sheets instead of downloading loose image files?',
-        a: 'Yes. In Batch Mode, set Export Format to "Avery PDF Sheet" and select your sheet layout—such as Avery 5160 (30 labels per sheet, 1" × 2-5/8"), Avery 5163 (10 shipping labels per sheet, 2" × 4"), or Avery L7160 (A4 European standard). Each label prints a different code from your list in sequential order, with an optional toggle to include human-readable text beneath the bars.'
+        a: 'Yes. In Batch Mode, set Export Format to "Avery PDF Sheet" and select your sheet layout, such as Avery 5160 (30 labels per sheet, 1" × 2-5/8"), Avery 5163 (10 shipping labels per sheet, 2" × 4"), or Avery L7160 (A4 European standard). Each label prints a different code from your list in sequential order, with an optional toggle to include human-readable text beneath the bars.'
       },
       {
         q: 'How are individual barcode files named inside the downloaded ZIP archive?',
@@ -1512,7 +1503,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Is my proprietary inventory, supplier SKU, or pricing data stored on UniversalCodeMaker servers?',
-        a: 'No. UniversalCodeMaker operates completely client-side inside your local web browser using WebAssembly and pure JavaScript. Your pasted product lists, confidential customer numbers, cost data, and internal serial sequences never traverse the internet and are never logged, cached, or stored on any server. You can even run the batch generator completely offline once loaded.'
+        a: 'No. The pasted list is processed in your browser, and the generator does not upload it.'
       }
     ],
     relatedSlugs: [
@@ -1539,7 +1530,7 @@ const SEO_PAGES = [
       hardwareCompatibility: 'Shopify POS Bluetooth scanners (Socket Mobile S700, Zebra ZD421, Tera handhelds via HID keyboard emulation)',
       labelPresets: '2.25" × 1.25" direct thermal price tags, 2" × 1" jewelry tags, and standard 30-up Avery 5160 sheets',
       marketplaceRules: 'External channels (Google Shopping, Amazon) mandate authentic GS1 GTINs; internal store/POS can use Code 128 SKUs',
-      dataPrivacy: '100% in-browser generation; your confidential catalog, wholesale costs, and SKU lists never touch a server'
+      dataPrivacy: 'Built in your browser; your confidential catalog, wholesale costs, and SKU lists never touch a server'
     },
     useCases: [
       'Shopify POS brick-and-mortar retail checkout and pop-up shop cash register scanning',
@@ -1551,7 +1542,7 @@ const SEO_PAGES = [
     faqs: [
       {
         q: 'Does Shopify require official GS1 UPC or EAN barcodes for products?',
-        a: 'It depends on where you sell. If you only sell on your online store or in-person using Shopify POS, you do not need official GS1 barcodes—you can use free Code 128 barcodes based on your own internal variant SKUs. However, if you sync products to sales channels like Google Shopping, Amazon, Walmart, or Meta commerce, those external marketplaces mandate authentic GS1 UPC-A or EAN-13 barcodes registered under your brand prefix.'
+        a: 'It depends on where you sell. If you only sell on your online store or in-person using Shopify POS, you usually do not need GS1 barcodes; Code 128 labels made from your own SKUs work fine with a scanner. If you list products on channels such as Amazon, Walmart or Google Shopping, they generally ask for GS1-issued UPC or EAN numbers (GTINs), though the rules and exemptions differ by channel. Check each channel\'s current requirements before you print.'
       },
       {
         q: 'Where do I enter barcode numbers into the Shopify Admin dashboard?',
@@ -1559,7 +1550,7 @@ const SEO_PAGES = [
       },
       {
         q: 'How can I print barcode price tags for my Shopify catalog without paying monthly app fees?',
-        a: 'Third-party Shopify app store barcode tools frequently charge $10 to $30 per month. UniversalCodeMaker allows you to export your product catalog from Shopify Admin (Products > Export > All products as CSV), copy the SKU or barcode column into our Bulk Barcode Generator, and instantly download print-ready Avery 5160 PDF sheets or thermal roll graphics—completely free with zero subscriptions.'
+        a: 'Many barcode apps charge a monthly fee. Instead, you can export your product catalog from Shopify Admin (Products > Export > All products as CSV), copy the SKU or barcode column into our Bulk Barcode Generator, and download Avery 5160 PDF sheets or thermal-roll images at no cost.'
       },
       {
         q: 'What label sizes work best with desktop thermal printers for Shopify retail?',
@@ -1981,7 +1972,7 @@ const ENRICHMENTS = {
     "legalCaution": {
       "title": "Wi-Fi Security & Warning Against Dynamic QR Services",
       "points": [
-        "Beware of third-party \"dynamic QR code\" generators! Many commercial sites route your Wi-Fi credentials through remote redirect servers that log user IPs and break when monthly subscriptions expire.",
+        "\"Dynamic\" QR codes from subscription services send each scan through a redirect link and can stop working when the subscription ends. A Wi-Fi QR code cannot work that way: the network name and password have to be inside the code itself, which is what this generator makes.",
         "Our studio generates direct, static Wi-Fi payloads in the widely used WIFI: format. UniversalCodeMaker does not control a redirect or expiry, but credentials, device support and network settings can change.",
         "For high-security enterprise environments, use a dedicated Guest VLAN to isolate visitors from internal office hardware."
       ]
@@ -2012,11 +2003,11 @@ const ENRICHMENTS = {
       },
       {
         "title": "Zero Paper Business Card Waste",
-        "desc": "Share comprehensive digital cards including phone, email, website, and job title."
+        "desc": "Share a contact card with phone, email, website and job title."
       },
       {
         "title": "Cross-Platform vCard 3.0 Standard",
-        "desc": "Works seamlessly across Apple Contacts, Google Contacts, and Microsoft Outlook."
+        "desc": "Opens in the phone's contacts app, such as Apple Contacts or Google Contacts."
       }
     ],
     "decisionGuide": [
@@ -2112,8 +2103,8 @@ const ENRICHMENTS = {
         "desc": "Launches default mail app (Apple Mail, Gmail, Outlook) with one camera scan."
       },
       {
-        "title": "Zero Server Tracking",
-        "desc": "Uses standard mailto URI; no user emails or contents pass through any third-party server."
+        "title": "Sent from their own mail app",
+        "desc": "A mailto link opens the scanner's own email app. The message goes from their account, not through this site."
       }
     ],
     "decisionGuide": [
@@ -2278,34 +2269,37 @@ const ENRICHMENTS = {
   "google-maps-location-qr-code-generator": {
     "benefits": [
       {
-        "title": "Opens Straight in Google Maps",
+        "title": "Opens straight in Google Maps",
         "desc": "One scan opens the place in the Google Maps app (or the browser), where visitors tap Directions to get there."
       },
       {
-        "title": "Exact Geographic Coordinates",
-        "desc": "Pinpoint precise GPS latitude and longitude coordinates even in remote or rural locations."
+        "title": "Works without an address",
+        "desc": "Coordinates can pin a car park, a trailhead or an event gate that has no street address."
       },
       {
-        "title": "Zero Navigation Address Typos",
-        "desc": "Prevents visitors from getting lost due to similar street names or postal code ambiguities."
+        "title": "No address to retype",
+        "desc": "Visitors don't type anything, so there is less room for typos or a similarly named street in another town."
       }
     ],
     "decisionGuide": [
       {
-        "q": "Retail storefronts, restaurants, and tourist attractions?",
-        "a": "Place location QR codes on flyers, business cards, and brochures to guide visitors directly to your door."
+        "q": "A shop, restaurant or office with a normal address?",
+        "a": "Type the business name and town. Then scan the preview and check it opens your place, not one with a similar name."
       },
       {
-        "q": "Festivals, outdoor weddings, and remote trade show venues?",
-        "a": "Use exact latitude/longitude coordinates to pin event entrances without registered street addresses."
+        "q": "No address, or an entrance that is hard to find?",
+        "a": "Use coordinates for the exact gate or door rather than the middle of the site."
+      },
+      {
+        "q": "Want people to see your reviews and opening hours?",
+        "a": "Copy the share link of your Google Maps listing and turn it into a Website URL QR code instead. See the questions below."
       }
     ],
     "legalCaution": {
-      "title": "Location QR Accuracy & Navigation Guidelines",
+      "title": "Before you print a batch",
       "points": [
-        "Scan the printed code on an iPhone and an Android phone before printing in volume, and check it opens the right place.",
-        "Point coordinates at the public visitor entrance rather than a private loading dock or the middle of a large building.",
-        "Uses Google's documented Maps URL format, which needs no API key and opens in the Google Maps app or any web browser."
+        "Scan the printed code on an iPhone and an Android phone, and check it opens the right place.",
+        "Point coordinates at the public entrance, not a private loading dock or the middle of a large building."
       ]
     },
     "authorityLinks": [
@@ -2319,16 +2313,16 @@ const ENRICHMENTS = {
   "plain-text-qr-code-generator": {
     "benefits": [
       {
-        "title": "100% Universal Raw Text Storage",
-        "desc": "Contains raw unformatted strings requiring no specific browser or application handlers."
+        "title": "Just text, no app needed",
+        "desc": "The scanner shows the text itself; no website or special app is involved."
       },
       {
-        "title": "Completely Offline Data Retrieval",
-        "desc": "Readable by any smartphone, barcode scanner, or optical camera with zero network connection."
+        "title": "Readable offline",
+        "desc": "The text is inside the code, so a phone can read it without a network connection."
       },
       {
-        "title": "High Density (Up to 4,296 Characters)",
-        "desc": "Store extensive serial lists, cryptographic public keys, or instruction manuals."
+        "title": "Room for a short note",
+        "desc": "Up to 2,953 bytes of ordinary text in the largest QR size at error correction level L. Shorter text gives a smaller code that is easier to scan."
       }
     ],
     "decisionGuide": [
@@ -2337,8 +2331,8 @@ const ENRICHMENTS = {
         "a": "Encode permanent equipment metadata directly onto durable metal or vinyl asset tags."
       },
       {
-        "q": "Cryptographic public keys or recovery backup phrases?",
-        "a": "Store offline cryptographic text strings on paper cold wallets without relying on third-party servers."
+        "q": "Public keys or wallet addresses?",
+        "a": "Fine to share as text. Never encode private keys or recovery phrases: anyone who scans the code can read them."
       }
     ],
     "legalCaution": {
@@ -2433,7 +2427,7 @@ const ENRICHMENTS = {
     "decisionGuide": [
       {
         "q": "Should I use a shortlink or Google Place ID?",
-        "a": "Both work seamlessly. If you have your 'g.page' review link from Google Business Profile, paste it directly. If you have a Google Place ID (ChIJ...), our compiler formats it into the direct 'writereview' endpoint automatically."
+        "a": "Both work. If you have your 'g.page' review link from Google Business Profile, paste it directly. If you have a Google Place ID (ChIJ...), the generator turns it into the direct 'writereview' endpoint automatically."
       },
       {
         "q": "Where is the best physical location to place review QR codes?",
@@ -2529,7 +2523,7 @@ const ENRICHMENTS = {
       },
       {
         "q": "Can I print UPI QR codes on tabletop acrylic tent stands?",
-        "a": "Yes! UniversalCodeMaker exports high-resolution 300 DPI vector SVGs and PNGs that can be printed on durable vinyl or cardboard standees for checkout counters."
+        "a": "Yes. Download the SVG (vector, sharp at any size) or a 300 DPI PNG and print it on durable vinyl or cardboard standees for checkout counters."
       }
     ],
     "legalCaution": {
@@ -4574,7 +4568,7 @@ const SITE_FOOTER_HTML = `  <!-- Site Footer -->
             Smart QR Generators
           </h4>
           <ul>
-            <li><a href="./google-reviews-qr-code-generator.html">Google Reviews 5-Star QR</a></li>
+            <li><a href="./google-reviews-qr-code-generator.html">Google Review QR</a></li>
             <li><a href="./upi-qr-code-generator.html">UPI Scan-to-Pay QR</a></li>
             <li><a href="./wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
             <li><a href="./vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
@@ -4855,24 +4849,8 @@ function generatePageHtml(page) {
       </a>
     `;
   } else if (isQrPage) {
-    hardwareItemsHtml = `
-      <a href="https://www.amazon.com/s?k=acrylic+qr+code+sign+holder&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        <span>Acrylic QR Countertop Stands</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=thermal+receipt+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-        <span>Thermal Receipt Printers</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=2D+bluetooth+barcode+scanner&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10-5 5V2l5 5L7 17"/></svg>
-        <span>2D QR Scanners</span>
-      </a>
-      <a href="https://www.amazon.com/s?k=printable+vinyl+sticker+paper&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-        <span>Weatherproof Sticker Paper</span>
-      </a>
-    `;
+    // QR pages: no affiliate block (owner decision 2026-11-16, supplies only where printing labels is the task).
+    hardwareItemsHtml = '';
   } else {
     hardwareItemsHtml = `
       <a href="https://www.amazon.com/s?k=thermal+barcode+printer&tag=universal0d96-20" target="_blank" rel="noopener noreferrer sponsored" class="hardware-pill">
@@ -4918,7 +4896,7 @@ ${siteHeaderHtml(page.queryParam)}
     <section class="hero-banner">
       <div class="hero-badge">
         <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="10"/></svg>
-        ${page.category} Standard
+        ${page.category}
       </div>
       <h1 class="hero-title">${page.h1}</h1>
       <p class="hero-lead">${page.lead}</p>${page.slug === 'ean-13-barcode-generator' ? '\n      ' + eanOnpageHtml() : ''}
@@ -4927,7 +4905,7 @@ ${siteHeaderHtml(page.queryParam)}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
-        ${page.slug === 'ean-13-barcode-generator' ? 'Launch studio for full customization' : `Generate ${page.shortName} Now (Instant & Free)`}
+        ${page.slug === 'ean-13-barcode-generator' ? 'Launch studio for full customization' : `Open the ${page.shortName} generator`}
       </a>${hasEanWorkflow(page.slug) ? identifierNoticeHtml() : ''}
     </section>${page.slug === 'ean-13-barcode-generator' ? '\n' + eanPackagingHtml() : ''}
 
@@ -4936,7 +4914,7 @@ ${siteHeaderHtml(page.queryParam)}
       <div class="info-card">
         <h2 class="info-card-title">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg>
-          Technical Specifications
+          Specs at a glance
         </h2>
         <dl class="spec-table">
           ${specsListHtml}
@@ -4946,7 +4924,7 @@ ${siteHeaderHtml(page.queryParam)}
       <div class="info-card">
         <h2 class="info-card-title">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
-          Standard Industry Use Cases
+          Where it gets used
         </h2>
         <ul class="use-cases-list">
           ${useCasesHtml}
@@ -4956,7 +4934,7 @@ ${siteHeaderHtml(page.queryParam)}
 
     ${guide && page.slug !== 'ean-13-barcode-generator' ? `<!-- Practical guide: how to make it, print it, and what to avoid -->
     <section class="guide-card" aria-labelledby="guide-title">
-      <h2 id="guide-title" class="guide-title">${guide.title || `How to Make, Print &amp; Test Your ${page.shortName} Code`}</h2>
+      <h2 id="guide-title" class="guide-title">${guide.title || `How to make, print and test a ${page.shortName} code`}</h2>
       <div class="guide-grid">
         <div class="guide-block guide-steps">
           <h3>Step by step</h3>
@@ -4980,12 +4958,12 @@ ${siteHeaderHtml(page.queryParam)}
       </div>
     </section>
     ` : ''}
-    <!-- Recommended Hardware & Supplies Banner (Amazon Associates) -->
+    ${hardwareItemsHtml ? `<!-- Printing supplies (Amazon Associates); barcode and label pages only -->
     <section class="hardware-box">
       <div class="hardware-box-header">
         <div class="hardware-box-title">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
-          Recommended Hardware &amp; Supplies
+          Printers, labels and scanners
         </div>
         <div class="hardware-box-disclosure">
           UniversalCodeMaker is an Amazon Associate. As an Amazon Associate, we earn from qualifying purchases.
@@ -4995,13 +4973,14 @@ ${siteHeaderHtml(page.queryParam)}
         ${hardwareItemsHtml}
       </div>
     </section>
+    ` : ''}
 
     <!-- Why Choose This Format / Key Benefits -->
     ${benefits.length > 0 ? `
     <section style="margin: 2.5rem 0 2rem;">
       <h2 style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        Key Benefits of ${page.shortName}
+        Why use ${page.shortName}
       </h2>
       <div class="benefits-grid">
         ${benefitsHtml}
@@ -5015,12 +4994,12 @@ ${siteHeaderHtml(page.queryParam)}
       <div class="decision-header">
         <h2 style="display: flex; align-items: center; gap: 0.5rem;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-          What Code Do I Need for My Product? (Customer Decision Guide)
+          ${isQrPage ? `Is a ${page.shortName} code the right fit?` : 'Which barcode do you need?'}
         </h2>
-      </div>
+      </div>${isQrPage ? '' : `
       <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
-        Choosing the right barcode format depends on where your product is sold, the packaging substrate, and scanner infrastructure:
-      </p>
+        The right format depends on where the product is sold, what it is printed on, and which scanners will read it.
+      </p>`}
       <div class="decision-grid">
         ${decisionGuideHtml}
       </div>
@@ -5033,7 +5012,7 @@ ${siteHeaderHtml(page.queryParam)}
       <div class="caution-header">
         <span class="caution-badge ${page.category === 'Retail & POS' ? 'red' : ''}" style="display: inline-flex; align-items: center; gap: 0.4rem;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
-          Legal &amp; Compliance Guide
+          Rules to know
         </span>
         <h3>${legalCaution.title}</h3>
       </div>
@@ -5049,9 +5028,9 @@ ${siteHeaderHtml(page.queryParam)}
       <div class="authority-header">
         <h3 style="display: flex; align-items: center; gap: 0.5rem;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          Official Specifications &amp; Authoritative References
+          Sources
         </h3>
-        <span style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-muted);">PUBLIC CITATIONS</span>
+        <span style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-muted);">STANDARDS AND OFFICIAL HELP PAGES</span>
       </div>
       <div class="authority-links-grid">
         ${authorityLinksHtml}
@@ -5063,7 +5042,7 @@ ${siteHeaderHtml(page.queryParam)}
     <section class="faq-section">
       <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Frequently Asked Questions
+        Common questions
       </h2>
       <div class="faq-accordion">
         ${faqItemsHtml}
@@ -5074,7 +5053,7 @@ ${siteHeaderHtml(page.queryParam)}
     <section style="margin-bottom: 3rem;">
       <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Related Barcode &amp; QR Tools
+        Related tools
       </h2>
       <div class="related-grid">
         ${relatedPagesHtml}

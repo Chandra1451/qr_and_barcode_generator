@@ -12,7 +12,7 @@
 - **Export Formats**: Vector SVG, vector EPS for barcodes (print shops, older design software), PNG at 1x, 2x or 4x (2x and 4x are 300+ DPI); barcode PNG, SVG and EPS files open at real print size (EAN-13, UPC-A and ISBN at GS1's recommended 0.33 mm bar width, ITF-14 at 0.495 mm), PDF label sheets (Avery 5160, 5163, L7160 and Amazon FBA/FNSKU labels), batch ZIP download, and Avery PDF sheets with a different code on each label (up to 200 values).
 
 ## How It Works & Privacy
-- All barcode encoding and rendering occurs 100% client-side in the user's browser memory via JavaScript (`bwip-js` and `qr-code-styling`).
+- Barcode and QR encoding and rendering run in the user's browser via JavaScript (`bwip-js` and `qr-code-styling`).
 - No user inputs, URLs, passwords, generated images, or scanned images/camera frames are ever transmitted to or stored on our servers.
 - Codes are true static symbols with direct data encoding and no proprietary redirect servers.
 
