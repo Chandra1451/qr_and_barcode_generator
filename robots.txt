@@ -14,12 +14,21 @@ Disallow: /scratch/
 Disallow: /temp/
 Disallow: /tests/
 
-# 2. AI Answer Engines (Permit Retrieval for Search & Citations)
-User-agent: PerplexityBot
+# 2. AI search and answer engines (retrieval for search results and citations)
+# OpenAI, Anthropic and Apple names checked against their docs on 2026-11-19.
+User-agent: OAI-SearchBot
 User-agent: ChatGPT-User
-User-agent: Claude-Search
-User-agent: Applebot-Extended
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Applebot
 Allow: /
+Disallow: /scratch/
+Disallow: /temp/
+Disallow: /tests/
+
+# Training-use tokens (GPTBot, ClaudeBot, Applebot-Extended, Google-Extended) are
+# not listed here: they fall under "*" below, so training use is currently allowed.
 
 # 3. Uncontrolled Bulk AI Training Harvesters (Rate-Control/Disallow)
 User-agent: Bytespider

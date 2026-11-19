@@ -196,6 +196,8 @@ test.describe('STATIC-CLAIM - public copy stays within verified product claims',
     };
     const forbidden = [
       ['identity-document targeting', /AAMVA|driver licen[cs]e/i],
+      // Titles are what searchers see; ID wording there targets identity documents (UCM-QUAL-04, 2026-11-19).
+      ['identity-document title', /<title>[^<]*(?:\bID\b|identity|licen[cs]e|badge)[^<]*<\/title>|metaTitle: '[^']*(?:\bID\b|identity|licen[cs]e|badge)/i],
       ['permanence promise', /100%\s+free(?:\s+forever)?|free forever|permanent\s+free|functions\s+permanently|never\s+expire/i],
       ['scan-success guarantee', /without read failures/i],
       ['legal-requirement claim', /legally required/i],

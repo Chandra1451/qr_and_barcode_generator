@@ -431,7 +431,7 @@ const SEO_PAGES = [
     shortName: 'PDF417',
     queryParam: 'symbology=pdf417',
     category: '2D Stacked',
-    metaTitle: 'Free PDF417 Barcode Generator: ID Badges, Cards & SVG',
+    metaTitle: 'Free PDF417 Barcode Generator: SVG & PNG',
     metaDescription: 'Free PDF417 generator for shipping papers, labels and documents. Encodes exactly the text you enter, with adjustable data columns. SVG or PNG.',
     h1: 'Free PDF417 Stacked 2D Barcode Generator',
     lead: "Make a PDF417 barcode, the stacked 2D barcode used on shipping papers, labels and documents. It encodes exactly the text you enter, and you can set how many data columns it uses to make it wider or taller.",
