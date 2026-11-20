@@ -235,7 +235,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Are my product numbers, SKUs, or inventory details stored on UniversalCodeMaker servers?',
-        a: 'No. The barcode is drawn by JavaScript in your browser, and the generator does not upload your GTIN-12 numbers, product titles or label designs. The privacy policy explains what the site itself measures.'
+        a: 'No. The barcode is drawn by JavaScript in your browser, and the generator does not upload your GTIN-12 numbers, product titles or label designs.'
       }
     ]
   },
