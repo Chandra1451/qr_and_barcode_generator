@@ -208,6 +208,8 @@ test.describe('STATIC-CLAIM - public copy stays within verified product claims',
       ['false WebAssembly generation claim', /(?:generat|render|execut)\w*[^.<\n]{0,80}WebAssembly|WebAssembly\/JS execution/i],
       ['secret-in-QR advice', /recovery (?:phrase|backup) (?:phrase )?backups?|recovery backup phrases|seed phrase backups?/i],
       ['review-gating wording', /5-star (?:review|link|qr)/i],
+      // Upload/storage absolutes (UCM-QUAL-03, 2026-11-19): recent codes are kept in local storage and the site runs analytics.
+      ['upload absolute', /never leave your device|nothing is uploaded|zero (?:server|image|uploads?)\b|compliant optical/i],
       ['compatibility absolute', /100%\s+compatible|fully compatible/i],
       ['rights absolute', /100%\s+royalty-free/i],
       ['server-log absolute', /no server logs/i],

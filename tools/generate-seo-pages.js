@@ -964,7 +964,7 @@ const SEO_PAGES = [
     queryParam: 'symbology=qr-code&wizard=google_review',
     category: 'Smart QR',
     metaTitle: 'Free Google Review QR Code Generator: Open the Review Box',
-    metaDescription: 'Make a free QR code that opens your Google review form in one scan. Paste your Place ID or review link, then download SVG or a 300 DPI PNG.',
+    metaDescription: 'Make a free QR code that opens your Google review form in one scan. Paste your Place ID or review link, then download SVG or a high-resolution PNG.',
     h1: 'Free Google Reviews QR Code Generator',
     lead: "Make a QR code that opens your Google review box in one scan, so customers can leave a review without searching for your business first.",
     technicalSpec: {
@@ -1251,7 +1251,7 @@ const SEO_PAGES = [
     metaTitle: 'Free Bulk Barcode Generator: Excel, CSV & Sequential',
     metaDescription: 'Free bulk barcode generator. Paste a column from Excel or a CSV, or make a numbered series, and download up to 200 codes as a ZIP or Avery label sheets.',
     h1: 'Free Bulk Barcode Generator from Excel & CSV',
-    lead: "Make up to 200 barcodes or QR codes at once. Paste a column from Excel or Google Sheets, upload the first column of a CSV, or generate a numbered series. Download them as a ZIP of image files or as Avery label sheets.",
+    lead: "Make up to 200 barcodes or QR codes at once. Paste a column from Excel or Google Sheets, paste CSV text (the first column is used), or generate a numbered series. Download them as a ZIP of image files or as Avery label sheets.",
     technicalSpec: {
       input: "Pasted lines, the first column of a CSV, or a numbered series",
       series: "Prefix, start number, count, zero-padding and suffix (e.g. SKU-001 to SKU-200)",
@@ -1270,7 +1270,7 @@ const SEO_PAGES = [
     faqs: [
       {
         q: "How do I get my data in from Excel?",
-        a: "Select the column of values in Excel or Google Sheets, copy it, and paste it into the batch box. One value per line. For a CSV file, the first column is used."
+        a: "Select the column of values in Excel or Google Sheets, copy it, and paste it into the batch box. One value per line. If you paste CSV text, the first column is used."
       },
       {
         q: "What happens if one value is invalid?",

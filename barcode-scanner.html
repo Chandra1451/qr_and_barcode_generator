@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Online Barcode &amp; QR Code Scanner (Photo or Camera)</title>
   <meta name="description"
-    content="Scan barcodes and QR codes online from photos, screenshots, or camera. In-browser WebAssembly decoding, zero uploads. Reads UPC, EAN, QR, Data Matrix, PDF417.">
+    content="Scan barcodes and QR codes from a photo, screenshot or your camera. Decoded in your browser; images are not uploaded. Reads UPC, EAN, QR, Data Matrix, PDF417.">
   <link rel="canonical" href="https://universalcodemaker.com/barcode-scanner.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#ff2a4b">
@@ -23,7 +23,7 @@
   <meta property="og:site_name" content="UniversalCodeMaker">
   <meta property="og:title" content="Free Online Barcode &amp; QR Code Scanner | UniversalCodeMaker.com">
   <meta property="og:description"
-    content="Read QR codes and barcodes from an image or your camera, privately in your browser. Nothing is uploaded.">
+    content="Read QR codes and barcodes from an image or your camera, decoded in your browser. Images and camera frames are not uploaded.">
   <meta property="og:url" content="https://universalcodemaker.com/barcode-scanner.html">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -61,15 +61,15 @@
     "price": "0",
     "priceCurrency": "USD"
   },
-  "description": "Read QR codes and barcodes from an image or your camera, privately in your browser. Nothing is uploaded.",
+  "description": "Read QR codes and barcodes from an image or your camera, decoded in your browser. Images and camera frames are not uploaded.",
   "featureList": [
-    "Instant client-side decoding using WebAssembly ZXing-C++",
+    "Decoding in the browser with ZXing-C++ compiled to WebAssembly",
     "Photo, screenshot, and clipboard image scanning (PNG, JPG, WebP, SVG)",
     "Live smartphone and webcam video barcode scanner",
-    "Multi-code detection in a single image",
+    "Up to 8 codes found in one image",
     "Reads 1D retail barcodes (UPC-A, EAN-13, ISBN, Code 128, ITF-14)",
     "Reads 2D matrix symbologies (QR, Micro QR, Data Matrix, Aztec, PDF417)",
-    "Private browser-only processing with zero image or camera uploads"
+    "Images and camera frames are decoded locally and not uploaded"
   ],
   "publisher": {
     "@type": "Organization",
@@ -88,7 +88,7 @@
       "name": "Is it safe to scan a code here? Are my images uploaded?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Your images are never uploaded. The picture is decoded by your own browser, and the reader runs locally as WebAssembly. Photos, camera frames and the decoded text are not sent to our server, not stored, and not shared with analytics or advertising partners."
+        "text": "Your images are not uploaded. The picture is decoded by your own browser with a WebAssembly reader. Photos, camera frames and the decoded text are not sent to our server and are not passed to analytics or advertising. The site itself uses analytics and ads; the privacy policy explains what they collect."
       }
     },
     {
@@ -96,7 +96,7 @@
       "name": "Can I scan barcodes directly from image files or screenshots?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. You can drag and drop, choose from your files, or paste (Ctrl+V / Cmd+V) any image file up to 25 MB—including PNG, JPG, WebP, GIF, BMP, and vector SVG. The scanner decodes all 1D and 2D barcodes visible in the image directly in your browser."
+        "text": "Yes. You can drag and drop, choose from your files, or paste (Ctrl+V / Cmd+V) any image file up to 25 MB—including PNG, JPG, WebP, GIF, BMP, and vector SVG. The scanner looks for up to 8 codes in one image, in your browser."
       }
     },
     {
@@ -112,7 +112,7 @@
       "name": "What should I do if a barcode in my photo cannot be read or is damaged?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "If a barcode on packaging is smudged, torn, or low-contrast, locate the 12-digit UPC or 13-digit EAN number printed under the bars and regenerate a fresh vector SVG or 300 DPI print file using our free EAN-13 Barcode Generator or UPC-A Barcode Generator."
+        "text": "If a barcode on packaging is smudged, torn, or low-contrast, locate the 12-digit UPC or 13-digit EAN number printed under the bars and if it is your own product number, make a fresh vector SVG or high-resolution PNG with our free EAN-13 Barcode Generator or UPC-A Barcode Generator."
       }
     },
     {
@@ -212,7 +212,7 @@
       <h1 class="doc-title">Free Online Barcode &amp; QR Code Scanner</h1>
       <p class="doc-subtitle">
         Read a QR code or barcode from a photo, a screenshot or your camera. Everything is decoded on your own device:
-        your images and their contents are never uploaded.
+        your images and their contents are not uploaded.
       </p>
     </div>
 
@@ -324,19 +324,20 @@
     <section class="doc-section">
       <h2>Frequently asked questions</h2>
       <h3>Is it safe to scan a code here? Are my images uploaded?</h3>
-      <p>Your images are never uploaded. The picture is decoded by your own browser, and the reader runs locally as
-        WebAssembly. Photos, camera frames and the decoded text are not sent to our server, not stored, and not shared
-        with analytics or advertising partners.</p>
+      <p>Your images are not uploaded. The picture is decoded by your own browser with a WebAssembly reader. Photos,
+        camera frames and the decoded text are not sent to our server and are not passed to analytics or advertising.
+        The site itself uses analytics and ads; the <a href="privacy-policy.html">privacy policy</a> explains what they
+        collect.</p>
       <h3>Can I scan barcodes directly from image files or screenshots?</h3>
       <p>Yes. You can drag and drop, choose from your files, or paste (Ctrl+V / Cmd+V) any image file up to 25
-        MB—including PNG, JPG, WebP, GIF, BMP, and vector SVG. The scanner decodes all 1D and 2D barcodes visible in the
-        image directly in your browser.</p>
+        MB—including PNG, JPG, WebP, GIF, BMP, and vector SVG. The scanner looks for up to 8 codes in one image, in your
+        browser.</p>
       <h3>Which barcode types can it read?</h3>
       <p>QR Code, Micro QR, rMQR, Data Matrix, Aztec, PDF417 and MaxiCode, plus the common 1D barcodes: EAN-13, EAN-8,
         UPC-A, UPC-E, Code 128 (including GS1-128), Code 39, Code 93, Codabar, ITF / ITF-14 and GS1 DataBar.</p>
       <h3>What should I do if a barcode in my photo cannot be read or is damaged?</h3>
       <p>If a barcode on packaging is smudged, torn, or low-contrast, locate the 12-digit UPC or 13-digit EAN number
-        printed under the bars and regenerate a fresh vector SVG or 300 DPI print file using our free <a
+        printed under the bars and, if it is your own product number, make a fresh vector SVG or high-resolution PNG with our free <a
           href="pages/ean-13-barcode-generator.html">EAN-13 Barcode Generator</a> or <a
           href="pages/upc-a-barcode-generator.html">UPC-A Barcode Generator</a>.</p>
       <h3>Why is no code found in my photo?</h3>
