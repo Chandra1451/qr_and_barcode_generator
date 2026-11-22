@@ -4,20 +4,20 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.28';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.28';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.29';
+import { prefetchEngines } from './core/dynamic-loader.js?v=3.29';
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.28';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.28';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.28';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.28';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.28';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.28';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.28';
+} from './generators/registry.js?v=3.29';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.29';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.29';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.29';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.29';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.29';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.29';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -26,7 +26,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.28';
+} from './export/label-maker.js?v=3.29';
 
 class V2StudioApp {
   constructor() {
@@ -208,6 +208,9 @@ class V2StudioApp {
       qrWizardSection: document.getElementById('qr-wizard-section'),
       qrWizardNav: document.getElementById('qr-wizard-nav'),
       wizardFormContainer: document.getElementById('wizard-form-container'),
+      wizardInsideText: document.getElementById('wizard-inside-text'),
+      wizardInsideNote: document.getElementById('wizard-inside-note'),
+      btnCopyInside: document.getElementById('btn-copy-inside'),
       
       // Styling Accordion
       stylingAccordion: document.getElementById('styling-accordion'),
@@ -860,6 +863,30 @@ class V2StudioApp {
     });
   }
 
+  /** "What's inside this code": the exact text the QR holds, as plain text (never HTML). */
+  showWizardInside(payload) {
+    if (this.dom.wizardInsideText) this.dom.wizardInsideText.textContent = payload;
+    if (this.dom.wizardInsideNote) this.dom.wizardInsideNote.hidden = this.activeWizardId !== 'upi';
+  }
+
+  async copyWizardInside() {
+    const btn = this.dom.btnCopyInside;
+    const box = this.dom.wizardInsideText;
+    if (!btn || !box) return;
+    try {
+      await navigator.clipboard.writeText(box.textContent);
+      btn.textContent = 'Copied';
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(box);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      btn.textContent = 'Selected: press Ctrl+C';
+    }
+    setTimeout(() => { btn.textContent = 'Copy text'; }, 2000);
+  }
+
   getWizardPayload() {
     const wizard = getWizard(this.activeWizardId);
     if (!wizard) return 'https://universalcodemaker.com';
@@ -1086,6 +1113,7 @@ class V2StudioApp {
 
     if (isQR) {
       payload = this.getWizardPayload();
+      this.showWizardInside(payload);
     } else {
       payload = (this.dom.payloadInput.value || '').trim();
     }
@@ -2367,6 +2395,7 @@ class V2StudioApp {
     this.dom.btnDownloadEps?.addEventListener('click', () => this.downloadEps());
     this.dom.btnDownloadPng?.addEventListener('click', () => this.downloadPng());
     this.dom.btnCopyClipboard?.addEventListener('click', () => this.copyClipboard());
+    this.dom.btnCopyInside?.addEventListener('click', () => this.copyWizardInside());
   }
 }
 

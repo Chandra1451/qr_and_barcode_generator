@@ -93,6 +93,24 @@ test.describe('SCAN · privacy', () => {
     expect(thirdParty.map((r) => r.url), 'unexpected third-party requests').toEqual([]);
   });
 
+  test('SCAN-13 a UPI QR shows its UPI ID, name, amount and note as plain text', async ({ studio, page }) => {
+    await studio.open('?symbology=qr-code&wizard=upi');
+    const before = await studio.fingerprint();
+    const field = (id) => page.locator(`#wizard-form-container .wizard-input[data-field="${id}"]`);
+    await field('vpa').fill('shop@upi');
+    await field('payeeName').fill('Corner <b>Store</b>');
+    await field('amount').fill('150');
+    await field('note').fill('Table 4');
+    await studio.waitForChange(before, { what: 'UPI fields' });
+    await studio.waitForStableRender();
+    const png = await studio.previewPng();
+    await scanPng(page, png);
+    await expect(page.locator('.scan-upi dt')).toHaveText(['UPI ID', 'Payee name', 'Amount', 'Note']);
+    await expect(page.locator('.scan-upi dd')).toHaveText(['shop@upi', 'Corner <b>Store</b>', '150 INR', 'Table 4']);
+    // Decoded text is untrusted: markup in it must stay text.
+    await expect(page.locator('.scan-upi b')).toHaveCount(0);
+  });
+
   test('SCAN-11 "Create a copy in Studio" keeps the text out of the URL and loads it into the studio', async ({ studio, page, netLog }) => {
     const secret = 'HANDOFF-TEST-4c2d';
     await scanPng(page, await qrPng(studio, page, secret));

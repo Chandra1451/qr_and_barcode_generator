@@ -7,9 +7,9 @@
  * and Avery multi-label sheets.
  */
 
-import { loadJsPdf } from '../core/dynamic-loader.js?v=3.28';
-import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.28';
-import { pngBlobWithDpi } from '../core/print-size.js?v=3.28';
+import { loadJsPdf } from '../core/dynamic-loader.js?v=3.29';
+import { AVERY_TEMPLATES, calculateLabelPositions } from './pdf-exporter.js?v=3.29';
+import { pngBlobWithDpi } from '../core/print-size.js?v=3.29';
 
 export const LABEL_PRESETS = {
   'retail-225-125': {

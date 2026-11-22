@@ -144,7 +144,7 @@
 
   <!-- V2 Stylesheets -->
   <link rel="stylesheet" href="css/v2-theme.css?v=3.4">
-  <link rel="stylesheet" href="css/v2-studio.css?v=3.11">
+  <link rel="stylesheet" href="css/v2-studio.css?v=3.12">
 </head>
 <body>
 
@@ -358,6 +358,12 @@
               </label>
               <div class="qr-wizard-nav" id="qr-wizard-nav"></div>
               <div id="wizard-form-container"></div>
+              <details class="wizard-inside" id="wizard-inside">
+                <summary>What's inside this code (copy the text or link)</summary>
+                <pre class="wizard-inside-text" id="wizard-inside-text" tabindex="0"></pre>
+                <p class="wizard-inside-note" id="wizard-inside-note" hidden>This UPI link opens only on phones with a UPI app; on a computer it does nothing. You can send it in WhatsApp or SMS, or use it as a payment button on a mobile website.</p>
+                <button type="button" class="btn btn-ink btn-sm" id="btn-copy-inside">Copy text</button>
+              </details>
             </div>
 
             <!-- Standard Payload Section (Barcodes) -->
@@ -1479,6 +1485,6 @@
 
   <!-- Application Module Entrypoint -->
   <script src="js/core/header-offset.js?v=1.0"></script>
-  <script type="module" src="js/v2-studio.js?v=3.28"></script>
+  <script type="module" src="js/v2-studio.js?v=3.29"></script>
 </body>
 </html>

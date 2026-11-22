@@ -56,6 +56,32 @@ const FORMAT_NAMES = {
   Telepen: 'Telepen', DXFilmEdge: 'DX Film Edge'
 };
 
+/**
+ * Fields of a UPI payment request (upi://pay?pa=…&pn=…&am=…&cu=…&tn=…) as [label, value] pairs,
+ * or [] for anything else. Values are decoded text; callers must render them with textContent.
+ */
+export function upiDetails(text) {
+  const t = String(text || '').trim();
+  if (!/^upi:\/\/pay\?/i.test(t)) return [];
+  let params;
+  try {
+    params = new URLSearchParams(t.slice(t.indexOf('?') + 1));
+  } catch {
+    return [];
+  }
+  const out = [];
+  const add = (label, key) => {
+    const v = params.get(key);
+    if (v && v.trim()) out.push([label, v.trim()]);
+  };
+  add('UPI ID', 'pa');
+  add('Payee name', 'pn');
+  const amount = params.get('am');
+  if (amount && amount.trim()) out.push(['Amount', `${amount.trim()} ${(params.get('cu') || 'INR').trim()}`]);
+  add('Note', 'tn');
+  return out;
+}
+
 /** Friendly name for a decoded format (old or new zxing-wasm name). */
 export const formatLabel = (format) => FORMAT_NAMES[normaliseFormat(format)] || format;
 
@@ -465,6 +491,18 @@ class ScannerPage {
     const body = el('pre', 'scan-result-text', text);
     body.tabIndex = 0;
     card.appendChild(body);
+
+    // UPI payment requests: show the fields in words. Plain text only; nothing becomes a link.
+    const upi = upiDetails(text);
+    if (upi.length) {
+      const dl = el('dl', 'scan-upi');
+      dl.setAttribute('aria-label', 'UPI payment details');
+      for (const [label, value] of upi) {
+        dl.appendChild(el('dt', '', label));
+        dl.appendChild(el('dd', '', value));
+      }
+      card.appendChild(dl);
+    }
 
     const actions = el('div', 'scan-result-actions');
 

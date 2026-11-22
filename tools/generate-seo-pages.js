@@ -1109,6 +1109,10 @@ const SEO_PAGES = [
         a: "The code uses Merchant as the name. Use your shop or account name instead, so payers can check they are paying the right person."
       },
       {
+        q: "Can I get a UPI payment link instead of a QR code?",
+        a: "Yes. Under the form in the studio, open What's inside this code and press Copy text. You get the upi://pay link with your UPI ID, name, amount and note. It opens only on phones with a UPI app, so it suits WhatsApp or SMS messages and payment buttons on a mobile website; on a computer it does nothing."
+      },
+      {
         q: "Can I turn an existing UPI QR code into a link?",
         a: "Yes. Open our <a href=\"../barcode-scanner.html\">barcode scanner</a> and upload a photo of the code. It shows the upi://pay link inside, including the UPI ID, name and amount, and you can copy it."
       },

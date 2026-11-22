@@ -179,6 +179,48 @@ test.describe('QRC · wizard forms', () => {
     const back = await studio.waitForStableRender();
     expect(sameImage(back, url)).toBe(true);
   });
+
+  // "What's inside this code" (UCM-IN-02, 2026-11-22): the panel must show exactly what the QR holds.
+  const insideText = async (page) => (await page.locator('#wizard-inside-text').textContent()).replace(/\r\n/g, '\n');
+  for (const w of WIZARDS) {
+    test(`QRC-14 ${w.id}: "What's inside this code" shows exactly the text the preview decodes to`, async ({ studio, page }) => {
+      await studio.open();
+      await studio.selectWizard(w.id);
+      await studio.waitForStableRender();
+      await page.locator('#wizard-inside summary').click();
+      await expect(page.locator('#wizard-inside-text')).toBeVisible();
+      const decoded = (await studio.decodePreview()).replace(/\r\n/g, '\n');
+      expect(await insideText(page)).toBe(decoded);
+    });
+  }
+
+  test('QRC-15 the panel follows edits, and the UPI note shows only for UPI', async ({ studio, page }) => {
+    await studio.open();
+    await page.locator('#wizard-inside summary').click();
+    await expect(page.locator('#wizard-inside-note')).toBeHidden();
+    await studio.selectWizard('upi');
+    const before = await studio.waitForStableRender();
+    await expect(page.locator('#wizard-inside-note')).toBeVisible();
+    await page.locator('#wizard-form-container .wizard-input[data-field="amount"]').fill('150');
+    await studio.waitForChange(before, { what: 'UPI amount edit' });
+    await expect(page.locator('#wizard-inside-text')).toContainText('&am=150');
+    await studio.selectWizard('url');
+    await studio.waitForStableRender();
+    await expect(page.locator('#wizard-inside-note')).toBeHidden();
+  });
+
+  test('QRC-16 "Copy text" copies exactly what the panel shows', async ({ studio, page, context }) => {
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await studio.open();
+    await studio.selectWizard('upi');
+    await studio.waitForStableRender();
+    await page.locator('#wizard-inside summary').click();
+    await page.locator('#btn-copy-inside').click();
+    await expect(page.locator('#btn-copy-inside')).toHaveText('Copied');
+    const copied = await page.evaluate(() => navigator.clipboard.readText());
+    expect(copied.replace(/\r\n/g, '\n')).toBe(await insideText(page));
+    expect(copied).toMatch(/^upi:\/\/pay\?pa=/);
+  });
 });
 
 test.describe('QRC · logo studio', () => {

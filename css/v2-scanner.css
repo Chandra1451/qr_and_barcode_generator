@@ -209,3 +209,23 @@
   .scan-inputs { grid-template-columns: 1fr; }
   .scan-drop { min-height: 150px; }
 }
+
+/* UPI payment request details, shown as plain text (UCM-IN-02, 2026-11-22) */
+.scan-upi {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.3rem 0.85rem;
+  margin: 0 0 0.85rem;
+  font-size: 0.88rem;
+}
+.scan-upi dt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.scan-upi dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
