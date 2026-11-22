@@ -1062,33 +1062,59 @@ const SEO_PAGES = [
     queryParam: 'symbology=qr-code&wizard=upi',
     category: 'Smart QR',
     metaTitle: 'Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount',
-    metaDescription: 'Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.',
+    metaDescription: 'Free UPI QR code generator for your UPI ID. Add a fixed amount, a note or your shop logo. Customers pay with Google Pay, PhonePe, Paytm, BHIM or their bank app.',
     h1: 'Free UPI Scan-to-Pay QR Code Generator',
-    lead: "Make a UPI payment QR code for your UPI ID, with an optional fixed amount and a note. Customers scan it with Google Pay, PhonePe, Paytm, BHIM or their bank's UPI app, check the details and pay.",
+    lead: "Make a UPI payment QR code for your UPI ID. Add a fixed amount for a bill, leave it open for a shop counter, put a note such as an invoice number, or add your logo. Customers scan it with Google Pay, PhonePe, Paytm, BHIM or their bank's UPI app, check the details and pay.",
     technicalSpec: {
       link: "upi://pay?pa=UPI ID&pn=name&cu=INR&am=amount&tn=note",
       fields: "UPI ID (VPA), payee name, optional amount in rupees, optional note",
-      currency: "INR",
+      worksWith: "A UPI ID from any bank or UPI app, including a mobile-number UPI ID",
+      logo: "Optional; the code switches to the highest error correction so it still scans",
       payments: "Built in your browser; UniversalCodeMaker never handles the payment"
     },
     useCases: [
-      "Counter stands for shops and food stalls",
-      "Bills and invoices with a fixed amount",
-      "Table cards in cafés",
-      "Donations and society collections"
+      "A counter stand for a shop, kirana store or food stall",
+      "Bills and invoices with a fixed amount and the invoice number as the note",
+      "Donations for a temple, NGO, society or fundraiser",
+      "Table cards in cafés and restaurants",
+      "Freelancers and tutors collecting fees"
     ],
     faqs: [
       {
         q: "Which apps can pay with this code?",
-        a: "It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read. Test it with the apps your customers use before printing."
+        a: "It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read, as do banks' own UPI apps. Test it with the apps your customers use before printing."
       },
       {
-        q: "Should I set an amount?",
-        a: "For a fixed bill, yes: the payer sees the amount filled in. Leave it blank for a counter stand where every bill is different."
+        q: "How do I make a UPI QR code with a fixed amount?",
+        a: "Enter the amount in rupees. The payer sees it filled in and only has to confirm. Leave it blank for a shop counter, where every bill is different."
+      },
+      {
+        q: "Can I make a UPI QR code for my shop or business?",
+        a: "Yes. Enter your business UPI ID and shop name, leave the amount blank, and print the code on a counter card or sticker. Print your UPI ID in text beside it too, for anyone who prefers to type it."
+      },
+      {
+        q: "Can I use it for donations?",
+        a: "Yes. Leave the amount blank so people can give what they like, and put something like Donation or the cause in the note so you can recognise the payments later."
+      },
+      {
+        q: "Does it work with my bank account or my mobile number?",
+        a: "It works with any UPI ID. Your bank or UPI app shows your UPI ID; some apps give you one based on your mobile number. Enter that ID exactly as the app shows it. The code doesn't hold your account number."
+      },
+      {
+        q: "Can I add my logo?",
+        a: "Yes. Upload your logo in the studio and it goes in the centre of the code. The studio switches to the highest error correction so the code still scans. Keep the logo small and test the printed code."
+      },
+      {
+        q: "What happens if I leave the payee name blank?",
+        a: "The code uses Merchant as the name. Use your shop or account name instead, so payers can check they are paying the right person."
+      },
+      {
+        q: "Can I turn an existing UPI QR code into a link?",
+        a: "Yes. Open our <a href=\"../barcode-scanner.html\">barcode scanner</a> and upload a photo of the code. It shows the upi://pay link inside, including the UPI ID, name and amount, and you can copy it."
       },
       {
         q: "Are there fees?",
-        a: "UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID (VPA), so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us."
+        a: "UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID, so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us."
       },
       {
         q: "How do I know a customer has paid?",
@@ -2258,28 +2284,33 @@ const ENRICHMENTS = {
         "desc": "One code for customers on Google Pay, PhonePe, Paytm, BHIM and bank apps."
       },
       {
-        "title": "Optional fixed amount",
-        "desc": "Add the amount for a bill, or leave it open for a shop counter."
+        "title": "Fixed amount or open",
+        "desc": "Add the amount for a bill or invoice, or leave it open for a shop counter or donations."
       },
       {
-        "title": "No middleman",
-        "desc": "The code points to your own UPI ID. We never see or touch the payment."
+        "title": "Your name and logo",
+        "desc": "Show your shop name to payers and add your logo in the centre of the code."
       }
     ],
     "decisionGuide": [
       {
-        "q": "A shop counter?",
-        "a": "Leave the amount blank and add your shop name."
+        "q": "A shop counter or stall?",
+        "a": "Leave the amount blank and add your shop name. Print your UPI ID in text next to the code."
       },
       {
         "q": "A single bill or invoice?",
         "a": "Set the amount and put the invoice number in the note."
+      },
+      {
+        "q": "Collecting donations?",
+        "a": "Leave the amount blank and write the cause in the note."
       }
     ],
     "legalCaution": {
       "title": "Before you print",
       "points": [
         "Check your UPI ID letter by letter. Money sent to a wrong ID is hard to get back.",
+        "Scan the printed code with two or three UPI apps and check the name and amount they show.",
         "Your bank or payment app may have its own rules for business collections. Check them if you take a lot of payments."
       ]
     },

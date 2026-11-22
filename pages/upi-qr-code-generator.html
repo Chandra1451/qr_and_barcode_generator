@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount</title>
-  <meta name="description" content="Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.">
+  <meta name="description" content="Free UPI QR code generator for your UPI ID. Add a fixed amount, a note or your shop logo. Customers pay with Google Pay, PhonePe, Paytm, BHIM or their bank app.">
   <link rel="canonical" href="https://universalcodemaker.com/pages/upi-qr-code-generator.html">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
@@ -26,13 +26,13 @@
 
   <!-- Open Graph & Social -->
   <meta property="og:title" content="Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount">
-  <meta property="og:description" content="Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.">
+  <meta property="og:description" content="Free UPI QR code generator for your UPI ID. Add a fixed amount, a note or your shop logo. Customers pay with Google Pay, PhonePe, Paytm, BHIM or their bank app.">
   <meta property="og:url" content="https://universalcodemaker.com/pages/upi-qr-code-generator.html">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Free UPI QR Code Generator: PhonePe, GPay, Paytm & Amount">
-  <meta name="twitter:description" content="Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.">
+  <meta name="twitter:description" content="Free UPI QR code generator for your UPI ID. Add a fixed amount, a note or your shop logo. Customers pay with Google Pay, PhonePe, Paytm, BHIM or their bank app.">
   <meta name="twitter:image" content="https://universalcodemaker.com/assets/og-preview.png">
 
   <!-- Self-hosted fonts (declared in ../css/v2-theme.css); preload visible above the fold -->
@@ -331,7 +331,7 @@
   "@type": "WebApplication",
   "name": "UPI QR Code Generator - UniversalCodeMaker.com",
   "url": "https://universalcodemaker.com/pages/upi-qr-code-generator.html",
-  "description": "Free UPI QR code generator for your UPI ID, with an optional fixed amount and note. Customers pay with Google Pay, PhonePe, Paytm or BHIM.",
+  "description": "Free UPI QR code generator for your UPI ID. Add a fixed amount, a note or your shop logo. Customers pay with Google Pay, PhonePe, Paytm, BHIM or their bank app.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
@@ -352,15 +352,63 @@
       "name": "Which apps can pay with this code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read. Test it with the apps your customers use before printing."
+        "text": "It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read, as do banks' own UPI apps. Test it with the apps your customers use before printing."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I set an amount?",
+      "name": "How do I make a UPI QR code with a fixed amount?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For a fixed bill, yes: the payer sees the amount filled in. Leave it blank for a counter stand where every bill is different."
+        "text": "Enter the amount in rupees. The payer sees it filled in and only has to confirm. Leave it blank for a shop counter, where every bill is different."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I make a UPI QR code for my shop or business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enter your business UPI ID and shop name, leave the amount blank, and print the code on a counter card or sticker. Print your UPI ID in text beside it too, for anyone who prefers to type it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use it for donations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Leave the amount blank so people can give what they like, and put something like Donation or the cause in the note so you can recognise the payments later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with my bank account or my mobile number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It works with any UPI ID. Your bank or UPI app shows your UPI ID; some apps give you one based on your mobile number. Enter that ID exactly as the app shows it. The code doesn't hold your account number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add my logo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Upload your logo in the studio and it goes in the centre of the code. The studio switches to the highest error correction so the code still scans. Keep the logo small and test the printed code."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I leave the payee name blank?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The code uses Merchant as the name. Use your shop or account name instead, so payers can check they are paying the right person."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I turn an existing UPI QR code into a link?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Open our <a href=\"../barcode-scanner.html\">barcode scanner</a> and upload a photo of the code. It shows the upi://pay link inside, including the UPI ID, name and amount, and you can copy it."
       }
     },
     {
@@ -368,7 +416,7 @@
       "name": "Are there fees?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID (VPA), so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us."
+        "text": "UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID, so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us."
       }
     },
     {
@@ -454,7 +502,7 @@
         Smart QR
       </div>
       <h1 class="hero-title">Free UPI Scan-to-Pay QR Code Generator</h1>
-      <p class="hero-lead">Make a UPI payment QR code for your UPI ID, with an optional fixed amount and a note. Customers scan it with Google Pay, PhonePe, Paytm, BHIM or their bank's UPI app, check the details and pay.</p>
+      <p class="hero-lead">Make a UPI payment QR code for your UPI ID. Add a fixed amount for a bill, leave it open for a shop counter, put a note such as an invoice number, or add your logo. Customers scan it with Google Pay, PhonePe, Paytm, BHIM or their bank's UPI app, check the details and pay.</p>
       
       <a href="../index.html?symbology=qr-code&wizard=upi" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -484,8 +532,13 @@
     </div>
   
     <div class="spec-row">
-      <dt class="spec-key">Currency</dt>
-      <dd class="spec-val">INR</dd>
+      <dt class="spec-key">Works With</dt>
+      <dd class="spec-val">A UPI ID from any bank or UPI app, including a mobile-number UPI ID</dd>
+    </div>
+  
+    <div class="spec-row">
+      <dt class="spec-key">Logo</dt>
+      <dd class="spec-val">Optional; the code switches to the highest error correction so it still scans</dd>
     </div>
   
     <div class="spec-row">
@@ -505,22 +558,27 @@
           
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Counter stands for shops and food stalls</span>
+      <span>A counter stand for a shop, kirana store or food stall</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Bills and invoices with a fixed amount</span>
+      <span>Bills and invoices with a fixed amount and the invoice number as the note</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Table cards in cafés</span>
+      <span>Donations for a temple, NGO, society or fundraiser</span>
     </li>
   
     <li class="use-case-item">
       <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-      <span>Donations and society collections</span>
+      <span>Table cards in cafés and restaurants</span>
+    </li>
+  
+    <li class="use-case-item">
+      <span class="use-case-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+      <span>Freelancers and tutors collecting fees</span>
     </li>
   
         </ul>
@@ -550,17 +608,17 @@
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>Optional fixed amount</h4>
+        <h4>Fixed amount or open</h4>
       </div>
-      <p>Add the amount for a bill, or leave it open for a shop counter.</p>
+      <p>Add the amount for a bill or invoice, or leave it open for a shop counter or donations.</p>
     </div>
   
     <div class="benefit-card">
       <div class="benefit-card-header">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <h4>No middleman</h4>
+        <h4>Your name and logo</h4>
       </div>
-      <p>The code points to your own UPI ID. We never see or touch the payment.</p>
+      <p>Show your shop name to payers and add your logo in the centre of the code.</p>
     </div>
   
       </div>
@@ -581,9 +639,9 @@
     <div class="decision-item">
       <h3 style="display: flex; align-items: center; gap: 0.45rem;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        <span>A shop counter?</span>
+        <span>A shop counter or stall?</span>
       </h3>
-      <p>Leave the amount blank and add your shop name.</p>
+      <p>Leave the amount blank and add your shop name. Print your UPI ID in text next to the code.</p>
     </div>
   
     <div class="decision-item">
@@ -592,6 +650,14 @@
         <span>A single bill or invoice?</span>
       </h3>
       <p>Set the amount and put the invoice number in the note.</p>
+    </div>
+  
+    <div class="decision-item">
+      <h3 style="display: flex; align-items: center; gap: 0.45rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>Collecting donations?</span>
+      </h3>
+      <p>Leave the amount blank and write the cause in the note.</p>
     </div>
   
       </div>
@@ -613,6 +679,11 @@
     <li>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       <span>Check your UPI ID letter by letter. Money sent to a wrong ID is hard to get back.</span>
+    </li>
+  
+    <li>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 0.15rem;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span>Scan the printed code with two or three UPI apps and check the name and amount they show.</span>
     </li>
   
     <li>
@@ -670,17 +741,77 @@
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read. Test it with the apps your customers use before printing.</p>
+        <p>It uses the standard upi://pay link, which UPI apps such as Google Pay, PhonePe, Paytm and BHIM are built to read, as do banks' own UPI apps. Test it with the apps your customers use before printing.</p>
       </div>
     </details>
   
     <details class="faq-item" >
       <summary class="faq-question">
-        <span>Should I set an amount?</span>
+        <span>How do I make a UPI QR code with a fixed amount?</span>
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>For a fixed bill, yes: the payer sees the amount filled in. Leave it blank for a counter stand where every bill is different.</p>
+        <p>Enter the amount in rupees. The payer sees it filled in and only has to confirm. Leave it blank for a shop counter, where every bill is different.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I make a UPI QR code for my shop or business?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. Enter your business UPI ID and shop name, leave the amount blank, and print the code on a counter card or sticker. Print your UPI ID in text beside it too, for anyone who prefers to type it.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I use it for donations?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. Leave the amount blank so people can give what they like, and put something like Donation or the cause in the note so you can recognise the payments later.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Does it work with my bank account or my mobile number?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>It works with any UPI ID. Your bank or UPI app shows your UPI ID; some apps give you one based on your mobile number. Enter that ID exactly as the app shows it. The code doesn't hold your account number.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I add my logo?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. Upload your logo in the studio and it goes in the centre of the code. The studio switches to the highest error correction so the code still scans. Keep the logo small and test the printed code.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>What happens if I leave the payee name blank?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>The code uses Merchant as the name. Use your shop or account name instead, so payers can check they are paying the right person.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can I turn an existing UPI QR code into a link?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes. Open our <a href="../barcode-scanner.html">barcode scanner</a> and upload a photo of the code. It shows the upi://pay link inside, including the UPI ID, name and amount, and you can copy it.</p>
       </div>
     </details>
   
@@ -690,7 +821,7 @@
         <span class="faq-icon">▼</span>
       </summary>
       <div class="faq-answer">
-        <p>UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID (VPA), so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us.</p>
+        <p>UniversalCodeMaker charges nothing and never handles the money. The code points to your UPI ID, so payments reach your bank account through UPI. Any charges are set by your bank or payment app, not by us.</p>
       </div>
     </details>
   
