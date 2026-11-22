@@ -2964,25 +2964,25 @@ const ARTICLES = [
                 <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode" target="_blank" rel="noopener noreferrer">GS1 US</a>: Single GTIN-12</strong></th>
                 <td>USD $30</td>
                 <td><strong>$0 (No renewal fee)</strong></td>
-                <td>Small businesses selling 1 to 9 products or variants in North America / Amazon</td>
+                <td>A few products sold in the US or on Amazon</td>
               </tr>
               <tr>
-                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US</a>: Company Prefix (1–10 items)</strong></th>
+                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US</a>: Company Prefix (10 items)</strong></th>
                 <td>USD $250</td>
                 <td>USD $50 / year</td>
                 <td>Growing businesses planning larger catalogues under their own brand prefix</td>
               </tr>
               <tr>
-                <th scope="row"><strong><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a>: Small Business Band</strong></th>
-                <td>£50 + VAT</td>
-                <td>£50 + VAT / year</td>
-                <td>UK &amp; European sellers with up to 10 product lines (turnover under £100k)</td>
+                <th scope="row"><strong><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a>: Membership</strong></th>
+                <td>See GS1 UK</td>
+                <td>See GS1 UK</td>
+                <td>UK sellers; GS1 UK publishes its current fees</td>
               </tr>
               <tr>
                 <th scope="row"><strong><a href="https://www.gs1india.org/register-for-barcodes" target="_blank" rel="noopener noreferrer">GS1 India</a>: 100 Barcode Block</strong></th>
-                <td>From ₹50,200 (10-yr term)</td>
-                <td>Included in term</td>
-                <td>Indian manufacturers &amp; exporters (eligible micro-enterprises can receive up to 80% MSME subsidy refund)</td>
+                <td>₹50,200 for the first year (100 barcodes, turnover up to ₹5 crore; checked 12 Oct 2026)</td>
+                <td>Yearly subscription renewal</td>
+                <td>Indian brand owners. MSME-registered micro-manufacturing enterprises can get up to 80% of the fees for the first 3 years refunded (capped at ₹50,650; 100 and 1,000 barcode plans)</td>
               </tr>
               <tr>
                 <th scope="row"><strong><a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">National GS1 Offices (Global)</a></strong></th>
@@ -2992,9 +2992,9 @@ const ARTICLES = [
               </tr>
               <tr>
                 <th scope="row"><strong>Third-Party Resellers (brokers)</strong></th>
-                <td>$5 – $10</td>
+                <td>Varies</td>
                 <td>$0</td>
-                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon and major retail chains reject unverified barcodes.</td>
+                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon checks UPCs against GS1 records and removes listings whose numbers do not match.</td>
               </tr>
             </tbody>
           </table>
@@ -3130,7 +3130,7 @@ const ARTICLES = [
     faqs: [
       {
         q: 'Can I buy a single barcode number instead of an expensive company prefix?',
-        a: 'Yes. For small businesses needing 1 to 9 codes, GS1 US offers individual GTIN-12 identifiers for $30 each with no annual renewal fee. In the UK, GS1 UK offers small business memberships for £50 + VAT per year. Avoid cheap third-party brokers, as unverified reseller barcodes risk rejection on Amazon and retail stores.'
+        a: 'Yes. If you only need a few numbers, GS1 US sells single GTINs for $30 each with no annual renewal fee. Other GS1 offices, such as GS1 UK and GS1 India, set their own fees; check their websites. Avoid cheap third-party brokers, as unverified reseller barcodes risk rejection on Amazon and retail stores.'
       },
       {
         q: 'Why do cheap reseller barcodes get rejected by Amazon and major retailers?',
@@ -3138,7 +3138,7 @@ const ARTICLES = [
       },
       {
         q: 'Do I need a barcode to sell on Shopify or Etsy?',
-        a: 'Shopify does not require barcodes to create listings, but strongly recommends GTINs for automated inventory tracking and syncing with Google Shopping. Etsy does not require barcodes for handmade, vintage, or craft supply items.'
+        a: 'Shopify does not require a barcode to create a product. Sales channels you connect to it, such as Google Shopping, may ask for GTINs. Etsy does not ask for a barcode on most listings.'
       },
       {
         q: 'What is the difference between a SKU and a barcode (GTIN)?',
@@ -3154,7 +3154,7 @@ const ARTICLES = [
       },
       {
         q: 'Do I need a new barcode if I change the packaging?',
-        a: 'Usually not for minor visual redesigns. A new barcode is required if the product changes in size, weight, formulation, quantity, or variant (such as color or flavor) so that retailers and consumers can distinguish between versions.'
+        a: 'Usually not for a minor redesign. GS1\x27s GTIN Management Standard sets which changes need a new number, for example a different quantity, size or variant. Check it before you reprint.'
       }
     ]
   },
@@ -3193,7 +3193,7 @@ const ARTICLES = [
           <li><strong>If you ship orders yourself</strong>, you don't need FNSKU labels: they are only for stock sent to Amazon's fulfilment centres.</li>
           <li><strong>Making the barcode image is free.</strong> What costs money is the GS1 number: $30 for a single number from GS1 US, from ₹50,200 for the first year from GS1 India (<a href="#costs">costs</a>).</li>
         </ol>
-        <div class="article-callout"><p>Amazon's rules change. Everything here was checked against Amazon Seller Central help and GS1's own websites on 12 October 2026; follow the links to see the current version.</p></div>
+        <div class="article-callout"><p>Amazon's rules change. The rules here were checked against Amazon Seller Central help and GS1's own websites on 12 October 2026 and reviewed again on 23 November 2026. Current versions: <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon product ID policy</a>, <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200141490" target="_blank" rel="noopener noreferrer">Amazon barcodes for FBA</a>, <a href="https://sellercentral.amazon.com/help/hub/reference/external/GEFKUGES6NSE7CBP" target="_blank" rel="noopener noreferrer">FBA barcode FAQ</a>, <a href="https://sellercentral.amazon.in/help/hub/reference/external/G201100910" target="_blank" rel="noopener noreferrer">Amazon.in barcode requirements</a>.</p></div>
         <div class="seller-guide-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
           <a href="./amazon-fba-fnsku-barcode-generator.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
             <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Amazon FBA Label Generator &rarr;</strong>
@@ -3255,13 +3255,12 @@ const ARTICLES = [
         </ul>
         <p>You can't get one if the product already has a GS1 barcode or GTIN, is already in Amazon's catalogue, or belongs to a brand that requires a UPC. Expect to send real photos of all six sides of the product and packaging, with the brand name permanently on the product.</p>
         <div class="gtin-exemption-steps" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.25rem 0;">
-          <h4 style="margin-top: 0; color: var(--text-primary); font-size: 1.05rem;">How to Apply for a GTIN Exemption in Seller Central</h4>
+          <h4 style="margin-top: 0; color: var(--text-primary); font-size: 1.05rem;">Applying for a GTIN exemption</h4>
           <ol style="margin-bottom: 0; padding-left: 1.25rem;">
-            <li>Log in to Amazon Seller Central, go to <strong>Catalog</strong> &rarr; <strong>Add Products</strong>, and click <strong>"I am adding a product not sold on Amazon"</strong>.</li>
-            <li>Select your product category and check <strong>"I don't have a Product ID"</strong>.</li>
-            <li>Enter your exact Brand name (or select "Generic" if unbranded) and click <strong>Apply for GTIN Exemption</strong>.</li>
-            <li>Submit unedited photos of all sides of your product and packaging demonstrating that no barcode is present and that brand labeling meets Amazon standards.</li>
-            <li>Approval is typically granted within 24 to 48 hours and applies across that entire brand and category combination.</li>
+            <li>In Seller Central, start adding the product and choose the option to apply for a GTIN exemption. Amazon's help pages show the current screens.</li>
+            <li>Have your exact brand name ready (or "Generic" for unbranded products), and the product category.</li>
+            <li>Upload real photos of all sides of the product and packaging, showing that there is no barcode and that the brand name is on the product.</li>
+            <li>Wait for Amazon's decision before listing. An approved exemption usually covers that brand within that category.</li>
           </ol>
         </div>
         <p><strong>Exempt products still need FNSKU labels</strong> for FBA: only products with a valid GTIN can skip them.</p>`
@@ -3290,10 +3289,10 @@ const ARTICLES = [
         <div class="fba-label-specs" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.25rem 0;">
           <h4 style="margin-top: 0; color: var(--text-primary); font-size: 1.05rem;">Amazon FBA Label Dimensions &amp; Print Specifications</h4>
           <ul style="margin-bottom: 0; padding-left: 1.25rem;">
-            <li><strong>Standard Label Size:</strong> 1" &times; 2⅝" (25.4 mm &times; 66.7 mm) — standard 30-up Avery 5160 / 5960 / 8160 sheets or direct thermal rolls. Supported range is 1" &times; 2" up to 2" &times; 3".</li>
+            <li><strong>Standard Label Size:</strong> 1" &times; 2⅝" (25.4 mm &times; 66.7 mm) for example on 30-up Avery 5160 sheets or thermal rolls. Supported range is 1" &times; 2" up to 2" &times; 3".</li>
             <li><strong>Quiet Zones (Margins):</strong> Minimum 0.25" (6.35 mm) blank margin on left and right sides; minimum 0.125" (3.175 mm) top and bottom. Never truncate quiet zones.</li>
-            <li><strong>Required Information:</strong> FNSKU barcode in Code 128 (starts with "X"), human-readable FNSKU string, product title (up to 50 characters), and item condition (e.g., "New" or "Used").</li>
-            <li><strong>Print Technology:</strong> Direct thermal (Zebra GX430t or similar) or laser printer at 300 DPI or higher. Inkjet printers are strictly prohibited by Amazon due to ink smudging risks.</li>
+            <li><strong>Required Information:</strong> FNSKU barcode in Code 128 (starts with "X"), human-readable FNSKU string, product name and item condition (e.g., "New" or "Used").</li>
+            <li><strong>Printer:</strong> a thermal or laser printer. Amazon says not to use inkjet printers for its labels.</li>
             <li><strong>Placement:</strong> Cover any existing manufacturer barcodes (UPC/EAN/ISBN) completely. Place on a flat, smooth surface; do not fold over edges, curves, or package seals.</li>
           </ul>
         </div>
@@ -3363,7 +3362,7 @@ const ARTICLES = [
       },
       {
         q: 'Can I print FNSKU labels on an inkjet printer?',
-        a: 'No. Amazon says not to use inkjet printers for its barcodes, because inkjet labels smear more easily. Use a thermal printer or a laser printer with label sheets such as Avery 5160, at 300 dpi or more.'
+        a: 'No. Amazon says not to use inkjet printers for its barcodes, because inkjet labels smear more easily. Use a thermal printer or a laser printer with label sheets such as Avery 5160.'
       },
       {
         q: 'Do I need a barcode to sell on Amazon India?',
@@ -3371,7 +3370,7 @@ const ARTICLES = [
       },
       {
         q: 'What is the exact barcode label size required for Amazon FBA?',
-        a: 'Amazon FBA requires barcode labels to measure between 1" × 2" and 2" × 3". The most popular standard format is 1" × 2⅝" (Avery 5160 30-up sheets or direct thermal roll equivalent). Labels must feature at least 0.25" (6.35 mm) side quiet zones and 0.125" (3.175 mm) top and bottom margins, printed at 300 DPI or higher using direct thermal or laser printers. Inkjet printing is prohibited.'
+        a: 'Amazon FBA requires barcode labels to measure between 1" × 2" and 2" × 3". The most popular standard format is 1" × 2⅝" (Avery 5160 30-up sheets or direct thermal roll equivalent). Labels must feature at least 0.25" (6.35 mm) side quiet zones and 0.125" (3.175 mm) top and bottom margins, printed with a thermal or laser printer; Amazon says not to use inkjet printers.'
       },
       {
         q: 'How do I buy a legitimate GTIN barcode to list products on Amazon?',
@@ -3631,19 +3630,19 @@ const ARTICLES = [
                 <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode" target="_blank" rel="noopener noreferrer">GS1 US</a>: Single GTIN-12</strong></th>
                 <td>USD $30</td>
                 <td><strong>$0 (No renewal fee)</strong></td>
-                <td>Small businesses selling 1 to 9 products or variants in North America / Amazon</td>
+                <td>A few products sold in the US or on Amazon</td>
               </tr>
               <tr>
-                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US</a>: Company Prefix (1–10 items)</strong></th>
+                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US</a>: Company Prefix (10 items)</strong></th>
                 <td>USD $250</td>
                 <td>USD $50 / year</td>
                 <td>Growing businesses planning larger catalogues under their own brand prefix</td>
               </tr>
               <tr>
-                <th scope="row"><strong><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a>: Small Business Band</strong></th>
-                <td>£50 + VAT</td>
-                <td>£50 + VAT / year</td>
-                <td>UK / European sellers with up to 10 product lines</td>
+                <th scope="row"><strong><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a>: Membership</strong></th>
+                <td>See GS1 UK</td>
+                <td>See GS1 UK</td>
+                <td>UK sellers; GS1 UK publishes its current fees</td>
               </tr>
               <tr>
                 <th scope="row"><strong><a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">National GS1 Offices (Global)</a></strong></th>
@@ -3653,9 +3652,9 @@ const ARTICLES = [
               </tr>
               <tr>
                 <th scope="row"><strong>Third-Party Resellers (brokers)</strong></th>
-                <td>$5 – $10</td>
+                <td>Varies</td>
                 <td>$0</td>
-                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon and major chains reject unverified barcodes.</td>
+                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon checks UPCs against GS1 records and removes listings whose numbers do not match.</td>
               </tr>
             </tbody>
           </table>
@@ -3747,7 +3746,7 @@ const ARTICLES = [
       },
       {
         q: 'What is the cheapest way to get a legitimate UPC or EAN barcode?',
-        a: 'For small businesses needing 1 to 9 codes, GS1 US offers single GTIN-12 identifiers for $30 with no annual renewal fees. In the UK, GS1 UK offers small business memberships for £50 + VAT per year. Avoid cheap third-party brokers, as unverified reseller barcodes risk rejection on Amazon and retail stores. For a complete breakdown of licensing options, see our guide: <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a>.'
+        a: 'If you only need a few numbers, GS1 US sells single GTINs for $30 with no annual renewal fee. Other GS1 offices, such as GS1 UK and GS1 India, set their own fees; check their websites. Avoid cheap third-party brokers, as unverified reseller barcodes risk rejection on Amazon and retail stores. For a complete breakdown of licensing options, see our guide: <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a>.'
       },
       {
         q: 'How do I convert a UPC-A to an EAN-13?',
