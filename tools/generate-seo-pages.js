@@ -2974,9 +2974,9 @@ const ARTICLES = [
               </tr>
               <tr>
                 <th scope="row"><strong><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a>: Membership</strong></th>
-                <td>See GS1 UK</td>
-                <td>See GS1 UK</td>
-                <td>UK sellers; GS1 UK publishes its current fees</td>
+                <td>£50 + VAT (10 barcodes)</td>
+                <td>£50 + VAT / year</td>
+                <td>UK sellers with turnover up to £99,999; 100 barcodes £100 and 1,000 barcodes £130 a year + VAT (GS1 UK, checked 23 Nov 2026)</td>
               </tr>
               <tr>
                 <th scope="row"><strong><a href="https://www.gs1india.org/register-for-barcodes" target="_blank" rel="noopener noreferrer">GS1 India</a>: 100 Barcode Block</strong></th>
@@ -3640,9 +3640,9 @@ const ARTICLES = [
               </tr>
               <tr>
                 <th scope="row"><strong><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK</a>: Membership</strong></th>
-                <td>See GS1 UK</td>
-                <td>See GS1 UK</td>
-                <td>UK sellers; GS1 UK publishes its current fees</td>
+                <td>£50 + VAT (10 barcodes)</td>
+                <td>£50 + VAT / year</td>
+                <td>UK sellers with turnover up to £99,999; 100 barcodes £100 and 1,000 barcodes £130 a year + VAT (GS1 UK, checked 23 Nov 2026)</td>
               </tr>
               <tr>
                 <th scope="row"><strong><a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">National GS1 Offices (Global)</a></strong></th>
