@@ -159,3 +159,14 @@ test('UPI-09 fits a phone screen with large touch targets', async ({ browser, ba
   }
   await ctx.close();
 });
+
+test('UPI-10 the homepage India card and directory entry lead straight to the easy tool', async ({ page }) => {
+  await page.goto('/index.html');
+  const card = page.locator('.v2-india-note');
+  await expect(card).toBeVisible();
+  await expect(card.locator('[lang="hi"]')).toHaveText('दुकान के लिए UPI QR कोड बनाएं');
+  await expect(page.locator('.home-needs a[href="pages/upi-qr-code-generator.html#upi-onpage"]')).toHaveCount(1);
+  await card.getByRole('link', { name: 'Make my UPI QR' }).click();
+  await page.waitForURL(/upi-qr-code-generator\.html#upi-onpage$/);
+  await expect(page.getByLabel('Your UPI ID')).toBeVisible();
+});

@@ -2774,3 +2774,39 @@ h1, h2, h3, h4 {
   line-height: 1.5;
   color: var(--text-secondary);
 }
+
+/* Homepage card for shops in India -> UPI easy-mode tool (2026-11-22) */
+.v2-india-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  max-width: 860px;
+  margin: 0.5rem 0 0.25rem;
+  padding: 0.8rem 1rem;
+  background: var(--sensor-green-tint);
+  border: 1.5px solid var(--border);
+  border-left: 5px solid var(--sensor-green);
+  border-radius: var(--radius-tag);
+}
+.v2-india-note p {
+  flex: 1 1 320px;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.v2-india-note strong {
+  color: var(--text-primary);
+}
+.v2-india-note-hi {
+  display: block;
+  margin-top: 0.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.v2-india-note-btn {
+  min-height: 44px;
+  white-space: nowrap;
+}

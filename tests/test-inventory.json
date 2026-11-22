@@ -1147,7 +1147,8 @@
    "19-upi-onpage.spec.mjs › UPI-06 \"Share\" appears only where the phone can share images, and shares a PNG",
    "19-upi-onpage.spec.mjs › UPI-07 markup typed into the shop name stays text",
    "19-upi-onpage.spec.mjs › UPI-08 the UPI ID and shop name are never sent anywhere",
-   "19-upi-onpage.spec.mjs › UPI-09 fits a phone screen with large touch targets"
+   "19-upi-onpage.spec.mjs › UPI-09 fits a phone screen with large touch targets",
+   "19-upi-onpage.spec.mjs › UPI-10 the homepage India card and directory entry lead straight to the easy tool"
   ],
   "phone": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1648,7 +1649,7 @@
   "unit/qr-wizards.test.js": 48,
   "unit/rendering.test.js": 4,
   "e2e/specs/18-ean-onpage.spec.mjs": 35,
-  "e2e/specs/19-upi-onpage.spec.mjs": 32
+  "e2e/specs/19-upi-onpage.spec.mjs": 36
  },
  "allowedSkips": [
   {
