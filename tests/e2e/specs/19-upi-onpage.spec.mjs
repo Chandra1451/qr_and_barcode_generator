@@ -15,6 +15,13 @@ async function fill(page, { vpa, name, amount }) {
   if (amount !== undefined) await page.getByLabel('Amount in ₹ (optional)').fill(amount);
 }
 
+// Tests that open their own context get the same third-party stubs as the shared fixture,
+// so live runs don't depend on ad and analytics scripts (live phone probe 2026-11-22: tool works with them).
+async function stubThirdParty(ctx) {
+  await ctx.route(/googlesyndication\.com|doubleclick\.net|adservice\.google|googletagmanager\.com|google-analytics\.com|cloudflareinsights\.com|fundingchoicesmessages\.google\.com/,
+    (route) => route.fulfill({ status: 200, contentType: 'text/javascript', body: '' }));
+}
+
 async function download(page, button) {
   const ready = page.waitForEvent('download');
   await btn(page, button).click();
@@ -97,6 +104,7 @@ test('UPI-05 the poster is a real A5 PDF by default and A4 when chosen, and its 
 
 test('UPI-06 "Share" appears only where the phone can share images, and shares a PNG', async ({ browser, baseURL }) => {
   const without = await browser.newContext({ baseURL });
+  await stubThirdParty(without);
   await without.addInitScript(() => { Object.defineProperty(navigator, 'canShare', { value: undefined, configurable: true }); });
   const p1 = await without.newPage();
   await p1.goto(url);
@@ -104,6 +112,7 @@ test('UPI-06 "Share" appears only where the phone can share images, and shares a
   await without.close();
 
   const withShare = await browser.newContext({ baseURL });
+  await stubThirdParty(withShare);
   await withShare.addInitScript(() => {
     window.__shared = null;
     Object.defineProperty(navigator, 'canShare', { value: () => true, configurable: true });
@@ -138,6 +147,7 @@ test('UPI-08 the UPI ID and shop name are never sent anywhere', async ({ page })
 
 test('UPI-09 fits a phone screen with large touch targets', async ({ browser, baseURL }) => {
   const ctx = await browser.newContext({ baseURL, viewport: { width: 375, height: 812 } });
+  await stubThirdParty(ctx);
   const page = await ctx.newPage();
   await page.goto(url);
   await fill(page, { vpa: 'shop@upi', name: 'Tea Stall' });
