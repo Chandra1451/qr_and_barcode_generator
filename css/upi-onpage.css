@@ -1,0 +1,38 @@
+/* Scoped UPI landing tool (easy mode for shopkeepers); shared studio and content styles remain unchanged. */
+.seo-page-container .hero-banner:has(#upi-onpage) { padding:1.5rem; }
+.upi-onpage { text-align:left; margin:1.75rem 0 1rem; border:2px solid var(--border); border-radius:var(--radius-sm); background:var(--surface); color:var(--text-primary); overflow:hidden; }
+.upi-onpage h2 { margin:0; padding:1rem 1.25rem; border-bottom:2px solid var(--border); background:var(--surface-alt); font:700 clamp(1.2rem,3.4vw,1.5rem) var(--font-display); }
+.upi-onpage-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.upi-onpage form,.upi-result { padding:1.25rem; min-width:0; }
+.upi-onpage form { border-right:2px solid var(--border); }
+.upi-onpage .upi-step { margin:0 0 .6rem; font:800 .82rem var(--font-mono); letter-spacing:.04em; text-transform:uppercase; color:var(--laser-text); }
+.upi-onpage .upi-result .upi-step:not(:first-child) { margin-top:1.1rem; }
+.upi-onpage label { display:block; margin-top:.9rem; font-weight:800; font-size:1.05rem; }
+.upi-onpage form label:first-of-type { margin-top:0; }
+.upi-onpage p { font-size:.95rem; line-height:1.6; margin:.5rem 0; color:var(--text-secondary); }
+.upi-onpage .upi-help { margin:.35rem 0 0; font-size:.88rem; }
+.upi-onpage input { box-sizing:border-box; width:100%; min-width:0; min-height:52px; margin-top:.4rem; padding:.8rem; border:2px solid var(--border); border-radius:4px; color:var(--text-primary); background:var(--surface); font:600 1.15rem var(--font-mono); }
+.upi-onpage input::placeholder { font:400 .92rem var(--font-body); color:var(--text-secondary); opacity:1; }
+.upi-onpage input[aria-invalid="true"] { border-color:var(--laser-text); }
+.upi-onpage a { color:var(--accent-text); text-decoration:underline; }
+.upi-preview { min-height:220px; display:flex; align-items:center; justify-content:center; background:#fff; color:#17212b; border:1px solid #b1b5bf; padding:1rem; box-sizing:border-box; }
+.upi-preview p { color:#465061; text-align:center; }
+.upi-preview img { display:block; width:100%; max-width:260px; height:auto; }
+.upi-onpage #upi-status { min-height:3.2em; color:var(--text-primary); font-weight:700; overflow-wrap:anywhere; }
+.upi-actions { display:flex; flex-direction:column; gap:.65rem; }
+.upi-onpage button { min-height:52px; padding:.75rem 1rem; border:2px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text-primary); font:700 1rem var(--font-body); cursor:pointer; }
+.upi-onpage #upi-download,.upi-onpage #upi-poster { background:var(--accent); color:var(--on-accent); }
+.upi-onpage button:disabled { opacity:.5; cursor:default; }
+.upi-onpage button[hidden] { display:none; }
+.upi-onpage :is(input,button,a,select):focus-visible { outline:3px solid var(--accent-text); outline-offset:3px; }
+.upi-onpage button:not(:disabled):hover { box-shadow:2px 2px 0 var(--border); }
+.upi-onpage .upi-size { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin-top:.75rem; font-size:.95rem; }
+.upi-onpage select { min-height:44px; padding:.4rem .6rem; border:2px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text-primary); font:600 .95rem var(--font-body); }
+.upi-onpage .upi-checklist { margin:1rem 0 .5rem; padding-left:1.2rem; font-size:.92rem; line-height:1.6; color:var(--text-secondary); }
+.upi-onpage .upi-more { font-size:.9rem; }
+@media(max-width:700px) {
+  .seo-page-container .hero-banner:has(#upi-onpage) { padding:1rem; }
+  .upi-onpage-grid { grid-template-columns:minmax(0,1fr); }
+  .upi-onpage form { border-right:0; border-bottom:2px solid var(--border); }
+  .upi-onpage form,.upi-result,.upi-onpage h2 { padding:1rem; }
+}

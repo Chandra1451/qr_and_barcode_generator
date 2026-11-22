@@ -15,6 +15,7 @@ import path from 'node:path';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { eanOnpageHtml } from './ean-onpage-template.mjs';
+import { upiOnpageHtml } from './upi-onpage-template.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -2559,6 +2560,42 @@ const ENRICHMENTS = {
  * HTML is allowed in the strings (links, <strong>); keep claims true to what the studio does.
  */
 const GUIDES = {
+  "upi-qr-code-generator": {
+    "title": "How UPI QR codes work, and how to use them safely",
+    "howTo": [
+      "Find your <strong>UPI ID</strong> in your UPI app, usually under your profile. It looks like <em>name@bank</em>.",
+      "Type it into the tool above with your <strong>shop name</strong>. Leave the amount empty for a counter code; fill it only for one fixed bill.",
+      "Scan the QR with your own phone. Your UPI app should show your shop name. Check it before printing.",
+      "Ask a friend to pay you <strong>₹1</strong> and check that it reaches your bank account.",
+      "Download the poster, print it, and put it where customers stand to pay."
+    ],
+    "print": [
+      "<strong>Size:</strong> A5 suits a counter stand and A4 suits a wall. Customers scan from close by, so keep the code at least about 4 cm wide.",
+      "<strong>Paper:</strong> black on white. A matte laminate or a plastic sleeve protects it; a glossy cover can reflect light and make scanning harder.",
+      "<strong>Placement:</strong> at the counter, around chest height, where a customer's phone can reach it easily. Replace it if it fades or tears.",
+      "<strong>UPI ID in text:</strong> keep it under the code, as the poster does, for customers who prefer to type it."
+    ],
+    "mistakes": [
+      "<strong>A wrong letter in the UPI ID.</strong> Money sent to a wrong ID is hard to get back, so always test with a ₹1 payment.",
+      "<strong>Leaving an old code up after changing your bank or UPI ID.</strong> The code always points to the ID inside it. Print a new one.",
+      "<strong>A fixed amount on a counter code.</strong> Every customer would be asked for the same amount. Leave the amount empty.",
+      "<strong>Trusting a payment screenshot.</strong> Check your own UPI app or bank message before handing over goods."
+    ],
+    "moreFaqs": [
+      {
+        "q": "Do I need my UPI PIN to receive money?",
+        "a": "No. UPI asks for your PIN only to approve money leaving your account. You never need to enter your PIN, or scan a code, to receive money. If someone asks you to do that to receive a payment, it is a scam."
+      },
+      {
+        "q": "How is this different from the QR my UPI app gives me?",
+        "a": "Both work. Many UPI apps can show a QR for your account. This page lets you choose the shop name shown to customers, add a fixed amount when you need one, and print a poster in the size you want."
+      },
+      {
+        "q": "Can customers pay from any bank?",
+        "a": "Yes, if their bank supports UPI and they use a UPI app. The money goes to the bank account linked to your UPI ID."
+      }
+    ]
+  },
   "google-maps-location-qr-code-generator": {
     "howTo": [
       "Type your <strong>place name or address</strong>, for example <em>\"Blue Door Café, 12 High Street, Leeds\"</em>. Search for it in Google Maps first and copy the wording that finds the right result.",
@@ -3917,7 +3954,7 @@ function headTopHtml(meta, pageUrl) {
   <link rel="preload" href="../assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="stylesheet" href="../css/v2-theme.css?v=${ASSET_VERSION}">
-  <link rel="stylesheet" href="../css/v2-pages.css?v=${ASSET_VERSION}">${page.slug === 'ean-13-barcode-generator' ? '\n  <link rel="stylesheet" href="../css/ean-onpage.css?v=1.0">' : ''}${eanWorkflowStyles(page.slug)}
+  <link rel="stylesheet" href="../css/v2-pages.css?v=${ASSET_VERSION}">${page.slug === 'ean-13-barcode-generator' ? '\n  <link rel="stylesheet" href="../css/ean-onpage.css?v=1.0">' : ''}${page.slug === 'upi-qr-code-generator' ? '\n  <link rel="stylesheet" href="../css/upi-onpage.css?v=1.0">' : ''}${eanWorkflowStyles(page.slug)}
 
   <script>
     (function () {
@@ -4673,13 +4710,13 @@ ${siteHeaderHtml(page.queryParam)}
         ${page.category}
       </div>
       <h1 class="hero-title">${page.h1}</h1>
-      <p class="hero-lead">${page.lead}</p>${page.slug === 'ean-13-barcode-generator' ? '\n      ' + eanOnpageHtml() : ''}
+      <p class="hero-lead">${page.lead}</p>${page.slug === 'ean-13-barcode-generator' ? '\n      ' + eanOnpageHtml() : ''}${page.slug === 'upi-qr-code-generator' ? '\n      ' + upiOnpageHtml() : ''}
       
       <a href="../index.html?${page.queryParam}" class="${page.slug === 'ean-13-barcode-generator' ? 'ean-full-studio' : 'cta-launch-btn'}">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
-        ${page.slug === 'ean-13-barcode-generator' ? 'Launch studio for full customization' : `Open the ${page.shortName} generator`}
+        ${page.slug === 'ean-13-barcode-generator' ? 'Launch studio for full customization' : page.slug === 'upi-qr-code-generator' ? 'Open the full studio (colours, logo)' : `Open the ${page.shortName} generator`}
       </a>${hasEanWorkflow(page.slug) ? identifierNoticeHtml() : ''}
     </section>${page.slug === 'ean-13-barcode-generator' ? '\n' + eanPackagingHtml() : ''}
 

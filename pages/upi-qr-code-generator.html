@@ -41,6 +41,7 @@
 
   <link rel="stylesheet" href="../css/v2-theme.css?v=3.4">
   <link rel="stylesheet" href="../css/v2-pages.css?v=3.4">
+  <link rel="stylesheet" href="../css/upi-onpage.css?v=1.0">
 
   <script>
     (function () {
@@ -434,6 +435,30 @@
         "@type": "Answer",
         "text": "Check your own UPI app or bank notification. Don't rely on a screenshot from the customer."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need my UPI PIN to receive money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. UPI asks for your PIN only to approve money leaving your account. You never need to enter your PIN, or scan a code, to receive money. If someone asks you to do that to receive a payment, it is a scam."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from the QR my UPI app gives me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both work. Many UPI apps can show a QR for your account. This page lets you choose the shop name shown to customers, add a fixed amount when you need one, and print a poster in the size you want."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can customers pay from any bank?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if their bank supports UPI and they use a UPI app. The money goes to the bank account linked to your UPI ID."
+      }
     }
   ]
 }
@@ -511,12 +536,51 @@
       </div>
       <h1 class="hero-title">Free UPI Scan-to-Pay QR Code Generator</h1>
       <p class="hero-lead">Make a UPI payment QR code for your UPI ID. Add a fixed amount for a bill, leave it open for a shop counter, put a note such as an invoice number, or add your logo. Customers scan it with Google Pay, PhonePe, Paytm, BHIM or their bank's UPI app, check the details and pay.</p>
+      <section id="upi-onpage" class="upi-onpage" aria-labelledby="upi-tool-title">
+        <h2 id="upi-tool-title">Make your shop's UPI QR code in 1 minute</h2>
+        <div class="upi-onpage-grid">
+          <form id="upi-form" novalidate>
+            <p class="upi-step">Step 1: fill in</p>
+            <label for="upi-vpa">Your UPI ID</label>
+            <input id="upi-vpa" type="text" inputmode="email" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="yourname@bank" aria-describedby="upi-vpa-help upi-status">
+            <p id="upi-vpa-help" class="upi-help">Find it in your UPI app's profile. It has an @ in it.</p>
+            <label for="upi-name">Shop name</label>
+            <input id="upi-name" type="text" autocomplete="organization" placeholder="e.g. Sharma General Store" aria-describedby="upi-name-help">
+            <p id="upi-name-help" class="upi-help">Customers see this name when they pay.</p>
+            <label for="upi-amount">Amount in ₹ (optional)</label>
+            <input id="upi-amount" type="text" inputmode="decimal" autocomplete="off" placeholder="Leave empty for your shop counter" aria-describedby="upi-amount-help">
+            <p id="upi-amount-help" class="upi-help">Fill this only for one fixed bill. For a shop counter, leave it empty.</p>
+          </form>
+          <div class="upi-result">
+            <p class="upi-step">Step 2: check</p>
+            <div id="upi-preview" class="upi-preview" aria-label="UPI QR code preview"><p>Your QR code will appear here.</p></div>
+            <p id="upi-status" role="status" aria-live="polite" aria-atomic="true">Enter your UPI ID and shop name to begin.</p>
+            <p class="upi-step">Step 3: download or print</p>
+            <div class="upi-actions">
+              <button type="button" id="upi-download" disabled>Download QR image</button>
+              <button type="button" id="upi-poster" disabled>Print shop poster (PDF)</button>
+              <button type="button" id="upi-share" hidden disabled>Share on WhatsApp or other apps</button>
+            </div>
+            <label class="upi-size" for="upi-poster-size">Poster size
+              <select id="upi-poster-size"><option value="a5" selected>A5 (counter stand)</option><option value="a4">A4 (wall)</option></select>
+            </label>
+            <ul class="upi-checklist">
+              <li>Scan the QR with your own phone and check your shop name appears.</li>
+              <li>Ask someone to pay you ₹1 and check it reaches your bank.</li>
+              <li>We only check that the UPI ID looks right. We can't check that the account exists.</li>
+            </ul>
+            <p class="upi-more">Want colours or a logo? <a href="../index.html?symbology=qr-code&amp;wizard=upi">Open the full studio</a>.</p>
+          </div>
+        </div>
+        <p id="upi-startup">This tool needs JavaScript. If it does not start, enable JavaScript and reload, or <a href="../index.html?symbology=qr-code&amp;wizard=upi">open the full studio</a>.</p>
+      </section>
+      <script type="module" src="../js/upi-onpage.js?v=1.0"></script>
       
       <a href="../index.html?symbology=qr-code&wizard=upi" class="cta-launch-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
-        Open the UPI Payment QR generator
+        Open the full studio (colours, logo)
       </a>
     </section>
 
@@ -593,6 +657,41 @@
       </div>
     </section>
 
+    <!-- Practical guide: how to make it, print it, and what to avoid -->
+    <section class="guide-card" aria-labelledby="guide-title">
+      <h2 id="guide-title" class="guide-title">How UPI QR codes work, and how to use them safely</h2>
+      <div class="guide-grid">
+        <div class="guide-block guide-steps">
+          <h3>Step by step</h3>
+          <ol>
+            <li>Find your <strong>UPI ID</strong> in your UPI app, usually under your profile. It looks like <em>name@bank</em>.</li>
+            <li>Type it into the tool above with your <strong>shop name</strong>. Leave the amount empty for a counter code; fill it only for one fixed bill.</li>
+            <li>Scan the QR with your own phone. Your UPI app should show your shop name. Check it before printing.</li>
+            <li>Ask a friend to pay you <strong>₹1</strong> and check that it reaches your bank account.</li>
+            <li>Download the poster, print it, and put it where customers stand to pay.</li>
+          </ol>
+          <a href="../index.html?symbology=qr-code&wizard=upi" class="guide-cta">Open the UPI Payment QR generator &rarr;</a>
+        </div>
+        <div class="guide-block">
+          <h3>Printing &amp; size</h3>
+          <ul>
+            <li><strong>Size:</strong> A5 suits a counter stand and A4 suits a wall. Customers scan from close by, so keep the code at least about 4 cm wide.</li>
+            <li><strong>Paper:</strong> black on white. A matte laminate or a plastic sleeve protects it; a glossy cover can reflect light and make scanning harder.</li>
+            <li><strong>Placement:</strong> at the counter, around chest height, where a customer's phone can reach it easily. Replace it if it fades or tears.</li>
+            <li><strong>UPI ID in text:</strong> keep it under the code, as the poster does, for customers who prefer to type it.</li>
+          </ul>
+        </div>
+        <div class="guide-block guide-mistakes">
+          <h3>Common mistakes</h3>
+          <ul>
+            <li><strong>A wrong letter in the UPI ID.</strong> Money sent to a wrong ID is hard to get back, so always test with a ₹1 payment.</li>
+            <li><strong>Leaving an old code up after changing your bank or UPI ID.</strong> The code always points to the ID inside it. Print a new one.</li>
+            <li><strong>A fixed amount on a counter code.</strong> Every customer would be asked for the same amount. Leave the amount empty.</li>
+            <li><strong>Trusting a payment screenshot.</strong> Check your own UPI app or bank message before handing over goods.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
     
     
 
@@ -850,6 +949,36 @@
       </summary>
       <div class="faq-answer">
         <p>Check your own UPI app or bank notification. Don't rely on a screenshot from the customer.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Do I need my UPI PIN to receive money?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>No. UPI asks for your PIN only to approve money leaving your account. You never need to enter your PIN, or scan a code, to receive money. If someone asks you to do that to receive a payment, it is a scam.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>How is this different from the QR my UPI app gives me?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Both work. Many UPI apps can show a QR for your account. This page lets you choose the shop name shown to customers, add a fixed amount when you need one, and print a poster in the size you want.</p>
+      </div>
+    </details>
+  
+    <details class="faq-item" >
+      <summary class="faq-question">
+        <span>Can customers pay from any bank?</span>
+        <span class="faq-icon">▼</span>
+      </summary>
+      <div class="faq-answer">
+        <p>Yes, if their bank supports UPI and they use a UPI app. The money goes to the bank account linked to your UPI ID.</p>
       </div>
     </details>
   

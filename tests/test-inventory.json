@@ -1138,7 +1138,16 @@
    "18-ean-onpage.spec.mjs › Readable widget and exports at 375px dark",
    "18-ean-onpage.spec.mjs › Readable widget and exports at 375px light",
    "18-ean-onpage.spec.mjs › Readable widget and exports at 390px dark",
-   "18-ean-onpage.spec.mjs › Readable widget and exports at 390px light"
+   "18-ean-onpage.spec.mjs › Readable widget and exports at 390px light",
+   "19-upi-onpage.spec.mjs › UPI-01 starts empty with downloads off and the JavaScript notice hidden",
+   "19-upi-onpage.spec.mjs › UPI-02 the downloaded QR holds exactly the link the studio makes",
+   "19-upi-onpage.spec.mjs › UPI-03 an amount ends up in the code and in the status",
+   "19-upi-onpage.spec.mjs › UPI-04 wrong inputs give plain messages and never leave a stale download",
+   "19-upi-onpage.spec.mjs › UPI-05 the poster is a real A5 PDF by default and A4 when chosen, and its QR scans",
+   "19-upi-onpage.spec.mjs › UPI-06 \"Share\" appears only where the phone can share images, and shares a PNG",
+   "19-upi-onpage.spec.mjs › UPI-07 markup typed into the shop name stays text",
+   "19-upi-onpage.spec.mjs › UPI-08 the UPI ID and shop name are never sent anywhere",
+   "19-upi-onpage.spec.mjs › UPI-09 fits a phone screen with large touch targets"
   ],
   "phone": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1638,7 +1647,8 @@
   "unit/logo-presets.test.js": 29,
   "unit/qr-wizards.test.js": 48,
   "unit/rendering.test.js": 4,
-  "e2e/specs/18-ean-onpage.spec.mjs": 35
+  "e2e/specs/18-ean-onpage.spec.mjs": 35,
+  "e2e/specs/19-upi-onpage.spec.mjs": 32
  },
  "allowedSkips": [
   {
