@@ -41,7 +41,8 @@ async function navSignature(page) {
   return page.evaluate(() => {
     const abs = (a) => new URL(a.getAttribute('href'), location.href).pathname.replace(/\/index\.html$/, '/');
     return {
-      header: [...new Set([...document.querySelectorAll('header.v2-header a[href]')].map(abs))].sort(),
+      // The Menu button (#site-nav-btn) links to this page's own footer directory only as a no-JavaScript fallback.
+      header: [...new Set([...document.querySelectorAll('header.v2-header a[href]:not(#site-nav-btn)')].map(abs))].sort(),
       footerColumns: [...document.querySelectorAll('.v2-footer-col-title, .footer-links-col h4')].map((e) => e.textContent.trim()),
       footerColumnLinks: [...new Set([...document.querySelectorAll('.v2-footer-col a[href], .footer-links-col a[href]')].map(abs))].sort(),
       footerLegal: [...new Set([...document.querySelectorAll('.v2-footer-legal-links a[href]')].map(abs))].sort(),
