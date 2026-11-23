@@ -228,7 +228,7 @@ const SEO_PAGES = [
       },
       {
         q: 'Do I need a UPC-A barcode to list and sell products on Amazon?',
-        a: 'Yes, for most physical products listed on Amazon North America (US, Canada, Mexico), Amazon requires a valid GS1 GTIN-12 (UPC-A) or GTIN-13 (EAN-13). Amazon automatically cross-checks your barcode number against the GS1 GEPIR / Verified by GS1 database; if the company prefix does not match your brand or legal business entity, the listing may be rejected. If you manufacture private label products or handmade goods without barcodes, you can request a GTIN exemption directly in Amazon Seller Central. See our complete walkthrough: <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Amazon Barcode Requirements</a>.'
+        a: 'Yes, for most physical products listed on Amazon North America (US, Canada, Mexico), Amazon requires a valid GS1 GTIN-12 (UPC-A) or GTIN-13 (EAN-13). Amazon says sellers must use the correct product identifier and that false product identification, including UPC codes, is prohibited; Amazon.in also says it checks UPCs against the GS1 database. If you manufacture private label products or handmade goods without barcodes, you can request a GTIN exemption directly in Amazon Seller Central. See our complete walkthrough: <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Amazon Barcode Requirements</a>.'
       },
       {
         q: 'Can I print UPC-A barcodes on Avery adhesive label sheets?',
@@ -2540,7 +2540,7 @@ const ENRICHMENTS = {
     "legalCaution": {
       "title": "Rules to know",
       "points": [
-        "Marketplaces check retail barcode numbers against GS1 records; don't print UPCs you haven't licensed.",
+        "Retailers check UPCs in the GS1 database; don't print UPCs you haven't licensed.",
         "Test-scan a printed label with your Shopify POS scanner before labelling stock."
       ]
     },
@@ -2684,7 +2684,7 @@ const GUIDES = {
       "<strong>Resize the SVG, not a small PNG.</strong> Stretching a low-resolution image makes the bar widths uneven."
     ],
     "mistakes": [
-      "<strong>Buying cheap UPCs from resellers</strong> for products sold on Amazon or in US retail chains. These platforms check numbers against the GS1 database, and a number licensed to another company can get listings blocked.",
+      "<strong>Buying cheap UPCs from resellers</strong> for products sold on Amazon or in US retail chains. GS1 US says retailers check UPCs in the GS1 database and a number associated with another company risks rejection; Amazon.in says it removes listings whose UPCs don't match GS1.",
       "<strong>Using one UPC for several variants.</strong> Each size, colour, flavour or pack count needs its own number.",
       "<strong>Putting UPC-A on outer shipping cartons.</strong> Cartons use ITF-14 or GS1-128 instead.",
       "<strong>Not test-scanning a printed proof</strong> before a full print run."
@@ -2817,7 +2817,8 @@ const ARTICLES = [
       { "name": "GS1 India", "url": "https://www.gs1india.org/", "checked": "2026-11-23" },
       { "name": "GS1 India: Register for barcodes", "url": "https://www.gs1india.org/register-for-barcodes", "checked": "2026-11-23" },
       { "name": "GS1 India: MSME barcode reimbursement", "url": "https://www.gs1india.org/msme", "checked": "2026-11-23" },
-      { "name": "Amazon.in Seller Central: barcode requirements", "url": "https://sellercentral.amazon.in/help/hub/reference/external/G201100910", "checked": "2026-10-12" }
+      { "name": "Amazon.in Seller Central: FBA product barcode requirements", "url": "https://sellercentral.amazon.in/help/hub/reference/external/G201100910", "checked": "2026-11-23" },
+      { "name": "Amazon.in Seller Central: Requirements for product UPCs and GTINs", "url": "https://sellercentral.amazon.in/help/hub/reference/external/G200317470", "checked": "2026-11-23" }
     ],
     "relatedSlugs": [
       "how-to-get-a-barcode-for-your-product",
@@ -2871,7 +2872,7 @@ const ARTICLES = [
       {
         "id": "amazon-in",
         "h2": "Selling on Amazon.in",
-        "html": "\n        <ul>\n          <li><strong>Listing:</strong> you need a product ID to add a product that isn't already sold on Amazon.in. If another seller already sells it, you can add your offer without one.</li>\n          <li><strong>FBA stock:</strong> Amazon.in labels units with FNSKUs by default, so put an FNSKU label on each unit you send to its warehouses (books in the stickerless programme are the exception). You can make them with our <a href=\"./amazon-fba-fnsku-barcode-generator.html\">FNSKU label generator</a>.</li>\n          <li><strong>Shipping yourself</strong> (Easy Ship or Self-Ship): no FNSKU labels needed, but a new listing still needs its product ID.</li>\n        </ul>\n        <p>Details and sources: <a href=\"./do-i-need-a-barcode-to-sell-on-amazon.html\">Do I need a barcode to sell on Amazon?</a> and <a href=\"https://sellercentral.amazon.in/help/hub/reference/external/G201100910\" target=\"_blank\" rel=\"noopener noreferrer\">Amazon.in’s barcode requirements</a>.</p>"
+        "html": "\n        <ul>\n          <li><strong>Listing:</strong> you need a product ID to add a product that isn't already sold on Amazon.in. If another seller already sells it, you can add your offer without one.</li>\n          <li><strong>FBA stock:</strong> Amazon.in labels units with FNSKUs by default, so put an FNSKU label on each unit you send to its warehouses (books in the stickerless programme are the exception). You can make them with our <a href=\"./amazon-fba-fnsku-barcode-generator.html\">FNSKU label generator</a>.</li>\n          <li><strong>Shipping yourself:</strong> Amazon.in asks for FNSKU labels on units you send to its fulfilment centres; a new listing still needs its product ID either way.</li>\n        </ul>\n        <p>Details and sources: <a href=\"./do-i-need-a-barcode-to-sell-on-amazon.html\">Do I need a barcode to sell on Amazon?</a> and <a href=\"https://sellercentral.amazon.in/help/hub/reference/external/G201100910\" target=\"_blank\" rel=\"noopener noreferrer\">Amazon.in’s FBA barcode requirements</a> and <a href=\"https://sellercentral.amazon.in/help/hub/reference/external/G200317470\" target=\"_blank\" rel=\"noopener noreferrer\">product ID requirements</a>.</p>"
       },
       {
         "id": "make",
@@ -2959,7 +2960,7 @@ const ARTICLES = [
               <path d="M16 95h188" stroke="var(--border-subtle)" stroke-width="1"/>
               <text x="16" y="118" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• 12 digits (UPC-A) for US</text>
               <text x="16" y="138" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• 13 digits (EAN) worldwide</text>
-              <text x="16" y="158" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Verified by GS1 / GEPIR</text>
+              <text x="16" y="158" font-family="var(--font-body, sans-serif)" font-size="12" fill="var(--text-primary)">• Listed in GS1 records</text>
               <text x="16" y="190" font-family="var(--font-mono, monospace)" font-size="11" fill="var(--optic-blue)">$30 Single / $250 Prefix</text>
             </g>
 
@@ -3015,7 +3016,7 @@ const ARTICLES = [
             </g>
           </svg>
           <ol class="ean-diagram-legend">
-            <li><strong>1. License GTIN:</strong> Obtain your product number directly from GS1 to ensure your company is registered in the official GS1 registry (Verified by GS1 / GEPIR).</li>
+            <li><strong>1. License GTIN:</strong> Obtain your product number directly from GS1 to ensure the number is registered to your company in GS1 records.</li>
             <li><strong>2. Assign by Variant:</strong> Assign a distinct GTIN to every sellable consumer variant (e.g. 250 ml vs 500 ml, red vs blue).</li>
             <li><strong>3. Generate Vector Barcode:</strong> Enter your digits in UniversalCodeMaker to compute the check digit and export sharp vector files (SVG/EPS) for packaging artwork.</li>
             <li><strong>4. Proof &amp; Verify:</strong> Test-scan a sample print using our <a href="../barcode-scanner.html">Barcode Scanner</a> before commissioning volume print runs.</li>
@@ -3101,7 +3102,7 @@ const ARTICLES = [
                 <th scope="row"><strong>Third-Party Resellers (brokers)</strong></th>
                 <td>Varies</td>
                 <td>$0</td>
-                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon checks UPCs against GS1 records and removes listings whose numbers do not match.</td>
+                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon.in says it checks UPCs against the GS1 database and removes listings with invalid UPCs.</td>
               </tr>
             </tbody>
           </table>
@@ -3109,7 +3110,7 @@ const ARTICLES = [
 
         <div class="ean-callout" style="margin-top: 1.25rem;">
           <strong>Why cheap reseller barcodes fail on Amazon and retail:</strong>
-          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against the official GS1 database (via <a href="https://www.gs1.org/services/verified-by-gs1" target="_blank" rel="noopener noreferrer">Verified by GS1</a>, formerly GEPIR) under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.</p>
+          <p style="margin: 0.5rem 0 0;">GS1 US says retailers check UPCs in the GS1 database and see the company each number belongs to; a number "associated with another company" risks rejection (<a href="https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-prefix" target="_blank" rel="noopener noreferrer">GS1 US: What is a Company Prefix?</a>). Amazon.in says it checks UPCs against the GS1 database and removes listings with invalid UPCs (<a href="https://sellercentral.amazon.in/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon.in: Requirements for product UPCs and GTINs</a>). Amazon.com says sellers must use the correct product identifier and that false product identification, including UPC codes, is prohibited (<a href="https://sellercentral.amazon.com/help/hub/reference/external/G5JQC6VY6BVYWDPT" target="_blank" rel="noopener noreferrer">Amazon: Guidelines for UPC and GTIN</a>).</p>
         </div>`
       },
       {
@@ -3241,7 +3242,7 @@ const ARTICLES = [
       },
       {
         q: 'Why do cheap reseller barcodes get rejected by Amazon and major retailers?',
-        a: 'Marketplaces such as Amazon automatically verify barcode numbers against the official GS1 database (Verified by GS1, formerly known as GEPIR). When you buy recycled numbers from third-party brokers, the database shows the previous company\'s name instead of your brand. If the company name does not match, Amazon flags the listing as invalid and can suspend or remove the product.'
+        a: 'GS1 US says retailers check UPCs in the GS1 database, where a recycled number shows the company it is licensed to rather than your brand, and a number associated with another company risks rejection. Amazon.in says it checks UPCs against the GS1 database and removes listings with invalid UPCs.'
       },
       {
         q: 'Do I need a barcode to sell on Shopify or Etsy?',
@@ -3296,7 +3297,7 @@ const ARTICLES = [
         h2: 'The short answer',
         html: `
         <ol>
-          <li><strong>To list a new product</strong>, most Amazon categories need a product number (a GTIN: UPC, EAN, JAN or ISBN). Amazon checks UPCs against the GS1 database, so get yours from GS1. No barcode at all? Many private-label, handmade and generic products can get a <a href="#gtin-exemption">GTIN exemption</a> instead.</li>
+          <li><strong>To list a new product</strong>, most Amazon categories need a product number (a GTIN: UPC, EAN, JAN or ISBN). Amazon.in says it checks UPCs against the GS1 database, and GS1 US says retailers do the same, so get yours from GS1. No barcode at all? Many private-label, handmade and generic products can get a <a href="#gtin-exemption">GTIN exemption</a> instead.</li>
           <li><strong>To ship to Amazon's warehouses (FBA)</strong>, every unit needs a barcode Amazon can track. Since 31 March 2026 in the US, only brand owners registered as brand representatives can use the product's own UPC; everyone else puts an Amazon <strong>FNSKU</strong> label on each unit. On Amazon.in, FNSKU labels are the default.</li>
           <li><strong>If you ship orders yourself</strong>, you don't need FNSKU labels: they are only for stock sent to Amazon's fulfilment centres.</li>
           <li><strong>Making the barcode image is free.</strong> What costs money is the GS1 number: $30 for a single number from GS1 US, from ₹50,200 for the first year from GS1 India (<a href="#costs">costs</a>).</li>
@@ -3343,10 +3344,10 @@ const ARTICLES = [
         h2: 'Step 1: the product number you need to list',
         html: `
         <ul>
-          <li><strong>Amazon US</strong>: "For most categories, you are required to provide a unique product identifier, known as a GTIN (Global Trade Item Number), to create new listings." Amazon checks UPCs against the GS1 database; UPCs that don't match GS1's records are invalid, and invalid listings are removed, which can cost you the right to create listings or to sell.</li>
-          <li><strong>Get numbers from GS1</strong>, not from resellers. GS1 US explains that a UPC looked up in the GS1 database shows the company it is registered to, and a number "associated with another company" risks rejection. Amazon US says to obtain UPCs "directly from GS1 (and not from other third parties selling UPC licenses)".</li>
+          <li><strong>Amazon US</strong>: "For most categories, you are required to provide a unique product identifier, known as a GTIN (Global Trade Item Number), to create new listings." Amazon.com's guidelines add that sellers must use the correct product identifier and that "the use of false product identification information, including UPC codes, is prohibited."</li>
+          <li><strong>Get numbers from GS1</strong>, not from resellers. GS1 US explains that a UPC looked up in the GS1 database shows the company it is registered to, and a number "associated with another company" risks rejection. Amazon.in recommends obtaining UPCs "directly from GS1 (and not from other third-parties selling UPC licences)".</li>
           <li><strong>Category rules differ.</strong> In most US categories, major brands need a UPC and private-label brands can ask for an exemption; books need an ISBN, EAN or JAN; bundles in electronics, office products and video games need their own UPC.</li>
-          <li><strong>Amazon.in</strong>: a product ID is needed to add a product that isn't already sold on Amazon; if another seller already sells it, you can add your offer without one. Amazon.in runs the same GS1 database check.</li>
+          <li><strong>Amazon.in</strong>: a product ID is needed to add a product that isn't already sold on Amazon; if another seller already sells it, you can add your offer without one. Amazon.in says it verifies UPCs by checking the GS1 database, removes invalid UPC listings, and offers a GTIN exemption for products without a barcode.</li>
         </ul>
         <p>How to get GS1 numbers, give each variant its own number and print them at the right size: <a href="./how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a>.</p>`
       },
@@ -3458,7 +3459,7 @@ const ARTICLES = [
     faqs: [
       {
         q: 'Can I buy cheap UPC codes online for Amazon?',
-        a: 'It is risky. Amazon checks UPCs against the GS1 database and removes listings whose numbers don\'t match, and GS1 US warns that a number associated with another company risks rejection. Amazon US tells sellers to get UPCs directly from GS1. GS1 India says only it can issue barcodes starting with 890.'
+        a: 'It is risky. Amazon.in says it checks UPCs against the GS1 database and removes invalid UPC listings, and GS1 US warns that a number associated with another company risks rejection. Amazon.in recommends getting UPCs directly from GS1. GS1 India says only it can issue barcodes starting with 890.'
       },
       {
         q: 'Do I need my own barcode to resell another brand\'s product on Amazon?',
@@ -3482,7 +3483,7 @@ const ARTICLES = [
       },
       {
         q: 'How do I buy a legitimate GTIN barcode to list products on Amazon?',
-        a: 'Obtain your product identifiers directly from your national GS1 organization (such as GS1 US, GS1 UK, or GS1 India). For small catalogs, GS1 US provides single GTINs for $30 with no annual renewal fees, or company prefixes starting at $250 for 10 products. Amazon automatically validates listing GTINs against the GS1 Verified by GS1 database; recycled barcodes from unauthorized third-party resellers are flagged and rejected.'
+        a: 'Obtain your product identifiers directly from your national GS1 organization (such as GS1 US, GS1 UK, or GS1 India). For small catalogs, GS1 US provides single GTINs for $30 with no annual renewal fees, or company prefixes starting at $250 for 10 products. Amazon.in says it checks UPCs against the GS1 database and removes invalid UPC listings, and GS1 US says a number associated with another company risks rejection.'
       },
       {
         q: 'What is the difference between an Amazon FNSKU and a manufacturer UPC barcode?',
@@ -3508,7 +3509,10 @@ const ARTICLES = [
       { name: 'GS1 Canada: The 2005 Sunrise Date for North American Companies (March 2003)', url: 'https://www.gs1ca.org/files/edu_sunrise2005executivesummary_v1_en.pdf', checked: '2026-11-23' },
       { name: 'GS1 US: Get a barcode (fees)', url: 'https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode', checked: '2026-11-23' },
       { name: 'GS1 UK fees (owner check of the GS1 UK fee page)', url: 'https://www.gs1uk.org/', checked: '2026-11-23' },
-      { name: 'Amazon Seller Central: Product ID policy', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G200317470', checked: '2026-10-12' },
+      { name: 'Amazon: Listing requirements, Product IDs (GTINs)', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G200317470', checked: '2026-11-23' },
+      { name: 'Amazon: Guidelines for UPC and GTIN', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G5JQC6VY6BVYWDPT', checked: '2026-11-23' },
+      { name: 'Amazon.in: Requirements for product UPCs and GTINs', url: 'https://sellercentral.amazon.in/help/hub/reference/external/G200317470', checked: '2026-11-23' },
+      { name: 'GS1 US: What is a Company Prefix?', url: 'https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-prefix', checked: '2026-11-23' },
     ],
     relatedSlugs: [
       'how-to-get-a-barcode-for-your-product',
@@ -3770,7 +3774,7 @@ const ARTICLES = [
                 <th scope="row"><strong>Third-Party Resellers (brokers)</strong></th>
                 <td>Varies</td>
                 <td>$0</td>
-                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon checks UPCs against GS1 records and removes listings whose numbers do not match.</td>
+                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon.in says it checks UPCs against the GS1 database and removes listings with invalid UPCs.</td>
               </tr>
             </tbody>
           </table>
@@ -3778,7 +3782,7 @@ const ARTICLES = [
 
         <div class="ean-callout">
           <strong>Why cheap reseller barcodes fail on Amazon and retail:</strong>
-          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against GS1 records under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. Amazon removes listings whose numbers do not match GS1 records.</p>
+          <p style="margin: 0.5rem 0 0;">GS1 US says retailers check UPCs in the GS1 database and see the company each number belongs to; a number "associated with another company" risks rejection (<a href="https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-prefix" target="_blank" rel="noopener noreferrer">GS1 US: What is a Company Prefix?</a>). Amazon.in says it checks UPCs against the GS1 database and removes listings with invalid UPCs (<a href="https://sellercentral.amazon.in/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon.in: Requirements for product UPCs and GTINs</a>). Amazon.com says sellers must use the correct product identifier and that false product identification, including UPC codes, is prohibited (<a href="https://sellercentral.amazon.com/help/hub/reference/external/G5JQC6VY6BVYWDPT" target="_blank" rel="noopener noreferrer">Amazon: Guidelines for UPC and GTIN</a>).</p>
         </div>
         <p style="margin-top: 1rem;">Need step-by-step guidance on licensing your company prefix from GS1, assigning unique variant numbers per SKU, and testing printed proofs before manufacturing? Read our complete seller walkthrough: <a href="./how-to-get-a-barcode-for-your-product.html">How to Get a Barcode for Your Product (GTIN Guide)</a>.</p>`
       },
@@ -3843,7 +3847,7 @@ const ARTICLES = [
         h2: 'Common mistakes to avoid',
         html: `
         <ul>
-          <li><strong>Buying recycled barcodes from brokers.</strong> GS1 US warns that numbers associated with another company risk rejection, and Amazon removes listings whose UPCs don't match GS1's database.</li>
+          <li><strong>Buying recycled barcodes from brokers.</strong> GS1 US warns that numbers associated with another company risk rejection, and Amazon.in says it removes listings whose UPCs don't match GS1's database.</li>
           <li><strong>Buying separate UPC and EAN numbers for the same item.</strong> Unnecessary expense: scanners worldwide read both; an EAN-13 scans in the US, and a UPC-A scans in Europe.</li>
           <li><strong>Truncating the first digit of an EAN-13.</strong> Only EAN-13s starting with 0 have a UPC-A counterpart. International prefixes 1–9 cannot be shortened.</li>
           <li><strong>Encroaching on quiet zones.</strong> UPC-A needs 9X margins each side; EAN-13 needs 11X on the left. Placing artwork, text or box edges too close causes register read errors.</li>

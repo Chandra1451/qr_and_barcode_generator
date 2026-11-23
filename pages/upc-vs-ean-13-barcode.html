@@ -398,8 +398,23 @@
     },
     {
       "@type": "CreativeWork",
-      "name": "Amazon Seller Central: Product ID policy",
+      "name": "Amazon: Listing requirements, Product IDs (GTINs)",
       "url": "https://sellercentral.amazon.com/help/hub/reference/external/G200317470"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Amazon: Guidelines for UPC and GTIN",
+      "url": "https://sellercentral.amazon.com/help/hub/reference/external/G5JQC6VY6BVYWDPT"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Amazon.in: Requirements for product UPCs and GTINs",
+      "url": "https://sellercentral.amazon.in/help/hub/reference/external/G200317470"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "GS1 US: What is a Company Prefix?",
+      "url": "https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-prefix"
     }
   ],
   "author": {
@@ -585,7 +600,7 @@
       </div>
       <h1 class="hero-title">UPC vs EAN-13: Which Barcode Do You Need?</h1>
       <p class="hero-lead">UPC-A (12 digits) and EAN-13 (13 digits) are the primary barcodes used at retail checkout around the world. They share the same physical size, bar geometry and scanner compatibility. The difference lies in where your product number originates, how quiet zones are arranged, and where you sell.</p>
-      <p class="facts-checked">Facts last checked: <time datetime="2026-10-12">12 October 2026</time> (<a href="#sources">sources</a>)</p>
+      <p class="facts-checked">Facts last checked: <time datetime="2026-11-23">23 November 2026</time> (<a href="#sources">sources</a>)</p>
       <div class="article-ctas">
         <a href="../index.html?symbology=ean-13" class="cta-launch-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
@@ -858,7 +873,7 @@
                 <th scope="row"><strong>Third-Party Resellers (brokers)</strong></th>
                 <td>Varies</td>
                 <td>$0</td>
-                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon checks UPCs against GS1 records and removes listings whose numbers do not match.</td>
+                <td><strong>High risk:</strong> Numbers were previously licensed to older companies. GS1 database will not show your brand name. Amazon.in says it checks UPCs against the GS1 database and removes listings with invalid UPCs.</td>
               </tr>
             </tbody>
           </table>
@@ -866,7 +881,7 @@
 
         <div class="ean-callout">
           <strong>Why cheap reseller barcodes fail on Amazon and retail:</strong>
-          <p style="margin: 0.5rem 0 0;">Marketplaces such as Amazon automatically verify barcode numbers against GS1 records under <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon's Product ID policy</a>. When a reseller sells you a recycled UPC, the database lists the original licensee—not your brand. Amazon removes listings whose numbers do not match GS1 records.</p>
+          <p style="margin: 0.5rem 0 0;">GS1 US says retailers check UPCs in the GS1 database and see the company each number belongs to; a number "associated with another company" risks rejection (<a href="https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-prefix" target="_blank" rel="noopener noreferrer">GS1 US: What is a Company Prefix?</a>). Amazon.in says it checks UPCs against the GS1 database and removes listings with invalid UPCs (<a href="https://sellercentral.amazon.in/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon.in: Requirements for product UPCs and GTINs</a>). Amazon.com says sellers must use the correct product identifier and that false product identification, including UPC codes, is prohibited (<a href="https://sellercentral.amazon.com/help/hub/reference/external/G5JQC6VY6BVYWDPT" target="_blank" rel="noopener noreferrer">Amazon: Guidelines for UPC and GTIN</a>).</p>
         </div>
         <p style="margin-top: 1rem;">Need step-by-step guidance on licensing your company prefix from GS1, assigning unique variant numbers per SKU, and testing printed proofs before manufacturing? Read our complete seller walkthrough: <a href="./how-to-get-a-barcode-for-your-product.html">How to Get a Barcode for Your Product (GTIN Guide)</a>.</p>
     </section>
@@ -928,7 +943,7 @@
     <section class="article-section" id="mistakes" aria-labelledby="mistakes-title">
       <h2 id="mistakes-title">Common mistakes to avoid</h2>
       <ul>
-          <li><strong>Buying recycled barcodes from brokers.</strong> GS1 US warns that numbers associated with another company risk rejection, and Amazon removes listings whose UPCs don't match GS1's database.</li>
+          <li><strong>Buying recycled barcodes from brokers.</strong> GS1 US warns that numbers associated with another company risk rejection, and Amazon.in says it removes listings whose UPCs don't match GS1's database.</li>
           <li><strong>Buying separate UPC and EAN numbers for the same item.</strong> Unnecessary expense: scanners worldwide read both; an EAN-13 scans in the US, and a UPC-A scans in Europe.</li>
           <li><strong>Truncating the first digit of an EAN-13.</strong> Only EAN-13s starting with 0 have a UPC-A counterpart. International prefixes 1–9 cannot be shortened.</li>
           <li><strong>Encroaching on quiet zones.</strong> UPC-A needs 9X margins each side; EAN-13 needs 11X on the left. Placing artwork, text or box edges too close causes register read errors.</li>
@@ -944,7 +959,10 @@
           <li><a href="https://www.gs1ca.org/files/edu_sunrise2005executivesummary_v1_en.pdf" target="_blank" rel="noopener noreferrer">GS1 Canada: The 2005 Sunrise Date for North American Companies (March 2003)</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
           <li><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode" target="_blank" rel="noopener noreferrer">GS1 US: Get a barcode (fees)</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
           <li><a href="https://www.gs1uk.org/" target="_blank" rel="noopener noreferrer">GS1 UK fees (owner check of the GS1 UK fee page)</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
-          <li><a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon Seller Central: Product ID policy</a>, checked <time datetime="2026-10-12">12 October 2026</time></li>
+          <li><a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon: Listing requirements, Product IDs (GTINs)</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
+          <li><a href="https://sellercentral.amazon.com/help/hub/reference/external/G5JQC6VY6BVYWDPT" target="_blank" rel="noopener noreferrer">Amazon: Guidelines for UPC and GTIN</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
+          <li><a href="https://sellercentral.amazon.in/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon.in: Requirements for product UPCs and GTINs</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
+          <li><a href="https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-prefix" target="_blank" rel="noopener noreferrer">GS1 US: What is a Company Prefix?</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
         </ul>
     </section>
       </article>
