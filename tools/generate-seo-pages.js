@@ -2913,7 +2913,23 @@ const ARTICLES = [
     h1: 'How to Get a Barcode for Your Product',
     lead: 'For a retail product, first obtain or confirm the product identifier your retailer requires. Then make the barcode image that carries it. This guide explains the difference between a GTIN and its barcode, how to choose the matching generator, and what to check before printing.',
     datePublished: '2026-10-07',
-    dateModified: '2026-11-11',
+    dateModified: '2026-11-23',
+    sources: [
+      { name: 'GS1 General Specifications Standard, Release 26.0 (5.2, 5.12.2.2, 7.9.1, symbol table)', url: 'https://ref.gs1.org/standards/genspecs/', checked: '2026-11-23' },
+      { name: 'GS1 GTIN Management Standard, Release 1.1', url: 'https://ref.gs1.org/standards/gtin-management/', checked: '2026-11-23' },
+      { name: 'GS1 Sweden: Guidelines for size', url: 'https://gs1.se/en/guides/how-to-guides/size-guide/', checked: '2026-11-23' },
+      { name: 'GS1: Solution provider 2D readiness (Ambition 2027)', url: 'https://ref.gs1.org/sme-guidance/solution-provider-2d-readiness/', checked: '2026-11-23' },
+      { name: 'GS1 US: Get a barcode (fees)', url: 'https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode', checked: '2026-11-23' },
+      { name: 'GS1 US: What is a Company Prefix?', url: 'https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-prefix', checked: '2026-11-23' },
+      { name: 'GS1 US: What is a GTIN?', url: 'https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-gtin', checked: '2026-11-23' },
+      { name: 'GS1 Canada: The 2005 Sunrise Date for North American Companies (March 2003)', url: 'https://www.gs1ca.org/files/edu_sunrise2005executivesummary_v1_en.pdf', checked: '2026-11-23' },
+      { name: 'GS1 UK fees (owner check of the GS1 UK fee page)', url: 'https://www.gs1uk.org/', checked: '2026-11-23' },
+      { name: 'GS1 India: Register for barcodes', url: 'https://www.gs1india.org/register-for-barcodes', checked: '2026-11-23' },
+      { name: 'Amazon: Listing requirements, Product IDs (GTINs)', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G200317470', checked: '2026-11-23' },
+      { name: 'Amazon: Use Amazon barcodes for FBA', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G200141490', checked: '2026-11-23' },
+      { name: 'Amazon: Guidelines for UPC and GTIN', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G5JQC6VY6BVYWDPT', checked: '2026-11-23' },
+      { name: 'Amazon.in: Requirements for product UPCs and GTINs', url: 'https://sellercentral.amazon.in/help/hub/reference/external/G200317470', checked: '2026-11-23' },
+    ],
     relatedSlugs: ['check-digit-calculator', 
       'barcode-for-products-in-india',
       'upc-vs-ean-13-barcode',
@@ -3021,7 +3037,7 @@ const ARTICLES = [
             <li><strong>3. Generate Vector Barcode:</strong> Enter your digits in UniversalCodeMaker to compute the check digit and export sharp vector files (SVG/EPS) for packaging artwork.</li>
             <li><strong>4. Proof &amp; Verify:</strong> Test-scan a sample print using our <a href="../barcode-scanner.html">Barcode Scanner</a> before commissioning volume print runs.</li>
           </ol>
-          <figcaption>Schematic workflow overview. Dimensions and standards source: <a href="https://www.gs1.org/standards/barcodes-epcrfid-id-keys/gs1-general-specifications" target="_blank" rel="noopener noreferrer">GS1 General Specifications</a>.</figcaption>
+          <figcaption>Schematic workflow overview. Dimensions and standards source: <a href="https://ref.gs1.org/standards/genspecs/" target="_blank" rel="noopener noreferrer">GS1 General Specifications</a>.</figcaption>
         </figure>`
       },
       {
@@ -3040,7 +3056,7 @@ const ARTICLES = [
             </tbody>
           </table>
         </div>
-        <p>Put a 0 in front of a 12-digit UPC-A number and you have the same product's 13-digit number. Checkout scanners around the world read both barcodes, so a UPC-A product can be sold in Europe and an EAN-13 product in the US. Some US retailers still ask suppliers for UPC-A, so check what your buyer wants. For full visual diagrams and quiet zone specs, see our <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: which barcode do you need?</a> comparison guide.</p>`
+        <p>Put a 0 in front of a 12-digit UPC-A number and you have the same product's 13-digit number. Since GS1\'s "Sunrise 2005", US and Canadian companies have been expected to scan EAN-13 as well as UPC-A at the checkout, and GS1 US says all GTIN types are intended for global use. Check which format your buyer\'s systems expect. For full visual diagrams and quiet zone specs, see our <a href="./upc-vs-ean-13-barcode.html">UPC vs EAN-13: which barcode do you need?</a> comparison guide.</p>`
       },
       {
         id: 'do-you-need-gs1',
@@ -3048,14 +3064,14 @@ const ARTICLES = [
         html: `
         <p>Start with the organisation that will receive or scan the code. Retailers and marketplaces may require GS1 identifiers, but the rules depend on the recipient, category and market. Check before buying numbers or printing packaging. For an existing product, confirm its assigned identifier before obtaining another one.</p>
         <p><strong>Selling on Amazon involves two jobs.</strong> The listing uses a product identifier such as a GTIN, unless an applicable exemption is approved. For FBA stock, check which barcode must be on each unit: an accepted manufacturer barcode or an Amazon barcode (FNSKU), according to the current rules for your marketplace and seller/product status. An FNSKU comes from Seller Central and is separate from the retail GTIN.</p>
-        <p>See <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Do I need a barcode to sell on Amazon?</a> for the US/India decision guide, and check current Seller Central instructions before preparing stock. Amazon explains <a href="https://sell.amazon.com/blog/amazon-gtin-guide" target="_blank" rel="noopener noreferrer">listing identifiers</a> and <a href="https://sell.amazon.com/blog/fba-packaging-prep-labeling" target="_blank" rel="noopener noreferrer">FBA labelling</a> separately.</p>
+        <p>See <a href="./do-i-need-a-barcode-to-sell-on-amazon.html">Do I need a barcode to sell on Amazon?</a> for the US/India decision guide, and check current Seller Central instructions before preparing stock. Amazon explains <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">listing identifiers</a> and <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200141490" target="_blank" rel="noopener noreferrer">FBA labelling</a> separately.</p>
         <p id="internal-use">For identifiers used only inside your own inventory system, such as stock-room bins or company assets, <a href="./code-128-barcode-generator.html">Code 128</a> can carry your own SKU or asset number. Choose a format your software and scanners accept. Keep internal identifiers separate from retail GTINs and check requirements when a trading partner receives the labels.</p>`
       },
       {
         id: 'get-numbers',
         h2: 'Step 2: Get your numbers from GS1',
         html: `
-        <p>UniversalCodeMaker generates barcode graphic files (SVG, EPS, PNG) from numbers you provide for free. However, if your product is sold through commercial retail stores, distributors, or major online marketplaces, the <strong>product identifier itself must be licensed from GS1</strong> so it is registered to your company in the official global registry.</p>
+        <p>UniversalCodeMaker generates barcode graphic files (SVG, EPS, PNG) from numbers you provide for free. However, if your product is sold through commercial retail stores, distributors, or major online marketplaces, the <strong>product identifier itself must be licensed from GS1</strong> so it is registered to your company in GS1 records.</p>
 
         <div class="article-table-wrap" tabindex="0">
           <table class="article-table">
@@ -3075,7 +3091,7 @@ const ARTICLES = [
                 <td>A few products sold in the US or on Amazon</td>
               </tr>
               <tr>
-                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US</a>: Company Prefix (10 items)</strong></th>
+                <th scope="row"><strong><a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode" target="_blank" rel="noopener noreferrer">GS1 US</a>: Company Prefix (10 items)</strong></th>
                 <td>USD $250</td>
                 <td>USD $50 / year</td>
                 <td>Growing businesses planning larger catalogues under their own brand prefix</td>
@@ -3093,7 +3109,7 @@ const ARTICLES = [
                 <td>Indian brand owners. MSME-registered micro-manufacturing enterprises can get up to 80% of the fees for the first 3 years refunded (capped at ₹50,650; 100 and 1,000 barcode plans)</td>
               </tr>
               <tr>
-                <th scope="row"><strong><a href="https://www.gs1.org/" target="_blank" rel="noopener noreferrer">National GS1 Offices (Global)</a></strong></th>
+                <th scope="row"><strong>National GS1 offices</strong></th>
                 <td>Varies by country</td>
                 <td>Country-dependent</td>
                 <td>Direct registration in local currency (e.g. GS1 Canada, GS1 Australia, GS1 Germany)</td>
@@ -3133,7 +3149,7 @@ const ARTICLES = [
           <li>Add the results: 15 + 4 + 9 + 2 + 3 + 4 + 9 + 2 + 3 + 0 + 27 + 5 = <strong>83</strong>.</li>
           <li>The check digit is what you add to reach the next multiple of 10: 90 − 83 = <strong>7</strong>.</li>
         </ol>
-        <p>See <a href="https://www.gs1uk.org/knowledge-hub/standards/what-is-a-check-digit" target="_blank" rel="noopener noreferrer">GS1 UK's check-digit explanation</a>. If your product record already includes the last digit, use the complete number and compare the result with that record.</p><p>So the full EAN-13 is <code>5901234123457</code>. The same rule works for UPC-A: <code>03600029145</code> gets check digit <strong>2</strong>.</p>`
+        <p>This is the method in the <a href="https://ref.gs1.org/standards/genspecs/" target="_blank" rel="noopener noreferrer">GS1 General Specifications</a> (section 7.9.1); our <a href="./check-digit-calculator.html">check digit calculator</a> does it for one number or a list. If your product record already includes the last digit, use the complete number and compare the result with that record.</p><p>So the full EAN-13 is <code>5901234123457</code>. The same rule works for UPC-A: <code>03600029145</code> gets check digit <strong>2</strong>.</p>`
       },
       {
         id: 'make',
@@ -3213,11 +3229,10 @@ const ARTICLES = [
           </table>
         </div>
         ${eanDiagramHtml('product-guide')}
-        <p>These consumer-item reference dimensions come from the <a href="https://gs1.se/en/guides/how-to-guides/size-guide/" target="_blank" rel="noopener noreferrer">GS1 Sweden size guide</a>. Extra export padding can increase the full-file dimensions; preserve it and check the actual symbol at its final size.</p>
+        <p>The X-dimension range, heights and quiet zones come from the <a href="https://gs1.se/en/guides/how-to-guides/size-guide/" target="_blank" rel="noopener noreferrer">GS1 Sweden size guide</a> and the <a href="https://ref.gs1.org/standards/genspecs/" target="_blank" rel="noopener noreferrer">GS1 General Specifications</a> (37.29 mm at X = 0.330 mm, section 5.12.2.2); the 80% and 200% widths are 113 modules × X. Extra export padding can increase the full-file dimensions; preserve it and check the actual symbol at its final size.</p>
         <ul>
           <li><strong>Don't shorten the bars</strong> to fit a small pack. Use a smaller size within the allowed range instead.</li>
-          <li><strong>Dark bars on a light background.</strong> Black on white is best. Follow <a href="https://www.gs1uk.org/knowledge-hub/barcodes/what-colour-should-a-barcode-be" target="_blank" rel="noopener noreferrer">GS1 UK's colour guidance</a> when choosing artwork colours.</li>
-          <li><strong>Matte surfaces</strong> scan better than glossy ones, and the barcode shouldn't wrap around a tight curve.</li>
+          <li><strong>Dark bars on a light background.</strong> GS1 specifies EAN/UPC symbols as dark bars and light spaces (<a href="https://ref.gs1.org/standards/genspecs/" target="_blank" rel="noopener noreferrer">General Specifications</a> section 5.2); black on white gives the most contrast. Check any other colour pair with a printed proof.</li>
         </ul>`
       },
       {
