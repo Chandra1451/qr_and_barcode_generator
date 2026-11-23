@@ -1127,6 +1127,7 @@ const SEO_PAGES = [
       }
     ],
     relatedSlugs: [
+      'barcode-for-products-in-india',
       'google-reviews-qr-code-generator',
       'google-maps-location-qr-code-generator',
       'wifi-qr-code-generator',
@@ -2797,6 +2798,100 @@ const GUIDES = {
 // need a tool, then link into the matching generators. Same chrome as the landing pages.
 const ARTICLES = [
   {
+    "slug": "barcode-for-products-in-india",
+    "name": "How to Get a Barcode for Products in India",
+    "badge": "Seller Guide",
+    "queryParam": "symbology=ean-13",
+    "metaTitle": "How to Get a Barcode for Products in India: GS1 India Guide",
+    "metaDescription": "How to get GS1 barcodes for products in India: documents, fees, the MSME refund for micro-manufacturers, Amazon.in rules, and how to make the barcode.",
+    "dateModified": "2026-11-23",
+    "h1": "How to Get a Barcode for Products in India",
+    "lead": "To sell packaged products through shops and online marketplaces in India, you usually need a barcode number from GS1 India, the only body that issues numbers starting with 890. This guide covers the documents, what it costs, the MSME refund, Amazon.in, and how to make the barcode once you have your number.",
+    "datePublished": "2026-11-23",
+    "relatedSlugs": [
+      "how-to-get-a-barcode-for-your-product",
+      "do-i-need-a-barcode-to-sell-on-amazon",
+      "ean-13-barcode-generator",
+      "upi-qr-code-generator",
+      "amazon-fba-fnsku-barcode-generator",
+      "avery-5160-barcode-generator"
+    ],
+    "ctas": [
+      {
+        "href": "./ean-13-barcode-generator.html",
+        "label": "Make an EAN-13 barcode"
+      },
+      {
+        "href": "./upi-qr-code-generator.html#upi-onpage",
+        "label": "Make a UPI QR for your shop"
+      }
+    ],
+    "sections": [
+      {
+        "id": "short-answer",
+        "h2": "The short answer",
+        "html": "\n        <ol>\n          <li><strong>Register with GS1 India.</strong> It is the only authorised body in India for barcodes starting with 890. You need your PAN, a GST certificate (or partnership deed) and a cancelled cheque.</li>\n          <li><strong>Pay for a plan.</strong> The fee depends on your turnover, how many numbers you need (100, 1,000, 10,000 or 1,00,000) and for how long. Micro-manufacturers registered with MSME can claim up to 80% of the fees back for the first 3 years.</li>\n          <li><strong>Give each product its own number</strong>: every size, flavour and pack count gets a different one.</li>\n          <li><strong>Make the barcode image</strong> as an EAN-13 from your number. That part is free here.</li>\n        </ol>"
+      },
+      {
+        "id": "who-issues",
+        "h2": "Who gives barcode numbers in India",
+        "html": "\n        <p>Barcode numbers for retail products come from GS1, a non-profit organisation with offices in many countries. In India that is <a href=\"https://www.gs1india.org/\" target=\"_blank\" rel=\"noopener noreferrer\">GS1 India</a>, and it says it is the only authorised body in India to provide barcodes starting with 890.</p>\n        <p>The number is what you pay for. The barcode image (the black and white bars) is just a way of printing that number, and any accurate barcode generator, including this one, can draw it for free.</p>"
+      },
+      {
+        "id": "register",
+        "h2": "How to register with GS1 India",
+        "html": "\n        <p>GS1 India's <a href=\"https://www.gs1india.org/register-for-barcodes\" target=\"_blank\" rel=\"noopener noreferrer\">registration page</a> lists three steps:</p>\n        <ol>\n          <li><strong>Get your documents ready:</strong> the company's PAN card (or the proprietor's PAN for a proprietorship), a GST registration certificate (a partnership deed also works for partnerships), and a cancelled cheque of the company.</li>\n          <li><strong>Check the fee</strong> with GS1 India's calculator: choose your annual turnover band, the number of barcodes and the number of years.</li>\n          <li><strong>Fill in the registration form</strong> and pay online, by NEFT, or by demand draft or pay order.</li>\n        </ol>\n        <p>The registration page also notes that each company or brand applies separately. Registration includes access to GS1 India's DataKart platform, where you allocate your numbers and manage product data.</p>"
+      },
+      {
+        "id": "cost",
+        "h2": "What it costs",
+        "html": "\n        <p>The fee has four parts: a one-time registration fee, a subscription fee for the period you choose, an interest-free security deposit that is refunded, and taxes. GS1 India says the subscription depends on your turnover, the number of barcodes and the subscription period. Its current fee table took effect on 1 October 2026.</p>\n        <p><strong>Example (checked 12 October 2026):</strong> 100 barcodes for one year, turnover up to ₹5 crore, came to ₹50,200: ₹27,000 registration + ₹13,000 subscription + 18% GST + ₹3,000 security deposit. Longer terms and larger plans cost more. Use <a href=\"https://www.gs1india.org/register-for-barcodes\" target=\"_blank\" rel=\"noopener noreferrer\">GS1 India’s calculator</a> for your own figure.</p>\n        <p>Choose the plan size carefully: you pick 100, 1,000, 10,000 or 1,00,000 numbers, and GS1 India says that number can't be changed later; for more numbers you register again. Renew the subscription before it expires to keep using your numbers.</p>"
+      },
+      {
+        "id": "msme",
+        "h2": "MSME refund for micro-manufacturers",
+        "html": "\n        <p>Under a Ministry of MSME scheme described on <a href=\"https://www.gs1india.org/msme\" target=\"_blank\" rel=\"noopener noreferrer\">GS1 India’s MSME page</a>, micro-manufacturing enterprises registered with MSME can get <strong>80%</strong> of the one-time registration fee and the annual recurring fees reimbursed for the first 3 years. The refund is capped at ₹50,650 and applies to the 100 and 1,000 barcode plans.</p>\n        <p>You register with GS1 India and pay its fees first. Then you apply to your nearest MSME Development Institute (MSME-DI) with its application form, your GS1 India allotment letter, the invoice and the receipt. The MSME-DI decides each claim, so check the MSME page for the current steps before you count on it.</p>"
+      },
+      {
+        "id": "free",
+        "h2": "Can I get a barcode for free?",
+        "html": "\n        <p>The image, yes: making the barcode from your number costs nothing here. The number itself, no: retail barcode numbers in India come from GS1 India for a fee.</p>\n        <p>Be careful with sellers offering cheap numbers. GS1's records show the company each number is licensed to, so a resold number usually points to someone else's company, not yours.</p>\n        <p>If the code is only for your own stock room, bins or assets, you don't need a GS1 number: use your own codes in <a href=\"./code-128-barcode-generator.html\">Code 128</a>.</p>"
+      },
+      {
+        "id": "amazon-in",
+        "h2": "Selling on Amazon.in",
+        "html": "\n        <ul>\n          <li><strong>Listing:</strong> you need a product ID to add a product that isn't already sold on Amazon.in. If another seller already sells it, you can add your offer without one.</li>\n          <li><strong>FBA stock:</strong> Amazon.in labels units with FNSKUs by default, so put an FNSKU label on each unit you send to its warehouses (books in the stickerless programme are the exception). You can make them with our <a href=\"./amazon-fba-fnsku-barcode-generator.html\">FNSKU label generator</a>.</li>\n          <li><strong>Shipping yourself</strong> (Easy Ship or Self-Ship): no FNSKU labels needed, but a new listing still needs its product ID.</li>\n        </ul>\n        <p>Details and sources: <a href=\"./do-i-need-a-barcode-to-sell-on-amazon.html\">Do I need a barcode to sell on Amazon?</a> and <a href=\"https://sellercentral.amazon.in/help/hub/reference/external/G201100910\" target=\"_blank\" rel=\"noopener noreferrer\">Amazon.in’s barcode requirements</a>.</p>"
+      },
+      {
+        "id": "make",
+        "h2": "Make the barcode once you have your number",
+        "html": "\n        <p>GS1 India numbers are 13 digits, printed as an <strong>EAN-13</strong> barcode. Enter your number in our <a href=\"./ean-13-barcode-generator.html\">EAN-13 generator</a>: it checks the last digit and gives you SVG, EPS or PNG files. For sheets of labels, use the <a href=\"./avery-5160-barcode-generator.html\">Avery 5160 page</a>.</p>\n        <ul>\n          <li>Print it at a size within the GS1 range and keep the blank margins either side. The <a href=\"./how-to-get-a-barcode-for-your-product.html\">product barcode guide</a> gives the standard size.</li>\n          <li>Scan a printed sample with our <a href=\"../barcode-scanner.html\">barcode scanner</a> and check every digit before printing packaging.</li>\n          <li>Taking UPI payments at a shop counter? Our <a href=\"./upi-qr-code-generator.html#upi-onpage\">UPI QR maker</a> makes a printable counter poster.</li>\n        </ul>"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "My product is food. Is the barcode process different?",
+        "a": "The GS1 India registration is the same. Food packaging labels have their own rules, set by Indian food and packaging regulators rather than by the barcode, so check those separately."
+      },
+      {
+        "q": "How many barcode numbers do I need?",
+        "a": "One for each product you sell separately: every size, flavour, colour and pack count needs its own number. Count your products and variants, allow for new ones, then pick the plan size, because it can’t be changed later."
+      },
+      {
+        "q": "Can I use a barcode number bought from a reseller?",
+        "a": "It is risky. GS1's records show the company each number is licensed to, and numbers bought from resellers are usually registered to someone else, so they won't match your brand."
+      },
+      {
+        "q": "Do I need a GS1 barcode for products I only sell in my own shop?",
+        "a": "Not necessarily. For your own shelves and stock, your own codes in Code 128 work with a scanner. You need GS1 numbers when other retailers or marketplaces ask for them."
+      },
+      {
+        "q": "Do I have to renew?",
+        "a": "Yes. The subscription covers the period you choose, and you renew it to keep using your numbers. GS1 India’s website has a Subscription Renewal page."
+      }
+    ]
+  },
+  {
     slug: 'how-to-get-a-barcode-for-your-product',
     name: 'How to Get a Barcode for Your Product',
     badge: 'Seller Guide',
@@ -2808,6 +2903,7 @@ const ARTICLES = [
     datePublished: '2026-10-07',
     dateModified: '2026-11-11',
     relatedSlugs: [
+      'barcode-for-products-in-india',
       'upc-vs-ean-13-barcode',
       'ean-13-barcode-generator',
       'upc-a-barcode-generator',
@@ -3171,6 +3267,7 @@ const ARTICLES = [
     lead: 'Usually yes, and often two different ones: a product number (UPC or EAN) to create the listing, and an Amazon label (FNSKU) on every unit if Amazon stores and ships your stock. This guide covers what Amazon US and Amazon.in ask for in 2026, and what each costs.',
     datePublished: '2026-10-12',
     relatedSlugs: [
+      'barcode-for-products-in-india',
       'how-to-get-a-barcode-for-your-product',
       'upc-vs-ean-13-barcode',
       'upc-a-barcode-generator',
