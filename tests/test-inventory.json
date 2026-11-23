@@ -9,6 +9,7 @@
    "00-static.spec.mjs › STATIC-CACHE · returning visitors get matching code › STATIC-LOAD-01 CDN fallbacks are pinned to the same versions as the self-hosted copies",
    "00-static.spec.mjs › STATIC-CLAIM - public copy stays within verified product claims › STATIC-CLAIM-01 published and canonical copy avoids unsafe targeting and absolute promises",
    "00-static.spec.mjs › STATIC-CLAIM - public copy stays within verified product claims › STATIC-CLAIM-02 guides edited since 2026-11-23 cite their sources and link only to cited sources",
+   "00-static.spec.mjs › STATIC-CLAIM - public copy stays within verified product claims › STATIC-CLAIM-03 facts-checked dates come from the sources list, and title years match them",
    "00-static.spec.mjs › STATIC-CONS · controls are consistent across generators › STATIC-CONS-01 \"height\" has the same label, range and default everywhere",
    "00-static.spec.mjs › STATIC-CONS · controls are consistent across generators › STATIC-CONS-01 \"includetext\" has the same label, range and default everywhere",
    "00-static.spec.mjs › STATIC-CONS · controls are consistent across generators › STATIC-CONS-01 \"padding\" has the same label, range and default everywhere",
@@ -1698,7 +1699,7 @@
   ]
  },
  "assertions": {
-  "e2e/specs/00-static.spec.mjs": 89,
+  "e2e/specs/00-static.spec.mjs": 91,
   "e2e/specs/01-smoke.spec.mjs": 13,
   "e2e/specs/02-studio-boot.spec.mjs": 5,
   "e2e/specs/03-controls.spec.mjs": 41,

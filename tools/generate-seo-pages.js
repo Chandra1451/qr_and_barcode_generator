@@ -3870,6 +3870,26 @@ const ARTICLES = [
   }
 ];
 
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+/** "2026-11-23" -> "23 November 2026" (fixed English format, independent of the build machine's locale). */
+function longDate(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${d} ${MONTHS[m - 1]} ${y}`;
+}
+
+/** The date every fact on a guide was last confirmed: the oldest `checked` date in its sources (UCM-KW-03). */
+function factsCheckedDate(article) {
+  if (!Array.isArray(article.sources) || article.sources.length === 0) return null;
+  return article.sources.map((src) => src.checked).sort()[0];
+}
+
+function sourcesListHtml(sources) {
+  return `<ul class="sources-list">${sources.map((src) => `
+          <li><a href="${src.url}" target="_blank" rel="noopener noreferrer">${src.name}</a>, checked <time datetime="${src.checked}">${longDate(src.checked)}</time></li>`).join('')}
+        </ul>`;
+}
+
 function generateArticleHtml(article) {
   const pageUrl = `${SITE_URL}/pages/${article.slug}.html`;
 
@@ -3913,10 +3933,16 @@ function generateArticleHtml(article) {
           ${c.label}
         </a>`).join('');
 
-  const tocHtml = article.sections.map(s => `
+  // Facts-checked date (UCM-KW-03): the oldest `checked` date among the page's sources, never typed by hand.
+  const factsChecked = factsCheckedDate(article);
+  const allSections = factsChecked
+    ? [...article.sections, { id: 'sources', h2: 'Sources', html: sourcesListHtml(article.sources) }]
+    : article.sections;
+
+  const tocHtml = allSections.map(s => `
           <li><a href="#${s.id}">${s.h2}</a></li>`).join('');
 
-  const sectionsHtml = article.sections.map(s => `
+  const sectionsHtml = allSections.map(s => `
     <section class="article-section" id="${s.id}" aria-labelledby="${s.id}-title">
       <h2 id="${s.id}-title">${s.h2}</h2>
       ${s.html.trim()}
@@ -3935,7 +3961,7 @@ function generateArticleHtml(article) {
   `).join('');
 
   return `${headTopHtml(article, pageUrl)}
-${PAGE_STYLES}${article.onpageTool === 'check-digit' ? '\n  <link rel="stylesheet" href="../css/check-digit-onpage.css?v=1.0">' : ''}
+${PAGE_STYLES}${factsChecked ? FACTS_CHECKED_STYLES : ''}${article.onpageTool === 'check-digit' ? '\n  <link rel="stylesheet" href="../css/check-digit-onpage.css?v=1.0">' : ''}
 
   <!-- Structured Data JSON-LD Schemas -->
   <script type="application/ld+json">
@@ -3960,7 +3986,8 @@ ${siteHeaderHtml(article.queryParam)}
         ${article.badge}
       </div>
       <h1 class="hero-title">${article.h1}</h1>
-      <p class="hero-lead">${article.lead}</p>
+      <p class="hero-lead">${article.lead}</p>${factsChecked ? `
+      <p class="facts-checked">Facts last checked: <time datetime="${factsChecked}">${longDate(factsChecked)}</time> (<a href="#sources">sources</a>)</p>` : ''}
       <div class="article-ctas">${ctasHtml}
       </div>${hasEanWorkflow(article.slug) ? identifierNoticeHtml(false) : ''}
     </section>
@@ -4346,6 +4373,15 @@ const PAGE_STYLES = `  <style>
       border-color: var(--scanner-laser);
       color: var(--laser-text);
     }
+  </style>`;
+
+// Only on guides that show a facts-checked date, so other pages stay byte-for-byte unchanged (UCM-KW-03).
+const FACTS_CHECKED_STYLES = `
+  <style>
+    .facts-checked { margin: .75rem auto 1rem; font-size: .92rem; color: var(--text-secondary); }
+    .facts-checked a { color: var(--accent-text); }
+    .sources-list { padding-left: 1.2rem; line-height: 1.7; }
+    .sources-list li { margin-bottom: .35rem; }
   </style>`;
 
 // `queryParam` sets which format/QR type the "Launch Studio" button opens.
@@ -5027,8 +5063,18 @@ for (const article of ARTICLES) {
     if (!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(src.checked || '')) sourceProblems.push(`${article.slug}: ${src.url} needs a checked date (YYYY-MM-DD)`);
   }
 }
+// A year in a guide's title, like "(2026)", must be the year its facts were last checked (UCM-KW-03), or for
+// guides without sources yet, the year of its last content change. An old year can't sit there looking current.
+for (const article of ARTICLES) {
+  for (const title of [article.metaTitle, article.h1]) {
+    const year = /\((20\d\d)\)/.exec(title || '')?.[1];
+    if (!year) continue;
+    const basis = factsCheckedDate(article) || article.dateModified || article.datePublished;
+    if (!basis.startsWith(year)) sourceProblems.push(`${article.slug}: title year ${year} but facts last checked ${basis}`);
+  }
+}
 if (sourceProblems.length) {
-  console.error(['Guides without sources:', ...sourceProblems].join('\n'));
+  console.error(['Guide source or date problems:', ...sourceProblems].join('\n'));
   process.exit(1);
 }
 

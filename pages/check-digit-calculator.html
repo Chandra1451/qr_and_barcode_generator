@@ -323,6 +323,12 @@
       color: var(--laser-text);
     }
   </style>
+  <style>
+    .facts-checked { margin: .75rem auto 1rem; font-size: .92rem; color: var(--text-secondary); }
+    .facts-checked a { color: var(--accent-text); }
+    .sources-list { padding-left: 1.2rem; line-height: 1.7; }
+    .sources-list li { margin-bottom: .35rem; }
+  </style>
   <link rel="stylesheet" href="../css/check-digit-onpage.css?v=1.0">
 
   <!-- Structured Data JSON-LD Schemas -->
@@ -481,6 +487,7 @@
       </div>
       <h1 class="hero-title">GTIN Check Digit Calculator</h1>
       <p class="hero-lead">Type a barcode number without its last digit to get the check digit, or the whole number to check it. Works for EAN-13, UPC-A, GTIN-14 and ISBN-13 numbers, one at a time or a pasted list.</p>
+      <p class="facts-checked">Facts last checked: <time datetime="2026-11-23">23 November 2026</time> (<a href="#sources">sources</a>)</p>
       <div class="article-ctas">
         <a href="../index.html?symbology=ean-13" class="cta-launch-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
@@ -542,6 +549,7 @@
           <li><a href="#formats">Which numbers this works for</a></li>
           <li><a href="#not-a-licence">A correct check digit does not make a number yours</a></li>
           <li><a href="#make">Make the barcode</a></li>
+          <li><a href="#sources">Sources</a></li>
           <li><a href="#faq">Frequently asked questions</a></li>
         </ol>
       </nav>
@@ -591,6 +599,14 @@
     <section class="article-section" id="make" aria-labelledby="make-title">
       <h2 id="make-title">Make the barcode</h2>
       <p>Once the number is right, the button in the calculator opens the studio with the format and number filled in. Or use a dedicated page: <a href="./ean-13-barcode-generator.html">EAN-13</a>, <a href="./upc-a-barcode-generator.html">UPC-A</a>, <a href="./itf-14-barcode-generator.html">ITF-14</a> or <a href="./isbn-book-barcode-generator.html">ISBN</a>.</p>
+    </section>
+
+    <section class="article-section" id="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources</h2>
+      <ul class="sources-list">
+          <li><a href="https://ref.gs1.org/standards/genspecs/" target="_blank" rel="noopener noreferrer">GS1 General Specifications Standard, Release 26.0 (section 7.9.1)</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
+          <li><a href="https://www.gs1us.org/tools/check-digit-calculator" target="_blank" rel="noopener noreferrer">GS1 US Check Digit Calculator</a>, checked <time datetime="2026-11-23">23 November 2026</time></li>
+        </ul>
     </section>
       </article>
     </div>

@@ -218,6 +218,9 @@ test.describe('STATIC-CLAIM - public copy stays within verified product claims',
       ['unsafe internal EAN prefix advice', /free internal alternative|prefixes?(?:\s|<[^>]+>)*200\s*[\u2013-]\s*299/i],
       ['edge-scanning absolute', /scans right up to[^.\n<]{0,80}edges?/i],
       ['strict-conformance claim', /strictly (?:adhere|follow)/i],
+      // Freshness promises (UCM-KW-03, 2026-11-23): pages show a facts-checked date from their sources instead.
+      // A standard's edition year (e.g. ISO/IEC 18004 "2024 edition") is a citation, not a promise, so it is allowed.
+      ['freshness wording', /latest standards?|up[- ]to[- ]date with|updated for 20\d\d/i],
     ];
     const problems = [];
     for (const [file, content] of Object.entries(sources)) {
@@ -249,6 +252,34 @@ test.describe('STATIC-CLAIM - public copy stays within verified product claims',
       }
     }
     expect(checked, 'at least one guide falls under the source rule').toBeGreaterThan(0);
+    expect(problems).toEqual([]);
+  });
+
+  // UCM-KW-03: a guide with sources shows "Facts last checked" = the oldest date in its visible sources list, the
+  // list matches its citation, and a year in its title is the year of that date.
+  test('STATIC-CLAIM-03 facts-checked dates come from the sources list, and title years match them', () => {
+    const problems = [];
+    let dated = 0;
+    for (const page of LANDING_PAGES) {
+      const html = htmlOf[page];
+      const article = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+        .map((m) => JSON.parse(m[1]))
+        .find((node) => node['@type'] === 'Article');
+      if (!article?.citation?.length) continue;
+      dated += 1;
+      const shown = /class="facts-checked">Facts last checked: <time datetime="(\d{4}-\d{2}-\d{2})">/.exec(html)?.[1];
+      const list = html.match(/<ul class="sources-list">([\s\S]*?)<\/ul>/)?.[1] ?? '';
+      const listed = [...list.matchAll(/<a href="([^"]+)"[^>]*>[^<]*<\/a>, checked <time datetime="(\d{4}-\d{2}-\d{2})">/g)];
+      if (!shown) { problems.push(`${page}: no facts-checked date`); continue; }
+      const oldest = listed.map((m) => m[2]).sort()[0];
+      if (shown !== oldest) problems.push(`${page}: shows ${shown}, oldest source checked ${oldest}`);
+      const listUrls = listed.map((m) => m[1]).sort();
+      const citeUrls = article.citation.map((c) => c.url).sort();
+      if (JSON.stringify(listUrls) !== JSON.stringify(citeUrls)) problems.push(`${page}: sources list ${listUrls} differs from citation ${citeUrls}`);
+      const titleYear = /<title>[^<]*\((20\d\d)\)[^<]*<\/title>/.exec(html)?.[1];
+      if (titleYear && !shown.startsWith(titleYear)) problems.push(`${page}: title year ${titleYear}, facts last checked ${shown}`);
+    }
+    expect(dated, 'at least one guide shows a facts-checked date').toBeGreaterThan(0);
     expect(problems).toEqual([]);
   });
 });
