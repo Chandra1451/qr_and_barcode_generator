@@ -227,6 +227,30 @@ test.describe('STATIC-CLAIM - public copy stays within verified product claims',
     }
     expect(problems).toEqual([]);
   });
+
+  // Source rule (2026-11-23, kit 14 #69): a guide created or edited from this date lists its primary sources
+  // as Article citation, and every outside link in its body is one of them. This proves sources were declared,
+  // not that each sentence is true; the source notes in the project docs cover that.
+  test('STATIC-CLAIM-02 guides edited since 2026-11-23 cite their sources and link only to cited sources', () => {
+    const problems = [];
+    let checked = 0;
+    for (const page of LANDING_PAGES) {
+      const html = htmlOf[page];
+      const article = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+        .map((m) => JSON.parse(m[1]))
+        .find((node) => node['@type'] === 'Article');
+      if (!article || (article.dateModified || article.datePublished) < '2026-11-23') continue;
+      checked += 1;
+      const cited = new Set((article.citation || []).map((c) => c.url));
+      if (cited.size === 0) problems.push(`${page}: no citation`);
+      const body = html.match(/<article class="article-body">([\s\S]*?)<\/article>/)?.[1] ?? '';
+      for (const [, href] of body.matchAll(/href="(https?:\/\/[^"]+)"/g)) {
+        if (!href.startsWith('https://universalcodemaker.com') && !cited.has(href)) problems.push(`${page}: ${href} is linked but not cited`);
+      }
+    }
+    expect(checked, 'at least one guide falls under the source rule').toBeGreaterThan(0);
+    expect(problems).toEqual([]);
+  });
 });
 
 test.describe('STATIC-PAGE · page structure', () => {

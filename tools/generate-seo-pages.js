@@ -2808,6 +2808,12 @@ const ARTICLES = [
     "h1": "How to Get a Barcode for Products in India",
     "lead": "To sell packaged products through shops and online marketplaces in India, you usually need a barcode number from GS1 India, the only body that issues numbers starting with 890. This guide covers the documents, what it costs, the MSME refund, Amazon.in, and how to make the barcode once you have your number.",
     "datePublished": "2026-11-23",
+    "sources": [
+      { "name": "GS1 India", "url": "https://www.gs1india.org/", "checked": "2026-11-23" },
+      { "name": "GS1 India: Register for barcodes", "url": "https://www.gs1india.org/register-for-barcodes", "checked": "2026-11-23" },
+      { "name": "GS1 India: MSME barcode reimbursement", "url": "https://www.gs1india.org/msme", "checked": "2026-11-23" },
+      { "name": "Amazon.in Seller Central: barcode requirements", "url": "https://sellercentral.amazon.in/help/hub/reference/external/G201100910", "checked": "2026-10-12" }
+    ],
     "relatedSlugs": [
       "how-to-get-a-barcode-for-your-product",
       "do-i-need-a-barcode-to-sell-on-amazon",
@@ -3873,6 +3879,7 @@ function generateArticleHtml(article) {
     "mainEntityOfPage": pageUrl,
     "datePublished": article.datePublished,
     ...(article.dateModified ? { "dateModified": article.dateModified } : {}),
+    ...(article.sources ? { "citation": article.sources.map(src => ({ "@type": "CreativeWork", "name": src.name, "url": src.url })) } : {}),
     "author": { "@type": "Organization", "name": "UniversalCodeMaker", "url": `${SITE_URL}/` },
     "publisher": { "@type": "Organization", "name": "UniversalCodeMaker", "url": `${SITE_URL}/` },
     "image": `${SITE_URL}/assets/og-preview.png`
@@ -4998,6 +5005,27 @@ SEO_PAGES.forEach(page => {
     console.log(`Generated: pages/${page.slug}.html`);
   }
 });
+
+// Source rule (2026-11-23): a guide created or edited on or after this date must list the primary sources
+// its facts come from, each with the date it was last read. Notes with quotes live in the project docs
+// (80_growth/sources/<slug>.md). Older guides get sources when they are next edited.
+const SOURCES_REQUIRED_FROM = '2026-11-23';
+const sourceProblems = [];
+for (const article of ARTICLES) {
+  if ((article.dateModified || article.datePublished) < SOURCES_REQUIRED_FROM) continue;
+  if (!Array.isArray(article.sources) || article.sources.length === 0) {
+    sourceProblems.push(`${article.slug}: no sources`);
+    continue;
+  }
+  for (const src of article.sources) {
+    if (!src.name || !String(src.url || '').startsWith('https://')) sourceProblems.push(`${article.slug}: source needs a name and an https url`);
+    if (!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(src.checked || '')) sourceProblems.push(`${article.slug}: ${src.url} needs a checked date (YYYY-MM-DD)`);
+  }
+}
+if (sourceProblems.length) {
+  console.error(['Guides without sources:', ...sourceProblems].join('\n'));
+  process.exit(1);
+}
 
 ARTICLES.forEach(article => {
   const filePath = path.join(PAGES_DIR, `${article.slug}.html`);
