@@ -2824,8 +2824,8 @@ const ARTICLES = [
     ],
     "ctas": [
       {
-        "href": "./ean-13-barcode-generator.html",
-        "label": "Make an EAN-13 barcode"
+        "href": "../index.html?symbology=ean-13",
+        "label": "Make an EAN-13 barcode in the studio"
       },
       {
         "href": "./upi-qr-code-generator.html#upi-onpage",
