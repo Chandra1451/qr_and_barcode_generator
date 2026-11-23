@@ -2,6 +2,7 @@
  "tests": {
   "static": [
    "00-static.spec.mjs › BUILD-01 served asset stamp matches this checkout or the expected release",
+   "00-static.spec.mjs › STATIC-404-01 the 404 page uses root-absolute internal paths",
    "00-static.spec.mjs › STATIC-CACHE · returning visitors get matching code › STATIC-CACHE-01 every JS change since the last studio version bump came with a new ?v=",
    "00-static.spec.mjs › STATIC-CACHE · returning visitors get matching code › STATIC-CACHE-02 imported modules cannot go stale independently",
    "00-static.spec.mjs › STATIC-CACHE · returning visitors get matching code › STATIC-CACHE-03 every relative import uses the same ?v= as the studio script",
@@ -1202,7 +1203,10 @@
    "21-site-nav.spec.mjs › NAV-05 without JavaScript the Menu button jumps to the footer directory",
    "21-site-nav.spec.mjs › NAV-06 dark: the open menu has no serious accessibility or contrast problems",
    "21-site-nav.spec.mjs › NAV-06 light: the open menu has no serious accessibility or contrast problems",
-   "21-site-nav.spec.mjs › NAV-07 studio: opening and closing the menu leaves the studio working"
+   "21-site-nav.spec.mjs › NAV-07 studio: opening and closing the menu leaves the studio working",
+   "22-not-found.spec.mjs › NF-01 /no-such-page.html: the 404 page is styled and its links work",
+   "22-not-found.spec.mjs › NF-01 /pages/a/b/no-such-page.html: the 404 page is styled and its links work",
+   "22-not-found.spec.mjs › NF-01 /pages/no-such-page.html: the 404 page is styled and its links work"
   ],
   "phone": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1506,7 +1510,10 @@
    "21-site-nav.spec.mjs › NAV-05 without JavaScript the Menu button jumps to the footer directory",
    "21-site-nav.spec.mjs › NAV-06 dark: the open menu has no serious accessibility or contrast problems",
    "21-site-nav.spec.mjs › NAV-06 light: the open menu has no serious accessibility or contrast problems",
-   "21-site-nav.spec.mjs › NAV-07 studio: opening and closing the menu leaves the studio working"
+   "21-site-nav.spec.mjs › NAV-07 studio: opening and closing the menu leaves the studio working",
+   "22-not-found.spec.mjs › NF-01 /no-such-page.html: the 404 page is styled and its links work",
+   "22-not-found.spec.mjs › NF-01 /pages/a/b/no-such-page.html: the 404 page is styled and its links work",
+   "22-not-found.spec.mjs › NF-01 /pages/no-such-page.html: the 404 page is styled and its links work"
   ],
   "edge-smoke": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1718,7 +1725,7 @@
   ]
  },
  "assertions": {
-  "e2e/specs/00-static.spec.mjs": 93,
+  "e2e/specs/00-static.spec.mjs": 94,
   "e2e/specs/01-smoke.spec.mjs": 13,
   "e2e/specs/02-studio-boot.spec.mjs": 5,
   "e2e/specs/03-controls.spec.mjs": 41,
@@ -1746,7 +1753,8 @@
   "e2e/specs/18-ean-onpage.spec.mjs": 35,
   "e2e/specs/19-upi-onpage.spec.mjs": 36,
   "e2e/specs/20-check-digit.spec.mjs": 32,
-  "e2e/specs/21-site-nav.spec.mjs": 22
+  "e2e/specs/21-site-nav.spec.mjs": 22,
+  "e2e/specs/22-not-found.spec.mjs": 4
  },
  "allowedSkips": [
   {

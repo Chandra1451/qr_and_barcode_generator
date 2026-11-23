@@ -311,6 +311,15 @@ test('STATIC-NAV-01 every page has one identical site menu, its assets and the f
   expect(problems).toEqual([]);
 });
 
+// UCM-404-01: the server answers any missing address with 404.html (.htaccess ErrorDocument), also inside
+// /pages/, so its internal links, styles and scripts must not depend on the address it is shown at.
+test('STATIC-404-01 the 404 page uses root-absolute internal paths', () => {
+  const relative = [...readSiteFile('404.html').matchAll(/\b(?:href|src)="([^"]*)"/g)]
+    .map((m) => m[1])
+    .filter((v) => v && !/^(\/|#|[a-z][a-z0-9+.-]*:)/i.test(v));
+  expect(relative).toEqual([]);
+});
+
 test.describe('STATIC-PAGE · page structure', () => {
   for (const p of ALL_PAGES) {
     test(`STATIC-PAGE-01 ${p}: one <h1>, a <title>, meta description, lang`, () => {
