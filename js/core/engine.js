@@ -5,7 +5,7 @@
  * Provides a standardized abstraction over bwip-js and qr-code-styling.
  */
 
-import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.29';
+import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.30';
 
 /**
  * Converts text to a UTF-8 "byte string" for qr-code-styling.
@@ -17,6 +17,16 @@ import { loadBwip, loadQRCodeStyling } from './dynamic-loader.js?v=3.29';
  */
 // EAN/UPC symbols keep bwip-js's standard text layout (5X guard bars, leading digit outside the guards).
 const EAN_UPC_BCIDS = new Set(['ean13', 'ean8', 'upca', 'upce', 'isbn', 'ismn', 'issn']);
+
+// bwip-js draws Data Matrix and Aztec modules 2 units wide (other formats 1), but its padding is in units.
+// The studio's quiet-zone padding is in modules ("x"), so it is multiplied here (UCM-DM-02, measured on
+// bwip-js 4.11.4: Data Matrix 26 x 26 and Aztec 19 x 19 are 104 and 76 units wide at scale 2).
+const UNITS_PER_MODULE = { datamatrix: 2, azteccode: 2 };
+const paddingUnits = (bwipOptions) => {
+  const modules = bwipOptions.padding !== undefined ? Number(bwipOptions.padding)
+    : (bwipOptions.paddingwidth !== undefined ? Number(bwipOptions.paddingwidth) : 10);
+  return modules * (UNITS_PER_MODULE[bwipOptions.bcid] || 1);
+};
 
 export function toQrByteString(text) {
   const str = String(text ?? '');
@@ -302,8 +312,7 @@ export class BarcodeEngine {
     const is2DCode = ['datamatrix', 'azteccode', 'qrcode', 'pdf417', 'micropdf417', 'maxicode', 'dotcode', 'hanxin', 'gridmatrix'].includes(bwipOptions.bcid);
     const isTransparent = bwipOptions.transparentBg === true || bwipOptions.backgroundcolor === 'transparent';
     const cornerRadius = Number(bwipOptions.cornerRadius) || 0;
-    const requestedPad = bwipOptions.padding !== undefined ? Number(bwipOptions.padding)
-      : (bwipOptions.paddingwidth !== undefined ? Number(bwipOptions.paddingwidth) : 10);
+    const requestedPad = paddingUnits(bwipOptions);
     // bwip-js padding is in points (× scale px); the corner rule is in pixels.
     const minSafePad = Math.ceil(cornerSafeInset(cornerRadius) / (Number(bwipOptions.scale) || 3));
     const finalPad = Math.max(requestedPad, minSafePad);
@@ -373,8 +382,7 @@ export class BarcodeEngine {
     const isTransparent = bwipOptions.transparentBg === true || bwipOptions.backgroundcolor === 'transparent';
 
     const cornerRadius = Number(bwipOptions.cornerRadius) || 0;
-    const requestedPad = bwipOptions.padding !== undefined ? Number(bwipOptions.padding)
-      : (bwipOptions.paddingwidth !== undefined ? Number(bwipOptions.paddingwidth) : 10);
+    const requestedPad = paddingUnits(bwipOptions);
     // bwip-js padding is in points (× scale px); the corner rule is in pixels.
     const minSafePad = Math.ceil(cornerSafeInset(cornerRadius) / (Number(bwipOptions.scale) || 3));
     const finalPad = Math.max(requestedPad, minSafePad);

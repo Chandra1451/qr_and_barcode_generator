@@ -36,8 +36,9 @@ export default {
       label: "Quiet Zone Padding",
       min: 0,
       max: 40,
-      default: 10,
-      unit: "x" // modules (bar widths): bwip-js padding is in points = modules
+      // 5 modules: the same margin the earlier half-module padding drew at 10 (UCM-DM-02).
+      default: 5,
+      unit: "x" // modules; js/core/engine.js converts to bwip-js units (2 per module for this format)
     }
   ],
 
@@ -49,8 +50,8 @@ export default {
       bcid: "azteccode",
       text: payload,
       scale: options.scale || 4,
-      paddingwidth: options.padding !== undefined ? options.padding : 10,
-      paddingheight: options.padding !== undefined ? options.padding : 10
+      paddingwidth: options.padding !== undefined ? options.padding : 5,
+      paddingheight: options.padding !== undefined ? options.padding : 5
     });
   }
 };

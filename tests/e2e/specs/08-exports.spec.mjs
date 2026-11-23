@@ -972,3 +972,65 @@ test.describe('EXP-GUARD · GS1 guard bars and digit layout', () => {
     });
   }
 });
+
+// UCM-DM-01: the chosen Data Matrix size reaches the vector download, not only the preview. Modules are
+// counted on the rasterised SVG's top timing pattern (alternating dark/light on every ECC 200 symbol).
+test('EXP-55 Data Matrix SVG keeps the chosen symbol size and scans', async ({ studio, page }) => {
+  const size = 32;
+  await studio.open('?symbology=data-matrix');
+  await studio.setControl('padding', 0);
+  await studio.setControl('symbolSize', `${size}x${size}`);
+  await studio.waitForStableRender();
+  await studio.expectNoRenderError();
+  const svg = (await studio.download(page.locator('#btn-download-svg'))).buffer.toString('utf8');
+  const png = await rasterizeSvg(page, svg, size * 30);
+  const img = readPng(png);
+  // rasterizeSvg adds a 32 px white margin; read the first pixel row inside the symbol.
+  const y = 32 + 5;
+  let runs = 0;
+  let last = null;
+  for (let x = 32; x < img.width - 32; x += 1) {
+    const i = (y * img.width + x) * 4;
+    const dark = img.data[i] + img.data[i + 1] + img.data[i + 2] < 384;
+    if (dark !== last) { runs += 1; last = dark; }
+  }
+  expect(runs, 'modules across the SVG timing pattern').toBe(size);
+  const text = await decodeFirst(png);
+  expect(text, 'rasterised SVG does not scan').not.toBeNull();
+  expect(normaliseScan('data-matrix', text)).toBe(normaliseScan('data-matrix', expectedScanText('data-matrix', GENERATORS.find((g) => g.id === 'data-matrix').defaultPayload)));
+});
+
+// UCM-DM-02: quiet-zone padding is in modules ("x") for the 2D matrix codes too. bwip-js draws their modules
+// 2 units wide, so the engine doubles the padding. Pixels per module come from the Data Matrix top timing
+// pattern (alternating on every ECC 200 symbol); Aztec, drawn the same way, must use the same module width.
+test('EXP-SIZE-07 Data Matrix and Aztec quiet-zone padding is drawn in whole modules', async ({ studio, page }) => {
+  const canvasInfo = () => page.evaluate(() => {
+    const c = document.querySelector('#preview-canvas');
+    const row = c.getContext('2d').getImageData(0, 1, c.width, 1).data;
+    let runs = 0;
+    let last = null;
+    for (let x = 0; x < c.width; x += 1) {
+      const dark = row[x * 4] + row[x * 4 + 1] + row[x * 4 + 2] < 384;
+      if (dark !== last) { runs += 1; last = dark; }
+    }
+    return { width: c.width, runs };
+  });
+
+  await studio.open('?symbology=data-matrix');
+  await studio.setControl('padding', 0);
+  await studio.waitForStableRender();
+  const bare = await canvasInfo();
+  const pxPerModule = bare.width / bare.runs;
+  expect(Number.isInteger(pxPerModule), `${bare.width}px over ${bare.runs} modules`).toBe(true);
+  await studio.setControl('padding', 3);
+  await studio.waitForStableRender();
+  expect((await canvasInfo()).width - bare.width, 'Data Matrix: 3 modules each side').toBe(6 * pxPerModule);
+
+  await studio.selectGenerator('aztec');
+  await studio.setControl('padding', 0);
+  await studio.waitForStableRender();
+  const aztecBare = (await canvasInfo()).width;
+  await studio.setControl('padding', 3);
+  await studio.waitForStableRender();
+  expect((await canvasInfo()).width - aztecBare, 'Aztec: 3 modules each side').toBe(6 * pxPerModule);
+});

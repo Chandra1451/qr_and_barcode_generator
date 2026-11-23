@@ -38,5 +38,5 @@ export function upiOnpageHtml() {
         </div>
         <p id="upi-startup">This tool needs JavaScript. If it does not start, enable JavaScript and reload, or <a href="../index.html?symbology=qr-code&amp;wizard=upi">open the full studio</a>.</p>
       </section>
-      <script type="module" src="../js/upi-onpage.js?v=1.0"></script>`;
+      <script type="module" src="../js/upi-onpage.js?v=1.1"></script>`;
 }

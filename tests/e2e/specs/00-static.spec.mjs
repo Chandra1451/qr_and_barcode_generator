@@ -571,7 +571,8 @@ test('STATIC-CONSENT-03 the shared loader adds the Cloudflare Web Analytics beac
 });
 
 test('STATIC-UNIT-01 barcode quiet-zone padding is labelled in modules (x), QR in preview pixels', () => {
-  // bwip-js padding is in points, and every barcode module is 1 point (EXP-SIZE), so 10 = 10 modules.
+  // bwip-js padding is in points. Linear and PDF417 modules are 1 point (EXP-SIZE), so 10 = 10 modules; Data Matrix
+  // and Aztec modules are 2 points and the engine doubles their padding (EXP-SIZE-07, UCM-DM-02).
   for (const g of GENERATORS) {
     const pad = g.controls.find((c) => c.id === 'padding');
     if (!pad) continue;

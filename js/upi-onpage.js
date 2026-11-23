@@ -1,9 +1,9 @@
 // UPI landing tool (easy mode for shopkeepers, UCM-IN-03): reuse the studio's UPI link builder,
 // QR renderer and download helper. Text from the form is only ever written with textContent.
-import { QR_WIZARDS } from './wizards/qr-wizards.js?v=3.29';
-import { engine } from './core/engine.js?v=3.29';
-import { downloadBlob } from './export/image-exporter.js?v=3.29';
-import { loadJsPdf } from './core/dynamic-loader.js?v=3.29';
+import { QR_WIZARDS } from './wizards/qr-wizards.js?v=3.30';
+import { engine } from './core/engine.js?v=3.30';
+import { downloadBlob } from './export/image-exporter.js?v=3.30';
+import { loadJsPdf } from './core/dynamic-loader.js?v=3.30';
 
 const $ = (id) => document.getElementById(id);
 const vpaInput = $('upi-vpa');

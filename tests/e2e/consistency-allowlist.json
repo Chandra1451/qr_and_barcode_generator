@@ -64,6 +64,14 @@
     {
       "key": "code-39.height.default",
       "reason": "Not a GS1 retail symbol; 35 mm suits asset tags (EAN-13/UPC-A/ISBN default to GS1 nominal 22.85 mm since 2026-10-11)"
+    },
+    {
+      "key": "data-matrix.padding.default",
+      "reason": "5 modules: 2D matrix symbols need a 1-module quiet zone (Aztec none); 10 modules would double the margin. Same picture as before the module fix (UCM-DM-02, 2026-11-23)."
+    },
+    {
+      "key": "aztec.padding.default",
+      "reason": "5 modules: 2D matrix symbols need a 1-module quiet zone (Aztec none); 10 modules would double the margin. Same picture as before the module fix (UCM-DM-02, 2026-11-23)."
     }
   ]
 }

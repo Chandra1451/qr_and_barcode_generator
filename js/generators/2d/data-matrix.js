@@ -23,6 +23,19 @@ export default {
 
   controls: [
     {
+      // Fixed ECC 200 square sizes (rows × columns, in modules). Auto lets bwip-js pick the smallest
+      // symbol that fits. Rectangles are left out until the label layout handles them (UCM-DM-01).
+      id: "symbolSize",
+      type: "select",
+      label: "Symbol Size",
+      options: [
+        { label: "Auto (smallest that fits)", value: "auto" },
+        ...[10, 12, 14, 16, 18, 20, 22, 24, 26, 32, 36, 40, 44, 48, 52, 64, 72, 80, 88, 96, 104, 120, 132, 144]
+          .map((n) => ({ label: `${n} × ${n}`, value: `${n}x${n}` }))
+      ],
+      default: "auto"
+    },
+    {
       id: "scale",
       type: "slider",
       label: "Scale / Resolution",
@@ -36,8 +49,9 @@ export default {
       label: "Quiet Zone Padding",
       min: 0,
       max: 40,
-      default: 10,
-      unit: "x" // modules (bar widths): bwip-js padding is in points = modules
+      // 5 modules: the same margin the earlier half-module padding drew at 10 (UCM-DM-02).
+      default: 5,
+      unit: "x" // modules; js/core/engine.js converts to bwip-js units (2 per module for this format)
     }
   ],
 
@@ -45,12 +59,22 @@ export default {
     if (targets.canvas) targets.canvas.style.display = 'block';
     if (targets.container) targets.container.style.display = 'none';
 
-    return engineUtils.renderBwip(targets.canvas, {
-      bcid: "datamatrix",
-      text: payload,
-      scale: options.scale || 4,
-      paddingwidth: options.padding !== undefined ? options.padding : 10,
-      paddingheight: options.padding !== undefined ? options.padding : 10
-    });
+    const size = /^(\d+)x(\d+)$/.exec(String(options.symbolSize || ''));
+    try {
+      return await engineUtils.renderBwip(targets.canvas, {
+        bcid: "datamatrix",
+        text: payload,
+        scale: options.scale || 4,
+        paddingwidth: options.padding !== undefined ? options.padding : 5,
+        paddingheight: options.padding !== undefined ? options.padding : 5,
+        ...(size ? { rows: Number(size[1]), columns: Number(size[2]) } : {})
+      });
+    } catch (err) {
+      // bwip-js reports a symbol that is too small for the data as "datamatrixNoValidSymbol".
+      if (size && /NoValidSymbol|Maximum length/i.test(String(err?.message || err))) {
+        throw new Error(`Too much data for a ${size[1]} × ${size[2]} symbol. Choose a larger size, or Auto.`);
+      }
+      throw err;
+    }
   }
 };

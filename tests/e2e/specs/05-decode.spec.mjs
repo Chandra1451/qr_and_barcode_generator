@@ -310,3 +310,42 @@ test.describe('DEC-QRS · styled QR codes stay scannable', () => {
     }
   });
 });
+
+// Data Matrix fixed symbol size (UCM-DM-01). ECC 200 squares only. The module count is read from the image:
+// the top edge of every ECC 200 symbol is an alternating dark/light timing pattern (ISO/IEC 16022), so with
+// no quiet zone the number of colour runs along the top pixel row equals the modules across.
+test.describe('DEC-DM · Data Matrix symbol size', () => {
+  for (const size of [26, 64]) {
+    test(`DEC-09 data-matrix: ${size} × ${size} draws that many modules and scans back`, async ({ studio, page }) => {
+      await studio.open('?symbology=data-matrix');
+      await studio.setControl('padding', 0);
+      await studio.setControl('symbolSize', `${size}x${size}`);
+      await studio.waitForStableRender();
+      await studio.expectNoRenderError();
+      const { width, height, runs } = await page.evaluate(() => {
+        const c = document.querySelector('#preview-canvas');
+        const row = c.getContext('2d').getImageData(0, 1, c.width, 1).data;
+        let count = 0;
+        let last = null;
+        for (let x = 0; x < c.width; x += 1) {
+          const dark = row[x * 4] + row[x * 4 + 1] + row[x * 4 + 2] < 384;
+          if (dark !== last) { count += 1; last = dark; }
+        }
+        return { width: c.width, height: c.height, runs: count };
+      });
+      expect(height, 'symbol is square').toBe(width);
+      expect(runs, 'modules across the top timing pattern').toBe(size);
+      expect(await scan(studio, 'data-matrix')).toBe(normaliseScan('data-matrix', expectedScanText('data-matrix', getGeneratorMeta('data-matrix').defaultPayload)));
+    });
+  }
+
+  test('DEC-10 data-matrix: a size too small for the data shows a plain message; Auto recovers', async ({ studio }) => {
+    await studio.open('?symbology=data-matrix');
+    await studio.setControl('symbolSize', '10x10');
+    await expect(studio.errorBox).toBeVisible();
+    await expect(studio.errorText).toHaveText('Too much data for a 10 × 10 symbol. Choose a larger size, or Auto.');
+    await studio.setControl('symbolSize', 'auto');
+    await studio.waitForStableRender();
+    await studio.expectNoRenderError();
+  });
+});

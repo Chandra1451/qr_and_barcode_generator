@@ -18,6 +18,9 @@ function sweepValues(c) {
     return [...new Set([c.min, c.max, mid])].filter((v) => v !== c.default);
   }
   if (c.type === 'toggle') return [!c.default];
+  // Data Matrix sizes below 22 × 22 cannot hold the default payload and show an error instead (DEC-10),
+  // and Auto already draws 22 × 22 for it, so the sweep uses larger sizes up to the largest.
+  if (c.id === 'symbolSize') return ['24x24', '26x26', '64x64', '144x144'];
   if (c.type === 'select') return c.options.map((o) => o.value).filter((v) => v !== c.default);
   if (c.type === 'color') return ['#b91c1c', '#1d4ed8'];
   if (c.type === 'text') return c.id === 'addon' ? ['51999'] : ['TEST'];
