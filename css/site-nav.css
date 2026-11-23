@@ -1,0 +1,83 @@
+/* Site menu (UCM-NAV-01): header button + right-hand category panel. Uses the shared theme tokens. */
+
+/* Header placement: links stay on the right, the Menu button sits at the far right on desktop and beside the
+   logo on phones (the link row below keeps its full width). */
+.v2-header-container > .v2-nav-links { margin-left: auto; }
+.v2-header-container > .site-nav-btn { margin-left: .75rem; flex: none; }
+@media (max-width: 640px) {
+  .v2-header-container > .v2-brand { order: 1; }
+  .v2-header-container > .site-nav-btn { order: 2; margin-left: auto; }
+  .v2-header-container > .v2-nav-links { order: 3; margin-left: 0; }
+}
+
+/* Header button: same build as the theme button (ink border, hard offset shadow, square corners). */
+.site-nav-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .75rem; min-height: 36px; box-sizing: border-box;
+  background: var(--surface); color: var(--text-primary);
+  border: var(--border-ink); border-radius: var(--radius-sm);
+  box-shadow: 2px 2px 0 var(--ink-black);
+  font: 700 .8rem var(--font-mono); letter-spacing: .04em; text-transform: uppercase; text-decoration: none;
+  cursor: pointer; transition: var(--transition-tactile);
+}
+.site-nav-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink-black); }
+.site-nav-btn:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--ink-black); }
+.site-nav-btn:focus-visible { outline: 3px solid var(--accent-text); outline-offset: 3px; }
+[data-theme="dark"] .site-nav-btn { box-shadow: 2px 2px 0 #2e3547; }
+
+/* Panel: full height on the right; the dimmed area outside it closes it. */
+.site-nav {
+  position: fixed; inset: 0 0 0 auto; margin: 0; padding: 0;
+  width: min(380px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh;
+  border: 0; border-left: var(--border-ink);
+  background: var(--surface); color: var(--text-primary);
+  box-shadow: -6px 0 0 var(--ink-black);
+}
+[data-theme="dark"] .site-nav { box-shadow: -6px 0 0 #2e3547; }
+.site-nav::backdrop { background: rgba(10, 14, 22, .55); }
+.site-nav[open] { animation: site-nav-in .18s ease-out; }
+@keyframes site-nav-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .site-nav[open] { animation: none; } }
+html:has(.site-nav[open]) { overflow: hidden; }
+
+.site-nav-inner { height: 100%; overflow-y: auto; overscroll-behavior: contain; box-sizing: border-box; padding: 0 1.25rem 2rem; }
+.site-nav-head {
+  position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin: 0 -1.25rem 1rem; padding: 1rem 1.25rem; background: var(--surface-alt); border-bottom: var(--border-ink);
+}
+.site-nav-head h2 { margin: 0; font: 700 .85rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.site-nav-close {
+  display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0;
+  background: var(--surface); color: var(--text-primary); border: var(--border-ink); border-radius: var(--radius-sm);
+  box-shadow: 2px 2px 0 var(--ink-black); cursor: pointer;
+}
+.site-nav-close:focus-visible, .site-nav a:focus-visible, .site-nav summary:focus-visible { outline: 3px solid var(--accent-text); outline-offset: 2px; }
+
+.site-nav-label, .site-nav summary { font: 700 .78rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--laser-text); }
+.site-nav-label { margin: .25rem 0 .4rem; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; }
+.site-nav li a {
+  display: block; padding: .55rem .6rem; margin: 0 -.6rem; border-left: 3px solid transparent;
+  color: var(--text-primary); text-decoration: none; font-size: .98rem; line-height: 1.35;
+}
+.site-nav li a:hover { background: var(--surface-alt); border-left-color: var(--scanner-laser); }
+.site-nav li a[aria-current="page"] { font-weight: 800; border-left-color: var(--scanner-laser); background: var(--surface-alt); }
+.site-nav-start { margin-bottom: .75rem !important; }
+.site-nav-group { border-top: 1.5px dashed var(--border); }
+.site-nav summary { display: flex; align-items: center; justify-content: space-between; padding: .8rem 0; cursor: pointer; list-style: none; }
+.site-nav summary::-webkit-details-marker { display: none; }
+.site-nav summary::after { content: "+"; font-size: 1.1rem; color: var(--text-primary); }
+.site-nav-group[open] summary::after { content: "−"; }
+.site-nav-count { margin-left: auto; margin-right: .75rem; color: var(--text-secondary); font-weight: 600; }
+.site-nav-group ul { padding-bottom: .6rem; }
+
+/* Phones: the panel takes the full width. */
+@media (max-width: 640px) {
+  .site-nav { width: 100vw; border-left: 0; box-shadow: none; }
+  .site-nav-btn { padding: .45rem .6rem; }
+}
+/* Very narrow screens: icon only, so the button fits beside the logo; "Menu" stays for screen readers. */
+@media (max-width: 380px) {
+  .site-nav-btn { padding: .45rem; }
+  .site-nav-btn span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}

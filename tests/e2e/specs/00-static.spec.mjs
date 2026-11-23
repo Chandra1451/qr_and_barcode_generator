@@ -284,6 +284,33 @@ test.describe('STATIC-CLAIM - public copy stays within verified product claims',
   });
 });
 
+// UCM-NAV-01: every public page has the same site menu (from tools/site-nav.mjs), its assets, the footer
+// directory it falls back to without JavaScript, and marks the current page when the page is in the menu.
+test('STATIC-NAV-01 every page has one identical site menu, its assets and the footer fallback', () => {
+  const problems = [];
+  const toRoot = (page, href) => (href.startsWith('/') ? href.slice(1) : path.posix.normalize(path.posix.join(path.posix.dirname(page), href)));
+  let reference = null;
+  for (const page of ALL_PAGES) {
+    const html = htmlOf[page];
+    const count = (re) => (html.match(re) || []).length;
+    if (count(/id="site-nav-btn"/g) !== 1) problems.push(`${page}: menu button x${count(/id="site-nav-btn"/g)}`);
+    if (count(/<dialog id="site-nav"/g) !== 1) problems.push(`${page}: menu panel x${count(/<dialog id="site-nav"/g)}`);
+    if (count(/site-nav\.css\?v=/g) !== 1 || count(/site-nav\.js\?v=/g) !== 1) problems.push(`${page}: menu css/js not loaded exactly once`);
+    if (!/id="site-directory"/.test(html)) problems.push(`${page}: no #site-directory fallback`);
+    const panel = html.match(/<dialog id="site-nav"[\s\S]*?<\/dialog>/)?.[0] ?? '';
+    const links = [...panel.matchAll(/<a href="([^"]+)"/g)].map((m) => toRoot(page, m[1]));
+    const key = JSON.stringify(links);
+    reference ??= key;
+    if (key !== reference) problems.push(`${page}: menu links differ from ${ALL_PAGES[0]}`);
+    const current = [...panel.matchAll(/<a href="([^"]+)" aria-current="page"/g)].map((m) => toRoot(page, m[1]));
+    const inMenu = links.includes(page);
+    if (inMenu && JSON.stringify(current) !== JSON.stringify([page])) problems.push(`${page}: current page not marked (${current})`);
+    if (!inMenu && current.length) problems.push(`${page}: marks ${current} as current`);
+  }
+  expect(JSON.parse(reference).length, 'menu link count').toBeGreaterThan(30);
+  expect(problems).toEqual([]);
+});
+
 test.describe('STATIC-PAGE · page structure', () => {
   for (const p of ALL_PAGES) {
     test(`STATIC-PAGE-01 ${p}: one <h1>, a <title>, meta description, lang`, () => {

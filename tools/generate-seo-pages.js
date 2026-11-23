@@ -18,6 +18,8 @@ import { eanOnpageHtml } from './ean-onpage-template.mjs';
 import { upiOnpageHtml } from './upi-onpage-template.mjs';
 import { checkDigitOnpageHtml } from './check-digit-onpage-template.mjs';
 import checkDigitArticle from './articles/check-digit-calculator.mjs';
+import { siteNavHeadHtml, siteNavButtonHtml, siteNavDialogHtml, footerGuidesColumnHtml } from './site-nav.mjs';
+import { syncRootPagesSiteNav } from './sync-site-nav.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -3976,7 +3978,7 @@ ${PAGE_STYLES}${factsChecked ? FACTS_CHECKED_STYLES : ''}${article.onpageTool ==
 </head>
 <body>
 
-${siteHeaderHtml(article.queryParam)}
+${siteHeaderHtml(article.queryParam, `pages/${article.slug}.html`)}
 
   <main class="seo-page-container">
 
@@ -4099,6 +4101,7 @@ function headTopHtml(meta, pageUrl) {
       document.documentElement.setAttribute('data-accent', savedAccent);
     })();
   </script>
+  ${siteNavHeadHtml('../')}
 `;
 }
 
@@ -4385,7 +4388,7 @@ const FACTS_CHECKED_STYLES = `
   </style>`;
 
 // `queryParam` sets which format/QR type the "Launch Studio" button opens.
-function siteHeaderHtml(queryParam) {
+function siteHeaderHtml(queryParam, currentPath) {
   const page = { queryParam };
   return `  <!-- Site Header -->
   <header class="v2-header">
@@ -4423,9 +4426,11 @@ function siteHeaderHtml(queryParam) {
             <span>Obsidian Laser</span>
           </button>
         </div>
+        ${siteNavButtonHtml()}
       </div>
     </div>
-  </header>`;
+  </header>
+  ${siteNavDialogHtml('../', currentPath)}`;
 }
 
 const SITE_FOOTER_HTML = `  <!-- Site Footer -->
@@ -4475,7 +4480,7 @@ const SITE_FOOTER_HTML = `  <!-- Site Footer -->
       </div>
 
       <!-- 5-Column Programmatic SEO & Symbology Directory Matrix -->
-      <div class="v2-footer-matrix">
+      <div class="v2-footer-matrix" id="site-directory">
         <div class="v2-dir-col">
           <h4 style="display: flex; align-items: center; gap: 0.45rem;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -4546,6 +4551,7 @@ const SITE_FOOTER_HTML = `  <!-- Site Footer -->
             <li><a href="./plain-text-qr-code-generator.html">Plain Text QR Code</a></li>
           </ul>
         </div>
+        ${footerGuidesColumnHtml('../')}
       </div>
 
       <div class="footer-bottom">
@@ -4843,7 +4849,7 @@ ${PAGE_STYLES}
 </head>
 <body>
 
-${siteHeaderHtml(page.queryParam)}
+${siteHeaderHtml(page.queryParam, `pages/${page.slug}.html`)}
 
   <main class="seo-page-container">
 
@@ -5085,6 +5091,10 @@ ARTICLES.forEach(article => {
     console.log(`Generated: pages/${article.slug}.html (guide)`);
   }
 });
+
+// Site menu on the hand-written root pages (UCM-NAV-01), from the same list as the generated pages.
+const navSynced = syncRootPagesSiteNav(path.join(__dirname, '..'));
+if (navSynced) console.log(`Site menu updated on ${navSynced} root page(s)`);
 
 // Generate sitemap.xml
 console.log('Generating sitemap.xml...');

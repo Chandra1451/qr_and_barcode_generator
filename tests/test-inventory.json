@@ -68,6 +68,7 @@
    "00-static.spec.mjs › STATIC-LINK · links, deep links, sitemap › STATIC-LINK-05 sitemap lists exactly the indexable pages, and every URL exists",
    "00-static.spec.mjs › STATIC-LINK · links, deep links, sitemap › STATIC-LINK-06 external links that open a new tab use rel=\"noopener\"",
    "00-static.spec.mjs › STATIC-LINK · links, deep links, sitemap › STATIC-LINK-07 no placeholder links (href=\"#\" or empty)",
+   "00-static.spec.mjs › STATIC-NAV-01 every page has one identical site menu, its assets and the footer fallback",
    "00-static.spec.mjs › STATIC-PAGE · page structure › STATIC-PAGE-01 404.html: one <h1>, a <title>, meta description, lang",
    "00-static.spec.mjs › STATIC-PAGE · page structure › STATIC-PAGE-01 about.html: one <h1>, a <title>, meta description, lang",
    "00-static.spec.mjs › STATIC-PAGE · page structure › STATIC-PAGE-01 barcode-scanner.html: one <h1>, a <title>, meta description, lang",
@@ -1192,7 +1193,16 @@
    "20-check-digit.spec.mjs › CD-05 \"Make this barcode\" opens the studio with the format and full number, and it scans back",
    "20-check-digit.spec.mjs › CD-06 lists over 1,000 lines use the first 1,000 and say so",
    "20-check-digit.spec.mjs › CD-07 the worked example on the page matches GS1's method",
-   "20-check-digit.spec.mjs › CD-08 numbers typed or pasted are not sent anywhere (the FAQ says so)"
+   "20-check-digit.spec.mjs › CD-08 numbers typed or pasted are not sent anywhere (the FAQ says so)",
+   "21-site-nav.spec.mjs › NAV-02 /about.html: opens from the button, closes by ✕, Esc and outside click, and hands focus back",
+   "21-site-nav.spec.mjs › NAV-02 /index.html: opens from the button, closes by ✕, Esc and outside click, and hands focus back",
+   "21-site-nav.spec.mjs › NAV-02 /pages/upi-qr-code-generator.html: opens from the button, closes by ✕, Esc and outside click, and hands focus back",
+   "21-site-nav.spec.mjs › NAV-03 groups: all open on a wide screen; on a phone closed except the group holding the current page",
+   "21-site-nav.spec.mjs › NAV-04 a menu link takes you to that page",
+   "21-site-nav.spec.mjs › NAV-05 without JavaScript the Menu button jumps to the footer directory",
+   "21-site-nav.spec.mjs › NAV-06 dark: the open menu has no serious accessibility or contrast problems",
+   "21-site-nav.spec.mjs › NAV-06 light: the open menu has no serious accessibility or contrast problems",
+   "21-site-nav.spec.mjs › NAV-07 studio: opening and closing the menu leaves the studio working"
   ],
   "phone": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1487,7 +1497,16 @@
    "20-check-digit.spec.mjs › CD-05 \"Make this barcode\" opens the studio with the format and full number, and it scans back",
    "20-check-digit.spec.mjs › CD-06 lists over 1,000 lines use the first 1,000 and say so",
    "20-check-digit.spec.mjs › CD-07 the worked example on the page matches GS1's method",
-   "20-check-digit.spec.mjs › CD-08 numbers typed or pasted are not sent anywhere (the FAQ says so)"
+   "20-check-digit.spec.mjs › CD-08 numbers typed or pasted are not sent anywhere (the FAQ says so)",
+   "21-site-nav.spec.mjs › NAV-02 /about.html: opens from the button, closes by ✕, Esc and outside click, and hands focus back",
+   "21-site-nav.spec.mjs › NAV-02 /index.html: opens from the button, closes by ✕, Esc and outside click, and hands focus back",
+   "21-site-nav.spec.mjs › NAV-02 /pages/upi-qr-code-generator.html: opens from the button, closes by ✕, Esc and outside click, and hands focus back",
+   "21-site-nav.spec.mjs › NAV-03 groups: all open on a wide screen; on a phone closed except the group holding the current page",
+   "21-site-nav.spec.mjs › NAV-04 a menu link takes you to that page",
+   "21-site-nav.spec.mjs › NAV-05 without JavaScript the Menu button jumps to the footer directory",
+   "21-site-nav.spec.mjs › NAV-06 dark: the open menu has no serious accessibility or contrast problems",
+   "21-site-nav.spec.mjs › NAV-06 light: the open menu has no serious accessibility or contrast problems",
+   "21-site-nav.spec.mjs › NAV-07 studio: opening and closing the menu leaves the studio working"
   ],
   "edge-smoke": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1699,7 +1718,7 @@
   ]
  },
  "assertions": {
-  "e2e/specs/00-static.spec.mjs": 91,
+  "e2e/specs/00-static.spec.mjs": 93,
   "e2e/specs/01-smoke.spec.mjs": 13,
   "e2e/specs/02-studio-boot.spec.mjs": 5,
   "e2e/specs/03-controls.spec.mjs": 41,
@@ -1726,7 +1745,8 @@
   "unit/rendering.test.js": 4,
   "e2e/specs/18-ean-onpage.spec.mjs": 35,
   "e2e/specs/19-upi-onpage.spec.mjs": 36,
-  "e2e/specs/20-check-digit.spec.mjs": 32
+  "e2e/specs/20-check-digit.spec.mjs": 32,
+  "e2e/specs/21-site-nav.spec.mjs": 22
  },
  "allowedSkips": [
   {
