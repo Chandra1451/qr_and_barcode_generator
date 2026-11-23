@@ -16,6 +16,8 @@ import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { eanOnpageHtml } from './ean-onpage-template.mjs';
 import { upiOnpageHtml } from './upi-onpage-template.mjs';
+import { checkDigitOnpageHtml } from './check-digit-onpage-template.mjs';
+import checkDigitArticle from './articles/check-digit-calculator.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -154,7 +156,7 @@ const SEO_PAGES = [
       'Packaging artwork that needs a vector barcode graphic',
       'Reprinting a product barcode while preserving the assigned number'
     ],
-    relatedSlugs: [
+    relatedSlugs: ['check-digit-calculator', 
       'upc-vs-ean-13-barcode',
       'how-to-get-a-barcode-for-your-product',
       'upc-a-barcode-generator',
@@ -205,7 +207,7 @@ const SEO_PAGES = [
       "Shelf and price labels in a small shop",
       "Replacing a damaged label with the same number"
     ],
-    relatedSlugs: [
+    relatedSlugs: ['check-digit-calculator', 
       'upc-vs-ean-13-barcode',
       'how-to-get-a-barcode-for-your-product',
       'ean-13-barcode-generator',
@@ -331,7 +333,7 @@ const SEO_PAGES = [
         a: "They are bearer bars. They spread printing pressure on corrugated board and help stop a scanner reading only part of the code."
       }
     ],
-    relatedSlugs: [
+    relatedSlugs: ['check-digit-calculator', 
       'code-128-barcode-generator',
       'ean-13-barcode-generator',
       'upc-a-barcode-generator',
@@ -1225,7 +1227,7 @@ const SEO_PAGES = [
         a: "Not directly. The barcode uses the 13-digit form. Older 10-digit ISBNs have a 978 equivalent; your ISBN agency's records show it."
       }
     ],
-    relatedSlugs: ['how-to-get-a-barcode-for-your-product', 'ean-13-barcode-generator', 'upc-vs-ean-13-barcode']
+    relatedSlugs: ['check-digit-calculator', 'how-to-get-a-barcode-for-your-product', 'ean-13-barcode-generator', 'upc-vs-ean-13-barcode']
   },
   {
     slug: 'code-39-barcode-generator',
@@ -2797,6 +2799,7 @@ const GUIDES = {
 // Long-form guide pages (pages/<slug>.html). They answer the questions people search before they
 // need a tool, then link into the matching generators. Same chrome as the landing pages.
 const ARTICLES = [
+  checkDigitArticle,
   {
     "slug": "barcode-for-products-in-india",
     "name": "How to Get a Barcode for Products in India",
@@ -2908,7 +2911,7 @@ const ARTICLES = [
     lead: 'For a retail product, first obtain or confirm the product identifier your retailer requires. Then make the barcode image that carries it. This guide explains the difference between a GTIN and its barcode, how to choose the matching generator, and what to check before printing.',
     datePublished: '2026-10-07',
     dateModified: '2026-11-11',
-    relatedSlugs: [
+    relatedSlugs: ['check-digit-calculator', 
       'barcode-for-products-in-india',
       'upc-vs-ean-13-barcode',
       'ean-13-barcode-generator',
@@ -3932,7 +3935,7 @@ function generateArticleHtml(article) {
   `).join('');
 
   return `${headTopHtml(article, pageUrl)}
-${PAGE_STYLES}
+${PAGE_STYLES}${article.onpageTool === 'check-digit' ? '\n  <link rel="stylesheet" href="../css/check-digit-onpage.css?v=1.0">' : ''}
 
   <!-- Structured Data JSON-LD Schemas -->
   <script type="application/ld+json">
@@ -3961,7 +3964,9 @@ ${siteHeaderHtml(article.queryParam)}
       <div class="article-ctas">${ctasHtml}
       </div>${hasEanWorkflow(article.slug) ? identifierNoticeHtml(false) : ''}
     </section>
-
+${article.onpageTool === 'check-digit' ? `
+    ${checkDigitOnpageHtml()}
+` : ''}
     <div class="article-layout">
       <nav class="article-toc" aria-label="On this page">
         <h2>On this page</h2>

@@ -1,0 +1,44 @@
+/* Scoped check digit calculator tool (UCM-KW-02); shared page styles remain unchanged. */
+.cd-tool { text-align:left; margin:0 0 2rem; border:2px solid var(--border); border-radius:var(--radius-sm); background:var(--surface); color:var(--text-primary); overflow:hidden; }
+.cd-tool h2 { margin:0; padding:1rem 1.25rem; border-bottom:2px solid var(--border); background:var(--surface-alt); font:700 clamp(1.2rem,3.4vw,1.5rem) var(--font-display); }
+.cd-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.cd-tool form,.cd-output { padding:1.25rem; min-width:0; }
+.cd-tool form { border-right:2px solid var(--border); }
+.cd-tool label { display:block; margin-top:.9rem; font-weight:800; font-size:1.02rem; }
+.cd-tool form label:first-of-type { margin-top:0; }
+.cd-tool p { font-size:.95rem; line-height:1.6; margin:.5rem 0; color:var(--text-secondary); }
+.cd-tool .cd-help { margin:.35rem 0 0; font-size:.88rem; }
+.cd-tool input,.cd-tool textarea { box-sizing:border-box; width:100%; min-width:0; margin-top:.4rem; padding:.8rem; border:2px solid var(--border); border-radius:4px; color:var(--text-primary); background:var(--surface); font:600 1.15rem var(--font-mono); }
+.cd-tool input { min-height:52px; letter-spacing:.04em; }
+.cd-tool textarea { font-size:1rem; resize:vertical; }
+.cd-tool input::placeholder { font:400 .92rem var(--font-body); color:var(--text-secondary); opacity:1; letter-spacing:0; }
+.cd-tool input[aria-invalid="true"] { border-color:var(--laser-text); }
+.cd-tool select { box-sizing:border-box; width:100%; min-height:48px; margin-top:.4rem; padding:.5rem .6rem; border:2px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text-primary); font:600 .98rem var(--font-body); }
+.cd-tool #cd-result { min-height:3.2em; margin-top:0; color:var(--text-primary); font-weight:700; font-size:1.05rem; overflow-wrap:anywhere; }
+.cd-tool .cd-full { margin:.25rem 0 1rem; padding:.7rem .8rem; border:2px dashed var(--border); border-radius:4px; color:var(--text-primary); font:700 clamp(1.15rem,3.6vw,1.45rem) var(--font-mono); letter-spacing:.06em; overflow-wrap:anywhere; }
+.cd-actions { display:flex; flex-wrap:wrap; gap:.65rem; align-items:center; margin-top:.75rem; }
+.cd-tool button { min-height:48px; padding:.7rem 1rem; border:2px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text-primary); font:700 .98rem var(--font-body); cursor:pointer; }
+.cd-tool #cd-copy,.cd-tool #cd-run { background:var(--accent); color:var(--on-accent); }
+.cd-tool button:disabled { opacity:.5; cursor:default; }
+.cd-tool button:not(:disabled):hover { box-shadow:2px 2px 0 var(--border); }
+.cd-tool a { color:var(--accent-text); text-decoration:underline; font-weight:700; }
+.cd-tool :is(input,textarea,select,button,a,summary):focus-visible { outline:3px solid var(--accent-text); outline-offset:3px; }
+.cd-bulk { border-top:2px solid var(--border); padding:1rem 1.25rem 1.25rem; }
+.cd-bulk summary { cursor:pointer; font-weight:800; font-size:1.02rem; }
+.cd-bulk label { margin-top:.9rem; font-weight:600; font-size:.95rem; }
+.cd-table-wrap { overflow-x:auto; margin-top:.5rem; }
+.cd-tool table { width:100%; border-collapse:collapse; font-size:.92rem; }
+.cd-tool th,.cd-tool td { padding:.5rem .6rem; border:1px solid var(--border); text-align:left; vertical-align:top; color:var(--text-primary); }
+.cd-tool td:first-child,.cd-tool td:last-child { font-family:var(--font-mono); overflow-wrap:anywhere; }
+.cd-tool th { background:var(--surface-alt); font-weight:800; }
+@media(max-width:700px) {
+  .cd-grid { grid-template-columns:minmax(0,1fr); }
+  .cd-tool form { border-right:0; border-bottom:2px solid var(--border); }
+  .cd-tool form,.cd-output,.cd-tool h2,.cd-bulk { padding:1rem; }
+}
+.article-body .table-scroll { overflow-x:auto; margin:1rem 0; }
+.article-body .table-scroll .spec-table caption { text-align:left; font-weight:700; padding:.4rem 0; }
+.article-body .cd-example { width:auto; min-width:16rem; }
+.article-body .cd-example :is(th,td) { padding:.35rem .9rem; border:1px solid var(--border); text-align:center; font-variant-numeric:tabular-nums; }
+.article-body .cd-example tfoot :is(th,td) { font-weight:800; }
+.article-body .cd-example { border-collapse:collapse; }
