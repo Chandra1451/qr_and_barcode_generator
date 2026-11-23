@@ -3274,7 +3274,21 @@ const ARTICLES = [
     queryParam: 'symbology=upc-a',
     metaTitle: 'Amazon Barcode Requirements (2026): UPC, GTIN & FNSKU Guide',
     metaDescription: 'Complete 2026 Amazon barcode requirements: when you need a GS1 GTIN/UPC to list vs FNSKU labels for FBA, exact label sizes, exemptions, and official costs.',
-    dateModified: '2026-11-11',
+    dateModified: '2026-11-23',
+    sources: [
+      { name: 'Amazon: Listing requirements, Product IDs (GTINs)', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G200317470', checked: '2026-11-23' },
+      { name: 'Amazon: Guidelines for UPC and GTIN', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G5JQC6VY6BVYWDPT', checked: '2026-11-23' },
+      { name: 'Amazon: Product ID (GTIN) requirements by category', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G200317520', checked: '2026-11-23' },
+      { name: 'Amazon: List products that do not have a product ID (GTIN exemption)', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G200426310', checked: '2026-11-23' },
+      { name: 'Amazon: Use Amazon barcodes for FBA', url: 'https://sellercentral.amazon.com/help/hub/reference/external/G200141490', checked: '2026-11-23' },
+      { name: 'Amazon: FBA Barcode Choice and Labeling FAQ', url: 'https://sellercentral.amazon.com/help/hub/reference/external/GEFKUGES6NSE7CBP', checked: '2026-11-23' },
+      { name: 'Amazon.in: FBA product barcode requirements', url: 'https://sellercentral.amazon.in/help/hub/reference/external/G201100910', checked: '2026-11-23' },
+      { name: 'Amazon.in: Requirements for product UPCs and GTINs', url: 'https://sellercentral.amazon.in/help/hub/reference/external/G200317470', checked: '2026-11-23' },
+      { name: 'GS1 US: Get a barcode (fees)', url: 'https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode', checked: '2026-11-23' },
+      { name: 'GS1 US: What is a Company Prefix?', url: 'https://www.gs1us.org/upcs-barcodes-prefixes/what-is-a-prefix', checked: '2026-11-23' },
+      { name: 'GS1 India: Register for barcodes', url: 'https://www.gs1india.org/register-for-barcodes', checked: '2026-11-23' },
+      { name: 'GS1 India: MSME barcode reimbursement', url: 'https://www.gs1india.org/msme', checked: '2026-11-23' },
+    ],
     h1: 'Do I Need a Barcode to Sell on Amazon?',
     lead: 'Usually yes, and often two different ones: a product number (UPC or EAN) to create the listing, and an Amazon label (FNSKU) on every unit if Amazon stores and ships your stock. This guide covers what Amazon US and Amazon.in ask for in 2026, and what each costs.',
     datePublished: '2026-10-12',
@@ -3302,7 +3316,7 @@ const ARTICLES = [
           <li><strong>If you ship orders yourself</strong>, you don't need FNSKU labels: they are only for stock sent to Amazon's fulfilment centres.</li>
           <li><strong>Making the barcode image is free.</strong> What costs money is the GS1 number: $30 for a single number from GS1 US, from ₹50,200 for the first year from GS1 India (<a href="#costs">costs</a>).</li>
         </ol>
-        <div class="article-callout"><p>Amazon's rules change. The rules here were checked against Amazon Seller Central help and GS1's own websites on 12 October 2026 and reviewed again on 23 November 2026. Current versions: <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon product ID policy</a>, <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200141490" target="_blank" rel="noopener noreferrer">Amazon barcodes for FBA</a>, <a href="https://sellercentral.amazon.com/help/hub/reference/external/GEFKUGES6NSE7CBP" target="_blank" rel="noopener noreferrer">FBA barcode FAQ</a>, <a href="https://sellercentral.amazon.in/help/hub/reference/external/G201100910" target="_blank" rel="noopener noreferrer">Amazon.in barcode requirements</a>.</p></div>
+        <div class="article-callout"><p>Amazon's rules change. Every Amazon and GS1 page this guide relies on is listed under Sources at the end, with the date it was read. Main pages: <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200317470" target="_blank" rel="noopener noreferrer">Amazon product ID policy</a>, <a href="https://sellercentral.amazon.com/help/hub/reference/external/G200141490" target="_blank" rel="noopener noreferrer">Amazon barcodes for FBA</a>, <a href="https://sellercentral.amazon.com/help/hub/reference/external/GEFKUGES6NSE7CBP" target="_blank" rel="noopener noreferrer">FBA barcode FAQ</a>, <a href="https://sellercentral.amazon.in/help/hub/reference/external/G201100910" target="_blank" rel="noopener noreferrer">Amazon.in barcode requirements</a>.</p></div>
         <div class="seller-guide-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
           <a href="./amazon-fba-fnsku-barcode-generator.html" class="scanner-tool-card" style="display: block; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
             <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Amazon FBA Label Generator &rarr;</strong>
@@ -3362,7 +3376,7 @@ const ARTICLES = [
           <li>parts without a product number (for example car parts or phone accessories),</li>
           <li>bundles, and generic unbranded products.</li>
         </ul>
-        <p>You can't get one if the product already has a GS1 barcode or GTIN, is already in Amazon's catalogue, or belongs to a brand that requires a UPC. Expect to send real photos of all six sides of the product and packaging, with the brand name permanently on the product.</p>
+        <p>You can't get one if the product already has a GS1 barcode or GTIN, is already in Amazon's catalogue, or belongs to a brand that requires a UPC. Expect to send real photos of all sides of the product and packaging, with the brand name permanently on the product (printed, embossed, sewn-in or another permanent marking).</p>
         <div class="gtin-exemption-steps" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.25rem 0;">
           <h4 style="margin-top: 0; color: var(--text-primary); font-size: 1.05rem;">Applying for a GTIN exemption</h4>
           <ol style="margin-bottom: 0; padding-left: 1.25rem;">
@@ -3392,7 +3406,7 @@ const ARTICLES = [
         <ul>
           <li><strong>Why it changed</strong>: Amazon US stopped "commingling", where one seller's order could be filled with another seller's identical unit. Labels keep each seller's stock separate.</li>
           <li><strong>Amazon.in</strong> labels units with FNSKUs by default and allows stickerless, shared stock for books only.</li>
-          <li><strong>Amazon US no longer labels for you</strong>: its prep and item-labelling service ended on 1 January 2026. Units that arrive without a required label are marked as defective.</li>
+          <li><strong>Missing labels count as defects</strong>: if a unit that needs an Amazon barcode arrives without one, Amazon marks it as defective and applies a sticker itself, and label problems can lead to unplanned prep service fees.</li>
           <li><strong>Label rules</strong>: 1" × 2" to 2" × 3", black on white, removable adhesive; white space of 0.25" on the sides and 0.125" at the top and bottom; FNSKU, product name and condition on the label; thermal or laser printer, never inkjet; cover every other barcode on the unit. Details and a free label maker: <a href="./amazon-fba-fnsku-barcode-generator.html">Amazon FBA FNSKU label generator</a>.</li>
         </ul>
         <div class="fba-label-specs" style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin: 1.25rem 0;">
@@ -3411,22 +3425,12 @@ const ARTICLES = [
         id: 'who-ships',
         h2: 'Who ships your orders changes what you need',
         html: `
-        <div class="article-table-wrap" tabindex="0">
-          <table class="article-table">
-            <thead><tr><th>Option</th><th>Who stores and packs</th><th>Who delivers</th><th>FNSKU labels?</th></tr></thead>
-            <tbody>
-              <tr><td>Fulfillment by Amazon (FBA), US and India</td><td>Amazon</td><td>Amazon</td><td>Yes, as in the table above</td></tr>
-              <tr><td>Fulfilled by Merchant (US)</td><td>You</td><td>You or your carrier</td><td>No</td></tr>
-              <tr><td>Easy Ship (India)</td><td>You</td><td>Amazon picks up and delivers</td><td>No</td></tr>
-              <tr><td>Self-Ship (India)</td><td>You</td><td>You or your courier</td><td>No</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>Whichever you choose, a new listing still needs its product number (Step 1). You can pick a different option for each product; Amazon India says most sellers use a mix.</p>`
+        <p>Amazon's FBA labelling rules cover units you send to its fulfilment centres: "Every item that you send to an Amazon fulfillment center needs a barcode for tracking" (Amazon US), and on Amazon.in each unit sent for fulfilment "should contain FNSKU label". If you store and ship orders yourself (Fulfilled by Merchant in the US, Easy Ship or Self-Ship in India), your units don't go through a fulfilment centre.</p>
+        <p>Whichever you choose, a new listing still needs its product number (Step 1). You can choose a different option for each product.</p>`
       },
       {
         id: 'costs',
-        h2: 'What the numbers cost (checked 12 October 2026)',
+        h2: 'What the numbers cost',
         html: `
         <div class="article-table-wrap" tabindex="0">
           <table class="article-table">
@@ -3439,8 +3443,8 @@ const ARTICLES = [
           </table>
         </div>
         <ul>
-          <li>GS1 US prices: <a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-started-guide" target="_blank" rel="noopener noreferrer">GS1 US get-started guide</a>. GS1 India prices: <a href="https://www.gs1india.org/register-for-barcodes" target="_blank" rel="noopener noreferrer">GS1 India registration</a> (fee table effective 1 October 2026; longer terms and larger capacities cost more).</li>
-          <li>In India, barcodes starting with 890 come only from GS1 India, and only the brand owner (or someone it authorises) can apply. You choose 100, 1,000, 10,000 or 1,00,000 numbers, and can't change that later.</li>
+          <li>GS1 US prices: <a href="https://www.gs1us.org/upcs-barcodes-prefixes/get-a-barcode" target="_blank" rel="noopener noreferrer">GS1 US: Get a barcode</a> (checked 23 November 2026). GS1 India prices: <a href="https://www.gs1india.org/register-for-barcodes" target="_blank" rel="noopener noreferrer">GS1 India registration</a> (fee table effective 1 October 2026; the ₹50,200 example was checked on 12 October 2026; longer terms and larger capacities cost more).</li>
+          <li>In India, barcodes starting with 890 come only from GS1 India, and each company or brand applies separately. You choose 100, 1,000, 10,000 or 1,00,000 numbers, and can't change that later.</li>
           <li>Indian micro-manufacturing enterprises can get up to 80% of the GS1 fees for the first 3 years refunded (up to ₹50,650) under the Ministry of MSME's barcode scheme, for the 100 and 1,000 barcode plans.</li>
           <li>FNSKUs don't come from GS1: you print them from your Seller Central account.</li>
         </ul>`
@@ -3450,7 +3454,6 @@ const ARTICLES = [
         h2: 'What changed in 2026',
         html: `
         <ul>
-          <li><strong>1 January</strong>: Amazon US ended its FBA prep and item-labelling service. You apply your own labels.</li>
           <li><strong>31 March</strong>: Amazon US ended commingling. Resellers must label every FBA unit; brand representatives can use the manufacturer barcode.</li>
           <li><strong>1 October</strong>: GS1 India's new fee table took effect.</li>
         </ul>`
