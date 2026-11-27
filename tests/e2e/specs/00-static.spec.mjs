@@ -311,6 +311,16 @@ test('STATIC-NAV-01 every page has one identical site menu, its assets and the f
   expect(problems).toEqual([]);
 });
 
+// UCM-HS-01: the What changed page lists dated entries, newest first, each with at least one item.
+test('STATIC-CHANGES-01 the What changed page is dated and newest first', () => {
+  const html = readSiteFile('changes.html');
+  const dates = [...html.matchAll(/<section class="doc-section changes-entry">\s*<h2><time datetime="(\d{4}-\d{2}-\d{2})">/g)].map((m) => m[1]);
+  expect(dates.length, 'entries').toBeGreaterThan(0);
+  expect(dates, 'newest first, no duplicates').toEqual([...new Set(dates)].sort().reverse());
+  const sections = html.match(/<section class="doc-section changes-entry">[\s\S]*?<\/section>/g) || [];
+  expect(sections.every((s) => /<li>/.test(s)), 'every entry has an item').toBe(true);
+});
+
 // UCM-404-01: the server answers any missing address with 404.html (.htaccess ErrorDocument), also inside
 // /pages/, so its internal links, styles and scripts must not depend on the address it is shown at.
 test('STATIC-404-01 the 404 page uses root-absolute internal paths', () => {
@@ -601,7 +611,8 @@ test.describe('STATIC-CONSENT · Analytics waits for consent on every page', () 
       const html = readSiteFile(p);
       expect(html, 'shared consent loader in <head>').toMatch(/<head>[\s\S]*<script src="\/js\/core\/consent-analytics\.js\?v=[\w.]+" defer><\/script>[\s\S]*<\/head>/);
       // Error and supporting screens are explicitly outside the proposed ad inventory.
-      const excludedFromAds = ['404.html', 'about.html', 'contact.html', 'terms.html', 'privacy-policy.html'].includes(p);
+      // changes.html (What changed, UCM-HS-01, 2026-11-28) is a utility page like About: no ads.
+      const excludedFromAds = ['404.html', 'about.html', 'changes.html', 'contact.html', 'terms.html', 'privacy-policy.html'].includes(p);
       expect(/adsbygoogle|pagead2\.googlesyndication\.com/.test(html), 'reviewed ad-inventory eligibility').toBe(!excludedFromAds);
       expect(html, 'hidden "Privacy and cookie settings" link').toMatch(/<li class="js-consent-settings" hidden><a href="[./]*privacy-policy\.html#consent">Privacy and cookie settings<\/a><\/li>/);
       expect(html, 'Analytics must not be configured or loaded outside the consent loader').not.toMatch(/gtag\('config'|googletagmanager\.com\/gtag\/js/);

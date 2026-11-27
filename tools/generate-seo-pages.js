@@ -20,6 +20,7 @@ import { checkDigitOnpageHtml } from './check-digit-onpage-template.mjs';
 import checkDigitArticle from './articles/check-digit-calculator.mjs';
 import { siteNavHeadHtml, siteNavButtonHtml, siteNavDialogHtml, footerGuidesColumnHtml } from './site-nav.mjs';
 import { syncRootPagesSiteNav } from './sync-site-nav.mjs';
+import { syncChangesPage } from './sync-changes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -5132,6 +5133,8 @@ ARTICLES.forEach(article => {
 
 // Site menu on the hand-written root pages (UCM-NAV-01), from the same list as the generated pages.
 const navSynced = syncRootPagesSiteNav(path.join(__dirname, '..'));
+// "What changed" entries from tools/changes-data.mjs (UCM-HS-01).
+if (syncChangesPage(path.join(__dirname, '..'))) console.log('What changed page updated');
 if (navSynced) console.log(`Site menu updated on ${navSynced} root page(s)`);
 
 // Generate sitemap.xml
@@ -5196,6 +5199,12 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
     <lastmod>${lastmodOf('about.html')}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/changes.html</loc>
+    <lastmod>${lastmodOf('changes.html')}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>${SITE_URL}/contact.html</loc>

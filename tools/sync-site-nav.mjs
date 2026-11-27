@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { siteNavHeadHtml, siteNavButtonHtml, siteNavDialogHtml, footerGuidesColumnHtml } from './site-nav.mjs';
 
-export const ROOT_PAGES_WITH_NAV = ['index.html', 'about.html', 'contact.html', 'privacy-policy.html', 'terms.html', 'symbology-docs.html', 'barcode-scanner.html', '404.html'];
+export const ROOT_PAGES_WITH_NAV = ['index.html', 'about.html', 'contact.html', 'privacy-policy.html', 'terms.html', 'symbology-docs.html', 'barcode-scanner.html', '404.html', 'changes.html'];
 
 const block = (name, html) => `<!-- site-nav:${name} -->${html}<!-- /site-nav:${name} -->`;
 const blockRe = (name) => new RegExp(`<!-- site-nav:${name} -->[\\s\\S]*?<!-- /site-nav:${name} -->`);

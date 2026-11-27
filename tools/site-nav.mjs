@@ -52,6 +52,7 @@ export const NAV_GROUPS = [
   ] },
   { title: 'About this site', links: [
     { href: 'about.html', label: 'About' },
+    { href: 'changes.html', label: 'What changed' },
     { href: 'contact.html', label: 'Contact' },
     { href: 'privacy-policy.html', label: 'Privacy policy' },
     { href: 'terms.html', label: 'Terms' },

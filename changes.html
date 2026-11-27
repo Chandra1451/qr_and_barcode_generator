@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Google Analytics: loads only after consent (js/core/consent-analytics.js) -->
+  <script src="/js/core/consent-analytics.js?v=1.1" defer></script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Changed on UniversalCodeMaker: Updates and Fixes</title>
+  <meta name="description" content="A dated list of new tools, updates and corrections on UniversalCodeMaker, newest first, in plain language.">
+  <link rel="canonical" href="https://universalcodemaker.com/changes.html">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#ff2a4b">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="What changed on UniversalCodeMaker">
+  <meta property="og:description" content="New tools, updates and corrections, newest first.">
+  <meta property="og:url" content="https://universalcodemaker.com/changes.html">
+  <meta property="og:image" content="https://universalcodemaker.com/assets/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Self-hosted fonts (declared in css/v2-theme.css); preload the two visible above the fold -->
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- V2 Stylesheets -->
+  <link rel="stylesheet" href="css/v2-theme.css?v=3.4">
+  <link rel="stylesheet" href="css/v2-pages.css?v=3.4">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "What changed on UniversalCodeMaker",
+    "url": "https://universalcodemaker.com/changes.html",
+    "description": "A dated list of new tools, updates and corrections on UniversalCodeMaker, newest first.",
+    "publisher": { "@type": "Organization", "name": "UniversalCodeMaker.com", "url": "https://universalcodemaker.com" }
+  }
+  </script>
+<!-- site-nav:head -->
+  <link rel="stylesheet" href="css/site-nav.css?v=1.0">
+  <script type="module" src="js/core/site-nav.js?v=1.0"></script>
+  <!-- /site-nav:head --></head>
+<body>
+
+  <!-- Site Header -->
+  <header class="v2-header">
+    <div class="wrap">
+      <div class="v2-header-container">
+        <a href="index.html" class="v2-brand">
+          <div class="v2-brand-badge" style="background: var(--surface);">
+            <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="34" height="34" style="display: block; object-fit: contain;">
+          </div>
+          <div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker
+              <span class="v2-version-tag">FREE</span>
+            </div>
+            <span class="v2-brand-tagline">Precision Optical Barcode &amp; Custom QR Suite</span>
+          </div>
+        </a>
+
+        <div class="v2-nav-links">
+          <a href="index.html" class="btn btn-laser btn-sm" style="text-decoration: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Launch Studio
+          </a>
+          <a href="about.html" class="v2-nav-link" style="color: var(--laser-text);">About</a>
+          <a href="symbology-docs.html" class="v2-nav-link">Docs</a>
+          <a href="barcode-scanner.html" class="v2-nav-link">Scanner</a>
+          <div class="v2-accent-picker" title="Tactical Optics Accent Palette" aria-label="Tactical Optics Accent Palette">
+            <button type="button" class="accent-dot active" data-accent="crimson" title="Laser Crimson"></button>
+            <button type="button" class="accent-dot" data-accent="cobalt" title="Signal Cobalt"></button>
+            <button type="button" class="accent-dot" data-accent="amber" title="Cyber Amber"></button>
+            <button type="button" class="accent-dot" data-accent="emerald" title="Matrix Emerald"></button>
+          </div>
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Optical Theme">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <span>Obsidian Laser</span>
+          </button>
+        </div><!-- site-nav:button -->
+        <a href="#site-directory" class="site-nav-btn" id="site-nav-btn" aria-haspopup="dialog" aria-controls="site-nav" aria-expanded="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <span>Menu</span>
+          </a><!-- /site-nav:button -->
+      </div>
+    </div>
+  </header><!-- site-nav:dialog -->
+  <dialog id="site-nav" class="site-nav" aria-labelledby="site-nav-title">
+    <div class="site-nav-inner">
+      <div class="site-nav-head">
+        <h2 id="site-nav-title">All tools and guides</h2>
+        <button type="button" class="site-nav-close" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+        </button>
+      </div>
+      <nav aria-label="All tools and guides">
+        <p class="site-nav-label">Start here</p>
+        <ul class="site-nav-start"><li><a href="index.html">Studio (every code type)</a></li><li><a href="barcode-scanner.html">Barcode and QR scanner</a></li><li><a href="pages/check-digit-calculator.html">Check digit calculator</a></li></ul>
+      <details class="site-nav-group">
+        <summary>Product barcodes <span class="site-nav-count">6</span></summary>
+        <ul><li><a href="pages/ean-13-barcode-generator.html">EAN-13</a></li><li><a href="pages/upc-a-barcode-generator.html">UPC-A</a></li><li><a href="pages/isbn-book-barcode-generator.html">ISBN (books)</a></li><li><a href="pages/itf-14-barcode-generator.html">ITF-14 (cartons)</a></li><li><a href="pages/amazon-fba-fnsku-barcode-generator.html">Amazon FBA (FNSKU labels)</a></li><li><a href="pages/shopify-barcode-generator.html">Shopify product barcodes</a></li></ul>
+      </details>
+      <details class="site-nav-group">
+        <summary>Other barcodes <span class="site-nav-count">5</span></summary>
+        <ul><li><a href="pages/code-128-barcode-generator.html">Code 128</a></li><li><a href="pages/code-39-barcode-generator.html">Code 39</a></li><li><a href="pages/data-matrix-generator.html">Data Matrix</a></li><li><a href="pages/aztec-code-generator.html">Aztec</a></li><li><a href="pages/pdf417-barcode-generator.html">PDF417</a></li></ul>
+      </details>
+      <details class="site-nav-group">
+        <summary>QR codes <span class="site-nav-count">12</span></summary>
+        <ul><li><a href="pages/wifi-qr-code-generator.html">Wi-Fi</a></li><li><a href="pages/upi-qr-code-generator.html">UPI payments</a></li><li><a href="pages/vcard-qr-code-generator.html">Contact card (vCard)</a></li><li><a href="pages/whatsapp-qr-code-generator.html">WhatsApp</a></li><li><a href="pages/google-reviews-qr-code-generator.html">Google reviews</a></li><li><a href="pages/google-maps-location-qr-code-generator.html">Google Maps location</a></li><li><a href="pages/email-qr-code-generator.html">Email</a></li><li><a href="pages/sms-qr-code-generator.html">SMS</a></li><li><a href="pages/phone-call-qr-code-generator.html">Phone call</a></li><li><a href="pages/calendar-event-qr-code-generator.html">Calendar event</a></li><li><a href="pages/crypto-qr-code-generator.html">Crypto payment</a></li><li><a href="pages/plain-text-qr-code-generator.html">Plain text</a></li></ul>
+      </details>
+      <details class="site-nav-group">
+        <summary>Printing and bulk <span class="site-nav-count">2</span></summary>
+        <ul><li><a href="pages/avery-5160-barcode-generator.html">Avery 5160 label sheets</a></li><li><a href="pages/bulk-barcode-generator-excel.html">Bulk barcodes from a list</a></li></ul>
+      </details>
+      <details class="site-nav-group">
+        <summary>Guides <span class="site-nav-count">5</span></summary>
+        <ul><li><a href="pages/how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a></li><li><a href="pages/do-i-need-a-barcode-to-sell-on-amazon.html">Barcodes for selling on Amazon</a></li><li><a href="pages/barcode-for-products-in-india.html">Barcodes for products in India</a></li><li><a href="pages/upc-vs-ean-13-barcode.html">UPC vs EAN-13</a></li><li><a href="symbology-docs.html">Barcode formats explained</a></li></ul>
+      </details>
+      <details class="site-nav-group">
+        <summary>About this site <span class="site-nav-count">5</span></summary>
+        <ul><li><a href="about.html">About</a></li><li><a href="changes.html" aria-current="page">What changed</a></li><li><a href="contact.html">Contact</a></li><li><a href="privacy-policy.html">Privacy policy</a></li><li><a href="terms.html">Terms</a></li></ul>
+      </details>
+      </nav>
+    </div>
+  </dialog><!-- /site-nav:dialog -->
+
+  <!-- Main Content -->
+  <main class="doc-wrap">
+
+    <div class="doc-hero">
+      <h1 class="doc-title">What changed</h1>
+      <p class="doc-subtitle">
+        User-visible changes to UniversalCodeMaker, newest first. Corrections are listed too. Who runs the site and how we check things: <a href="about.html">About</a>.
+      </p>
+    </div>
+      <!-- changes:list -->
+      <section class="doc-section changes-entry">
+        <h2><time datetime="2026-11-28">28 November 2026</time></h2>
+        <ul>
+          <li>The <a href="pages/data-matrix-generator.html">Data Matrix page</a> now explains fixed sizes; the <a href="pages/pdf417-barcode-generator.html">PDF417 page</a> lists EPS downloads.</li>
+          <li>The About page now explains how we check things and what we won't do. This page started.</li>
+        </ul>
+      </section>
+      <section class="doc-section changes-entry">
+        <h2><time datetime="2026-11-23">23 November 2026</time></h2>
+        <ul>
+          <li>New <a href="pages/check-digit-calculator.html">check digit calculator</a> for EAN-13, UPC-A, GTIN-14 and ISBN-13, for one number or a list.</li>
+          <li>New guide: <a href="pages/barcode-for-products-in-india.html">how to get a barcode for products in India</a>.</li>
+          <li>A menu on every page with all tools and guides.</li>
+          <li>Every guide now lists its sources and shows when its facts were last checked.</li>
+          <li>Data Matrix: choose a fixed symbol size. The quiet-zone setting for Data Matrix and Aztec now counts whole modules.</li>
+          <li>Corrections: Amazon's barcode rules re-read and wording fixed in the Amazon, product and UPC vs EAN-13 guides; GS1 fees re-checked; an example number with one digit too many fixed; the barcode formats page checked against the code.</li>
+          <li>The page-not-found screen now works at any address.</li>
+        </ul>
+      </section>
+      <section class="doc-section changes-entry">
+        <h2><time datetime="2026-11-22">22 November 2026</time></h2>
+        <ul>
+          <li>A simpler <a href="pages/upi-qr-code-generator.html">UPI QR tool</a> for shops, with a printable counter poster (English and Hindi).</li>
+          <li>"What's inside this code" shows the exact text inside every QR code you make.</li>
+          <li>The scanner shows UPI payment details in plain words.</li>
+          <li>A homepage card for shops in India.</li>
+        </ul>
+      </section>
+      <section class="doc-section changes-entry">
+        <h2><time datetime="2026-11-20">20 November 2026</time></h2>
+        <ul>
+          <li>Homepage and scanner wording checked against what the tools actually do.</li>
+        </ul>
+      </section>
+      <section class="doc-section changes-entry">
+        <h2><time datetime="2026-11-16">16 November 2026</time></h2>
+        <ul>
+          <li>Page text rewritten in plain language; claims we couldn't back up were removed.</li>
+        </ul>
+      </section>
+      <!-- /changes:list -->
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="v2-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div class="v2-brand-badge" style="width: 38px; height: 38px; background: var(--surface);">
+              <img src="assets/logo-icon.png" alt="UniversalCodeMaker Logo" width="30" height="30" style="display: block; object-fit: contain;">
+            </div>
+            <div class="v2-brand-title">
+              UniversalCodeMaker <span class="v2-version-tag">V2</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+            Browser-based QR &amp; barcode tools with local payload generation, practical export options, and print-testing guidance.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-links-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="index.html">Optical Studio</a></li>
+              <li><a href="index.html#symbologies">Symbologies Directory</a></li>
+              <li><a href="barcode-scanner.html">Barcode &amp; QR Scanner</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Standards &amp; Docs</h4>
+            <ul>
+              <li><a href="symbology-docs.html">Symbology Documentation</a></li>
+              <li><a href="about.html">About &amp; Mission</a></li>
+              <li><a href="privacy-policy.html">Your codes stay in your browser</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Ecosystem</h4>
+            <ul>
+              <li><a href="https://primordialparadigm.com" target="_blank" rel="noopener">Primordial Paradigm ↗</a></li>
+              <li><a href="contact.html">Report Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+            <!-- 5-Column Programmatic SEO & Symbology Directory Matrix -->
+      <div class="v2-footer-matrix" id="site-directory">
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--scanner-laser)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Retail &amp; Publishing
+          </h4>
+          <ul>
+            <li><a href="pages/ean-13-barcode-generator.html">EAN-13 Barcode Generator</a></li>
+            <li><a href="pages/upc-a-barcode-generator.html">UPC-A Barcode Generator</a></li>
+            <li><a href="pages/isbn-book-barcode-generator.html">ISBN Bookland Barcode</a></li>
+            <li><a href="pages/shopify-barcode-generator.html">Shopify Product Barcode</a></li>
+            <li><a href="pages/amazon-fba-fnsku-barcode-generator.html">Amazon FBA / FNSKU Barcode</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            Logistics, Sheets &amp; Bulk
+          </h4>
+          <ul>
+            <li><a href="pages/avery-5160-barcode-generator.html">Avery 5160 Label Generator</a></li>
+            <li><a href="pages/bulk-barcode-generator-excel.html">Bulk Excel Barcode Generator</a></li>
+            <li><a href="pages/code-128-barcode-generator.html">Code 128 Shipping Barcode</a></li>
+            <li><a href="pages/code-39-barcode-generator.html">Code 39 Asset Barcode</a></li>
+            <li><a href="pages/itf-14-barcode-generator.html">ITF-14 Carton Barcode</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--optic-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            2D Industrial &amp; Density
+          </h4>
+          <ul>
+            <li><a href="pages/data-matrix-generator.html">Data Matrix 2D Generator</a></li>
+            <li><a href="pages/aztec-code-generator.html">Aztec Code Generator</a></li>
+            <li><a href="pages/pdf417-barcode-generator.html">PDF417 Barcode Generator</a></li>
+            <li><a href="symbology-docs.html">Barcode &amp; QR Symbology Guides</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--sensor-green)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Smart QR Generators
+          </h4>
+          <ul>
+            <li><a href="pages/google-reviews-qr-code-generator.html">Google Review QR</a></li>
+            <li><a href="pages/upi-qr-code-generator.html">UPI Scan-to-Pay QR</a></li>
+            <li><a href="pages/wifi-qr-code-generator.html">Wi-Fi Network QR Code</a></li>
+            <li><a href="pages/vcard-qr-code-generator.html">vCard Digital Contact QR</a></li>
+            <li><a href="pages/google-maps-location-qr-code-generator.html">Google Maps Location QR</a></li>
+            <li><a href="pages/crypto-qr-code-generator.html">Crypto Wallet QR Code</a></li>
+            <li><a href="pages/calendar-event-qr-code-generator.html">Calendar Event (iCal) QR</a></li>
+          </ul>
+        </div>
+
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Messaging &amp; Text QR
+          </h4>
+          <ul>
+            <li><a href="pages/whatsapp-qr-code-generator.html">WhatsApp Direct Chat QR</a></li>
+            <li><a href="pages/email-qr-code-generator.html">Email Message QR Code</a></li>
+            <li><a href="pages/sms-qr-code-generator.html">SMS Direct Message QR</a></li>
+            <li><a href="pages/phone-call-qr-code-generator.html">Phone Call Dialer QR</a></li>
+            <li><a href="pages/plain-text-qr-code-generator.html">Plain Text QR Code</a></li>
+          </ul>
+        </div><!-- site-nav:footer-guides -->
+        <div class="v2-dir-col">
+          <h4 style="display: flex; align-items: center; gap: 0.45rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Guides &amp; Calculators
+          </h4>
+          <ul>
+            <li><a href="pages/check-digit-calculator.html">Check Digit Calculator</a></li>
+            <li><a href="pages/how-to-get-a-barcode-for-your-product.html">How to get a barcode for your product</a></li>
+            <li><a href="pages/do-i-need-a-barcode-to-sell-on-amazon.html">Barcodes for selling on Amazon</a></li>
+            <li><a href="pages/barcode-for-products-in-india.html">Barcodes for products in India</a></li>
+            <li><a href="pages/upc-vs-ean-13-barcode.html">UPC vs EAN-13</a></li>
+            <li><a href="symbology-docs.html">Barcode formats explained</a></li>
+          </ul>
+        </div><!-- /site-nav:footer-guides -->
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 UniversalCodeMaker.com. Free, Client-Side Code Generator.</p>
+        <ul class="v2-footer-legal-links">
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li class="js-consent-settings" hidden><a href="privacy-policy.html#consent">Privacy and cookie settings</a></li>
+          <li><a href="symbology-docs.html">Symbology Docs</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="v2-trademark-notice">
+          QR Code is a registered trademark of DENSO WAVE INCORPORATED. Avery&reg; and Avery template numbers are registered trademarks of Avery Products Corporation / CCL Industries Inc. GS1, EAN, and UPC are registered trademarks of GS1 AISBL. Amazon is a trademark of Amazon.com, Inc. or its affiliates. Google and Google Reviews are trademarks of Google LLC. WhatsApp is a registered trademark of Meta Platforms, Inc. UPI is a registered trademark of NPCI. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders; use does not imply any affiliation or endorsement.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Navigation & Theme Sync Script -->
+  <script src="js/v2-nav.js?v=2.4"></script>
+  <script src="js/core/header-offset.js?v=1.0"></script>
+
+</body>
+</html>
