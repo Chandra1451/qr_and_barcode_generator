@@ -352,12 +352,12 @@ const SEO_PAGES = [
     queryParam: 'symbology=data-matrix',
     category: '2D Matrix',
     metaTitle: 'Free Data Matrix ECC 200 Generator: Parts Marking & SVG',
-    metaDescription: 'Free Data Matrix (ECC 200) generator for small parts, labels and internal tracking. The size is picked for your data. Download SVG or PNG.',
+    metaDescription: 'Free Data Matrix (ECC 200) generator for parts, labels and internal tracking. Size fits your data, or pick a fixed square up to 144 × 144. SVG, PNG or EPS.',
     h1: 'Free Data Matrix (ECC 200) 2D Barcode Generator',
-    lead: "Make a Data Matrix code, the small square 2D code used on parts, electronics and labels where space is tight. Type your text or number and the symbol size is chosen to fit it.",
+    lead: "Make a Data Matrix code, the small square 2D code used on parts, electronics and labels where space is tight. Type your text or number: the smallest size that fits is picked for you, or choose a fixed size if your label or specification calls for one.",
     technicalSpec: {
       standard: "ISO/IEC 16022, ECC 200",
-      size: "Chosen automatically from the amount of data",
+      size: "Automatic (smallest that fits), or a fixed square from 10 × 10 to 144 × 144 modules",
       errorCorrection: "Built in (Reed-Solomon); not adjustable here",
       notSupported: "GS1 DataMatrix (the generator does not add FNC1 or GS1 data fields)",
       quietZone: "At least 1 module on every side",
@@ -369,6 +369,10 @@ const SEO_PAGES = [
       "Internal tracking where a linear barcode won't fit"
     ],
     faqs: [
+      {
+        q: "Can I make a fixed size, such as 26 × 26?",
+        a: "Yes. Under Symbol Size, choose a square from 10 × 10 to 144 × 144. If your data doesn't fit, the studio tells you; pick a larger size or Auto. Rectangular sizes aren't offered yet."
+      },
       {
         q: "Can I use this for GS1 DataMatrix on medicines?",
         a: "No. GS1 DataMatrix needs an FNC1 character and GS1 application identifiers, which this generator does not add. Use a tool built for GS1 DataMatrix for regulated packaging."
@@ -436,8 +440,8 @@ const SEO_PAGES = [
     shortName: 'PDF417',
     queryParam: 'symbology=pdf417',
     category: '2D Stacked',
-    metaTitle: 'Free PDF417 Barcode Generator: SVG & PNG',
-    metaDescription: 'Free PDF417 generator for shipping papers, labels and documents. Encodes exactly the text you enter, with adjustable data columns. SVG or PNG.',
+    metaTitle: 'Free PDF417 Barcode Generator: SVG, PNG & EPS',
+    metaDescription: 'Free PDF417 generator for shipping papers, labels and documents. Encodes exactly the text you enter, with adjustable data columns. SVG, PNG or EPS.',
     h1: 'Free PDF417 Stacked 2D Barcode Generator',
     lead: "Make a PDF417 barcode, the stacked 2D barcode used on shipping papers, labels and documents. It encodes exactly the text you enter, and you can set how many data columns it uses to make it wider or taller.",
     technicalSpec: {
@@ -465,6 +469,10 @@ const SEO_PAGES = [
       {
         q: "Will phones read it?",
         a: "Many 2D scanner apps do, but phone camera apps vary. Test with the scanner that will read it."
+      },
+      {
+        q: "Do I need to download or install anything?",
+        a: "No. It runs in your web browser, with no sign-up. When the barcode is ready, download it as SVG, PNG or EPS."
       }
     ],
     relatedSlugs: ['data-matrix-generator', 'aztec-code-generator', 'code-128-barcode-generator']
