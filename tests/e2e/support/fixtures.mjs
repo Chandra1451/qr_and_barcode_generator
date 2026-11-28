@@ -93,7 +93,12 @@ export const test = base.extend({
       if (problems.length) {
         await testInfo.attach('console-and-network-problems', { body: problems.join('\n'), contentType: 'text/plain' });
       }
-      expect(problems, 'The page logged errors or had failing requests during this test').toEqual([]);
+      // Chromium cancels requests when this computer's network changes (Wi-Fi, VPN, virtual adapters).
+      // Still a failure, but say so, so it is rerun rather than debugged as a site fault.
+      const networkChanged = problems.some((p) => p.includes('ERR_NETWORK_CHANGED'));
+      expect(problems, networkChanged
+        ? "This computer's network changed during the test (net::ERR_NETWORK_CHANGED), not a site fault: rerun this test"
+        : 'The page logged errors or had failing requests during this test').toEqual([]);
     },
     { auto: true },
   ],

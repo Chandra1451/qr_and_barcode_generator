@@ -9,7 +9,10 @@ import { ALL_PAGES, CONTENT_PAGES } from '../support/catalog.mjs';
 const THEMES = ['light', 'dark'];
 
 async function openThemed(page, p, theme) {
-  await page.addInitScript((t) => localStorage.setItem('ucm_theme', t), theme);
+  if (page.ucmTheme !== theme) {
+    await page.addInitScript((t) => localStorage.setItem('ucm_theme', t), theme);
+    page.ucmTheme = theme;
+  }
   await page.goto(`/${p}`);
   await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
   await page.waitForLoadState('networkidle');
@@ -73,6 +76,8 @@ test.describe('CONS · shared chrome is identical on every page', () => {
 
   for (const theme of THEMES) {
     test(`CONS-02 ${theme}: header, footer, body, headings and fonts render the same on every page`, async ({ page }) => {
+      // Loads every page and waits for the network to settle on each: ~45 s alone, more on a busy machine.
+      test.setTimeout(Math.max(90_000, (CONTENT_PAGES.length + 1) * 4_000));
       await openThemed(page, 'index.html', theme);
       const reference = await chromeStyle(page);
       const diffs = [];

@@ -266,6 +266,8 @@ class ScannerPage {
     this.cameraTimer = null;
     this.previewUrl = null;
     this.bind();
+    // Tests wait for this before choosing a file, so a script that never started is reported as such.
+    root.dataset.ready = 'true';
   }
 
   bind() {

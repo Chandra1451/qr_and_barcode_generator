@@ -27,6 +27,7 @@ async function qrPng(studio, page, text) {
 
 async function scanPng(page, png, name = 'code.png') {
   await page.goto(SCANNER);
+  await expect(page.locator('#scanner-app'), 'scanner script started (if not, see console-and-network-problems)').toHaveAttribute('data-ready', 'true');
   await page.setInputFiles('#scan-file', { name, mimeType: 'image/png', buffer: png });
   await expect(page.locator('#scan-status')).toHaveAttribute('data-kind', /ok|error/, { timeout: DECODE_TIMEOUT });
 }

@@ -56,6 +56,7 @@ const walk = (suite, trail) => {
         status: t.status,
         resultStatus: last.status,
         error: (last.error && (last.error.message || '').split('\n')[0]) || '',
+        networkChanged: JSON.stringify(last.errors || []).includes('ERR_NETWORK_CHANGED'),
         skipReason: skipNote ? (skipNote.description || skipNote.type) : '',
       });
     }
@@ -112,7 +113,9 @@ if (report.stats.expected !== passed || report.stats.unexpected !== failed || re
 }
 lines.push(`Projects:  ${Object.entries(byProject).map(([p, c]) => `${p} ${c.passed}/${c.failed}/${c.flaky}/${c.skipped}`).join(' · ') || '(none)'}  (passed/failed/flaky/skipped)`);
 const list = (label, arr, fmt) => { if (arr.length) { lines.push(`${label} (${arr.length}):`); for (const t of arr.slice(0, 50)) lines.push(`  - ${fmt(t)}`); if (arr.length > 50) lines.push(`  … ${arr.length - 50} more in the report`); } };
-list('Failed', tests.filter((t) => t.status === 'unexpected'), (t) => `[${t.project}] ${t.file}:${t.line} ${t.title}${t.error ? ' :: ' + t.error.slice(0, 160) : ''}`);
+list('Failed', tests.filter((t) => t.status === 'unexpected'), (t) => `[${t.project}] ${t.file}:${t.line} ${t.title}${t.networkChanged ? ' [network changed]' : ''}${t.error ? ' :: ' + t.error.slice(0, 160) : ''}`);
+const netFails = count((t) => t.status === 'unexpected' && t.networkChanged);
+if (netFails) lines.push(`Network:   ${netFails} failed test(s) saw net::ERR_NETWORK_CHANGED: this computer's network changed during the run. Rerun those tests alone to rule out a site fault; a release still needs a clean full run.`);
 list('Flaky', tests.filter((t) => t.status === 'flaky'), (t) => `[${t.project}] ${t.file}:${t.line} ${t.title}`);
 list('Skipped', tests.filter((t) => t.status === 'skipped'), (t) => `[${t.project}] ${t.file}:${t.line} ${t.title}${t.skipReason ? ' :: ' + t.skipReason : ''}`);
 for (const e of (report.errors || []).slice(0, 5)) lines.push(`Global error: ${(e.message || JSON.stringify(e)).split('\n')[0].slice(0, 200)}`);
