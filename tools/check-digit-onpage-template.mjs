@@ -43,5 +43,5 @@ export function checkDigitOnpageHtml() {
         </details>
         <p id="cd-startup">This calculator needs JavaScript. If it does not start, enable JavaScript and reload.</p>
       </section>
-      <script type="module" src="../js/check-digit-onpage.js?v=1.0"></script>`;
+      <script type="module" src="../js/check-digit-onpage.js?v=1.1"></script>`;
 }

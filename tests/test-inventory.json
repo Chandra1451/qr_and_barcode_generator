@@ -1219,7 +1219,17 @@
    "21-site-nav.spec.mjs › NAV-07 studio: opening and closing the menu leaves the studio working",
    "22-not-found.spec.mjs › NF-01 /no-such-page.html: the 404 page is styled and its links work",
    "22-not-found.spec.mjs › NF-01 /pages/a/b/no-such-page.html: the 404 page is styled and its links work",
-   "22-not-found.spec.mjs › NF-01 /pages/no-such-page.html: the 404 page is styled and its links work"
+   "22-not-found.spec.mjs › NF-01 /pages/no-such-page.html: the 404 page is styled and its links work",
+   "23-studio-loading.spec.mjs › LOADST · slow and failed exports › LOADST-07 slow PDF tool: \"Preparing PDF…\", one run only, then the PDF",
+   "23-studio-loading.spec.mjs › LOADST · slow and failed exports › LOADST-08 PDF and ZIP tools that do not load: plain message, buttons usable again",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-01 slow barcode engine: status and waiting buttons, then the code and working buttons",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-02 engine already loaded: no status flash when switching codes",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-03 after 15 s it says it is still loading",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-04 a stuck download fails after 60 s with Try again; the typed number is kept",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-05 every source fails: plain message, Try again works once the network is back",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-06 offline: says so, and Try again works when back online",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-09 reduced motion: the bar does not move",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-10 screen readers hear the loading and the failure"
   ],
   "phone": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1532,7 +1542,17 @@
    "21-site-nav.spec.mjs › NAV-07 studio: opening and closing the menu leaves the studio working",
    "22-not-found.spec.mjs › NF-01 /no-such-page.html: the 404 page is styled and its links work",
    "22-not-found.spec.mjs › NF-01 /pages/a/b/no-such-page.html: the 404 page is styled and its links work",
-   "22-not-found.spec.mjs › NF-01 /pages/no-such-page.html: the 404 page is styled and its links work"
+   "22-not-found.spec.mjs › NF-01 /pages/no-such-page.html: the 404 page is styled and its links work",
+   "23-studio-loading.spec.mjs › LOADST · slow and failed exports › LOADST-07 slow PDF tool: \"Preparing PDF…\", one run only, then the PDF",
+   "23-studio-loading.spec.mjs › LOADST · slow and failed exports › LOADST-08 PDF and ZIP tools that do not load: plain message, buttons usable again",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-01 slow barcode engine: status and waiting buttons, then the code and working buttons",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-02 engine already loaded: no status flash when switching codes",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-03 after 15 s it says it is still loading",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-04 a stuck download fails after 60 s with Try again; the typed number is kept",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-05 every source fails: plain message, Try again works once the network is back",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-06 offline: says so, and Try again works when back online",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-09 reduced motion: the bar does not move",
+   "23-studio-loading.spec.mjs › LOADST · studio shows what is loading › LOADST-10 screen readers hear the loading and the failure"
   ],
   "edge-smoke": [
    "01-smoke.spec.mjs › SMOKE · pages › SMOKE-01 404.html loads without errors @smoke",
@@ -1762,8 +1782,8 @@
   "e2e/specs/10-consistency.spec.mjs": 13,
   "e2e/specs/11-security.spec.mjs": 5,
   "e2e/specs/12-visual.spec.mjs": 3,
-  "e2e/specs/13-loading.spec.mjs": 12,
-  "e2e/specs/14-scanner.spec.mjs": 50,
+  "e2e/specs/13-loading.spec.mjs": 13,
+  "e2e/specs/14-scanner.spec.mjs": 51,
   "e2e/specs/15-consent.spec.mjs": 21,
   "e2e/specs/16-announce.spec.mjs": 9,
   "e2e/specs/17-layout.spec.mjs": 3,
@@ -1778,7 +1798,8 @@
   "e2e/specs/19-upi-onpage.spec.mjs": 36,
   "e2e/specs/20-check-digit.spec.mjs": 32,
   "e2e/specs/21-site-nav.spec.mjs": 22,
-  "e2e/specs/22-not-found.spec.mjs": 5
+  "e2e/specs/22-not-found.spec.mjs": 5,
+  "e2e/specs/23-studio-loading.spec.mjs": 44
  },
  "allowedSkips": [
   {
@@ -1884,5 +1905,5 @@
   ]
  },
  "_about": "Test inventory for test-integrity.mjs (kit core 05, D2). Every change to this file is shown to the owner: removed tests, new skips and allowed hits need a reason.",
- "updated": "2026-11-27"
+ "updated": "2026-11-28"
 }

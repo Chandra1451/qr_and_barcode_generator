@@ -5,8 +5,8 @@
  * Powered by bwip-js (bcid: itf14). Heavy-duty packaging code with bearer bars.
  */
 
-import { bwipHeightMm } from '../../core/print-size.js?v=3.30';
-import { computeItf14 } from '../../core/checksums.js?v=3.30';
+import { bwipHeightMm } from '../../core/print-size.js?v=3.31';
+import { computeItf14 } from '../../core/checksums.js?v=3.31';
 
 export default {
   id: "itf-14",

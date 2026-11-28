@@ -2,8 +2,9 @@
 // settings stop working."
 //
 // The studio no longer loads everything up front:
-//   • bwip-js (1.1 MB), jsPDF and JSZip are injected only when first needed, with an 8 s
-//     timeout per source and a CDN fallback (js/core/dynamic-loader.js);
+//   • bwip-js (1.1 MB), jsPDF and JSZip are injected only when first needed; a slow source gets a
+//     second source alongside it after 20-30 s, and a load fails after 60 s (js/core/dynamic-loader.js);
+//   • the studio shows what is loading, and a plain failure with Try again (spec 23);
 //   • qr-code-styling is prefetched in requestIdleCallback;
 //   • JS files are cached 1 day under plain URLs, HTML only 1 hour (.htaccess).
 // These tests reproduce the ways that can go wrong for a real visitor.
@@ -106,10 +107,12 @@ test.describe('LOAD · lazy engine loading', () => {
     });
     await studio.open();
     await studio.symbologySelect.selectOption('code-128');
-    await expect(studio.errorBox).toBeVisible({ timeout: 15_000 }); // first try fails: expected
+    // First try fails: expected. Since UCM-LOAD-01 the preview says so in plain words, with Try again.
+    await expect(page.locator('#preview-loading')).toContainText("The barcode engine didn't load", { timeout: 15_000 });
     // Network is back. Choosing a barcode again must work without reloading the page.
     await studio.symbologySelect.selectOption('ean-13');
     await expect.poll(async () => (await studio.fingerprint())?.kind, { timeout: 15_000, message: 'barcodes stay broken until reload (failed load is remembered)' }).toBe('bwip');
+    await expect(page.locator('#preview-loading')).toBeHidden();
     await studio.expectNoRenderError();
   });
   // The failed first download is logged on purpose in LOAD-05.

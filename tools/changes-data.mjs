@@ -5,6 +5,7 @@ export const CHANGES = [
   { date: '2026-11-28', items: [
     'The <a href="pages/data-matrix-generator.html">Data Matrix page</a> now explains fixed sizes; the <a href="pages/pdf417-barcode-generator.html">PDF417 page</a> lists EPS downloads.',
     'The About page now explains how we check things and what we won\'t do. This page started.',
+    'The studio now says when it is still loading a code engine. If one doesn\'t load, it says so and offers Try again instead of waiting with no message.',
   ] },
   { date: '2026-11-23', items: [
     'New <a href="pages/check-digit-calculator.html">check digit calculator</a> for EAN-13, UPC-A, GTIN-14 and ISBN-13, for one number or a list.',

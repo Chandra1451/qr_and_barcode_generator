@@ -4,20 +4,33 @@
  * 100% V1 Parity + Restored Controls + Tactile Enhancements
  */
 
-import { engine, setCanvasCssRadius } from './core/engine.js?v=3.30';
-import { prefetchEngines } from './core/dynamic-loader.js?v=3.30';
+import { engine, setCanvasCssRadius } from './core/engine.js?v=3.31';
+import { prefetchEngines, loadBwip, loadQRCodeStyling } from './core/dynamic-loader.js?v=3.31';
+
+// Plain names for the libraries the studio loads on demand (UCM-LOAD-01).
+const ENGINE_NAMES = { 'bwip-js': 'barcode engine', 'qr-code-styling': 'QR code engine', jspdf: 'PDF tool', jszip: 'ZIP tool' };
+const ENGINE_STATUS_DELAY_MS = 300; // no status flash when the engine is already cached
+const ENGINE_SLOW_MS = 15000;
+const WAITING_HINT = 'Available when the code has loaded';
+
+/** Plain message for a library that did not load, or null if the error is something else. */
+function loadFailureMessage(err) {
+  if (!err || err.name !== 'EngineLoadError') return null;
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) return 'You appear to be offline. Connect, then try again.';
+  return `The ${ENGINE_NAMES[err.engine] || 'tool'} didn't load. Check your connection, then try again.`;
+}
 import {
   getAllGenerators,
   getGenerator,
   getGeneratorsByCategory,
   getCategories
-} from './generators/registry.js?v=3.30';
-import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.30';
-import { LOGO_PRESETS } from './core/logo-presets.js?v=3.30';
-import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.30';
-import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.30';
-import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.30';
-import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.30';
+} from './generators/registry.js?v=3.31';
+import { getAllWizards, getWizard } from './wizards/qr-wizards.js?v=3.31';
+import { LOGO_PRESETS } from './core/logo-presets.js?v=3.31';
+import { exportHighResPng, exportVectorSvg, exportVectorEps, copyImageToClipboard } from './export/image-exporter.js?v=3.31';
+import { generatePdfLabelSheet, generatePdfSheetFromList, AVERY_TEMPLATES } from './export/pdf-exporter.js?v=3.31';
+import { generateSequenceList, parseCsvOrLinesDetailed, findInvalidBatchItems, generateBatchZip, BATCH_LIMIT } from './export/batch-exporter.js?v=3.31';
+import { computeEan13, computeUpcA, calculateMod10 } from './core/checksums.js?v=3.31';
 import {
   LABEL_PRESETS,
   LABEL_LAYOUTS,
@@ -26,7 +39,7 @@ import {
   exportSingleLabelPdf,
   exportLabelSheetPdf,
   printThermalRoll
-} from './export/label-maker.js?v=3.30';
+} from './export/label-maker.js?v=3.31';
 
 class V2StudioApp {
   constructor() {
@@ -37,6 +50,10 @@ class V2StudioApp {
     this.announceTimer = null;
     this.lastAnnouncement = '';
     this.currentOptions = {};
+    this.engineSeq = 0;
+    this.engineWaitFor = null;
+    this.engineShowTimer = null;
+    this.engineSlowTimer = null;
 
     // QR Wizard & Customization State
     this.activeWizardId = 'url';
@@ -258,6 +275,10 @@ class V2StudioApp {
       previewErrorBox: document.getElementById('preview-error-box'),
       previewErrorText: document.getElementById('preview-error-text'),
       previewStatus: document.getElementById('preview-status'),
+      previewLoading: document.getElementById('preview-loading'),
+      previewLoadingText: document.getElementById('preview-loading-text'),
+      previewLoadingSlow: document.getElementById('preview-loading-slow'),
+      btnPreviewRetry: document.getElementById('btn-preview-retry'),
 
       // Readout & Meta
       specFormat: document.getElementById('spec-format'),
@@ -1118,6 +1139,14 @@ class V2StudioApp {
       payload = (this.dom.payloadInput.value || '').trim();
     }
 
+    // Engine for this code not loaded yet: say so in the preview, and stop here if it fails.
+    if (!this.engineReady(isQR)) {
+      const seq = ++this.engineSeq;
+      if (!(await this.waitForEngine(isQR, seq))) return;
+    } else {
+      this.hideEngineStatus();
+    }
+
     // Validation
     const validation = engine.validate(this.currentGenerator, payload);
     if (!validation.valid) {
@@ -1186,6 +1215,132 @@ class V2StudioApp {
     this.announceTimer = setTimeout(() => {
       this.dom.previewStatus.textContent = message;
     }, 700);
+  }
+
+  /* --- Engine loading status (UCM-LOAD-01, studio only) --- */
+  engineReady(isQR) {
+    return isQR ? Boolean(window.QRCodeStyling) : Boolean(window.bwipjs);
+  }
+
+  /**
+   * Wait for the engine this code needs, with a status in the preview: shown after a short delay,
+   * "still loading" after ENGINE_SLOW_MS, and a plain failure with Try again if it does not load
+   * (the loader gives up after LOAD_LIMIT_MS). Timers run from the start of the wait, not from each redraw.
+   * @returns {Promise<boolean>} true when the engine is ready
+   */
+  async waitForEngine(isQR, seq) {
+    const engineId = isQR ? 'qr-code-styling' : 'bwip-js';
+    if (this.engineWaitFor !== engineId) {
+      this.clearEngineTimers();
+      this.engineWaitFor = engineId;
+      // Marks the preview as not current at once (the panel itself appears after a short delay).
+      if (this.dom.previewStage) this.dom.previewStage.dataset.engine = 'loading';
+      this.engineShowTimer = setTimeout(() => this.showEngineLoading(engineId), ENGINE_STATUS_DELAY_MS);
+      this.engineSlowTimer = setTimeout(() => {
+        if (this.dom.previewLoadingSlow) this.dom.previewLoadingSlow.hidden = false;
+      }, ENGINE_SLOW_MS);
+    }
+    try {
+      await (isQR ? loadQRCodeStyling() : loadBwip());
+      if (seq === this.engineSeq) this.hideEngineStatus();
+      return true;
+    } catch (err) {
+      console.warn('[Studio] engine did not load:', err);
+      if (seq === this.engineSeq) this.showEngineFailed(engineId, err);
+      return false;
+    }
+  }
+
+  clearEngineTimers() {
+    clearTimeout(this.engineShowTimer);
+    clearTimeout(this.engineSlowTimer);
+    this.engineShowTimer = null;
+    this.engineSlowTimer = null;
+  }
+
+  showEngineLoading(engineId) {
+    const box = this.dom.previewLoading;
+    if (!box) return;
+    const text = `Loading the ${ENGINE_NAMES[engineId]}…`;
+    box.classList.remove('is-failed');
+    this.dom.previewLoadingText.textContent = text;
+    this.dom.btnPreviewRetry.hidden = true;
+    box.hidden = false;
+    this.setActionsWaiting(true);
+    this.announce(text);
+  }
+
+  showEngineFailed(engineId, err) {
+    this.clearEngineTimers();
+    this.engineWaitFor = null;
+    if (this.dom.previewStage) this.dom.previewStage.dataset.engine = 'failed';
+    const box = this.dom.previewLoading;
+    if (!box) return;
+    const text = loadFailureMessage(err?.name === 'EngineLoadError' ? err : { name: 'EngineLoadError', engine: engineId });
+    box.classList.add('is-failed');
+    this.dom.previewLoadingText.textContent = text;
+    this.dom.previewLoadingSlow.hidden = true;
+    this.dom.btnPreviewRetry.hidden = false;
+    box.hidden = false;
+    this.setActionsWaiting(true);
+    this.announce(text);
+  }
+
+  hideEngineStatus() {
+    this.clearEngineTimers();
+    this.engineWaitFor = null;
+    if (this.dom.previewStage) delete this.dom.previewStage.dataset.engine;
+    const box = this.dom.previewLoading;
+    if (!box || box.hidden) return;
+    box.hidden = true;
+    box.classList.remove('is-failed');
+    this.dom.previewLoadingSlow.hidden = true;
+    this.dom.btnPreviewRetry.hidden = true;
+    this.setActionsWaiting(false);
+  }
+
+  /** Download and copy buttons need a drawn code: disabled while the engine loads or has failed. */
+  setActionsWaiting(waiting) {
+    const ids = ['btnDownloadSvg', 'btnDownloadEps', 'btnDownloadPng', 'btnCopyClipboard', 'btnOpenPdfModal', 'btnOpenLabelModal'];
+    for (const id of ids) {
+      const btn = this.dom[id];
+      if (!btn) continue;
+      if (waiting && btn.dataset.waiting !== 'true') {
+        btn.dataset.waiting = 'true';
+        btn.dataset.titleBeforeWait = btn.getAttribute('title') ?? '';
+        btn.disabled = true;
+        btn.title = WAITING_HINT;
+      } else if (!waiting && btn.dataset.waiting === 'true') {
+        btn.disabled = false;
+        if (btn.dataset.titleBeforeWait) btn.title = btn.dataset.titleBeforeWait;
+        else btn.removeAttribute('title');
+        delete btn.dataset.waiting;
+        delete btn.dataset.titleBeforeWait;
+      }
+    }
+  }
+
+  /**
+   * Run a slow action from a button: disabled at once (a second click does nothing), and after a
+   * short delay the label reads busyText. The button is restored however the action ends.
+   */
+  async runBusy(button, busyText, task) {
+    if (!button) return task();
+    if (button.dataset.busy === 'true') return undefined;
+    const originalHtml = button.innerHTML;
+    button.dataset.busy = 'true';
+    button.disabled = true;
+    button.setAttribute('aria-busy', 'true');
+    const labelTimer = setTimeout(() => { button.textContent = busyText; }, ENGINE_STATUS_DELAY_MS);
+    try {
+      return await task();
+    } finally {
+      clearTimeout(labelTimer);
+      button.innerHTML = originalHtml;
+      button.disabled = false;
+      button.removeAttribute('aria-busy');
+      delete button.dataset.busy;
+    }
   }
 
   showError(msg) {
@@ -1608,7 +1763,7 @@ class V2StudioApp {
       });
       this.showToast('Vector SVG exported successfully!');
     } catch (err) {
-      this.showToast(`SVG export failed: ${err.message}`, true);
+      this.showToast(loadFailureMessage(err) || `SVG export failed: ${err.message}`, true);
     }
   }
 
@@ -1621,7 +1776,7 @@ class V2StudioApp {
       });
       this.showToast('Vector EPS exported successfully!');
     } catch (err) {
-      this.showToast(`EPS export failed: ${err.message}`, true);
+      this.showToast(loadFailureMessage(err) || `EPS export failed: ${err.message}`, true);
     }
   }
 
@@ -1640,7 +1795,7 @@ class V2StudioApp {
       });
       this.showToast(`High-Res PNG (${scale}x) exported!`);
     } catch (err) {
-      this.showToast(`PNG export failed: ${err.message}`, true);
+      this.showToast(loadFailureMessage(err) || `PNG export failed: ${err.message}`, true);
     }
   }
 
@@ -1667,7 +1822,7 @@ class V2StudioApp {
         this.showToast('Image copied to clipboard!');
       }
     } catch (err) {
-      this.showToast(`Clipboard copy failed: ${err.message}`, true);
+      this.showToast(loadFailureMessage(err) || `Clipboard copy failed: ${err.message}`, true);
     }
   }
 
@@ -1685,7 +1840,7 @@ class V2StudioApp {
     this.dom.pdfQuantityInput?.addEventListener('input', (e) => {
       if (this.dom.valPdfQuantity) this.dom.valPdfQuantity.textContent = e.target.value;
     });
-    this.dom.btnGeneratePdf?.addEventListener('click', () => this.generatePdf());
+    this.dom.btnGeneratePdf?.addEventListener('click', () => this.runBusy(this.dom.btnGeneratePdf, 'Preparing PDF…', () => this.generatePdf()));
   }
 
   async generatePdf() {
@@ -1712,7 +1867,7 @@ class V2StudioApp {
       this.dom.pdfModal.classList.remove('open');
       this.showToast('Label Sheet PDF generated!');
     } catch (err) {
-      this.showToast(`PDF generation failed: ${err.message}`, true);
+      this.showToast(loadFailureMessage(err) || `PDF generation failed: ${err.message}`, true);
     }
   }
 
@@ -1805,7 +1960,7 @@ class V2StudioApp {
     });
 
     // Export: Single Vector PDF
-    this.dom.btnExportLabelPdf?.addEventListener('click', async () => {
+    this.dom.btnExportLabelPdf?.addEventListener('click', () => this.runBusy(this.dom.btnExportLabelPdf, 'Preparing PDF…', async () => {
       try {
         await exportSingleLabelPdf({
           canvas: this.dom.labelPreviewCanvas,
@@ -1813,9 +1968,9 @@ class V2StudioApp {
         });
         this.showToast('Single Vector PDF generated!');
       } catch (err) {
-        this.showToast(`PDF generation failed: ${err.message}`, true);
+        this.showToast(loadFailureMessage(err) || `PDF generation failed: ${err.message}`, true);
       }
-    });
+    }));
 
     // Export: 300 DPI PNG
     this.dom.btnExportLabelPng?.addEventListener('click', () => {
@@ -1823,12 +1978,12 @@ class V2StudioApp {
         exportLabelPng(this.dom.labelPreviewCanvas, `label-${this.labelState.presetId}-${Date.now()}.png`);
         this.showToast('300 DPI PNG sticker exported!');
       } catch (err) {
-        this.showToast(`PNG export failed: ${err.message}`, true);
+        this.showToast(loadFailureMessage(err) || `PNG export failed: ${err.message}`, true);
       }
     });
 
     // Export: Avery Sheet PDF
-    this.dom.btnExportLabelSheet?.addEventListener('click', async () => {
+    this.dom.btnExportLabelSheet?.addEventListener('click', () => this.runBusy(this.dom.btnExportLabelSheet, 'Preparing PDF…', async () => {
       try {
         const preset = LABEL_PRESETS[this.labelState.presetId];
         const templateId = preset?.averyTemplateId || 'avery-5160';
@@ -1839,9 +1994,9 @@ class V2StudioApp {
         });
         this.showToast(`Avery Sheet (${templateId}) PDF generated!`);
       } catch (err) {
-        this.showToast(`Avery sheet failed: ${err.message}`, true);
+        this.showToast(loadFailureMessage(err) || `Avery sheet failed: ${err.message}`, true);
       }
-    });
+    }));
   }
 
   openLabelMakerModal() {
@@ -2099,7 +2254,8 @@ class V2StudioApp {
 
     this.dom.batchFormatSelect?.addEventListener('change', () => this.updateBatchFormatUi());
 
-    this.dom.btnGenerateBatch?.addEventListener('click', () => this.generateBatch());
+    this.dom.btnGenerateBatch?.addEventListener('click', () => this.runBusy(this.dom.btnGenerateBatch,
+      this.dom.batchFormatSelect?.value === 'avery-pdf' ? 'Preparing PDF…' : 'Preparing ZIP…', () => this.generateBatch()));
   }
 
   updateBatchSeqPreview() {
@@ -2214,7 +2370,8 @@ class V2StudioApp {
       this.dom.batchModal.classList.remove('open');
       this.showToast(`Batch ZIP of ${items.length} items exported!${leftOutNote}`);
     } catch (err) {
-      this.showToast(`Batch generation failed: ${err.message}`, true);
+      if (this.dom.batchProgressBox) this.dom.batchProgressBox.style.display = 'none';
+      this.showToast(loadFailureMessage(err) || `Batch generation failed: ${err.message}`, true);
     }
   }
 
@@ -2391,6 +2548,11 @@ class V2StudioApp {
     });
 
     // Export Buttons
+    this.dom.btnPreviewRetry?.addEventListener('click', () => {
+      this.dom.btnPreviewRetry.hidden = true;
+      if (this.currentGenerator) this.showEngineLoading(this.currentGenerator.id === 'qr-code' ? 'qr-code-styling' : 'bwip-js');
+      this.renderCurrentCode();
+    });
     this.dom.btnDownloadSvg?.addEventListener('click', () => this.downloadSvg());
     this.dom.btnDownloadEps?.addEventListener('click', () => this.downloadEps());
     this.dom.btnDownloadPng?.addEventListener('click', () => this.downloadPng());

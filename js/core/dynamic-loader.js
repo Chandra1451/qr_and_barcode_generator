@@ -8,11 +8,28 @@
  * 2. Fallback to jsDelivr global CDN.
  * 3. Fallback to unpkg global CDN.
  * 
- * Single-flight loading (shared promise) with retry after failure; slow sources are never abandoned.
+ * Single-flight loading (shared promise) with retry after failure; slow sources are never abandoned,
+ * but a load that has produced nothing after LOAD_LIMIT_MS counts as failed so the page can say so.
  */
 
 // Cache promises for single-flight execution
 const loadPromises = new Map();
+
+/** After this long with no source finished, a load fails (the visitor sees a retry instead of waiting forever). */
+export const LOAD_LIMIT_MS = 60000;
+
+/**
+ * A library could not be loaded. `engine` names it ('bwip-js', 'qr-code-styling', 'jspdf', 'jszip'),
+ * so pages can show a plain message instead of the technical one.
+ */
+export class EngineLoadError extends Error {
+  constructor(message, { engine = '', timedOut = false } = {}) {
+    super(message);
+    this.name = 'EngineLoadError';
+    this.engine = engine;
+    this.timedOut = timedOut;
+  }
+}
 
 /**
  * Resolves the relative path prefix depending on current page depth
@@ -35,11 +52,14 @@ function getVendorPrefix() {
  * alongside it, and whichever finishes first wins. (Removing a slow 1.1 MB download on
  * mobile used to leave barcodes permanently broken.) Rejects only when every started
  * source has failed.
+ * After LOAD_LIMIT_MS with nothing finished it rejects anyway; scripts still in flight are left
+ * alone, so a late arrival is picked up by the next attempt (the loaders check the global first).
  * @param {string[]} sources - Ordered list of script URLs to try
  * @param {number} [timeoutMs=20000] - Time before also trying the next source
+ * @param {string} [engine=''] - Library name for EngineLoadError
  * @returns {Promise<void>}
  */
-function injectScript(sources, timeoutMs = 20000) {
+function injectScript(sources, timeoutMs = 20000, engine = '') {
   const urlList = Array.isArray(sources) ? sources : [sources];
 
   return new Promise((resolve, reject) => {
@@ -47,10 +67,17 @@ function injectScript(sources, timeoutMs = 20000) {
     let inFlight = 0;
     let settled = false;
 
+    const limitTimer = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      reject(new EngineLoadError(`${engine || 'Script'} did not load within ${LOAD_LIMIT_MS / 1000} s`, { engine, timedOut: true }));
+    }, LOAD_LIMIT_MS);
+
     function failIfExhausted() {
       if (!settled && inFlight === 0 && index >= urlList.length) {
         settled = true;
-        reject(new Error(`Failed to load script after trying all sources: ${urlList.join(', ')}`));
+        clearTimeout(limitTimer);
+        reject(new EngineLoadError(`Failed to load script after trying all sources: ${urlList.join(', ')}`, { engine }));
       }
     }
 
@@ -76,6 +103,7 @@ function injectScript(sources, timeoutMs = 20000) {
         inFlight--;
         if (!settled) {
           settled = true;
+          clearTimeout(limitTimer);
           resolve();
         }
       };
@@ -129,9 +157,9 @@ export async function loadBwip() {
       'https://cdn.jsdelivr.net/npm/bwip-js@4.11.4/dist/bwip-js-min.js',
       'https://unpkg.com/bwip-js@4.11.4/dist/bwip-js-min.js'
     ];
-    await injectScript(sources, 30000); // 1.1 MB: allow slow mobile connections
+    await injectScript(sources, 30000, 'bwip-js'); // 1.1 MB (about 0.24 MB as sent): allow slow mobile connections
     if (!window.bwipjs) {
-      throw new Error('bwip-js script loaded but window.bwipjs is undefined');
+      throw new EngineLoadError('bwip-js script loaded but window.bwipjs is undefined', { engine: 'bwip-js' });
     }
     return window.bwipjs;
   });
@@ -153,9 +181,9 @@ export async function loadQRCodeStyling() {
       'https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js',
       'https://unpkg.com/qr-code-styling@1.9.2/lib/qr-code-styling.js'
     ];
-    await injectScript(sources);
+    await injectScript(sources, 20000, 'qr-code-styling');
     if (!window.QRCodeStyling) {
-      throw new Error('qr-code-styling script loaded but window.QRCodeStyling is undefined');
+      throw new EngineLoadError('qr-code-styling script loaded but window.QRCodeStyling is undefined', { engine: 'qr-code-styling' });
     }
     return window.QRCodeStyling;
   });
@@ -178,10 +206,10 @@ export async function loadJsPdf() {
       'https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js',
       'https://unpkg.com/jspdf@4.2.1/dist/jspdf.umd.min.js'
     ];
-    await injectScript(sources);
+    await injectScript(sources, 20000, 'jspdf');
     const jsPdfClass = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
     if (!jsPdfClass) {
-      throw new Error('jsPDF script loaded but window.jspdf.jsPDF is undefined');
+      throw new EngineLoadError('jsPDF script loaded but window.jspdf.jsPDF is undefined', { engine: 'jspdf' });
     }
     return jsPdfClass;
   });
@@ -203,9 +231,9 @@ export async function loadJsZip() {
       'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js',
       'https://unpkg.com/jszip@3.10.1/dist/jszip.min.js'
     ];
-    await injectScript(sources);
+    await injectScript(sources, 20000, 'jszip');
     if (!window.JSZip) {
-      throw new Error('JSZip script loaded but window.JSZip is undefined');
+      throw new EngineLoadError('JSZip script loaded but window.JSZip is undefined', { engine: 'jszip' });
     }
     return window.JSZip;
   });

@@ -1,5 +1,5 @@
 // Check digit calculator page tool (UCM-KW-02). Uses the studio's GS1 Mod-10 routine; nothing is sent anywhere.
-import { calculateMod10 } from './core/checksums.js?v=3.30';
+import { calculateMod10 } from './core/checksums.js?v=3.31';
 
 const MAX_LINES = 1000;
 const $ = (id) => document.getElementById(id);

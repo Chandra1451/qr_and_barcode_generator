@@ -1152,6 +1152,34 @@ h1, h2, h3, h4 {
   background: transparent;
 }
 
+/* Engine loading status (UCM-LOAD-01). The stage is white in both themes, so colours are fixed. */
+.preview-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  color: #0f1117;
+  text-align: center;
+  font-family: var(--font-body);
+}
+.preview-loading[hidden],
+.preview-loading [hidden] { display: none; }
+.preview-loading-text { margin: 0; font-weight: 700; font-size: 1rem; max-width: 34ch; }
+.preview-loading-note { margin: 0; font-size: 0.9rem; color: #4a5263; max-width: 34ch; }
+.preview-loading-bar { width: min(240px, 70%); height: 6px; background: #e3e6ec; border-radius: 3px; overflow: hidden; }
+.preview-loading-bar span { display: block; width: 40%; height: 100%; background: #0f1117; border-radius: 3px; animation: previewLoadingSlide 1.2s ease-in-out infinite; }
+.preview-loading.is-failed .preview-loading-bar { display: none; }
+@keyframes previewLoadingSlide { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@media (prefers-reduced-motion: reduce) {
+  .preview-loading-bar span { animation: none; width: 100%; opacity: 0.35; }
+}
+
 .preview-error-box {
   display: none;
   background: var(--scanner-laser-tint);

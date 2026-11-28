@@ -73,6 +73,8 @@ export class Studio {
    */
   async fingerprint() {
     return this.page.evaluate(() => {
+      // While the engine for the chosen code is loading or has failed, the preview is not current.
+      if (document.querySelector('#preview-stage')?.dataset.engine) return null;
       const qrBox = document.querySelector('#qr-styled-container');
       const bwipCanvas = document.querySelector('#preview-canvas');
       const qrVisible = qrBox && getComputedStyle(qrBox).display !== 'none';
